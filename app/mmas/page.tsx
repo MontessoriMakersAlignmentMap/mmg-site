@@ -130,7 +130,7 @@ export default function MMASPage() {
           </div>
           {/* Hero logo — right column */}
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
-            <Logo name="mmas" heroWidth={560} heroHeight={160} />
+            <Logo name="mmas" heroWidth={380} heroHeight={380} />
           </div>
         </div>
       </section>

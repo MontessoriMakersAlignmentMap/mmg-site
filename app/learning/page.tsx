@@ -101,7 +101,7 @@ export default function LearningPage() {
               Montessori Makers Learning
             </p>
             <div className="hidden md:block">
-              <Logo name="learning" heroWidth={560} heroHeight={160} />
+              <Logo name="learning" heroWidth={380} heroHeight={380} />
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-start">

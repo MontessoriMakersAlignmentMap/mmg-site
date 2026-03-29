@@ -42,7 +42,7 @@ export default function MatchHubPage() {
           </div>
           {/* Hero logo — right column */}
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
-            <Logo name="matchhub" heroWidth={560} heroHeight={160} />
+            <Logo name="matchhub" heroWidth={380} heroHeight={380} />
           </div>
         </div>
       </section>

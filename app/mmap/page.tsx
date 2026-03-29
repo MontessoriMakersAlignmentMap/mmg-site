@@ -312,7 +312,7 @@ export default function MMAPPage() {
           {/* Text */}
           <div>
             <div className="mb-6">
-              <Logo name="mmap" heroWidth={460} heroHeight={130} />
+              <Logo name="mmap" heroWidth={380} heroHeight={380} />
             </div>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
