@@ -1,0 +1,272 @@
+import Link from 'next/link'
+
+const serif = { fontFamily: 'var(--font-heading)' }
+
+const steps = [
+  {
+    number: '01',
+    title: 'Student Assessment',
+    description:
+      'The guide administers assessment directly with the student using provided materials. No specialist needed, no separate testing environment. Assessment happens naturally in the flow of the classroom.',
+  },
+  {
+    number: '02',
+    title: 'Skill Mapping',
+    description:
+      'The system maps student responses to the Montessori materials sequence. Each answer places the child precisely within the progression — not against a grade-level standard, but against the actual learning pathway.',
+  },
+  {
+    number: '03',
+    title: 'Teacher Insight',
+    description:
+      'The guide sees exactly where each student is and what comes next. No interpretation required. The insight is specific: this child is developing with digraphs, secure with initial blends, and ready for vowel teams.',
+  },
+  {
+    number: '04',
+    title: 'School Trends',
+    description:
+      'Leadership sees patterns across classrooms. Which materials are producing strong outcomes? Where are students consistently stalling? What does the school need to address at the program level?',
+  },
+]
+
+const assessmentTypes = [
+  {
+    name: 'Letter–Sound Inventory',
+    description:
+      'A pre-reading phonemic check that establishes where each child is in their foundational sound-symbol understanding before formal phonics instruction begins.',
+  },
+  {
+    name: 'Grapheme–Phoneme Mapping',
+    description:
+      'Assesses digraphs, blends, and vowel teams across Sets 2–8. Tracks mastery of the phonogram sequence as children move through the materials.',
+  },
+  {
+    name: 'Decoding Word Lists',
+    description:
+      'Real words organized by Sets 1–8. Identifies error patterns precisely — not just whether a child is struggling, but where in the phonics sequence the gap appears.',
+  },
+  {
+    name: 'Fluency Passages',
+    description:
+      'Words Correct Per Minute measured over 30–60 second passages. Provides a reliable developmental benchmark without the pressure of a standardized testing format.',
+  },
+  {
+    name: 'Student Reading Profiles',
+    description:
+      'Auto-generated, share-ready profiles for each student. Strengths-centered by design. Written to communicate clearly to families and colleagues alike.',
+  },
+  {
+    name: 'Phonics Mastery Pathway',
+    description:
+      'A visual tracker showing each child\'s movement through the continuum: emerging → developing → secure → ready for next material.',
+  },
+]
+
+export default function MMASHowItWorksPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto max-w-3xl">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
+            <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
+              Currently in development
+            </span>
+          </div>
+          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
+            MMAS — How It Works
+          </p>
+          <h1
+            className="text-5xl md:text-6xl text-white leading-[1.05] mb-8"
+            style={serif}
+          >
+            Assessment that speaks Montessori.
+          </h1>
+          <p className="text-[#64748B] text-lg leading-relaxed mb-12">
+            Four steps from assessment to insight — with every signal mapped to
+            the Montessori materials sequence, not a grade-level framework.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/contact"
+              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors inline-block text-center"
+            >
+              Get in Touch
+            </Link>
+            <Link
+              href="/mmas/schools"
+              className="border border-white text-white text-sm px-8 py-4 tracking-wide hover:bg-white hover:text-[#0e1a7a] transition-colors inline-block text-center"
+            >
+              For Schools &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4-step process */}
+      <section className="bg-[#FAF9F7] py-24 md:py-28 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">
+              The Process
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight"
+              style={serif}
+            >
+              Four steps from observation to school-wide clarity.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="bg-white border border-[#E2DDD6] p-8"
+              >
+                <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4 font-mono">
+                  {step.number}
+                </p>
+                <h3
+                  className="text-xl text-[#0e1a7a] mb-4"
+                  style={serif}
+                >
+                  {step.title}
+                </h3>
+                <p className="text-[#374151] text-base leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Assessment types */}
+      <section className="bg-white py-24 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">
+              Assessment Types
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
+              style={serif}
+            >
+              Six assessments. One coherent picture.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              Each assessment type is designed to produce a specific kind of
+              insight — and together they build a complete developmental profile
+              of every reader in your classroom.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-0 border border-[#E2DDD6]">
+            {assessmentTypes.map((type, i) => (
+              <div
+                key={type.name}
+                className={`p-8 border-[#E2DDD6] ${
+                  i % 3 !== 2 ? 'md:border-r' : ''
+                } ${i < 3 ? 'border-b' : ''}`}
+              >
+                <h3
+                  className="text-[#0e1a7a] text-base font-semibold mb-3"
+                >
+                  {type.name}
+                </h3>
+                <p className="text-[#374151] text-sm leading-relaxed">
+                  {type.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Progression language */}
+      <section className="bg-[#F2EDE6] py-20 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">
+              Progression Language
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
+              style={serif}
+            >
+              Development described as movement, not judgment.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed mb-6">
+              MMAS uses a four-stage progression that mirrors how children
+              actually develop — not whether they&apos;re on grade level, but
+              where they are in the sequence and what they&apos;re ready for next.
+            </p>
+            <div className="flex items-center gap-3 flex-wrap">
+              {['emerging', 'developing', 'secure', 'ready for next material'].map(
+                (stage, i, arr) => (
+                  <div key={stage} className="flex items-center gap-3">
+                    <span className="text-[#0e1a7a] text-sm font-medium px-4 py-2 bg-white border border-[#E2DDD6]">
+                      {stage}
+                    </span>
+                    {i < arr.length - 1 && (
+                      <span className="text-[#8A6014]">→</span>
+                    )}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="bg-white border border-[#E2DDD6] p-8">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">
+              MMAP Integration
+            </p>
+            <p
+              className="text-[#0e1a7a] text-xl leading-snug mb-4"
+              style={serif}
+            >
+              Assessment signals flow directly into MMAP lesson logs.
+            </p>
+            <p className="text-[#374151] text-sm leading-relaxed mb-6">
+              If your school uses MMAP, assessment results don&apos;t stay in
+              MMAS. They populate lesson logs, inform planning sequences, and
+              give school leadership real-time visibility into materials
+              progression across every classroom.
+            </p>
+            <Link
+              href="/mmas/schools"
+              className="text-[#0e1a7a] text-sm border-b border-[#0e1a7a] pb-0.5 hover:text-[#8A6014] hover:border-[#d6a758] transition-colors"
+            >
+              Learn more about school-wide integration →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTAs */}
+      <section className="bg-[#0e1a7a] py-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <p
+            className="text-white text-2xl md:text-3xl max-w-xl leading-snug"
+            style={serif}
+          >
+            See what MMAS looks like in a real Montessori classroom.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/contact"
+              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center whitespace-nowrap"
+            >
+              Get in Touch
+            </Link>
+            <Link
+              href="/mmas/schools"
+              className="border border-white/20 text-white/70 text-sm px-8 py-4 tracking-wide hover:border-white/40 hover:text-white transition-colors text-center whitespace-nowrap"
+            >
+              For Schools &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}

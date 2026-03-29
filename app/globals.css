@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
+/* ─── TheSeasons: loaded locally for performance ─────────────────────────── */
+@font-face {
+  font-family: 'TheSeasons';
+  src:
+    url('/fonts/TheSeasons-Regular.woff2') format('woff2'),
+    url('/fonts/TheSeasons-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF9F7;
+  --foreground: #111827;
+  --navy: #0e1a7a;
+  --gold: #d6a758;
+  --cream: #F2EDE6;
+  --muted: #64748B;
+  --border: #E2DDD6;
+
+  /* Typography */
+  --font-heading: 'TheSeasons', Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-montserrat), system-ui, -apple-system, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-heading);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Heading typography system ──────────────────────────────────────────── */
+/* Applied globally so TheSeasons works on every page without inline styles */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 400; /* TheSeasons is a display face — use regular weight */
+  letter-spacing: -0.01em;
+}
+
+/* ─── Utility overrides ──────────────────────────────────────────────────── */
+a {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+html {
+  scrollbar-gutter: stable;
 }
