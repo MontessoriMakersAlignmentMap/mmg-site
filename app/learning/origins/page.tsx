@@ -275,12 +275,12 @@ export default function OriginsPage() {
                 className="bg-white border border-[#E2DDD6] flex flex-col md:flex-row overflow-hidden"
               >
                 {/* Cover image */}
-                <div className="relative w-full md:w-48 lg:w-56 flex-shrink-0 aspect-[3/4] md:aspect-auto">
+                <div className="relative w-full md:w-48 lg:w-56 flex-shrink-0 aspect-[3/4] md:self-start">
                   <Image
                     src={suite.image}
                     alt={suite.name}
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 224px"
                   />
                 </div>
