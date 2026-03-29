@@ -217,6 +217,7 @@ export default function AboutPage() {
               { name: 'Toolbox', desc: 'Practical downloadable tools for school operations.', href: '/toolbox' },
               { name: 'Learning', desc: 'Courses, decodable books, and the Origins Series.', href: '/learning' },
               { name: 'Alignment Map', desc: 'Strategic self-assessment and school mapping tools.', href: '/mmap' },
+              { name: 'Partners', desc: 'Schools, networks, and organizations we work alongside.', href: '/partners' },
             ].map((item) => (
               <Link
                 key={item.name}

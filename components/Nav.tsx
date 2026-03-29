@@ -319,9 +319,29 @@ export default function Nav() {
               </div>
             </div>
           </div>
-          <Link href="/about" className="text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
-            About
-          </Link>
+          {/* About dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+              About
+              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute top-full pt-3 right-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[240px] p-4">
+                <div className="space-y-0.5">
+                  <Link href="/about" className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors">
+                    <p className="text-[#0e1a7a] text-sm font-medium">About MMG</p>
+                    <p className="text-[#64748B] text-xs mt-0.5">Our story and founder</p>
+                  </Link>
+                  <Link href="/partners" className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors">
+                    <p className="text-[#0e1a7a] text-sm font-medium">Partners</p>
+                    <p className="text-[#64748B] text-xs mt-0.5">Organizations we work with</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -358,6 +378,7 @@ export default function Nav() {
             {[
               { name: 'Home', href: '/' },
               { name: 'About', href: '/about' },
+              { name: 'Partners', href: '/partners' },
             ].map((link) => (
               <Link
                 key={link.name}
