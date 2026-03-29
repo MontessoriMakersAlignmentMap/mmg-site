@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react'
 import type { Job, GuideProfile } from '@/lib/types/matchhub'
 import type { Search, SearchRole } from '@/lib/types/searches'
 import type { TalentProfile } from '@/lib/types/talent-pool'
+import type { Partner } from '@/lib/types/partners'
 
 // ─── Course registry ──────────────────────────────────────────────────────────
 // course.id must match the course_id used in the course platform's
@@ -90,7 +91,7 @@ function Btn({ label, onClick, loading, color }: {
 }
 
 // ─── Tab types ────────────────────────────────────────────────────────────────
-type Tab = 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent'
+type Tab = 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent' | 'partners'
 type JobFilter = 'all' | 'pending' | 'approved' | 'rejected' | 'archived' | 'expired'
 type ProfileFilter = 'all' | 'pending' | 'approved' | 'rejected'
 
@@ -141,6 +142,15 @@ export default function AdminPage() {
   const [editingTalent, setEditingTalent] = useState<string | null>(null)
   const [editTalentData, setEditTalentData] = useState<Partial<TalentProfile & { levels_raw: string; tags_raw: string }>>({})
   const [actingTalent, setActingTalent] = useState<Record<string, string>>({})
+
+  // Partners state
+  const [partners, setPartners] = useState<Partner[]>([])
+  const [partnersLoading, setPartnersLoading] = useState(false)
+  const [showNewPartnerForm, setShowNewPartnerForm] = useState(false)
+  const [newPartner, setNewPartner] = useState({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization' as Partner['category'], display_order: 0, is_featured: false, is_published: false })
+  const [editingPartner, setEditingPartner] = useState<string | null>(null)
+  const [editPartnerData, setEditPartnerData] = useState<Partial<Partner>>({})
+  const [actingPartner, setActingPartner] = useState<Record<string, string>>({})
 
   // Course enrollment stats from course platform
   const [enrollmentStats, setEnrollmentStats] = useState<{
@@ -206,6 +216,18 @@ export default function AdminPage() {
     finally { setTalentLoading(false) }
   }, [adminPw])
 
+  const loadPartners = useCallback(async (pw?: string) => {
+    const password = pw ?? adminPw
+    setPartnersLoading(true)
+    try {
+      const res = await fetch('/api/admin/partners', { headers: { 'x-admin-password': password } })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setPartners(await res.json())
+    } catch { setError('Could not load partners.') }
+    finally { setPartnersLoading(false) }
+  }, [adminPw])
+
   const loadEnrollments = useCallback(async (pw?: string) => {
     const password = pw ?? adminPw
     setEnrollmentsLoading(true)
@@ -229,7 +251,7 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent() }
+    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent(); loadPartners() }
   }, [auth, loadJobs, loadProfiles, loadEnrollments, loadSearches, loadTalent])
 
   async function handleLogin(e: React.FormEvent) {
@@ -251,6 +273,7 @@ export default function AdminPage() {
     loadEnrollments(pwInput)
     loadSearches(pwInput)
     loadTalent(pwInput)
+    loadPartners(pwInput)
   }
 
   async function handleJobAction(jobId: string, action: 'approve' | 'reject' | 'archive') {
@@ -291,6 +314,71 @@ export default function AdminPage() {
       ))
     } catch { setError(`Profile action failed. Try again.`) }
     finally { setActingProfile(prev => { const n = { ...prev }; delete n[profileId]; return n }) }
+  }
+
+  // ── Partners CRUD ─────────────────────────────────────────────────────────────
+
+  async function handleCreatePartner() {
+    setActingPartner(prev => ({ ...prev, new: 'creating' }))
+    try {
+      const res = await fetch('/api/admin/partners', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify(newPartner),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setShowNewPartnerForm(false)
+      setNewPartner({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization', display_order: 0, is_featured: false, is_published: false })
+      await loadPartners()
+    } catch { setError('Could not create partner.') }
+    finally { setActingPartner(prev => { const n = { ...prev }; delete n.new; return n }) }
+  }
+
+  async function handleUpdatePartner(id: string) {
+    setActingPartner(prev => ({ ...prev, [id]: 'saving' }))
+    try {
+      const res = await fetch(`/api/admin/partners/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify(editPartnerData),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setEditingPartner(null)
+      await loadPartners()
+    } catch { setError('Could not update partner.') }
+    finally { setActingPartner(prev => { const n = { ...prev }; delete n[id]; return n }) }
+  }
+
+  async function handleDeletePartner(id: string) {
+    if (!confirm('Delete this partner? This cannot be undone.')) return
+    setActingPartner(prev => ({ ...prev, [id]: 'deleting' }))
+    try {
+      const res = await fetch(`/api/admin/partners/${id}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-password': adminPw },
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setPartners(prev => prev.filter(p => p.id !== id))
+    } catch { setError('Could not delete partner.') }
+    finally { setActingPartner(prev => { const n = { ...prev }; delete n[id]; return n }) }
+  }
+
+  async function handleTogglePartner(id: string, field: 'is_published' | 'is_featured', current: boolean) {
+    setActingPartner(prev => ({ ...prev, [id]: field }))
+    try {
+      const res = await fetch(`/api/admin/partners/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify({ [field]: !current }),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setPartners(prev => prev.map(p => p.id === id ? { ...p, [field]: !current } : p))
+    } catch { setError('Could not update partner.') }
+    finally { setActingPartner(prev => { const n = { ...prev }; delete n[id]; return n }) }
   }
 
   // ── Search CRUD ──────────────────────────────────────────────────────────────
@@ -558,6 +646,7 @@ export default function AdminPage() {
             { key: 'profiles', label: 'Guide Profiles', count: profiles.length, badge: pendingProfiles },
             { key: 'searches', label: 'Current Searches', count: searches.length },
             { key: 'talent', label: 'Talent Pool', count: talentProfiles.length },
+            { key: 'partners', label: 'Partners', count: partners.length },
           ] as { key: Tab; label: string; count: number; badge?: number }[]).map(t => (
             <button
               key={t.key}
@@ -1184,6 +1273,165 @@ export default function AdminPage() {
                           {profile.resume_url && (
                             <a href={profile.resume_url} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0e1a7a] hover:underline">Resume ↗</a>
                           )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+
+        {/* ── PARTNERS TAB ────────────────────────────────────────────────────── */}
+        {tab === 'partners' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-sm text-gray-500">{partners.length} partner{partners.length !== 1 ? 's' : ''}</p>
+              <button
+                onClick={() => setShowNewPartnerForm(true)}
+                className="bg-[#0e1a7a] text-white text-xs font-medium px-4 py-2 hover:bg-[#162270] transition-colors"
+              >
+                + Add Partner
+              </button>
+            </div>
+
+            {/* New partner form */}
+            {showNewPartnerForm && (
+              <div className="border border-[#0e1a7a] p-6 mb-6 bg-white">
+                <p className="text-sm font-semibold text-[#0e1a7a] mb-4">New Partner</p>
+                <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Partner Name *</label>
+                    <input value={newPartner.partner_name} onChange={e => setNewPartner(p => ({ ...p, partner_name: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="Organization name" />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Category</label>
+                    <select value={newPartner.category} onChange={e => setNewPartner(p => ({ ...p, category: e.target.value as Partner['category'] }))} className="w-full border border-gray-200 px-3 py-2 text-sm bg-white">
+                      <option value="school">School</option>
+                      <option value="nonprofit">Nonprofit</option>
+                      <option value="network">Network</option>
+                      <option value="organization">Organization</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Logo Image URL</label>
+                    <input value={newPartner.logo_image} onChange={e => setNewPartner(p => ({ ...p, logo_image: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Website URL</label>
+                    <input value={newPartner.website_url} onChange={e => setNewPartner(p => ({ ...p, website_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Short Description</label>
+                    <input value={newPartner.short_description} onChange={e => setNewPartner(p => ({ ...p, short_description: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="Optional one-line description" />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Display Order</label>
+                    <input type="number" value={newPartner.display_order} onChange={e => setNewPartner(p => ({ ...p, display_order: parseInt(e.target.value) || 0 }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                  </div>
+                  <div className="flex items-end gap-4 pb-2">
+                    <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="checkbox" checked={newPartner.is_featured} onChange={e => setNewPartner(p => ({ ...p, is_featured: e.target.checked }))} />
+                      Featured
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="checkbox" checked={newPartner.is_published} onChange={e => setNewPartner(p => ({ ...p, is_published: e.target.checked }))} />
+                      Published
+                    </label>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Btn label="Save Partner" color="navy" loading={actingPartner.new === 'creating'} onClick={handleCreatePartner} />
+                  <Btn label="Cancel" color="gray" loading={false} onClick={() => setShowNewPartnerForm(false)} />
+                </div>
+              </div>
+            )}
+
+            {partnersLoading ? (
+              <p className="text-sm text-gray-400 py-8 text-center">Loading…</p>
+            ) : partners.length === 0 ? (
+              <p className="text-sm text-gray-400 py-8 text-center">No partners yet. Add one above.</p>
+            ) : (
+              <div className="space-y-3">
+                {partners.map(partner => (
+                  <div key={partner.id} className="border border-gray-100 bg-white p-5">
+                    {editingPartner === partner.id ? (
+                      <div>
+                        <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Partner Name *</label>
+                            <input value={editPartnerData.partner_name ?? ''} onChange={e => setEditPartnerData(p => ({ ...p, partner_name: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Category</label>
+                            <select value={editPartnerData.category ?? 'organization'} onChange={e => setEditPartnerData(p => ({ ...p, category: e.target.value as Partner['category'] }))} className="w-full border border-gray-200 px-3 py-2 text-sm bg-white">
+                              <option value="school">School</option>
+                              <option value="nonprofit">Nonprofit</option>
+                              <option value="network">Network</option>
+                              <option value="organization">Organization</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Logo Image URL</label>
+                            <input value={editPartnerData.logo_image ?? ''} onChange={e => setEditPartnerData(p => ({ ...p, logo_image: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Website URL</label>
+                            <input value={editPartnerData.website_url ?? ''} onChange={e => setEditPartnerData(p => ({ ...p, website_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Short Description</label>
+                            <input value={editPartnerData.short_description ?? ''} onChange={e => setEditPartnerData(p => ({ ...p, short_description: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Display Order</label>
+                            <input type="number" value={editPartnerData.display_order ?? 0} onChange={e => setEditPartnerData(p => ({ ...p, display_order: parseInt(e.target.value) || 0 }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                          </div>
+                          <div className="flex items-end gap-4 pb-2">
+                            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                              <input type="checkbox" checked={editPartnerData.is_featured ?? false} onChange={e => setEditPartnerData(p => ({ ...p, is_featured: e.target.checked }))} />
+                              Featured
+                            </label>
+                            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                              <input type="checkbox" checked={editPartnerData.is_published ?? false} onChange={e => setEditPartnerData(p => ({ ...p, is_published: e.target.checked }))} />
+                              Published
+                            </label>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Btn label="Save" color="navy" loading={actingPartner[partner.id] === 'saving'} onClick={() => handleUpdatePartner(partner.id)} />
+                          <Btn label="Cancel" color="gray" loading={false} onClick={() => setEditingPartner(null)} />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-4 flex-1 min-w-0">
+                          {partner.logo_image && (
+                            <img src={partner.logo_image} alt={partner.partner_name} className="w-12 h-12 object-contain flex-shrink-0 border border-gray-100" />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <p className="text-sm font-semibold text-gray-800">{partner.partner_name}</p>
+                              <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 uppercase tracking-wide">{partner.category}</span>
+                              {partner.is_featured && <span className="text-[10px] bg-[#d6a758]/20 text-[#8A6014] px-2 py-0.5 uppercase tracking-wide font-medium">Featured</span>}
+                              {partner.is_published
+                                ? <span className="text-[10px] bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 uppercase tracking-wide">Published</span>
+                                : <span className="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-2 py-0.5 uppercase tracking-wide">Draft</span>}
+                            </div>
+                            {partner.short_description && <p className="text-xs text-gray-500 mb-1">{partner.short_description}</p>}
+                            {partner.website_url && <a href={partner.website_url} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0e1a7a] hover:underline">{partner.website_url}</a>}
+                            <p className="text-[10px] text-gray-400 mt-1">Order: {partner.display_order}</p>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                          <div className="flex gap-2">
+                            <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingPartner(partner.id); setEditPartnerData({ ...partner }) }} />
+                            <Btn label={partner.is_published ? 'Unpublish' : 'Publish'} color="navy" loading={actingPartner[partner.id] === 'is_published'} onClick={() => handleTogglePartner(partner.id, 'is_published', partner.is_published)} />
+                            <Btn label="Delete" color="red" loading={actingPartner[partner.id] === 'deleting'} onClick={() => handleDeletePartner(partner.id)} />
+                          </div>
+                          <Btn label={partner.is_featured ? 'Unfeature' : 'Feature'} color="gray" loading={actingPartner[partner.id] === 'is_featured'} onClick={() => handleTogglePartner(partner.id, 'is_featured', partner.is_featured)} />
                         </div>
                       </div>
                     )}
