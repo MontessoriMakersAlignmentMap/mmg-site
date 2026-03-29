@@ -125,7 +125,7 @@ export default function AboutPage() {
                 Hannah is trained in anti-bias, anti-racist practice and brings equity, belonging,
                 and social responsibility into every level of her work. She has completed doctoral
                 coursework in Early Childhood Education (PhD studies completed, ABD) and serves on
-                the boards of Indigo Montessori and Montessori for Social Justice. Her work reflects
+                the boards of Indigo Montessori and The Peace Rebellion. Her work reflects
                 a justice-centered commitment to the future of Montessori — one that asks not only
                 whether a school is Montessori in method, but whether it is prepared to live its
                 values in practice.
@@ -134,22 +134,27 @@ export default function AboutPage() {
 
             {/* Credential chips */}
             <div className="mt-10 flex flex-wrap gap-2">
-              {[
-                'Nearly 25 years in Montessori',
-                'Infant–Middle School',
-                'Head of School',
-                'ABD, Early Childhood Ed.',
-                'ABAR Trained',
-                'Board: Indigo Montessori',
-                'Board: Montessori for Social Justice',
-              ].map((chip) => (
-                <span
-                  key={chip}
-                  className="bg-[#F2EDE6] text-[#374151] text-xs px-3 py-1.5 border border-[#E2DDD6]"
-                >
+              {['Nearly 25 years in Montessori', 'Infant–Middle School', 'Head of School', 'ABD, Early Childhood Ed.', 'ABAR Trained'].map((chip) => (
+                <span key={chip} className="bg-[#F2EDE6] text-[#374151] text-xs px-3 py-1.5 border border-[#E2DDD6]">
                   {chip}
                 </span>
               ))}
+              <a
+                href="https://www.indigomontessori.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#F2EDE6] text-[#374151] text-xs px-3 py-1.5 border border-[#E2DDD6] hover:border-[#0e1a7a] transition-colors"
+              >
+                Board: Indigo Montessori ↗
+              </a>
+              <a
+                href="https://www.thepeacerebellion.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#F2EDE6] text-[#374151] text-xs px-3 py-1.5 border border-[#E2DDD6] hover:border-[#0e1a7a] transition-colors"
+              >
+                Board: The Peace Rebellion ↗
+              </a>
             </div>
           </div>
         </div>
