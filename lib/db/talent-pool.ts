@@ -18,7 +18,7 @@ export async function getActiveTalentProfiles(): Promise<PublicTalentProfile[]> 
     .eq('active', true)
     .order('created_at', { ascending: false })
   if (error) { console.error('getActiveTalentProfiles:', error.message); return [] }
-  return (data ?? []) as PublicTalentProfile[]
+  return (data ?? []) as unknown as PublicTalentProfile[]
 }
 
 // ─── Admin ────────────────────────────────────────────────────────────────────

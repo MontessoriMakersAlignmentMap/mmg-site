@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
+import { sendEmail } from '@/lib/email'
 
 export async function POST(req: NextRequest) {
   try {
@@ -59,14 +60,7 @@ export async function POST(req: NextRequest) {
     ].filter(Boolean).join('\n')
 
     // Use the existing email infrastructure (Resend)
-    const { sendEmail } = await import('@/lib/email').catch(() => ({ sendEmail: null }))
-    if (sendEmail) {
-      await (sendEmail as (opts: { to: string; subject: string; text: string }) => Promise<void>)({
-        to: adminEmail,
-        subject,
-        text: body,
-      }).catch(() => {})
-    }
+    await sendEmail({ to: adminEmail, subject, text: body }).catch(() => {})
 
     return NextResponse.json({ ok: true })
   } catch (err) {

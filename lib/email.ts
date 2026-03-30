@@ -3,7 +3,7 @@
 //   RESEND_API_KEY   — from resend.com
 //   ADMIN_EMAIL      — address to receive admin notifications
 
-async function sendEmail({
+export async function sendEmail({
   to,
   subject,
   html,
