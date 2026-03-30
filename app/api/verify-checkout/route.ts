@@ -4,9 +4,11 @@ import { updateJobPaymentStatus } from '@/lib/db/jobs'
 import { createServiceClient } from '@/lib/supabase/server'
 import { sendAdminNotification, sendSchoolConfirmation } from '@/lib/email'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-03-25.dahlia',
-})
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error('STRIPE_SECRET_KEY is not set')
+  return new Stripe(key, { apiVersion: '2026-03-25.dahlia' })
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Retrieve the session from Stripe
-    const session = await stripe.checkout.sessions.retrieve(sessionId)
+    const session = await getStripe().checkout.sessions.retrieve(sessionId)
 
     // Guard: must be paid
     if (session.payment_status !== 'paid') {
