@@ -8,12 +8,12 @@ function checkAuth(req: NextRequest): boolean {
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!checkAuth(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const { id } = await params
+  const { id } = await context.params
   const { action } = await req.json() as { action: 'approve' | 'reject' }
   if (!['approve', 'reject'].includes(action)) {
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 })

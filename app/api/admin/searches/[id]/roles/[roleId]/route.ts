@@ -7,10 +7,10 @@ function checkAuth(req: NextRequest) {
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string; roleId: string }> }
+  context: { params: Promise<{ id: string; roleId: string }> }
 ) {
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  const { roleId } = await params
+  const { roleId } = await context.params
   const body = await req.json()
   const result = await updateSearchRole(roleId, body)
   if (result.error) return NextResponse.json({ error: result.error }, { status: 500 })
@@ -19,10 +19,10 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string; roleId: string }> }
+  context: { params: Promise<{ id: string; roleId: string }> }
 ) {
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  const { roleId } = await params
+  const { roleId } = await context.params
   const result = await deleteSearchRole(roleId)
   if (result.error) return NextResponse.json({ error: result.error }, { status: 500 })
   return NextResponse.json({ ok: true })
