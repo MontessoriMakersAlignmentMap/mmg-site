@@ -262,7 +262,7 @@ export default function InstitutePage() {
       <section className="bg-white py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">In the MMG Ecosystem</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">In the Montessori Makers Ecosystem</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
               The Institute works alongside Advisory and Toolbox.
             </h2>
@@ -287,12 +287,12 @@ export default function InstitutePage() {
               </Link>
             </div>
             <div className="bg-white border border-[#E2DDD6] p-6">
-              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">About MMG</p>
+              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">About Montessori Makers Group</p>
               <p className="text-[#374151] text-sm leading-relaxed mb-6">
                 Montessori Makers Group is the organization behind the Institute, Advisory, and Toolbox. Learn about the mission, the founder, and the thinking behind the work.
               </p>
               <Link href="/about" className="text-[#0e1a7a] text-sm font-medium hover:underline">
-                About MMG &rarr;
+                About Montessori Makers Group &rarr;
               </Link>
             </div>
           </div>

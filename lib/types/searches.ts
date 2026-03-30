@@ -19,6 +19,7 @@ export type SearchRole = {
   apply_method: 'upload' | 'link' | 'email'
   apply_url: string | null
   apply_email: string | null
+  job_description_pdf: string | null
   active: boolean
   created_at: string
 }

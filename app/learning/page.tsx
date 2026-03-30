@@ -407,7 +407,7 @@ export default function LearningPage() {
               Montessori isn&apos;t frozen in time. It&apos;s a living framework.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed mb-4">
-              Every MMG Learning product is built on three commitments: Montessori philosophy,
+              Every Montessori Makers Learning product is built on three commitments: Montessori philosophy,
               modern research, and justice. Not as competing priorities &mdash; as one integrated approach.
             </p>
           </div>

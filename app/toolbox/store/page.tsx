@@ -132,7 +132,7 @@ const faqs = [
     a: 'These are editable, implementation-ready templates &mdash; not locked PDFs. Every product comes with a Word or Google Docs editable version designed to be adapted to your school&apos;s voice and context.',
   },
   {
-    q: 'Do I need to be working with MMG Advisory to use these?',
+    q: 'Do I need to be working with Montessori Makers Advisory to use these?',
     a: 'No. Each tool is designed to stand alone. That said, schools working with Advisory often use these as implementation resources during engagements.',
   },
   {

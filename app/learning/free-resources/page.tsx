@@ -66,7 +66,7 @@ export default function LearningFreeResourcesPage() {
               Tools and resources. Available now.
             </h1>
             <p className="text-[#94A3B8] text-base leading-relaxed mb-3 max-w-xl">
-              Free educator resources reflecting the same commitments as every paid MMG Learning
+              Free educator resources reflecting the same commitments as every paid Montessori Makers Learning
               product &mdash; Montessori philosophy, modern research, and justice.
             </p>
             <p className="text-[#7A8FA3] text-sm leading-relaxed max-w-lg">

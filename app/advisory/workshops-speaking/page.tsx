@@ -152,9 +152,9 @@ const workshops = [
   },
   {
     number: '10',
-    title: 'Evaluating With Dignity: Foundations of the MMG Appraisal Cycle',
+    title: 'Evaluating With Dignity: Foundations of the Montessori Makers Appraisal Cycle',
     description:
-      'An introduction to the MMG Appraisal Cycle — a performance evaluation framework built on dignity, development, and Montessori organizational values.',
+      'An introduction to the Montessori Makers Appraisal Cycle — a performance evaluation framework built on dignity, development, and Montessori organizational values.',
     audience: 'Heads of school, instructional leaders, HR leads',
   },
   {

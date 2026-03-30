@@ -22,7 +22,7 @@ export default function InsightsPage() {
       <section className="bg-[#FAF9F7] py-24 md:py-28 px-6 md:px-10 border-b border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">MMG Substack</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Montessori Makers Substack</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
               The connective tissue between practice, philosophy, and systems.
             </h2>
@@ -45,7 +45,7 @@ export default function InsightsPage() {
               &ldquo;The problem isn&apos;t that Montessori schools lack vision—it&apos;s
               that they lack the systems to act on it consistently.&rdquo;
             </p>
-            <p className="text-[#64748B] text-sm">— From the MMG Substack</p>
+            <p className="text-[#64748B] text-sm">— From the Montessori Makers Substack</p>
           </div>
         </div>
       </section>

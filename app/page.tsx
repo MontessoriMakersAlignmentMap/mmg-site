@@ -21,7 +21,24 @@ function Btn({ href, children, className }: { href: string; children: React.Reac
 
 function Hero() {
   return (
-    <section className="bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10">
+    <section className="bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10 relative overflow-hidden">
+      {/* Logo — top-right corner, sized so it clears the headline */}
+      <motion.div
+        className="hidden md:block absolute right-6 lg:right-12 top-6"
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
+          src="/logos/mmg.png"
+          alt="Montessori Makers Group"
+          width={280}
+          height={280}
+          className="object-contain"
+          priority
+        />
+      </motion.div>
+
       <div className="max-w-7xl mx-auto">
         <div className="max-w-4xl">
           <motion.p
@@ -156,7 +173,7 @@ function WhyEcosystem() {
         <FadeIn>
           <div className="border-t border-white/10 pt-14">
             <p className="text-white/90 text-2xl md:text-3xl max-w-2xl leading-[1.38]" style={serif}>
-              MMG was built to hold the whole picture — not just the piece that&apos;s most visible. That&apos;s why it&apos;s an ecosystem.
+              Montessori Makers Group was built to hold the whole picture — not just the piece that&apos;s most visible. That&apos;s why it&apos;s an ecosystem.
             </p>
           </div>
         </FadeIn>
@@ -458,7 +475,7 @@ function Founder() {
             className="text-[2.5rem] md:text-[3rem] text-white leading-[1.06] tracking-tight mb-10"
             style={serif}
           >
-            20+ years inside Montessori leadership.
+            25 years inside Montessori systems.
           </h2>
           <blockquote className="mb-10">
             <p className="text-white text-2xl md:text-[1.75rem] leading-[1.42] italic mb-5" style={serif}>
@@ -467,7 +484,7 @@ function Founder() {
             <p className="text-[#94A3B8] text-sm tracking-wide">— Hannah Richardson, Founder</p>
           </blockquote>
           <p className="text-[#94A3B8] text-base leading-[1.78] mb-10 max-w-[44ch]">
-            Montessori leader, strategist, and creator with 20+ years across independent, public, charter, and justice-centered Montessori communities.
+            Montessori leader, strategist, and creator with 25 years across independent, public, charter, and justice-centered Montessori communities.
           </p>
           <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
             <Link

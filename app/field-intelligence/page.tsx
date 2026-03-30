@@ -171,7 +171,7 @@ export default function FieldPulsePage() {
               rel="noopener noreferrer"
               className="text-[#d6a758] text-xs tracking-wide hover:underline"
             >
-              Read deeper analysis on the MMG Substack &rarr;
+              Read deeper analysis on the Montessori Makers Substack &rarr;
             </a>
           </div>
         </div>

@@ -37,13 +37,6 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-12" style={serif}>
               Built for coherence. Built for the long term.
             </h2>
-            <Image
-              src="/logos/mmg-white.png"
-              alt="Montessori Makers Group"
-              width={380}
-              height={380}
-              className="object-contain"
-            />
           </div>
           <div className="space-y-5 text-[#374151] text-base leading-relaxed">
             <p>

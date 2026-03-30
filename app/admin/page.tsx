@@ -125,14 +125,19 @@ export default function AdminPage() {
   const [expandedSearch, setExpandedSearch] = useState<string | null>(null)
   const [showNewSearchForm, setShowNewSearchForm] = useState(false)
   const [newSearch, setNewSearch] = useState({ school_name: '', school_slug: '', school_website: '', school_logo_url: '', school_blurb: '', active: true })
+  type DraftRole = { title: string; role_slug: string; description: string; apply_method: 'upload' | 'link' | 'email'; apply_url: string; apply_email: string; job_description_pdf: string; active: boolean }
+  const [newSearchRoles, setNewSearchRoles] = useState<DraftRole[]>([])
+  const [showNewSearchRoleForm, setShowNewSearchRoleForm] = useState(false)
+  const [newSearchRole, setNewSearchRole] = useState<DraftRole>({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', job_description_pdf: '', active: true })
   const [editingSearch, setEditingSearch] = useState<string | null>(null)
   const [editSearchData, setEditSearchData] = useState<Partial<Search>>({})
   const [actingSearch, setActingSearch] = useState<Record<string, string>>({})
   const [showNewRoleForm, setShowNewRoleForm] = useState<string | null>(null)
-  const [newRole, setNewRole] = useState({ title: '', role_slug: '', description: '', apply_method: 'upload' as 'upload' | 'link' | 'email', apply_url: '', apply_email: '', active: true })
+  const [newRole, setNewRole] = useState({ title: '', role_slug: '', description: '', apply_method: 'upload' as 'upload' | 'link' | 'email', apply_url: '', apply_email: '', job_description_pdf: '', active: true })
   const [editingRole, setEditingRole] = useState<string | null>(null)
   const [editRoleData, setEditRoleData] = useState<Partial<SearchRole>>({})
   const [actingRole, setActingRole] = useState<Record<string, string>>({})
+  const [uploadingPdf, setUploadingPdf] = useState<string | null>(null)
 
   // Talent Pool state
   const [talentProfiles, setTalentProfiles] = useState<TalentProfile[]>([])
@@ -147,7 +152,7 @@ export default function AdminPage() {
   const [partners, setPartners] = useState<Partner[]>([])
   const [partnersLoading, setPartnersLoading] = useState(false)
   const [showNewPartnerForm, setShowNewPartnerForm] = useState(false)
-  const [newPartner, setNewPartner] = useState({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization' as Partner['category'], display_order: 0, is_featured: false, is_published: false })
+  const [newPartner, setNewPartner] = useState({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization' as Partner['category'], display_order: 0, is_featured: false, is_published: true })
   const [editingPartner, setEditingPartner] = useState<string | null>(null)
   const [editPartnerData, setEditPartnerData] = useState<Partial<Partner>>({})
   const [actingPartner, setActingPartner] = useState<Record<string, string>>({})
@@ -329,7 +334,7 @@ export default function AdminPage() {
       if (res.status === 401) { handleExpired(); return }
       if (!res.ok) throw new Error()
       setShowNewPartnerForm(false)
-      setNewPartner({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization', display_order: 0, is_featured: false, is_published: false })
+      setNewPartner({ partner_name: '', logo_image: '', website_url: '', short_description: '', category: 'organization', display_order: 0, is_featured: false, is_published: true })
       await loadPartners()
     } catch { setError('Could not create partner.') }
     finally { setActingPartner(prev => { const n = { ...prev }; delete n.new; return n }) }
@@ -381,6 +386,26 @@ export default function AdminPage() {
     finally { setActingPartner(prev => { const n = { ...prev }; delete n[id]; return n }) }
   }
 
+  // ── PDF Upload ────────────────────────────────────────────────────────────────
+
+  async function handlePdfUpload(file: File, key: string, onSuccess: (url: string) => void) {
+    setUploadingPdf(key)
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch('/api/admin/upload-pdf', {
+        method: 'POST',
+        headers: { 'x-admin-password': adminPw },
+        body: form,
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) { const e = await res.json(); setError(e.error ?? 'PDF upload failed.'); return }
+      const { url } = await res.json()
+      onSuccess(url)
+    } catch { setError('PDF upload failed.') }
+    finally { setUploadingPdf(null) }
+  }
+
   // ── Search CRUD ──────────────────────────────────────────────────────────────
 
   async function handleCreateSearch() {
@@ -393,8 +418,18 @@ export default function AdminPage() {
       })
       if (res.status === 401) { handleExpired(); return }
       if (!res.ok) throw new Error()
+      const { id: searchId } = await res.json()
+      for (const role of newSearchRoles) {
+        await fetch(`/api/admin/searches/${searchId}/roles`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+          body: JSON.stringify({ ...role, search_id: searchId }),
+        })
+      }
       setShowNewSearchForm(false)
       setNewSearch({ school_name: '', school_slug: '', school_website: '', school_logo_url: '', school_blurb: '', active: true })
+      setNewSearchRoles([])
+      setShowNewSearchRoleForm(false)
       await loadSearches()
     } catch { setError('Could not create search.') }
     finally { setActingSearch(prev => { const n = { ...prev }; delete n.new; return n }) }
@@ -442,7 +477,7 @@ export default function AdminPage() {
       if (res.status === 401) { handleExpired(); return }
       if (!res.ok) throw new Error()
       setShowNewRoleForm(null)
-      setNewRole({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', active: true })
+      setNewRole({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', job_description_pdf: '', active: true })
       await loadSearches()
     } catch { setError('Could not create role.') }
     finally { setActingRole(prev => { const n = { ...prev }; delete n[`${searchId}-new`]; return n }) }
@@ -965,22 +1000,122 @@ export default function AdminPage() {
 
             {/* New search form */}
             {showNewSearchForm && (
-              <div className="bg-blue-50 border border-blue-100 p-6 mb-6 space-y-3">
-                <p className="text-xs font-semibold text-blue-800 mb-3">New Search</p>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="border border-[#0e1a7a] bg-white p-6 mb-6">
+                <p className="text-sm font-semibold text-[#0e1a7a] mb-5">New Search</p>
+
+                {/* School details */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
                   <input placeholder="School name *" value={newSearch.school_name} onChange={e => setNewSearch(p => ({ ...p, school_name: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
-                  <input placeholder="URL slug (e.g. sunrise-montessori) *" value={newSearch.school_slug} onChange={e => setNewSearch(p => ({ ...p, school_slug: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
-                  <input placeholder="Website URL" value={newSearch.school_website} onChange={e => setNewSearch(p => ({ ...p, school_website: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                  <div>
+                    <input placeholder="Page slug (e.g. sunrise-montessori) *" value={newSearch.school_slug} onChange={e => setNewSearch(p => ({ ...p, school_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                    <p className="text-[10px] text-gray-400 mt-0.5">URL: /matchhub/current-searches/<span className="font-mono">{newSearch.school_slug || 'slug'}</span></p>
+                  </div>
+                  <div>
+                    <input placeholder="School website (e.g. https://sunrisemontessori.org)" value={newSearch.school_website} onChange={e => setNewSearch(p => ({ ...p, school_website: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                    <p className="text-[10px] text-gray-400 mt-0.5">The school&apos;s own website — shown as an external link</p>
+                  </div>
                   <input placeholder="Logo URL" value={newSearch.school_logo_url} onChange={e => setNewSearch(p => ({ ...p, school_logo_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                   <textarea placeholder="School blurb" value={newSearch.school_blurb} onChange={e => setNewSearch(p => ({ ...p, school_blurb: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] col-span-2 resize-none" />
                 </div>
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 mb-5">
                   <input type="checkbox" checked={newSearch.active} onChange={e => setNewSearch(p => ({ ...p, active: e.target.checked }))} className="accent-[#0e1a7a]" />
                   Active (visible publicly)
                 </label>
-                <div className="flex gap-2">
+
+                {/* Roles */}
+                <div className="border-t border-gray-100 pt-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Roles</p>
+                    {!showNewSearchRoleForm && (
+                      <button onClick={() => setShowNewSearchRoleForm(true)} className="text-xs bg-[#0e1a7a] text-white px-3 py-1.5 hover:bg-[#162270] transition-colors">+ Add Role</button>
+                    )}
+                  </div>
+
+                  {/* Draft roles list */}
+                  {newSearchRoles.length > 0 && (
+                    <div className="space-y-1.5 mb-3">
+                      {newSearchRoles.map((role, i) => (
+                        <div key={i} className="flex items-center justify-between bg-gray-50 border border-gray-100 px-3 py-2">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-sm font-medium text-gray-800">{role.title}</span>
+                            <span className="text-[10px] text-gray-400 font-mono">/{role.role_slug}</span>
+                            <span className="text-[10px] text-gray-400">{role.apply_method}</span>
+                            {role.job_description_pdf && <a href={role.job_description_pdf} target="_blank" rel="noopener noreferrer" className="text-[10px] text-[#0e1a7a] hover:underline">JD PDF ↗</a>}
+                          </div>
+                          <button onClick={() => setNewSearchRoles(r => r.filter((_, idx) => idx !== i))} className="text-[10px] text-red-400 hover:text-red-600 flex-shrink-0 ml-3">Remove</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Inline role form */}
+                  {showNewSearchRoleForm && (
+                    <div className="bg-gray-50 border border-gray-200 p-4 mb-3 space-y-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        <input
+                          placeholder="Role title *"
+                          value={newSearchRole.title}
+                          onChange={e => {
+                            const title = e.target.value
+                            const auto = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                            setNewSearchRole(p => ({ ...p, title, role_slug: p.role_slug === '' || p.role_slug === p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') ? auto : p.role_slug }))
+                          }}
+                          className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]"
+                        />
+                        <div>
+                          <input placeholder="Role slug *" value={newSearchRole.role_slug} onChange={e => setNewSearchRole(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                          <p className="text-[10px] text-gray-400 mt-0.5">Auto-filled from title — edit if needed</p>
+                        </div>
+                        <select value={newSearchRole.apply_method} onChange={e => setNewSearchRole(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] bg-white">
+                          <option value="upload">Upload (form + file)</option>
+                          <option value="link">External link</option>
+                          <option value="email">Email</option>
+                        </select>
+                        {newSearchRole.apply_method === 'link' && <input placeholder="Apply URL" value={newSearchRole.apply_url} onChange={e => setNewSearchRole(p => ({ ...p, apply_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
+                        {newSearchRole.apply_method === 'email' && <input placeholder="Apply email" value={newSearchRole.apply_email} onChange={e => setNewSearchRole(p => ({ ...p, apply_email: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
+                        <textarea placeholder="Role description (optional)" value={newSearchRole.description} onChange={e => setNewSearchRole(p => ({ ...p, description: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] col-span-2 resize-none" />
+                        <div className="col-span-2">
+                          <p className="text-[11px] text-gray-500 mb-1.5 uppercase tracking-wide">Job Description PDF</p>
+                          {newSearchRole.job_description_pdf ? (
+                            <div className="flex items-center gap-3">
+                              <a href={newSearchRole.job_description_pdf} target="_blank" rel="noopener noreferrer" className="text-xs text-[#0e1a7a] hover:underline">PDF uploaded ↗</a>
+                              <button type="button" onClick={() => setNewSearchRole(p => ({ ...p, job_description_pdf: '' }))} className="text-[10px] text-red-500 hover:underline">Remove</button>
+                            </div>
+                          ) : (
+                            <label className="cursor-pointer">
+                              <input type="file" accept="application/pdf" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handlePdfUpload(f, 'new-search-role', url => setNewSearchRole(p => ({ ...p, job_description_pdf: url }))) }} />
+                              <span className={`inline-block text-xs px-3 py-1.5 border border-gray-300 text-gray-600 hover:border-[#0e1a7a] hover:text-[#0e1a7a] transition-colors ${uploadingPdf === 'new-search-role' ? 'opacity-50 pointer-events-none' : ''}`}>
+                                {uploadingPdf === 'new-search-role' ? 'Uploading…' : 'Choose PDF'}
+                              </span>
+                            </label>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex gap-2 pt-1">
+                        <button
+                          onClick={() => {
+                            if (!newSearchRole.title || !newSearchRole.role_slug) return
+                            setNewSearchRoles(r => [...r, newSearchRole])
+                            setNewSearchRole({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', job_description_pdf: '', active: true })
+                            setShowNewSearchRoleForm(false)
+                          }}
+                          className="text-xs bg-[#0e1a7a] text-white px-3 py-1.5 hover:bg-[#162270] transition-colors"
+                        >
+                          Add to Search
+                        </button>
+                        <button onClick={() => setShowNewSearchRoleForm(false)} className="text-xs border border-gray-200 px-3 py-1.5 text-gray-600 hover:border-gray-400">Cancel</button>
+                      </div>
+                    </div>
+                  )}
+
+                  {newSearchRoles.length === 0 && !showNewSearchRoleForm && (
+                    <p className="text-xs text-gray-400 mb-1">No roles added yet.</p>
+                  )}
+                </div>
+
+                <div className="flex gap-2 mt-5 pt-4 border-t border-gray-100">
                   <Btn label="Create Search" color="navy" loading={!!actingSearch.new} onClick={handleCreateSearch} />
-                  <Btn label="Cancel" color="gray" loading={false} onClick={() => setShowNewSearchForm(false)} />
+                  <Btn label="Cancel" color="gray" loading={false} onClick={() => { setShowNewSearchForm(false); setNewSearchRoles([]); setShowNewSearchRoleForm(false) }} />
                 </div>
               </div>
             )}
@@ -1024,8 +1159,14 @@ export default function AdminPage() {
                         <p className="text-xs font-semibold text-gray-600 mb-2">Edit Search</p>
                         <div className="grid grid-cols-2 gap-3">
                           <input placeholder="School name" value={editSearchData.school_name ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_name: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
-                          <input placeholder="URL slug" value={editSearchData.school_slug ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_slug: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
-                          <input placeholder="Website URL" value={(editSearchData.school_website as string) ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_website: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                          <div>
+                            <input placeholder="Page slug (e.g. sunrise-montessori)" value={editSearchData.school_slug ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                            <p className="text-[10px] text-gray-400 mt-0.5">Sets the URL: /matchhub/current-searches/<span className="font-mono">{editSearchData.school_slug || 'slug'}</span></p>
+                          </div>
+                          <div>
+                            <input placeholder="School website (e.g. https://sunrisemontessori.org)" value={(editSearchData.school_website as string) ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_website: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                            <p className="text-[10px] text-gray-400 mt-0.5">The school&apos;s own website — shown as an external link</p>
+                          </div>
                           <input placeholder="Logo URL" value={(editSearchData.school_logo_url as string) ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_logo_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                           <textarea placeholder="School blurb" value={(editSearchData.school_blurb as string) ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_blurb: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] col-span-2 resize-none" />
                         </div>
@@ -1046,7 +1187,7 @@ export default function AdminPage() {
                         <div className="flex items-center justify-between mb-3">
                           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Roles</p>
                           <button
-                            onClick={() => { setShowNewRoleForm(search.id); setNewRole({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', active: true }) }}
+                            onClick={() => { setShowNewRoleForm(search.id); setNewRole({ title: '', role_slug: '', description: '', apply_method: 'upload', apply_url: '', apply_email: '', job_description_pdf: '', active: true }) }}
                             className="text-xs bg-[#0e1a7a] text-white px-3 py-1.5 hover:bg-[#162270] transition-colors"
                           >
                             + Add Role
@@ -1058,7 +1199,10 @@ export default function AdminPage() {
                           <div className="bg-blue-50 border border-blue-100 p-4 mb-4 space-y-2">
                             <div className="grid grid-cols-2 gap-2">
                               <input placeholder="Role title *" value={newRole.title} onChange={e => setNewRole(p => ({ ...p, title: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
-                              <input placeholder="Role slug (e.g. lead-guide) *" value={newRole.role_slug} onChange={e => setNewRole(p => ({ ...p, role_slug: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                              <div>
+                                <input placeholder="Role slug (e.g. lead-guide) *" value={newRole.role_slug} onChange={e => setNewRole(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                                <p className="text-[10px] text-gray-400 mt-0.5">Appended to the search URL: .../current-searches/school/<span className="font-mono">{newRole.role_slug || 'role'}</span></p>
+                              </div>
                               <select value={newRole.apply_method} onChange={e => setNewRole(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]">
                                 <option value="upload">Upload (form + file)</option>
                                 <option value="link">External link</option>
@@ -1067,6 +1211,22 @@ export default function AdminPage() {
                               {newRole.apply_method === 'link' && <input placeholder="Apply URL" value={newRole.apply_url} onChange={e => setNewRole(p => ({ ...p, apply_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
                               {newRole.apply_method === 'email' && <input placeholder="Apply email" value={newRole.apply_email} onChange={e => setNewRole(p => ({ ...p, apply_email: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
                               <textarea placeholder="Role description" value={newRole.description} onChange={e => setNewRole(p => ({ ...p, description: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] col-span-2 resize-none" />
+                              <div className="col-span-2">
+                                <p className="text-[11px] text-gray-500 mb-1 uppercase tracking-wide">Job Description PDF</p>
+                                {newRole.job_description_pdf ? (
+                                  <div className="flex items-center gap-2">
+                                    <a href={newRole.job_description_pdf} target="_blank" rel="noopener noreferrer" className="text-xs text-[#0e1a7a] hover:underline truncate">PDF uploaded ↗</a>
+                                    <button type="button" onClick={() => setNewRole(p => ({ ...p, job_description_pdf: '' }))} className="text-[10px] text-red-500 hover:underline flex-shrink-0">Remove</button>
+                                  </div>
+                                ) : (
+                                  <label className="flex items-center gap-2 cursor-pointer">
+                                    <input type="file" accept="application/pdf" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handlePdfUpload(f, `new-${search.id}`, url => setNewRole(p => ({ ...p, job_description_pdf: url }))) }} />
+                                    <span className={`text-xs px-3 py-1.5 border border-gray-300 text-gray-600 hover:border-[#0e1a7a] hover:text-[#0e1a7a] transition-colors ${uploadingPdf === `new-${search.id}` ? 'opacity-50 pointer-events-none' : ''}`}>
+                                      {uploadingPdf === `new-${search.id}` ? 'Uploading…' : 'Choose PDF'}
+                                    </span>
+                                  </label>
+                                )}
+                              </div>
                             </div>
                             <label className="flex items-center gap-2 text-sm text-gray-700">
                               <input type="checkbox" checked={newRole.active} onChange={e => setNewRole(p => ({ ...p, active: e.target.checked }))} className="accent-[#0e1a7a]" />
@@ -1089,7 +1249,10 @@ export default function AdminPage() {
                                   <div className="space-y-2">
                                     <div className="grid grid-cols-2 gap-2">
                                       <input placeholder="Role title" value={editRoleData.title ?? ''} onChange={e => setEditRoleData(p => ({ ...p, title: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
-                                      <input placeholder="Role slug" value={editRoleData.role_slug ?? ''} onChange={e => setEditRoleData(p => ({ ...p, role_slug: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
+                                      <div>
+                                        <input placeholder="Role slug" value={editRoleData.role_slug ?? ''} onChange={e => setEditRoleData(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
+                                        <p className="text-[10px] text-gray-400 mt-0.5">Appended to the search URL</p>
+                                      </div>
                                       <select value={editRoleData.apply_method ?? 'upload'} onChange={e => setEditRoleData(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none">
                                         <option value="upload">Upload</option>
                                         <option value="link">Link</option>
@@ -1098,6 +1261,21 @@ export default function AdminPage() {
                                       {editRoleData.apply_method === 'link' && <input placeholder="Apply URL" value={(editRoleData.apply_url as string) ?? ''} onChange={e => setEditRoleData(p => ({ ...p, apply_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none" />}
                                       {editRoleData.apply_method === 'email' && <input placeholder="Apply email" value={(editRoleData.apply_email as string) ?? ''} onChange={e => setEditRoleData(p => ({ ...p, apply_email: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none" />}
                                       <textarea placeholder="Description" value={(editRoleData.description as string) ?? ''} onChange={e => setEditRoleData(p => ({ ...p, description: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none col-span-2 resize-none" />
+                                      <div className="col-span-2">
+                                        <p className="text-[11px] text-gray-500 mb-1 uppercase tracking-wide">Job Description PDF</p>
+                                        {editRoleData.job_description_pdf ? (
+                                          <div className="flex items-center gap-2">
+                                            <a href={editRoleData.job_description_pdf as string} target="_blank" rel="noopener noreferrer" className="text-xs text-[#0e1a7a] hover:underline truncate">View current PDF ↗</a>
+                                            <button type="button" onClick={() => setEditRoleData(p => ({ ...p, job_description_pdf: '' }))} className="text-[10px] text-red-500 hover:underline flex-shrink-0">Remove</button>
+                                          </div>
+                                        ) : null}
+                                        <label className="flex items-center gap-2 cursor-pointer mt-1">
+                                          <input type="file" accept="application/pdf" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handlePdfUpload(f, `edit-${role.id}`, url => setEditRoleData(p => ({ ...p, job_description_pdf: url }))) }} />
+                                          <span className={`text-xs px-3 py-1.5 border border-gray-300 text-gray-600 hover:border-[#0e1a7a] hover:text-[#0e1a7a] transition-colors ${uploadingPdf === `edit-${role.id}` ? 'opacity-50 pointer-events-none' : ''}`}>
+                                            {uploadingPdf === `edit-${role.id}` ? 'Uploading…' : editRoleData.job_description_pdf ? 'Replace PDF' : 'Choose PDF'}
+                                          </span>
+                                        </label>
+                                      </div>
                                     </div>
                                     <label className="flex items-center gap-2 text-sm text-gray-700">
                                       <input type="checkbox" checked={editRoleData.active ?? true} onChange={e => setEditRoleData(p => ({ ...p, active: e.target.checked }))} className="accent-[#0e1a7a]" />
@@ -1117,10 +1295,10 @@ export default function AdminPage() {
                                           {role.active ? 'active' : 'inactive'}
                                         </span>
                                       </div>
-                                      <p className="text-xs text-gray-400">/{role.role_slug} · {role.apply_method}</p>
+                                      <p className="text-xs text-gray-400">/{role.role_slug} · {role.apply_method}{role.job_description_pdf ? ' · ' : ''}{role.job_description_pdf && <a href={role.job_description_pdf} target="_blank" rel="noopener noreferrer" className="text-[#0e1a7a] hover:underline">JD PDF ↗</a>}</p>
                                     </div>
                                     <div className="flex gap-2 flex-shrink-0">
-                                      <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingRole(role.id); setEditRoleData({ title: role.title, role_slug: role.role_slug, description: role.description ?? '', apply_method: role.apply_method, apply_url: role.apply_url ?? '', apply_email: role.apply_email ?? '', active: role.active }) }} />
+                                      <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingRole(role.id); setEditRoleData({ title: role.title, role_slug: role.role_slug, description: role.description ?? '', apply_method: role.apply_method, apply_url: role.apply_url ?? '', apply_email: role.apply_email ?? '', job_description_pdf: role.job_description_pdf ?? '', active: role.active }) }} />
                                       <Btn label="Delete" color="red" loading={actingRole[role.id] === 'deleting'} onClick={() => handleDeleteRole(search.id, role.id)} />
                                     </div>
                                   </div>
