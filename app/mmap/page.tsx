@@ -269,6 +269,136 @@ const TIER_ICONS: Record<string, React.ReactNode> = {
   atlas:        <AtlasIcon     className="w-9 h-9" />,
 }
 
+// ─── Dashboard UI Mockup ───────────────────────────────────────────────────────
+
+function DashboardMockup() {
+  const bars = [72, 88, 61, 95, 78, 84, 69, 92, 74, 87]
+  const tiers = [
+    { name: 'Surveyor',   color: '#d6a758', pct: 94 },
+    { name: 'North Star', color: '#2D6A4F', pct: 87 },
+    { name: 'Mapmaker',   color: '#1D4ED8', pct: 76 },
+    { name: 'Atlas',      color: '#7C3AED', pct: 68 },
+  ]
+  return (
+    <div
+      className="w-full rounded-sm overflow-hidden shadow-2xl"
+      style={{
+        background: '#0a1260',
+        border: '1px solid rgba(255,255,255,0.10)',
+        fontFamily: 'system-ui, sans-serif',
+        maxWidth: 560,
+      }}
+    >
+      {/* Window chrome */}
+      <div style={{ background: '#070e3d', borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.12)' }} />
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
+        <span style={{ flex: 1 }} />
+        <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: 10, letterSpacing: '0.12em' }}>MMAP · WORKSPACE</span>
+      </div>
+
+      <div style={{ display: 'flex', minHeight: 380 }}>
+        {/* Sidebar */}
+        <div style={{ width: 140, background: '#070e3d', borderRight: '1px solid rgba(255,255,255,0.07)', padding: '20px 0', flexShrink: 0 }}>
+          <div style={{ padding: '0 14px 16px', borderBottom: '1px solid rgba(255,255,255,0.06)', marginBottom: 12 }}>
+            <div style={{ color: '#d6a758', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 2 }}>School</div>
+            <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: 11, fontWeight: 500 }}>Lincoln Montessori</div>
+          </div>
+          {[
+            { label: 'Overview', active: true },
+            { label: 'Surveyor', dot: '#d6a758' },
+            { label: 'North Star', dot: '#2D6A4F' },
+            { label: 'Mapmaker', dot: '#1D4ED8' },
+            { label: 'Atlas', dot: '#7C3AED' },
+            { label: 'Reports', dot: null },
+            { label: 'Settings', dot: null },
+          ].map((item) => (
+            <div
+              key={item.label}
+              style={{
+                padding: '7px 14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 7,
+                background: item.active ? 'rgba(214,167,88,0.10)' : 'transparent',
+                borderLeft: item.active ? '2px solid #d6a758' : '2px solid transparent',
+              }}
+            >
+              {item.dot && <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.dot, flexShrink: 0 }} />}
+              <span style={{ color: item.active ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.35)', fontSize: 11 }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Main content */}
+        <div style={{ flex: 1, padding: 18, overflow: 'hidden' }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+            <div>
+              <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13, fontWeight: 600 }}>School Overview</div>
+              <div style={{ color: 'rgba(255,255,255,0.30)', fontSize: 10, marginTop: 2 }}>2025–26 Academic Year</div>
+            </div>
+            <div style={{ background: 'rgba(214,167,88,0.12)', border: '1px solid rgba(214,167,88,0.25)', borderRadius: 2, padding: '4px 10px', color: '#d6a758', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              Pilot Active
+            </div>
+          </div>
+
+          {/* Metric cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 16 }}>
+            {[
+              { label: 'Alignment Score', value: '91%', delta: '+4%' },
+              { label: 'Active Guides', value: '18',   delta: 'all tiers' },
+              { label: 'Observations', value: '1,204', delta: 'this month' },
+            ].map((m) => (
+              <div key={m.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 2, padding: '10px 12px' }}>
+                <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 6 }}>{m.label}</div>
+                <div style={{ color: 'rgba(255,255,255,0.90)', fontSize: 18, fontWeight: 700, lineHeight: 1 }}>{m.value}</div>
+                <div style={{ color: '#d6a758', fontSize: 9, marginTop: 4 }}>{m.delta}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Attendance bar chart */}
+          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 2, padding: '12px 14px', marginBottom: 12 }}>
+            <div style={{ color: 'rgba(255,255,255,0.40)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>Daily Attendance — Last 10 Days</div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 48 }}>
+              {bars.map((h, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flex: 1,
+                    height: `${h}%`,
+                    background: i === bars.length - 1 ? '#d6a758' : 'rgba(214,167,88,0.30)',
+                    borderRadius: 1,
+                    transition: 'all 0.3s',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Tier alignment indicators */}
+          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 2, padding: '12px 14px' }}>
+            <div style={{ color: 'rgba(255,255,255,0.40)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>Tier Alignment</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {tiers.map((t) => (
+                <div key={t.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, width: 70, flexShrink: 0 }}>{t.name}</span>
+                  <div style={{ flex: 1, height: 4, background: 'rgba(255,255,255,0.07)', borderRadius: 2, overflow: 'hidden' }}>
+                    <div style={{ width: `${t.pct}%`, height: '100%', background: t.color, borderRadius: 2 }} />
+                  </div>
+                  <span style={{ color: t.color, fontSize: 10, width: 28, textAlign: 'right', flexShrink: 0 }}>{t.pct}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Subtle grid background (used on select sections) ─────────────────────────
 
 const systemGridStyle: React.CSSProperties = {
@@ -296,8 +426,14 @@ function DemoCTA() {
 export default function MMAPPage() {
   return (
     <>
-      {/* Sticky demo button */}
-      <div className="fixed top-5 right-5 z-50 hidden md:block">
+      {/* Sticky action buttons */}
+      <div className="fixed top-5 right-5 z-50 hidden md:flex items-center gap-3">
+        <Link
+          href="/mmap/signin"
+          className="bg-white/10 border border-white/20 text-white text-xs px-5 py-2.5 tracking-wide hover:bg-white/20 transition-colors font-medium shadow-lg whitespace-nowrap backdrop-blur-sm"
+        >
+          Sign In
+        </Link>
         <Link
           href="/mmap/demo"
           className="bg-[#d6a758] text-white text-xs px-5 py-2.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium shadow-lg whitespace-nowrap"
@@ -330,24 +466,50 @@ export default function MMAPPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/mmap/demo"
+                href="/mmap/signin"
                 className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+              >
+                Sign In to Platform &rarr;
+              </Link>
+              <Link
+                href="/mmap/demo"
+                className="border border-white/30 text-white text-sm px-8 py-4 tracking-wide hover:border-white/60 hover:bg-white/5 transition-colors text-center"
               >
                 Watch the Demo
               </Link>
               <Link
                 href="/contact?source=MMAP"
-                className="border border-white/30 text-white text-sm px-8 py-4 tracking-wide hover:border-white/60 hover:bg-white/5 transition-colors text-center"
+                className="text-white/50 text-sm px-2 py-4 hover:text-white transition-colors text-center"
               >
-                Request Early Access &rarr;
+                Request Early Access
               </Link>
             </div>
           </div>
 
-          {/* Topographic illustration */}
-          <div className="hidden md:flex items-center justify-center opacity-90">
-            <TopographicIllustration />
+          {/* Dashboard mockup */}
+          <div className="hidden md:flex items-center justify-center">
+            <DashboardMockup />
           </div>
+        </div>
+      </section>
+
+      {/* Stats bar */}
+      <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '4',      label: 'Integrated tiers',       sub: 'Classroom to boardroom' },
+            { value: '1',      label: 'Login. One system.',      sub: 'No patchwork' },
+            { value: '100%',   label: 'Montessori-native',       sub: 'Not adapted — built' },
+            { value: '0',      label: 'Generic workarounds',     sub: 'Every workflow is yours' },
+          ].map((stat) => (
+            <div key={stat.value} className="text-center md:text-left">
+              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>
+                {stat.value}
+              </div>
+              <div className="text-white text-sm font-medium leading-snug">{stat.label}</div>
+              <div className="text-white/35 text-xs mt-0.5">{stat.sub}</div>
+            </div>
+          ))}
         </div>
       </section>
 
