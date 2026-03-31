@@ -8,13 +8,13 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 // ── Palette ──────────────────────────────────────────────────────────────────
 export const C = {
-  slate:  '#1F2937',
-  cream:  '#F5EDE0',
-  copper: '#B5714C',
-  sage:   '#8FAA8C',
-  white:  '#FDFAF5',
-  text:   '#2C1F14',
-  muted:  '#7A6A58',
+  slate:  '#2D2B55',   // deep indigo
+  cream:  '#F5EEE8',   // warm ivory
+  copper: '#D4A843',   // gold
+  sage:   '#C4826A',   // soft coral
+  white:  '#FDF9F4',   // warm white
+  text:   '#1A1830',   // indigo-tinted near-black
+  muted:  '#6B6485',   // muted indigo-gray
 }
 
 // ── Demo Banner ───────────────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ export function SchoolNav() {
         top: 104,
         zIndex: 44,
         height: 60,
-        background: scrolled ? `rgba(31,41,55,0.96)` : 'transparent',
+        background: scrolled ? `rgba(45,43,85,0.96)` : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
       }}
     >
@@ -111,7 +111,7 @@ export function SchoolNav() {
           textTransform: 'uppercase',
           transition: 'background 0.2s',
         }}
-        onMouseEnter={e => (e.currentTarget.style.background = '#9d5f3c')}
+        onMouseEnter={e => (e.currentTarget.style.background = '#b8902e')}
         onMouseLeave={e => (e.currentTarget.style.background = C.copper)}
       >
         Apply

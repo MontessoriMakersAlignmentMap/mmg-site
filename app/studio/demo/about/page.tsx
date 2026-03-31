@@ -44,7 +44,7 @@ export default function AboutPage() {
           alt="MMS community"
           fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} priority
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(31,41,55,0.9) 0%, rgba(31,41,55,0.3) 70%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(45,43,85,0.9) 0%, rgba(45,43,85,0.3) 70%)' }} />
         <div className="relative px-8 md:px-16" style={{ zIndex: 2, maxWidth: 1200, margin: '0 auto', width: '100%' }}>
           <p style={{ color: C.sage, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', marginBottom: 16 }}>
             <Link href="/studio/demo" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link> &nbsp;/&nbsp; About
