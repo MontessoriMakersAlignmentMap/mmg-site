@@ -172,12 +172,13 @@ export default function MMAPTourPage() {
 
             {/* Video */}
             <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.12)] ring-1 ring-black/5">
-                <div className="bg-[#F2EDE6] border border-[#E2DDD6] aspect-video flex flex-col items-center justify-center gap-3">
-                  <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase">Video walkthrough coming soon</p>
-                  <Link href="/mmap/demo" className="text-[#0e1a7a] text-xs font-medium hover:underline tracking-wide">
-                    Request a Live Demo &rarr;
-                  </Link>
-                </div>
+              <video
+                src={section.videoSrc}
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full aspect-video bg-[#0a1260] object-cover"
+              />
             </div>
 
             {/* Section navigation — not on last section */}

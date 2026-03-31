@@ -2,69 +2,40 @@ import Link from 'next/link'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const videoGroups = [
+const videos = [
   {
-    id: 'admissions',
-    label: 'Admissions',
+    id: 'run-school',
+    number: '01',
     color: '#1D4ED8',
-    description: 'How MMAP manages the full admissions pipeline — from inquiry to enrollment decision.',
-    videos: [
-      { title: 'Inquiry Intake & Lead Tracking', duration: '2 min' },
-      { title: 'Application Review & Scoring', duration: '3 min' },
-      { title: 'Family Communication Workflows', duration: '2 min' },
-    ],
+    title: 'Run the School',
+    description: 'From inquiry to archive — the entire story of a child and the school in one system. Every enrollment, observation, and communication thread organized and connected.',
+    src: '/videos/run-school.mp4',
   },
   {
-    id: 'enrollment-billing',
-    label: 'Enrollment & Billing',
-    color: '#2D6A4F',
-    description: 'Enrollment contracts, tuition setup, and billing — all connected to the student record.',
-    videos: [
-      { title: 'Enrollment Contracts & e-Sign', duration: '2 min' },
-      { title: 'Tuition Plans & Payment Scheduling', duration: '3 min' },
-      { title: 'Billing Dashboard & Reconciliation', duration: '2 min' },
-    ],
-  },
-  {
-    id: 'classroom',
-    label: 'Classroom & Lesson Tracking',
+    id: 'guide-workflow',
+    number: '02',
     color: '#d6a758',
-    description: 'How guides track work cycles, lessons, and individual child progress — built for the Montessori method.',
-    videos: [
-      { title: 'Lesson Presentation Records', duration: '3 min' },
-      { title: 'Observation Log & Child Profiles', duration: '2 min' },
-      { title: 'Work Cycle Planning View', duration: '2 min' },
-    ],
+    title: 'Guide Workflow in Real Time',
+    description: 'Guides document quickly without leaving the classroom mindset. Observations, lesson tracking, and material notes flow naturally — so the record reflects the work.',
+    src: '/videos/guide-workflow.mp4',
   },
   {
-    id: 'admin-reporting',
-    label: 'Admin & Reporting',
+    id: 'school-operations',
+    number: '03',
+    color: '#2D6A4F',
+    title: 'School Operations & Coordination',
+    description: 'Shared systems replace hallway memory. Attendance, scheduling, family communication, and daily operations — so nothing lives in one person\'s inbox.',
+    src: '/videos/school-operations.mp4',
+  },
+  {
+    id: 'leadership-visibility',
+    number: '04',
     color: '#7C3AED',
-    description: 'Leadership dashboards, equity reporting, and the school-wide visibility directors actually need.',
-    videos: [
-      { title: 'School-Wide Attendance Dashboard', duration: '2 min' },
-      { title: 'Equity Pattern Reporting', duration: '3 min' },
-      { title: 'Leadership Insight Overview', duration: '2 min' },
-    ],
+    title: 'Leadership & Governance Visibility',
+    description: 'Leadership sees patterns before they become problems. Financial dashboards, enrollment trends, board tools, and equity signals for values-aligned decisions.',
+    src: '/videos/leadership-visibility.mp4',
   },
 ]
-
-function VideoPlaceholder({ title, duration }: { title: string; duration: string }) {
-  return (
-    <div className="bg-[#0e1a7a]/5 border border-[#E2DDD6] rounded-sm overflow-hidden">
-      <div className="aspect-video bg-[#0e1a7a]/8 flex flex-col items-center justify-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-[#d6a758]/20 border border-[#d6a758]/40 flex items-center justify-center">
-          <div className="w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[12px] border-l-[#d6a758] ml-1" />
-        </div>
-        <p className="text-[#64748B] text-xs tracking-wide">Video coming soon</p>
-      </div>
-      <div className="px-4 py-3 flex items-center justify-between">
-        <p className="text-[#374151] text-sm font-medium">{title}</p>
-        <span className="text-[#64748B] text-xs">{duration}</span>
-      </div>
-    </div>
-  )
-}
 
 export default function MMAPDemoPage() {
   return (
@@ -97,8 +68,8 @@ export default function MMAPDemoPage() {
               See MMAP in Action
             </h1>
             <p className="text-[#94A3B8] text-lg md:text-xl leading-relaxed max-w-2xl">
-              Short videos grouped by function. Watch how each part of the platform
-              works — admissions, billing, classroom tracking, and reporting.
+              Four walkthroughs covering the full platform — from running the school
+              day-to-day, to classroom documentation, operations, and leadership visibility.
             </p>
           </div>
         </div>
@@ -107,39 +78,48 @@ export default function MMAPDemoPage() {
       {/* Jump links */}
       <div className="bg-white border-b border-[#E2DDD6] px-6 md:px-10 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex gap-6 overflow-x-auto py-4 scrollbar-none">
-          {videoGroups.map((g) => (
+          {videos.map((v) => (
             <a
-              key={g.id}
-              href={`#${g.id}`}
+              key={v.id}
+              href={`#${v.id}`}
               className="text-[#374151] text-xs tracking-wide whitespace-nowrap hover:text-[#0e1a7a] transition-colors pb-1 border-b-2 border-transparent hover:border-[#d6a758]"
             >
-              {g.label}
+              {v.title}
             </a>
           ))}
         </div>
       </div>
 
-      {/* Video groups */}
-      {videoGroups.map((group, gi) => (
+      {/* Videos */}
+      {videos.map((v, i) => (
         <section
-          key={group.id}
-          id={group.id}
-          className={`py-20 md:py-28 px-6 md:px-10 ${gi % 2 === 0 ? 'bg-[#FAF9F7]' : 'bg-white'}`}
+          key={v.id}
+          id={v.id}
+          className={`py-20 md:py-28 px-6 md:px-10 ${i % 2 === 0 ? 'bg-[#FAF9F7]' : 'bg-white'}`}
         >
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-1 h-8 flex-shrink-0" style={{ backgroundColor: group.color }} />
-              <h2 className="text-2xl md:text-3xl text-[#0e1a7a] font-semibold" style={serif}>
-                {group.label}
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+            {/* Text — alternates sides */}
+            <div className={i % 2 === 1 ? 'md:order-2' : ''}>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-xs font-bold tracking-[0.2em]" style={{ color: v.color }}>{v.number}</span>
+                <div className="w-6 h-px" style={{ backgroundColor: v.color, opacity: 0.4 }} />
+              </div>
+              <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
+                {v.title}
               </h2>
+              <p className="text-[#374151] text-lg leading-relaxed">
+                {v.description}
+              </p>
             </div>
-            <p className="text-[#64748B] text-base leading-relaxed mb-10 max-w-2xl ml-5">
-              {group.description}
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              {group.videos.map((v) => (
-                <VideoPlaceholder key={v.title} title={v.title} duration={v.duration} />
-              ))}
+            {/* Video */}
+            <div className={`rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.12)] ring-1 ring-black/5 ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+              <video
+                src={v.src}
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full aspect-video bg-[#0a1260] object-cover"
+              />
             </div>
           </div>
         </section>
