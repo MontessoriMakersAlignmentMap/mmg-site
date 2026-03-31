@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
 
+const domainRedirects = [
+  { source: 'montessorimakers.org', destination: '/advisory' },
+  { source: 'montessorimakersmatchhub.com', destination: '/matchhub' },
+  { source: 'montessorimakersalignmentmap.com', destination: '/mmap' },
+  { source: 'montessorimakerslearning.org', destination: '/learning' },
+  { source: 'montessorimakersinstitute.org', destination: '/institute' },
+  { source: 'montessorimakersstudio.com', destination: '/studio' },
+  { source: 'montessorimakersassessmentsystem.com', destination: '/mmas' },
+  { source: 'montessorimakerstoolbox.com', destination: '/toolbox' },
+];
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -14,6 +25,22 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  async redirects() {
+    return domainRedirects.flatMap(({ source: host, destination }) => [
+      {
+        source: '/',
+        has: [{ type: 'host' as const, value: host }],
+        destination: `https://montessorimakersgroup.org${destination}`,
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host' as const, value: host }],
+        destination: `https://montessorimakersgroup.org${destination}`,
+        permanent: true,
+      },
+    ]);
   },
 };
 

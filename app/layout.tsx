@@ -18,6 +18,15 @@ export const metadata: Metadata = {
   title: 'Montessori Makers Group — Leadership & Organizational Design',
   description:
     'Strategic advisory, leadership development, and organizational design for Montessori schools. When a school is aligned, everything works.',
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
