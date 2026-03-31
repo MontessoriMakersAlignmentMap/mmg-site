@@ -6,6 +6,11 @@ export const dynamic = 'force-dynamic'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
+function normalizeUrl(url: string): string {
+  if (!url) return url
+  return url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
+}
+
 function OrgCard({ org }: { org: CommunityOrg }) {
   const card = (
     <div className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-5 hover:border-[#0e1a7a] transition-colors group h-full">
@@ -44,7 +49,7 @@ function OrgCard({ org }: { org: CommunityOrg }) {
 
   if (org.website_url) {
     return (
-      <a href={org.website_url} target="_blank" rel="noopener noreferrer" className="flex flex-col">
+      <a href={normalizeUrl(org.website_url)} target="_blank" rel="noopener noreferrer" className="flex flex-col">
         {card}
       </a>
     )
