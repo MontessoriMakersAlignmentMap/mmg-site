@@ -174,71 +174,12 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── ENGAGEMENT STRUCTURES ─────────────────────────────────────────── */}
-      <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
-              How Studio Works
-            </p>
-            <h2
-              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5"
-              style={serif}
-            >
-              Every engagement is shaped around you. These are the anchors.
-            </h2>
-            <p className="text-[#374151] text-base leading-relaxed mb-4">
-              Studio is a strategic communication partner.
-              Engagements begin with understanding what you actually stand for &mdash; and
-              build from there. Most go beyond what any single structure describes.
-            </p>
-            <p className="text-[#374151] text-base leading-relaxed">
-              The three structures below are how most engagements are shaped. Scroll down
-              to see the full range of what Studio builds &mdash; including websites and
-              social media systems.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {offers.map((offer) => (
-              <div
-                key={offer.number}
-                className="bg-white border border-[#D4CEC6] p-8 flex flex-col hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(14,26,122,0.08)] transition-all duration-200"
-              >
-                <div className="flex items-start justify-between mb-6">
-                  <span className="text-[#8A6014] text-xs tracking-[0.2em] font-semibold">
-                    {offer.number}
-                  </span>
-                  <span className="text-[#64748B] text-[10px] tracking-wide uppercase">
-                    {offer.tagline}
-                  </span>
-                </div>
-                <h3
-                  className="text-[#0e1a7a] font-semibold text-base leading-snug mb-4 flex-1"
-                  style={serif}
-                >
-                  {offer.name}
-                </h3>
-                <p className="text-[#374151] text-sm leading-relaxed mb-6">
-                  {offer.desc}
-                </p>
-                <Link
-                  href={offer.href}
-                  className="text-[#0e1a7a] text-xs font-medium hover:underline tracking-wide"
-                >
-                  Learn more &rarr;
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── STUDIO ALSO BUILDS ────────────────────────────────────────────── */}
       <section className="bg-[#0e1a7a] py-20 md:py-24 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-12">
             <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
-              Studio Also Builds
+              What Studio Builds
             </p>
             <h2
               className="text-3xl md:text-4xl text-white leading-tight mb-5"
@@ -247,9 +188,8 @@ export default function StudioPage() {
               Strategy without execution is just a document.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed">
-              The three engagement structures above are how we think through the work.
-              What follows is how we build it. Website design, social media systems, and
-              more &mdash; all grounded in the same discipline.
+              Studio handles the full arc — from understanding what you stand for,
+              to building the website, content systems, and materials that communicate it.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -293,6 +233,60 @@ export default function StudioPage() {
             >
               See all services in full &rarr;
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ENGAGEMENT STRUCTURES ─────────────────────────────────────────── */}
+      <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+              How Studio Works
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5"
+              style={serif}
+            >
+              Every engagement is shaped around you. These are the anchors.
+            </h2>
+            <p className="text-[#374151] text-base leading-relaxed">
+              Engagements begin with understanding what you actually stand for &mdash;
+              and build from there. Most combine strategic work with execution.
+              These structures are how most engagements are shaped.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {offers.map((offer) => (
+              <div
+                key={offer.number}
+                className="bg-white border border-[#D4CEC6] p-8 flex flex-col hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(14,26,122,0.08)] transition-all duration-200"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-[#8A6014] text-xs tracking-[0.2em] font-semibold">
+                    {offer.number}
+                  </span>
+                  <span className="text-[#64748B] text-[10px] tracking-wide uppercase">
+                    {offer.tagline}
+                  </span>
+                </div>
+                <h3
+                  className="text-[#0e1a7a] font-semibold text-base leading-snug mb-4 flex-1"
+                  style={serif}
+                >
+                  {offer.name}
+                </h3>
+                <p className="text-[#374151] text-sm leading-relaxed mb-6">
+                  {offer.desc}
+                </p>
+                <Link
+                  href={offer.href}
+                  className="text-[#0e1a7a] text-xs font-medium hover:underline tracking-wide"
+                >
+                  Learn more &rarr;
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
