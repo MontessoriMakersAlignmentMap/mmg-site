@@ -33,11 +33,15 @@ const capabilities = [
     name: 'Website Design & Build',
     desc: 'Full information architecture, visual design, and development. Built to reflect your actual program — not a template borrowed from somewhere else. Often the primary deliverable of a Communication Architecture engagement.',
     href: '/studio/services#website-design-build',
+    demo: '/studio/demo',
+    demoLabel: 'See a live example →',
   },
   {
     name: 'Social Media Strategy & Content',
     desc: 'A publishing system built around your voice and your community. Platform strategy, content systems, and editorial support — designed to be sustainable, not performative.',
     href: '/studio/services#social-media',
+    demo: null,
+    demoLabel: null,
   },
 ]
 
@@ -263,12 +267,22 @@ export default function StudioPage() {
                 <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 flex-1">
                   {cap.desc}
                 </p>
-                <Link
-                  href={cap.href}
-                  className="text-[#d6a758] text-xs font-medium hover:underline tracking-wide"
-                >
-                  Learn more &rarr;
-                </Link>
+                <div className="flex items-center gap-5 flex-wrap">
+                  <Link
+                    href={cap.href}
+                    className="text-[#d6a758] text-xs font-medium hover:underline tracking-wide"
+                  >
+                    Learn more &rarr;
+                  </Link>
+                  {cap.demo && (
+                    <Link
+                      href={cap.demo}
+                      className="text-white/50 text-xs hover:text-white/80 transition-colors tracking-wide"
+                    >
+                      {cap.demoLabel}
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>
