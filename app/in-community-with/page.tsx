@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { getPublishedCommunityOrgs } from '@/lib/db/community'
 import type { CommunityOrg } from '@/lib/types/community'
 
+export const dynamic = 'force-dynamic'
+
 const serif = { fontFamily: 'var(--font-heading)' }
 
 function OrgCard({ org }: { org: CommunityOrg }) {

@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { getPublishedPartners } from '@/lib/db/partners'
 import type { Partner } from '@/lib/types/partners'
 
+export const dynamic = 'force-dynamic'
+
 const serif = { fontFamily: 'var(--font-heading)' }
 
 const whoWeServe = [
