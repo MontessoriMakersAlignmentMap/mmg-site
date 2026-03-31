@@ -65,6 +65,49 @@ const offers = [
     cta: 'Start a Conversation',
     href: '/contact',
   },
+  {
+    id: 'website-design-build',
+    number: '04',
+    name: 'Website Design & Build',
+    tagline: 'Your online presence, built to match your actual program.',
+    problem:
+      'Most Montessori websites look like Montessori websites. The same warm tones, the same stock photography, the same language that could belong to any school. A template-based site doesn&rsquo;t communicate what makes your program different &mdash; it communicates that you look like everyone else. Families experience a gap between what they find online and what they find in person.',
+    transformation:
+      'Studio designs and builds websites that do the work of communication &mdash; not just presentation. Every structural decision, from information architecture to page flow to copy, is grounded in what you actually stand for. The result is a site that earns trust before a family ever walks through your door.',
+    included: [
+      'Information architecture: how the site is organized and what families find in what order',
+      'Visual design: a design system grounded in your identity, not borrowed from a template',
+      'Full copywriting or copy editing for all pages',
+      'Development and build (Next.js / modern web stack)',
+      'Mobile-responsive design across all pages',
+      'Enrollment and inquiry flow design',
+      'Launch support and post-launch review',
+    ],
+    engagement: 'Custom engagement. Often delivered as part of a Communication Architecture engagement, or as a standalone project.',
+    cta: 'Start a Conversation',
+    href: '/contact',
+  },
+  {
+    id: 'social-media',
+    number: '05',
+    name: 'Social Media Strategy & Content',
+    tagline: 'A publishing system, not a posting schedule.',
+    problem:
+      'Social media for schools often ends up as an afterthought &mdash; inconsistent, reactive, and untethered from any clear purpose. Posts happen when someone remembers. The content is a mix of celebration and announcement with no real through-line. It doesn&rsquo;t build trust or understanding over time because it isn&rsquo;t designed to.',
+    transformation:
+      'Studio builds a social media system grounded in your communication strategy &mdash; with a clear purpose, a consistent voice, and a publishing rhythm that&rsquo;s actually sustainable. The goal isn&rsquo;t more content. It&rsquo;s content that builds a coherent picture of who you are and why it matters.',
+    included: [
+      'Platform strategy: where to publish, what for, and why',
+      'Content system design: content types, categories, and editorial rhythm',
+      'Voice and tone guide for social: distinct from your website, specific to each platform',
+      'Content templates and frameworks your team can use independently',
+      'Editorial calendar design',
+      'Ongoing content support (optional): monthly content creation or review',
+    ],
+    engagement: 'Custom engagement. Can be scoped as a standalone system build or ongoing support.',
+    cta: 'Start a Conversation',
+    href: '/contact',
+  },
 ]
 
 export default function StudioServicesPage() {
@@ -88,8 +131,9 @@ export default function StudioServicesPage() {
             and builds from there.
           </p>
           <p className="text-[#7A8FA3] text-sm leading-relaxed max-w-xl">
-            Not sure where to begin? The Clarity Audit is the entry point.
-            Most engagements start there.
+            This includes strategic engagement structures, website design and build, and social
+            media systems &mdash; all grounded in the same discipline. Not sure where to begin?
+            The Clarity Audit is the entry point.
           </p>
         </div>
       </section>

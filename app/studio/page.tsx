@@ -28,6 +28,19 @@ const offers = [
   },
 ]
 
+const capabilities = [
+  {
+    name: 'Website Design & Build',
+    desc: 'Full information architecture, visual design, and development. Built to reflect your actual program — not a template borrowed from somewhere else. Often the primary deliverable of a Communication Architecture engagement.',
+    href: '/studio/services#website-design-build',
+  },
+  {
+    name: 'Social Media Strategy & Content',
+    desc: 'A publishing system built around your voice and your community. Platform strategy, content systems, and editorial support — designed to be sustainable, not performative.',
+    href: '/studio/services#social-media',
+  },
+]
+
 export default function StudioPage() {
   return (
     <>
@@ -157,7 +170,7 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── THREE OFFERS ──────────────────────────────────────────────────── */}
+      {/* ── ENGAGEMENT STRUCTURES ─────────────────────────────────────────── */}
       <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-12">
@@ -173,11 +186,12 @@ export default function StudioPage() {
             <p className="text-[#374151] text-base leading-relaxed mb-4">
               Studio is a strategic communication partner.
               Engagements begin with understanding what you actually stand for &mdash; and
-              build from there. Most go beyond what any single package describes.
+              build from there. Most go beyond what any single structure describes.
             </p>
             <p className="text-[#374151] text-base leading-relaxed">
-              This often includes full website design and build, ensuring that what families
-              experience online reflects what actually happens in your classrooms.
+              The three structures below are how most engagements are shaped. Scroll down
+              to see the full range of what Studio builds &mdash; including websites and
+              social media systems.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -212,10 +226,56 @@ export default function StudioPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
+        </div>
+      </section>
+
+      {/* ── STUDIO ALSO BUILDS ────────────────────────────────────────────── */}
+      <section className="bg-[#0e1a7a] py-20 md:py-24 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
+              Studio Also Builds
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-white leading-tight mb-5"
+              style={serif}
+            >
+              Strategy without execution is just a document.
+            </h2>
+            <p className="text-[#94A3B8] text-base leading-relaxed">
+              The three engagement structures above are how we think through the work.
+              What follows is how we build it. Website design, social media systems, and
+              more &mdash; all grounded in the same discipline.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {capabilities.map((cap) => (
+              <div
+                key={cap.name}
+                className="border border-white/15 p-8 flex flex-col hover:border-white/30 transition-colors"
+              >
+                <h3
+                  className="text-white font-semibold text-lg leading-snug mb-4"
+                  style={serif}
+                >
+                  {cap.name}
+                </h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 flex-1">
+                  {cap.desc}
+                </p>
+                <Link
+                  href={cap.href}
+                  className="text-[#d6a758] text-xs font-medium hover:underline tracking-wide"
+                >
+                  Learn more &rarr;
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
             <Link
               href="/studio/services"
-              className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide"
+              className="text-white/60 text-sm font-medium hover:text-white transition-colors tracking-wide"
             >
               See all services in full &rarr;
             </Link>
