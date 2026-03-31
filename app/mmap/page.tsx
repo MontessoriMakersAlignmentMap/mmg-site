@@ -486,9 +486,19 @@ export default function MMAPPage() {
             </div>
           </div>
 
-          {/* Dashboard mockup */}
+          {/* Real platform screenshot */}
           <div className="hidden md:flex items-center justify-center">
-            <DashboardMockup />
+            <div className="relative w-full max-w-[560px] rounded-sm overflow-hidden shadow-2xl ring-1 ring-white/10">
+              <Image
+                src="/images/mapp-dashboard.png"
+                alt="MMAP Leadership Dashboard"
+                width={1120}
+                height={840}
+                className="w-full h-auto"
+                priority
+              />
+              <div className="absolute inset-0 rounded-sm ring-1 ring-inset ring-white/10 pointer-events-none" />
+            </div>
           </div>
         </div>
       </section>
