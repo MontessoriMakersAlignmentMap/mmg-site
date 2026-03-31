@@ -8,13 +8,13 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 // ── Palette ──────────────────────────────────────────────────────────────────
 export const C = {
-  slate:  '#2D2B55',   // deep indigo
-  cream:  '#F5EEE8',   // warm ivory
-  copper: '#D4A843',   // gold
-  sage:   '#C4826A',   // soft coral
-  white:  '#FDF9F4',   // warm white
-  text:   '#1A1830',   // indigo-tinted near-black
-  muted:  '#6B6485',   // muted indigo-gray
+  slate:  '#3D2410',   // deep walnut
+  cream:  '#FAF5ED',   // warm cream
+  copper: '#C8A24A',   // gold
+  sage:   '#2A7A58',   // jade / emerald
+  white:  '#FDFAF4',   // warm white
+  text:   '#2C1A0E',   // dark walnut
+  muted:  '#8A7060',   // warm brown-gray
 }
 
 // ── Demo Banner ───────────────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ export function SchoolNav() {
         top: 104,
         zIndex: 44,
         height: 60,
-        background: scrolled ? `rgba(45,43,85,0.96)` : 'transparent',
+        background: scrolled ? `rgba(61,36,16,0.96)` : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
       }}
     >

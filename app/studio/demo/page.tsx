@@ -102,7 +102,7 @@ export default function DemoHome() {
           style={{ objectFit: 'cover', objectPosition: 'center 30%', transform: `scale(1.04) translateY(${scrollY * 0.08}px)` }}
           priority
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(45,43,85,0.92) 0%, rgba(45,43,85,0.35) 60%, rgba(45,43,85,0.2) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(61,36,16,0.92) 0%, rgba(61,36,16,0.35) 60%, rgba(61,36,16,0.2) 100%)' }} />
 
         {/* Content */}
         <div className="relative px-8 md:px-16 w-full" style={{ zIndex: 2, maxWidth: 1280, margin: '0 auto' }}>
@@ -312,7 +312,7 @@ function ProgramCard({ program, visible, delay }: { program: typeof programs[0];
           fill
           style={{ objectFit: 'cover', transform: hovered ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.6s ease' }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: hovered ? 'rgba(45,43,85,0.3)' : 'transparent', transition: 'background 0.4s' }} />
+        <div style={{ position: 'absolute', inset: 0, background: hovered ? 'rgba(61,36,16,0.3)' : 'transparent', transition: 'background 0.4s' }} />
         <div style={{ position: 'absolute', top: 16, left: 16, background: C.copper, color: '#fff', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '5px 12px' }}>
           Ages {program.ages}
         </div>
@@ -410,7 +410,7 @@ function SchoolLifeSection() {
               }}
             >
               <Image src={photo.src} alt={photo.label} fill style={{ objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(45,43,85,0.7) 0%, transparent 60%)' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(61,36,16,0.7) 0%, transparent 60%)' }} />
               <p style={{ position: 'absolute', bottom: 16, left: 16, color: '#fff', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                 {photo.label}
               </p>
@@ -498,7 +498,7 @@ function OpenHouseSection() {
         fill
         style={{ objectFit: 'cover' }}
       />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(45,43,85,0.82)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(61,36,16,0.82)' }} />
       <div ref={ref} style={{ position: 'relative', zIndex: 2, padding: '100px 64px', maxWidth: 1200, margin: '0 auto' }}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div style={{ opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(24px)', transition: 'all 1s ease' }}>
