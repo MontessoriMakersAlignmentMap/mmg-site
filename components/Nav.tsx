@@ -215,6 +215,15 @@ export default function Nav() {
             <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <div className="bg-white border border-[#E2DDD6] shadow-xl w-[300px] p-4">
                 <div className="space-y-4">
+                  <div>
+                    <Link
+                      href="/matchhub"
+                      className="block px-3 py-2 hover:bg-[#FAF9F7] rounded-sm transition-colors border-b border-[#E2DDD6] mb-2"
+                    >
+                      <p className="text-[#0e1a7a] text-sm font-semibold">MatchHub Overview</p>
+                      <p className="text-[#64748B] text-xs mt-0.5">The Montessori hiring platform</p>
+                    </Link>
+                  </div>
                   {matchhubSections.map((section) => (
                     <div key={section.label}>
                       <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-1.5 font-medium px-3">
@@ -429,6 +438,13 @@ export default function Nav() {
 
             <div className="py-3">
               <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">MatchHub</p>
+              <Link
+                href="/matchhub"
+                className="block py-2 text-[#0e1a7a] text-sm font-semibold hover:underline pl-2 mb-1"
+                onClick={() => setMobileOpen(false)}
+              >
+                MatchHub Overview →
+              </Link>
               {matchhubSections.map((section) => (
                 <div key={section.label} className="mb-3">
                   <p className="text-[9px] tracking-[0.12em] uppercase text-[#64748B] mb-1 pl-2">{section.label}</p>
