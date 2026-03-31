@@ -9,7 +9,7 @@ const offers = [
     name: 'Communication Audit & Clarity Map',
     tagline: 'Entry point. The beginning of every engagement.',
     problem:
-      'You know your school is distinctive. But you&rsquo;re not sure your messaging, website, or enrollment communication is conveying that. Families arrive for tours with basic questions your materials should have already answered. Your narrative is inconsistent &mdash; different guides describe the school differently, and your website tells a different story than your enrollment conversation.',
+      'Most Montessori organizations know their work is distinctive. The harder question is whether that comes through clearly &mdash; in the website, the enrollment conversation, the materials families receive before a tour. Often there are gaps: the online experience doesn&rsquo;t quite match what families find in person, and the school gets described differently depending on who&rsquo;s doing the describing.',
     transformation:
       'The Clarity Audit gives you a complete picture of where understanding breaks down. We review your messaging, your website, your enrollment flow, and the communication patterns your organization actually uses &mdash; then produce a structured map of what&rsquo;s working, what isn&rsquo;t, and what to build next.',
     included: [
@@ -29,7 +29,7 @@ const offers = [
     name: 'Communication Architecture',
     tagline: 'Flagship engagement. The full system.',
     problem:
-      'Your organization doesn&rsquo;t have a coherent communication system. Messaging decisions get made case by case. Every new piece of content requires starting over. New staff members arrive and describe the school differently than veterans do. Families receive inconsistent signals. The problem isn&rsquo;t effort &mdash; it&rsquo;s architecture. There&rsquo;s no structural foundation that everyone is building on.',
+      'Many organizations reach a point where communication decisions are happening constantly &mdash; but without a shared foundation. Every new piece of content starts from scratch. New staff members are left to interpret the story on their own. Families receive different signals depending on who they talk to. The issue isn&rsquo;t effort or intention. It&rsquo;s that there isn&rsquo;t a structural system everyone can build from.',
     transformation:
       'Communication Architecture produces a narrative system your whole organization can use. Not guidelines. Not a brand deck. A working system: a clear articulation of what you stand for, a messaging hierarchy that tells people what to say first and next, a voice and tone guide with enough specificity to be genuinely useful, and an enrollment communication sequence that moves families from curiosity to clarity to commitment.',
     included: [
@@ -50,7 +50,7 @@ const offers = [
     name: 'Leadership Voice & Visibility',
     tagline: 'For leaders with ideas worth publishing.',
     problem:
-      'You have perspectives on education, leadership, and what Montessori makes possible that are worth sharing. But the infrastructure for sharing them consistently doesn&rsquo;t exist. The newsletter you started is six months behind. The LinkedIn post you drafted is still in the notes app. You know you should be publishing &mdash; not because it&rsquo;s marketing, but because the ideas are good and the field needs them &mdash; but you don&rsquo;t have a system that makes it sustainable.',
+      'Many school leaders have perspectives worth sharing &mdash; on education, on leadership, on what Montessori actually makes possible. The ideas are there. What&rsquo;s missing is the infrastructure that makes publishing sustainable. A newsletter gets started, then stalls. A LinkedIn post gets drafted, then sits. The intention is real, but without a system, consistency is hard to maintain.',
     transformation:
       'Leadership Voice & Visibility builds an editorial infrastructure around your existing thinking. We establish the right publication format for your voice and your audience, develop a content rhythm you can actually maintain, and create the system that makes publishing consistent rather than occasional. The goal is not volume &mdash; it&rsquo;s clarity, specificity, and authority.',
     included: [
@@ -80,11 +80,12 @@ export default function StudioServicesPage() {
             className="text-5xl md:text-6xl text-white leading-[1.05] tracking-tight mb-8"
             style={serif}
           >
-            Three ways to work together. One discipline.
+            Built around what you actually stand for.
           </h1>
           <p className="text-[#94A3B8] text-lg leading-relaxed mb-5 max-w-2xl">
-            Studio is not a service provider. It&rsquo;s a strategic communication partner.
-            Every engagement starts with understanding what you actually stand for.
+            Studio is a strategic communication partner.
+            Every engagement starts with understanding what you actually stand for &mdash;
+            and builds from there.
           </p>
           <p className="text-[#7A8FA3] text-sm leading-relaxed max-w-xl">
             Not sure where to begin? The Clarity Audit is the entry point.
@@ -117,7 +118,7 @@ export default function StudioServicesPage() {
                 <p className="text-[#64748B] text-sm italic mb-10">{offer.tagline}</p>
 
                 <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-3">
-                  The problem
+                  Where this often starts
                 </p>
                 <p
                   className="text-[#374151] text-base leading-relaxed mb-10"
@@ -176,7 +177,7 @@ export default function StudioServicesPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-6">
-              The Discipline Behind All Three
+              The Discipline Behind the Work
             </p>
             <h2
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
@@ -202,7 +203,7 @@ export default function StudioServicesPage() {
             </p>
             <div className="space-y-4">
               {[
-                'You stop describing your organization differently every time someone asks.',
+                'You have a clear, consistent way to describe what you do &mdash; one that actually fits.',
                 'Families understand what you stand for before the first tour.',
                 'Communication becomes a system, not a scramble.',
                 'New staff can orient to the narrative and use it.',
