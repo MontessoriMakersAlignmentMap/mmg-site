@@ -255,7 +255,7 @@ const programs = [
     ages: '6–9',
     slug: 'elementary',
     desc: 'The age of imagination. Children explore history, mathematics, language, and the living world — drawn forward by their own questions and supported by small-group work.',
-    photo: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80',
+    photo: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=80',
   },
   {
     name: 'Upper Elementary',

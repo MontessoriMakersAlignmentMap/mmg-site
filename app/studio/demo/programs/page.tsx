@@ -34,7 +34,7 @@ const programs = [
     number: '02',
     name: 'Lower Elementary',
     ages: 'Ages 6–9',
-    photo: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80',
+    photo: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=80',
     tagline: 'The age of why.',
     description: 'Something shifts around age six. Children become intensely interested in the world beyond their immediate experience — in history, in how things work, in fairness and belonging. The Elementary curriculum at MMS meets this moment directly.',
     description2: 'The Great Lessons — five foundational stories about the origin of the universe, life, humans, language, and mathematics — orient children to the whole before the parts. From there, each child\'s curiosity determines the path. Research, projects, and collaborative work are central.',
