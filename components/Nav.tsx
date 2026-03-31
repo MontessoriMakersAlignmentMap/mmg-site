@@ -73,7 +73,7 @@ const ecosystemGroups = [
     links: [
       { name: 'Learning', logo: 'learning' as LogoName, href: '/learning', tagline: 'Curriculum & materials' },
       { name: 'Toolbox',  logo: 'toolbox'  as LogoName, href: '/toolbox',  tagline: 'Templates & frameworks' },
-      { name: 'Studio',   logo: 'studio'   as LogoName, href: '/studio',   tagline: 'Communication design' },
+      { name: 'Studio',   logo: 'studio'   as LogoName, href: '/studio',   tagline: 'Web & communication design' },
     ],
   },
 ]

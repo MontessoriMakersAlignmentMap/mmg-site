@@ -56,7 +56,7 @@ export default function StudioPage() {
               Montessori Makers Studio
             </p>
             <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-8">
-              Strategic communication and website design for Montessori organizations.
+              Website design and communication strategy for Montessori organizations.
             </p>
             <h1
               className="text-5xl md:text-6xl text-white leading-[1.05] tracking-tight mb-8"
@@ -65,12 +65,11 @@ export default function StudioPage() {
               Communication is a prepared environment.
             </h1>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-3 max-w-2xl">
-              We design how Montessori is understood &mdash; not just how it&rsquo;s presented.
+              We design and build websites for Montessori organizations &mdash; and the communication systems that make them land.
             </p>
             <p className="text-[#7A8FA3] text-base leading-relaxed mb-12 max-w-xl">
               Most Montessori work is powerful. It just isn&rsquo;t always visible.
-              Studio helps organizations close the gap between what they stand for
-              and how it lands in the world.
+              Studio closes the gap between what you stand for and how it shows up online.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -92,6 +91,69 @@ export default function StudioPage() {
           {/* Hero logo — right column */}
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
             <Logo name="studio" heroWidth={380} heroHeight={380} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── STUDIO ALSO BUILDS ────────────────────────────────────────────── */}
+      <section className="bg-[#0e1a7a] py-20 md:py-24 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
+              What Studio Builds
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-white leading-tight mb-5"
+              style={serif}
+            >
+              Strategy without execution is just a document.
+            </h2>
+            <p className="text-[#94A3B8] text-base leading-relaxed">
+              Studio handles the full arc — from understanding what you stand for,
+              to building the website, content systems, and materials that communicate it.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {capabilities.map((cap) => (
+              <div
+                key={cap.name}
+                className="border border-white/15 p-8 flex flex-col hover:border-white/30 transition-colors"
+              >
+                <h3
+                  className="text-white font-semibold text-lg leading-snug mb-4"
+                  style={serif}
+                >
+                  {cap.name}
+                </h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 flex-1">
+                  {cap.desc}
+                </p>
+                <div className="flex items-center gap-5 flex-wrap">
+                  <Link
+                    href={cap.href}
+                    className="text-[#d6a758] text-xs font-medium hover:underline tracking-wide"
+                  >
+                    Learn more &rarr;
+                  </Link>
+                  {cap.demo && (
+                    <Link
+                      href={cap.demo}
+                      className="text-white/50 text-xs hover:text-white/80 transition-colors tracking-wide"
+                    >
+                      {cap.demoLabel}
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/studio/services"
+              className="text-white/60 text-sm font-medium hover:text-white transition-colors tracking-wide"
+            >
+              See all services in full &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -170,69 +232,6 @@ export default function StudioPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── STUDIO ALSO BUILDS ────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] py-20 md:py-24 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
-              What Studio Builds
-            </p>
-            <h2
-              className="text-3xl md:text-4xl text-white leading-tight mb-5"
-              style={serif}
-            >
-              Strategy without execution is just a document.
-            </h2>
-            <p className="text-[#94A3B8] text-base leading-relaxed">
-              Studio handles the full arc — from understanding what you stand for,
-              to building the website, content systems, and materials that communicate it.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {capabilities.map((cap) => (
-              <div
-                key={cap.name}
-                className="border border-white/15 p-8 flex flex-col hover:border-white/30 transition-colors"
-              >
-                <h3
-                  className="text-white font-semibold text-lg leading-snug mb-4"
-                  style={serif}
-                >
-                  {cap.name}
-                </h3>
-                <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 flex-1">
-                  {cap.desc}
-                </p>
-                <div className="flex items-center gap-5 flex-wrap">
-                  <Link
-                    href={cap.href}
-                    className="text-[#d6a758] text-xs font-medium hover:underline tracking-wide"
-                  >
-                    Learn more &rarr;
-                  </Link>
-                  {cap.demo && (
-                    <Link
-                      href={cap.demo}
-                      className="text-white/50 text-xs hover:text-white/80 transition-colors tracking-wide"
-                    >
-                      {cap.demoLabel}
-                    </Link>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <Link
-              href="/studio/services"
-              className="text-white/60 text-sm font-medium hover:text-white transition-colors tracking-wide"
-            >
-              See all services in full &rarr;
-            </Link>
           </div>
         </div>
       </section>

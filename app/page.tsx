@@ -241,8 +241,8 @@ const secondaryItems = [
     name: 'Studio',
     logo: 'studio' as LogoName,
     href: '/studio',
-    tagline: 'Communication design',
-    desc: 'Communication design that closes the gap between mission and message.',
+    tagline: 'Web & communication design',
+    desc: 'Website design and communication strategy that closes the gap between mission and message.',
   },
 ]
 
