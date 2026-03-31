@@ -311,19 +311,24 @@ export default function StudioPage() {
                 {
                   name: 'The Peace Rebellion',
                   type: 'Narrative architecture, brand identity, movement communication',
+                  href: 'https://www.thepeacerebellion.org',
                 },
                 {
                   name: 'Public Montessori in Action',
                   type: 'Communication system, voice design, editorial infrastructure',
+                  href: 'https://www.instagram.com/publicmontessoriinaction',
                 },
               ].map((c) => (
-                <div
+                <a
                   key={c.name}
-                  className="border border-white/15 p-5 hover:border-white/30 transition-colors"
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block border border-white/15 p-5 hover:border-white/30 transition-colors group"
                 >
-                  <p className="text-white font-medium mb-1">{c.name}</p>
+                  <p className="text-white font-medium mb-1 group-hover:underline">{c.name}</p>
                   <p className="text-[#94A3B8] text-sm">{c.type}</p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
