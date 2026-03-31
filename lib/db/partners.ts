@@ -4,7 +4,7 @@ import type { Partner, PartnerInsert } from '@/lib/types/partners'
 // ─── Public ───────────────────────────────────────────────────────────────────
 
 export async function getPublishedPartners(): Promise<Partner[]> {
-  const client = createServerClient()
+  const client = createServiceClient()
   const { data, error } = await client
     .from('partners')
     .select('*')

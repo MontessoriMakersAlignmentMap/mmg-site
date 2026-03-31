@@ -4,7 +4,7 @@ import type { CommunityOrg, CommunityOrgInsert } from '@/lib/types/community'
 // ─── Public ───────────────────────────────────────────────────────────────────
 
 export async function getPublishedCommunityOrgs(): Promise<CommunityOrg[]> {
-  const client = createServerClient()
+  const client = createServiceClient()
   const { data, error } = await client
     .from('community_organizations')
     .select('*')
