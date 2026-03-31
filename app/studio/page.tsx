@@ -35,8 +35,11 @@ export default function StudioPage() {
       <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
           <div className="max-w-2xl flex-1">
-            <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-8">
+            <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-3">
               Montessori Makers Studio
+            </p>
+            <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-8">
+              Strategic communication and website design for Montessori organizations.
             </p>
             <h1
               className="text-5xl md:text-6xl text-white leading-[1.05] tracking-tight mb-8"
@@ -73,6 +76,25 @@ export default function StudioPage() {
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
             <Logo name="studio" heroWidth={380} heroHeight={380} />
           </div>
+        </div>
+      </section>
+
+      {/* ── THIS IS WHAT STUDIO DOES ──────────────────────────────────────── */}
+      <section className="bg-white py-16 md:py-20 px-6 md:px-10 border-b border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto max-w-3xl">
+          <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-6">
+            This is what Studio does
+          </p>
+          <p className="text-[#0e1a7a] text-xl md:text-2xl leading-relaxed mb-5" style={serif}>
+            If you&rsquo;ve spent time on this site, you&rsquo;ve already experienced Studio.
+          </p>
+          <p className="text-[#374151] text-base leading-relaxed mb-4">
+            This is what it looks like when Montessori work is translated clearly &mdash; not
+            simplified or diluted, but structured so it can be understood, felt, and chosen.
+          </p>
+          <p className="text-[#374151] text-base leading-relaxed">
+            Studio exists to build that clarity for organizations.
+          </p>
         </div>
       </section>
 
@@ -147,10 +169,14 @@ export default function StudioPage() {
             >
               Three ways to engage. All grounded in the same discipline.
             </h2>
-            <p className="text-[#374151] text-base leading-relaxed">
-              Studio is not a service provider. It&rsquo;s a strategic communication partner.
+            <p className="text-[#374151] text-base leading-relaxed mb-4">
+              Studio is a strategic communication partner.
               Engagements begin with understanding what you actually stand for &mdash; and
               build from there.
+            </p>
+            <p className="text-[#374151] text-base leading-relaxed">
+              This often includes full website design and build, ensuring that what families
+              experience online reflects what actually happens in your classrooms.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -204,11 +230,14 @@ export default function StudioPage() {
               Recent Work
             </p>
             <h2
-              className="text-3xl md:text-4xl text-white leading-tight mb-6"
+              className="text-3xl md:text-4xl text-white leading-tight mb-4"
               style={serif}
             >
               The work speaks for itself.
             </h2>
+            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
+              These are active organizations doing real work in the field &mdash; not design exercises.
+            </p>
             <div className="space-y-4">
               {[
                 {
@@ -232,25 +261,25 @@ export default function StudioPage() {
           </div>
           <div className="flex flex-col justify-center gap-4">
             <Link
+              href="/studio/services#clarity-audit"
+              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+            >
+              Start with a Clarity Audit
+            </Link>
+            <a
+              href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white/30 text-white text-sm px-8 py-4 tracking-wide hover:border-white/60 transition-colors text-center"
+            >
+              Book a Consultation
+            </a>
+            <Link
               href="/studio/portfolio"
-              className="bg-white text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#FAF9F7] transition-colors text-center font-medium"
+              className="text-[#64748B] text-sm text-center hover:text-white transition-colors py-2"
             >
               View the Work &rarr;
             </Link>
-            <Link
-              href="/studio/services"
-              className="border border-white/25 text-white text-sm px-8 py-4 tracking-wide hover:border-white/50 transition-colors text-center"
-            >
-              See Our Offers
-            </Link>
-            <a
-  href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-[#64748B] text-sm text-center hover:text-white transition-colors py-2"
->
-  Book a Consultation
-</a>
           </div>
         </div>
       </section>
