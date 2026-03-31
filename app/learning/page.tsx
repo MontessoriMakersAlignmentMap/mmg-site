@@ -17,14 +17,14 @@ const categories = [
     secondaryHref: '/learning/decodable-books',
     bg: 'bg-[#FAF9F7]',
     visual: [
-      { label: 'Set 1 — CVC Words', color: '#B91C1C' },
-      { label: 'Set 2 — Consonant Blends', color: '#1D4ED8' },
-      { label: 'Set 3 — Digraphs', color: '#15803D' },
-      { label: 'Set 4 — Long Vowel Patterns', color: '#B45309' },
-      { label: 'Set 5 — R-Controlled Vowels', color: '#7E22CE' },
-      { label: 'Set 6 — Diphthongs', color: '#BE185D' },
-      { label: 'Set 7 — Complex Patterns', color: '#C2410C' },
-      { label: 'Set 8 — Fluency & Integration', color: '#d6a758' },
+      { label: 'Set 1 — CVC Words', color: '#DC2626' },
+      { label: 'Set 2 — Digraphs', color: '#16A34A' },
+      { label: 'Set 3 — Blends', color: '#BE185D' },
+      { label: 'Set 4 — Endings', color: '#A16207' },
+      { label: 'Set 5 — Long Vowel Patterns', color: '#0369A1' },
+      { label: 'Set 6 — R-Controlled Vowels', color: '#7C3AED' },
+      { label: 'Set 7 — Multisyllabic Words', color: '#64748B' },
+      { label: 'Set 8 — Advanced Phonics Patterns', color: '#92400E' },
     ],
   },
   {
@@ -184,21 +184,21 @@ export default function LearningPage() {
           {/* Visual: 8 bead-color set strips */}
           <div className="space-y-1.5">
             {[
-              { label: 'Set 1 — Short Vowels & CVC', color: '#B91C1C', bead: 'Red' },
-              { label: 'Set 2 — Consonant Blends', color: '#1D4ED8', bead: 'Blue' },
-              { label: 'Set 3 — Digraphs', color: '#15803D', bead: 'Green' },
-              { label: 'Set 4 — Long Vowel Patterns', color: '#B45309', bead: 'Yellow' },
-              { label: 'Set 5 — R-Controlled Vowels', color: '#7E22CE', bead: 'Purple' },
-              { label: 'Set 6 — Diphthongs & Variant Vowels', color: '#BE185D', bead: 'Pink' },
-              { label: 'Set 7 — Soft Sounds & Complex Patterns', color: '#C2410C', bead: 'Orange' },
-              { label: 'Set 8 — Fluency & Integration', color: '#d6a758', bead: 'Gold' },
+              { label: 'Set 1 — CVC Words', color: '#DC2626', bead: 'Red', count: 10, href: '/learning/decodable-books#set-1' },
+              { label: 'Set 2 — Digraphs', color: '#16A34A', bead: 'Green', count: 10, href: '/learning/decodable-books#set-2' },
+              { label: 'Set 3 — Blends', color: '#BE185D', bead: 'Light Pink', count: 30, href: '/learning/decodable-books#set-3' },
+              { label: 'Set 4 — Endings', color: '#A16207', bead: 'Yellow', count: 5, href: '/learning/decodable-books#set-4' },
+              { label: 'Set 5 — Long Vowel Patterns', color: '#0369A1', bead: 'Light Blue', count: 6, href: '/learning/decodable-books#set-5' },
+              { label: 'Set 6 — R-Controlled Vowels', color: '#7C3AED', bead: 'Purple', count: 5, href: '/learning/decodable-books#set-6' },
+              { label: 'Set 7 — Multisyllabic Words', color: '#64748B', bead: 'White', count: 15, href: '/learning/decodable-books#set-7' },
+              { label: 'Set 8 — Advanced Phonics Patterns', color: '#92400E', bead: 'Brown', count: 15, href: '/learning/decodable-books#set-8' },
             ].map((set, i) => (
-              <div key={i} className="bg-white border border-[#E2DDD6] flex items-center gap-4 px-5 py-3">
-                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: set.color }} />
+              <a key={i} href={set.href} className="bg-white border border-[#E2DDD6] flex items-center gap-4 px-5 py-3 hover:border-[#0e1a7a] hover:bg-[#FAF9F7] transition-colors group">
+                <div className="w-2 h-2 rounded-full flex-shrink-0 border border-black/10" style={{ backgroundColor: set.color }} />
                 <span className="text-xs font-semibold flex-shrink-0" style={{ color: set.color }}>{set.bead}</span>
-                <span className="text-[#374151] text-xs flex-1">{set.label}</span>
-                <span className="text-[#64748B] text-xs flex-shrink-0">12 books</span>
-              </div>
+                <span className="text-[#374151] text-xs flex-1 group-hover:text-[#0e1a7a] transition-colors">{set.label}</span>
+                <span className="text-[#64748B] text-xs flex-shrink-0">{set.count} books →</span>
+              </a>
             ))}
           </div>
         </div>

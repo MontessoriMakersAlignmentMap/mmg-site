@@ -9,6 +9,18 @@ const serif = { fontFamily: 'var(--font-heading)' }
 const PDF_URL = '/decodable-books-title-sight-word-list.pdf'
 
 const FULL_SERIES_STRIPE = 'https://buy.stripe.com/cNi4gB1rG7T29MXaZP2cg0F'
+
+const COLLAGE_BOOKS = [
+  { src: '/learning/books/S1B1 On a Mat.png', color: '#DC2626', rotate: '-2deg', alt: 'On a Mat' },
+  { src: '/learning/books/S2B1 Chicken Coop.png', color: '#16A34A', rotate: '1.5deg', alt: 'Chicken Coop' },
+  { src: '/learning/books/S3B1 Drum.png', color: '#BE185D', rotate: '-1deg', alt: 'Drum' },
+  { src: '/learning/books/S4B1 We Sang So Long.png', color: '#A16207', rotate: '2deg', alt: 'We Sang So Long' },
+  { src: '/learning/books/S5B1 The Rake.png', color: '#0369A1', rotate: '-1.5deg', alt: 'The Rake' },
+  { src: '/learning/books/S6B1 Lots of Parts.png', color: '#7C3AED', rotate: '1deg', alt: 'Lots of Parts' },
+  { src: '/learning/books/S7B1 The Math Shelf.png', color: '#64748B', rotate: '-2.5deg', alt: 'The Math Shelf' },
+  { src: '/learning/books/S8B1 The Curious Cat.png', color: '#92400E', rotate: '1.5deg', alt: 'The Curious Cat' },
+]
+
 const FULL_SERIES_IMAGES = [
   '/learning/books/1.png',
   '/learning/books/2.png',
@@ -256,7 +268,7 @@ function SetCard({ set }: { set: typeof sets[number] }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white border border-[#E2DDD6] p-8 flex gap-6">
+    <div id={`set-${set.number}`} className="bg-white border border-[#E2DDD6] p-8 flex gap-6">
       <div
         className="w-1.5 flex-shrink-0 rounded-full"
         style={{
@@ -336,31 +348,64 @@ export default function DecodableBooksPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto max-w-3xl">
-          <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">Decodable Book Series</p>
-          <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
-            96 books. 8 sets. Built for the way Montessori teaches reading.
-          </h1>
-          <p className="text-[#94A3B8] text-lg leading-relaxed mb-12">
-            Beautiful. Rigorous. Justice-aligned. These are stories designed to build voice,
-            confidence, and agency — not just decoding skills.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href={FULL_SERIES_STRIPE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors inline-block"
-            >
-              Order the Series
-            </a>
-            <Link
-              href="/learning/free-resources"
-              className="border border-white text-white text-sm px-8 py-4 tracking-wide hover:bg-white hover:text-[#0e1a7a] transition-colors inline-block"
-            >
-              Get Free Resources
-            </Link>
+      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-28 px-6 md:px-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left: text */}
+          <div>
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">Decodable Book Series</p>
+            <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
+              96 books. 8 sets. Built for the way Montessori teaches reading.
+            </h1>
+            <p className="text-[#94A3B8] text-lg leading-relaxed mb-12">
+              Beautiful. Rigorous. Justice-aligned. These are stories designed to build voice,
+              confidence, and agency — not just decoding skills.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={FULL_SERIES_STRIPE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors inline-block"
+              >
+                Order the Series
+              </a>
+              <Link
+                href="/learning/free-resources"
+                className="border border-white text-white text-sm px-8 py-4 tracking-wide hover:bg-white hover:text-[#0e1a7a] transition-colors inline-block"
+              >
+                Get Free Resources
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: book cover collage */}
+          <div className="hidden md:block">
+            <div className="grid grid-cols-4 gap-3">
+              {COLLAGE_BOOKS.map((book, i) => (
+                <div
+                  key={i}
+                  className="relative"
+                  style={{ transform: `rotate(${book.rotate})`, transition: 'transform 0.2s ease' }}
+                >
+                  <div className="relative w-full aspect-[3/4] shadow-xl overflow-hidden">
+                    <Image
+                      src={book.src}
+                      alt={book.alt}
+                      fill
+                      className="object-cover"
+                      sizes="110px"
+                    />
+                  </div>
+                  <div
+                    className="h-1 w-full mt-0.5 rounded-full opacity-80"
+                    style={{ backgroundColor: book.color }}
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="text-[#475569] text-[10px] tracking-[0.15em] uppercase mt-5 text-center">
+              8 sets · 96 books · complete phonics progression
+            </p>
           </div>
         </div>
       </section>
