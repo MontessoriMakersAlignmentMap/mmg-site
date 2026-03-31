@@ -96,8 +96,8 @@ export default function DemoHome() {
       <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 80, paddingTop: 164 }}>
         {/* Photo */}
         <Image
-          src="https://images.unsplash.com/photo-MvWgKCjEi6o?auto=format&fit=crop&w=2000&q=85"
-          alt="Children in Montessori classroom circle"
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=2000&q=85"
+          alt="Child engaged in Montessori work"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 30%', transform: `scale(1.04) translateY(${scrollY * 0.08}px)` }}
           priority
@@ -248,14 +248,14 @@ const programs = [
     ages: '3–6',
     slug: 'primary',
     desc: 'The foundational years. Children develop independence, concentration, and the habit of following their own curiosity through self-directed work with purpose-built materials.',
-    photo: 'https://images.unsplash.com/photo-8H0EBM9LCZQ?auto=format&fit=crop&w=900&q=80',
+    photo: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80',
   },
   {
     name: 'Lower Elementary',
     ages: '6–9',
     slug: 'elementary',
     desc: 'The age of imagination. Children explore history, mathematics, language, and the living world — drawn forward by their own questions and supported by small-group work.',
-    photo: 'https://images.unsplash.com/photo-vr2l5FGuJQI?auto=format&fit=crop&w=900&q=80',
+    photo: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=80',
   },
   {
     name: 'Upper Elementary',
@@ -355,7 +355,7 @@ function AboutPreview() {
         </div>
         <div style={{ position: 'relative', height: 480, opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(24px)', transition: 'all 1s cubic-bezier(0.16,1,0.3,1) 0.2s' }}>
           <Image
-            src="https://images.unsplash.com/photo-oKe_Dwv-Kkk?auto=format&fit=crop&w=900&q=80"
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80"
             alt="MMS classroom environment"
             fill
             style={{ objectFit: 'cover' }}
@@ -371,11 +371,11 @@ function AboutPreview() {
 }
 
 const lifePhotos = [
-  { src: 'https://images.unsplash.com/photo-8H0EBM9LCZQ?auto=format&fit=crop&w=700&q=80', label: 'Montessori materials', span: 'md:col-span-2 md:row-span-2' },
-  { src: 'https://images.unsplash.com/photo-domMQ19vNBk?auto=format&fit=crop&w=700&q=80', label: 'Art & ceramics', span: '' },
-  { src: 'https://images.unsplash.com/photo-6vXTBvk2ECM?auto=format&fit=crop&w=700&q=80', label: 'Outdoor learning', span: '' },
-  { src: 'https://images.unsplash.com/photo-MvWgKCjEi6o?auto=format&fit=crop&w=700&q=80', label: 'Community circle', span: '' },
-  { src: 'https://images.unsplash.com/photo-9NiGvGnscrY?auto=format&fit=crop&w=700&q=80', label: 'School community', span: '' },
+  { src: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=700&q=80', label: 'Hands-on learning', span: 'md:col-span-2 md:row-span-2' },
+  { src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80', label: 'Collaborative work', span: '' },
+  { src: 'https://images.unsplash.com/photo-1570126618953-d437176e8c79?auto=format&fit=crop&w=700&q=80', label: 'Art & expression', span: '' },
+  { src: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=700&q=80', label: 'Community circle', span: '' },
+  { src: 'https://images.unsplash.com/photo-1536337005238-94b997371b40?auto=format&fit=crop&w=700&q=80', label: 'Science exploration', span: '' },
 ]
 
 function SchoolLifeSection() {
