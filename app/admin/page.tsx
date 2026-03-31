@@ -5,6 +5,7 @@ import type { Job, GuideProfile } from '@/lib/types/matchhub'
 import type { Search, SearchRole } from '@/lib/types/searches'
 import type { TalentProfile } from '@/lib/types/talent-pool'
 import type { Partner } from '@/lib/types/partners'
+import type { CommunityOrg } from '@/lib/types/community'
 
 // ─── Course registry ──────────────────────────────────────────────────────────
 // course.id must match the course_id used in the course platform's
@@ -91,7 +92,7 @@ function Btn({ label, onClick, loading, color }: {
 }
 
 // ─── Tab types ────────────────────────────────────────────────────────────────
-type Tab = 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent' | 'partners'
+type Tab = 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent' | 'partners' | 'community'
 type JobFilter = 'all' | 'pending' | 'approved' | 'rejected' | 'archived' | 'expired'
 type ProfileFilter = 'all' | 'pending' | 'approved' | 'rejected'
 
@@ -156,6 +157,15 @@ export default function AdminPage() {
   const [editingPartner, setEditingPartner] = useState<string | null>(null)
   const [editPartnerData, setEditPartnerData] = useState<Partial<Partner>>({})
   const [actingPartner, setActingPartner] = useState<Record<string, string>>({})
+
+  // Community orgs state
+  const [communityOrgs, setCommunityOrgs] = useState<CommunityOrg[]>([])
+  const [communityLoading, setCommunityLoading] = useState(false)
+  const [showNewCommunityForm, setShowNewCommunityForm] = useState(false)
+  const [newCommunityOrg, setNewCommunityOrg] = useState({ name: '', logo_url: '', website_url: '', blurb: '', display_order: 0, published: true })
+  const [editingCommunityOrg, setEditingCommunityOrg] = useState<string | null>(null)
+  const [editCommunityData, setEditCommunityData] = useState<Partial<CommunityOrg>>({})
+  const [actingCommunity, setActingCommunity] = useState<Record<string, string>>({})
 
   // Course enrollment stats from course platform
   const [enrollmentStats, setEnrollmentStats] = useState<{
@@ -233,6 +243,18 @@ export default function AdminPage() {
     finally { setPartnersLoading(false) }
   }, [adminPw])
 
+  const loadCommunity = useCallback(async (pw?: string) => {
+    const password = pw ?? adminPw
+    setCommunityLoading(true)
+    try {
+      const res = await fetch('/api/admin/community', { headers: { 'x-admin-password': password } })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setCommunityOrgs(await res.json())
+    } catch { setError('Could not load community organizations.') }
+    finally { setCommunityLoading(false) }
+  }, [adminPw])
+
   const loadEnrollments = useCallback(async (pw?: string) => {
     const password = pw ?? adminPw
     setEnrollmentsLoading(true)
@@ -256,8 +278,8 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent(); loadPartners() }
-  }, [auth, loadJobs, loadProfiles, loadEnrollments, loadSearches, loadTalent])
+    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent(); loadPartners(); loadCommunity() }
+  }, [auth, loadJobs, loadProfiles, loadEnrollments, loadSearches, loadTalent, loadCommunity])
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -279,6 +301,7 @@ export default function AdminPage() {
     loadSearches(pwInput)
     loadTalent(pwInput)
     loadPartners(pwInput)
+    loadCommunity(pwInput)
   }
 
   async function handleJobAction(jobId: string, action: 'approve' | 'reject' | 'archive') {
@@ -384,6 +407,71 @@ export default function AdminPage() {
       setPartners(prev => prev.map(p => p.id === id ? { ...p, [field]: !current } : p))
     } catch { setError('Could not update partner.') }
     finally { setActingPartner(prev => { const n = { ...prev }; delete n[id]; return n }) }
+  }
+
+  // ── Community Orgs CRUD ───────────────────────────────────────────────────────
+
+  async function handleCreateCommunityOrg() {
+    setActingCommunity(prev => ({ ...prev, new: 'creating' }))
+    try {
+      const res = await fetch('/api/admin/community', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify(newCommunityOrg),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setShowNewCommunityForm(false)
+      setNewCommunityOrg({ name: '', logo_url: '', website_url: '', blurb: '', display_order: 0, published: true })
+      await loadCommunity()
+    } catch { setError('Could not create organization.') }
+    finally { setActingCommunity(prev => { const n = { ...prev }; delete n.new; return n }) }
+  }
+
+  async function handleUpdateCommunityOrg(id: string) {
+    setActingCommunity(prev => ({ ...prev, [id]: 'saving' }))
+    try {
+      const res = await fetch(`/api/admin/community/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify(editCommunityData),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setEditingCommunityOrg(null)
+      await loadCommunity()
+    } catch { setError('Could not update organization.') }
+    finally { setActingCommunity(prev => { const n = { ...prev }; delete n[id]; return n }) }
+  }
+
+  async function handleDeleteCommunityOrg(id: string) {
+    if (!confirm('Delete this organization? This cannot be undone.')) return
+    setActingCommunity(prev => ({ ...prev, [id]: 'deleting' }))
+    try {
+      const res = await fetch(`/api/admin/community/${id}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-password': adminPw },
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setCommunityOrgs(prev => prev.filter(o => o.id !== id))
+    } catch { setError('Could not delete organization.') }
+    finally { setActingCommunity(prev => { const n = { ...prev }; delete n[id]; return n }) }
+  }
+
+  async function handleToggleCommunityOrg(id: string, current: boolean) {
+    setActingCommunity(prev => ({ ...prev, [id]: 'published' }))
+    try {
+      const res = await fetch(`/api/admin/community/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify({ published: !current }),
+      })
+      if (res.status === 401) { handleExpired(); return }
+      if (!res.ok) throw new Error()
+      setCommunityOrgs(prev => prev.map(o => o.id === id ? { ...o, published: !current } : o))
+    } catch { setError('Could not update organization.') }
+    finally { setActingCommunity(prev => { const n = { ...prev }; delete n[id]; return n }) }
   }
 
   // ── PDF Upload ────────────────────────────────────────────────────────────────
@@ -682,6 +770,7 @@ export default function AdminPage() {
             { key: 'searches', label: 'Current Searches', count: searches.length },
             { key: 'talent', label: 'Talent Pool', count: talentProfiles.length },
             { key: 'partners', label: 'Partners', count: partners.length },
+            { key: 'community', label: 'In Community With', count: communityOrgs.length },
           ] as { key: Tab; label: string; count: number; badge?: number }[]).map(t => (
             <button
               key={t.key}
@@ -1610,6 +1699,133 @@ export default function AdminPage() {
                             <Btn label="Delete" color="red" loading={actingPartner[partner.id] === 'deleting'} onClick={() => handleDeletePartner(partner.id)} />
                           </div>
                           <Btn label={partner.is_featured ? 'Unfeature' : 'Feature'} color="gray" loading={actingPartner[partner.id] === 'is_featured'} onClick={() => handleTogglePartner(partner.id, 'is_featured', partner.is_featured)} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── IN COMMUNITY WITH TAB ─────────────────────────────────────────── */}
+        {tab === 'community' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-sm text-gray-500">{communityOrgs.length} organization{communityOrgs.length !== 1 ? 's' : ''}</p>
+              <button
+                onClick={() => setShowNewCommunityForm(true)}
+                className="bg-[#0e1a7a] text-white text-xs font-medium px-4 py-2 hover:bg-[#162270] transition-colors"
+              >
+                + Add Organization
+              </button>
+            </div>
+
+            {/* New org form */}
+            {showNewCommunityForm && (
+              <div className="border border-[#0e1a7a] p-6 mb-6 bg-white">
+                <p className="text-sm font-semibold text-[#0e1a7a] mb-4">New Organization</p>
+                <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                  <div className="sm:col-span-2">
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Organization Name *</label>
+                    <input value={newCommunityOrg.name} onChange={e => setNewCommunityOrg(o => ({ ...o, name: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="Organization name" />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Logo URL</label>
+                    <input value={newCommunityOrg.logo_url} onChange={e => setNewCommunityOrg(o => ({ ...o, logo_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Website URL</label>
+                    <input value={newCommunityOrg.website_url} onChange={e => setNewCommunityOrg(o => ({ ...o, website_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Blurb</label>
+                    <textarea value={newCommunityOrg.blurb} onChange={e => setNewCommunityOrg(o => ({ ...o, blurb: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" rows={3} placeholder="1–3 sentences about the organization and why you uplift them" />
+                  </div>
+                  <div>
+                    <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Display Order</label>
+                    <input type="number" value={newCommunityOrg.display_order} onChange={e => setNewCommunityOrg(o => ({ ...o, display_order: parseInt(e.target.value) || 0 }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                  </div>
+                  <div className="flex items-end pb-2">
+                    <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="checkbox" checked={newCommunityOrg.published} onChange={e => setNewCommunityOrg(o => ({ ...o, published: e.target.checked }))} />
+                      Published
+                    </label>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Btn label="Save Organization" color="navy" loading={actingCommunity.new === 'creating'} onClick={handleCreateCommunityOrg} />
+                  <Btn label="Cancel" color="gray" loading={false} onClick={() => setShowNewCommunityForm(false)} />
+                </div>
+              </div>
+            )}
+
+            {communityLoading ? (
+              <p className="text-sm text-gray-400 py-8 text-center">Loading…</p>
+            ) : communityOrgs.length === 0 ? (
+              <p className="text-sm text-gray-400 py-8 text-center">No organizations yet. Add one above.</p>
+            ) : (
+              <div className="space-y-3">
+                {communityOrgs.map(org => (
+                  <div key={org.id} className="border border-gray-100 bg-white p-5">
+                    {editingCommunityOrg === org.id ? (
+                      <div>
+                        <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Organization Name *</label>
+                            <input value={editCommunityData.name ?? ''} onChange={e => setEditCommunityData(o => ({ ...o, name: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Logo URL</label>
+                            <input value={editCommunityData.logo_url ?? ''} onChange={e => setEditCommunityData(o => ({ ...o, logo_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Website URL</label>
+                            <input value={editCommunityData.website_url ?? ''} onChange={e => setEditCommunityData(o => ({ ...o, website_url: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" placeholder="https://..." />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Blurb</label>
+                            <textarea value={editCommunityData.blurb ?? ''} onChange={e => setEditCommunityData(o => ({ ...o, blurb: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm" rows={3} />
+                          </div>
+                          <div>
+                            <label className="text-[11px] uppercase tracking-wide text-gray-500 mb-1 block">Display Order</label>
+                            <input type="number" value={editCommunityData.display_order ?? 0} onChange={e => setEditCommunityData(o => ({ ...o, display_order: parseInt(e.target.value) || 0 }))} className="w-full border border-gray-200 px-3 py-2 text-sm" />
+                          </div>
+                          <div className="flex items-end pb-2">
+                            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                              <input type="checkbox" checked={editCommunityData.published ?? false} onChange={e => setEditCommunityData(o => ({ ...o, published: e.target.checked }))} />
+                              Published
+                            </label>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Btn label="Save" color="navy" loading={actingCommunity[org.id] === 'saving'} onClick={() => handleUpdateCommunityOrg(org.id)} />
+                          <Btn label="Cancel" color="gray" loading={false} onClick={() => setEditingCommunityOrg(null)} />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-4 flex-1 min-w-0">
+                          {org.logo_url && (
+                            <img src={org.logo_url} alt={org.name} className="w-12 h-12 object-contain flex-shrink-0 border border-gray-100" />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <p className="text-sm font-semibold text-gray-800">{org.name}</p>
+                              {org.published
+                                ? <span className="text-[10px] bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 uppercase tracking-wide">Published</span>
+                                : <span className="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-2 py-0.5 uppercase tracking-wide">Draft</span>}
+                            </div>
+                            {org.blurb && <p className="text-xs text-gray-500 mb-1 line-clamp-2">{org.blurb}</p>}
+                            {org.website_url && <a href={org.website_url} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0e1a7a] hover:underline">{org.website_url}</a>}
+                            <p className="text-[10px] text-gray-400 mt-1">Order: {org.display_order}</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 flex-shrink-0">
+                          <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingCommunityOrg(org.id); setEditCommunityData({ ...org }) }} />
+                          <Btn label={org.published ? 'Unpublish' : 'Publish'} color="navy" loading={actingCommunity[org.id] === 'published'} onClick={() => handleToggleCommunityOrg(org.id, org.published)} />
+                          <Btn label="Delete" color="red" loading={actingCommunity[org.id] === 'deleting'} onClick={() => handleDeleteCommunityOrg(org.id)} />
                         </div>
                       </div>
                     )}

@@ -88,6 +88,7 @@ const allMobileLinks = [
   { name: 'Toolbox', href: '/toolbox' },
   { name: 'Studio', href: '/studio' },
   { name: 'Field Pulse', href: '/field-intelligence' },
+  { name: 'In Community With', href: '/in-community-with' },
 ]
 
 export default function Nav() {
@@ -280,8 +281,8 @@ export default function Nav() {
                   <Link href="/learning/free-resources" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Free Resources →
                   </Link>
-                  <Link href="/about" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
-                    About MMG →
+                  <Link href="/in-community-with" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
+                    In Community With →
                   </Link>
                 </div>
               </div>
@@ -337,6 +338,10 @@ export default function Nav() {
                   <Link href="/partners" className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors">
                     <p className="text-[#0e1a7a] text-sm font-medium">Partners</p>
                     <p className="text-[#64748B] text-xs mt-0.5">Organizations we work with</p>
+                  </Link>
+                  <Link href="/in-community-with" className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors">
+                    <p className="text-[#0e1a7a] text-sm font-medium">In Community With</p>
+                    <p className="text-[#64748B] text-xs mt-0.5">Organizations we uplift</p>
                   </Link>
                 </div>
               </div>
