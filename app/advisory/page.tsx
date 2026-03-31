@@ -152,6 +152,24 @@ export default function AdvisoryPage() {
         </div>
       </section>
 
+      {/* ─── Stats bar ────────────────────────────────────────────────────── */}
+      <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '20+', label: 'Years in Montessori', sub: 'Deep practitioner roots' },
+            { value: '6',   label: 'Engagement pathways', sub: 'From single session to retained' },
+            { value: '100%', label: 'Montessori-specific', sub: 'No generic consulting playbook' },
+            { value: '0',   label: 'Off-the-shelf frameworks', sub: 'Built around your school' },
+          ].map((s) => (
+            <div key={s.value} className="text-center md:text-left">
+              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
+              <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
+              <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ─── Core Problem Framing ─────────────────────────────────────────── */}
       <section className="bg-white py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto max-w-3xl">

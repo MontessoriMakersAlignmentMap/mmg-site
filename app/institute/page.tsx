@@ -85,6 +85,24 @@ export default function InstitutePage() {
         </div>
       </section>
 
+      {/* Stats bar */}
+      <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '5',    label: 'Program formats', sub: 'Seminar to full-year residency' },
+            { value: '100%', label: 'Practitioner-led', sub: 'No outside facilitators' },
+            { value: '0',    label: 'Simulated scenarios', sub: 'Your real situation, always' },
+            { value: '1',    label: 'Framework throughout', sub: 'Montessori as the reasoning lens' },
+          ].map((s) => (
+            <div key={s.label} className="text-center md:text-left">
+              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
+              <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
+              <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Why it exists */}
       <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">

@@ -47,6 +47,24 @@ export default function MatchHubPage() {
         </div>
       </section>
 
+      {/* Stats bar */}
+      <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '100%', label: 'Mission-aligned only', sub: 'No general educator pools' },
+            { value: '2',    label: 'Sides of the match', sub: 'Schools & candidates' },
+            { value: '0',    label: 'Credential-only filters', sub: 'Philosophy always comes first' },
+            { value: '1',    label: 'Ecosystem connection', sub: 'Linked to Advisory & MMAP' },
+          ].map((s) => (
+            <div key={s.label} className="text-center md:text-left">
+              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
+              <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
+              <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Audience routing */}
       <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">

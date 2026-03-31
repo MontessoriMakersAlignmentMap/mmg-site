@@ -135,6 +135,24 @@ export default function MMASPage() {
         </div>
       </section>
 
+      {/* ── Stats bar ─────────────────────────────────────────────────────── */}
+      <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '0',      label: 'Grade levels. Ever.', sub: 'Built on Montessori premises' },
+            { value: '4',      label: 'Progression stages', sub: 'Emerging → ready for next material' },
+            { value: '10–15',  label: 'Minutes per student', sub: 'In the natural classroom flow' },
+            { value: '100%',   label: 'Materials-aligned', sub: 'Every data point maps to a material' },
+          ].map((s) => (
+            <div key={s.label} className="text-center md:text-left">
+              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
+              <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
+              <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── DEMO CTA (primary) ────────────────────────────────────────────── */}
       <section className="bg-[#F2EDE6] py-12 md:py-14 px-6 md:px-10 border-b border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-5">
