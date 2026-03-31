@@ -34,9 +34,16 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">About Montessori Makers</p>
-            <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-12" style={serif}>
+            <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-10" style={serif}>
               Built for coherence. Built for the long term.
             </h2>
+            <Image
+              src="/logos/mmg-logo-transparent.png"
+              alt="Montessori Makers Group"
+              width={220}
+              height={110}
+              className="object-contain"
+            />
           </div>
           <div className="space-y-5 text-[#374151] text-base leading-relaxed">
             <p>
