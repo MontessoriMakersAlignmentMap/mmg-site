@@ -103,22 +103,23 @@ export default function StudioPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-6">
-              The Core Problem
+              The Translation Gap
             </p>
             <h2
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
               style={serif}
             >
-              Most organizations don&rsquo;t have a marketing problem. They have a translation problem.
+              The work is usually stronger than the story being told about it.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
-              The work is extraordinary. The story isn&rsquo;t reaching anyone.
+              Most Montessori organizations aren&rsquo;t struggling because the work isn&rsquo;t good.
+              They&rsquo;re struggling because the work is genuinely hard to translate &mdash; and
+              translation is its own craft.
             </p>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
-              This is specifically true for Montessori organizations. The approach is
-              philosophically distinctive &mdash; but the language for communicating that
-              distinction is often borrowed from traditional education marketing, which
-              flattens everything it touches.
+              Montessori is philosophically distinctive. But the language available for
+              describing it often comes from traditional education marketing &mdash; a vocabulary
+              that wasn&rsquo;t built for this work and tends to flatten what makes it different.
             </p>
             <p className="text-[#374151] text-base leading-relaxed mb-8">
               Communication is a prepared environment. It needs to be designed with the
@@ -135,16 +136,16 @@ export default function StudioPage() {
           </div>
           <div className="bg-white border border-[#E2DDD6] p-8">
             <p className="text-[#64748B] text-[10px] tracking-[0.2em] uppercase mb-6">
-              Signs of a translation problem
+              This might feel familiar
             </p>
             <div className="space-y-4">
               {[
-                'You describe your school differently every time someone asks.',
-                'Families visit your site and don\u2019t feel what they\u2019d find in your classrooms.',
-                'You have strong outcomes but struggle to communicate them clearly.',
-                'Visual and messaging decisions get made by committee, slowly, and inconsistently.',
-                'Families ask questions your enrollment materials should already answer.',
-                'Your online presence looks like every other Montessori school.',
+                'It\u2019s hard to describe what you do in a way that feels both accurate and accessible.',
+                'The online experience doesn\u2019t quite capture what families find when they walk through your door.',
+                'You know the outcomes are real, but articulating them clearly feels harder than it should.',
+                'Messaging decisions happen gradually, across many voices, without a clear through-line.',
+                'Families arrive at tours with questions your enrollment materials were meant to answer.',
+                'Your online presence is harder to differentiate than the actual experience inside your building.',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <span className="text-[#8A6014] flex-shrink-0 mt-0.5">&mdash;</span>
@@ -167,12 +168,12 @@ export default function StudioPage() {
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5"
               style={serif}
             >
-              Three ways to engage. All grounded in the same discipline.
+              Every engagement is shaped around you. These are the anchors.
             </h2>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
               Studio is a strategic communication partner.
               Engagements begin with understanding what you actually stand for &mdash; and
-              build from there.
+              build from there. Most go beyond what any single package describes.
             </p>
             <p className="text-[#374151] text-base leading-relaxed">
               This often includes full website design and build, ensuring that what families
@@ -216,7 +217,7 @@ export default function StudioPage() {
               href="/studio/services"
               className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide"
             >
-              See all three offers in full &rarr;
+              See all services in full &rarr;
             </Link>
           </div>
         </div>
