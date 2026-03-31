@@ -426,41 +426,22 @@ function DemoCTA() {
 export default function MMAPPage() {
   return (
     <>
-      {/* Sticky action buttons */}
-      <div className="fixed top-5 right-5 z-50 hidden md:flex items-center gap-3">
-        <Link
-          href="/mmap/signin"
-          className="bg-white/10 border border-white/20 text-white text-xs px-5 py-2.5 tracking-wide hover:bg-white/20 transition-colors font-medium shadow-lg whitespace-nowrap backdrop-blur-sm"
-        >
-          Sign In
-        </Link>
-        <Link
-          href="/mmap/demo"
-          className="bg-[#d6a758] text-white text-xs px-5 py-2.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium shadow-lg whitespace-nowrap"
-        >
-          Watch Demo
-        </Link>
-      </div>
-
       {/* Hero */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10 overflow-hidden">
+      <section className="bg-[#0e1a7a] pt-28 pb-20 md:pt-32 md:pb-24 px-6 md:px-10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Text */}
           <div>
-            <div className="mb-6">
-              <Logo name="mmap" heroWidth={380} heroHeight={380} />
+            <div className="mb-5">
+              <Logo name="mmap" heroWidth={220} heroHeight={220} />
             </div>
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-8">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
               <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
             </div>
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
-              Montessori Makers Alignment Map
-            </p>
-            <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
+            <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-5" style={serif}>
               The operating system for Montessori schools.
             </h1>
-            <p className="text-[#64748B] text-lg md:text-xl leading-relaxed mb-12 max-w-xl">
+            <p className="text-[#64748B] text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
               A digital prepared environment for Montessori schools. No patchwork. No
               competing tools. Just systems that finally reflect what you believe.
             </p>
