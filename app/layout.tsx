@@ -30,6 +30,9 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical,
     },
+    verification: {
+      google: 'vD9PrWDsWTu6FhCPV7KlihlEZbEc4xURZubK_F3orGI',
+    },
     icons: {
       icon: [
         { url: '/icon.png', sizes: '512x512', type: 'image/png' },
