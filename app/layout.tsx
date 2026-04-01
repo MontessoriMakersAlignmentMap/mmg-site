@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { Montserrat } from 'next/font/google'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -14,19 +15,31 @@ const montserrat = Montserrat({
 // Heading font (TheSeasons) is loaded via @font-face in globals.css
 // using local /public/fonts files — no external request needed
 
-export const metadata: Metadata = {
-  title: 'Montessori Makers Group — Leadership & Organizational Design',
-  description:
-    'Strategic advisory, leadership development, and organizational design for Montessori schools. When a school is aligned, everything works.',
-  icons: {
-    icon: [
-      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
-      { url: '/favicon.ico', sizes: '32x32' },
-    ],
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-  },
+const BASE_URL = 'https://montessorimakersgroup.org'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') ?? '/'
+  const canonical = `${BASE_URL}${pathname === '/' ? '' : pathname}`
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: 'Montessori Makers Group — Leadership & Organizational Design',
+    description:
+      'Strategic advisory, leadership development, and organizational design for Montessori schools. When a school is aligned, everything works.',
+    alternates: {
+      canonical,
+    },
+    icons: {
+      icon: [
+        { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+        { url: '/favicon.ico', sizes: '32x32' },
+      ],
+      apple: [
+        { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
+  }
 }
 
 export default function RootLayout({
