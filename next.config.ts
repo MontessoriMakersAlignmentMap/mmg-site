@@ -4,6 +4,7 @@ const domainRedirects = [
   { source: 'montessorimakers.org', destination: '/advisory' },
   { source: 'montessorimakersmatchhub.com', destination: '/matchhub' },
   { source: 'montessorimakersalignmentmap.com', destination: '/mmap' },
+  { source: 'www.montessorimakersalignmentmap.com', destination: '/mmap' },
   { source: 'montessorimakerslearning.org', destination: '/learning' },
   { source: 'montessorimakersinstitute.org', destination: '/institute' },
   { source: 'montessorimakersstudio.com', destination: '/studio' },
