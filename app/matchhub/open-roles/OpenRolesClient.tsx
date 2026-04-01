@@ -121,7 +121,7 @@ function JobCard({
   job: Job
   onView: () => void
 }) {
-  const chips = [job.level, job.employment_type, job.start_date ? `Starts ${job.start_date}` : null]
+  const chips = [job.school_type, job.level, job.employment_type]
     .filter(Boolean) as string[]
 
   return (
@@ -158,21 +158,38 @@ function JobCard({
         )}
 
         {/* Summary — 3 lines max */}
+        {job.compensation && (
+          <p className="text-[#374151] text-xs font-medium mb-3">{job.compensation}</p>
+        )}
+
         {job.job_summary && (
-          <p className="text-[#374151] text-sm leading-relaxed line-clamp-3">
-            {job.job_summary}
+          <p className="text-[#374151] text-sm leading-relaxed">
+            {job.job_summary.length > 150
+              ? job.job_summary.slice(0, 150).trimEnd() + '…'
+              : job.job_summary}
           </p>
         )}
       </div>
 
       {/* Footer */}
       <div className="px-7 pb-7 pt-4 border-t border-[#E2DDD6] mt-auto">
-        <button
-          onClick={onView}
-          className="w-full border border-[#0e1a7a] text-[#0e1a7a] text-xs px-4 py-2.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center"
-        >
-          View Role →
-        </button>
+        {job.application_link ? (
+          <a
+            href={job.application_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full border border-[#0e1a7a] text-[#0e1a7a] text-xs px-4 py-2.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center"
+          >
+            View &amp; Apply →
+          </a>
+        ) : (
+          <button
+            onClick={onView}
+            className="w-full border border-[#0e1a7a] text-[#0e1a7a] text-xs px-4 py-2.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center"
+          >
+            View Role →
+          </button>
+        )}
       </div>
     </div>
   )
