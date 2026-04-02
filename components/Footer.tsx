@@ -187,7 +187,7 @@ export default function Footer() {
                 className="flex flex-col items-center gap-2.5 group"
                 title={item.name}
               >
-                <div className={`transition-opacity duration-200 ${
+                <div className={`transition-all duration-200 group-hover:scale-110 group-hover:-translate-y-1 ${
                   item.gold
                     ? 'opacity-70 group-hover:opacity-100'
                     : 'opacity-50 group-hover:opacity-90'

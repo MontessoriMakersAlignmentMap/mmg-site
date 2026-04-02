@@ -313,9 +313,152 @@ const TIER_ICONS: Record<string, React.ReactNode> = {
   atlas:        <AtlasIcon     className="w-9 h-9" />,
 }
 
+// ─── Data Flow Diagram ────────────────────────────────────────────────────────
+
+function DataFlowDiagram() {
+  const ref = useRef<SVGSVGElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px 0px' })
+
+  // Listed top→bottom in SVG space (Atlas = smallest y = top)
+  const layers = [
+    {
+      label: 'Atlas', scope: 'Leadership', color: '#7C3AED', y: 55,
+      data: 'Financial dashboards · Governance · Strategic planning',
+    },
+    {
+      label: 'Mapmaker', scope: 'Organization', color: '#1D4ED8', y: 175,
+      data: 'Admissions & staffing · Adult culture · Cross-team ops',
+    },
+    {
+      label: 'North Star', scope: 'School', color: '#2D6A4F', y: 295,
+      data: 'Attendance · Family comms · Student records',
+    },
+    {
+      label: 'Surveyor', scope: 'Classroom', color: '#d6a758', y: 415,
+      data: 'Lesson plans · Observations · Work cycle records',
+    },
+  ]
+
+  return (
+    <svg
+      ref={ref}
+      viewBox="0 0 520 468"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full max-w-lg"
+      aria-hidden="true"
+    >
+      {/* Spine — draws from Surveyor (bottom) up to Atlas (top) */}
+      <motion.path
+        d="M 72 415 L 72 55"
+        stroke="rgba(14,26,122,0.15)"
+        strokeWidth={2}
+        initial={{ pathLength: 0 }}
+        animate={inView ? { pathLength: 1 } : {}}
+        transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+      />
+
+      {/* Arrow at top of spine */}
+      <motion.path
+        d="M 67 64 L 72 52 L 77 64"
+        stroke="rgba(124,58,237,0.55)"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.4, delay: 1.1 }}
+      />
+
+      {/* Axis labels */}
+      <motion.text x={88} y={430} fontSize={8.5} fill="rgba(214,167,88,0.7)"
+        fontFamily="system-ui, sans-serif" letterSpacing={1.8}
+        initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.15 }}
+      >OBSERVATION</motion.text>
+      <motion.text x={88} y={44} fontSize={8.5} fill="rgba(124,58,237,0.6)"
+        fontFamily="system-ui, sans-serif" letterSpacing={1.8}
+        initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 1.15 }}
+      >INSIGHT</motion.text>
+
+      {/* Tier nodes, labels, and data tags — stagger bottom→top */}
+      {layers.map(({ label, scope, color, y, data }, i) => {
+        const d = (3 - i) * 0.15 // bottom first: Surveyor(i=3)→Atlas(i=0)
+        return (
+          <g key={label}>
+            {/* Horizontal connector from spine to label area */}
+            <motion.path
+              d={`M 72 ${y} L 108 ${y}`}
+              stroke={color} strokeWidth={1} strokeOpacity={0.45}
+              initial={{ pathLength: 0 }}
+              animate={inView ? { pathLength: 1 } : {}}
+              transition={{ duration: 0.3, delay: 0.75 + d }}
+            />
+
+            {/* Node ring */}
+            <motion.circle cx={72} cy={y} r={12}
+              stroke={color} strokeWidth={1.5} fill={color} fillOpacity={0.09}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={inView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.6 + d, ease: [0.22, 1, 0.36, 1] }}
+            />
+            {/* Node dot */}
+            <motion.circle cx={72} cy={y} r={4.5}
+              fill={color} fillOpacity={0.9}
+              initial={{ scale: 0 }}
+              animate={inView ? { scale: 1 } : {}}
+              transition={{ duration: 0.3, delay: 0.72 + d }}
+            />
+
+            {/* Text block — tier name, scope, and data items */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.88 + d }}
+            >
+              <text x={118} y={y - 4} fontSize={14} fontWeight={600}
+                fill="#0e1a7a" fontFamily="system-ui, sans-serif">{label}</text>
+              <text x={118} y={y + 11} fontSize={9}
+                fill="rgba(100,116,139,0.85)"
+                fontFamily="system-ui, sans-serif" letterSpacing={1.4}
+              >{scope.toUpperCase()}</text>
+              <text x={118} y={y + 27} fontSize={9.5}
+                fill={color} fillOpacity={0.72}
+                fontFamily="system-ui, sans-serif">{data}</text>
+            </motion.g>
+          </g>
+        )
+      })}
+
+      {/* Flowing data dots — travel up the spine continuously */}
+      {([0, 0.38, 0.72] as number[]).map((phase, i) => (
+        <motion.circle
+          key={i}
+          cx={72}
+          r={2.8}
+          fill="#d6a758"
+          initial={{ cy: 415, opacity: 0 }}
+          animate={inView ? {
+            cy: [415, 55],
+            opacity: [0, 0.85, 0.85, 0],
+          } : {}}
+          transition={{
+            cy: { duration: 2.6, delay: phase * 2.6, repeat: Infinity, ease: 'easeInOut' },
+            opacity: { duration: 2.6, delay: phase * 2.6, repeat: Infinity, times: [0, 0.07, 0.93, 1] },
+          }}
+        />
+      ))}
+    </svg>
+  )
+}
+
 // ─── Dashboard UI Mockup ───────────────────────────────────────────────────────
 
 function DashboardMockup() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px 0px' })
   const bars = [72, 88, 61, 95, 78, 84, 69, 92, 74, 87]
   const tiers = [
     { name: 'Surveyor',   color: '#d6a758', pct: 94 },
@@ -325,6 +468,7 @@ function DashboardMockup() {
   ]
   return (
     <div
+      ref={ref}
       className="w-full rounded-sm overflow-hidden shadow-2xl"
       style={{
         background: '#0a1260',
@@ -408,15 +552,18 @@ function DashboardMockup() {
             <div style={{ color: 'rgba(255,255,255,0.40)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>Daily Attendance — Last 10 Days</div>
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 48 }}>
               {bars.map((h, i) => (
-                <div
+                <motion.div
                   key={i}
                   style={{
                     flex: 1,
                     height: `${h}%`,
                     background: i === bars.length - 1 ? '#d6a758' : 'rgba(214,167,88,0.30)',
                     borderRadius: 1,
-                    transition: 'all 0.3s',
+                    transformOrigin: 'bottom',
                   }}
+                  initial={{ scaleY: 0 }}
+                  animate={inView ? { scaleY: 1 } : {}}
+                  transition={{ duration: 0.45, delay: 0.3 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 />
               ))}
             </div>
@@ -426,11 +573,16 @@ function DashboardMockup() {
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 2, padding: '12px 14px' }}>
             <div style={{ color: 'rgba(255,255,255,0.40)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>Tier Alignment</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {tiers.map((t) => (
+              {tiers.map((t, ti) => (
                 <div key={t.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, width: 70, flexShrink: 0 }}>{t.name}</span>
                   <div style={{ flex: 1, height: 4, background: 'rgba(255,255,255,0.07)', borderRadius: 2, overflow: 'hidden' }}>
-                    <div style={{ width: `${t.pct}%`, height: '100%', background: t.color, borderRadius: 2 }} />
+                    <motion.div
+                      style={{ width: `${t.pct}%`, height: '100%', background: t.color, borderRadius: 2, transformOrigin: 'left center' }}
+                      initial={{ scaleX: 0 }}
+                      animate={inView ? { scaleX: 1 } : {}}
+                      transition={{ duration: 0.65, delay: 0.6 + ti * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                    />
                   </div>
                   <span style={{ color: t.color, fontSize: 10, width: 28, textAlign: 'right', flexShrink: 0 }}>{t.pct}%</span>
                 </div>
@@ -471,7 +623,7 @@ export default function MMAPPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0e1a7a] pt-28 pb-20 md:pt-32 md:pb-24 px-6 md:px-10 overflow-hidden">
+      <section className="grain bg-[#0e1a7a] pt-28 pb-20 md:pt-32 md:pb-24 px-6 md:px-10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Text */}
           <div>
@@ -859,6 +1011,27 @@ export default function MMAPPage() {
       </section>
 
       <DemoCTA />
+
+      {/* Data Flow — observation becomes insight */}
+      <section className="bg-[#F7F5F1] py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">How Data Moves</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
+              Observation becomes insight.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed mb-4">
+              A guide records an observation in the classroom. That data doesn&apos;t disappear into a notebook — it flows upward, informing the school director, the organizational team, and ultimately the board.
+            </p>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              MMAP is built on the same principle Montessori education is: concrete experience at the bottom, abstract understanding at the top. Each layer sees exactly what it needs — nothing more, nothing less.
+            </p>
+          </div>
+          <div className="flex items-center justify-center">
+            <DataFlowDiagram />
+          </div>
+        </div>
+      </section>
 
       {/* Pilot cohort */}
       <section className="bg-[#0e1a7a] py-24 md:py-32 px-6 md:px-10">

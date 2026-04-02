@@ -54,7 +54,7 @@ function Hero() {
 
   return (
     <section
-      className="bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10 relative overflow-hidden"
+      className="grain bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10 relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Cursor glow */}
@@ -190,7 +190,7 @@ const connections = [
 
 function WhyEcosystem() {
   return (
-    <section className="bg-[#0e1a7a] pt-28 pb-44 md:pt-40 md:pb-56 px-6 md:px-10">
+    <section className="grain bg-[#0e1a7a] pt-28 pb-44 md:pt-40 md:pb-56 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="max-w-xl mb-20">
           <p className="text-[#d6a758] text-[11px] tracking-[0.24em] uppercase mb-8">Why an Ecosystem?</p>
@@ -346,7 +346,7 @@ function PrimaryCard({ item, delay }: { item: typeof primaryItems[0]; delay: num
     <FadeIn delay={delay}>
       <motion.div
         className="bg-white border border-[#E2DDD6] p-9 flex flex-col h-full group"
-        whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(14,26,122,0.09)' }}
+        whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(14,26,122,0.09)', borderColor: 'rgba(214,167,88,0.55)' }}
         transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Link href={item.href} className="flex flex-col h-full">
@@ -376,7 +376,7 @@ function SecondaryCard({ item, delay }: { item: typeof secondaryItems[0]; delay:
     <FadeIn delay={delay}>
       <motion.div
         className="bg-white border border-[#E2DDD6] p-8 flex flex-col h-full group"
-        whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(14,26,122,0.08)' }}
+        whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(14,26,122,0.08)', borderColor: 'rgba(214,167,88,0.45)' }}
         transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Link href={item.href} className="flex flex-col h-full">
@@ -508,7 +508,7 @@ function WhereToStart() {
 
 function Founder() {
   return (
-    <section className="bg-[#0e1a7a] py-28 md:py-40 px-6 md:px-10">
+    <section className="grain bg-[#0e1a7a] py-28 md:py-40 px-6 md:px-10">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-28 items-center">
         <FadeIn>
           <div className="rounded-sm overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.30)] w-full md:max-w-sm">
