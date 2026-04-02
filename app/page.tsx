@@ -1,13 +1,35 @@
 'use client'
 
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const serif = { fontFamily: 'var(--font-heading)' }
+
+// ─── Counter — scroll-triggered number animation ───────────────────────────
+
+function Counter({ to, suffix = '', duration = 1800 }: { to: number; suffix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true })
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    if (!inView) return
+    const start = performance.now()
+    function tick(now: number) {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * to))
+      if (progress < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [inView, to, duration])
+  return <span ref={ref}>{count}{suffix}</span>
+}
 
 function Btn({ href, children, className }: { href: string; children: React.ReactNode; className: string }) {
   return (
@@ -20,8 +42,28 @@ function Btn({ href, children, className }: { href: string; children: React.Reac
 // ─── Hero ──────────────────────────────────────────────────────────────────────
 
 function Hero() {
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setMousePos({
+      x: (e.clientX - rect.left) / rect.width,
+      y: (e.clientY - rect.top) / rect.height,
+    })
+  }
+
   return (
-    <section className="bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10 relative overflow-hidden">
+    <section
+      className="bg-[#0e1a7a] pt-32 pb-36 md:pt-48 md:pb-44 px-6 md:px-10 relative overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Cursor glow */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(214,167,88,0.07), transparent 60%)`,
+        }}
+      />
       {/* Logo — top-right corner, sized so it clears the headline */}
       <motion.div
         className="hidden md:block absolute right-6 lg:right-12 top-6"
@@ -56,7 +98,18 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
           >
-            When a Montessori school<br className="hidden sm:block" /> is aligned,<br className="hidden sm:block" /> everything works.
+            When a Montessori school<br className="hidden sm:block" />{' '}
+            <span className="relative inline-block whitespace-nowrap">
+              is aligned,
+              <motion.span
+                className="absolute -bottom-1 left-0 h-[3px] bg-[#d6a758] w-full block"
+                style={{ transformOrigin: 'left center' }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.75, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </span>
+            <br className="hidden sm:block" /> everything works.
           </motion.h1>
           <motion.p
             className="text-[#94A3B8] text-lg md:text-xl leading-[1.75] mb-12 max-w-[480px]"
@@ -152,21 +205,26 @@ function WhyEcosystem() {
           </p>
         </FadeIn>
 
-        <div className="space-y-2 mb-20">
+        <div className="mb-20">
           {connections.map((c, i) => (
-            <FadeIn key={i} delay={i * 0.08}>
-              <div className="border border-white/10 px-8 py-6 flex items-start gap-7 hover:border-white/20 hover:bg-white/[0.02] transition-colors">
-                <span className="text-[#8A6014] text-xs font-medium flex-shrink-0 mt-1 tabular-nums tracking-wider">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="flex-1 sm:flex sm:items-baseline sm:gap-8">
-                  <p className="text-white font-medium text-lg sm:text-xl sm:w-60 flex-shrink-0 mb-1 sm:mb-0" style={serif}>
-                    {c.trigger}
-                  </p>
-                  <p className="text-[#64748B] text-base leading-relaxed">{c.reveals}</p>
+            <div key={i}>
+              <FadeIn delay={i * 0.08}>
+                <div className="border border-white/10 px-8 py-6 flex items-start gap-7 hover:border-white/20 hover:bg-white/[0.02] transition-colors">
+                  <span className="text-[#8A6014] text-xs font-medium flex-shrink-0 mt-1 tabular-nums tracking-wider">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex-1 sm:flex sm:items-baseline sm:gap-8">
+                    <p className="text-white font-medium text-lg sm:text-xl sm:w-60 flex-shrink-0 mb-1 sm:mb-0" style={serif}>
+                      {c.trigger}
+                    </p>
+                    <p className="text-[#64748B] text-base leading-relaxed">{c.reveals}</p>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+              {i < connections.length - 1 && (
+                <div className="ml-[43px] w-px h-2 bg-gradient-to-b from-white/20 to-transparent" />
+              )}
+            </div>
           ))}
         </div>
 
@@ -257,32 +315,28 @@ const stripItems: { name: string; logo: LogoName; href: string }[] = [
   { name: 'Learning',  logo: 'learning',  href: '/learning'  },
 ]
 
+const marqueeItems = [...stripItems, ...stripItems]
+
 function EcosystemStrip() {
   return (
-    <section className="bg-white border-t border-[#E2DDD6] py-14 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-0 mb-7">
-          {stripItems.map((item, i) => (
-            <div key={item.name} className="flex items-center">
-              <Link
-                href={item.href}
-                className="flex flex-col items-center gap-2.5 group px-5 md:px-7"
-              >
-                <Logo name={item.logo} size="md" className="opacity-70 group-hover:opacity-100 transition-opacity duration-200" />
-                <span className="text-[#64748B] text-[10px] tracking-[0.15em] uppercase group-hover:text-[#0e1a7a] transition-colors duration-200">
-                  {item.name}
-                </span>
-              </Link>
-              {i < stripItems.length - 1 && (
-                <span className="hidden md:block text-[#D4CEC6] text-xs select-none">→</span>
-              )}
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-[#64748B] text-sm tracking-wide" style={{ fontFamily: 'var(--font-heading)' }}>
-          Not separate services. One system.
-        </p>
+    <section className="bg-white border-t border-[#E2DDD6] py-14 overflow-hidden">
+      <div className="flex animate-marquee">
+        {marqueeItems.map((item, i) => (
+          <Link
+            key={i}
+            href={item.href}
+            className="flex flex-col items-center gap-2.5 group flex-shrink-0 px-10"
+          >
+            <Logo name={item.logo} size="md" className="opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
+            <span className="text-[#64748B] text-[10px] tracking-[0.15em] uppercase group-hover:text-[#0e1a7a] transition-colors duration-200 whitespace-nowrap">
+              {item.name}
+            </span>
+          </Link>
+        ))}
       </div>
+      <p className="text-center text-[#64748B] text-sm tracking-wide mt-8 px-6" style={{ fontFamily: 'var(--font-heading)' }}>
+        Not separate services. One system.
+      </p>
     </section>
   )
 }
@@ -475,7 +529,7 @@ function Founder() {
             className="text-[2.5rem] md:text-[3rem] text-white leading-[1.06] tracking-tight mb-10"
             style={serif}
           >
-            25 years inside Montessori systems.
+            <Counter to={25} /> years inside Montessori systems.
           </h2>
           <blockquote className="mb-10">
             <p className="text-white text-2xl md:text-[1.75rem] leading-[1.42] italic mb-5" style={serif}>

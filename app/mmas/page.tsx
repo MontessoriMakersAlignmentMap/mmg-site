@@ -1,7 +1,58 @@
+'use client'
+
+import { useRef } from 'react'
 import Link from 'next/link'
+import { motion, useInView } from 'framer-motion'
+import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 
 const serif = { fontFamily: 'var(--font-heading)' }
+
+// ─── Animated progress bar (4-segment) ───────────────────────────────────────
+
+function AnimatedBar({ stage, color = '#0e1a7a' }: { stage: number; color?: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px 0px' })
+  return (
+    <div ref={ref} className="flex gap-0.5">
+      {[1, 2, 3, 4].map((s) => (
+        <div
+          key={s}
+          className="h-1.5 flex-1 rounded-full overflow-hidden"
+          style={{ backgroundColor: '#E2DDD6' }}
+        >
+          {s <= stage && (
+            <motion.div
+              className="h-full w-full rounded-full"
+              style={{ backgroundColor: color, transformOrigin: 'left' }}
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.5, delay: (s - 1) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ─── Animated percentage bar (classroom view) ─────────────────────────────────
+
+function AnimatedPctBar({ pct }: { pct: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px 0px' })
+  return (
+    <div ref={ref} className="bg-white/10 h-1.5 rounded-full overflow-hidden">
+      <motion.div
+        className="bg-[#d6a758] h-1.5 rounded-full"
+        style={{ width: `${pct}%`, transformOrigin: 'left' }}
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </div>
+  )
+}
 
 const differentiators = [
   {
@@ -86,7 +137,14 @@ export default function MMASPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
           <div className="max-w-2xl flex-1">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
+              <span className="relative flex items-center justify-center w-1.5 h-1.5 flex-shrink-0">
+                <motion.span
+                  className="absolute inset-0 rounded-full bg-[#d6a758]"
+                  animate={{ scale: [1, 2.4, 1], opacity: [1, 0, 1] }}
+                  transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }}
+                />
+                <span className="relative w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
+              </span>
               <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
                 Currently in development
               </span>
@@ -106,9 +164,15 @@ export default function MMASPage() {
                 'Know what lesson comes next.',
                 'See which Montessori materials actually drive learning.',
               ].map((line, i) => (
-                <p key={i} className="text-[#64748B] text-lg leading-relaxed">
+                <motion.p
+                  key={i}
+                  className="text-[#64748B] text-lg leading-relaxed"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                >
                   {line}
-                </p>
+                </motion.p>
               ))}
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -178,7 +242,11 @@ export default function MMASPage() {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {/* Student card 1 */}
-            <div className="bg-white border border-[#E2DDD6] p-6">
+            <motion.div
+              className="bg-white border border-[#E2DDD6] p-6"
+              whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.08)' }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+            >
               <div className="flex items-start justify-between mb-5">
                 <div>
                   <p className="text-[#0e1a7a] font-semibold text-sm" style={serif}>Amara T.</p>
@@ -197,15 +265,7 @@ export default function MMASPage() {
                       <span className="text-[#374151] text-xs">{item.domain}</span>
                       <span className="text-[#64748B] text-[10px]">{item.status}</span>
                     </div>
-                    <div className="flex gap-0.5">
-                      {[1, 2, 3, 4].map((s) => (
-                        <div
-                          key={s}
-                          className="h-1.5 flex-1 rounded-full"
-                          style={{ backgroundColor: s <= item.stage ? '#0e1a7a' : '#E2DDD6' }}
-                        />
-                      ))}
-                    </div>
+                    <AnimatedBar stage={item.stage} />
                   </div>
                 ))}
               </div>
@@ -213,10 +273,14 @@ export default function MMASPage() {
                 <p className="text-[#8A6014] text-[10px] tracking-wide font-medium uppercase">Next material</p>
                 <p className="text-[#374151] text-xs mt-1">Set 3 — Digraphs</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Student card 2 */}
-            <div className="bg-white border border-[#E2DDD6] p-6">
+            <motion.div
+              className="bg-white border border-[#E2DDD6] p-6"
+              whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.08)' }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+            >
               <div className="flex items-start justify-between mb-5">
                 <div>
                   <p className="text-[#0e1a7a] font-semibold text-sm" style={serif}>Elias R.</p>
@@ -235,15 +299,7 @@ export default function MMASPage() {
                       <span className="text-[#374151] text-xs">{item.domain}</span>
                       <span className="text-[#64748B] text-[10px]">{item.status}</span>
                     </div>
-                    <div className="flex gap-0.5">
-                      {[1, 2, 3, 4].map((s) => (
-                        <div
-                          key={s}
-                          className="h-1.5 flex-1 rounded-full"
-                          style={{ backgroundColor: s <= item.stage ? '#0e1a7a' : '#E2DDD6' }}
-                        />
-                      ))}
-                    </div>
+                    <AnimatedBar stage={item.stage} />
                   </div>
                 ))}
               </div>
@@ -251,7 +307,7 @@ export default function MMASPage() {
                 <p className="text-[#8A6014] text-[10px] tracking-wide font-medium uppercase">Next material</p>
                 <p className="text-[#374151] text-xs mt-1">Set 1 — CVC Words (review)</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Class summary card */}
             <div className="bg-[#0e1a7a] p-6 flex flex-col">
@@ -267,12 +323,7 @@ export default function MMASPage() {
                       <span className="text-white/70 text-xs">{item.label}</span>
                       <span className="text-white text-xs font-semibold">{item.count}</span>
                     </div>
-                    <div className="bg-white/10 h-1.5 rounded-full">
-                      <div
-                        className="bg-[#d6a758] h-1.5 rounded-full"
-                        style={{ width: `${item.pct}%` }}
-                      />
-                    </div>
+                    <AnimatedPctBar pct={item.pct} />
                   </div>
                 ))}
               </div>
@@ -321,26 +372,39 @@ export default function MMASPage() {
               { status: 'In Progress', label: 'Reporting & profiles', desc: 'Guide-facing dashboards and share-ready student profiles in active development.' },
               { status: 'In Progress', label: 'MMAP integration', desc: 'Assessment data flow into MMAP lesson logs in active development.' },
               { status: 'Upcoming', label: 'General availability', desc: 'Platform launches to schools when development milestones are met.' },
-            ].map((item) => (
-              <div key={item.label} className="bg-white border border-[#E2DDD6] p-6 flex items-start gap-5">
-                <div className="flex-shrink-0 pt-0.5">
-                  <span
-                    className={`text-[10px] tracking-[0.12em] uppercase font-semibold px-2 py-1 ${
-                      item.status === 'Complete'
-                        ? 'bg-[#0e1a7a] text-white'
-                        : item.status === 'In Progress'
-                        ? 'bg-[#d6a758]/15 text-[#d6a758]'
-                        : 'bg-[#F2EDE6] text-[#64748B]'
-                    }`}
-                  >
-                    {item.status}
-                  </span>
+            ].map((item, i) => (
+              <FadeIn key={item.label} delay={i * 0.08}>
+                <div className="bg-white border border-[#E2DDD6] p-6 flex items-start gap-5">
+                  <div className="flex-shrink-0 pt-0.5">
+                    {item.status === 'In Progress' ? (
+                      <span className="relative inline-flex">
+                        <motion.span
+                          className="absolute inset-0 bg-[#d6a758]/15"
+                          animate={{ opacity: [0.3, 1, 0.3] }}
+                          transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+                        />
+                        <span className="relative text-[10px] tracking-[0.12em] uppercase font-semibold px-2 py-1 text-[#d6a758]">
+                          In Progress
+                        </span>
+                      </span>
+                    ) : (
+                      <span
+                        className={`text-[10px] tracking-[0.12em] uppercase font-semibold px-2 py-1 ${
+                          item.status === 'Complete'
+                            ? 'bg-[#0e1a7a] text-white'
+                            : 'bg-[#F2EDE6] text-[#64748B]'
+                        }`}
+                      >
+                        {item.status}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-[#0e1a7a] font-semibold text-sm mb-1">{item.label}</p>
+                    <p className="text-[#374151] text-sm leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[#0e1a7a] font-semibold text-sm mb-1">{item.label}</p>
-                  <p className="text-[#374151] text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -439,17 +503,23 @@ export default function MMASPage() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
-            {differentiators.map((d) => (
-              <div key={d.label} className="bg-white border border-[#E2DDD6] p-8">
-                <div className="w-0.5 h-6 bg-[#d6a758] mb-5" />
-                <h3
-                  className="text-[#0e1a7a] font-semibold text-base mb-3"
-                  style={serif}
+            {differentiators.map((d, i) => (
+              <FadeIn key={d.label} delay={i * 0.08}>
+                <motion.div
+                  className="bg-white border border-[#E2DDD6] p-8 h-full"
+                  whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.07)' }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
                 >
-                  {d.label}
-                </h3>
-                <p className="text-[#374151] text-sm leading-relaxed">{d.desc}</p>
-              </div>
+                  <div className="w-0.5 h-6 bg-[#d6a758] mb-5" />
+                  <h3
+                    className="text-[#0e1a7a] font-semibold text-base mb-3"
+                    style={serif}
+                  >
+                    {d.label}
+                  </h3>
+                  <p className="text-[#374151] text-sm leading-relaxed">{d.desc}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -511,19 +581,25 @@ export default function MMASPage() {
               { step: '04', text: 'Data flows into MMAP lesson logs automatically' },
               { step: '05', text: 'Leadership sees school-wide patterns across materials' },
             ].map((item, i, arr) => (
-              <div key={item.step} className="flex items-start gap-4">
-                <div className="flex flex-col items-center flex-shrink-0">
-                  <div className="w-7 h-7 rounded-full bg-[#d6a758]/20 border border-[#d6a758]/40 flex items-center justify-center">
-                    <span className="text-[#8A6014] text-[10px] font-semibold">{item.step}</span>
+              <FadeIn key={item.step} delay={i * 0.12}>
+                <div className="flex items-start gap-4">
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <motion.div
+                      className="w-7 h-7 rounded-full bg-[#d6a758]/20 border border-[#d6a758]/40 flex items-center justify-center"
+                      whileHover={{ scale: 1.15, backgroundColor: 'rgba(214,167,88,0.30)' }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <span className="text-[#8A6014] text-[10px] font-semibold">{item.step}</span>
+                    </motion.div>
+                    {i < arr.length - 1 && (
+                      <div className="w-px h-5 bg-white/15 my-1" />
+                    )}
                   </div>
-                  {i < arr.length - 1 && (
-                    <div className="w-px h-5 bg-white/15 my-1" />
-                  )}
+                  <p className="text-white/70 text-sm leading-relaxed pt-1 pb-4 last:pb-0">
+                    {item.text}
+                  </p>
                 </div>
-                <p className="text-white/70 text-sm leading-relaxed pt-1 pb-4 last:pb-0">
-                  {item.text}
-                </p>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -544,17 +620,23 @@ export default function MMASPage() {
             </h2>
           </div>
           <div className="grid md:grid-cols-4 gap-5">
-            {howItWorksSteps.map((step) => (
-              <div key={step.number} className="bg-white border border-[#E2DDD6] p-7">
-                <p className="text-[#8A6014] text-xs tracking-[0.2em] font-semibold mb-4">{step.number}</p>
-                <h3
-                  className="text-[#0e1a7a] font-semibold text-base mb-3"
-                  style={serif}
+            {howItWorksSteps.map((step, i) => (
+              <FadeIn key={step.number} delay={i * 0.08}>
+                <motion.div
+                  className="bg-white border border-[#E2DDD6] p-7 h-full"
+                  whileHover={{ y: -3, boxShadow: '0 10px 28px rgba(14,26,122,0.07)' }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
                 >
-                  {step.title}
-                </h3>
-                <p className="text-[#374151] text-sm leading-relaxed">{step.desc}</p>
-              </div>
+                  <p className="text-[#8A6014] text-xs tracking-[0.2em] font-semibold mb-4">{step.number}</p>
+                  <h3
+                    className="text-[#0e1a7a] font-semibold text-base mb-3"
+                    style={serif}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-[#374151] text-sm leading-relaxed">{step.desc}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
           <div className="mt-8 text-center">

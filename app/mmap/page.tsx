@@ -1,5 +1,10 @@
+'use client'
+
+import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, useInView } from 'framer-motion'
+import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
 
@@ -112,6 +117,8 @@ const ecosystemCards = [
 ]
 
 function TopographicIllustration() {
+  const ref = useRef<SVGSVGElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-80px 0px' })
   const gridLines = [48, 96, 144, 192, 240, 288, 336, 384, 432]
   const contours = [
     { rx: 218, ry: 142, opacity: 0.10 },
@@ -123,6 +130,7 @@ function TopographicIllustration() {
   ]
   return (
     <svg
+      ref={ref}
       viewBox="0 0 480 480"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -145,9 +153,9 @@ function TopographicIllustration() {
       <line x1={0}   y1={240} x2={480} y2={240} stroke="white" strokeWidth={0.5} strokeOpacity={0.09} strokeDasharray="4 8" />
       <line x1={240} y1={0}   x2={240} y2={480} stroke="white" strokeWidth={0.5} strokeOpacity={0.09} strokeDasharray="4 8" />
 
-      {/* Topographic contour rings */}
+      {/* Topographic contour rings — draw in from outside → center */}
       {contours.map(({ rx, ry, opacity }, i) => (
-        <ellipse
+        <motion.ellipse
           key={i}
           cx={240}
           cy={240}
@@ -156,21 +164,57 @@ function TopographicIllustration() {
           transform="rotate(-20 240 240)"
           stroke="#d6a758"
           strokeWidth={1}
-          strokeOpacity={opacity}
+          fill="none"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={inView ? { pathLength: 1, opacity } : {}}
+          transition={{
+            pathLength: { duration: 1.4, delay: i * 0.18, ease: 'easeInOut' },
+            opacity: { duration: 0.4, delay: i * 0.18 },
+          }}
         />
       ))}
 
       {/* Corner registration marks */}
-      <path d="M 22 50 L 22 22 L 50 22"   stroke="#d6a758" strokeWidth={1} strokeOpacity={0.35} strokeLinecap="square" />
-      <path d="M 430 22 L 458 22 L 458 50" stroke="#d6a758" strokeWidth={1} strokeOpacity={0.35} strokeLinecap="square" />
-      <path d="M 22 430 L 22 458 L 50 458" stroke="#d6a758" strokeWidth={1} strokeOpacity={0.35} strokeLinecap="square" />
-      <path d="M 430 458 L 458 458 L 458 430" stroke="#d6a758" strokeWidth={1} strokeOpacity={0.35} strokeLinecap="square" />
+      <motion.path
+        d="M 22 50 L 22 22 L 50 22"
+        stroke="#d6a758" strokeWidth={1} strokeLinecap="square"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={inView ? { pathLength: 1, opacity: 0.35 } : {}}
+        transition={{ duration: 0.5, delay: 1.0 }}
+      />
+      <motion.path
+        d="M 430 22 L 458 22 L 458 50"
+        stroke="#d6a758" strokeWidth={1} strokeLinecap="square"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={inView ? { pathLength: 1, opacity: 0.35 } : {}}
+        transition={{ duration: 0.5, delay: 1.1 }}
+      />
+      <motion.path
+        d="M 22 430 L 22 458 L 50 458"
+        stroke="#d6a758" strokeWidth={1} strokeLinecap="square"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={inView ? { pathLength: 1, opacity: 0.35 } : {}}
+        transition={{ duration: 0.5, delay: 1.15 }}
+      />
+      <motion.path
+        d="M 430 458 L 458 458 L 458 430"
+        stroke="#d6a758" strokeWidth={1} strokeLinecap="square"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={inView ? { pathLength: 1, opacity: 0.35 } : {}}
+        transition={{ duration: 0.5, delay: 1.2 }}
+      />
 
       {/* Crosshair at center */}
-      <line x1={222} y1={240} x2={258} y2={240} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
-      <line x1={240} y1={222} x2={240} y2={258} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
-      <circle cx={240} cy={240} r={4.5} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
-      <circle cx={240} cy={240} r={1.5} fill="#d6a758" fillOpacity={0.75} />
+      <motion.g
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.4, delay: 1.5 }}
+      >
+        <line x1={222} y1={240} x2={258} y2={240} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
+        <line x1={240} y1={222} x2={240} y2={258} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
+        <circle cx={240} cy={240} r={4.5} stroke="#d6a758" strokeWidth={1.5} strokeOpacity={0.75} />
+        <circle cx={240} cy={240} r={1.5} fill="#d6a758" fillOpacity={0.75} />
+      </motion.g>
     </svg>
   )
 }
@@ -431,20 +475,35 @@ export default function MMAPPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Text */}
           <div>
-            <div className="mb-5">
-              <Logo name="mmap" heroWidth={220} heroHeight={220} />
-            </div>
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
-              <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-5" style={serif}>
-              The operating system for Montessori schools.
-            </h1>
-            <p className="text-[#64748B] text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
-              A digital prepared environment for Montessori schools. No patchwork. No
-              competing tools. Just systems that finally reflect what you believe.
-            </p>
+            <FadeIn>
+              <div className="mb-5">
+                <Logo name="mmap" heroWidth={220} heroHeight={220} />
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-5">
+                <span className="relative flex items-center justify-center w-1.5 h-1.5 flex-shrink-0">
+                  <motion.span
+                    className="absolute inset-0 rounded-full bg-[#d6a758]"
+                    animate={{ scale: [1, 2.2, 1], opacity: [1, 0, 1] }}
+                    transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+                  />
+                  <span className="relative w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
+                </span>
+                <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.18}>
+              <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-5" style={serif}>
+                The operating system for Montessori schools.
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.26}>
+              <p className="text-[#64748B] text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+                A digital prepared environment for Montessori schools. No patchwork. No
+                competing tools. Just systems that finally reflect what you believe.
+              </p>
+            </FadeIn>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/mmap/signin"
@@ -530,10 +589,12 @@ export default function MMAPPage() {
             </p>
             <div className="mt-4">
               {problemStatements.map((statement, i) => (
-                <div key={i} className="flex items-start gap-3 border-b border-[#E2DDD6] py-3">
-                  <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
-                  <p className="text-[#374151] text-sm leading-relaxed">{statement}</p>
-                </div>
+                <FadeIn key={i} delay={i * 0.07}>
+                  <div className="flex items-start gap-3 border-b border-[#E2DDD6] py-3">
+                    <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                    <p className="text-[#374151] text-sm leading-relaxed">{statement}</p>
+                  </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -748,39 +809,50 @@ export default function MMAPPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            {tiers.map((tier) => (
-              <div key={tier.id} className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-5">
-                {/* Icon + name header */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-1 h-10 flex-shrink-0" style={{ backgroundColor: tier.color }} />
-                    <div>
-                      <h3 className="text-[#0e1a7a] font-semibold text-xl">{tier.name}</h3>
-                      <p className="text-[#64748B] text-xs uppercase tracking-wider mt-0.5">{tier.scope}</p>
+            {tiers.map((tier, i) => (
+              <FadeIn key={tier.id} delay={i * 0.08}>
+                <motion.div
+                  className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-5 h-full"
+                  whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(14,26,122,0.09)' }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  {/* Icon + name header */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <motion.div
+                        className="w-1 flex-shrink-0"
+                        style={{ backgroundColor: tier.color, height: 40 }}
+                        whileHover={{ height: 48 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                      <div>
+                        <h3 className="text-[#0e1a7a] font-semibold text-xl">{tier.name}</h3>
+                        <p className="text-[#64748B] text-xs uppercase tracking-wider mt-0.5">{tier.scope}</p>
+                      </div>
+                    </div>
+                    <div className="flex-shrink-0 opacity-50">
+                      {TIER_ICONS[tier.id]}
                     </div>
                   </div>
-                  <div className="flex-shrink-0 opacity-50">
-                    {TIER_ICONS[tier.id]}
+                  <p className="text-[#374151] text-sm leading-relaxed">{tier.description}</p>
+                  <ul className="space-y-2">
+                    {tier.features.map((f, fi) => (
+                      <li key={fi} className="flex items-start gap-3 text-sm text-[#374151]">
+                        <span style={{ color: tier.color }} className="flex-shrink-0 mt-0.5">—</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto pt-2">
+                    <Link
+                      href={tierLinks[tier.id]}
+                      className="text-[#0e1a7a] text-xs font-medium hover:underline"
+                    >
+                      Watch how it works &rarr;
+                    </Link>
                   </div>
-                </div>
-                <p className="text-[#374151] text-sm leading-relaxed">{tier.description}</p>
-                <ul className="space-y-2">
-                  {tier.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-[#374151]">
-                      <span style={{ color: tier.color }} className="flex-shrink-0 mt-0.5">—</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto pt-2">
-                  <Link
-                    href={tierLinks[tier.id]}
-                    className="text-[#0e1a7a] text-xs font-medium hover:underline"
-                  >
-                    Watch how it works &rarr;
-                  </Link>
-                </div>
-              </div>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -806,7 +878,7 @@ export default function MMAPPage() {
               join the pilot are shaping what MMAP becomes.
             </p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-0">
             <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-6">Pilot benefits include</p>
             {[
               'Early access to all four pathway tiers',
@@ -816,10 +888,12 @@ export default function MMAPPage() {
               'Priority feature request consideration',
               'Seat at the table as MMAP evolves',
             ].map((benefit, i) => (
-              <div key={i} className="flex items-start gap-4 py-3 border-b border-white/10 last:border-0">
-                <span className="text-[#d6a758] flex-shrink-0 mt-0.5">—</span>
-                <span className="text-white text-sm">{benefit}</span>
-              </div>
+              <FadeIn key={i} delay={i * 0.07}>
+                <div className="flex items-start gap-4 py-3 border-b border-white/10 last:border-0">
+                  <span className="text-[#d6a758] flex-shrink-0 mt-0.5">—</span>
+                  <span className="text-white text-sm">{benefit}</span>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -836,12 +910,18 @@ export default function MMAPPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {differentiationCards.map((card, i) => (
-              <div key={i} className="bg-white border border-[#E2DDD6] p-7">
-                <h3 className="text-[#0e1a7a] font-semibold text-lg mb-3" style={serif}>
-                  {card.title}
-                </h3>
-                <p className="text-[#374151] text-sm leading-relaxed">{card.body}</p>
-              </div>
+              <FadeIn key={i} delay={i * 0.07}>
+                <motion.div
+                  className="bg-white border border-[#E2DDD6] p-7 h-full"
+                  whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.07)' }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                >
+                  <h3 className="text-[#0e1a7a] font-semibold text-lg mb-3" style={serif}>
+                    {card.title}
+                  </h3>
+                  <p className="text-[#374151] text-sm leading-relaxed">{card.body}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
