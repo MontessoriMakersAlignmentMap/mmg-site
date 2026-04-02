@@ -3,7 +3,6 @@ import { headers } from 'next/headers'
 import { Montserrat } from 'next/font/google'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import { BrandCube } from '@/components/BrandCube'
 import './globals.css'
 
 // Body font loaded via Google Fonts (variable-weight, latin subset only)
@@ -52,7 +51,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} h-full`}>
       <body className="min-h-full flex flex-col">
-        <BrandCube />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
