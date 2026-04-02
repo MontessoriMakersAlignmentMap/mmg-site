@@ -225,6 +225,39 @@ type FormState = {
   goals: string        // Anything else about context/goals
 }
 
+const engagements = [
+  {
+    role: 'Keynote Speaker',
+    org: 'Association of South Carolina Montessori Schools / Charleston County School District',
+    title: 'Rooted in Montessori: Why We Keep Showing Up',
+  },
+  {
+    role: 'Co-Presenter — AMI USA Administrators Track',
+    org: 'AMI USA · Two-day leadership program · 12 hours of content',
+    title: 'Protecting the Child, Holding the Adult: Montessori Leadership in Action',
+  },
+  {
+    role: 'Conference Presenter',
+    org: 'Black Montessori Education Fund Conference',
+    title: 'Building Organizational Trust',
+  },
+  {
+    role: 'Conference Presenter',
+    org: 'Virginia Montessori Association',
+    title: 'Social Responsibility for Belonging',
+  },
+  {
+    role: 'Conference Presenter',
+    org: 'United States Montessori Institute (USMI) / Indiana Montessori Association',
+    title: 'Liberation Through Literacy: Reading in Montessori',
+  },
+  {
+    role: 'Professional Development',
+    org: 'Multiple schools nationwide',
+    title: 'Leadership workshops for Montessori educators and administrators',
+  },
+]
+
 const emptyForm: FormState = {
   name: '',
   email: '',
@@ -403,6 +436,48 @@ export default function WorkshopsSpeakingPage() {
             directly with school communities and leadership teams nationwide. All formats are
             available in-person and virtually.
           </p>
+        </div>
+      </section>
+
+      {/* Selected Engagements */}
+      <section className="bg-white py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
+            <div>
+              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Track Record</p>
+              <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
+                Selected engagements.
+              </h2>
+            </div>
+            <p className="text-[#374151] text-base leading-relaxed self-end">
+              Hannah speaks at AMI USA, AMS, and independent Montessori conferences, and works
+              directly with school communities nationwide—from half-day workshops to two-day
+              leadership intensives. Every engagement is built for people already doing the work.
+            </p>
+          </div>
+          <div className="space-y-0">
+            {engagements.map((item, i) => (
+              <div
+                key={i}
+                className="grid md:grid-cols-[220px_1fr] gap-6 md:gap-16 py-8 border-t border-[#E2DDD6] last:border-b group"
+              >
+                <div>
+                  <span className="inline-block text-[#8A6014] text-[10px] tracking-[0.15em] uppercase font-semibold bg-[#F2EDE6] px-2.5 py-1">
+                    {item.role}
+                  </span>
+                  <p className="text-[#64748B] text-sm mt-3 leading-relaxed">{item.org}</p>
+                </div>
+                <div className="flex items-center">
+                  <h3
+                    className="text-[#0e1a7a] text-xl md:text-2xl leading-snug group-hover:text-[#162270] transition-colors"
+                    style={serif}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

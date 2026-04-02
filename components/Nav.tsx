@@ -28,7 +28,7 @@ const instituteLinks = [
 
 const speakingLinks = [
   { name: 'Speaking Overview', href: '/advisory/workshops-speaking', tagline: 'Topics, formats & experience' },
-  { name: 'Keynotes', href: '/advisory/workshops-speaking#formats', tagline: 'Conference & community addresses' },
+  { name: 'Keynotes & Formats', href: '/advisory/workshops-speaking#formats', tagline: 'Keynote · Workshop · Intensive · Panel' },
   { name: 'Workshop Menu', href: '/advisory/workshops-speaking#workshops', tagline: '15 topics, half-day to multi-day' },
   { name: 'Book Hannah', href: '/advisory/workshops-speaking#request-workshop', tagline: 'Inquire about your event' },
 ]
@@ -262,7 +262,7 @@ export default function Nav() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a7a]/80 via-[#0e1a7a]/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-white text-xs font-semibold leading-tight">Hannah Richardson</p>
-                    <p className="text-white/70 text-[10px] mt-0.5">Speaker · Consultant · Founder</p>
+                    <p className="text-white/70 text-[10px] mt-0.5 leading-relaxed">AMI USA · BMEF · VMCA · USMI</p>
                   </div>
                 </div>
               </div>
