@@ -262,7 +262,7 @@ export default function Nav() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a7a]/80 via-[#0e1a7a]/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-white text-xs font-semibold leading-tight">Hannah Richardson</p>
-                    <p className="text-white/70 text-[10px] mt-0.5 leading-relaxed">AMI USA · BMEF · VMCA · USMI</p>
+                    <p className="text-white/70 text-[10px] mt-0.5 leading-relaxed">AMI USA · BMEF · VMCA · USMI · CCSD</p>
                   </div>
                 </div>
               </div>
