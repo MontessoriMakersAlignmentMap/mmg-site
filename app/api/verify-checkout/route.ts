@@ -32,8 +32,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No jobId in session metadata' }, { status: 422 })
     }
 
-    // Sync payment status to Supabase
-    const { error } = await updateJobPaymentStatus(jobId, 'paid')
+    // Parse add-ons from Stripe metadata
+    const addOns = {
+      featured: session.metadata?.featured === 'true',
+      social:   session.metadata?.social   === 'true',
+    }
+
+    // Sync payment status + add-ons to Supabase
+    const { error } = await updateJobPaymentStatus(jobId, 'paid', addOns)
     if (error) {
       console.error('verify-checkout: supabase update failed:', error)
       return NextResponse.json({ error: 'Database update failed' }, { status: 500 })
@@ -72,21 +78,48 @@ export async function POST(req: NextRequest) {
       }).catch(() => {})
     }
 
-    // Notify admin — fire and forget
+        // Notify admin — fire and forget
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+    const addOnLines = [
+      addOns.featured ? '★ FEATURED PLACEMENT purchased — promote to top of listings' : '',
+      addOns.social   ? '📣 SOCIAL BOOST purchased — needs social media promotion'       : '',
+    ].filter(Boolean)
+
     sendAdminNotification({
-      subject: `New MatchHub job ready for review — ${schoolName || 'Unknown school'}`,
+      subject: `${addOns.social ? '📣 ACTION NEEDED — ' : ''}New MatchHub job paid — ${schoolName || 'Unknown school'}`,
       text: [
-        `A new MatchHub job post has been paid and is ready for review.`,
-        ``,
+        'A new MatchHub job post has been paid and is ready for review.',
+        '',
         `School:         ${schoolName || 'Unknown'}`,
         `Role:           ${jobTitle   || 'Unknown'}`,
         `Payment status: paid`,
         `Job ID:         ${jobId}`,
-        ``,
+        '',
+        addOnLines.length
+          ? ['Add-ons purchased:', ...addOnLines.map(l => '  ' + l)].join('\n')
+          : 'Add-ons: none',
+        '',
         `Review it here: ${siteUrl}/admin/matchhub/jobs`,
       ].join('\n'),
     }).catch(() => {})
+
+    // Separate urgent alert if social boost was purchased
+    if (addOns.social) {
+      sendAdminNotification({
+        subject: `📣 Social Boost purchased — ${schoolName || 'Unknown'}: ${jobTitle || 'Unknown role'}`,
+        text: [
+          'ACTION NEEDED: A school purchased the Social Boost add-on.',
+          '',
+          `School: ${schoolName || 'Unknown'}`,
+          `Role:   ${jobTitle   || 'Unknown'}`,
+          `Job ID: ${jobId}`,
+          '',
+          'Once the listing is approved, promote it across Montessori Makers social channels.',
+          '',
+          `Review: ${siteUrl}/admin/matchhub/jobs`,
+        ].join('\n'),
+      }).catch(() => {})
+    }
 
     return NextResponse.json({ ok: true, jobId })
   } catch (err) {

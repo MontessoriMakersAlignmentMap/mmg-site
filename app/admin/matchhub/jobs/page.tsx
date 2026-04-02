@@ -65,6 +65,26 @@ function PaymentBadge({ status }: { status: Job['payment_status'] }) {
   return <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 bg-gray-100 border border-gray-200 px-2 py-0.5">unpaid</span>
 }
 
+function AddOnBadges({ notes }: { notes: string | null }) {
+  let addOns = { featured: false, social: false }
+  try { if (notes) addOns = JSON.parse(notes)?.addOns ?? addOns } catch {}
+  if (!addOns.featured && !addOns.social) return null
+  return (
+    <div className="flex gap-1 mt-1 flex-wrap">
+      {addOns.featured && (
+        <span className="text-[9px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5">
+          ★ Featured
+        </span>
+      )}
+      {addOns.social && (
+        <span className="text-[9px] font-semibold uppercase tracking-wide text-purple-700 bg-purple-50 border border-purple-200 px-1.5 py-0.5">
+          📣 Social Boost
+        </span>
+      )}
+    </div>
+  )
+}
+
 // ─── Action button ────────────────────────────────────────────────────────────
 
 function ActionButton({
@@ -309,6 +329,7 @@ export default function AdminJobsPage() {
                       </td>
                       <td className="py-3 pr-5">
                         <PaymentBadge status={job.payment_status} />
+                        <AddOnBadges notes={job.notes} />
                       </td>
                       <td className="py-3 pr-5">
                         <StatusBadge job={job} />

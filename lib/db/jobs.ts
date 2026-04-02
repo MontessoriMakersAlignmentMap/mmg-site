@@ -17,12 +17,17 @@ export async function submitJob(data: JobInsert): Promise<{ id: string | null; e
 
 export async function updateJobPaymentStatus(
   jobId: string,
-  paymentStatus: 'paid' | 'unpaid'
+  paymentStatus: 'paid' | 'unpaid',
+  addOns?: { featured: boolean; social: boolean }
 ): Promise<{ error: string | null }> {
   const client = createServiceClient()
+  const updates: Record<string, unknown> = { payment_status: paymentStatus }
+  if (addOns) {
+    updates.notes = JSON.stringify({ addOns })
+  }
   const { error } = await client
     .from('jobs')
-    .update({ payment_status: paymentStatus })
+    .update(updates)
     .eq('id', jobId)
   return { error: error?.message ?? null }
 }
