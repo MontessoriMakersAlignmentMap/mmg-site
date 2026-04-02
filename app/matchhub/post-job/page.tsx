@@ -176,6 +176,61 @@ function PostJobForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
 
+      {/* ── Pricing summary ──────────────────────────────────────────────── */}
+      <div className="bg-white border border-[#E2DDD6] p-7">
+        <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase mb-5">Your Plan</p>
+
+        {isPro ? (
+          <>
+            <div className="flex items-baseline justify-between mb-2">
+              <span className="text-[#0e1a7a] text-lg font-semibold" style={serif}>MatchHub Pro</span>
+              <span className="text-[#0e1a7a] font-bold text-2xl">$499<span className="text-sm font-normal text-[#64748B]">/yr</span></span>
+            </div>
+            <p className="text-[#64748B] text-sm leading-relaxed">
+              Unlimited job posts with featured placement and social promotion automatically included on every role.
+            </p>
+          </>
+        ) : (
+          <>
+            <div className="flex items-baseline justify-between mb-2">
+              <span className="text-[#0e1a7a] text-lg font-semibold" style={serif}>Single Job Post</span>
+              <span className="text-[#0e1a7a] font-bold text-2xl">$49</span>
+            </div>
+            <p className="text-[#64748B] text-sm leading-relaxed mb-5">
+              One listing, reviewed and live within one business day of payment.
+            </p>
+
+            <div className="border-t border-[#E2DDD6] pt-5">
+              <p className="text-[#374151] text-xs font-semibold tracking-wide uppercase mb-3">Optional Add-ons</p>
+              <div className="space-y-2.5">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <span className="text-[#374151] text-sm font-medium">Featured Placement</span>
+                    <p className="text-[#64748B] text-xs mt-0.5">Appears at the top of search results for 30 days.</p>
+                  </div>
+                  <span className="text-[#0e1a7a] text-sm font-bold flex-shrink-0">+$59</span>
+                </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <span className="text-[#374151] text-sm font-medium">Social Boost</span>
+                    <p className="text-[#64748B] text-xs mt-0.5">Promoted across Montessori Makers social channels.</p>
+                  </div>
+                  <span className="text-[#0e1a7a] text-sm font-bold flex-shrink-0">+$79</span>
+                </div>
+              </div>
+              <p className="text-[#94A3B8] text-xs mt-4">Add-ons are selected after you submit the form.</p>
+            </div>
+          </>
+        )}
+
+        <a
+          href="/matchhub/pricing"
+          className="text-[#0e1a7a] text-xs font-medium hover:underline mt-5 inline-block"
+        >
+          Compare all plans →
+        </a>
+      </div>
+
       {/* School info */}
       <div>
         <p className="text-[#8A6014] text-[10px] tracking-[0.18em] uppercase mb-5">School Information</p>
