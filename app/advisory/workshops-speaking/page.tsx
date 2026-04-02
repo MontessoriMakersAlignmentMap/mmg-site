@@ -36,7 +36,7 @@ const topics = [
   {
     theme: 'The Aligned School',
     framing:
-      'What organizational alignment actually looks like in Montessori—from governance to classroom—and why the gap between vision and daily reality is a structural problem, not a people problem.',
+      'What organizational alignment actually looks like in Montessori—from governance to classroom—and why the gap between vision and daily reality is a design question, not a people question.',
   },
 ]
 
@@ -59,7 +59,7 @@ const experience = [
   {
     label: 'Honest about complexity',
     detail:
-      'The work is hard. Sessions name that directly. No oversimplification, no false promise of easy answers—just clearer thinking and sharper tools.',
+      'The work is demanding. Sessions meet that directly. No oversimplification, no false promise of easy answers—just clearer thinking and sharper tools.',
   },
 ]
 
@@ -365,7 +365,7 @@ export default function WorkshopsSpeakingPage() {
           <div className="max-w-2xl mb-14">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Topics</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
-              Five themes. Each built around a real problem.
+              Five themes. Each rooted in what the field is actually navigating.
             </h2>
             <p className="text-[#64748B] text-base leading-relaxed">
               Sessions are tailored to the audience and context. These themes represent the
@@ -866,7 +866,7 @@ export default function WorkshopsSpeakingPage() {
               Workshops and speaking are often where the work begins.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed">
-              For schools working through deeper challenges—alignment, leadership structure,
+              For schools seeking deeper alignment—in leadership structure,
               communication, or adult culture—this work extends into advisory partnerships.
               A single session often surfaces what a full engagement can address.
             </p>
