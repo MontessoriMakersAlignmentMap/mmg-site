@@ -407,7 +407,7 @@ export default function WorkshopsSpeakingPage() {
       </section>
 
       {/* Formats */}
-      <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
+      <section id="formats" className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Formats</p>
@@ -465,7 +465,7 @@ export default function WorkshopsSpeakingPage() {
       </section>
 
       {/* Workshop list */}
-      <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
+      <section id="workshops" className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Workshop Menu</p>

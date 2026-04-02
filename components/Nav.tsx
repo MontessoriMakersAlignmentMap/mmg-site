@@ -26,6 +26,13 @@ const instituteLinks = [
   { name: 'Course Catalog', href: '/institute/catalog', tagline: 'Dates, pricing & registration' },
 ]
 
+const speakingLinks = [
+  { name: 'Speaking Overview', href: '/advisory/workshops-speaking', tagline: 'Topics, formats & experience' },
+  { name: 'Keynotes', href: '/advisory/workshops-speaking#formats', tagline: 'Conference & community addresses' },
+  { name: 'Workshop Menu', href: '/advisory/workshops-speaking#workshops', tagline: '15 topics, half-day to multi-day' },
+  { name: 'Book Hannah', href: '/advisory/workshops-speaking#request-workshop', tagline: 'Inquire about your event' },
+]
+
 const mmapLinks = [
   { name: 'MMAP Overview', href: '/mmap', tagline: 'The school operating system' },
   { name: 'Platform Tour', href: '/mmap/tour', tagline: 'See how it works' },
@@ -208,6 +215,60 @@ export default function Nav() {
               </div>
             </div>
           </div>
+          {/* Speaking dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+              Speaking
+              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[460px] overflow-hidden flex">
+                {/* Links */}
+                <div className="flex-1 p-4">
+                  <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium px-3">
+                    Keynotes & Workshops
+                  </p>
+                  <div className="space-y-0.5">
+                    {speakingLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                      >
+                        <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
+                        <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-3 px-3">
+                    <Link
+                      href="/advisory/workshops-speaking#request-workshop"
+                      className="block w-full text-center bg-[#d6a758] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+                    >
+                      Book Hannah →
+                    </Link>
+                  </div>
+                </div>
+                {/* Hannah photo */}
+                <div className="w-44 relative flex-shrink-0">
+                  <Image
+                    src="/images/hannah.jpg"
+                    alt="Hannah Richardson"
+                    fill
+                    className="object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a7a]/80 via-[#0e1a7a]/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="text-white text-xs font-semibold leading-tight">Hannah Richardson</p>
+                    <p className="text-white/70 text-[10px] mt-0.5">Speaker · Consultant · Founder</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* MMAP dropdown */}
           <div className="relative group">
             <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
@@ -462,6 +523,22 @@ export default function Nav() {
               <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Institute</p>
               <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
                 {instituteLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="block py-2 text-[#374151] text-sm hover:text-[#0e1a7a] transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="py-3">
+              <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Speaking</p>
+              <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
+                {speakingLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
