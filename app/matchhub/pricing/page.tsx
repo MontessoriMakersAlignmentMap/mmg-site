@@ -70,7 +70,7 @@ const schoolPlans: Plan[] = [
     price: '$499',
     period: 'per year',
     description:
-      'Everything included, automatically. Unlimited posts with featured placement and social media promotion on every role — maximum visibility, zero add-ons.',
+      'Everything included, automatically. Unlimited posts with featured placement and social media promotion on every role — maximum visibility, zero add-ons. Pro is a managed plan — we set you up after purchase.',
     features: [
       'Unlimited job postings',
       'Automatic featured placement on all jobs',
@@ -124,7 +124,12 @@ const faqs = [
   {
     question: 'Are add-ons available on all plans?',
     answer:
-      'Featured Listing ($99) and Social Boost ($39) are available as optional add-ons on the Single Job Post and School Unlimited plans. On MatchHub Pro, both are automatically included on every job you post — no need to add them individually.',
+      'Featured Placement ($59) and Social Boost ($79) are available as optional add-ons on the Single Job Post and School Unlimited plans. On MatchHub Pro, both are automatically included on every job you post — no need to add them individually.',
+  },
+  {
+    question: 'How does the Pro plan work after purchase?',
+    answer:
+      'MatchHub Pro is currently a managed plan. After purchasing, we reach out to set up your account and send you a direct posting link — no payment wall on future posts for the year. Featured placement and social promotion are handled automatically on our end for every role you post.',
   },
 ]
 

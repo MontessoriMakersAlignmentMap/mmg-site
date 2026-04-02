@@ -111,6 +111,21 @@ function ActionButton({
   )
 }
 
+
+
+function SourceBadge({ source }: { source: string | null }) {
+  const isMMAP = source?.toLowerCase().includes('mmap')
+  const label = isMMAP ? 'MMAP' : 'MatchHub'
+  const style = isMMAP
+    ? 'text-[#0e1a7a] bg-[#eef0fb] border-[#c7ccf0]'
+    : 'text-gray-500 bg-gray-50 border-gray-200'
+  return (
+    <span className={`inline-block text-[9px] font-semibold uppercase tracking-wide px-1.5 py-0.5 border mt-1 ${style}`}>
+      {label}
+    </span>
+  )
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function AdminJobsPage() {
@@ -326,6 +341,7 @@ export default function AdminJobsPage() {
                       </td>
                       <td className="py-3 pr-5">
                         <span className="text-xs text-gray-600">{job.plan_type}</span>
+                        <SourceBadge source={job.source} />
                       </td>
                       <td className="py-3 pr-5">
                         <PaymentBadge status={job.payment_status} />
