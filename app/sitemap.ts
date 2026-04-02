@@ -60,6 +60,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url('/mmap',                                   0.9),
     url('/mmap/about',                             0.7),
     url('/mmap/atlas',                             0.7),
+    url('/mmap/contact',                           0.5),
+    url('/mmap/demo',                              0.7),
     url('/mmap/equity',                            0.7),
     url('/mmap/mapmaker',                          0.7),
     url('/mmap/north-star',                        0.7),
@@ -68,11 +70,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url('/mmap/surveyor',                          0.7),
     url('/mmap/tour',                              0.8),
 
-    // ── MMAS ────────────────────────────────────────────────────────────────
-    url('/mmas',                                   0.9),
-    url('/mmas/how-it-works',                      0.7),
-    url('/mmas/schools',                           0.7),
-    url('/mmas/why',                               0.7),
+    // ── MMAS (in development — low priority) ────────────────────────────────
+    url('/mmas',                                   0.3),
+    url('/mmas/how-it-works',                      0.2),
+    url('/mmas/schools',                           0.2),
+    url('/mmas/why',                               0.2),
 
     // ── Learning ────────────────────────────────────────────────────────────
     url('/learning',                               0.9),
@@ -85,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Studio ──────────────────────────────────────────────────────────────
     url('/studio',                                 0.9),
     url('/studio/approach',                        0.7),
+    url('/studio/demo',                            0.5),
     url('/studio/portfolio',                       0.7),
     url('/studio/services',                        0.7),
 
@@ -108,10 +111,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url('/field-intelligence/latest',              0.7, 'weekly'),
     url('/field-intelligence/contribute',          0.6),
     url('/insights',                               0.7, 'weekly'),
-
-    // ── Speaking ────────────────────────────────────────────────────────────
-    url('/speaking',                               0.7),
-    url('/speaking/workshops',                     0.7),
 
     // ── Community ───────────────────────────────────────────────────────────
     url('/in-community-with',                      0.6),

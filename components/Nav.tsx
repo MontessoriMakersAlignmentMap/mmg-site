@@ -26,6 +26,14 @@ const instituteLinks = [
   { name: 'Course Catalog', href: '/institute/catalog', tagline: 'Dates, pricing & registration' },
 ]
 
+const mmapLinks = [
+  { name: 'MMAP Overview', href: '/mmap', tagline: 'The school operating system' },
+  { name: 'Platform Tour', href: '/mmap/tour', tagline: 'See how it works' },
+  { name: 'Watch a Demo', href: '/mmap/demo', tagline: 'Full walkthrough videos' },
+  { name: 'North Star', href: '/mmap/north-star', tagline: 'Vision & alignment tool' },
+  { name: 'Sign In', href: '/mmap/signin', tagline: 'Access the platform' },
+]
+
 const matchhubSections = [
   {
     label: 'Open Roles',
@@ -200,9 +208,39 @@ export default function Nav() {
               </div>
             </div>
           </div>
-          <Link href="/mmap" className="text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
-            MMAP
-          </Link>
+          {/* MMAP dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+              MMAP
+              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[300px] p-4">
+                <div className="space-y-0.5">
+                  {mmapLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                    >
+                      <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
+                      <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-3 pt-3 border-t border-[#F2EDE6]">
+                  <Link
+                    href="/mmap/demo"
+                    className="block w-full text-center bg-[#0e1a7a] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#162270] transition-colors font-medium"
+                  >
+                    Request a Demo
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* MatchHub dropdown */}
           <div className="relative group">
@@ -424,6 +462,22 @@ export default function Nav() {
               <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Institute</p>
               <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
                 {instituteLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="block py-2 text-[#374151] text-sm hover:text-[#0e1a7a] transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="py-3">
+              <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">MMAP</p>
+              <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
+                {mmapLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
