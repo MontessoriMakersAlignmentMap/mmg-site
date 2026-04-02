@@ -186,9 +186,15 @@ function PostJobForm() {
               <span className="text-[#0e1a7a] text-lg font-semibold" style={serif}>MatchHub Pro</span>
               <span className="text-[#0e1a7a] font-bold text-2xl">$499<span className="text-sm font-normal text-[#64748B]">/yr</span></span>
             </div>
-            <p className="text-[#64748B] text-sm leading-relaxed">
-              Unlimited job posts with featured placement and social promotion automatically included on every role.
+            <p className="text-[#64748B] text-sm leading-relaxed mb-4">
+              Unlimited job posts for one year, with featured placement and social promotion included on every role.
             </p>
+            <div className="bg-[#FAF9F7] border border-[#E2DDD6] px-4 py-3">
+              <p className="text-[#374151] text-xs leading-relaxed">
+                <span className="font-semibold">Pro is currently a managed plan.</span> After purchasing, we&apos;ll reach out to set up your account and send you a direct posting link — no payment wall on future posts.{' '}
+                <a href="/contact" className="text-[#0e1a7a] underline">Questions? Contact us.</a>
+              </p>
+            </div>
           </>
         ) : (
           <>
@@ -337,7 +343,7 @@ function PostJobForm() {
       {isPro && (
         <div className="bg-[#d6a758]/10 border border-[#d6a758]/30 px-6 py-5">
           <p className="text-[#d6a758] text-xs tracking-[0.15em] uppercase font-semibold mb-1">MatchHub Pro</p>
-          <p className="text-[#374151] text-sm">Featured placement and social media promotion are automatically included in your Pro plan.</p>
+          <p className="text-[#374151] text-sm">Featured placement and social promotion are included on every post. After purchasing, we&apos;ll be in touch to set up your account.</p>
         </div>
       )}
 
