@@ -342,7 +342,7 @@ function DataFlowDiagram() {
   return (
     <svg
       ref={ref}
-      viewBox="0 0 520 468"
+      viewBox="0 0 520 490"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full max-w-lg"
@@ -358,10 +358,10 @@ function DataFlowDiagram() {
         transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* Arrow at top of spine */}
+      {/* Arrow at top of spine — sits above Atlas node (y=55), placed at y=42 */}
       <motion.path
-        d="M 67 64 L 72 52 L 77 64"
-        stroke="rgba(124,58,237,0.55)"
+        d="M 67 48 L 72 36 L 77 48"
+        stroke="rgba(124,58,237,0.45)"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -371,14 +371,14 @@ function DataFlowDiagram() {
         transition={{ duration: 0.4, delay: 1.1 }}
       />
 
-      {/* Axis labels */}
-      <motion.text x={88} y={430} fontSize={8.5} fill="rgba(214,167,88,0.7)"
-        fontFamily="system-ui, sans-serif" letterSpacing={1.8}
+      {/* Axis labels — clear of all node text */}
+      <motion.text x={10} y={444} fontSize={8} fill="rgba(214,167,88,0.65)"
+        fontFamily="system-ui, sans-serif" letterSpacing={1.6}
         initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.15 }}
       >OBSERVATION</motion.text>
-      <motion.text x={88} y={44} fontSize={8.5} fill="rgba(124,58,237,0.6)"
-        fontFamily="system-ui, sans-serif" letterSpacing={1.8}
+      <motion.text x={10} y={32} fontSize={8} fill="rgba(124,58,237,0.55)"
+        fontFamily="system-ui, sans-serif" letterSpacing={1.6}
         initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: 1.15 }}
       >INSIGHT</motion.text>

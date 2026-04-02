@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Logo } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { AnimatedStat } from '@/components/AnimatedStat'
+import { FadeIn } from '@/components/FadeIn'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -113,7 +115,7 @@ export default function AdvisoryPage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-32 pb-28 md:pt-40 md:pb-36 px-6 md:px-10">
+      <section className="grain bg-[#0e1a7a] pt-32 pb-28 md:pt-40 md:pb-36 px-6 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
           <div className="max-w-2xl flex-1">
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-8">
@@ -161,11 +163,17 @@ export default function AdvisoryPage() {
             { value: '100%', label: 'Montessori-specific', sub: 'No generic consulting playbook' },
             { value: '0',   label: 'Off-the-shelf frameworks', sub: 'Built around your school' },
           ].map((s) => (
-            <div key={s.value} className="text-center md:text-left">
-              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
-              <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
-              <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
-            </div>
+            <FadeIn key={s.value}>
+              <div className="text-center md:text-left">
+                <AnimatedStat
+                  value={s.value}
+                  className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1 block"
+                  style={serif}
+                />
+                <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
+                <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </section>

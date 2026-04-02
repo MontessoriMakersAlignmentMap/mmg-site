@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { Logo, type LogoName } from '@/components/Logo'
 
 const advisoryLinks = [
@@ -109,6 +110,12 @@ const allMobileLinks = [
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  // Returns true when the current page belongs to this nav section
+  function active(prefixes: string[]) {
+    return prefixes.some(p => pathname === p || pathname.startsWith(p + '/'))
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -150,7 +157,8 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-7">
           {/* Advisory dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/advisory']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/advisory']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               Advisory
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -184,7 +192,8 @@ export default function Nav() {
 
           {/* Institute dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/institute']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/institute']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               Institute
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -217,7 +226,8 @@ export default function Nav() {
           </div>
           {/* Speaking dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/speaking', '/advisory/workshops-speaking']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/speaking', '/advisory/workshops-speaking']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               Speaking
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -271,7 +281,8 @@ export default function Nav() {
 
           {/* MMAP dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/mmap']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/mmap']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               MMAP
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -305,7 +316,8 @@ export default function Nav() {
 
           {/* MatchHub dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/matchhub']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/matchhub']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               MatchHub
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -349,7 +361,7 @@ export default function Nav() {
 
           {/* Ecosystem mega dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className="relative flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors pb-1">
               Ecosystem
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -399,7 +411,8 @@ export default function Nav() {
 
           {/* Insights dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/field-intelligence', '/insights']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/field-intelligence', '/insights']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               Insights
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -430,7 +443,8 @@ export default function Nav() {
           </div>
           {/* About dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/about']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/about']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               About
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />

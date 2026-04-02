@@ -7,6 +7,7 @@ import { motion, useInView } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { EcosystemMap } from '@/components/EcosystemMap'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -91,16 +92,34 @@ function Hero() {
           >
             Montessori Makers Group
           </motion.p>
-          <motion.h1
+          <h1
             className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.75rem] text-white leading-[0.97] tracking-tight mb-10"
             style={serif}
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
           >
-            When a Montessori school<br className="hidden sm:block" />{' '}
-            <span className="relative inline-block whitespace-nowrap">
-              is aligned,
+            {/* Line 1 — word by word */}
+            {(['When', 'a', 'Montessori', 'school'] as const).map((word, i) => (
+              <motion.span
+                key={word}
+                className="inline-block"
+                style={{ marginRight: '0.22em' }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.10 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {word}
+              </motion.span>
+            ))}
+            <br className="hidden sm:block" />{' '}
+            {/* "is aligned," — single unit so underline spans it */}
+            <span className="relative inline-block whitespace-nowrap" style={{ marginRight: '0.22em' }}>
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.46, ease: [0.22, 1, 0.36, 1] }}
+              >
+                is aligned,
+              </motion.span>
               <motion.span
                 className="absolute -bottom-1 left-0 h-[3px] bg-[#d6a758] w-full block"
                 style={{ transformOrigin: 'left center' }}
@@ -109,8 +128,21 @@ function Hero() {
                 transition={{ duration: 0.75, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
               />
             </span>
-            <br className="hidden sm:block" /> everything works.
-          </motion.h1>
+            <br className="hidden sm:block" />{' '}
+            {/* Line 3 */}
+            {(['everything', 'works.'] as const).map((word, i) => (
+              <motion.span
+                key={word}
+                className="inline-block"
+                style={{ marginRight: i === 0 ? '0.22em' : 0 }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.63 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
           <motion.p
             className="text-[#94A3B8] text-lg md:text-xl leading-[1.75] mb-12 max-w-[480px]"
             initial={{ opacity: 0, y: 14 }}
@@ -127,7 +159,7 @@ function Hero() {
           >
             <Btn
               href="/contact"
-              className="bg-[#d6a758] text-white text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center"
+              className="btn-shimmer bg-[#d6a758] text-white text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center"
             >
               Start Here
             </Btn>
@@ -603,6 +635,12 @@ export default function Home() {
       <Hero />
       <Problem />
       <WhyEcosystem />
+      {/* Wave transition — navy → beige */}
+      <div className="relative bg-[#0e1a7a] overflow-hidden" style={{ height: 60, marginBottom: -1 }}>
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
+          <path d="M0,60 C300,0 900,0 1200,60 L1200,60 L0,60 Z" fill="#FAF9F7" />
+        </svg>
+      </div>
       <Ecosystem />
       {/* Image break — full study room */}
       <div className="w-full overflow-hidden">
@@ -620,6 +658,23 @@ export default function Home() {
         </div>
       </div>
       <EcosystemStrip />
+
+      {/* ─── Interactive Ecosystem Map ─────────────────────────────────────── */}
+      <section className="bg-white py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn className="max-w-2xl mb-16">
+            <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-6">The Full Picture</p>
+            <h2 className="text-[2.5rem] md:text-[3.25rem] text-[#0e1a7a] leading-[1.06] tracking-tight mb-4" style={serif}>
+              How it all connects.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              Hover any node to see what it does. Every service is designed to work together — not as separate tools, but as one aligned system.
+            </p>
+          </FadeIn>
+          <EcosystemMap />
+        </div>
+      </section>
+
       <WhereToStart />
       <Founder />
       <SystemsBuild />
