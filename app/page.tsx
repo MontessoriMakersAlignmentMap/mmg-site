@@ -459,7 +459,7 @@ function Founder() {
         <FadeIn>
           <div className="rounded-sm overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.30)] w-full md:max-w-sm">
             <Image
-              src="/images/hannah.jpg"
+              src="/images/hannah-home.jpg"
               alt="Hannah Richardson, Founder of Montessori Makers Group"
               width={480}
               height={600}
