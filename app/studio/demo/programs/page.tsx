@@ -22,7 +22,7 @@ const programs = [
     number: '01',
     name: 'Primary',
     ages: 'Ages 3–6',
-    photo: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=80',
+    photo: '/demo/program-primary.png',
     tagline: 'Where it begins.',
     description: 'The Primary years are the most formative in a child\'s development. At MMS, the classroom is prepared as a complete environment — every material at the right height, every shelf arranged to invite attention, every routine designed to build independence without anyone telling a child what they must do next.',
     description2: 'Children in the Primary classroom choose their own work. They move freely. They develop concentration through repetition, not direction. The guide\'s role is observation — knowing when to step in, and more often, knowing when not to.',
@@ -34,7 +34,7 @@ const programs = [
     number: '02',
     name: 'Lower Elementary',
     ages: 'Ages 6–9',
-    photo: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=80',
+    photo: '/demo/program-lower-elementary.png',
     tagline: 'The age of why.',
     description: 'Something shifts around age six. Children become intensely interested in the world beyond their immediate experience — in history, in how things work, in fairness and belonging. The Elementary curriculum at MMS meets this moment directly.',
     description2: 'The Great Lessons — five foundational stories about the origin of the universe, life, humans, language, and mathematics — orient children to the whole before the parts. From there, each child\'s curiosity determines the path. Research, projects, and collaborative work are central.',
@@ -46,7 +46,7 @@ const programs = [
     number: '03',
     name: 'Upper Elementary',
     ages: 'Ages 9–12',
-    photo: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
+    photo: '/demo/program-upper-elementary.png',
     tagline: 'Independent thinking, real work.',
     description: 'Upper Elementary students are developing their capacity for abstract reasoning, sustained effort, and genuine collaboration. The curriculum asks more of them — longer projects, more sophisticated research, peer teaching — and they rise to meet it.',
     description2: 'By this stage, students are largely self-directed. They set their own work plans, manage their time across multi-week projects, and regularly present their learning to the community. Guides shift into the role of consultant and coach.',
@@ -61,7 +61,7 @@ export default function ProgramsPage() {
       {/* Hero */}
       <section style={{ position: 'relative', height: '60vh', minHeight: 400, overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 64, paddingTop: 164 }}>
         <Image
-          src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=2000&q=80"
+          src="/demo/programs-hero.png"
           alt="MMS classroom"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 40%' }}

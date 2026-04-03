@@ -40,7 +40,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section style={{ position: 'relative', height: '60vh', minHeight: 400, overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 64, paddingTop: 164 }}>
         <Image
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2000&q=80"
+          src="/demo/about-hero.png"
           alt="MMS community"
           fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} priority
         />
@@ -109,7 +109,7 @@ function MissionSection() {
         </div>
         <div style={{ position: 'relative', height: 460, opacity: visible ? 1 : 0, transition: 'opacity 1s ease 0.2s' }}>
           <Image
-            src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?auto=format&fit=crop&w=900&q=80"
+            src="/demo/about-detail.png"
             alt="MMS original classroom"
             fill style={{ objectFit: 'cover' }}
           />
@@ -159,7 +159,7 @@ function HeadSection() {
       <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center" style={{ maxWidth: 1100, margin: '0 auto', opacity: visible ? 1 : 0, transition: 'opacity 1s ease' }}>
         <div style={{ position: 'relative', height: 420 }}>
           <Image
-            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80"
+            src="/demo/about-classroom.png"
             alt="Dr. Amara Osei-Bonsu, Head of School"
             fill style={{ objectFit: 'cover' }}
           />

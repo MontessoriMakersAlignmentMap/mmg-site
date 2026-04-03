@@ -51,7 +51,7 @@ export default function AdmissionsPage() {
       {/* Hero */}
       <section style={{ position: 'relative', height: '55vh', minHeight: 360, overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 64, paddingTop: 164 }}>
         <Image
-          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=2000&q=80"
+          src="/demo/admissions-hero.png"
           alt="Children at MMS"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 25%' }}
