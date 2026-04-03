@@ -2,7 +2,7 @@ import OpenRolesClient from './OpenRolesClient'
 import Link from 'next/link'
 import type { Job } from '@/lib/types/matchhub'
 
-export const revalidate = 300
+export const revalidate = 60
 
 const serif = { fontFamily: 'var(--font-heading)' }
 

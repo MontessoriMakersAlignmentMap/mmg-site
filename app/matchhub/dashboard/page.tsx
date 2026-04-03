@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { RevalidateButton } from './RevalidateButton'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -68,6 +69,16 @@ export default function MatchHubDashboardPage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Admin: force-refresh the open roles cache */}
+      <section className="bg-white py-8 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
+          <p className="text-[#64748B] text-xs">
+            Just approved a role? Use this to make it appear on the site immediately.
+          </p>
+          <RevalidateButton />
         </div>
       </section>
 
