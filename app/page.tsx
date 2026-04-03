@@ -609,16 +609,10 @@ const PRESS = [
     context: 'Co-founder of The Peace Rebellion in conversation on justice, Montessori, and structural change.',
   },
   {
-    org: 'Montessori in Action',
-    full: 'Public Montessori in Action International · Podcast',
-    role: 'Featured Guest',
-    context: 'Highlighted for the Decodable Book Series — called out as a primary classroom veteran and school leader.',
-  },
-  {
     org: 'PMAI',
-    full: 'Public Montessori in Action International',
+    full: 'Public Montessori in Action International · Podcast',
     role: 'Recurring Guest',
-    context: 'Multiple episodes on school reopening strategies, adult culture, and Montessori leadership.',
+    context: 'Multiple episodes on school reopening strategies, adult culture, Montessori leadership, and the Decodable Book Series.',
   },
 ]
 
