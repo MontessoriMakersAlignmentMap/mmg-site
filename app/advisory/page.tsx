@@ -241,16 +241,35 @@ export default function AdvisoryPage() {
         </div>
       </section>
 
-      {/* Image break */}
-      <div className="relative w-full h-64 sm:h-80 md:h-[420px] overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1400&q=80"
-          alt="Two school leaders in conversation — the relational work of Montessori advisory"
-          fill
-          className="object-cover object-[center_30%]"
-        />
-        <div className="absolute inset-0 bg-[#0e1a7a]/25" />
-      </div>
+      {/* ─── Hannah / advisor moment ──────────────────────────────────────── */}
+      <section className="bg-[#0e1a7a] py-0 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row">
+          {/* Photo */}
+          <div className="relative w-full md:w-[420px] lg:w-[480px] flex-shrink-0 h-72 md:h-auto min-h-[400px]">
+            <Image
+              src="/images/hannah.jpg"
+              alt="Hannah Richardson, founder of Montessori Makers Group"
+              fill
+              className="object-cover object-[center_10%]"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0e1a7a] hidden md:block" />
+          </div>
+          {/* Quote */}
+          <div className="flex-1 flex flex-col justify-center px-8 md:px-14 lg:px-20 py-16 md:py-20">
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">The Advisor</p>
+            <blockquote className="text-white text-2xl md:text-3xl lg:text-4xl leading-[1.2] mb-8" style={serif}>
+              &ldquo;I built this practice because Montessori deserves organizations as strong as its classrooms.&rdquo;
+            </blockquote>
+            <p className="text-[#94A3B8] text-base leading-relaxed mb-2">
+              Hannah Richardson brings nearly 25 years of Montessori leadership experience — as guide, director, head of school, and consultant — to every advisory engagement.
+            </p>
+            <p className="text-[#64748B] text-sm mt-4">
+              — Hannah Richardson, Founder &amp; Lead Advisor
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ─── Pathways ─────────────────────────────────────────────────────── */}
       <section id="pathways" className="bg-[#F2EDE6] py-28 md:py-36 px-6 md:px-10">

@@ -75,7 +75,7 @@ const categories = [
     desc: 'Five justice-centered, scientifically accurate lesson suite reconstructions. Cosmic education with global human contributions at the center — not added on.',
     for: 'Elementary guides, curriculum leads, and school directors building a full program',
     price: 'Sold individually as downloadable suites · Full series bundle available',
-    cta: 'Coming Soon',
+    cta: 'Shop Origins Series',
     ctaHref: '/learning/origins',
     secondary: 'See all 5 suites →',
     secondaryHref: '/learning/origins',
@@ -127,7 +127,7 @@ export default function LearningPage() {
                 { label: 'Shop Decodable Books', sub: '96 books · 8 sets', href: '/learning/decodable-books' },
                 { label: 'Reading Assessment Hub', sub: 'From $99/year', href: '/learning/reading-assessment' },
                 { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
-                { label: 'Origins Series', sub: 'Coming soon', href: '/learning/origins' },
+                { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -384,9 +384,12 @@ export default function LearningPage() {
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1">Format</p>
             <p className="text-[#374151] text-sm mb-8">Sold individually as downloadable suites &middot; Full bundle available</p>
             <div className="flex flex-wrap gap-3 items-center">
-              <span className="bg-[#E8E3DB] text-[#94A3B8] text-sm px-8 py-3.5 tracking-wide font-medium cursor-default">
-                Coming Soon
-              </span>
+              <Link
+                href="/learning/origins"
+                className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+              >
+                Shop Origins Series
+              </Link>
               <Link
                 href="/learning/origins"
                 className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"

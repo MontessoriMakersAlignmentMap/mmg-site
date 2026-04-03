@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { Logo } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { AnimatedStat } from '@/components/AnimatedStat'
+import { FadeIn } from '@/components/FadeIn'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -56,7 +58,7 @@ export default function InstitutePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
+      <section className="grain bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
           <div className="max-w-2xl flex-1">
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
@@ -70,7 +72,7 @@ export default function InstitutePage() {
               communities—using Montessori as the reasoning framework.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium">
+              <Link href="/contact" className="btn-shimmer bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium">
                 Find Your Program
               </Link>
               <a href="#programs" className="border border-white/30 text-white text-sm px-8 py-4 tracking-wide hover:border-white/60 transition-colors text-center">
@@ -95,7 +97,7 @@ export default function InstitutePage() {
             { value: '1',    label: 'Framework throughout', sub: 'Montessori as the reasoning lens' },
           ].map((s) => (
             <div key={s.label} className="text-center md:text-left">
-              <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
+              <AnimatedStat value={s.value} className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1 block" style={serif} />
               <div className="text-white text-sm font-medium leading-snug">{s.label}</div>
               <div className="text-white/35 text-xs mt-0.5">{s.sub}</div>
             </div>
@@ -106,14 +108,14 @@ export default function InstitutePage() {
       {/* Why it exists */}
       <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-          <div>
+          <FadeIn>
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Why It Exists</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
               Montessori trains leaders in pedagogy. Almost nothing prepares them for the
               complexity of leading adults.
             </h2>
-          </div>
-          <div className="space-y-6 pt-2">
+          </FadeIn>
+          <FadeIn delay={0.1} className="space-y-6 pt-2">
             <p className="text-[#374151] text-lg leading-relaxed">
               Most leadership training prepares people <em>for</em> leadership. This builds
               capacity while you&apos;re already in it.
@@ -129,7 +131,7 @@ export default function InstitutePage() {
               </p>
               <p className="text-[#64748B] text-xs mt-2">— Montessori school leader</p>
             </blockquote>
-          </div>
+          </FadeIn>
         </div>
       </section>
 

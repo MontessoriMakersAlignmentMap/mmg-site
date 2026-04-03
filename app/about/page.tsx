@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Logo } from '@/components/Logo'
+import { FadeIn } from '@/components/FadeIn'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -16,7 +17,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
+      <section className="grain bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto max-w-3xl">
           <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">About</p>
           <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>

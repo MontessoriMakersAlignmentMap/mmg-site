@@ -8,6 +8,7 @@ import { FadeIn } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
 import { EcosystemMap } from '@/components/EcosystemMap'
+import { Testimonials } from '@/components/Testimonials'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -586,6 +587,86 @@ function Founder() {
   )
 }
 
+// ─── Press & Speaking ──────────────────────────────────────────────────────────
+
+const PRESS = [
+  {
+    org: 'AMI',
+    full: 'Association Montessori Internationale',
+    role: 'Conference Presenter',
+    context: 'Featured presenter on Montessori leadership and organizational alignment.',
+  },
+  {
+    org: 'Asia Montessori Conference',
+    full: 'Hanoi, Vietnam',
+    role: 'Invited Presenter',
+    context: 'International keynote on Montessori systems thinking and school leadership.',
+  },
+  {
+    org: 'Breaking the Paradigm',
+    full: 'Podcast · January 2026',
+    role: 'Featured Guest',
+    context: 'Co-founder of The Peace Rebellion in conversation on justice, Montessori, and structural change.',
+  },
+  {
+    org: 'Montessori in Action',
+    full: 'Public Montessori in Action International · Podcast',
+    role: 'Featured Guest',
+    context: 'Highlighted for the Decodable Book Series — called out as a primary classroom veteran and school leader.',
+  },
+  {
+    org: 'PMAI',
+    full: 'Public Montessori in Action International',
+    role: 'Recurring Guest',
+    context: 'Multiple episodes on school reopening strategies, adult culture, and Montessori leadership.',
+  },
+]
+
+function Press() {
+  return (
+    <section className="bg-[#FAF9F7] border-t border-[#E2DDD6] py-20 md:py-28 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto">
+        <FadeIn className="mb-14">
+          <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-3">Voices &amp; Appearances</p>
+          <h2 className="text-2xl md:text-3xl text-[#0e1a7a] leading-tight" style={serif}>
+            Featured in Montessori's leading voices.
+          </h2>
+        </FadeIn>
+
+        {/* Top strip — org names */}
+        <div className="flex flex-wrap gap-x-10 gap-y-4 items-center mb-14 pb-10 border-b border-[#E2DDD6]">
+          {PRESS.map((p) => (
+            <div key={p.org} className="flex flex-col">
+              <span className="text-[#0e1a7a] text-sm font-semibold tracking-wide" style={serif}>{p.org}</span>
+              <span className="text-[#94A3B8] text-[10px] tracking-[0.12em] uppercase mt-0.5">{p.role}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Detail cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {PRESS.map((p, i) => (
+            <FadeIn key={p.org} delay={i * 0.07}>
+              <div className="bg-white border border-[#E2DDD6] p-6 h-full flex flex-col">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <p className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>{p.org}</p>
+                    <p className="text-[#8A6014] text-[10px] tracking-[0.14em] uppercase mt-1">{p.full}</p>
+                  </div>
+                  <span className="text-[#d6a758] text-[9px] tracking-[0.14em] uppercase font-medium whitespace-nowrap flex-shrink-0 mt-0.5 border border-[#d6a758]/40 px-2 py-0.5">
+                    {p.role}
+                  </span>
+                </div>
+                <p className="text-[#374151] text-sm leading-relaxed flex-1">{p.context}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Systems Build ──────────────────────────────────────────────────────────────
 
 function SystemsBuild() {
@@ -677,6 +758,8 @@ export default function Home() {
 
       <WhereToStart />
       <Founder />
+      <Testimonials />
+      <Press />
       <SystemsBuild />
       <NewsletterSignup />
     </>
