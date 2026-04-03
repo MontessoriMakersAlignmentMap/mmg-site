@@ -279,7 +279,7 @@ export default function ToolboxPage() {
                 className="text-[#0e1a7a] text-5xl font-semibold mb-4 tracking-tight"
                 style={serif}
               >
-                9 tools
+                10 tools
               </p>
               <div className="w-8 h-0.5 bg-[#d6a758] mb-4" />
               <p className="text-[#374151] text-base leading-relaxed">
