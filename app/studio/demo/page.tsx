@@ -23,17 +23,17 @@ const KEYFRAMES = `
 
 // ── Floating orbs config ──────────────────────────────────────────────────────
 const ORBS = [
-  { size: 480, left: '5%',  top: '15%', color: 'rgba(200,162,74,0.13)',  dur: 9,  delay: 0 },
-  { size: 360, left: '65%', top: '5%',  color: 'rgba(42,122,88,0.10)',   dur: 12, delay: 2 },
-  { size: 520, left: '38%', top: '55%', color: 'rgba(200,162,74,0.07)',  dur: 14, delay: 1 },
-  { size: 240, left: '80%', top: '65%', color: 'rgba(255,255,255,0.05)', dur: 10, delay: 3.5 },
-  { size: 200, left: '18%', top: '75%', color: 'rgba(42,122,88,0.08)',   dur: 11, delay: 0.8 },
+  { size: 500, left: '5%',  top: '10%', color: 'rgba(200,162,74,0.45)',  dur: 9,  delay: 0 },
+  { size: 380, left: '62%', top: '3%',  color: 'rgba(42,122,88,0.38)',   dur: 12, delay: 2 },
+  { size: 540, left: '35%', top: '50%', color: 'rgba(200,162,74,0.30)',  dur: 14, delay: 1 },
+  { size: 260, left: '78%', top: '60%', color: 'rgba(255,240,200,0.28)', dur: 10, delay: 3.5 },
+  { size: 220, left: '15%', top: '70%', color: 'rgba(42,122,88,0.32)',   dur: 11, delay: 0.8 },
 ]
 
 // ── Rising particles config ───────────────────────────────────────────────────
 const PARTICLES = [2,5,9,13,18,23,30,37,44,51,58,65,72,78,84,90].map((left, i) => ({
   left: `${left}%`,
-  size: i % 3 === 0 ? 3 : 2,
+  size: i % 3 === 0 ? 5 : 3,
   delay: i * 0.55,
   dur: 6 + (i % 4) * 2.5,
 }))
@@ -142,7 +142,7 @@ export default function DemoHome() {
         {ORBS.map((orb, i) => (
           <motion.div
             key={i}
-            style={{ position: 'absolute', width: orb.size, height: orb.size, left: orb.left, top: orb.top, borderRadius: '50%', background: orb.color, filter: 'blur(72px)', pointerEvents: 'none', zIndex: 1 }}
+            style={{ position: 'absolute', width: orb.size, height: orb.size, left: orb.left, top: orb.top, borderRadius: '50%', background: orb.color, filter: 'blur(48px)', pointerEvents: 'none', zIndex: 1, mixBlendMode: 'screen' }}
             animate={{ y: [0, -50, 0], x: [0, 25, 0], scale: [1, 1.12, 1] }}
             transition={{ duration: orb.dur, delay: orb.delay, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -154,7 +154,8 @@ export default function DemoHome() {
             key={i}
             style={{
               position: 'absolute', bottom: 0, left: p.left, width: p.size, height: p.size,
-              borderRadius: '50%', background: 'rgba(200,162,74,0.7)', pointerEvents: 'none', zIndex: 1,
+              borderRadius: '50%', background: 'rgba(230,190,80,1)', pointerEvents: 'none', zIndex: 1,
+              boxShadow: '0 0 6px 2px rgba(230,190,80,0.6)',
               animation: `particleRise ${p.dur}s ${p.delay}s ease-out infinite`,
             }}
           />
