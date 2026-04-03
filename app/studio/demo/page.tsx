@@ -35,10 +35,10 @@ const STARS = Array.from({ length: 42 }, (_, i) => ({
 
 // ── Floating cosmic education quotes ─────────────────────────────────────────
 const COSMIC_QUOTES = [
-  { text: 'The universe is the greatest teacher.',  left: '6%',  top: '22%', delay: 0   },
-  { text: 'The whole before the part.',             left: '58%', top: '18%', delay: 1.8 },
-  { text: 'Everything is connected.',               left: '74%', top: '58%', delay: 0.9 },
-  { text: 'Wonder is the beginning of wisdom.',     left: '12%', top: '68%', delay: 2.4 },
+  { text: 'Begin with the universe.',        left: '6%',  top: '22%', delay: 0   },
+  { text: 'Every child has a cosmic task.',  left: '55%', top: '16%', delay: 1.8 },
+  { text: 'The whole before the part.',      left: '72%', top: '58%', delay: 0.9 },
+  { text: 'From stars to the child before you.', left: '10%', top: '68%', delay: 2.4 },
 ]
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
