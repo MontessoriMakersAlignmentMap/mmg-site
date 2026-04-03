@@ -9,6 +9,7 @@ const freeResources = [
     desc: 'A one-page reference mapping the Montessori reading materials sequence to the corresponding decodable text levels. For guides setting up a reading program or explaining the sequence to families.',
     for: 'Primary guides and literacy leads',
     format: 'PDF download',
+    file: '/free-resources/phonics-sequence-reference-guide.pdf',
   },
   {
     category: 'Literacy',
@@ -16,6 +17,7 @@ const freeResources = [
     desc: 'A printable checklist for documenting phonics skill development during individual reading conferences. Complements — but does not replace — the full Reading Assessment Hub.',
     for: 'Primary classroom guides',
     format: 'PDF download',
+    file: '/free-resources/reading-assessment-observation-checklist.pdf',
   },
   {
     category: 'Curriculum',
@@ -23,6 +25,7 @@ const freeResources = [
     desc: 'A sample excerpt from the Origins of the Universe suite, including the narrative guide opening and one visual anchor card. Shows the format, tone, and depth of the full lesson reconstructions.',
     for: 'Elementary guides evaluating the Origins Series',
     format: 'PDF download',
+    file: '/free-resources/origins-series-sample-excerpt.pdf',
   },
   {
     category: 'Curriculum',
@@ -30,6 +33,7 @@ const freeResources = [
     desc: 'A structured worksheet for evaluating your current Great Lessons presentations against current science and justice-centered criteria. Helps identify where existing materials need updating.',
     for: 'Elementary guides and curriculum coordinators',
     format: 'PDF worksheet',
+    file: '/free-resources/great-lessons-audit-worksheet.pdf',
   },
   {
     category: 'Professional Development',
@@ -37,6 +41,7 @@ const freeResources = [
     desc: 'A concise reading covering the current state of reading science and its specific implications for Montessori guides — without requiring background in cognitive psychology or linguistics.',
     for: 'All Montessori guides working with reading materials',
     format: 'PDF reading (12 pages)',
+    file: '/free-resources/science-of-reading-montessori-guide.pdf',
   },
   {
     category: 'Professional Development',
@@ -44,6 +49,7 @@ const freeResources = [
     desc: 'A practical framework for evaluating and improving the justice dimensions of Montessori curriculum and materials. Not a checklist — a way of thinking.',
     for: 'Guides, curriculum leads, and school directors',
     format: 'PDF guide',
+    file: '/free-resources/justice-in-montessori-starting-framework.pdf',
   },
 ]
 
@@ -65,41 +71,9 @@ export default function LearningFreeResourcesPage() {
             >
               Tools and resources. Available now.
             </h1>
-            <p className="text-[#94A3B8] text-base leading-relaxed mb-3 max-w-xl">
+            <p className="text-[#94A3B8] text-base leading-relaxed max-w-xl">
               Free educator resources reflecting the same commitments as every paid Montessori Makers Learning
-              product &mdash; Montessori philosophy, modern research, and justice.
-            </p>
-            <p className="text-[#7A8FA3] text-sm leading-relaxed max-w-lg">
-              Enter your email below to access all downloads. No spam, no sales sequences &mdash;
-              just the resources.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Email Capture */}
-      <section className="bg-[#FAF9F7] py-14 px-6 md:px-10 border-b border-[#E2DDD6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-xl">
-            <p className="text-[#0e1a7a] font-semibold text-base mb-5" style={serif}>
-              Get access to all free downloads
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                readOnly
-                className="flex-1 border border-[#E2DDD6] bg-white px-4 py-3 text-sm text-[#374151] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#0e1a7a] transition-colors"
-              />
-              <Link
-                href="/contact"
-                className="bg-[#d6a758] text-white text-sm px-8 py-3 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium whitespace-nowrap"
-              >
-                Get Access &rarr;
-              </Link>
-            </div>
-            <p className="text-[#64748B] text-xs mt-3">
-              We&rsquo;ll send you a download link. No spam. Unsubscribe anytime.
+              product &mdash; Montessori philosophy, modern research, and justice. No email required.
             </p>
           </div>
         </div>
@@ -137,12 +111,13 @@ export default function LearningFreeResourcesPage() {
                     </p>
                     <div className="flex items-center justify-between pt-4 border-t border-[#F2EDE6]">
                       <p className="text-[#64748B] text-xs">For: {resource.for}</p>
-                      <Link
-                        href="/contact"
+                      <a
+                        href={resource.file}
+                        download
                         className="text-[#0e1a7a] text-xs font-medium hover:underline tracking-wide flex-shrink-0 ml-4"
                       >
                         Download &rarr;
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 ))}

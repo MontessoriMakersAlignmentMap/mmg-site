@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const toolboxEbooks = [
+const leaderResources = [
   {
     title: 'Growing Your Montessori School',
     type: 'E-Book',
@@ -42,23 +42,125 @@ const toolboxEbooks = [
       'Financial governance and board oversight',
     ],
   },
+  {
+    title: 'New Staff Onboarding Checklist',
+    type: 'Checklist',
+    file: '/free-resources/new-staff-onboarding-checklist.pdf',
+    description:
+      'A comprehensive Montessori-specific onboarding guide for guides, assistants, and administrators. Covers operations, curriculum, assessment, community, materials, and professional development — with space for notes and completion tracking.',
+    topics: [
+      'Operations, HR, and building basics',
+      'Curriculum, materials, and Montessori practice',
+      'Assessment, record keeping, and documentation',
+      'Professional development and coaching structure',
+    ],
+  },
+  {
+    title: 'Staff Meeting Agenda Template',
+    type: 'Template',
+    file: '/free-resources/staff-meeting-agenda-template.pdf',
+    description:
+      'A Montessori-specific meeting structure for guides, directors, and leadership teams. Designed to keep meetings focused and brief — 45 to 60 minutes — while ensuring two-minute updates, goal tracking, agenda items, and action items all get documented.',
+    topics: [
+      'Two-minute updates and goal tracking',
+      'Structured agenda with PIC and due dates',
+      'Action items table',
+      'Meeting notes page',
+    ],
+  },
+  {
+    title: 'Staff Appreciation Letter Templates',
+    type: 'Letter Templates',
+    file: '/free-resources/staff-appreciation-letter-templates.pdf',
+    description:
+      'Three ready-to-adapt letters for Montessori school leaders: a letter to a staff member\'s loved one (unexpectedly powerful), an end-of-year recognition letter, and a new staff welcome letter — all with guidance on making them specific enough to matter.',
+    topics: [
+      'Letter to a loved one (unexpected, high-impact)',
+      'End-of-year staff recognition',
+      'Welcome letter for new staff members',
+      'Notes on specificity and when to send',
+    ],
+  },
 ]
 
-const learningFreeResources = [
+const educatorResources = [
   {
-    title: 'Educator Tools & Templates',
+    title: 'Phonics Sequence Reference Guide',
+    type: 'Reference Guide',
+    file: '/free-resources/phonics-sequence-reference-guide.pdf',
     description:
-      'Planning templates, observation guides, and classroom tools for Montessori educators — aligned to the materials sequence and designed for real classroom use.',
+      'A one-page reference mapping the Montessori reading materials sequence to the corresponding decodable text levels. For guides setting up a reading program or explaining the sequence to families.',
+    topics: [
+      'Montessori material → phonics level mapping',
+      'Pink / Blue / Green series alignment',
+      'Decodable book integration points',
+      'Guidance notes for guides and literacy leads',
+    ],
   },
   {
-    title: 'Free Assessment Resources',
+    title: 'Reading Assessment Observation Checklist',
+    type: 'Checklist',
+    file: '/free-resources/reading-assessment-observation-checklist.pdf',
     description:
-      'Entry-level assessment tools for phonics and literacy tracking. Includes sample tracking sheets from the Reading Assessment Hub and guidance on getting started with decodable text assessment.',
+      'A printable checklist for documenting phonics skill development during individual reading conferences. Organized by skill level from Pre-Reading through Fluency. Complements — but does not replace — the full Reading Assessment Hub.',
+    topics: [
+      'Pre-reading through fluency skill tracking',
+      'Individual student observation format',
+      'Print concepts, decoding, and comprehension',
+      'Conference-ready, printable format',
+    ],
   },
   {
-    title: 'Reading Scope & Sequence Guide',
+    title: 'Great Lessons Audit Worksheet',
+    type: 'Worksheet',
+    file: '/free-resources/great-lessons-audit-worksheet.pdf',
     description:
-      'A free reference guide connecting the Montessori reading materials to the phonics progression covered in the Decodable Book Series.',
+      'A structured worksheet for evaluating your current Great Lessons presentations against current science and justice-centered criteria. Helps identify where existing materials need updating.',
+    topics: [
+      'Scientific accuracy review criteria',
+      'Justice and representation audit',
+      'Narrative voice and tone assessment',
+      'Action items and follow-up tracking',
+    ],
+  },
+  {
+    title: 'Science of Reading: What Every Montessori Guide Needs to Know',
+    type: 'PDF Reading',
+    file: '/free-resources/science-of-reading-montessori-guide.pdf',
+    description:
+      'A concise reading covering the current state of reading science and its specific implications for Montessori guides — without requiring background in cognitive psychology or linguistics.',
+    topics: [
+      'The Simple View of Reading and Montessori',
+      'Phonological awareness and explicit instruction',
+      'Structured literacy in the Montessori environment',
+      'Where Montessori is strong and where gaps exist',
+    ],
+  },
+  {
+    title: 'Justice in Montessori: A Starting Framework',
+    type: 'Framework Guide',
+    file: '/free-resources/justice-in-montessori-starting-framework.pdf',
+    description:
+      'A practical framework for evaluating and improving the justice dimensions of Montessori curriculum and materials. Not a checklist — a way of thinking.',
+    topics: [
+      'Five dimensions of justice in curriculum',
+      'Representation, narrative, and power',
+      'Classroom culture and belonging',
+      'Practice prompts and reflection questions',
+    ],
+  },
+  {
+    title: 'Origins Series: Sample Lesson Excerpt',
+    type: 'Sample PDF',
+    file: '/free-resources/origins-series-sample-excerpt.pdf',
+    description:
+      'A sample excerpt from the Origins of the Universe suite, including the narrative guide opening and one visual anchor card. Shows the format, tone, and depth of the full lesson reconstructions.',
+    topics: [
+      'Narrative-first lesson structure',
+      'Justice-centered framing of Great Lessons',
+      'Visual anchor card format',
+      'Elementary guide voice and tone',
+    ],
   },
 ]
 
@@ -83,41 +185,35 @@ export default function FreeResourcesPage() {
       <section className="bg-[#F2EDE6] py-10 px-6 md:px-10 border-b border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto max-w-3xl">
           <p className="text-[#374151] text-base leading-relaxed">
-            Free resources from two parts of the Montessori Makers ecosystem: the{' '}
-            <Link
-              href="/toolbox"
-              className="text-[#0e1a7a] font-semibold hover:underline"
-            >
-              Toolbox
-            </Link>{' '}
-            (leadership and operations resources for school leaders) and{' '}
-            <Link
-              href="/learning"
-              className="text-[#0e1a7a] font-semibold hover:underline"
-            >
-              Learning
-            </Link>{' '}
-            (curriculum and professional development for educators). Both are available below.
+            Twelve free downloads organized by audience: six tools for{' '}
+            <a href="#for-leaders" className="text-[#0e1a7a] font-semibold hover:underline">
+              school leaders
+            </a>{' '}
+            (strategy, operations, and culture) and six for{' '}
+            <a href="#for-educators" className="text-[#0e1a7a] font-semibold hover:underline">
+              guides and educators
+            </a>{' '}
+            (literacy, curriculum, and professional development).
           </p>
         </div>
       </section>
 
-      {/* Toolbox E-Books */}
-      <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
+      {/* ── For School Leaders ──────────────────────────────────────────────── */}
+      <section id="for-leaders" className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">From the Toolbox</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">For School Leaders</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              Three free e-books for Montessori school leaders.
+              Strategy, operations, and culture tools.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              From the Montessori Makers Toolbox — a library of professional resources for
-              Montessori leadership. These three e-books are free. The paid Toolbox products
-              go deeper.
+              E-books, templates, and operational tools for Montessori school leaders — from
+              financial sustainability and fundraising to staff culture, onboarding, and
+              professional development planning.
             </p>
           </div>
           <div className="space-y-6">
-            {toolboxEbooks.map((book) => (
+            {leaderResources.map((book) => (
               <div key={book.title} className="bg-white border border-[#E2DDD6] p-8 md:p-10">
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="md:col-span-2">
@@ -135,7 +231,7 @@ export default function FreeResourcesPage() {
                     <p className="text-[#374151] text-base leading-relaxed">{book.description}</p>
                   </div>
                   <div>
-                    <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">Topics covered</p>
+                    <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">What&rsquo;s inside</p>
                     <ul className="space-y-2 mb-8">
                       {book.topics.map((topic, i) => (
                         <li key={i} className="flex items-start gap-3">
@@ -173,40 +269,74 @@ export default function FreeResourcesPage() {
         </div>
       </section>
 
-      {/* Learning Free Resources */}
-      <section className="bg-[#F2EDE6] py-24 md:py-28 px-6 md:px-10">
+      {/* ── For Guides & Educators ──────────────────────────────────────────── */}
+      <section id="for-educators" className="bg-[#F2EDE6] py-24 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">From Learning</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">For Guides &amp; Educators</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              Free educator tools and assessment resources.
+              Literacy, curriculum, and professional development tools.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              From Montessori Makers Learning — curriculum, professional development, and
-              assessment tools for Montessori educators. These free resources are available
-              through the Learning site.
+              Free resources from Montessori Makers Learning — for guides working with reading
+              materials, Great Lessons, and justice-centered curriculum.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            {learningFreeResources.map((resource) => (
-              <div key={resource.title} className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+            {educatorResources.map((resource) => (
+              <div
+                key={resource.title}
+                className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(14,26,122,0.07)] transition-all duration-200"
+              >
                 <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-[#d6a758]" />
+                  <div className="w-1 h-7 bg-[#d6a758]" />
                   <span className="bg-[#0e1a7a] text-[#d6a758] text-xs tracking-[0.1em] uppercase px-3 py-1">
                     Free
                   </span>
                 </div>
-                <h3 className="text-[#0e1a7a] font-semibold text-base">{resource.title}</h3>
-                <p className="text-[#374151] text-sm leading-relaxed flex-1">{resource.description}</p>
+                <div>
+                  <p className="text-[#64748B] text-[10px] tracking-[0.15em] uppercase mb-1.5">
+                    {resource.type}
+                  </p>
+                  <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
+                    {resource.title}
+                  </h3>
+                </div>
+                <p className="text-[#374151] text-sm leading-relaxed flex-1">
+                  {resource.description}
+                </p>
+                <ul className="space-y-1.5">
+                  {resource.topics.map((t, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-[#d6a758] flex-shrink-0 mt-0.5 text-xs">—</span>
+                      <span className="text-[#64748B] text-xs leading-relaxed">{t}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={resource.file}
+                  download
+                  className="bg-[#0e1a7a] text-white text-xs px-5 py-2.5 tracking-wide hover:bg-[#162270] transition-colors inline-block text-center mt-auto"
+                >
+                  Download Free →
+                </a>
               </div>
             ))}
           </div>
-          <Link
-            href="/learning/free-resources"
-            className="bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#162270] transition-colors inline-block"
-          >
-            Access Free Learning Resources →
-          </Link>
+          <div className="mt-4 flex items-center justify-between gap-6 bg-white p-6 border border-[#D4CEC6]">
+            <div>
+              <p className="text-[#0e1a7a] font-semibold text-sm">Ready for the full curriculum?</p>
+              <p className="text-[#374151] text-xs mt-1">
+                The Decodable Book Series, Origins Suites, Reading Assessment Hub, and courses.
+              </p>
+            </div>
+            <Link
+              href="/learning"
+              className="border border-[#0e1a7a] text-[#0e1a7a] text-xs px-6 py-2 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors whitespace-nowrap"
+            >
+              Explore Learning →
+            </Link>
+          </div>
         </div>
       </section>
 
