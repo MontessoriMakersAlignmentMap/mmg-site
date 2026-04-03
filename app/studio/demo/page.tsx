@@ -126,8 +126,8 @@ export default function DemoHome() {
       <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 80, paddingTop: 164 }}>
         {/* Photo */}
         <Image
-          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=2000&q=85"
-          alt="Child engaged in Montessori work"
+          src="/demo/hero.png"
+          alt="Montessori guide working with children on the floor"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 30%', transform: `scale(1.04) translateY(${scrollY * 0.08}px)` }}
           priority
@@ -326,21 +326,21 @@ const programs = [
     ages: '3–6',
     slug: 'primary',
     desc: 'The foundational years. Children develop independence, concentration, and the habit of following their own curiosity through self-directed work with purpose-built materials.',
-    photo: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80',
+    photo: '/demo/program-primary.png',
   },
   {
     name: 'Lower Elementary',
     ages: '6–9',
     slug: 'elementary',
     desc: 'The age of imagination. Children explore history, mathematics, language, and the living world — drawn forward by their own questions and supported by small-group work.',
-    photo: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=80',
+    photo: '/demo/program-lower-elementary.png',
   },
   {
     name: 'Upper Elementary',
     ages: '9–12',
     slug: 'upper-elementary',
     desc: 'Young people ready for longer projects, deeper reasoning, and growing responsibility for the direction of their own learning. Collaboration and research are central.',
-    photo: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80',
+    photo: '/demo/program-upper-elementary.png',
   },
 ]
 
@@ -465,7 +465,7 @@ function AboutPreview() {
         </div>
         <div style={{ position: 'relative', height: 480, opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(24px)', transition: 'all 1s cubic-bezier(0.16,1,0.3,1) 0.2s' }}>
           <Image
-            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80"
+            src="/demo/about-classroom.png"
             alt="MMS classroom environment"
             fill
             style={{ objectFit: 'cover' }}
@@ -481,11 +481,11 @@ function AboutPreview() {
 }
 
 const lifePhotos = [
-  { src: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=700&q=80', label: 'Hands-on learning', span: 'md:col-span-2 md:row-span-2' },
-  { src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80', label: 'Collaborative work', span: '' },
-  { src: 'https://images.unsplash.com/photo-1570126618953-d437176e8c79?auto=format&fit=crop&w=700&q=80', label: 'Art & expression', span: '' },
-  { src: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=700&q=80', label: 'Community circle', span: '' },
-  { src: 'https://images.unsplash.com/photo-1536337005238-94b997371b40?auto=format&fit=crop&w=700&q=80', label: 'Science exploration', span: '' },
+  { src: '/demo/life-1.png', label: 'Science & wonder',    span: 'md:col-span-2 md:row-span-2' },
+  { src: '/demo/life-2.png', label: 'Collaborative work',  span: '' },
+  { src: '/demo/life-3.png', label: 'Garden & nature',     span: '' },
+  { src: '/demo/life-4.png', label: 'Geography & cosmos',  span: '' },
+  { src: '/demo/life-5.png', label: 'Sensorial exploration', span: '' },
 ]
 
 function SchoolLifeSection() {
@@ -603,7 +603,7 @@ function OpenHouseSection() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden' }}>
       <Image
-        src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1800&q=80"
+        src="/demo/open-house.png"
         alt="MMS open house"
         fill
         style={{ objectFit: 'cover' }}
