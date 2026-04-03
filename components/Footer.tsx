@@ -18,12 +18,13 @@ const platformLinks = [
 const resourceLinks = [
   { name: 'Learning', href: '/learning' },
   { name: 'Toolbox', href: '/toolbox' },
-  { name: 'Free Resources', href: '/learning/free-resources' },
+  { name: 'Free Resources', href: '/resources/free' },
   { name: 'Insights', href: '/field-intelligence' },
 ]
 
 const brandLinks = [
   { name: 'About', href: '/about' },
+  { name: 'Partners', href: '/partners' },
   { name: 'Work With Us', href: '/contact' },
 ]
 

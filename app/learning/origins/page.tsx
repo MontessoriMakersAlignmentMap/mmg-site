@@ -93,7 +93,7 @@ const suites = [
 
 const bundleStripeHref = 'https://buy.stripe.com/cNi8wRees8X64sD1pf2cg0W'
 
-const suitePrice = ''
+const suitePrice = '$110'
 const bundlePrice = '$475'
 
 export default function OriginsPage() {
