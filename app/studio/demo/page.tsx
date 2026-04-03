@@ -33,13 +33,6 @@ const STARS = Array.from({ length: 42 }, (_, i) => ({
   gold:  i % 4 === 0,
 }))
 
-// ── Floating cosmic education quotes ─────────────────────────────────────────
-const COSMIC_QUOTES = [
-  { text: 'Begin with the universe.',        left: '6%',  top: '22%', delay: 0   },
-  { text: 'Every child has a cosmic task.',  left: '55%', top: '16%', delay: 1.8 },
-  { text: 'The whole before the part.',      left: '72%', top: '58%', delay: 0.9 },
-  { text: 'From stars to the child before you.', left: '10%', top: '68%', delay: 2.4 },
-]
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.12) {
@@ -158,29 +151,6 @@ export default function DemoHome() {
           />
         ))}
 
-        {/* Floating cosmic education quotes */}
-        {COSMIC_QUOTES.map((q, i) => (
-          <div
-            key={i}
-            style={{
-              position: 'absolute', left: q.left, top: q.top, zIndex: 2,
-              pointerEvents: 'none', maxWidth: 220,
-              animation: `quoteDrift ${5 + i * 1.3}s ${q.delay}s ease-in-out infinite`,
-            }}
-          >
-            <p style={{
-              ...serif,
-              color: 'rgba(255,255,255,0.72)',
-              fontSize: 11,
-              lineHeight: 1.5,
-              letterSpacing: '0.04em',
-              fontStyle: 'italic',
-              textShadow: '0 1px 12px rgba(0,0,0,0.6)',
-            }}>
-              &ldquo;{q.text}&rdquo;
-            </p>
-          </div>
-        ))}
 
         {/* Content */}
         <div className="relative px-8 md:px-16 w-full" style={{ zIndex: 2, maxWidth: 1280, margin: '0 auto' }}>
@@ -189,7 +159,7 @@ export default function DemoHome() {
           </p>
 
           <h1 style={{ ...serif, fontSize: 'clamp(52px,9vw,112px)', color: '#fff', lineHeight: 0.93, letterSpacing: '-0.02em', marginBottom: 40 }}>
-            {['A place', 'where children', 'go further.'].map((line, i) => (
+            {['A place', 'where the universe', 'is the first teacher.'].map((line, i) => (
               <span key={i} style={{ display: 'block', overflow: 'hidden' }}>
                 <span style={{ display: 'block', transform: heroIn ? 'none' : 'translateY(110%)', transition: `transform 1s cubic-bezier(0.16,1,0.3,1) ${0.35 + i * 0.12}s` }}>
                   {line}
