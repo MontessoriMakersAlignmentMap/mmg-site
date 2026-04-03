@@ -1,6 +1,7 @@
 import OpenRolesClient from './OpenRolesClient'
 import Link from 'next/link'
 import type { Job } from '@/lib/types/matchhub'
+import { createServiceClient } from '@/lib/supabase/server'
 
 export const revalidate = 60
 
@@ -8,52 +9,20 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 async function fetchJobs(): Promise<Job[]> {
   try {
-    const res = await fetch(
-      'https://lroxicwzhtzaitfkvzlv.supabase.co/functions/v1/get-public-jobs',
-      { next: { revalidate: 300 } }
-    )
-    if (!res.ok) return []
-    const data: Array<{
-      id: string
-      title: string
-      role_type: string
-      program_level: string
-      employment_type: string
-      location: string
-      description: string
-      salary_range: string | null
-      apply_url: string | null
-      published_at: string | null
-      schools: { name: string; city: string; state: string } | null
-    }> = await res.json()
-    return data.map((j): Job => ({
-      id: j.id,
-      job_title: j.title,
-      school_name: j.schools?.name ?? '',
-      location: j.schools
-        ? [j.schools.city, j.schools.state].filter(Boolean).join(', ')
-        : (j.location ?? ''),
-      level: j.program_level ?? '',
-      employment_type: j.employment_type ?? '',
-      school_type: j.role_type ?? '',
-      compensation: j.salary_range ?? '',
-      job_summary: j.description ?? '',
-      application_link: j.apply_url ?? '',
-      // fields not in public API
-      contact_name: '',
-      contact_email: '',
-      start_date: null,
-      credential: '',
-      school_description: '',
-      plan_type: '',
-      payment_status: null,
-      status: 'approved',
-      approved_at: j.published_at ?? null,
-      expires_at: null,
-      notes: null,
-      source: null,
-      created_at: j.published_at ?? '',
-    }))
+    const client = createServiceClient()
+    const now = new Date().toISOString()
+    const { data, error } = await client
+      .from('jobs')
+      .select('*')
+      .eq('status', 'approved')
+      .eq('payment_status', 'paid')
+      .gt('expires_at', now)
+      .order('approved_at', { ascending: false })
+    if (error) {
+      console.error('fetchJobs error:', error.message)
+      return []
+    }
+    return data ?? []
   } catch {
     return []
   }
