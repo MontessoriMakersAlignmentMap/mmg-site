@@ -3,7 +3,40 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { SchoolPage, C, serif } from './_components/SchoolShell'
+
+// ── CSS keyframes injected once ───────────────────────────────────────────────
+const KEYFRAMES = `
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50% }
+    50%  { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
+  @keyframes particleRise {
+    0%   { transform: translateY(0) scale(1); opacity: 0 }
+    10%  { opacity: 1 }
+    90%  { opacity: 0.4 }
+    100% { transform: translateY(-120vh) scale(0.4); opacity: 0 }
+  }
+`
+
+// ── Floating orbs config ──────────────────────────────────────────────────────
+const ORBS = [
+  { size: 480, left: '5%',  top: '15%', color: 'rgba(200,162,74,0.13)',  dur: 9,  delay: 0 },
+  { size: 360, left: '65%', top: '5%',  color: 'rgba(42,122,88,0.10)',   dur: 12, delay: 2 },
+  { size: 520, left: '38%', top: '55%', color: 'rgba(200,162,74,0.07)',  dur: 14, delay: 1 },
+  { size: 240, left: '80%', top: '65%', color: 'rgba(255,255,255,0.05)', dur: 10, delay: 3.5 },
+  { size: 200, left: '18%', top: '75%', color: 'rgba(42,122,88,0.08)',   dur: 11, delay: 0.8 },
+]
+
+// ── Rising particles config ───────────────────────────────────────────────────
+const PARTICLES = [2,5,9,13,18,23,30,37,44,51,58,65,72,78,84,90].map((left, i) => ({
+  left: `${left}%`,
+  size: i % 3 === 0 ? 3 : 2,
+  delay: i * 0.55,
+  dur: 6 + (i % 4) * 2.5,
+}))
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.12) {
@@ -91,6 +124,7 @@ export default function DemoHome() {
 
   return (
     <SchoolPage>
+      <style>{KEYFRAMES}</style>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', paddingBottom: 80, paddingTop: 164 }}>
@@ -103,6 +137,28 @@ export default function DemoHome() {
           priority
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(61,36,16,0.92) 0%, rgba(61,36,16,0.35) 60%, rgba(61,36,16,0.2) 100%)' }} />
+
+        {/* Floating orbs */}
+        {ORBS.map((orb, i) => (
+          <motion.div
+            key={i}
+            style={{ position: 'absolute', width: orb.size, height: orb.size, left: orb.left, top: orb.top, borderRadius: '50%', background: orb.color, filter: 'blur(72px)', pointerEvents: 'none', zIndex: 1 }}
+            animate={{ y: [0, -50, 0], x: [0, 25, 0], scale: [1, 1.12, 1] }}
+            transition={{ duration: orb.dur, delay: orb.delay, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ))}
+
+        {/* Rising particles */}
+        {PARTICLES.map((p, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute', bottom: 0, left: p.left, width: p.size, height: p.size,
+              borderRadius: '50%', background: 'rgba(200,162,74,0.7)', pointerEvents: 'none', zIndex: 1,
+              animation: `particleRise ${p.dur}s ${p.delay}s ease-out infinite`,
+            }}
+          />
+        ))}
 
         {/* Content */}
         <div className="relative px-8 md:px-16 w-full" style={{ zIndex: 2, maxWidth: 1280, margin: '0 auto' }}>
@@ -193,8 +249,21 @@ export default function DemoHome() {
 function LeadStatement() {
   const { ref, visible } = useReveal(0.2)
   return (
-    <section style={{ background: C.white, padding: '100px 64px' }}>
-      <div ref={ref} style={{ maxWidth: 900, margin: '0 auto' }}>
+    <section style={{ background: C.white, padding: '100px 64px', position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative blob */}
+      <div style={{ position: 'absolute', left: '-12%', top: '50%', transform: 'translateY(-50%)', width: 500, height: 500, opacity: 0.05, pointerEvents: 'none' }}>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+          <motion.path
+            fill={C.sage}
+            animate={{ d: [
+              'M42.3,-60.1C54.5,-51.3,63.7,-37.8,69.1,-22.5C74.5,-7.2,76.1,9.9,70.5,24.2C64.9,38.5,52.1,50,38,58.2C23.9,66.4,8.5,71.3,-7.4,71.2C-23.3,71.1,-39.7,66,-52.4,55.9C-65.1,45.8,-74.1,30.7,-76.1,14.6C-78.1,-1.5,-73.1,-18.6,-64.2,-32.9C-55.3,-47.2,-42.5,-58.7,-28.5,-66.9C-14.5,-75.1,0.7,-80,15.6,-78.3C30.5,-76.6,30.1,-68.9,42.3,-60.1Z',
+              'M35.6,-52.8C46.3,-44.6,55.3,-34.4,61.2,-22C67.1,-9.6,69.9,5,67.1,18.6C64.3,32.2,55.9,44.8,44.6,54.8C33.3,64.8,19.1,72.2,3.6,73C-11.9,73.8,-28.7,68,-42.7,58.3C-56.7,48.6,-67.9,35,-72.3,19.6C-76.7,4.2,-74.3,-13,-67.1,-27.8C-59.9,-42.6,-47.9,-55,-34.5,-62.8C-21.1,-70.6,-6.3,-73.8,6.8,-72.3C19.9,-70.8,24.9,-61,35.6,-52.8Z',
+            ]}}
+            transition={{ duration: 11, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+          />
+        </svg>
+      </div>
+      <div ref={ref} style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <p style={{ color: C.copper, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', marginBottom: 24, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}>
           Our Philosophy
         </p>
@@ -215,8 +284,25 @@ function LeadStatement() {
 
 function StatsSection() {
   return (
-    <section style={{ background: C.slate, padding: '80px 64px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+    <section style={{ position: 'relative', padding: '80px 64px', overflow: 'hidden', background: 'linear-gradient(-45deg, #3D2410, #2C1A0E, #1a0f06, #4a2e14)', backgroundSize: '400% 400%', animation: 'gradientShift 18s ease infinite' }}>
+      {/* Floating blob accent */}
+      <motion.div
+        style={{ position: 'absolute', right: '-8%', top: '50%', translateY: '-50%', width: 420, height: 420, opacity: 0.07, pointerEvents: 'none' }}
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+      >
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="420" height="420">
+          <motion.path
+            fill={C.copper}
+            animate={{ d: [
+              'M47.3,-64.1C60.5,-53.9,69.7,-39.2,73.4,-23.2C77.1,-7.2,75.2,9.9,68.9,24.8C62.6,39.7,51.9,52.4,38.5,61.4C25.1,70.4,9,75.7,-7.4,75.4C-23.8,75.1,-40.5,69.1,-53.1,58.2C-65.7,47.3,-74.3,31.5,-76.4,14.8C-78.5,-1.9,-74.2,-19.5,-65.1,-33.4C-56,-47.3,-42.1,-57.5,-27.8,-67.3C-13.5,-77.1,1.2,-86.5,15.1,-83.6C29,-80.7,34.1,-74.3,47.3,-64.1Z',
+              'M39.7,-58.5C50.7,-49.8,58.2,-37.4,63.5,-23.5C68.8,-9.6,71.9,5.8,68.2,19.4C64.5,33,54,44.9,41.4,54.3C28.8,63.7,14.4,70.6,-1.6,72.6C-17.6,74.6,-35.2,71.7,-49.1,62.5C-63,53.3,-73.2,37.9,-76.3,21.1C-79.4,4.3,-75.4,-13.9,-67,-29.6C-58.6,-45.3,-45.8,-58.5,-31.4,-66.6C-17,-74.7,-1,-77.7,12.8,-75.2C26.6,-72.7,28.7,-67.2,39.7,-58.5Z',
+            ]}}
+            transition={{ duration: 9, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+          />
+        </svg>
+      </motion.div>
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <p style={{ color: C.sage, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', marginBottom: 52 }}>
           MMS by the Numbers
         </p>
@@ -298,19 +384,51 @@ function ProgramsSection() {
 
 function ProgramCard({ program, visible, delay }: { program: typeof programs[0]; visible: boolean; delay: number }) {
   const [hovered, setHovered] = useState(false)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [shine, setShine] = useState({ cx: 50, cy: 50 })
+  const cardRef = useRef<HTMLAnchorElement>(null)
+
+  function handleMouseMove(e: React.MouseEvent) {
+    if (!cardRef.current) return
+    const r = cardRef.current.getBoundingClientRect()
+    const nx = (e.clientX - r.left) / r.width   // 0–1
+    const ny = (e.clientY - r.top)  / r.height  // 0–1
+    setTilt({ x: (ny - 0.5) * -14, y: (nx - 0.5) * 14 })
+    setShine({ cx: nx * 100, cy: ny * 100 })
+  }
+
   return (
     <Link
+      ref={cardRef}
       href={`/studio/demo/programs#${program.slug}`}
-      style={{ textDecoration: 'none', display: 'block', opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s` }}
+      style={{
+        textDecoration: 'none', display: 'block', position: 'relative',
+        opacity: visible ? 1 : 0,
+        transform: visible
+          ? hovered ? `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.025)` : 'none'
+          : 'translateY(28px)',
+        transition: hovered
+          ? `opacity 0.7s ease ${delay}s, transform 0.12s ease`
+          : `opacity 0.7s ease ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+      }}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={() => { setHovered(false); setTilt({ x: 0, y: 0 }) }}
+      onMouseMove={handleMouseMove}
     >
+      {/* Specular shine overlay */}
+      {hovered && (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 10, pointerEvents: 'none', borderRadius: 0,
+          background: `radial-gradient(circle at ${shine.cx}% ${shine.cy}%, rgba(255,255,255,0.18) 0%, transparent 55%)`,
+          transition: 'background 0.05s',
+        }} />
+      )}
       <div style={{ position: 'relative', height: 260, overflow: 'hidden', marginBottom: 24 }}>
         <Image
           src={program.photo}
           alt={`${program.name} classroom`}
           fill
-          style={{ objectFit: 'cover', transform: hovered ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.6s ease' }}
+          style={{ objectFit: 'cover', transform: hovered ? 'scale(1.06)' : 'scale(1)', transition: 'transform 0.6s ease' }}
         />
         <div style={{ position: 'absolute', inset: 0, background: hovered ? 'rgba(61,36,16,0.3)' : 'transparent', transition: 'background 0.4s' }} />
         <div style={{ position: 'absolute', top: 16, left: 16, background: C.copper, color: '#fff', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '5px 12px' }}>
