@@ -58,7 +58,7 @@ export function EcosystemMap() {
   const [hovered, setHovered] = useState<NodeId | null>(null)
 
   return (
-    <div ref={ref} className="relative w-full select-none" style={{ paddingBottom: '95%' }}>
+    <div ref={ref} className="relative select-none mx-auto" style={{ paddingBottom: '60%', maxWidth: 640 }}>
 
       {/* ── Cube wireframe edges ──────────────────────────────────────── */}
       <svg
@@ -108,10 +108,10 @@ export function EcosystemMap() {
             onMouseEnter={() => setHovered(node.id)}
             onMouseLeave={() => setHovered(null)}
           >
-            {/* Circle */}
+            {/* Square */}
             <motion.div
-              className="rounded-full flex items-center justify-center bg-white border"
-              style={{ width: 52, height: 52 }}
+              className="flex items-center justify-center bg-white border"
+              style={{ width: 48, height: 48 }}
               whileHover={{ scale: 1.14 }}
               animate={{
                 borderColor: hovered === node.id ? '#d6a758' : '#E2DDD6',
