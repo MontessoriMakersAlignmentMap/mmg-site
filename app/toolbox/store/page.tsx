@@ -4,9 +4,10 @@ import Image from 'next/image'
 const serif = { fontFamily: 'var(--font-heading)' }
 
 const products = [
+  // ── Culture & Adult Development ──────────────────────────────────────────
   {
     name: 'Adult Culture Framework',
-    category: 'Frameworks',
+    category: 'Culture & Adult Development',
     slug: 'adult-culture-framework',
     image: '/images/toolbox/adult-culture-framework.png',
     price: '$695',
@@ -15,8 +16,29 @@ const products = [
     stripeHref: 'https://buy.stripe.com/bJe28t1rGc9i1gr9VL2cg0N',
   },
   {
+    name: 'Conflict & Feedback Protocol',
+    category: 'Culture & Adult Development',
+    slug: 'conflict-feedback-protocol',
+    image: '/images/toolbox/conflict-feedback-protocol.png',
+    price: '$210',
+    docs: '7 tools + implementation guide',
+    desc: 'An equity-centered system for navigating conflict and delivering feedback in Montessori schools — tiered, documented, and built for the real complexity of adult professional relationships.',
+    stripeHref: 'https://buy.stripe.com/dRm28tdaoa1a5wH6Jz2cg0O',
+  },
+  {
+    name: 'Year-Long PD Planning Template',
+    category: 'Culture & Adult Development',
+    slug: 'year-long-planner',
+    image: '/images/toolbox/year-long-planner.png',
+    price: '$197',
+    docs: 'Editable Excel workbook · 5 tabs',
+    desc: 'A full-year professional development planning workbook with suggested weekly topics, differentiated tracks for guides and assistants, and a Beginning of Year tab for in-service planning. Editable in Excel or Google Sheets.',
+    stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
+  },
+  // ── Leadership & Organizational Systems ─────────────────────────────────
+  {
     name: 'Montessori Leadership Operations Playbook',
-    category: 'Leadership Tools',
+    category: 'Leadership & Organizational Systems',
     slug: 'leadership-operations-playbook',
     image: '/images/toolbox/montessori-leadership-operations-playbook.png',
     price: '$595',
@@ -26,7 +48,7 @@ const products = [
   },
   {
     name: 'Montessori Hiring & Selection Toolkit',
-    category: 'Leadership Tools',
+    category: 'Leadership & Organizational Systems',
     slug: 'hiring-selection-toolkit',
     image: '/images/toolbox/hiring-selection-toolkit.png',
     price: '$450',
@@ -36,7 +58,7 @@ const products = [
   },
   {
     name: 'Leadership Transition & Succession Toolkit',
-    category: 'Leadership Tools',
+    category: 'Leadership & Organizational Systems',
     slug: 'leadership-transition-toolkit',
     image: '/images/toolbox/leadership-transition-succession-toolkit.png',
     price: '$425',
@@ -46,7 +68,7 @@ const products = [
   },
   {
     name: 'Performance Concerns & Separation Toolkit',
-    category: 'Leadership Tools',
+    category: 'Leadership & Organizational Systems',
     slug: 'performance-separation-toolkit',
     image: '/images/toolbox/performance-concerns-separation-toolkit.png',
     price: '$395',
@@ -54,9 +76,10 @@ const products = [
     desc: 'Structured, dignified, and legally sound processes for managing performance concerns through to separation when needed. For the conversations no one prepares you for.',
     stripeHref: 'https://buy.stripe.com/bJedRb4DS8X61grc3T2cg0L',
   },
+  // ── Governance & Community ───────────────────────────────────────────────
   {
     name: 'Board Onboarding & Alignment Toolkit',
-    category: 'Governance & Stewardship',
+    category: 'Governance & Community',
     slug: 'board-onboarding-toolkit',
     image: '/images/toolbox/board-onboarding-alignment-toolkit.png',
     price: '$325',
@@ -65,28 +88,8 @@ const products = [
     stripeHref: 'https://buy.stripe.com/fZubJ33zOehqe3dec12cg0M',
   },
   {
-    name: 'Year-Long PD Planning Template',
-    category: 'Planning Tools',
-    slug: 'year-long-planner',
-    image: '/images/toolbox/year-long-planner.png',
-    price: '$197',
-    docs: 'Editable Excel workbook · 5 tabs',
-    desc: 'A full-year professional development planning workbook with suggested weekly topics, differentiated tracks for guides and assistants, and a Beginning of Year tab for in-service planning. Editable in Excel or Google Sheets.',
-    stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
-  },
-  {
-    name: 'Montessori Family Handbook',
-    category: 'Handbooks',
-    slug: 'family-handbook',
-    image: '/images/toolbox/family-handbook.png',
-    price: '$197',
-    docs: '58-page editable template',
-    desc: 'A comprehensive, editable family handbook built specifically for Montessori schools. Reflects your philosophy and community &mdash; not a generic school district template adapted to fit.',
-    stripeHref: 'https://buy.stripe.com/6oU4gB1rG1uEbV51pf2cg0H',
-  },
-  {
     name: 'Montessori Staff Handbook Toolkit',
-    category: 'Handbooks',
+    category: 'Governance & Community',
     slug: 'staff-handbook',
     image: '/images/toolbox/staff-handbook.png',
     price: '$297',
@@ -95,25 +98,27 @@ const products = [
     stripeHref: 'https://buy.stripe.com/14AaEZ3zO7T2f7hec12cg0G',
   },
   {
-    name: 'Conflict & Feedback Protocol',
-    category: 'Frameworks',
-    slug: 'conflict-feedback-protocol',
-    image: '/images/toolbox/conflict-feedback-protocol.png',
-    price: '$210',
-    docs: '7 tools + implementation guide',
-    desc: 'An equity-centered system for navigating conflict and delivering feedback in Montessori schools — tiered, documented, and built for the real complexity of adult professional relationships.',
-    stripeHref: 'https://buy.stripe.com/dRm28tdaoa1a5wH6Jz2cg0O',
+    name: 'Montessori Family Handbook',
+    category: 'Governance & Community',
+    slug: 'family-handbook',
+    image: '/images/toolbox/family-handbook.png',
+    price: '$197',
+    docs: '58-page editable template',
+    desc: 'A comprehensive, editable family handbook built specifically for Montessori schools. Reflects your philosophy and community &mdash; not a generic school district template adapted to fit.',
+    stripeHref: 'https://buy.stripe.com/6oU4gB1rG1uEbV51pf2cg0H',
   },
 ]
 
-const categories = ['Frameworks', 'Leadership Tools', 'Planning Tools', 'Governance & Stewardship', 'Handbooks']
+const categories = [
+  'Culture & Adult Development',
+  'Leadership & Organizational Systems',
+  'Governance & Community',
+]
 
 const categoryHeadlines: Record<string, string> = {
-  'Frameworks': 'Culture & organizational architecture',
-  'Leadership Tools': 'Systems for how leaders work',
-  'Planning Tools': 'Templates for structured planning',
-  'Governance & Stewardship': 'Board and governance infrastructure',
-  'Handbooks': 'Editable handbooks for your community',
+  'Culture & Adult Development': 'Building the people and practices that make a school work',
+  'Leadership & Organizational Systems': 'Infrastructure for how leaders lead and organizations run',
+  'Governance & Community': 'Board, staff, and family-facing tools',
 }
 
 const freeResources = [
