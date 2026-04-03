@@ -65,6 +65,16 @@ const products = [
     stripeHref: 'https://buy.stripe.com/fZubJ33zOehqe3dec12cg0M',
   },
   {
+    name: 'Year-Long PD Planning Template',
+    category: 'Planning Tools',
+    slug: 'year-long-planner',
+    image: '/images/toolbox/year-long-planner.png',
+    price: '$197',
+    docs: 'Editable Excel workbook · 5 tabs',
+    desc: 'A full-year professional development planning workbook with suggested weekly topics, differentiated tracks for guides and assistants, and a Beginning of Year tab for in-service planning. Editable in Excel or Google Sheets.',
+    stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
+  },
+  {
     name: 'Montessori Family Handbook',
     category: 'Handbooks',
     slug: 'family-handbook',
@@ -96,11 +106,12 @@ const products = [
   },
 ]
 
-const categories = ['Frameworks', 'Leadership Tools', 'Governance & Stewardship', 'Handbooks']
+const categories = ['Frameworks', 'Leadership Tools', 'Planning Tools', 'Governance & Stewardship', 'Handbooks']
 
 const categoryHeadlines: Record<string, string> = {
   'Frameworks': 'Culture & organizational architecture',
   'Leadership Tools': 'Systems for how leaders work',
+  'Planning Tools': 'Templates for structured planning',
   'Governance & Stewardship': 'Board and governance infrastructure',
   'Handbooks': 'Editable handbooks for your community',
 }
