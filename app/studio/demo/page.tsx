@@ -6,37 +6,40 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { SchoolPage, C, serif } from './_components/SchoolShell'
 
-// ── CSS keyframes injected once ───────────────────────────────────────────────
+// ── CSS keyframes ─────────────────────────────────────────────────────────────
 const KEYFRAMES = `
   @keyframes gradientShift {
     0%   { background-position: 0% 50% }
     50%  { background-position: 100% 50% }
     100% { background-position: 0% 50% }
   }
-  @keyframes particleRise {
-    0%   { transform: translateY(0) scale(1); opacity: 0 }
-    10%  { opacity: 1 }
-    90%  { opacity: 0.4 }
-    100% { transform: translateY(-120vh) scale(0.4); opacity: 0 }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.8) }
+    50%       { opacity: 1;    transform: scale(1.5) }
+  }
+  @keyframes quoteDrift {
+    0%, 100% { transform: translateY(0px); opacity: 0.55 }
+    50%       { transform: translateY(-12px); opacity: 0.85 }
   }
 `
 
-// ── Floating orbs config ──────────────────────────────────────────────────────
-const ORBS = [
-  { size: 500, left: '5%',  top: '10%', color: 'rgba(200,162,74,0.45)',  dur: 9,  delay: 0 },
-  { size: 380, left: '62%', top: '3%',  color: 'rgba(42,122,88,0.38)',   dur: 12, delay: 2 },
-  { size: 540, left: '35%', top: '50%', color: 'rgba(200,162,74,0.30)',  dur: 14, delay: 1 },
-  { size: 260, left: '78%', top: '60%', color: 'rgba(255,240,200,0.28)', dur: 10, delay: 3.5 },
-  { size: 220, left: '15%', top: '70%', color: 'rgba(42,122,88,0.32)',   dur: 11, delay: 0.8 },
-]
-
-// ── Rising particles config ───────────────────────────────────────────────────
-const PARTICLES = [2,5,9,13,18,23,30,37,44,51,58,65,72,78,84,90].map((left, i) => ({
-  left: `${left}%`,
-  size: i % 3 === 0 ? 5 : 3,
-  delay: i * 0.55,
-  dur: 6 + (i % 4) * 2.5,
+// ── Twinkling stars (deterministic positions) ─────────────────────────────────
+const STARS = Array.from({ length: 42 }, (_, i) => ({
+  left:  `${((i * 37 + 11) % 93) + 2}%`,
+  top:   `${((i * 23 + 17) % 85) + 4}%`,
+  size:  [1, 1, 1, 2, 2, 3][i % 6],
+  dur:   1.4 + (i % 8) * 0.35,
+  delay: (i * 0.38) % 4.5,
+  gold:  i % 4 === 0,
 }))
+
+// ── Floating cosmic education quotes ─────────────────────────────────────────
+const COSMIC_QUOTES = [
+  { text: 'The universe is the greatest teacher.',  left: '6%',  top: '22%', delay: 0   },
+  { text: 'The whole before the part.',             left: '58%', top: '18%', delay: 1.8 },
+  { text: 'Everything is connected.',               left: '74%', top: '58%', delay: 0.9 },
+  { text: 'Wonder is the beginning of wisdom.',     left: '12%', top: '68%', delay: 2.4 },
+]
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.12) {
@@ -138,27 +141,45 @@ export default function DemoHome() {
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(61,36,16,0.92) 0%, rgba(61,36,16,0.35) 60%, rgba(61,36,16,0.2) 100%)' }} />
 
-        {/* Floating orbs */}
-        {ORBS.map((orb, i) => (
-          <motion.div
-            key={i}
-            style={{ position: 'absolute', width: orb.size, height: orb.size, left: orb.left, top: orb.top, borderRadius: '50%', background: orb.color, filter: 'blur(48px)', pointerEvents: 'none', zIndex: 1, mixBlendMode: 'screen' }}
-            animate={{ y: [0, -50, 0], x: [0, 25, 0], scale: [1, 1.12, 1] }}
-            transition={{ duration: orb.dur, delay: orb.delay, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        ))}
-
-        {/* Rising particles */}
-        {PARTICLES.map((p, i) => (
+        {/* Twinkling stars */}
+        {STARS.map((s, i) => (
           <div
             key={i}
             style={{
-              position: 'absolute', bottom: 0, left: p.left, width: p.size, height: p.size,
-              borderRadius: '50%', background: 'rgba(230,190,80,1)', pointerEvents: 'none', zIndex: 1,
-              boxShadow: '0 0 6px 2px rgba(230,190,80,0.6)',
-              animation: `particleRise ${p.dur}s ${p.delay}s ease-out infinite`,
+              position: 'absolute', left: s.left, top: s.top,
+              width: s.size, height: s.size, borderRadius: '50%',
+              background: s.gold ? 'rgba(220,180,70,1)' : 'rgba(255,255,255,0.9)',
+              boxShadow: s.size >= 2
+                ? `0 0 ${s.size * 3}px ${s.size}px ${s.gold ? 'rgba(220,180,70,0.6)' : 'rgba(255,255,255,0.4)'}`
+                : 'none',
+              pointerEvents: 'none', zIndex: 1,
+              animation: `twinkle ${s.dur}s ${s.delay}s ease-in-out infinite`,
             }}
           />
+        ))}
+
+        {/* Floating cosmic education quotes */}
+        {COSMIC_QUOTES.map((q, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute', left: q.left, top: q.top, zIndex: 2,
+              pointerEvents: 'none', maxWidth: 220,
+              animation: `quoteDrift ${5 + i * 1.3}s ${q.delay}s ease-in-out infinite`,
+            }}
+          >
+            <p style={{
+              ...serif,
+              color: 'rgba(255,255,255,0.72)',
+              fontSize: 11,
+              lineHeight: 1.5,
+              letterSpacing: '0.04em',
+              fontStyle: 'italic',
+              textShadow: '0 1px 12px rgba(0,0,0,0.6)',
+            }}>
+              &ldquo;{q.text}&rdquo;
+            </p>
+          </div>
         ))}
 
         {/* Content */}
