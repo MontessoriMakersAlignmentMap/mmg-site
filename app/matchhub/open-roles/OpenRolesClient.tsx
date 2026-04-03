@@ -6,6 +6,10 @@ import Link from 'next/link'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
+function isUrl(value: string) {
+  return /^https?:\/\//i.test(value.trim())
+}
+
 interface Props {
   jobs: Job[]
 }
@@ -87,16 +91,31 @@ function JobModal({
             </div>
           )}
 
-          {/* Disclaimer */}
-          <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-4">
-            <p className="text-[#64748B] text-xs leading-relaxed">
-              This listing was posted by the school and is managed through MatchHub. Apply directly
-              through the school's application portal.
-            </p>
+          {/* How to Apply */}
+          <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-5">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-2">How to Apply</p>
+            {job.application_link ? (
+              isUrl(job.application_link) ? (
+                <a
+                  href={job.application_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0e1a7a] text-sm font-medium underline underline-offset-2 hover:text-[#162270] break-all"
+                >
+                  {job.application_link}
+                </a>
+              ) : (
+                <p className="text-[#374151] text-sm leading-relaxed">{job.application_link}</p>
+              )
+            ) : (
+              <p className="text-[#64748B] text-sm leading-relaxed">
+                Contact the school directly to inquire about this role.
+              </p>
+            )}
           </div>
 
-          {/* CTA */}
-          {job.application_link && (
+          {/* CTA — only shown when there's a URL */}
+          {job.application_link && isUrl(job.application_link) && (
             <a
               href={job.application_link}
               target="_blank"
@@ -173,7 +192,7 @@ function JobCard({
 
       {/* Footer */}
       <div className="px-7 pb-7 pt-4 border-t border-[#E2DDD6] mt-auto">
-        {job.application_link ? (
+        {job.application_link && isUrl(job.application_link) ? (
           <a
             href={job.application_link}
             target="_blank"

@@ -332,10 +332,10 @@ function PostJobForm() {
             value={form.job_summary} onChange={e => set('job_summary', e.target.value)} />
         </div>
         <div className="mt-6">
-          <label className={labelClass}>Application Link <span className="text-[#94A3B8] font-normal">(optional)</span></label>
-          <input type="url" placeholder="https://yourschool.org/apply" className={inputClass}
+          <label className={labelClass}>How to Apply <span className="text-[#94A3B8] font-normal">(optional)</span></label>
+          <input type="text" placeholder="e.g. Email resume to hiring@yourschool.org  or  https://yourschool.org/apply" className={inputClass}
             value={form.application_link} onChange={e => set('application_link', e.target.value)} />
-          <p className="text-[#64748B] text-xs mt-1.5">Where should interested candidates apply? Leave blank to receive inquiries through MatchHub.</p>
+          <p className="text-[#64748B] text-xs mt-1.5">A URL, an email address, or plain instructions — whatever works best for your school.</p>
         </div>
       </div>
 
