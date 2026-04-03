@@ -688,14 +688,24 @@ function SystemsBuild() {
               Built from Montessori principles. Designed for real-world operation.
             </p>
           </div>
-          <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
-            <Link
-              href="/contact"
-              className="bg-[#0e1a7a] text-white text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#162270] transition-colors inline-block"
-            >
-              Inquire About a Build
-            </Link>
-          </motion.div>
+          <div className="flex flex-col sm:flex-row items-start gap-4">
+            <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
+              <Link
+                href="/contact"
+                className="bg-[#0e1a7a] text-white text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#162270] transition-colors inline-block"
+              >
+                Inquire About a Build
+              </Link>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
+              <Link
+                href="/studio/demo"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors inline-block"
+              >
+                See a Live Example &rarr;
+              </Link>
+            </motion.div>
+          </div>
         </FadeIn>
       </div>
     </section>
