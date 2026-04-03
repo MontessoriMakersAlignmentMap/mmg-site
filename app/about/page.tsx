@@ -48,10 +48,6 @@ export default function AboutPage() {
           </div>
           <div className="space-y-5 text-[#374151] text-base leading-relaxed">
             <p>
-              Montessori Makers was built to help Montessori schools do more than believe the right
-              things. It was built to help them operate in alignment with those beliefs.
-            </p>
-            <p>
               Founded in Chicago, Montessori Makers began as a consulting practice grounded in one
               clear reality: Montessori schools often carry extraordinary vision, but not always the
               structures needed to sustain it. Over time, that work grew into a broader ecosystem of

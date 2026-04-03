@@ -32,7 +32,7 @@ export default function InsightsPage() {
               to build what they can already imagine.
             </p>
             <a
-              href="https://substack.com/@montessorimakers"
+              href="https://montessorimakers.substack.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 border border-[#0e1a7a] text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
@@ -108,7 +108,7 @@ export default function InsightsPage() {
             Stay connected to the thinking behind the work.
           </p>
           <a
-            href="https://substack.com/@montessorimakers"
+            href="https://montessorimakers.substack.com"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors whitespace-nowrap"

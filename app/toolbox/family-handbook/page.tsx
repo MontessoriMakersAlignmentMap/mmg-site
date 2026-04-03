@@ -68,7 +68,7 @@ export default function FamilyHandbookPage() {
               className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-10"
               style={serif}
             >
-              Most Montessori family handbooks fall into one of two failure modes.
+              Most Montessori family handbooks struggle in one of two directions.
             </h2>
             <div className="space-y-6 text-[#374151] text-lg leading-relaxed">
               <p>
@@ -83,8 +83,7 @@ export default function FamilyHandbookPage() {
                 produces. It sets community expectations, establishes culture, and tells families
                 &mdash; in written form &mdash; what kind of institution they&rsquo;ve joined. It
                 is read most carefully during conflict, during confusion, and during onboarding.
-                A handbook that doesn&rsquo;t speak clearly in those moments has failed at its
-                primary purpose.
+                A handbook that doesn&rsquo;t speak clearly in those moments isn&rsquo;t doing its most important work.
               </p>
               <p>
                 The Montessori Family Handbook Template gives schools a professionally written,

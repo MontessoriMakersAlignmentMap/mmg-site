@@ -308,9 +308,9 @@ export default function MatchHubPage() {
             We match the right people—not just the closest résumé.
           </h2>
           <p className="text-[#94A3B8] text-lg leading-relaxed mb-6">
-            Montessori schools fail at hiring not because they don&apos;t care—but because
-            they&apos;re using tools and frameworks designed for traditional schools.
-            MatchHub is built on real understanding of what Montessori culture fit actually means.
+            Montessori hiring is hard because most available tools were built for traditional
+            schools — not for philosophy-first, culture-first work.
+            MatchHub is built on real understanding of what Montessori fit actually means.
           </p>
           <p className="text-[#94A3B8] text-lg leading-relaxed">
             Every search starts with clarity about the role, the school, and what alignment
@@ -328,7 +328,7 @@ export default function MatchHubPage() {
               Hiring often surfaces what advisory addresses.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-6">
-              The search for the right head of school reveals a board that can&apos;t articulate what they&apos;re looking for. The struggle to find a curriculum director exposes that no one has defined what Montessori fidelity means in this school. A leadership hire that doesn&apos;t stick points to a culture that wasn&apos;t ready to receive them.
+              A search for the right head of school often surfaces the question: what are we actually looking for? The work of finding a curriculum director can bring into focus what Montessori fidelity means in this specific school. A leadership hire that doesn&apos;t land often points to something deeper about culture and readiness.
             </p>
             <p className="text-[#374151] text-lg leading-relaxed">
               These aren&apos;t hiring problems. They&apos;re organizational problems that showed up during hiring. Advisory exists for exactly this.

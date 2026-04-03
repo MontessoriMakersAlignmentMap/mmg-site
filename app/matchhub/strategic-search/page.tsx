@@ -143,7 +143,7 @@ export default function StrategicSearchPage() {
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
               Most hiring tools optimize for volume. Post a job, collect applications,
-              pick the best-looking resume. That process fails in Montessori because
+              pick the best-looking resume. That approach rarely works in Montessori because
               credentials don&apos;t tell you whether someone actually understands — and
               lives — the philosophy.
             </p>
