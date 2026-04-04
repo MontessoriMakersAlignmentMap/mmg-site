@@ -86,7 +86,9 @@ export async function POST(req: NextRequest) {
   const firstUserIdx = messages.findIndex(m => m.role === 'user')
   const apiMessages = firstUserIdx === -1 ? messages : messages.slice(firstUserIdx)
 
+  console.log('chat route hit, messages count:', apiMessages.length)
   const apiKey = process.env.ANTHROPIC_API_KEY
+  console.log('api key present:', !!apiKey)
   if (!apiKey) {
     return NextResponse.json({ error: 'Chat unavailable' }, { status: 503 })
   }
