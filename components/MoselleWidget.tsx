@@ -211,12 +211,12 @@ export default function MoselleWidget() {
                     </div>
                   )}
                   <div
-                    className={`max-w-[80%] px-3 py-2.5 text-sm leading-relaxed break-words overflow-wrap-anywhere ${
+                    className={`max-w-[80%] px-3 py-2.5 text-sm leading-relaxed break-words ${
                       msg.role === 'user'
                         ? 'bg-[#0e1a7a] text-white'
                         : 'bg-white border border-[#E2DDD6] text-[#374151]'
                     }`}
-                    style={{ borderRadius: 0 }}
+                    style={{ borderRadius: 0, overflowWrap: 'anywhere' }}
                   >
                     {msg.content.split(/(montessorimakersgroup\.org\/\S+)/g).map((part, i) =>
                       part.startsWith('montessorimakersgroup.org/') ? (
