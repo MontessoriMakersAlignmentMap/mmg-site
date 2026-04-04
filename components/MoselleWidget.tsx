@@ -218,14 +218,20 @@ export default function MoselleWidget() {
                     }`}
                     style={{ borderRadius: 0, overflowWrap: 'anywhere' }}
                   >
-                    {msg.content.split(/(montessorimakersgroup\.org\/\S+)/g).map((part, i) =>
-                      part.startsWith('montessorimakersgroup.org/') ? (
-                        <a key={i} href={`https://${part}`} target="_blank" rel="noopener noreferrer"
-                          className="underline underline-offset-2 opacity-80 hover:opacity-100 break-all">
-                          {part}
-                        </a>
-                      ) : part
-                    )}
+                    {msg.content.split(/(montessorimakersgroup\.org\/[^\s]*)/g).map((part, i) => {
+                      if (!part.startsWith('montessorimakersgroup.org/')) return part
+                      const clean = part.replace(/[.,!?]+$/, '')
+                      const trailing = part.slice(clean.length)
+                      return (
+                        <span key={i}>
+                          <a href={`https://${clean}`} target="_blank" rel="noopener noreferrer"
+                            className="underline underline-offset-2 opacity-80 hover:opacity-100 break-all">
+                            {clean}
+                          </a>
+                          {trailing}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
               ))}
