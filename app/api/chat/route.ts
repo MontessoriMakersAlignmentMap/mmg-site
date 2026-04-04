@@ -86,35 +86,34 @@ export async function POST(req: NextRequest) {
   const firstUserIdx = messages.findIndex(m => m.role === 'user')
   const apiMessages = firstUserIdx === -1 ? messages : messages.slice(firstUserIdx)
 
-  console.log('chat route hit, messages count:', apiMessages.length)
-  const apiKey = process.env.ANTHROPIC_API_KEY
-  console.log('api key present:', !!apiKey)
+  const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'Chat unavailable' }, { status: 503 })
   }
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
+      model: 'gpt-4o-mini',
       max_tokens: 300,
-      system: SYSTEM_PROMPT,
-      messages: apiMessages,
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...apiMessages,
+      ],
     }),
   })
 
   if (!res.ok) {
     const errBody = await res.json().catch(() => ({}))
-    console.error('Anthropic API error:', res.status, JSON.stringify(errBody))
-    return NextResponse.json({ error: 'Chat unavailable', debug: { status: res.status, body: errBody } }, { status: 502 })
+    console.error('OpenAI API error:', res.status, JSON.stringify(errBody))
+    return NextResponse.json({ error: 'Chat unavailable' }, { status: 502 })
   }
 
   const data = await res.json()
-  const text = data.content?.[0]?.text ?? ''
+  const text = data.choices?.[0]?.message?.content ?? ''
   return NextResponse.json({ message: text })
 }
