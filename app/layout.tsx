@@ -5,6 +5,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import MoselleWidget from '@/components/MoselleWidget'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 // Body font loaded via Google Fonts (variable-weight, latin subset only)
@@ -58,6 +59,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <MoselleWidget />
+        <Analytics />
       </body>
     </html>
   )
