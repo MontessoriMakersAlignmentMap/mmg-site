@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -387,6 +388,8 @@ export default function FreeResourcesPage() {
           </div>
         </div>
       </section>
+
+      <NewsletterSignup />
     </>
   )
 }
