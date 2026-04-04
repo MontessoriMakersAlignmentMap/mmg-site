@@ -11,7 +11,7 @@ type Message = {
 
 const GREETING = "Hi, I'm Moselle — I can help you find what you're looking for. Are you a school leader, an educator, or exploring on behalf of a school?"
 
-// Stylized illustrated avatar — warm, professional
+// Gold 3D cube avatar
 function MoselleAvatar({ size = 40 }: { size?: number }) {
   return (
     <svg
@@ -23,30 +23,19 @@ function MoselleAvatar({ size = 40 }: { size?: number }) {
     >
       {/* Background circle */}
       <circle cx="40" cy="40" r="40" fill="#0e1a7a" />
-      {/* Hair — dark, shoulder-length */}
-      <ellipse cx="40" cy="26" rx="19" ry="18" fill="#2c1a0e" />
-      <path d="M21 30 Q18 50 22 62 Q30 70 40 70 Q50 70 58 62 Q62 50 59 30" fill="#2c1a0e" />
-      {/* Neck */}
-      <rect x="34" y="52" width="12" height="10" rx="4" fill="#d4a574" />
-      {/* Face */}
-      <ellipse cx="40" cy="38" rx="16" ry="18" fill="#d4a574" />
-      {/* Eyes */}
-      <ellipse cx="33.5" cy="35" rx="2.5" ry="2.8" fill="#2c1a0e" />
-      <ellipse cx="46.5" cy="35" rx="2.5" ry="2.8" fill="#2c1a0e" />
-      {/* Eye shine */}
-      <circle cx="34.5" cy="33.8" r="0.9" fill="white" />
-      <circle cx="47.5" cy="33.8" r="0.9" fill="white" />
-      {/* Eyebrows */}
-      <path d="M30 31.5 Q33.5 29.5 37 31" stroke="#2c1a0e" strokeWidth="1.4" strokeLinecap="round" fill="none" />
-      <path d="M43 31 Q46.5 29.5 50 31.5" stroke="#2c1a0e" strokeWidth="1.4" strokeLinecap="round" fill="none" />
-      {/* Nose */}
-      <path d="M40 37 Q38.5 41 40 43 Q41.5 41 40 37" stroke="#b8845a" strokeWidth="1" fill="none" strokeLinecap="round" />
-      {/* Smile */}
-      <path d="M34 46 Q40 51 46 46" stroke="#b8845a" strokeWidth="1.6" strokeLinecap="round" fill="none" />
-      {/* Shoulders / top of outfit — navy */}
-      <path d="M10 80 Q15 62 28 60 Q34 68 40 68 Q46 68 52 60 Q65 62 70 80 Z" fill="#0e1a7a" />
-      {/* Collar detail */}
-      <path d="M34 62 L40 70 L46 62" stroke="#d6a758" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Cube — isometric 3-face view */}
+      {/* Top face */}
+      <polygon points="40,16 62,28 40,40 18,28" fill="#f0c96a" />
+      {/* Left face */}
+      <polygon points="18,28 40,40 40,62 18,50" fill="#b8860b" />
+      {/* Right face */}
+      <polygon points="62,28 62,50 40,62 40,40" fill="#d6a758" />
+      {/* Edge lines */}
+      <polygon points="40,16 62,28 40,40 18,28" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="18,28 40,40 40,62 18,50" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="62,28 62,50 40,62 40,40" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
+      {/* Center vertical edge */}
+      <line x1="40" y1="40" x2="40" y2="62" stroke="#0e1a7a" strokeWidth="1" />
     </svg>
   )
 }
@@ -186,12 +175,12 @@ export default function MoselleWidget() {
             {/* Header */}
             <div className="bg-[#0e1a7a] px-4 py-3 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="flex-shrink-0 rounded-full overflow-hidden border-2 border-[#d6a758]/60">
+                <div className="flex-shrink-0">
                   <MoselleAvatar size={36} />
                 </div>
                 <div>
                   <p className="text-white text-sm font-semibold leading-tight" style={serif}>Moselle</p>
-                  <p className="text-[#94A3B8] text-[10px] tracking-wide">MMG Guide</p>
+                  <p className="text-[#94A3B8] text-[10px] tracking-wide">Navigation Support</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -215,7 +204,7 @@ export default function MoselleWidget() {
                 >
                   {msg.role === 'assistant' && (
                     <div className="flex-shrink-0 mr-2 mt-1">
-                      <div className="rounded-full overflow-hidden border border-[#E2DDD6]">
+                      <div>
                         <MoselleAvatar size={24} />
                       </div>
                     </div>
