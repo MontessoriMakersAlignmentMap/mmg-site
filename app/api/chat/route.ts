@@ -81,6 +81,11 @@ export async function POST(req: NextRequest) {
     messages: Array<{ role: 'user' | 'assistant'; content: string }>
   }
 
+  // Anthropic requires conversations to start with a user message — drop any
+  // leading assistant messages (e.g. the UI greeting) before sending.
+  const firstUserIdx = messages.findIndex(m => m.role === 'user')
+  const apiMessages = firstUserIdx === -1 ? messages : messages.slice(firstUserIdx)
+
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'Chat unavailable' }, { status: 503 })
@@ -97,7 +102,7 @@ export async function POST(req: NextRequest) {
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 300,
       system: SYSTEM_PROMPT,
-      messages,
+      messages: apiMessages,
     }),
   })
 
