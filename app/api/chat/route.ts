@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
   if (!res.ok) {
     const errBody = await res.json().catch(() => ({}))
     console.error('Anthropic API error:', res.status, JSON.stringify(errBody))
-    return NextResponse.json({ error: 'Chat unavailable' }, { status: 502 })
+    return NextResponse.json({ error: 'Chat unavailable', debug: { status: res.status, body: errBody } }, { status: 502 })
   }
 
   const data = await res.json()

@@ -115,10 +115,10 @@ export default function MoselleWidget() {
         body: JSON.stringify({ messages: next }),
       })
       const data = await res.json()
-      if (!res.ok || !data.message) throw new Error('no message')
+      if (!res.ok || !data.message) throw new Error(JSON.stringify(data.debug ?? data.error ?? 'no message'))
       setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
-    } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Let me connect you with the team directly — montessorimakersgroup.org/contact" }])
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'assistant', content: `DEBUG: ${String(err)}` }])
     } finally {
       setLoading(false)
     }
