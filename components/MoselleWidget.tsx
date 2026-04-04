@@ -211,14 +211,21 @@ export default function MoselleWidget() {
                     </div>
                   )}
                   <div
-                    className={`max-w-[80%] px-3 py-2.5 text-sm leading-relaxed ${
+                    className={`max-w-[80%] px-3 py-2.5 text-sm leading-relaxed break-words overflow-wrap-anywhere ${
                       msg.role === 'user'
                         ? 'bg-[#0e1a7a] text-white'
                         : 'bg-white border border-[#E2DDD6] text-[#374151]'
                     }`}
                     style={{ borderRadius: 0 }}
                   >
-                    {msg.content}
+                    {msg.content.split(/(montessorimakersgroup\.org\/\S+)/g).map((part, i) =>
+                      part.startsWith('montessorimakersgroup.org/') ? (
+                        <a key={i} href={`https://${part}`} target="_blank" rel="noopener noreferrer"
+                          className="underline underline-offset-2 opacity-80 hover:opacity-100 break-all">
+                          {part}
+                        </a>
+                      ) : part
+                    )}
                   </div>
                 </div>
               ))}
