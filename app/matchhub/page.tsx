@@ -403,22 +403,19 @@ export default function MatchHubPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="border border-white/15 p-8">
             <p className="text-white text-xl leading-snug mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              &ldquo;We had a strong candidate pool within two weeks. More importantly, we had
-              confidence in the process — which is something we&apos;ve never had in a leadership search before.&rdquo;
+              &ldquo;Her Montessori knowledge and background, combined with the depth of analysis she walked us through, helped us identify exactly what to look for in a candidate who would truly fit our school.&rdquo;
             </p>
-            <p className="text-[#d6a758] text-sm font-medium">Head of School</p>
-            <p className="text-[#94A3B8] text-xs mt-1">AMS-affiliated school, Southeast</p>
+            <p className="text-[#d6a758] text-sm font-medium">Rebecca Lingo</p>
+            <p className="text-[#94A3B8] text-xs mt-1">Head of School, Wheaton Montessori School</p>
             <span className="inline-block mt-3 text-[#d6a758] text-[9px] tracking-[0.18em] uppercase border border-[#d6a758]/40 px-2 py-0.5">Strategic Search</span>
           </div>
           <div className="border border-white/15 p-8">
             <p className="text-white text-xl leading-snug mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              &ldquo;We&apos;d posted the role on three platforms and heard nothing meaningful.
-              One month with MatchHub and we found someone who understood not just Montessori
-              — but our specific school culture.&rdquo;
+              &ldquo;She navigated a complex search with care and clarity — combining professionalism with a personal touch.&rdquo;
             </p>
-            <p className="text-[#d6a758] text-sm font-medium">Director of Programs</p>
-            <p className="text-[#94A3B8] text-xs mt-1">Independent Montessori, Midwest</p>
-            <span className="inline-block mt-3 text-[#d6a758] text-[9px] tracking-[0.18em] uppercase border border-[#d6a758]/40 px-2 py-0.5">Talent Pool</span>
+            <p className="text-[#d6a758] text-sm font-medium">Alisa Anania</p>
+            <p className="text-[#94A3B8] text-xs mt-1">Head of School, The Tidewater School</p>
+            <span className="inline-block mt-3 text-[#d6a758] text-[9px] tracking-[0.18em] uppercase border border-[#d6a758]/40 px-2 py-0.5">Strategic Search</span>
           </div>
         </div>
       </section>
