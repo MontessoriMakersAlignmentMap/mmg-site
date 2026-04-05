@@ -117,18 +117,20 @@ function TagPill({ label }: { label: string }) {
 
 // ─── Pro gate modal ───────────────────────────────────────────────────────────
 
-function ProGateModal({ onClose, onActivate }: { onClose: () => void; onActivate: () => void }) {
+function ProGateModal({ onBack, onActivate }: { onBack: () => void; onActivate: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-[#0e1a7a]/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-[#0e1a7a]/80 backdrop-blur-sm" />
       <div className="relative bg-white max-w-md w-full p-10 shadow-2xl">
-        <button onClick={onClose} className="absolute top-4 right-5 text-[#94A3B8] hover:text-[#374151] text-xl leading-none">×</button>
         <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-4">MatchHub Pro</p>
         <h2 className="text-[#0e1a7a] text-2xl font-semibold mb-3 leading-snug" style={serif}>
           Full profiles require MatchHub Pro.
         </h2>
-        <p className="text-[#374151] text-sm leading-relaxed mb-8">
-          Upgrade to Pro to view complete guide profiles, philosophy statements, availability details, and request introductions directly.
+        <p className="text-[#374151] text-sm leading-relaxed mb-2">
+          Pro unlocks complete profiles for every educator and leader in the pool — full summaries, experience detail, and direct introduction requests.
+        </p>
+        <p className="text-[#64748B] text-xs leading-relaxed mb-8">
+          $499/year. Includes unlimited job posts, auto featured placement, and social promotion on every role.
         </p>
         <div className="flex flex-col gap-3">
           <a
@@ -140,7 +142,10 @@ function ProGateModal({ onClose, onActivate }: { onClose: () => void; onActivate
             Upgrade to Pro — $499/year
           </a>
           <button onClick={onActivate} className="text-[#64748B] text-xs py-2 hover:text-[#0e1a7a] transition-colors">
-            I already have Pro — activate preview
+            I already have Pro — activate access
+          </button>
+          <button onClick={onBack} className="text-[#94A3B8] text-xs py-1 hover:text-[#374151] transition-colors">
+            ← Back to browsing
           </button>
         </div>
       </div>
@@ -212,40 +217,85 @@ function ProfileModal({ guide, onClose }: { guide: Guide; onClose: () => void })
 function GuideCard({ guide, isPro, onViewProfile }: { guide: Guide; isPro: boolean; onViewProfile: () => void }) {
   const cs = credentialStyle[guide.credential]
   const nonCredTags = guide.tags.filter(t => !['AMI', 'AMS', 'MACTE', 'Other'].includes(t))
+  const teaser = guide.summary.length > 90 ? guide.summary.slice(0, 90).trimEnd() + '…' : guide.summary
+
   return (
-    <div className="bg-white border border-[#E2DDD6] flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)]">
-      <div className="p-7 flex flex-col gap-5 flex-1">
+    <div className="bg-white border border-[#E2DDD6] flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)] overflow-hidden">
+      {/* Always-visible teaser */}
+      <div className="p-7 flex flex-col gap-4">
         <div className="flex items-start gap-4">
           <Avatar name={guide.firstName} />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>{guide.firstName} {guide.lastInitial}.</h3>
+                <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
+                  {guide.firstName} {guide.lastInitial}.
+                </h3>
                 <p className="text-[#64748B] text-xs mt-0.5">{guide.roleSought}</p>
               </div>
-              <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 flex-shrink-0" style={cs}>{guide.credential}</span>
+              <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 flex-shrink-0" style={cs}>
+                {guide.credential}
+              </span>
             </div>
           </div>
         </div>
+
+        {/* Quick stats — always visible */}
         <div className="flex flex-wrap gap-1.5">
-          {guide.levels.map(l => <span key={l} className="text-[11px] text-[#374151] bg-[#F2EDE6] px-2.5 py-0.5">{l}</span>)}
+          {guide.levels.map(l => (
+            <span key={l} className="text-[11px] text-[#374151] bg-[#F2EDE6] px-2.5 py-0.5">{l}</span>
+          ))}
           <span className="text-[11px] text-[#374151] bg-[#F2EDE6] px-2.5 py-0.5">{guide.experienceYears} yrs</span>
           {guide.openToRelocate
             ? <span className="text-[11px] text-[#2D6A4F] bg-[#2D6A4F12] px-2.5 py-0.5 font-medium">Open to relocate</span>
             : <span className="text-[11px] text-[#64748B] bg-[#FAF9F7] px-2.5 py-0.5">{guide.region}</span>
           }
         </div>
-        <p className="text-[#374151] text-sm leading-relaxed flex-1 line-clamp-3">{guide.summary}</p>
-        {nonCredTags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">{nonCredTags.map(t => <TagPill key={t} label={t} />)}</div>
-        )}
-        <div className="flex items-center justify-between pt-4 border-t border-[#F2EDE6]">
-          <p className="text-[#94A3B8] text-xs">{guide.availability}</p>
-          <button onClick={onViewProfile} className="text-xs font-medium tracking-wide text-[#0e1a7a] hover:underline transition-colors">
-            {isPro ? 'View Profile →' : 'View Profile'}
+
+        {/* Summary teaser — always visible but truncated */}
+        <p className="text-[#374151] text-sm leading-relaxed">{teaser}</p>
+      </div>
+
+      {/* Gated section */}
+      {isPro ? (
+        <div className="px-7 pb-7 flex flex-col gap-4">
+          {nonCredTags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {nonCredTags.map(t => <TagPill key={t} label={t} />)}
+            </div>
+          )}
+          <div className="flex items-center justify-between pt-4 border-t border-[#F2EDE6]">
+            <p className="text-[#94A3B8] text-xs">{guide.availability}</p>
+            <button onClick={onViewProfile} className="text-xs font-medium tracking-wide text-[#0e1a7a] hover:underline transition-colors">
+              View Full Profile →
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="relative">
+          {/* Blurred placeholder of what's below */}
+          <div className="px-7 pb-7 pt-2 select-none pointer-events-none blur-[3px] opacity-60" aria-hidden="true">
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              <span className="text-[11px] text-[#7C3AED] bg-[#7C3AED14] px-2.5 py-0.5">Leadership</span>
+              <span className="text-[11px] text-[#1D4ED8] bg-[#1D4ED814] px-2.5 py-0.5">Bilingual</span>
+            </div>
+            <div className="flex items-center justify-between pt-4 border-t border-[#F2EDE6]">
+              <p className="text-[#94A3B8] text-xs">Available now</p>
+              <span className="text-xs font-medium text-[#0e1a7a]">View Full Profile →</span>
+            </div>
+          </div>
+          {/* Lock overlay */}
+          <button
+            onClick={onViewProfile}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/70 hover:bg-white/85 transition-colors group"
+          >
+            <span className="text-[#0e1a7a] text-lg">🔒</span>
+            <span className="text-[#0e1a7a] text-xs font-semibold tracking-wide group-hover:underline">
+              Unlock with Pro →
+            </span>
           </button>
         </div>
-      </div>
+      )}
     </div>
   )
 }
@@ -475,19 +525,33 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
           />
 
           {/* Launching message */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <p className="text-[#64748B] text-sm italic">
               Launching with our first cohort of Montessori educators and leaders.
             </p>
-            {!isPro && guides.length > 0 && (
-              <p className="text-[#94A3B8] text-xs">
-                Full profiles require{' '}
-                <button onClick={() => setShowProGate(true)} className="text-[#0e1a7a] font-medium hover:underline">
-                  MatchHub Pro
-                </button>
-              </p>
-            )}
           </div>
+
+          {/* Pro upgrade banner for non-Pro users */}
+          {!isPro && guides.length > 0 && (
+            <div className="bg-[#0e1a7a] px-7 py-5 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <p className="text-white text-sm font-medium leading-snug mb-1">
+                  You&rsquo;re seeing a preview. Full profiles are unlocked with MatchHub Pro.
+                </p>
+                <p className="text-[#94A3B8] text-xs leading-relaxed">
+                  Role, credential, and experience visible now. Complete summary, skills, and introduction requests require Pro.
+                </p>
+              </div>
+              <a
+                href="https://buy.stripe.com/bJecN7ees8X61grc3T2cg0i"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#d6a758] text-white text-xs px-6 py-3 tracking-wide hover:bg-[#c09240] transition-colors whitespace-nowrap font-medium flex-shrink-0 text-center"
+              >
+                Upgrade to Pro — $499/yr
+              </a>
+            </div>
+          )}
 
           {/* Results or empty state */}
           {filtered.length === 0 ? (
@@ -527,7 +591,7 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
 
       {/* ── MODALS ───────────────────────────────────────────────────────── */}
       {showProGate && (
-        <ProGateModal onClose={() => setShowProGate(false)} onActivate={() => { setIsPro(true); setShowProGate(false) }} />
+        <ProGateModal onBack={() => setShowProGate(false)} onActivate={() => { setIsPro(true); setShowProGate(false) }} />
       )}
       {selectedGuide && isPro && (
         <ProfileModal guide={selectedGuide} onClose={() => setSelectedGuide(null)} />
