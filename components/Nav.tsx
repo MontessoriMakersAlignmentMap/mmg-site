@@ -154,7 +154,7 @@ export default function Nav() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-6">
           {/* Advisory dropdown */}
           <div className="relative group">
             <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/advisory']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
@@ -359,6 +359,15 @@ export default function Nav() {
             </div>
           </div>
 
+          {/* Studio — direct link */}
+          <Link
+            href="/studio"
+            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/studio']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
+          >
+            {active(['/studio']) && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />}
+            Studio
+          </Link>
+
           {/* Ecosystem mega dropdown */}
           <div className="relative group">
             <button className="relative flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors pb-1">
@@ -518,7 +527,6 @@ export default function Nav() {
           {[
             { name: 'Learning',       href: '/learning',                prefixes: ['/learning'] },
             { name: 'Toolbox',        href: '/toolbox',                 prefixes: ['/toolbox'] },
-            { name: 'Studio',         href: '/studio',                  prefixes: ['/studio'] },
             { name: 'Free Resources', href: '/learning/free-resources', prefixes: [] as string[] },
           ].map((link) => (
             <Link
