@@ -148,6 +148,7 @@ export default function StudioPortfolioPage() {
               src="/portfolio/pmai-instagram.png"
               alt="Public Montessori in Action — Instagram"
               fill
+              unoptimized
               className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 bg-[#0e1a7a]/0 group-hover:bg-[#0e1a7a]/40 transition-colors duration-300 flex items-center justify-center">
