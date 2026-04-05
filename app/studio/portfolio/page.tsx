@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -42,6 +43,26 @@ export default function StudioPortfolioPage() {
               storytelling system for an education justice organization.
             </p>
           </div>
+          {/* Screenshot */}
+          <div className="relative w-full aspect-[16/7] overflow-hidden mb-10 group">
+            <Image
+              src="/portfolio/peace-rebellion.jpg"
+              alt="The Peace Rebellion website"
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-[#0e1a7a]/0 group-hover:bg-[#0e1a7a]/40 transition-colors duration-300 flex items-center justify-center">
+              <Link
+                href="https://www.thepeacerebellion.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-[#0e1a7a] text-xs tracking-[0.15em] uppercase font-medium px-6 py-3 hover:bg-[#d6a758] hover:text-white"
+              >
+                View the live site →
+              </Link>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white border border-[#E2DDD6] p-8">
               <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">
@@ -121,6 +142,26 @@ export default function StudioPortfolioPage() {
               library for a public Montessori advocacy organization.
             </p>
           </div>
+          {/* Screenshot */}
+          <div className="relative w-full aspect-[16/7] overflow-hidden mb-10 group">
+            <Image
+              src="/portfolio/pmai-instagram.png"
+              alt="Public Montessori in Action — Instagram"
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-[#0e1a7a]/0 group-hover:bg-[#0e1a7a]/40 transition-colors duration-300 flex items-center justify-center">
+              <Link
+                href="https://www.instagram.com/publicmontessoriinaction/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-[#0e1a7a] text-xs tracking-[0.15em] uppercase font-medium px-6 py-3 hover:bg-[#d6a758] hover:text-white"
+              >
+                View on Instagram →
+              </Link>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8">
               <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">

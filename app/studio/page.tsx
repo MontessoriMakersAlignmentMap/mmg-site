@@ -156,7 +156,7 @@ function StatItem({ value, label }: { value: string; label: string }) {
 
 // ── Portfolio card ─────────────────────────────────────────────────────────
 function PortfolioCard({
-  index, client, type, what, result, delay, image, imageAlt, href,
+  index, client, type, what, result, delay, href,
 }: {
   index: string
   client: string
@@ -164,8 +164,6 @@ function PortfolioCard({
   what: string[]
   result: string
   delay: number
-  image: string
-  imageAlt: string
   href: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -178,28 +176,6 @@ function PortfolioCard({
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className="border border-[#E2DDD6] overflow-hidden"
     >
-      {/* Screenshot mockup */}
-      <div className="relative w-full aspect-[16/7] overflow-hidden bg-[#0e1a7a] group">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-        />
-        {/* Subtle overlay with view link */}
-        <div className="absolute inset-0 bg-[#0e1a7a]/0 group-hover:bg-[#0e1a7a]/40 transition-colors duration-300 flex items-center justify-center">
-          <Link
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-[#0e1a7a] text-xs tracking-[0.15em] uppercase font-medium px-6 py-3 hover:bg-[#d6a758] hover:text-white transition-colors"
-          >
-            View the work →
-          </Link>
-        </div>
-      </div>
-
-      {/* Detail panel */}
       <div className="grid md:grid-cols-2 gap-0">
         <div className="bg-white p-8">
           <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-3">Case {index}</p>
@@ -678,8 +654,6 @@ export default function StudioPage() {
                 'Movement storytelling system for ongoing communication',
               ]}
               result="A visual and verbal identity that actually feels like the organization — not borrowed nonprofit aesthetics, not generic education design. Something The Peace Rebellion community can recognize and rally around."
-              image="/portfolio/peace-rebellion.jpg"
-              imageAlt="The Peace Rebellion website — Montessori as Movement"
               href="https://www.thepeacerebellion.org"
               delay={0}
             />
@@ -695,8 +669,6 @@ export default function StudioPage() {
                 'Ongoing production and posting across Instagram, Facebook, and LinkedIn',
               ]}
               result="Consistency became a function of infrastructure, not heroic effort. The PMAI team stopped starting from scratch every time they needed to post. The system made publishing the obvious next move."
-              image="/portfolio/pmai-instagram.png"
-              imageAlt="Public Montessori in Action — brand and social content system"
               href="https://www.instagram.com/publicmontessoriinaction/"
               delay={0.1}
             />
