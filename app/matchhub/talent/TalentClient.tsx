@@ -161,37 +161,120 @@ function TagPill({ label }: { label: string }) {
 
 // ─── Pro gate modal ───────────────────────────────────────────────────────────
 
+type ProGateView = 'upgrade' | 'verify'
+
 function ProGateModal({ onBack, onActivate }: { onBack: () => void; onActivate: () => void }) {
+  const [view, setView] = useState<ProGateView>('upgrade')
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'not-found' | 'error'>('idle')
+
+  async function handleVerify(e: React.FormEvent) {
+    e.preventDefault()
+    const trimmed = email.trim()
+    if (!trimmed) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/verify-pro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed }),
+      })
+      const data = await res.json()
+      if (data.isPro) {
+        onActivate()
+      } else {
+        setStatus('not-found')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[#0e1a7a]/80 backdrop-blur-sm" />
       <div className="relative bg-white max-w-md w-full p-10 shadow-2xl">
         <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-4">MatchHub Pro</p>
-        <h2 className="text-[#0e1a7a] text-2xl font-semibold mb-3 leading-snug" style={serif}>
-          Full profiles require MatchHub Pro.
-        </h2>
-        <p className="text-[#374151] text-sm leading-relaxed mb-2">
-          Pro unlocks complete profiles for every educator and leader in the pool — full summaries, experience detail, and direct introduction requests.
-        </p>
-        <p className="text-[#64748B] text-xs leading-relaxed mb-8">
-          $499/year. Includes unlimited job posts, auto featured placement, and social promotion on every role.
-        </p>
-        <div className="flex flex-col gap-3">
-          <a
-            href="https://buy.stripe.com/bJecN7ees8X61grc3T2cg0i"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
-          >
-            Upgrade to Pro — $499/year
-          </a>
-          <button onClick={onActivate} className="text-[#64748B] text-xs py-2 hover:text-[#0e1a7a] transition-colors">
-            I already have Pro — activate access
-          </button>
-          <button onClick={onBack} className="text-[#94A3B8] text-xs py-1 hover:text-[#374151] transition-colors">
-            ← Back to browsing
-          </button>
-        </div>
+
+        {view === 'upgrade' ? (
+          <>
+            <h2 className="text-[#0e1a7a] text-2xl font-semibold mb-3 leading-snug" style={serif}>
+              Full profiles require MatchHub Pro.
+            </h2>
+            <p className="text-[#374151] text-sm leading-relaxed mb-2">
+              Pro unlocks complete profiles for every educator and leader in the pool — full summaries, experience detail, and direct introduction requests.
+            </p>
+            <p className="text-[#64748B] text-xs leading-relaxed mb-8">
+              $499/year. Includes unlimited job posts, auto featured placement, and social promotion on every role.
+            </p>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://buy.stripe.com/bJecN7ees8X61grc3T2cg0i"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+              >
+                Upgrade to Pro — $499/year
+              </a>
+              <button
+                onClick={() => setView('verify')}
+                className="text-[#64748B] text-xs py-2 hover:text-[#0e1a7a] transition-colors"
+              >
+                I already have Pro — activate access
+              </button>
+              <button onClick={onBack} className="text-[#94A3B8] text-xs py-1 hover:text-[#374151] transition-colors">
+                ← Back to browsing
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="text-[#0e1a7a] text-2xl font-semibold mb-3 leading-snug" style={serif}>
+              Enter your Pro email.
+            </h2>
+            <p className="text-[#374151] text-sm leading-relaxed mb-6">
+              Enter the email address you used when you subscribed to MatchHub Pro.
+            </p>
+            <form onSubmit={handleVerify} className="flex flex-col gap-3">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={e => { setEmail(e.target.value); setStatus('idle') }}
+                placeholder="your@email.com"
+                className="w-full border border-[#E2DDD6] px-4 py-3 text-sm text-[#374151] focus:outline-none focus:border-[#0e1a7a] placeholder-[#94A3B8]"
+              />
+              {status === 'not-found' && (
+                <p className="text-red-600 text-xs leading-relaxed">
+                  No active Pro subscription found for that email. Check the address or{' '}
+                  <button
+                    type="button"
+                    onClick={() => setView('upgrade')}
+                    className="underline hover:no-underline"
+                  >
+                    upgrade to Pro
+                  </button>.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-600 text-xs">Something went wrong — please try again.</p>
+              )}
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#162270] transition-colors font-medium disabled:opacity-60"
+              >
+                {status === 'loading' ? 'Checking…' : 'Activate Pro Access'}
+              </button>
+            </form>
+            <button
+              onClick={() => { setView('upgrade'); setStatus('idle') }}
+              className="mt-4 text-[#94A3B8] text-xs py-1 hover:text-[#374151] transition-colors"
+            >
+              ← Back
+            </button>
+          </>
+        )}
       </div>
     </div>
   )

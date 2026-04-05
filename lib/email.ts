@@ -536,6 +536,115 @@ export async function sendContactFormEmail({
   })
 }
 
+// ─── MatchHub Pro welcome (HTML, goes to the new Pro subscriber) ──────────────
+
+export async function sendProWelcomeEmail({ to }: { to: string }): Promise<void> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://montessorimakersgroup.org'
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body style="margin:0;padding:0;background:#f8f7f4;font-family:Georgia,serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f7f4;padding:48px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid #e2ddd6;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:#0e1a7a;padding:32px 40px;">
+              <p style="margin:0;color:#d6a758;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:Arial,sans-serif;">
+                Montessori Makers MatchHub
+              </p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px 40px 32px;">
+              <p style="margin:0 0 8px;font-size:11px;color:#d6a758;letter-spacing:0.15em;text-transform:uppercase;font-family:Arial,sans-serif;">
+                Welcome to Pro
+              </p>
+              <h1 style="margin:0 0 28px;font-size:26px;color:#0e1a7a;line-height:1.2;font-family:Georgia,serif;">
+                You now have full access to the MatchHub talent pool.
+              </h1>
+              <p style="margin:0 0 20px;font-size:15px;color:#374151;line-height:1.6;font-family:Arial,sans-serif;">
+                Your MatchHub Pro subscription is active. You can now view complete profiles for every
+                Montessori educator and leader in the pool — full summaries, experience detail, and
+                introduction requests.
+              </p>
+              <p style="margin:0 0 32px;font-size:15px;color:#374151;line-height:1.6;font-family:Arial,sans-serif;">
+                To activate Pro access in your browser, visit the talent pool and enter your email
+                address in the Pro verification prompt.
+              </p>
+
+              <!-- CTA button -->
+              <table cellpadding="0" cellspacing="0" style="margin-bottom:36px;">
+                <tr>
+                  <td style="background:#d6a758;">
+                    <a href="${siteUrl}/matchhub/talent"
+                       style="display:inline-block;padding:14px 32px;font-size:13px;color:#ffffff;text-decoration:none;letter-spacing:0.08em;font-family:Arial,sans-serif;font-weight:600;">
+                      Browse the Talent Pool →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- What's included -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f7f4;padding:20px 24px;margin-bottom:32px;border:1px solid #e2ddd6;">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 12px;font-size:10px;color:#8a6014;letter-spacing:0.15em;text-transform:uppercase;font-family:Arial,sans-serif;">
+                      What's included with Pro
+                    </p>
+                    ${[
+                      'Full candidate profiles — complete summaries and experience detail',
+                      'Introduction requests for every educator in the pool',
+                      'Unlimited job posts on MatchHub',
+                      'Auto featured placement on every role',
+                      'Social promotion for each listing',
+                    ].map(item => `
+                    <p style="margin:0 0 8px;font-size:13px;color:#374151;font-family:Arial,sans-serif;line-height:1.5;">
+                      <span style="color:#d6a758;margin-right:8px;">—</span>${item}
+                    </p>`).join('')}
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0;font-size:14px;color:#374151;font-family:Arial,sans-serif;">
+                Questions? Reply to this email or reach out through the MatchHub contact page.
+              </p>
+              <p style="margin:8px 0 0;font-size:14px;color:#374151;font-family:Arial,sans-serif;">
+                — The MatchHub Team
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f8f7f4;border-top:1px solid #e2ddd6;padding:20px 40px;">
+              <p style="margin:0;font-size:11px;color:#94a3b8;font-family:Arial,sans-serif;line-height:1.5;">
+                Montessori Makers Group &nbsp;·&nbsp; montessorimakers.co<br />
+                You're receiving this because you subscribed to MatchHub Pro.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim()
+
+  await sendEmail({ to, subject: 'Welcome to MatchHub Pro — your access is active', html })
+}
+
 // ─── Field Intelligence / Field Pulse submission (plain text, to ADMIN_EMAIL) ──
 
 export async function sendFieldIntelligenceEmail({
