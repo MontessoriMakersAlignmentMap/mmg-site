@@ -695,7 +695,7 @@ export default function StudioPage() {
                 'Ongoing production and posting across Instagram, Facebook, and LinkedIn',
               ]}
               result="Consistency became a function of infrastructure, not heroic effort. The PMAI team stopped starting from scratch every time they needed to post. The system made publishing the obvious next move."
-              image="/portfolio/pmai-site.jpg"
+              image="/portfolio/pmai-instagram.jpg"
               imageAlt="Public Montessori in Action — brand and social content system"
               href="https://www.instagram.com/publicmontessoriinaction/"
               delay={0.1}
