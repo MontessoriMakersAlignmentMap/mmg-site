@@ -451,20 +451,44 @@ export default function StrategicSearchPage() {
       </section>
 
       {/* What Schools Say */}
-      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
+      <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10 border-t border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-10">What Schools Say</p>
-          <div className="bg-white border border-[#D4CEC6] p-8 md:p-12 max-w-3xl">
-            <p className="text-[#d6a758] text-4xl leading-none mb-6" aria-hidden="true">&ldquo;</p>
-            <p className="text-[#0e1a7a] text-xl md:text-2xl leading-[1.55] mb-8" style={serif}>
-              We had the pleasure of working with Hannah during a critical hiring phase, and her professionalism stood out from the very beginning. She navigated a complex search with care and clarity — combining professionalism with a personal touch.
+          <div className="max-w-2xl mb-14">
+            <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-5">What Schools Say</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>In their words.</h2>
+          </div>
+
+          {/* Featured — Rebecca Lingo */}
+          <div className="bg-white border border-[#D4CEC6] p-10 md:p-14 mb-8">
+            <p className="text-[#d6a758] text-5xl leading-none mb-6" aria-hidden="true">&ldquo;</p>
+            <p className="text-[#0e1a7a] text-xl md:text-2xl leading-[1.5] mb-5" style={serif}>
+              We are so glad to have found Hannah Richardson. Her Montessori knowledge and background, combined with the depth of analysis and thought process she walked us through, helped us identify exactly what to look for in a candidate who would truly fit our school.
+            </p>
+            <p className="text-[#374151] text-base leading-[1.85] mb-5">
+              She has resources and reach beyond what we had access to before, and she helped us define not just who we were looking for but how to think about hiring well. We will absolutely work with Montessori Makers again.
             </p>
             <div className="pt-6 border-t border-[#E2DDD6]">
-              <p className="text-[#374151] font-semibold text-sm">Alisa Anania</p>
-              <p className="text-[#64748B] text-sm mt-0.5">Head of School, The Tidewater School</p>
+              <p className="text-[#374151] font-semibold text-sm">Rebecca Lingo</p>
+              <p className="text-[#64748B] text-sm mt-0.5">Head of School, Wheaton Montessori School</p>
               <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
                 Strategic Search
               </span>
+            </div>
+          </div>
+
+          {/* Secondary — Alisa Anania */}
+          <div className="bg-white border border-[#D4CEC6] p-8 md:p-10">
+            <div className="max-w-3xl">
+              <p className="text-[#0e1a7a] text-lg md:text-xl leading-[1.6] mb-6" style={serif}>
+                &ldquo;We had the pleasure of working with Hannah during a critical hiring phase, and her professionalism stood out from the very beginning. She navigated a complex search with care and clarity — combining professionalism with a personal touch.&rdquo;
+              </p>
+              <div>
+                <p className="text-[#374151] font-semibold text-sm">Alisa Anania</p>
+                <p className="text-[#64748B] text-sm mt-0.5">Head of School, The Tidewater School</p>
+                <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                  Strategic Search
+                </span>
+              </div>
             </div>
           </div>
         </div>
