@@ -45,12 +45,12 @@ export function NewsletterSignup() {
             className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
             style={serif}
           >
-            A weekly essay for Montessori leaders and practitioners.
+            A weekly email for Montessori leaders and practitioners.
           </h2>
 
           {/* Subtext */}
           <p className="text-[#64748B] text-base md:text-lg leading-relaxed mb-3 max-w-prose mx-auto">
-            The Makers Network is a free Substack — one essay a week on leadership, organizational
+            The Makers Network is a free weekly email on leadership, organizational
             design, adult culture, and what it actually takes to run a Montessori school well.
           </p>
           <p className="text-[#64748B] text-sm leading-relaxed mb-10 max-w-prose mx-auto">
