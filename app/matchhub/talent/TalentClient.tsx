@@ -13,8 +13,8 @@ type ExperienceBucket = '0–2' | '3–5' | '6–10' | '10+'
 
 type Guide = {
   id: number
-  firstName: string
-  lastInitial: string
+  candidateId: string   // e.g. "Candidate 01 · UE · AZ"
+  candidateNum: string  // e.g. "01"
   roleSought: string
   credential: Credential
   levels: string[]
@@ -58,13 +58,57 @@ function expBucket(years: number): ExperienceBucket {
   return '10+'
 }
 
+// ─── Anonymous ID helpers ─────────────────────────────────────────────────────
+
+const ROLE_ABBR: Record<string, string> = {
+  'Head of School / Executive Director': 'HOS',
+  'Principal / Assistant Principal': 'PRIN',
+  'Assistant Head / Associate Director': 'AH',
+  'Program Director': 'PD',
+  'Coach': 'COACH',
+  'Primary Guide (3–6)': 'PRI',
+  'Elementary Guide (6–12)': 'EL',
+  'Infant & Toddler Guide (0–3)': 'I/T',
+  'Adolescent / Middle School Guide': 'ADO',
+  'Admissions & Enrollment': 'ADM',
+  'Administrative & Operations': 'OPS',
+  'Other': 'MMG',
+}
+
+const LEVEL_ABBR: Record<string, string> = {
+  'Infant/Toddler (0–3)': 'I/T',
+  'Primary (3–6)': 'PRI',
+  'Lower Elementary (6–9)': 'LE',
+  'Upper Elementary (9–12)': 'UE',
+  'Adolescent (12–15)': 'ADO',
+}
+
+function roleAbbr(roleType: string | null, levels: string[]): string {
+  if (roleType && ROLE_ABBR[roleType]) return ROLE_ABBR[roleType]
+  if (levels.length > 0 && LEVEL_ABBR[levels[0]]) return LEVEL_ABBR[levels[0]]
+  return 'MMG'
+}
+
+function stateAbbr(location: string): string {
+  const parts = location.split(',')
+  if (parts.length >= 2) {
+    const state = parts[parts.length - 1].trim()
+    if (state.length === 2) return state.toUpperCase()
+    if (state.length > 2) return state.slice(0, 2).toUpperCase()
+  }
+  return location.slice(0, 2).toUpperCase()
+}
+
 // ─── Map GuideProfile to Guide UI type ───────────────────────────────────────
 
-function mapProfile(guide: GuideProfile): Guide {
+function mapProfile(guide: GuideProfile, index: number): Guide {
+  const num = String(index + 1).padStart(2, '0')
+  const abbr = roleAbbr(guide.role_type ?? null, guide.levels)
+  const state = stateAbbr(guide.location)
   return {
     id: parseInt(guide.id.replace(/-/g, '').slice(0, 8), 16),
-    firstName: guide.first_name,
-    lastInitial: guide.last_initial,
+    candidateId: `Candidate ${num} · ${abbr} · ${state}`,
+    candidateNum: num,
     roleSought: guide.role_type || (guide.levels[0] ? `${guide.levels[0]} Guide` : 'Montessori Educator'),
     credential: (guide.credential as Credential) ?? 'Other',
     levels: guide.levels,
@@ -89,10 +133,10 @@ const credentialStyle: Record<string, { color: string; bg: string }> = {
 
 // ─── Initials avatar ──────────────────────────────────────────────────────────
 
-function Avatar({ name }: { name: string }) {
+function Avatar({ num }: { num: string }) {
   return (
     <div className="w-11 h-11 rounded-full bg-[#0e1a7a] flex items-center justify-center flex-shrink-0">
-      <span className="text-white text-xs font-semibold tracking-wide">{name[0].toUpperCase()}</span>
+      <span className="text-white text-[10px] font-semibold tracking-wide">{num}</span>
     </div>
   )
 }
@@ -164,10 +208,10 @@ function ProfileModal({ guide, onClose }: { guide: Guide; onClose: () => void })
         <div className="p-8 md:p-10">
           <button onClick={onClose} className="absolute top-5 right-5 text-[#94A3B8] hover:text-[#374151] transition-colors text-xl leading-none">×</button>
           <div className="flex items-start gap-5 mb-8">
-            <Avatar name={guide.firstName} />
+            <Avatar num={guide.candidateNum} />
             <div>
               <div className="flex items-center gap-3 flex-wrap mb-0.5">
-                <h2 className="text-[#0e1a7a] text-2xl font-semibold" style={serif}>{guide.firstName} {guide.lastInitial}.</h2>
+                <h2 className="text-[#0e1a7a] text-2xl font-semibold" style={serif}>{guide.candidateId}</h2>
                 <span className="text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1" style={cs}>{guide.credential}</span>
               </div>
               <p className="text-[#64748B] text-sm">{guide.roleSought}</p>
@@ -224,12 +268,12 @@ function GuideCard({ guide, isPro, onViewProfile }: { guide: Guide; isPro: boole
       {/* Always-visible teaser */}
       <div className="p-7 flex flex-col gap-4">
         <div className="flex items-start gap-4">
-          <Avatar name={guide.firstName} />
+          <Avatar num={guide.candidateNum} />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
-                  {guide.firstName} {guide.lastInitial}.
+                <h3 className="text-[#0e1a7a] font-semibold text-sm leading-snug tracking-wide" style={serif}>
+                  {guide.candidateId}
                 </h3>
                 <p className="text-[#64748B] text-xs mt-0.5">{guide.roleSought}</p>
               </div>
@@ -431,7 +475,7 @@ function EmptyState() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function TalentClient({ guides: rawGuides }: { guides: GuideProfile[] }) {
-  const guides: Guide[] = rawGuides.map(mapProfile)
+  const guides: Guide[] = rawGuides.map((g, i) => mapProfile(g, i))
 
   const [roleTypeFilter, setRoleTypeFilter] = useState('')
   const [levelFilter, setLevelFilter] = useState('')
