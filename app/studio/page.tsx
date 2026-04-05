@@ -454,45 +454,55 @@ export default function StudioPage() {
       </section>
 
       {/* ── THE PROCESS ───────────────────────────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
+      <section className="bg-[#0e1a7a] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+            <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
               How Studio Works
             </p>
             <h2
-              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-14 max-w-2xl"
+              className="text-3xl md:text-4xl text-white leading-tight mb-16 max-w-2xl"
               style={serif}
             >
               Every engagement follows the same discipline.
             </h2>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-10 md:gap-14">
-            <ProcessStep
-              num="Step 01"
-              label="Meaning"
-              desc="We begin by understanding what you actually stand for — not the language you've been using, but the truth underneath it. This is the excavation phase. It is careful, slow, and essential."
-              delay={0}
-            />
-            <div className="hidden md:flex items-start justify-center pt-16 text-[#D4CEC6] text-2xl">→</div>
-            <ProcessStep
-              num="Step 02"
-              label="Structure"
-              desc="Meaning without structure doesn't communicate. We design the architecture — what gets said first, what gets said next, what carries the weight, what can wait. Most organizations skip this. It shows."
-              delay={0.1}
-            />
-            <div className="hidden md:flex items-start justify-center pt-16 text-[#D4CEC6] text-2xl col-start-2 row-start-2 md:hidden">→</div>
-            <ProcessStep
-              num="Step 03"
-              label="Expression"
-              desc="With meaning and structure in place, expression — the words, visuals, and systems — has something to rest on. This is where the deliverables are built. But they work because the foundation is solid."
-              delay={0.2}
-            />
+
+          <div className="grid md:grid-cols-3 border border-white/10">
+            {[
+              {
+                num: '01',
+                label: 'Meaning',
+                desc: "We begin by understanding what you actually stand for — not the language you've been using, but the truth underneath it. This is the excavation phase. It is careful, slow, and essential.",
+                delay: 0,
+              },
+              {
+                num: '02',
+                label: 'Structure',
+                desc: "Meaning without structure doesn't communicate. We design the architecture — what gets said first, what gets said next, what carries the weight, what can wait. Most organizations skip this. It shows.",
+                delay: 0.1,
+              },
+              {
+                num: '03',
+                label: 'Expression',
+                desc: "With meaning and structure in place, expression — the words, visuals, and systems — has something to rest on. This is where the deliverables are built. But they work because the foundation is solid.",
+                delay: 0.2,
+              },
+            ].map((step, i) => (
+              <FadeIn key={step.num} delay={step.delay}>
+                <div className={`p-10 md:p-12 h-full ${i < 2 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}>
+                  <p className="text-[#d6a758] text-5xl font-light mb-8 leading-none" style={serif}>{step.num}</p>
+                  <h3 className="text-white text-2xl md:text-3xl mb-5 leading-tight" style={serif}>{step.label}</h3>
+                  <p className="text-white/55 text-sm md:text-base leading-relaxed">{step.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
           </div>
-          <FadeIn delay={0.3} className="mt-12">
+
+          <FadeIn delay={0.3} className="mt-10">
             <Link
               href="/studio/approach"
-              className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide"
+              className="text-white/50 text-sm font-medium hover:text-white transition-colors tracking-wide"
             >
               Read more about our approach →
             </Link>
