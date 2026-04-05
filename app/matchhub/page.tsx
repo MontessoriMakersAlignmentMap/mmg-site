@@ -145,7 +145,7 @@ export default function MatchHubPage() {
           <div className="max-w-2xl mb-16">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Service Tiers</p>
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              Three ways to hire well.
+              Four ways to hire well.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
               From self-serve posting to a fully-supported leadership search. Choose the
