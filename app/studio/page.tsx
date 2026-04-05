@@ -370,7 +370,7 @@ export default function StudioPage() {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="hidden md:flex items-start justify-end flex-shrink-0 pt-4"
             >
-              <Logo name="studio" heroWidth={480} heroHeight={140} />
+              <Logo name="studio" heroWidth={600} heroHeight={175} />
             </motion.div>
           </div>
           <Marquee />
