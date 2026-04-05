@@ -662,11 +662,11 @@ export default function StudioPage() {
               client="Public Montessori in Action"
               type="Instagram · Facebook · LinkedIn — design, produce &amp; post"
               what={[
-                'Social storytelling strategy — what stories to tell, in what order, toward what purpose',
-                'Voice system — the specific language, tone, and framing that is distinctly PMAI',
-                'Reusable visual template library for consistent social presence',
-                'Content categories, posting framework, and editorial calendar',
-                'Ongoing production and posting across Instagram, Facebook, and LinkedIn',
+                'Ongoing content creation — writing, designing, and producing every post',
+                'Publishing across Instagram, Facebook, and LinkedIn',
+                'Visual template library — built and used by Studio, not handed off',
+                'Voice and messaging — language, tone, and framing that is distinctly PMAI',
+                'Social storytelling strategy and editorial calendar',
               ]}
               result="Consistency became a function of infrastructure, not heroic effort. The PMAI team stopped starting from scratch every time they needed to post. The system made publishing the obvious next move."
               href="https://www.instagram.com/publicmontessoriinaction/"

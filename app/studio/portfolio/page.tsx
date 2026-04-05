@@ -187,12 +187,12 @@ export default function StudioPortfolioPage() {
               </p>
               <ul className="space-y-3">
                 {[
+                  'Ongoing content creation — writing, designing, and producing every post',
+                  'Publishing across Instagram, Facebook, and LinkedIn',
+                  'Visual template library — built and used by Studio, not handed off',
+                  'Voice and messaging — language, tone, and framing that is distinctly PMAI',
                   'Social storytelling strategy — what stories to tell, in what order, toward what purpose',
-                  'Voice system — the specific language, tone, and framing that is distinctly PMAI',
-                  'Reusable visual template library',
-                  'Content categories and posting framework',
-                  'Editorial calendar and planning system',
-                  'Handoff guide for team use',
+                  'Editorial calendar and content planning',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
