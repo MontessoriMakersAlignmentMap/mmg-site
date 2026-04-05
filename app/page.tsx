@@ -603,6 +603,30 @@ function Founder() {
 
 const PRESS = [
   {
+    org: 'AMI',
+    full: 'Association Montessori Internationale',
+    role: 'Conference Presenter',
+    context: 'Featured presenter on Montessori leadership and organizational alignment.',
+  },
+  {
+    org: 'Asia Montessori Conference',
+    full: 'Hanoi, Vietnam',
+    role: 'Invited Presenter',
+    context: 'International keynote on Montessori systems thinking and school leadership.',
+  },
+  {
+    org: 'Breaking the Paradigm',
+    full: 'Podcast · January 2026',
+    role: 'Featured Guest',
+    context: 'Co-founder of The Peace Rebellion in conversation on justice, Montessori, and structural change.',
+  },
+  {
+    org: 'PMAI',
+    full: 'Public Montessori in Action International · Podcast',
+    role: 'Recurring Guest',
+    context: 'Multiple episodes on school reopening strategies, adult culture, Montessori leadership, and the Decodable Book Series.',
+  },
+  {
     org: 'Black Montessori Conference',
     full: 'Black Montessori Education Fund',
     role: 'Conference Presenter',
@@ -619,12 +643,6 @@ const PRESS = [
     full: 'United States Montessori Institute',
     role: 'Conference Presenter',
     context: 'Liberation Through Literacy: Reading in Montessori.',
-  },
-  {
-    org: 'PMAI',
-    full: 'Public Montessori in Action International · Podcast',
-    role: 'Recurring Guest',
-    context: 'Multiple episodes on school reopening strategies, adult culture, Montessori leadership, and the Decodable Book Series.',
   },
 ]
 
