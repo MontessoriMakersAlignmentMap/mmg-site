@@ -766,7 +766,7 @@ export default function AdminPage() {
           {([
             { key: 'courses', label: 'Courses', count: COURSES.length },
             { key: 'jobs',    label: 'MatchHub Jobs', count: jobs.length, badge: pendingJobs },
-            { key: 'profiles', label: 'Guide Profiles', count: profiles.length, badge: pendingProfiles },
+            { key: 'profiles', label: 'Educator Profiles', count: profiles.length, badge: pendingProfiles },
             { key: 'searches', label: 'Current Searches', count: searches.length },
             { key: 'talent', label: 'Talent Pool', count: talentProfiles.length },
             { key: 'partners', label: 'Partners', count: partners.length },
