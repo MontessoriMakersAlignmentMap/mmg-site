@@ -603,22 +603,22 @@ function Founder() {
 
 const PRESS = [
   {
-    org: 'AMI',
-    full: 'Association Montessori Internationale',
+    org: 'Black Montessori Conference',
+    full: 'Black Montessori Education Fund',
     role: 'Conference Presenter',
-    context: 'Featured presenter on Montessori leadership and organizational alignment.',
+    context: 'Keynote on building organizational trust in Montessori schools.',
   },
   {
-    org: 'Asia Montessori Conference',
-    full: 'Hanoi, Vietnam',
-    role: 'Invited Presenter',
-    context: 'International keynote on Montessori systems thinking and school leadership.',
+    org: 'CCSD Keynote',
+    full: 'Charleston County School District · South Carolina',
+    role: 'District Keynote',
+    context: 'Keynote address to district leadership and school staff.',
   },
   {
-    org: 'Breaking the Paradigm',
-    full: 'Podcast · January 2026',
-    role: 'Featured Guest',
-    context: 'Co-founder of The Peace Rebellion in conversation on justice, Montessori, and structural change.',
+    org: 'USMI',
+    full: 'United States Montessori Institute',
+    role: 'Conference Presenter',
+    context: 'Liberation Through Literacy: Reading in Montessori.',
   },
   {
     org: 'PMAI',
