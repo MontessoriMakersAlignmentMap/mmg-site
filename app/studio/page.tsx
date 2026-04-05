@@ -338,7 +338,7 @@ export default function StudioPage() {
                 transition={{ duration: 0.5, delay: 0.34 }}
                 className="text-[#7A8FA3] text-base leading-relaxed mb-12 max-w-lg"
               >
-                Most Montessori work is extraordinary. It just isn&rsquo;t always visible.
+                For Montessori schools, organizations, and leaders doing serious work that isn&rsquo;t yet visible at the scale it deserves.
                 Studio closes the gap between what you stand for and how it lands.
               </motion.p>
               <motion.div
@@ -410,7 +410,7 @@ export default function StudioPage() {
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
               style={serif}
             >
-              Most Montessori schools don&rsquo;t have a marketing problem. They have a translation problem.
+              Most Montessori schools and organizations don&rsquo;t have a marketing problem. They have a translation problem.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
               The work is extraordinary. The story isn&rsquo;t reaching anyone.
@@ -439,13 +439,13 @@ export default function StudioPage() {
               </p>
               <div className="space-y-4">
                 {[
-                  'You describe your school differently every time someone asks.',
-                  'Families visit your site and don\'t feel what they\'d find in your classrooms.',
+                  'You describe your work differently every time someone asks.',
+                  'People encounter you online and don\'t feel what they\'d find if they walked through your door.',
                   'You have strong outcomes but struggle to communicate them clearly.',
                   'Visual and messaging decisions get made by committee, slowly, and inconsistently.',
-                  'Families ask questions your enrollment materials should already answer.',
-                  'Your online presence looks like every other Montessori school.',
-                  'New staff describe the school differently than veterans do.',
+                  'Your audience asks questions your materials should already answer.',
+                  'Your online presence looks like every other Montessori school or organization in the sector.',
+                  'New team members describe the work differently than veterans do.',
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
@@ -543,8 +543,8 @@ export default function StudioPage() {
               number="01"
               name="Communication Audit & Clarity Map"
               tagline="Entry point"
-              desc="A structured audit of your messaging, website, enrollment communication, and public presence. The result is a clear picture of where understanding breaks down — and a map of what to build next."
-              forWho="You know something is off but can't quite name it. You want a clear picture before committing to a larger engagement. This is the right first step."
+              desc="A structured audit of your messaging, website, public communication, and digital presence. The result is a clear picture of where understanding breaks down — and a map of what to build next."
+              forWho="You know something is off but can't quite name it. You want a clear picture before committing to a larger engagement. Works for schools, organizations, and individual leaders alike."
               price={PRICING.clarityAudit}
               href="/studio/services#clarity-audit"
               delay={0}
@@ -553,8 +553,8 @@ export default function StudioPage() {
               number="02"
               name="Communication Architecture"
               tagline="Flagship engagement"
-              desc="A narrative system your whole organization can use — voice and tone, messaging hierarchy, enrollment clarity, and the structural design of how your story moves through the world."
-              forWho="You're ready to invest in getting this right. You want a system your whole team can use — not a one-time deliverable that collects dust. This is the full build."
+              desc="A narrative system your whole organization can use — voice and tone, messaging hierarchy, audience clarity, and the structural design of how your story moves through the world."
+              forWho="You're ready to invest in getting this right. You want a system your whole team can use — not a one-time deliverable that collects dust. For schools, organizations, and movements."
               price={PRICING.commArchitecture}
               href="/studio/services#communication-architecture"
               highlight
@@ -564,8 +564,8 @@ export default function StudioPage() {
               number="03"
               name="Leadership Voice & Visibility"
               tagline="For leaders with ideas worth sharing"
-              desc="Editorial infrastructure for school leaders building authority. Newsletter, LinkedIn, podcast positioning — a publishing system that makes consistency the default, not the exception."
-              forWho="You're a leader with ideas worth sharing who hasn't built the infrastructure to share them reliably. You want to publish — and to have a system that makes it sustainable."
+              desc="Editorial infrastructure for Montessori leaders and organization directors building authority. Newsletter, LinkedIn, podcast positioning — a publishing system that makes consistency the default, not the exception."
+              forWho="You're a school or organization leader with ideas worth sharing who hasn't built the infrastructure to share them reliably. You want to publish — and to have a system that makes it sustainable."
               price={PRICING.leadershipVoice}
               href="/studio/services#leadership-voice"
               delay={0.2}
@@ -692,9 +692,9 @@ export default function StudioPage() {
               will produce something genuinely worth producing.
             </p>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
-              The ideal next client: a Montessori school or education-adjacent organization
-              doing serious work that isn&rsquo;t yet visible at the scale it deserves.
-              A leader with a distinctive voice who hasn&rsquo;t found the system to make it consistent.
+              The ideal next client: a Montessori school, a national Montessori organization,
+              or a leader doing serious work that isn&rsquo;t yet visible at the scale it deserves.
+              A person with a distinctive voice who hasn&rsquo;t found the system to make it consistent.
               An organization that knows something is off but can&rsquo;t quite name what.
             </p>
             <Link
@@ -712,7 +712,7 @@ export default function StudioPage() {
               <div className="space-y-0">
                 {[
                   'You\'re doing Montessori work the broader world doesn\'t yet understand',
-                  'Your mission is clear to you but not to families encountering you for the first time',
+                  'Your mission is clear to you but not to the communities and audiences you\u2019re trying to reach',
                   'You\'re ready to invest in getting communication right — not just adequate',
                   'You want a collaborative process, not a vendor relationship',
                   'You can articulate what\'s not working, even if you can\'t yet say why',
