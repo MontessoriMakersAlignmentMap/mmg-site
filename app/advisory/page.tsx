@@ -487,21 +487,6 @@ export default function AdvisoryPage() {
             </div>
           </div>
 
-          {/* Secondary testimonial — Alisa Anania */}
-          <div className="bg-white border border-[#D4CEC6] p-8 md:p-10">
-            <div className="max-w-3xl">
-              <p className="text-[#0e1a7a] text-lg md:text-xl leading-[1.6] mb-6" style={serif}>
-                &ldquo;We had the pleasure of working with Hannah during a critical hiring phase, and her professionalism stood out from the very beginning. She navigated a complex search with care and clarity — combining professionalism with a personal touch.&rdquo;
-              </p>
-              <div>
-                <p className="text-[#374151] font-semibold text-sm">Alisa Anania</p>
-                <p className="text-[#64748B] text-sm mt-0.5">Head of School, The Tidewater School</p>
-                <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
-                  Strategic Search
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

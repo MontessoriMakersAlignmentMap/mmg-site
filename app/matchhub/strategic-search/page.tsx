@@ -450,6 +450,26 @@ export default function StrategicSearchPage() {
         </div>
       </section>
 
+      {/* What Schools Say */}
+      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-10">What Schools Say</p>
+          <div className="bg-white border border-[#D4CEC6] p-8 md:p-12 max-w-3xl">
+            <p className="text-[#d6a758] text-4xl leading-none mb-6" aria-hidden="true">&ldquo;</p>
+            <p className="text-[#0e1a7a] text-xl md:text-2xl leading-[1.55] mb-8" style={serif}>
+              We had the pleasure of working with Hannah during a critical hiring phase, and her professionalism stood out from the very beginning. She navigated a complex search with care and clarity — combining professionalism with a personal touch.
+            </p>
+            <div className="pt-6 border-t border-[#E2DDD6]">
+              <p className="text-[#374151] font-semibold text-sm">Alisa Anania</p>
+              <p className="text-[#64748B] text-sm mt-0.5">Head of School, The Tidewater School</p>
+              <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                Strategic Search
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-[#FAF9F7] py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
