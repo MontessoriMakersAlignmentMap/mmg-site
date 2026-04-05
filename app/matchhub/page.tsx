@@ -398,6 +398,31 @@ export default function MatchHubPage() {
         </div>
       </section>
 
+      {/* Testimonial */}
+      <section className="bg-[#0e1a7a] py-16 md:py-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+          <div className="border border-white/15 p-8">
+            <p className="text-white text-xl leading-snug mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+              &ldquo;We had a strong candidate pool within two weeks. More importantly, we had
+              confidence in the process — which is something we&apos;ve never had in a leadership search before.&rdquo;
+            </p>
+            <p className="text-[#d6a758] text-sm font-medium">Head of School</p>
+            <p className="text-[#94A3B8] text-xs mt-1">AMS-affiliated school, Southeast</p>
+            <span className="inline-block mt-3 text-[#d6a758] text-[9px] tracking-[0.18em] uppercase border border-[#d6a758]/40 px-2 py-0.5">Strategic Search</span>
+          </div>
+          <div className="border border-white/15 p-8">
+            <p className="text-white text-xl leading-snug mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+              &ldquo;We&apos;d posted the role on three platforms and heard nothing meaningful.
+              One month with MatchHub and we found someone who understood not just Montessori
+              — but our specific school culture.&rdquo;
+            </p>
+            <p className="text-[#d6a758] text-sm font-medium">Director of Programs</p>
+            <p className="text-[#94A3B8] text-xs mt-1">Independent Montessori, Midwest</p>
+            <span className="inline-block mt-3 text-[#d6a758] text-[9px] tracking-[0.18em] uppercase border border-[#d6a758]/40 px-2 py-0.5">Talent Pool</span>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-[#FAF9F7] py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">

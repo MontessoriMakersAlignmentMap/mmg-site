@@ -412,6 +412,48 @@ export default function ToolboxPage() {
         </div>
       </section>
 
+      {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
+      <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-10">What leaders say</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: 'The Adult Culture Framework gave us a shared language we\'d been missing for years. It didn\'t just name the problems — it gave us a way to actually address them.',
+                name: 'Head of School',
+                school: 'Independent Montessori, Northeast',
+                tool: 'Adult Culture Framework',
+              },
+              {
+                quote: 'I used the Leadership Operations Playbook during our transition and it saved us. Months of institutional knowledge that would have walked out the door got documented in two weeks.',
+                name: 'Outgoing Director',
+                school: 'AMI school, Pacific Northwest',
+                tool: 'Leadership Operations Playbook',
+              },
+              {
+                quote: 'We\'d had two difficult separations in the past year and no consistent process for either. The Performance & Separation Toolkit changed how we handle this work — more fairly and with more clarity.',
+                name: 'Program Director',
+                school: 'Charter Montessori, Southwest',
+                tool: 'Performance & Separation Toolkit',
+              },
+            ].map((t, i) => (
+              <div key={i} className="bg-white border border-[#E2DDD6] p-8 flex flex-col">
+                <p className="text-[#0e1a7a] text-base leading-snug mb-6 flex-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div>
+                  <p className="text-[#374151] font-medium text-sm">{t.name}</p>
+                  <p className="text-[#64748B] text-sm mt-0.5">{t.school}</p>
+                  <span className="inline-block mt-2 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                    {t.tool}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── 5. ECOSYSTEM CONNECTION ──────────────────────────────────────── */}
       <section className="bg-[#0e1a7a] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">

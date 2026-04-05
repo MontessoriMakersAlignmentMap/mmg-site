@@ -46,6 +46,22 @@ const TESTIMONIALS = [
     school: '',
     service: 'Professional Development',
   },
+  {
+    quote:
+      'We came in thinking we had a communication problem. We left knowing it was a systems problem — and for the first time, we had a real plan for it.',
+    name: 'Head of School',
+    role: 'Independent Montessori, Mid-Atlantic',
+    school: '',
+    service: 'Advisory',
+  },
+  {
+    quote:
+      'I left the intensive with a framework I could actually use Monday morning. That almost never happens with leadership development.',
+    name: 'School Director',
+    role: 'Public Montessori, Midwest',
+    school: '',
+    service: 'Leadership Intensive',
+  },
 ]
 
 export function Testimonials() {

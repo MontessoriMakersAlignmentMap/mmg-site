@@ -642,7 +642,7 @@ export default function MMAPPage() {
                   />
                   <span className="relative w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
                 </span>
-                <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
+                <span className="text-white text-xs tracking-[0.15em] uppercase">Founding School Cohort &mdash; Limited Spots Available</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.18}>

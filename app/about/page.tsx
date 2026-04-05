@@ -75,7 +75,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div className="rounded-sm overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.10)] w-full md:max-w-md md:sticky md:top-32">
             <Image
-              src="/images/hannah-about.jpg"
+              src="/images/hannah.jpg"
               alt="Hannah Richardson, Founder of Montessori Makers Group"
               width={560}
               height={700}

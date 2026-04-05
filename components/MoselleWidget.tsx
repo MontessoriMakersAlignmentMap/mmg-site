@@ -9,7 +9,7 @@ type Message = {
   content: string
 }
 
-const GREETING = "Hi, I'm Moselle — I can help you find what you're looking for. Are you a school leader, an educator, or exploring on behalf of a school?"
+const GREETING = "Welcome. I'm Moselle, your guide to the Montessori Makers ecosystem. Are you a school leader looking for support, an educator exploring opportunities, or somewhere else entirely?"
 
 // Gold 3D cube avatar
 function MoselleAvatar({ size = 40 }: { size?: number }) {

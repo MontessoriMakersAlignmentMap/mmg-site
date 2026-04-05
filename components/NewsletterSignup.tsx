@@ -45,13 +45,17 @@ export function NewsletterSignup() {
             className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
             style={serif}
           >
-            Join the Makers Network
+            A weekly essay for Montessori leaders and practitioners.
           </h2>
 
           {/* Subtext */}
-          <p className="text-[#64748B] text-base md:text-lg leading-relaxed mb-10 max-w-prose mx-auto">
-            Get clear, grounded insight into what&apos;s actually happening in Montessori
-            schools&mdash;leadership, systems, and strategy. No noise. Just what matters.
+          <p className="text-[#64748B] text-base md:text-lg leading-relaxed mb-3 max-w-prose mx-auto">
+            The Makers Network is a free Substack — one essay a week on leadership, organizational
+            design, adult culture, and what it actually takes to run a Montessori school well.
+          </p>
+          <p className="text-[#64748B] text-sm leading-relaxed mb-10 max-w-prose mx-auto">
+            New tools, ecosystem updates, and thinking that doesn&apos;t fit anywhere else. No noise.
+            Just what matters to people doing this work.
           </p>
 
           {/* Kit embed — script injected here by useEffect */}

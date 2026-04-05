@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
@@ -16,20 +16,32 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 function Counter({ to, suffix = '', duration = 1800 }: { to: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true })
   const [count, setCount] = useState(0)
+  const animated = useRef(false)
   useEffect(() => {
-    if (!inView) return
-    const start = performance.now()
-    function tick(now: number) {
-      const elapsed = now - start
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * to))
-      if (progress < 1) requestAnimationFrame(tick)
+    const el = ref.current
+    if (!el || to === 0) return
+    function run() {
+      if (animated.current) return
+      animated.current = true
+      const start = performance.now()
+      function tick(now: number) {
+        const elapsed = now - start
+        const progress = Math.min(elapsed / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setCount(Math.round(eased * to))
+        if (progress < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
     }
-    requestAnimationFrame(tick)
-  }, [inView, to, duration])
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) { run(); return }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { observer.disconnect(); run() }
+    }, { threshold: 0.1 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [to, duration])
   return <span ref={ref}>{count}{suffix}</span>
 }
 

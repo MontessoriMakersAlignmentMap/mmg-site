@@ -435,6 +435,45 @@ export default function AdvisoryPage() {
         </div>
       </section>
 
+      {/* ─── Testimonial ──────────────────────────────────────────────────── */}
+      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+          {[
+            {
+              quote: 'We came in thinking we had a hiring problem. We left knowing we had a culture problem — and for the first time, we had a plan for it.',
+              name: 'Head of School',
+              school: 'Independent Montessori, Mid-Atlantic',
+              service: 'Montessori Mapping',
+            },
+            {
+              quote: 'This work helped me stop managing and start leading. The difference sounds small. It isn\'t.',
+              name: 'School Director',
+              school: 'Public Montessori, Midwest',
+              service: 'Leadership Coaching',
+            },
+            {
+              quote: 'We\'ve been through two leadership transitions in four years. Having a real succession plan — not just a hope — changed everything about how we approached the search.',
+              name: 'Board Chair',
+              school: 'AMI-credentialed school, Pacific Northwest',
+              service: 'Leadership Transition Support',
+            },
+          ].map((t, i) => (
+            <div key={i} className="bg-white border border-[#D4CEC6] p-8 flex flex-col">
+              <p className="text-[#0e1a7a] text-lg leading-snug mb-6 flex-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div>
+                <p className="text-[#374151] font-medium text-sm">{t.name}</p>
+                <p className="text-[#64748B] text-sm mt-0.5">{t.school}</p>
+                <span className="inline-block mt-2 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                  {t.service}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ─── CTA ──────────────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
