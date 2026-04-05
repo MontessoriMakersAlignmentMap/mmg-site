@@ -7,7 +7,23 @@ import type { GuideProfileInsert } from '@/lib/types/matchhub'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const trainingOptions = ['AMI', 'AMS', 'Other']
+const trainingTypeOptions = ['AMI', 'AMS', 'MACTE', 'Other']
+
+const roleTypeOptions = [
+  'Head of School / Executive Director',
+  'Principal / Assistant Principal',
+  'Assistant Head / Associate Director',
+  'Program Director',
+  'Coach',
+  'Primary Guide (3–6)',
+  'Elementary Guide (6–12)',
+  'Infant & Toddler Guide (0–3)',
+  'Adolescent / Middle School Guide',
+  'Admissions & Enrollment',
+  'Administrative & Operations',
+  'Other',
+]
+
 const ageLevelOptions = [
   'Infant/Toddler (0–3)',
   'Primary (3–6)',
@@ -36,6 +52,8 @@ export default function SubmitProfilePage() {
   const [form, setForm] = useState({
     full_name: '',
     email: '',
+    role_type: '',
+    is_trained: '',       // 'yes' | 'no'
     credential: '',
     location: '',
     years_experience: '',
@@ -96,10 +114,6 @@ export default function SubmitProfilePage() {
     e.preventDefault()
     setError(null)
 
-    if (selectedLevels.length === 0) {
-      setError('Please select at least one age level.')
-      return
-    }
     if (!resumeFile) {
       setError('A PDF resume is required.')
       return
@@ -152,6 +166,7 @@ export default function SubmitProfilePage() {
       first_name,
       last_initial,
       email:            form.email,
+      role_type:        form.role_type || null,
       credential:       form.credential,
       location:         form.location,
       years_experience: parseInt(form.years_experience, 10) || 0,
@@ -217,12 +232,12 @@ export default function SubmitProfilePage() {
     <>
       <section className="bg-[#0e1a7a] pt-32 pb-20 md:pt-40 md:pb-24 px-6 md:px-10">
         <div className="max-w-3xl mx-auto">
-          <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">For Guides</p>
+          <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">Find Your School — Submit a Profile</p>
           <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-6" style={serif}>
             Submit your profile.
           </h1>
           <p className="text-[#94A3B8] text-lg leading-relaxed max-w-2xl">
-            Get in front of Montessori schools looking for trained, aligned guides. Profiles are reviewed before being added to the pool.
+            Whether you&rsquo;re a classroom educator, a school leader, a coach, or in operations — get in front of Montessori schools looking for aligned people. Profiles are reviewed before being added to the pool.
           </p>
         </div>
       </section>
@@ -251,21 +266,46 @@ export default function SubmitProfilePage() {
               </div>
             </div>
 
-            {/* Training + Location */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className={labelClass}>Montessori Training</label>
+            {/* Role Type */}
+            <div>
+              <label className={labelClass}>Role Type</label>
+              <select required className="w-full border border-[#E2DDD6] px-4 py-3 text-sm text-[#374151] focus:outline-none focus:border-[#0e1a7a] transition-colors bg-white appearance-none"
+                value={form.role_type} onChange={e => set('role_type', e.target.value)}>
+                <option value="">Select the role you&apos;re seeking</option>
+                {roleTypeOptions.map(r => <option key={r} value={r}>{r}</option>)}
+              </select>
+            </div>
+
+            {/* Training */}
+            <div>
+              <label className={labelClass}>Montessori Training</label>
+              <div className="flex gap-6 pt-1 mb-4">
+                {['Yes', 'No'].map(opt => (
+                  <label key={opt} className="flex items-center gap-2 text-sm text-[#374151] cursor-pointer">
+                    <input type="radio" name="is_trained" value={opt.toLowerCase()} required className="accent-[#0e1a7a]"
+                      checked={form.is_trained === opt.toLowerCase()}
+                      onChange={() => {
+                        set('is_trained', opt.toLowerCase())
+                        if (opt === 'No') set('credential', '')
+                      }} />
+                    {opt}
+                  </label>
+                ))}
+              </div>
+              {form.is_trained === 'yes' && (
                 <select required className="w-full border border-[#E2DDD6] px-4 py-3 text-sm text-[#374151] focus:outline-none focus:border-[#0e1a7a] transition-colors bg-white appearance-none"
                   value={form.credential} onChange={e => set('credential', e.target.value)}>
-                  <option value="">Select training</option>
-                  {trainingOptions.map(t => <option key={t} value={t}>{t}</option>)}
+                  <option value="">Select training type</option>
+                  {trainingTypeOptions.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
-              </div>
-              <div>
-                <label className={labelClass}>Location</label>
-                <input type="text" required placeholder="City, State" className={inputClass}
-                  value={form.location} onChange={e => set('location', e.target.value)} />
-              </div>
+              )}
+            </div>
+
+            {/* Location */}
+            <div>
+              <label className={labelClass}>Location</label>
+              <input type="text" required placeholder="City, State" className={inputClass}
+                value={form.location} onChange={e => set('location', e.target.value)} />
             </div>
 
             {/* Experience + Relocation */}
@@ -292,7 +332,9 @@ export default function SubmitProfilePage() {
 
             {/* Age levels */}
             <div>
-              <label className={labelClass}>Age Level(s)</label>
+              <label className={labelClass}>
+                Age Level(s) <span className="text-[#94A3B8] font-normal">(if applicable)</span>
+              </label>
               <div className="flex flex-wrap gap-3">
                 {ageLevelOptions.map(level => {
                   const active = selectedLevels.includes(level)
@@ -309,9 +351,7 @@ export default function SubmitProfilePage() {
                   )
                 })}
               </div>
-              {selectedLevels.length === 0 && (
-                <p className="text-[#94A3B8] text-xs mt-2">Select all that apply.</p>
-              )}
+              <p className="text-[#94A3B8] text-xs mt-2">Select all that apply. Leave blank if your role is not classroom-based.</p>
             </div>
 
             {/* Bio */}

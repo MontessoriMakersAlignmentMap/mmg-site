@@ -34,6 +34,7 @@ export type GuideProfile = {
   email: string
   location: string
   open_to_relocate: string
+  role_type: string | null
   levels: string[]
   credential: string
   years_experience: number

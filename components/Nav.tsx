@@ -47,8 +47,8 @@ const matchhubSections = [
     label: 'Open Roles',
     links: [
       { name: 'Browse Open Roles', href: '/matchhub/open-roles', tagline: 'School openings' },
-      { name: 'For Guides', href: '/matchhub/guides', tagline: 'How MatchHub works for you' },
-      { name: 'Submit a Profile', href: '/matchhub/submit-profile', tagline: 'Free guide profiles' },
+      { name: 'Find Your School', href: '/matchhub/guides', tagline: 'For educators & leaders' },
+      { name: 'Submit a Profile', href: '/matchhub/submit-profile', tagline: 'Free — all roles welcome' },
     ],
   },
   {

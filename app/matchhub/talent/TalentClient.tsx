@@ -34,6 +34,20 @@ const LEVELS = ['Infant', 'Toddler', 'Primary', 'Lower Elementary', 'Upper Eleme
 const REGIONS = ['Northeast', 'Southeast', 'Midwest', 'Mountain West', 'Southwest', 'Pacific Northwest']
 const CREDENTIALS: Credential[] = ['AMI', 'AMS', 'MACTE', 'Other']
 const EXP_BUCKETS: ExperienceBucket[] = ['0–2', '3–5', '6–10', '10+']
+const ROLE_TYPES = [
+  'Head of School / Executive Director',
+  'Principal / Assistant Principal',
+  'Assistant Head / Associate Director',
+  'Program Director',
+  'Coach',
+  'Primary Guide (3–6)',
+  'Elementary Guide (6–12)',
+  'Infant & Toddler Guide (0–3)',
+  'Adolescent / Middle School Guide',
+  'Admissions & Enrollment',
+  'Administrative & Operations',
+  'Other',
+]
 
 const ONBOARDING_LOCATIONS = ['Chicago, IL', 'Atlanta, GA', 'St. Louis, MO', 'Remote / Relocation-ready']
 
@@ -51,7 +65,7 @@ function mapProfile(guide: GuideProfile): Guide {
     id: parseInt(guide.id.replace(/-/g, '').slice(0, 8), 16),
     firstName: guide.first_name,
     lastInitial: guide.last_initial,
-    roleSought: guide.levels[0] ? `${guide.levels[0]} Guide` : 'Montessori Guide',
+    roleSought: guide.role_type || (guide.levels[0] ? `${guide.levels[0]} Guide` : 'Montessori Educator'),
     credential: (guide.credential as Credential) ?? 'Other',
     levels: guide.levels,
     region: guide.location,
@@ -239,9 +253,10 @@ function GuideCard({ guide, isPro, onViewProfile }: { guide: Guide; isPro: boole
 // ─── Filter bar ───────────────────────────────────────────────────────────────
 
 function FilterBar({
-  level, setLevel, region, setRegion, credential, setCredential,
+  roleType, setRoleType, level, setLevel, region, setRegion, credential, setCredential,
   expBucketFilter, setExpBucketFilter, relocate, setRelocate, onClear, hasFilters,
 }: {
+  roleType: string; setRoleType: (v: string) => void
   level: string; setLevel: (v: string) => void
   region: string; setRegion: (v: string) => void
   credential: string; setCredential: (v: string) => void
@@ -255,7 +270,7 @@ function FilterBar({
     <div className="bg-white border border-[#E2DDD6] p-6 mb-10">
       <div className="flex items-center justify-between mb-4">
         <p className="text-[#8A6014] text-[10px] tracking-[0.18em] uppercase">
-          Curated Montessori Talent Pool &nbsp;&middot;&nbsp; Filter by level, credential, and location
+          Curated Montessori Talent Pool &nbsp;&middot;&nbsp; Filter by role, credential, and location
         </p>
         {hasFilters && (
           <button onClick={onClear} className="text-[#94A3B8] text-xs hover:text-[#0e1a7a] transition-colors">
@@ -264,8 +279,15 @@ function FilterBar({
         )}
       </div>
       <div className="flex flex-wrap gap-4 items-end">
+        <div className="flex-1 min-w-[160px]">
+          <label className="block text-[#374151] text-xs font-medium mb-2">Role</label>
+          <select value={roleType} onChange={e => setRoleType(e.target.value)} className={selectClass}>
+            <option value="">All roles</option>
+            {ROLE_TYPES.map(r => <option key={r} value={r}>{r}</option>)}
+          </select>
+        </div>
         <div className="flex-1 min-w-[130px]">
-          <label className="block text-[#374151] text-xs font-medium mb-2">Level</label>
+          <label className="block text-[#374151] text-xs font-medium mb-2">Age Level</label>
           <select value={level} onChange={e => setLevel(e.target.value)} className={selectClass}>
             <option value="">All levels</option>
             {LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
@@ -319,7 +341,7 @@ function EmptyState() {
         No profiles available yet.
       </h3>
       <p className="text-[#374151] text-base leading-relaxed mb-3">
-        We&rsquo;re currently onboarding Montessori guides and leaders into MatchHub. New profiles will
+        We&rsquo;re currently onboarding Montessori educators and leaders into MatchHub. New profiles will
         appear here as they are reviewed and added.
       </p>
       <p className="text-[#64748B] text-sm mb-10 italic">
@@ -361,6 +383,7 @@ function EmptyState() {
 export default function TalentClient({ guides: rawGuides }: { guides: GuideProfile[] }) {
   const guides: Guide[] = rawGuides.map(mapProfile)
 
+  const [roleTypeFilter, setRoleTypeFilter] = useState('')
   const [levelFilter, setLevelFilter] = useState('')
   const [regionFilter, setRegionFilter] = useState('')
   const [credentialFilter, setCredentialFilter] = useState('')
@@ -370,14 +393,15 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
   const [showProGate, setShowProGate] = useState(false)
   const [isPro, setIsPro] = useState(false)
 
-  const hasFilters = !!(levelFilter || regionFilter || credentialFilter || expFilter || relocateFilter)
+  const hasFilters = !!(roleTypeFilter || levelFilter || regionFilter || credentialFilter || expFilter || relocateFilter)
 
   function clearFilters() {
-    setLevelFilter(''); setRegionFilter(''); setCredentialFilter('')
-    setExpFilter(''); setRelocateFilter(false)
+    setRoleTypeFilter(''); setLevelFilter(''); setRegionFilter('')
+    setCredentialFilter(''); setExpFilter(''); setRelocateFilter(false)
   }
 
   const filtered = guides.filter(g => {
+    if (roleTypeFilter && g.roleSought !== roleTypeFilter) return false
     if (levelFilter && !g.levels.includes(levelFilter)) return false
     if (regionFilter && g.region !== regionFilter) return false
     if (credentialFilter && g.credential !== credentialFilter) return false
@@ -441,6 +465,7 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
       <section className="bg-[#FAF9F7] py-16 md:py-24 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <FilterBar
+            roleType={roleTypeFilter} setRoleType={setRoleTypeFilter}
             level={levelFilter} setLevel={setLevelFilter}
             region={regionFilter} setRegion={setRegionFilter}
             credential={credentialFilter} setCredential={setCredentialFilter}
@@ -452,7 +477,7 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
           {/* Launching message */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
             <p className="text-[#64748B] text-sm italic">
-              Launching with our first cohort of Montessori guides.
+              Launching with our first cohort of Montessori educators and leaders.
             </p>
             {!isPro && guides.length > 0 && (
               <p className="text-[#94A3B8] text-xs">

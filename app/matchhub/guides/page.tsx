@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const guideFeatures = [
-  'Free profile creation — no cost to guides, ever',
+const features = [
+  'Free profile creation — no cost, ever, for any role',
   'Browse open positions at Montessori schools across the country',
   'Filter roles by school type, philosophy, level, and location',
   'Apply directly to schools through the platform',
@@ -18,7 +18,13 @@ const strategicBenefits = [
   'Follow-through from first conversation to final placement',
 ]
 
-export default function MatchHubGuidesPage() {
+const roles = [
+  { category: 'Leadership', items: ['Head of School / Executive Director', 'Principal / Assistant Principal', 'Assistant Head / Associate Director', 'Program Director'] },
+  { category: 'Instruction & Coaching', items: ['Primary Guide (3–6)', 'Elementary Guide (6–12)', 'Infant & Toddler Guide (0–3)', 'Adolescent / Middle School Guide', 'Coach'] },
+  { category: 'Operations & Support', items: ['Admissions & Enrollment', 'Administrative & Operations', 'Other'] },
+]
+
+export default function FindYourSchoolPage() {
   return (
     <>
       {/* Hero */}
@@ -26,22 +32,22 @@ export default function MatchHubGuidesPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
-              MatchHub — For Guides
+              MatchHub — Find Your School
             </p>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
               Find a school that shares your philosophy.
             </h1>
             <p className="text-[#94A3B8] text-lg md:text-xl leading-relaxed mb-12 max-w-2xl">
-              Montessori hiring is relational, philosophical, and mission-sensitive.
-              It requires more than credentials — it requires alignment. MatchHub is
-              built around that truth.
+              Whether you&rsquo;re a classroom guide, a school leader, a coach, or an
+              operations professional — if you&rsquo;re looking for your place in
+              Montessori, MatchHub is built for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/matchhub/submit-profile"
                 className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center"
               >
-                Create Your Guide Profile →
+                Submit Your Profile →
               </Link>
               <Link
                 href="/matchhub/open-roles"
@@ -54,8 +60,40 @@ export default function MatchHubGuidesPage() {
         </div>
       </section>
 
-      {/* Problem / What's different */}
+      {/* Who this is for */}
       <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-14">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Who This Is For</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
+              Every role in a Montessori school.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              MatchHub isn&rsquo;t only for classroom guides. It&rsquo;s for anyone who
+              wants to build their career inside a Montessori community — regardless of
+              the role.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {roles.map(({ category, items }) => (
+              <div key={category} className="bg-white border border-[#E2DDD6] p-8">
+                <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">{category}</p>
+                <ul className="space-y-3">
+                  {items.map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-[#d6a758] flex-shrink-0 mt-0.5">—</span>
+                      <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What's different */}
+      <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">What&apos;s Missing</p>
@@ -65,7 +103,7 @@ export default function MatchHubGuidesPage() {
             <p className="text-[#374151] text-lg leading-relaxed">
               Generic platforms filter for credentials and location. They don&apos;t
               ask whether a school&apos;s practice matches your philosophy — or whether the
-              community you&apos;re joining shares what you believe.
+              community you&rsquo;re joining shares what you believe.
             </p>
           </div>
           <div>
@@ -75,30 +113,30 @@ export default function MatchHubGuidesPage() {
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
               Every school on MatchHub has been through a vetting process. When you
-              browse open roles here, you&apos;re not sifting through listings from
-              schools that happen to have the word Montessori in the name — you&apos;re
+              browse open roles here, you&rsquo;re not sifting through listings from
+              schools that happen to have the word Montessori in the name — you&rsquo;re
               finding communities that share what you believe.
             </p>
           </div>
         </div>
       </section>
 
-      {/* What guides get */}
-      <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
+      {/* What you get */}
+      <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">What You Get</p>
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              Everything a guide needs. Free to join.
+              Everything you need. Free to join.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              Guide profiles are always free. No subscriptions, no pay-to-apply walls.
+              Profiles are always free — no subscriptions, no pay-to-apply walls.
               Create your profile, tell your story, and connect with schools that are
               ready to hear it.
             </p>
           </div>
           <div className="max-w-3xl space-y-0">
-            {guideFeatures.map((item, i) => (
+            {features.map((item, i) => (
               <div
                 key={i}
                 className="flex items-start gap-6 py-5 border-b border-[#E2DDD6] last:border-0"
@@ -115,29 +153,29 @@ export default function MatchHubGuidesPage() {
               href="/matchhub/submit-profile"
               className="bg-[#0e1a7a] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#162270] transition-colors inline-block"
             >
-              Create Your Guide Profile →
+              Submit Your Profile →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Strategic Search for guides */}
+      {/* Strategic Search */}
       <section className="bg-[#0e1a7a] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-6">Strategic Search for Guides</p>
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-6">Strategic Search — For Candidates</p>
             <h2 className="text-4xl md:text-5xl text-white leading-tight mb-8" style={serif}>
               When you want more than a job board.
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-6">
-              If you&apos;re ready for a meaningful transition — or you&apos;re a
-              senior guide or leader looking for the right headship opportunity —
+              If you&rsquo;re ready for a meaningful transition — or you&rsquo;re a
+              leader looking for the right headship or senior role —
               Strategic Search offers something different. Hannah personally
-              facilitates, working with you to find a school that&apos;s a genuine
+              facilitates, working with you to find a school that&rsquo;s a genuine
               philosophical and cultural match.
             </p>
             <p className="text-[#94A3B8] text-base leading-relaxed mb-10">
-              This is not a resume-forwarding service. It&apos;s a relationship-led
+              This is not a resume-forwarding service. It&rsquo;s a relationship-led
               process built on deep knowledge of the Montessori landscape.
             </p>
             <a
@@ -175,7 +213,7 @@ export default function MatchHubGuidesPage() {
               </h2>
               <p className="text-[#374151] text-base leading-relaxed">
                 Browse open roles from Montessori schools actively running searches
-                through MatchHub. Positions range from classroom guides to
+                through MatchHub. Positions range from classroom roles to
                 school leadership.
               </p>
             </div>
@@ -208,7 +246,7 @@ export default function MatchHubGuidesPage() {
               href="/matchhub/submit-profile"
               className="bg-[#0e1a7a] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#162270] transition-colors text-center whitespace-nowrap"
             >
-              Create Your Profile
+              Submit Your Profile
             </Link>
             <Link
               href="/matchhub/open-roles"
