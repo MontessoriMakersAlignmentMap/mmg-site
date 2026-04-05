@@ -377,17 +377,27 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── STAT BAR ──────────────────────────────────────────────────────── */}
-      <section className="bg-[#0a1560] border-t border-white/10 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center divide-x divide-white/10">
-            <StatItem value="100%" label="Montessori-focused" />
-            <StatItem value="10+" label="Years of Montessori expertise" />
-            <StatItem value="3" label="Service paths" />
-            <StatItem value="2" label="Flagship studio projects" />
+      {/* ── VISUAL BREAK ──────────────────────────────────────────────────── */}
+      <div className="relative w-full h-72 md:h-[440px] overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1600&q=80"
+          alt="The craft behind Studio — finding truth, giving it structure, giving it voice"
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0e1a7a]/85 via-[#0e1a7a]/50 to-[#0e1a7a]/10" />
+        <div className="absolute inset-0 flex items-center px-6 md:px-16">
+          <div className="max-w-7xl mx-auto w-full">
+            <p className="text-[#d6a758] text-[10px] tracking-[0.25em] uppercase mb-5">Studio</p>
+            <p
+              className="text-white text-2xl md:text-4xl lg:text-[2.75rem] leading-tight max-w-2xl"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              We don&rsquo;t make things look different.<br className="hidden md:block" /> We make them read true.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* ── THE PROBLEM ───────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
