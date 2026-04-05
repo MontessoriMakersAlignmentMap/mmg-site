@@ -498,6 +498,45 @@ export default function Nav() {
         </div>
       </div>
 
+      {/* ── Resources strip (desktop only, collapses on scroll) ───────────── */}
+      <div
+        className="hidden md:block overflow-hidden"
+        style={{
+          maxHeight: scrolled ? '0px' : '40px',
+          opacity: scrolled ? 0 : 1,
+          transition: 'max-height 0.3s ease, opacity 0.25s ease',
+          borderTop: '1px solid rgba(210,206,198,0.35)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center h-[40px] gap-8">
+          <span
+            className="text-[9px] tracking-[0.2em] uppercase font-medium flex-shrink-0"
+            style={{ color: 'rgba(138,96,20,0.65)' }}
+          >
+            Resources
+          </span>
+          {[
+            { name: 'Learning',       href: '/learning',                prefixes: ['/learning'] },
+            { name: 'Toolbox',        href: '/toolbox',                 prefixes: ['/toolbox'] },
+            { name: 'Studio',         href: '/studio',                  prefixes: ['/studio'] },
+            { name: 'Free Resources', href: '/learning/free-resources', prefixes: [] as string[] },
+          ].map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`relative text-xs tracking-wide transition-colors pb-0.5 ${
+                active(link.prefixes) ? 'text-[#0e1a7a] font-medium' : 'text-[#64748B] hover:text-[#0e1a7a]'
+              }`}
+            >
+              {active(link.prefixes) && (
+                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#d6a758]" />
+              )}
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-b border-[#E2DDD6] px-6 py-5 max-h-[80vh] overflow-y-auto">
