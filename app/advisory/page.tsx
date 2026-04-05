@@ -435,42 +435,73 @@ export default function AdvisoryPage() {
         </div>
       </section>
 
-      {/* ─── Testimonial ──────────────────────────────────────────────────── */}
-      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-          {[
-            {
-              quote: 'We came in thinking we had a hiring problem. We left knowing we had a culture problem — and for the first time, we had a plan for it.',
-              name: 'Head of School',
-              school: 'Independent Montessori, Mid-Atlantic',
-              service: 'Montessori Mapping',
-            },
-            {
-              quote: 'This work helped me stop managing and start leading. The difference sounds small. It isn\'t.',
-              name: 'School Director',
-              school: 'Public Montessori, Midwest',
-              service: 'Leadership Coaching',
-            },
-            {
-              quote: 'We\'ve been through two leadership transitions in four years. Having a real succession plan — not just a hope — changed everything about how we approached the search.',
-              name: 'Board Chair',
-              school: 'AMI-credentialed school, Pacific Northwest',
-              service: 'Leadership Transition Support',
-            },
-          ].map((t, i) => (
-            <div key={i} className="bg-white border border-[#D4CEC6] p-8 flex flex-col">
-              <p className="text-[#0e1a7a] text-lg leading-snug mb-6 flex-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                &ldquo;{t.quote}&rdquo;
+      {/* ─── What Schools Say ─────────────────────────────────────────────── */}
+      <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-14">
+            <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-5">
+              What Schools Say
+            </p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
+              In their words.
+            </h2>
+          </div>
+
+          {/* Featured testimonial — Board Chair */}
+          <div className="bg-white border border-[#D4CEC6] p-10 md:p-14 mb-8">
+            <div className="grid md:grid-cols-[1fr_240px] gap-12 items-start">
+              <div>
+                <p className="text-[#d6a758] text-5xl leading-none mb-6" aria-hidden="true">&ldquo;</p>
+                <div className="space-y-5">
+                  <p className="text-[#0e1a7a] text-xl md:text-2xl leading-[1.5]" style={serif}>
+                    Working with Hannah has been a tremendous support to both our school and our board. The project centered on two core areas: board governance and Head of School transition planning. The sensitivity around leadership dynamics was real, and she navigated it exceptionally well.
+                  </p>
+                  <p className="text-[#374151] text-base leading-[1.85]">
+                    She is thorough and in-depth in her process, taking time to meet with parents, staff, and board members before arriving at her recommended approach. The response from our community has been overwhelmingly positive. We are now working through implementation with her continued support.
+                  </p>
+                  <p className="text-[#374151] text-base leading-[1.85]">
+                    Beyond her strategic expertise, she is genuinely wonderful to work with. Two thumbs up.
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-[#E2DDD6]">
+                  <p className="text-[#374151] font-semibold text-sm">Board Chair</p>
+                  <p className="text-[#64748B] text-sm mt-0.5">Independent Montessori School</p>
+                  <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                    Board Governance &amp; Leadership Transition
+                  </span>
+                </div>
+              </div>
+              <div className="hidden md:block">
+                <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-6">
+                  <p className="text-[#8A6014] text-[9px] tracking-[0.18em] uppercase mb-4">Areas of Work</p>
+                  <div className="space-y-2">
+                    {['Board governance', 'Head of School transition planning', 'Community consultation', 'Implementation support'].map((item) => (
+                      <div key={item} className="flex items-start gap-2">
+                        <span className="text-[#8A6014] text-xs flex-shrink-0 mt-0.5">—</span>
+                        <span className="text-[#374151] text-xs leading-relaxed">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Secondary testimonial — Alisa Anania */}
+          <div className="bg-white border border-[#D4CEC6] p-8 md:p-10">
+            <div className="max-w-3xl">
+              <p className="text-[#0e1a7a] text-lg md:text-xl leading-[1.6] mb-6" style={serif}>
+                &ldquo;We had the pleasure of working with Hannah during a critical hiring phase, and her professionalism stood out from the very beginning. She navigated a complex search with care and clarity — combining professionalism with a personal touch.&rdquo;
               </p>
               <div>
-                <p className="text-[#374151] font-medium text-sm">{t.name}</p>
-                <p className="text-[#64748B] text-sm mt-0.5">{t.school}</p>
-                <span className="inline-block mt-2 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
-                  {t.service}
+                <p className="text-[#374151] font-semibold text-sm">Alisa Anania</p>
+                <p className="text-[#64748B] text-sm mt-0.5">Head of School, The Tidewater School</p>
+                <span className="inline-block mt-3 text-[#8A6014] text-[9px] tracking-[0.18em] uppercase border border-[#8A6014]/30 px-2 py-0.5">
+                  Strategic Search
                 </span>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
