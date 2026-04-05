@@ -156,7 +156,7 @@ function StatItem({ value, label }: { value: string; label: string }) {
 
 // ── Portfolio card ─────────────────────────────────────────────────────────
 function PortfolioCard({
-  index, client, type, what, result, delay,
+  index, client, type, what, result, delay, image, imageAlt, href,
 }: {
   index: string
   client: string
@@ -164,6 +164,9 @@ function PortfolioCard({
   what: string[]
   result: string
   delay: number
+  image: string
+  imageAlt: string
+  href: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px 0px' })
@@ -173,26 +176,58 @@ function PortfolioCard({
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="grid md:grid-cols-2 gap-0 border border-[#E2DDD6] overflow-hidden"
+      className="border border-[#E2DDD6] overflow-hidden"
     >
-      <div className="bg-white p-8">
-        <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-3">Case {index}</p>
-        <h3 className="text-[#0e1a7a] text-2xl font-semibold leading-tight mb-2" style={serif}>{client}</h3>
-        <p className="text-[#64748B] text-sm mb-6">{type}</p>
-        <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-3">What Studio built</p>
-        <ul className="space-y-2">
-          {what.map((item) => (
-            <li key={item} className="flex items-start gap-2 text-[#374151] text-sm">
-              <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
-              {item}
-            </li>
-          ))}
-        </ul>
+      {/* Screenshot mockup */}
+      <div className="relative w-full aspect-[16/7] overflow-hidden bg-[#0e1a7a] group">
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        {/* Subtle overlay with view link */}
+        <div className="absolute inset-0 bg-[#0e1a7a]/0 group-hover:bg-[#0e1a7a]/40 transition-colors duration-300 flex items-center justify-center">
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-[#0e1a7a] text-xs tracking-[0.15em] uppercase font-medium px-6 py-3 hover:bg-[#d6a758] hover:text-white transition-colors"
+          >
+            View the work →
+          </Link>
+        </div>
       </div>
-      <div className="bg-[#0e1a7a] p-8 flex flex-col justify-between">
-        <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-4">The result</p>
-        <p className="text-white text-lg leading-snug flex-1" style={serif}>{result}</p>
-        <div className="mt-8 w-12 h-px bg-[#d6a758]/40" />
+
+      {/* Detail panel */}
+      <div className="grid md:grid-cols-2 gap-0">
+        <div className="bg-white p-8">
+          <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-3">Case {index}</p>
+          <h3 className="text-[#0e1a7a] text-2xl font-semibold leading-tight mb-2" style={serif}>{client}</h3>
+          <p className="text-[#64748B] text-sm mb-6">{type}</p>
+          <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-3">What Studio built</p>
+          <ul className="space-y-2">
+            {what.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-[#374151] text-sm">
+                <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 mt-6 text-[#0e1a7a] text-xs tracking-wide hover:text-[#8A6014] transition-colors"
+          >
+            See the live work →
+          </Link>
+        </div>
+        <div className="bg-[#0e1a7a] p-8 flex flex-col justify-between">
+          <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-4">The result</p>
+          <p className="text-white text-lg leading-snug flex-1" style={serif}>{result}</p>
+          <div className="mt-8 w-12 h-px bg-[#d6a758]/40" />
+        </div>
       </div>
     </motion.div>
   )
@@ -643,20 +678,26 @@ export default function StudioPage() {
                 'Movement storytelling system for ongoing communication',
               ]}
               result="A visual and verbal identity that actually feels like the organization — not borrowed nonprofit aesthetics, not generic education design. Something The Peace Rebellion community can recognize and rally around."
+              image="/portfolio/peace-rebellion.jpg"
+              imageAlt="The Peace Rebellion website — Montessori as Movement"
+              href="https://www.thepeacerebellion.org"
               delay={0}
             />
             <PortfolioCard
               index="02"
               client="Public Montessori in Action"
-              type="Social strategy · Voice system · Template library · Editorial infrastructure"
+              type="Instagram · Facebook · LinkedIn — design, produce &amp; post"
               what={[
                 'Social storytelling strategy — what stories to tell, in what order, toward what purpose',
                 'Voice system — the specific language, tone, and framing that is distinctly PMAI',
                 'Reusable visual template library for consistent social presence',
                 'Content categories, posting framework, and editorial calendar',
-                'Handoff guide so the team can maintain it independently',
+                'Ongoing production and posting across Instagram, Facebook, and LinkedIn',
               ]}
               result="Consistency became a function of infrastructure, not heroic effort. The PMAI team stopped starting from scratch every time they needed to post. The system made publishing the obvious next move."
+              image="/portfolio/pmai-site.jpg"
+              imageAlt="Public Montessori in Action — brand and social content system"
+              href="https://www.instagram.com/publicmontessoriinaction/"
               delay={0.1}
             />
           </div>
