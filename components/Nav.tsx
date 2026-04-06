@@ -54,7 +54,8 @@ const matchhubSections = [
   {
     label: 'Talent Pool',
     links: [
-      { name: 'Browse Talent Pool', href: '/matchhub/talent-pool', tagline: 'Curated candidate profiles' },
+      { name: 'View Candidates', href: '/matchhub/talent', tagline: 'Browse anonymized profiles' },
+      { name: 'Browse Talent Pool', href: '/matchhub/talent-pool', tagline: 'How it works & introductions' },
       { name: 'Post a Role', href: '/matchhub/post-job', tagline: 'Self-serve posting' },
       { name: 'Pricing', href: '/matchhub/pricing', tagline: 'Plans & rates' },
     ],
