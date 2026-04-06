@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import LearningNav from '@/components/LearningNav'
 
 const serif = { fontFamily: 'var(--font-heading)' }
@@ -10,60 +11,70 @@ const sessions = [
     number: '01',
     title: 'Welcome to Montessori',
     subtitle: 'What this education actually is and what it asks of you',
+    cover: '/mmg-family-education-covers/session-01-cover.png',
     link: 'https://buy.stripe.com/eVq4gBgmA5KU1grd7X2cg15',
   },
   {
     number: '02',
     title: 'The Three-Year Cycle',
     subtitle: 'Why three years in the same classroom changes everything',
+    cover: '/mmg-family-education-covers/session-02-cover.png',
     link: 'https://buy.stripe.com/7sY28t8U83CM8ITc3T2cg16',
   },
   {
     number: '03',
     title: 'Independence Is the Goal',
     subtitle: 'Not obedience. Not compliance. Purpose and confidence.',
+    cover: '/mmg-family-education-covers/session-03-cover.png',
     link: 'https://buy.stripe.com/aFa28t1rGa1a2kvd7X2cg1e',
   },
   {
     number: '04',
     title: 'How Children Learn in Montessori',
     subtitle: 'Concrete to abstract. Hands to mind. Always in that order.',
+    cover: '/mmg-family-education-covers/session-04-cover.png',
     link: 'https://buy.stripe.com/fZu5kF7Q4b5e5wH2tj2cg17',
   },
   {
     number: '05',
     title: 'Discipline, Freedom, and Responsibility',
     subtitle: "What we actually mean when we say we don't do punishment",
+    cover: '/mmg-family-education-covers/session-05-cover.png',
     link: 'https://buy.stripe.com/3cIdRbgmA2yIaR18RH2cg18',
   },
   {
     number: '06',
     title: 'Supporting Your Child at Home',
     subtitle: 'You do not need to recreate the classroom. You need to respect the child.',
+    cover: '/mmg-family-education-covers/session-06-cover.png',
     link: 'https://buy.stripe.com/00weVfb2g7T27EP5Fv2cg19',
   },
   {
     number: '07',
     title: "Your Child\u2019s Social and Emotional World",
     subtitle: 'Friendship, conflict, and the slow work of becoming a person',
+    cover: '/mmg-family-education-covers/session-07-cover.png',
     link: 'https://buy.stripe.com/fZu28t2vKflubV52tj2cg1a',
   },
   {
     number: '08',
     title: 'Every Family Belongs Here',
     subtitle: 'Equity is not a program. It is how we practice.',
+    cover: '/mmg-family-education-covers/session-08-cover.png',
     link: 'https://buy.stripe.com/cNi4gB1rGddm4sD3xn2cg1b',
   },
   {
     number: '09',
     title: 'Neurodiversity and Learning Differences',
     subtitle: 'Your child is not broken. The environment might need to change.',
+    cover: '/mmg-family-education-covers/session-09-cover.png',
     link: 'https://buy.stripe.com/aFa7sN1rG2yIe3daZP2cg1c',
   },
   {
     number: '10',
     title: 'Transitions and What Comes Next',
     subtitle: 'Change is part of growth. Here is how to do it well.',
+    cover: '/mmg-family-education-covers/session-10-cover.png',
     link: 'https://buy.stripe.com/7sY00l5HWflu2kvfg52cg1d',
   },
 ]
@@ -184,7 +195,7 @@ export default function FamilyEducationPage() {
                 Presentation Deck
               </p>
               <p className="text-[#374151] text-sm leading-relaxed">
-                A full slide deck built to be delivered in a 60–90 minute family session. Covers
+                A 20-slide deck built to be delivered in a 60–90 minute family session. Covers
                 the core concepts, Montessori context, discussion prompts, and take-home
                 thinking. PDF from Canva — easy to present as-is or adapt to your school.
               </p>
@@ -225,37 +236,44 @@ export default function FamilyEducationPage() {
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {sessions.map((session) => (
               <div
                 key={session.number}
-                className="bg-white border border-[#E2DDD6] flex items-center gap-6 px-6 py-5 hover:border-[#0e1a7a]/30 transition-colors group"
+                className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(14,26,122,0.10)] transition-all duration-200 group"
               >
-                <span
-                  className="text-[#d6a758] text-sm font-medium tabular-nums flex-shrink-0 w-6"
-                  style={serif}
-                >
-                  {session.number}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[#0e1a7a] text-base font-medium leading-snug"
-                    style={serif}
-                  >
-                    {session.title}
-                  </p>
-                  <p className="text-[#64748B] text-sm mt-0.5 leading-snug">
+                {/* Cover image */}
+                <div className="relative w-full aspect-video overflow-hidden bg-[#0e1a7a]">
+                  <Image
+                    src={session.cover}
+                    alt={`${session.title} slide deck cover`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                {/* Card body */}
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-start gap-3 mb-2">
+                    <span className="text-[#d6a758] text-xs font-medium tabular-nums flex-shrink-0 mt-0.5" style={serif}>
+                      {session.number}
+                    </span>
+                    <p className="text-[#0e1a7a] text-sm font-medium leading-snug" style={serif}>
+                      {session.title}
+                    </p>
+                  </div>
+                  <p className="text-[#64748B] text-xs leading-relaxed mb-4 flex-1 pl-6">
                     {session.subtitle}
                   </p>
+                  <a
+                    href={session.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="self-start text-[#0e1a7a] text-[11px] tracking-[0.08em] font-medium border border-[#0e1a7a]/20 px-4 py-2 hover:bg-[#0e1a7a] hover:text-white hover:border-[#0e1a7a] transition-colors"
+                  >
+                    Buy — $67
+                  </a>
                 </div>
-                <a
-                  href={session.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-shrink-0 text-[#0e1a7a] text-[11px] tracking-[0.08em] font-medium border border-[#0e1a7a]/20 px-4 py-2 hover:bg-[#0e1a7a] hover:text-white hover:border-[#0e1a7a] transition-colors opacity-0 group-hover:opacity-100"
-                >
-                  Buy — $67
-                </a>
               </div>
             ))}
           </div>
