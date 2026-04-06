@@ -192,6 +192,20 @@ export default function SubmitProfilePage() {
 
     setSubmitted(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    // Fire-and-forget admin notification — profile is already saved
+    fetch('/api/notify-new-profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:            `${first_name}${last_initial ? ' ' + last_initial + '.' : ''}`,
+        email:           form.email,
+        roleType:        form.role_type || null,
+        location:        form.location,
+        yearsExperience: parseInt(form.years_experience, 10) || 0,
+        credential:      form.credential,
+      }),
+    }).catch(() => {/* silent — notification is non-critical */})
   }
 
   const isSubmitting = submitStep !== 'idle'

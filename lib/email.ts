@@ -645,6 +645,47 @@ export async function sendProWelcomeEmail({ to }: { to: string }): Promise<void>
   await sendEmail({ to, subject: 'Welcome to MatchHub Pro — your access is active', html })
 }
 
+// ─── New MatchHub profile submitted (plain text, to ADMIN_EMAIL) ─────────────
+
+export async function sendNewProfileNotification({
+  name,
+  email,
+  roleType,
+  location,
+  yearsExperience,
+  credential,
+}: {
+  name: string
+  email: string
+  roleType: string | null
+  location: string
+  yearsExperience: number
+  credential: string
+}): Promise<void> {
+  const adminEmail = process.env.ADMIN_EMAIL
+  if (!adminEmail) {
+    console.warn('sendNewProfileNotification: missing ADMIN_EMAIL — skipping')
+    return
+  }
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://montessorimakersgroup.org'
+  await sendEmail({
+    to: adminEmail,
+    subject: `New MatchHub profile pending review — ${name}`,
+    text: [
+      'A new guide profile has been submitted and is waiting for your approval.',
+      '',
+      `Name:        ${name}`,
+      `Email:       ${email}`,
+      `Role sought: ${roleType ?? 'Not specified'}`,
+      `Location:    ${location}`,
+      `Experience:  ${yearsExperience} year${yearsExperience === 1 ? '' : 's'}`,
+      `Credential:  ${credential}`,
+      '',
+      `Review and approve: ${siteUrl}/admin/matchhub/profiles`,
+    ].join('\n'),
+  })
+}
+
 // ─── Field Intelligence / Field Pulse submission (plain text, to ADMIN_EMAIL) ──
 
 export async function sendFieldIntelligenceEmail({
