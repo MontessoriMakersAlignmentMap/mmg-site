@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -17,9 +18,22 @@ const navLinks = [
 
 export default function LearningNav() {
   const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <div className="sticky top-14 md:top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-[#E2DDD6]">
+    <div
+      className="sticky z-40 bg-white/95 backdrop-blur-sm border-b border-[#E2DDD6]"
+      style={{
+        top: scrolled ? '3.5rem' : '6.5rem',
+        transition: 'top 0.3s ease',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0">
           {navLinks.map((link) => {
