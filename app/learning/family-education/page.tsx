@@ -44,7 +44,7 @@ const sessions = [
   },
   {
     number: '07',
-    title: 'Your Child's Social and Emotional World',
+    title: "Your Child\u2019s Social and Emotional World",
     subtitle: 'Friendship, conflict, and the slow work of becoming a person',
     link: 'https://buy.stripe.com/fZu28t2vKflubV52tj2cg1a',
   },
