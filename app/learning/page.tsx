@@ -128,6 +128,7 @@ export default function LearningPage() {
                 { label: 'Reading Assessment Hub', sub: 'From $99/year', href: '/learning/reading-assessment' },
                 { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
                 { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
+                { label: 'Autographic Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -397,6 +398,74 @@ export default function LearningPage() {
                 See all 5 suites &rarr;
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Autographic Map Collection */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div>
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+              Autographic Map Collection
+            </p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
+              World maps built for the Montessori classroom.
+            </h2>
+            <p className="text-[#374151] text-base leading-relaxed mb-4">
+              Robinson projection. Nienhuis color system. Primary and Elementary sets with three formats each &mdash;
+              PNG, PDF, and SVG. Instant download. No Mercator distortion.
+            </p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
+            <p className="text-[#374151] text-sm mb-5">Primary and elementary guides, curriculum leads, school directors</p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1">Pricing</p>
+            <p className="text-[#374151] text-sm mb-8">Primary Set $55 &middot; Elementary Set $65 &middot; Complete Collection $99</p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/learning/maps"
+                className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+              >
+                Shop Maps
+              </Link>
+              <Link
+                href="/learning/maps"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
+              >
+                See all maps &rarr;
+              </Link>
+            </div>
+          </div>
+          {/* Visual: map set cards */}
+          <div className="space-y-3">
+            {[
+              { name: 'Primary Set', detail: 'Color Map · Blank Map · Outline Map', formats: 'PNG · PDF · SVG', price: '$55', highlight: false },
+              { name: 'Elementary Set', detail: 'Political Map · Blank Map · Outline Map', formats: 'PNG · PDF · SVG', price: '$65', highlight: false },
+              { name: 'Complete Collection', detail: 'All 6 maps · 18 files · Both levels', formats: 'PNG · PDF · SVG', price: '$99', highlight: true },
+            ].map((set) => (
+              <Link
+                key={set.name}
+                href="/learning/maps"
+                className={`flex items-center justify-between px-6 py-4 border transition-colors group ${
+                  set.highlight
+                    ? 'bg-[#0e1a7a] border-[#0e1a7a] hover:bg-[#162270]'
+                    : 'bg-[#FAF9F7] border-[#E2DDD6] hover:border-[#0e1a7a]'
+                }`}
+              >
+                <div>
+                  <p className={`text-sm font-semibold leading-snug mb-1 ${set.highlight ? 'text-white' : 'text-[#0e1a7a]'}`} style={serif}>
+                    {set.name}
+                  </p>
+                  <p className="text-[#64748B] text-xs">{set.detail}</p>
+                  <p className={`text-[10px] tracking-widest uppercase font-medium mt-1 ${set.highlight ? 'text-[#d6a758]' : 'text-[#8A6014]'}`}>
+                    {set.formats}
+                  </p>
+                </div>
+                <span className={`text-lg font-semibold flex-shrink-0 ml-6 ${set.highlight ? 'text-[#d6a758]' : 'text-[#0e1a7a]'}`} style={serif}>
+                  {set.price}
+                </span>
+              </Link>
+            ))}
+            <p className="text-[#64748B] text-xs pl-1 pt-1">Robinson projection · Nienhuis colors · Instant download</p>
           </div>
         </div>
       </section>
