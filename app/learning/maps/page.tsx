@@ -85,13 +85,13 @@ export default function MapsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
-              Autographic Map Collection
+              Authagraph Map Collection
             </p>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
               World maps built for Montessori. Built correctly.
             </h1>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-10 max-w-2xl">
-              Robinson projection. Honest continent proportions. The standard Montessori
+              Authagraph projection. Accurate continent proportions. The standard Montessori
               color system matched exactly to well-known Montessori puzzle map colors. Two sets —
               one for Primary, one for Elementary — each in three versions and three
               production-quality formats.
@@ -133,10 +133,13 @@ export default function MapsPage() {
                 geography from Mercator maps carry a distorted picture of the world into adulthood.
               </p>
               <p>
-                The Robinson projection used in these maps was developed specifically to represent
-                the whole world with honest proportions. Africa is the size Africa actually is.
-                Greenland is smaller than Africa, as it should be. South America is larger than Europe,
-                as it is. This is not a political choice — it is an accurate one.
+                These maps use the <strong>Authagraph projection</strong>, developed by Japanese
+                architect Hajime Narukawa and adopted by Japanese schools as their national geography
+                standard in 2016. It projects the globe onto a tetrahedron to minimize distortion
+                across the entire surface — no region is systematically inflated or diminished.
+                Africa is the size Africa actually is. Greenland is smaller than Africa, as it should be.
+                South America is larger than Europe, as it is. This is not a political choice — it is
+                an accurate one.
               </p>
               <p>
                 Montessori geography work introduces the seven continents as the foundational
@@ -152,8 +155,8 @@ export default function MapsPage() {
           <div className="grid md:grid-cols-3 gap-8 border-t border-[#E2DDD6] pt-12">
             {[
               {
-                label: 'Correct Projection',
-                body: 'Robinson projection gives every continent honest proportions — not the inflated Europe of Mercator that children have been handed for centuries.',
+                label: 'Authagraph Projection',
+                body: 'Developed in Japan and adopted as a national geography standard in 2016. Minimizes distortion across the entire surface — no continent is inflated or diminished.',
               },
               {
                 label: 'Exact Color Match',
@@ -369,7 +372,7 @@ export default function MapsPage() {
           <div className="max-w-lg">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">Part of the MMG Learning Collection</p>
             <p className="text-[#374151] text-base leading-relaxed">
-              The Autographic Map Collection is part of a broader set of classroom-ready materials
+              The Authagraph Map Collection is part of a broader set of classroom-ready materials
               built to the same standard — accurate, beautiful, and grounded in Montessori philosophy.
             </p>
           </div>

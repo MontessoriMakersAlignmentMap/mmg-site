@@ -128,7 +128,7 @@ export default function LearningPage() {
                 { label: 'Reading Assessment Hub', sub: 'From $99/year', href: '/learning/reading-assessment' },
                 { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
                 { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
-                { label: 'Autographic Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
+                { label: 'Authagraph Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -402,18 +402,18 @@ export default function LearningPage() {
         </div>
       </section>
 
-      {/* 5. Autographic Map Collection */}
+      {/* 5. Authagraph Map Collection */}
       <section className="bg-white py-20 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
-              Autographic Map Collection
+              Authagraph Map Collection
             </p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
               World maps built for the Montessori classroom.
             </h2>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
-              Robinson projection. Standard Montessori color system. Primary and Elementary sets with three formats each &mdash;
+              Authagraph projection. Accurate continent proportions. Primary and Elementary sets with three formats each &mdash;
               PNG, PDF, and SVG. Instant download. No Mercator distortion.
             </p>
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
@@ -465,7 +465,7 @@ export default function LearningPage() {
                 </span>
               </Link>
             ))}
-            <p className="text-[#64748B] text-xs pl-1 pt-1">Robinson projection · Standard Montessori colors · Instant download</p>
+            <p className="text-[#64748B] text-xs pl-1 pt-1">Authagraph projection · Accurate continent proportions · Instant download</p>
           </div>
         </div>
       </section>
