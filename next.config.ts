@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const domainRedirects = [
-  { source: 'montessorimakers.org', destination: '/advisory' },
+  { source: 'montessorimakers.org', destination: '' },
+  { source: 'www.montessorimakers.org', destination: '' },
   { source: 'montessorimakersmatchhub.com', destination: '/matchhub' },
   { source: 'montessorimakersalignmentmap.com', destination: '/mmap' },
   { source: 'www.montessorimakersalignmentmap.com', destination: '/mmap' },
