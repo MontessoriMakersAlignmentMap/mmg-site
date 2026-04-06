@@ -412,6 +412,31 @@ export default function ToolboxPage() {
         </div>
       </section>
 
+      {/* ── FAMILY EDUCATION CROSS-SELL ──────────────────────────────────── */}
+      <section className="bg-white py-12 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+          <div className="flex-1">
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-3">
+              Also in the MMG Learning collection
+            </p>
+            <h3 className="text-xl md:text-2xl text-[#0e1a7a] leading-tight mb-2" style={serif}>
+              Looking for family-facing materials?
+            </h3>
+            <p className="text-[#374151] text-sm leading-relaxed max-w-xl">
+              The Family Education Series is a ready-to-deliver 10-session program for schools to
+              use at family nights and parent meetings. Includes slide decks and branded agenda
+              handouts for every session &mdash; from Montessori orientation through transitions.
+            </p>
+          </div>
+          <Link
+            href="/learning/family-education"
+            className="flex-shrink-0 bg-[#0e1a7a] text-white text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#162394] transition-colors font-medium text-center"
+          >
+            See Family Education Series &rarr;
+          </Link>
+        </div>
+      </section>
+
       {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto">

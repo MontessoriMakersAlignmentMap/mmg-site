@@ -130,6 +130,7 @@ export default function LearningPage() {
                 { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
                 { label: 'Authagraph Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
                 { label: 'Timeline Collection', sub: 'Life · Humans · Clock of Eras · From $75', href: '/learning/timelines' },
+                { label: 'Family Education Series', sub: '10 sessions · Bundle $497', href: '/learning/family-education' },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -532,6 +533,67 @@ export default function LearningPage() {
               </Link>
             ))}
             <p className="text-[#64748B] text-xs pl-1 pt-1">Current science · Equity-centered · PNG · PDF · SVG · Instant download</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Family Education Series */}
+      <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div>
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+              Family Education Series
+            </p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
+              A complete family education program. Ready to deliver.
+            </h2>
+            <p className="text-[#374151] text-base leading-relaxed mb-4">
+              Ten sessions covering every topic families ask about — orientation, the three-year
+              cycle, independence, discipline, home support, social-emotional development, equity,
+              neurodiversity, and transitions. A full presentation deck and branded agenda handout
+              for each session. Buy once, use every year.
+            </p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
+            <p className="text-[#374151] text-sm mb-5">Montessori schools hosting family education nights, back-to-school events, or monthly parent meetings</p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1">Pricing</p>
+            <p className="text-[#374151] text-sm mb-8">Complete Bundle $497 &middot; Individual sessions $67 each</p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/learning/family-education"
+                className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+              >
+                Shop Family Education Series
+              </Link>
+              <Link
+                href="/learning/family-education#sessions"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
+              >
+                Browse all 10 sessions &rarr;
+              </Link>
+            </div>
+          </div>
+          <div className="space-y-1.5">
+            {[
+              { num: '01', title: 'Welcome to Montessori', sub: 'What this education actually is and what it asks of you' },
+              { num: '02', title: 'The Three-Year Cycle', sub: 'Why three years in the same classroom changes everything' },
+              { num: '03', title: 'Independence Is the Goal', sub: 'Not obedience. Not compliance. Purpose and confidence.' },
+              { num: '04', title: 'How Children Learn in Montessori', sub: 'Concrete to abstract. Hands to mind. Always in that order.' },
+              { num: '05', title: 'Discipline, Freedom, and Responsibility', sub: 'What we actually mean when we say we don\'t do punishment' },
+              { num: '06–10', title: 'Home, belonging, neurodiversity, transitions…', sub: 'Five more sessions completing the year-long sequence' },
+            ].map((s) => (
+              <Link
+                key={s.num}
+                href="/learning/family-education"
+                className="flex items-center gap-4 bg-white border border-[#E2DDD6] px-5 py-3.5 hover:border-[#0e1a7a]/30 transition-colors group"
+              >
+                <span className="text-[#d6a758] text-xs font-medium w-8 flex-shrink-0 tabular-nums" style={serif}>{s.num}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[#0e1a7a] text-sm font-medium leading-snug" style={serif}>{s.title}</p>
+                  <p className="text-[#64748B] text-xs mt-0.5 leading-snug">{s.sub}</p>
+                </div>
+              </Link>
+            ))}
+            <p className="text-[#64748B] text-xs pl-1 pt-1">Presentation deck + agenda handout · PDF · Instant download</p>
           </div>
         </div>
       </section>

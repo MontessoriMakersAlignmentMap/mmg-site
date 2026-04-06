@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Origins Series', href: '/learning/origins' },
   { label: 'Maps', href: '/learning/maps' },
   { label: 'Timelines', href: '/learning/timelines' },
+  { label: 'Family Education', href: '/learning/family-education' },
   { label: 'Free Resources', href: '/learning/free-resources' },
 ]
 
