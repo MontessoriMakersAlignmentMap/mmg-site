@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Decodable Books', href: '/learning/decodable-books' },
   { label: 'Reading Assessment Hub', href: '/learning/reading-assessment' },
   { label: 'Courses', href: '/learning/courses' },
-  { label: 'Origins Series', href: '/learning/origins' },
+  { label: 'Chart Sets', href: '/learning/charts' },
   { label: 'Maps', href: '/learning/maps' },
   { label: 'Timelines', href: '/learning/timelines' },
   { label: 'Family Education', href: '/learning/family-education' },

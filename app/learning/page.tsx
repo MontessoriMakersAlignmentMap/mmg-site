@@ -127,7 +127,7 @@ export default function LearningPage() {
                 { label: 'Shop Decodable Books', sub: '96 books · 8 sets', href: '/learning/decodable-books' },
                 { label: 'Reading Assessment Hub', sub: 'From $99/year', href: '/learning/reading-assessment' },
                 { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
-                { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
+                { label: 'Chart Sets', sub: 'Origins Series · Fundamental Needs · More coming', href: '/learning/charts' },
                 { label: 'Authagraph Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
                 { label: 'Timeline Collection', sub: 'Life · Humans · Clock of Eras · From $75', href: '/learning/timelines' },
                 { label: 'Family Education Series', sub: '10 sessions · Bundle $497', href: '/learning/family-education' },
@@ -350,7 +350,7 @@ export default function LearningPage() {
         </div>
       </section>
 
-      {/* 4. Origins Series */}
+      {/* 4. Chart Sets */}
       <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           {/* Visual: 5 suites */}
@@ -373,7 +373,7 @@ export default function LearningPage() {
           </div>
           <div>
             <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
-              Origins Series
+              Impressionistic Chart Sets
             </p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
               The Great Lessons, rebuilt for the world children live in.
@@ -381,6 +381,7 @@ export default function LearningPage() {
             <p className="text-[#374151] text-base leading-relaxed mb-4">
               Five justice-centered, scientifically accurate lesson suite reconstructions.
               Cosmic education with global human contributions at the center &mdash; not added on.
+              Part of a growing collection of equity-centered chart sets.
             </p>
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
             <p className="text-[#374151] text-sm mb-5">Elementary guides, curriculum leads, and school directors</p>
@@ -388,16 +389,22 @@ export default function LearningPage() {
             <p className="text-[#374151] text-sm mb-8">Sold individually as downloadable suites &middot; Full bundle available</p>
             <div className="flex flex-wrap gap-3 items-center">
               <Link
-                href="/learning/origins"
+                href="/learning/charts"
                 className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
               >
-                Shop Origins Series
+                Shop All Chart Sets
               </Link>
               <Link
                 href="/learning/origins"
                 className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
               >
-                See all 5 suites &rarr;
+                Origins Series &rarr;
+              </Link>
+              <Link
+                href="/learning/fundamental-needs"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
+              >
+                Fundamental Needs &rarr;
               </Link>
             </div>
           </div>
