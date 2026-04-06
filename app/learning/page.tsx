@@ -94,7 +94,7 @@ export default function LearningPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-10">
+      <section className="bg-[#0e1a7a] mt-14 md:mt-16 pt-20 pb-16 md:pt-24 md:pb-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase">

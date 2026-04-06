@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import LearningNav from '@/components/LearningNav'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -82,10 +81,9 @@ const sessions = [
 export default function FamilyEducationPage() {
   return (
     <div className="bg-white min-h-screen">
-      <LearningNav />
 
       {/* ── HERO ── */}
-      <section className="bg-[#0e1a7a] pt-16 pb-20 md:pt-20 md:pb-28 px-6 md:px-10">
+      <section className="bg-[#0e1a7a] mt-14 md:mt-16 pt-16 pb-20 md:pt-20 md:pb-28 px-6 md:px-10">
         <div className="max-w-4xl mx-auto">
           <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-6">
             Family Education Series
