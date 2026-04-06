@@ -43,5 +43,4 @@ next-env.d.ts
 # claude / ai tooling
 .claude/
 .claire/
-# large files - host separately (Supabase Storage / S3)
-public/toolbox-files/origins-complete-bundle.zip
+
