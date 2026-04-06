@@ -33,7 +33,7 @@ const sessions = [
   {
     number: '05',
     title: 'Discipline, Freedom, and Responsibility',
-    subtitle: 'What we actually mean when we say we don't do punishment',
+    subtitle: "What we actually mean when we say we don't do punishment",
     link: 'https://buy.stripe.com/3cIdRbgmA2yIaR18RH2cg18',
   },
   {
