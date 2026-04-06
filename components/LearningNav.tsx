@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'Reading Assessment Hub', href: '/learning/reading-assessment' },
   { label: 'Courses', href: '/learning/courses' },
   { label: 'Origins Series', href: '/learning/origins' },
+  { label: 'Maps', href: '/learning/maps' },
   { label: 'Free Resources', href: '/learning/free-resources' },
 ]
 
