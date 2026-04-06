@@ -278,90 +278,6 @@ export default function OriginsPage() {
         </div>
       </section>
 
-      {/* Chart Showcase */}
-      <section className="bg-[#FAF9F7] py-24 md:py-28 px-6 md:px-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-6">
-            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-4">
-              65 Impressionistic Charts
-            </p>
-            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              These charts tell the real story.
-            </h2>
-            <p className="text-[#374151] text-lg leading-relaxed mb-3">
-              The Story of Mathematics doesn&apos;t begin with Greece. The Story of Writing
-              doesn&apos;t stop at cuneiform and hieroglyphics. These charts exist because
-              children deserve to see the truth: that every civilization on every continent
-              contributed to the knowledge we hold today.
-            </p>
-            <p className="text-[#64748B] text-sm leading-relaxed">
-              Thirteen charts per story, spanning all five Great Stories. Click any chart to zoom in.
-            </p>
-          </div>
-
-          {/* Scattered chart thumbnails */}
-          <div className="relative flex flex-wrap justify-center gap-6 md:gap-0 md:flex-nowrap md:items-end md:h-[400px] my-12">
-            {featuredCharts.map((chart, i) => (
-              <div
-                key={chart.key}
-                className={`relative flex-shrink-0 w-[140px] md:w-[175px] ${chart.rotate} ${chart.translate} transition-transform duration-300 hover:scale-105 hover:z-50 hover:rotate-0`}
-                style={{ zIndex: i === 2 ? 30 : i % 2 === 0 ? 10 : 20 }}
-              >
-                <div className="shadow-xl border border-[#D4CEC6] bg-white">
-                  <Image
-                    src={`/learning/origins/charts/origins-chart-${chart.key}.png`}
-                    alt={chart.label}
-                    width={612}
-                    height={792}
-                    className="w-full h-auto block"
-                  />
-                </div>
-                <div className="mt-2 text-center">
-                  <p className="text-[10px] text-[#64748B] tracking-[0.1em] uppercase leading-tight">
-                    {chart.label}
-                  </p>
-                  <p className="text-[9px] text-[#94A3B8] tracking-wide mt-0.5">
-                    {chart.suite}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3 mt-4">
-            <a
-              href={bundleStripeHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
-            >
-              Shop the Complete Bundle — {bundlePrice}
-            </a>
-            <a
-              href="#suites"
-              className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
-            >
-              Browse Individual Suites
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Sample Pages */}
-      <section className="bg-[#F2EDE6] py-24 md:py-28 px-6 md:px-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-4">Inside the Series</p>
-          <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
-            See what you are getting.
-          </h2>
-          <p className="text-[#374151] text-base leading-relaxed mb-12 max-w-2xl">
-            A few pages from each suite — pulled from different sections to show the range
-            of content, style, and depth. Click any page to zoom in.
-          </p>
-          <OriginsSamplePages />
-        </div>
-      </section>
-
       {/* The 5 Suites */}
       <section id="suites" className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -454,6 +370,90 @@ export default function OriginsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Pages */}
+      <section className="bg-[#F2EDE6] py-24 md:py-28 px-6 md:px-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-4">Inside the Series</p>
+          <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
+            See what you are getting.
+          </h2>
+          <p className="text-[#374151] text-base leading-relaxed mb-12 max-w-2xl">
+            A few pages from each suite — pulled from different sections to show the range
+            of content, style, and depth. Click any page to zoom in.
+          </p>
+          <OriginsSamplePages />
+        </div>
+      </section>
+
+      {/* Chart Showcase */}
+      <section className="bg-[#FAF9F7] py-24 md:py-28 px-6 md:px-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-6">
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-4">
+              65 Impressionistic Charts
+            </p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
+              These charts tell the real story.
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed mb-3">
+              The Story of Mathematics doesn&apos;t begin with Greece. The Story of Writing
+              doesn&apos;t stop at cuneiform and hieroglyphics. These charts exist because
+              children deserve to see the truth: that every civilization on every continent
+              contributed to the knowledge we hold today.
+            </p>
+            <p className="text-[#64748B] text-sm leading-relaxed">
+              Thirteen charts per story, spanning all five Great Stories. Click any chart to zoom in.
+            </p>
+          </div>
+
+          {/* Scattered chart thumbnails */}
+          <div className="relative flex flex-wrap justify-center gap-6 md:gap-0 md:flex-nowrap md:items-end md:h-[400px] my-12">
+            {featuredCharts.map((chart, i) => (
+              <div
+                key={chart.key}
+                className={`relative flex-shrink-0 w-[140px] md:w-[175px] ${chart.rotate} ${chart.translate} transition-transform duration-300 hover:scale-105 hover:z-50 hover:rotate-0`}
+                style={{ zIndex: i === 2 ? 30 : i % 2 === 0 ? 10 : 20 }}
+              >
+                <div className="shadow-xl border border-[#D4CEC6] bg-white">
+                  <Image
+                    src={`/learning/origins/charts/origins-chart-${chart.key}.png`}
+                    alt={chart.label}
+                    width={612}
+                    height={792}
+                    className="w-full h-auto block"
+                  />
+                </div>
+                <div className="mt-2 text-center">
+                  <p className="text-[10px] text-[#64748B] tracking-[0.1em] uppercase leading-tight">
+                    {chart.label}
+                  </p>
+                  <p className="text-[9px] text-[#94A3B8] tracking-wide mt-0.5">
+                    {chart.suite}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 mt-4">
+            <a
+              href={bundleStripeHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+            >
+              Shop the Complete Bundle — {bundlePrice}
+            </a>
+            <a
+              href="#suites"
+              className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
+            >
+              Browse Individual Suites
+            </a>
           </div>
         </div>
       </section>
