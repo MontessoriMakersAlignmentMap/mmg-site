@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import OriginsSamplePages from './OriginsSamplePages'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -266,34 +267,7 @@ export default function OriginsPage() {
             </p>
           </div>
 
-          {/* Scattered page previews */}
-          <div className="relative flex flex-wrap justify-center gap-6 md:gap-0 md:flex-nowrap md:items-end md:h-[420px]">
-            {[
-              { key: 'universe', label: 'Origins of the Universe',  rotate: '-rotate-3',  translate: 'md:translate-y-4',   zIndex: 'z-10' },
-              { key: 'life',     label: 'Origins of Life',          rotate: 'rotate-2',   translate: 'md:-translate-y-6',  zIndex: 'z-20' },
-              { key: 'humanity', label: 'Origins of Humanity',      rotate: '-rotate-1',  translate: 'md:translate-y-8',   zIndex: 'z-30' },
-              { key: 'writing',  label: 'Origins of Writing',       rotate: 'rotate-3',   translate: 'md:-translate-y-2',  zIndex: 'z-20' },
-              { key: 'math',     label: 'Origins of Mathematics',   rotate: '-rotate-2',  translate: 'md:translate-y-6',   zIndex: 'z-10' },
-            ].map((item) => (
-              <div
-                key={item.key}
-                className={`relative flex-shrink-0 w-[160px] md:w-[200px] ${item.rotate} ${item.translate} ${item.zIndex} transition-transform duration-300 hover:scale-105 hover:z-50 hover:rotate-0`}
-              >
-                <div className="shadow-xl border border-[#D4CEC6]">
-                  <Image
-                    src={`/learning/origins/origins-sample-${item.key}.png`}
-                    alt={`Sample page from ${item.label}`}
-                    width={612}
-                    height={792}
-                    className="w-full h-auto block"
-                  />
-                </div>
-                <p className="mt-2 text-center text-[10px] text-[#64748B] tracking-[0.1em] uppercase leading-tight">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          <OriginsSamplePages />
         </div>
       </section>
 
