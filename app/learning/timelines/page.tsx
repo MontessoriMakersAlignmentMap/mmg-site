@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { TimelineViewer } from './TimelineViewer'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -222,15 +222,7 @@ export default function TimelinesPage() {
               </div>
               {/* Preview */}
               <div className="p-6 md:p-8">
-                <div className="relative w-full aspect-[36/14] bg-white border border-[#E2DDD6] overflow-hidden">
-                  <Image
-                    src={t.preview}
-                    alt={t.name}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
+                <TimelineViewer src={t.preview} alt={t.name} />
                 {t.id === 'humans' && (
                   <div className="flex flex-wrap gap-3 mt-5">
                     {tracks.map((track) => (
@@ -278,16 +270,8 @@ export default function TimelinesPage() {
                 </div>
               </div>
             </div>
-            <div className="p-6 md:p-8">
-              <div className="relative w-full max-w-sm mx-auto aspect-square bg-white border border-[#E2DDD6] overflow-hidden">
-                <Image
-                  src="/mmg-timelines/clock_of_eras.png"
-                  alt="Clock of Eras"
-                  fill
-                  className="object-contain p-4"
-                  unoptimized
-                />
-              </div>
+            <div className="p-6 md:p-8 max-w-sm">
+              <TimelineViewer src="/mmg-timelines/clock_of_eras.png" alt="Clock of Eras" isCircular />
             </div>
           </div>
         </div>
