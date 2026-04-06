@@ -92,7 +92,7 @@ export default function MapsPage() {
             </h1>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-10 max-w-2xl">
               Robinson projection. Honest continent proportions. The standard Montessori
-              color system matched exactly to Nienhuis puzzle map colors. Two sets —
+              color system matched exactly to well-known Montessori puzzle map colors. Two sets —
               one for Primary, one for Elementary — each in three versions and three
               production-quality formats.
             </p>
@@ -157,7 +157,7 @@ export default function MapsPage() {
               },
               {
                 label: 'Exact Color Match',
-                body: 'Every continent color is matched precisely to the Nienhuis puzzle map standard. Children move between the physical and printed materials without visual contradiction.',
+                body: 'Every continent color is matched precisely to the standard Montessori puzzle map colors. Children move between the physical and printed materials without visual contradiction.',
               },
               {
                 label: 'Plane-Appropriate Data',
@@ -179,7 +179,7 @@ export default function MapsPage() {
         <div className="max-w-7xl mx-auto">
           <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">The Color System</p>
           <h2 className="text-2xl text-[#0e1a7a] mb-8 max-w-xl leading-snug" style={serif}>
-            Seven continents. Seven colors. Matched to Nienhuis.
+            Seven continents. Seven colors. Matched to the standard.
           </h2>
           <div className="flex flex-wrap gap-3">
             {colorSystem.map(({ continent, color, label }) => (
@@ -243,7 +243,7 @@ export default function MapsPage() {
                     Built from simplified geographic data so the continent shapes are clean and
                     unambiguous. No coastline fussiness, no country borders. Just the seven continents
                     in honest proportion against a blue ocean. Russia is shown whole as part of Asia,
-                    consistent with how Nienhuis puzzle maps represent it.
+                    consistent with how typical Montessori puzzle maps represent it.
                   </p>
                   <p className="text-[#374151] text-sm leading-relaxed">
                     Each map ships in PNG (300 DPI), PDF, and SVG — 9 files total.

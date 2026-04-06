@@ -413,7 +413,7 @@ export default function LearningPage() {
               World maps built for the Montessori classroom.
             </h2>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
-              Robinson projection. Nienhuis color system. Primary and Elementary sets with three formats each &mdash;
+              Robinson projection. Standard Montessori color system. Primary and Elementary sets with three formats each &mdash;
               PNG, PDF, and SVG. Instant download. No Mercator distortion.
             </p>
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
@@ -465,7 +465,7 @@ export default function LearningPage() {
                 </span>
               </Link>
             ))}
-            <p className="text-[#64748B] text-xs pl-1 pt-1">Robinson projection · Nienhuis colors · Instant download</p>
+            <p className="text-[#64748B] text-xs pl-1 pt-1">Robinson projection · Standard Montessori colors · Instant download</p>
           </div>
         </div>
       </section>
