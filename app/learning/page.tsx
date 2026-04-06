@@ -129,6 +129,7 @@ export default function LearningPage() {
                 { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
                 { label: 'Origins Series', sub: '5 lesson suites · Available now', href: '/learning/origins' },
                 { label: 'Authagraph Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
+                { label: 'Timeline Collection', sub: 'Life · Humans · Clock of Eras · From $75', href: '/learning/timelines' },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -466,6 +467,71 @@ export default function LearningPage() {
               </Link>
             ))}
             <p className="text-[#64748B] text-xs pl-1 pt-1">Authagraph projection · Accurate continent proportions · Instant download</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Timeline Collection */}
+      <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div>
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+              Montessori Timeline Collection
+            </p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5" style={serif}>
+              Timelines built on current science. Not adapted from 1990.
+            </h2>
+            <p className="text-[#374151] text-base leading-relaxed mb-4">
+              Three data-rich, equity-centered timelines for the Great Lessons — Timeline of Life,
+              Timeline of Humans, and Clock of Eras. Current science. Globally structured.
+              PNG, PDF, and SVG in every set.
+            </p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
+            <p className="text-[#374151] text-sm mb-5">Elementary guides, curriculum leads, school directors</p>
+            <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1">Pricing</p>
+            <p className="text-[#374151] text-sm mb-8">Timeline of Life $75 &middot; Timeline of Humans $85 &middot; Complete Collection $129</p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/learning/timelines"
+                className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+              >
+                Shop Timelines
+              </Link>
+              <Link
+                href="/learning/timelines"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-6 py-3.5 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors"
+              >
+                See all timelines &rarr;
+              </Link>
+            </div>
+          </div>
+          <div className="space-y-3">
+            {[
+              { name: 'Timeline of Life', detail: '90 milestones · 4.6 billion years · Second Great Lesson', price: '$75', highlight: false },
+              { name: 'Timeline of Humans', detail: '72 milestones · 6 continental tracks · Third Great Lesson', price: '$85', highlight: false },
+              { name: 'Complete Collection', detail: 'All 3 timelines · 9 files · Clock of Eras included', price: '$129', highlight: true },
+            ].map((item) => (
+              <Link
+                key={item.name}
+                href="/learning/timelines"
+                className={`flex items-center justify-between px-6 py-4 border transition-colors ${
+                  item.highlight
+                    ? 'bg-[#0e1a7a] border-[#0e1a7a] hover:bg-[#162270]'
+                    : 'bg-white border-[#E2DDD6] hover:border-[#0e1a7a]'
+                }`}
+              >
+                <div>
+                  <p className={`text-sm font-semibold leading-snug mb-1 ${item.highlight ? 'text-white' : 'text-[#0e1a7a]'}`} style={serif}>
+                    {item.name}
+                  </p>
+                  <p className="text-[#64748B] text-xs">{item.detail}</p>
+                </div>
+                <span className={`text-lg font-semibold flex-shrink-0 ml-6 ${item.highlight ? 'text-[#d6a758]' : 'text-[#0e1a7a]'}`} style={serif}>
+                  {item.price}
+                </span>
+              </Link>
+            ))}
+            <p className="text-[#64748B] text-xs pl-1 pt-1">Current science · Equity-centered · PNG · PDF · SVG · Instant download</p>
           </div>
         </div>
       </section>

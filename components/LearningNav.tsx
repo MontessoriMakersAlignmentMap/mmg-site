@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Courses', href: '/learning/courses' },
   { label: 'Origins Series', href: '/learning/origins' },
   { label: 'Maps', href: '/learning/maps' },
+  { label: 'Timelines', href: '/learning/timelines' },
   { label: 'Free Resources', href: '/learning/free-resources' },
 ]
 
