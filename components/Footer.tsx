@@ -25,6 +25,7 @@ const resourceLinks = [
 const brandLinks = [
   { name: 'About', href: '/about' },
   { name: 'Partners', href: '/partners' },
+  { name: 'Careers', href: '/careers' },
   { name: 'Work With Us', href: '/contact' },
 ]
 
