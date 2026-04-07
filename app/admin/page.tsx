@@ -761,6 +761,13 @@ export default function AdminPage() {
           </div>
         )}
 
+        {/* Quick links */}
+        <div className="flex gap-3 mb-6 flex-wrap">
+          <a href="/admin/careers" className="text-xs border border-[#0e1a7a] text-[#0e1a7a] px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors">
+            Careers Admin →
+          </a>
+        </div>
+
         {/* Tabs */}
         <div className="flex gap-1 mb-8 border-b border-gray-200 overflow-x-auto">
           {([
