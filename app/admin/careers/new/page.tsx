@@ -131,7 +131,7 @@ export default function NewCareerPosition() {
               className="w-full border border-[#E2DDD6] px-4 py-3 text-sm text-[#374151] focus:outline-none focus:border-[#0e1a7a] bg-white file:mr-4 file:border-0 file:bg-[#F2EDE6] file:text-[#374151] file:text-xs file:px-3 file:py-1"
             />
             <p className="text-[#94A3B8] text-xs mt-1">
-              Upload a .docx or PDF. Google Docs: File > Download > PDF works great.
+              Upload a .docx or PDF. Google Docs: File &gt; Download &gt; PDF works great.
             </p>
           </div>
 
