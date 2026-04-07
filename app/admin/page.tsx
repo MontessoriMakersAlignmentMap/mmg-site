@@ -763,9 +763,19 @@ export default function AdminPage() {
 
         {/* Quick links */}
         <div className="flex gap-3 mb-6 flex-wrap">
-          <a href="/admin/careers" className="text-xs border border-[#0e1a7a] text-[#0e1a7a] px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors">
+          <button
+            onClick={async () => {
+              await fetch('/api/careers/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: adminPw }),
+              })
+              window.location.href = '/admin/careers'
+            }}
+            className="text-xs border border-[#0e1a7a] text-[#0e1a7a] px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors"
+          >
             Careers Admin →
-          </a>
+          </button>
         </div>
 
         {/* Tabs */}

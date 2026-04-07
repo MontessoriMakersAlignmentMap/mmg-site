@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { createServiceClient } from '@/lib/supabase/server'
 
 function checkAuth(token: string | undefined): boolean {
-  return !!token && token === process.env.ADMIN_TOKEN
+  return !!token && token === process.env.ADMIN_PASSWORD
 }
 
 export async function GET(

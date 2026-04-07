@@ -4,12 +4,12 @@ import { cookies } from 'next/headers'
 export async function POST(req: NextRequest) {
   const { token } = await req.json()
 
-  if (!token || token !== process.env.ADMIN_TOKEN) {
+  if (!token || token !== process.env.ADMIN_PASSWORD) {
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
   }
 
   const cookieStore = await cookies()
-  cookieStore.set('careers_admin', process.env.ADMIN_TOKEN!, {
+  cookieStore.set('careers_admin', process.env.ADMIN_PASSWORD!, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
