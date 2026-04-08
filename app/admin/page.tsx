@@ -782,6 +782,12 @@ export default function AdminPage() {
           >
             Candidate Discovery →
           </button>
+          <button
+            onClick={() => { window.location.href = '/admin/placement-crm' }}
+            className="text-xs border border-[#060d3a] text-[#060d3a] px-4 py-2 hover:bg-[#060d3a] hover:text-white transition-colors"
+          >
+            Placement CRM →
+          </button>
         </div>
 
         {/* Tabs */}
