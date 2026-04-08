@@ -133,7 +133,7 @@ const categories: { label: string; items: Product[] }[] = [
   },
 ]
 
-const freeResources = [
+const freeResources: { name: string; file: string | null; desc: string; audience: string }[] = [
   {
     name: 'Growing Your Montessori School',
     file: '/free-resources/growing-your-montessori-school.pdf',
@@ -154,13 +154,13 @@ const freeResources = [
   },
   {
     name: 'Progressive People Policies for Montessori Schools',
-    file: '/free-resources/montessori-mutuality.pdf',
+    file: null,
     desc: 'Fifteen progressive HR policies built for the real culture of Montessori schools — covering compassionate separation, mutual accountability, flexible work, and the employment practices that reflect the values you hold for children.',
     audience: 'Heads of school, directors, and HR leads',
   },
   {
     name: 'The Resident Guide Model',
-    file: '/free-resources/resident-guide-model.pdf',
+    file: null,
     desc: 'A framework for building staff wellness and school continuity through a shared guide role that floats across classrooms. Covers the rationale, implementation, and what to look for when hiring for this role.',
     audience: 'Heads of school and leadership teams exploring staffing models',
   },
@@ -246,13 +246,20 @@ export default function ToolboxPage() {
                 <p className="text-[#64748B] text-xs tracking-wide mb-6">
                   For: {r.audience}
                 </p>
-                <a
-                  href={r.file}
-                  download
-                  className="bg-[#d6a758] text-white text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center font-medium self-start"
-                >
-                  Download Free
-                </a>
+                {r.file ? (
+                  <a
+                    href={r.file}
+                    download
+                    className="bg-[#d6a758] text-white text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center font-medium self-start"
+                  >
+                    Download Free
+                  </a>
+                ) : (
+                  <p className="text-[#64748B] text-xs leading-relaxed">
+                    Share this with your community &mdash; direct them to{' '}
+                    <span className="text-[#0e1a7a] font-medium">montessorimakersgroup.org</span>
+                  </p>
+                )}
               </div>
             ))}
           </div>
