@@ -135,6 +135,18 @@ const categories: { label: string; items: Product[] }[] = [
 
 const freeResources: { name: string; file: string | null; desc: string; audience: string }[] = [
   {
+    name: 'Progressive People Policies for Montessori Schools',
+    file: null,
+    desc: 'Fifteen progressive HR policies built for the real culture of Montessori schools — covering compassionate separation, mutual accountability, flexible work, and the employment practices that reflect the values you hold for children.',
+    audience: 'Heads of school, directors, and HR leads',
+  },
+  {
+    name: 'The Resident Guide Model',
+    file: null,
+    desc: 'A framework for building staff wellness and school continuity through a shared guide role that floats across classrooms. Covers the rationale, implementation, and what to look for when hiring for this role.',
+    audience: 'Heads of school and leadership teams exploring staffing models',
+  },
+  {
     name: 'Growing Your Montessori School',
     file: '/free-resources/growing-your-montessori-school.pdf',
     desc: 'A practical guide to enrollment growth strategy, expansion planning, staffing for scale, and the organizational questions schools often skip in the rush to grow. Built for leaders navigating real increases in size and complexity.',
@@ -151,18 +163,6 @@ const freeResources: { name: string; file: string | null; desc: string; audience
     file: '/free-resources/creating-strong-financial-structures.pdf',
     desc: 'Budget development, financial reporting, reserve policy, and cash flow planning — practical and non-jargon, designed for school leaders who didn&apos;t come from finance backgrounds but need to build real financial health.',
     audience: 'Heads of school, business managers, and boards',
-  },
-  {
-    name: 'Progressive People Policies for Montessori Schools',
-    file: null,
-    desc: 'Fifteen progressive HR policies built for the real culture of Montessori schools — covering compassionate separation, mutual accountability, flexible work, and the employment practices that reflect the values you hold for children.',
-    audience: 'Heads of school, directors, and HR leads',
-  },
-  {
-    name: 'The Resident Guide Model',
-    file: null,
-    desc: 'A framework for building staff wellness and school continuity through a shared guide role that floats across classrooms. Covers the rationale, implementation, and what to look for when hiring for this role.',
-    audience: 'Heads of school and leadership teams exploring staffing models',
   },
 ]
 
