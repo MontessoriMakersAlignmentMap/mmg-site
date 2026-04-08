@@ -112,36 +112,25 @@ export default function FreeResourcesPage() {
                   </div>
                 </div>
                 <div className="flex md:flex-col items-start md:items-end gap-3 md:pt-2">
-                  {'referral' in guide && guide.referral ? (
-                    <div className="text-right max-w-[200px]">
-                      <p className="text-[#64748B] text-xs leading-relaxed mb-3">
-                        Share this resource with your community and direct them to:
-                      </p>
-                      <p className="text-[#0e1a7a] text-sm font-medium">
-                        montessorimakersgroup.org
-                      </p>
-                    </div>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => setExpanded(expanded === guide.number ? null : guide.number)}
-                        className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors text-center font-medium whitespace-nowrap"
-                      >
-                        {expanded === guide.number ? 'Collapse' : 'View Guide'}
-                      </button>
-                      <a
-                        href={guide.file}
-                        download
-                        className="bg-[#d6a758] text-white text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center font-medium whitespace-nowrap"
-                      >
-                        Download Free
-                      </a>
-                    </>
+                  <button
+                    onClick={() => setExpanded(expanded === guide.number ? null : guide.number)}
+                    className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors text-center font-medium whitespace-nowrap"
+                  >
+                    {expanded === guide.number ? 'Collapse' : 'View Guide'}
+                  </button>
+                  {'referral' in guide && guide.referral ? null : (
+                    <a
+                      href={guide.file}
+                      download
+                      className="bg-[#d6a758] text-white text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center font-medium whitespace-nowrap"
+                    >
+                      Download Free
+                    </a>
                   )}
                 </div>
               </div>
 
-              {'referral' in guide && guide.referral ? null : expanded === guide.number && (
+              {expanded === guide.number && (
                 <div className="mt-8 border-t border-[#E2DDD6] pt-8">
                   <object
                     data={guide.file}
@@ -150,27 +139,26 @@ export default function FreeResourcesPage() {
                     style={{ height: '800px' }}
                   >
                     <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
-                      <p className="text-[#374151] text-sm mb-4">
+                      <p className="text-[#374151] text-sm">
                         Your browser cannot display the PDF inline.
                       </p>
+                    </div>
+                  </object>
+                  <div className="mt-4 flex items-center justify-between">
+                    <p className="text-[#64748B] text-xs">
+                      {'referral' in guide && guide.referral
+                        ? 'Share this resource — direct others to montessorimakersgroup.org'
+                        : ''}
+                    </p>
+                    {'referral' in guide && guide.referral ? null : (
                       <a
                         href={guide.file}
                         download
-                        className="bg-[#d6a758] text-white text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                        className="text-[#0e1a7a] text-sm hover:underline"
                       >
-                        Download PDF
+                        Download PDF &darr;
                       </a>
-                    </div>
-                  </object>
-                  <div className="mt-4 flex justify-end">
-                    <a
-                      href={guide.file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#0e1a7a] text-sm hover:underline"
-                    >
-                      Open in new tab &rarr;
-                    </a>
+                    )}
                   </div>
                 </div>
               )}
