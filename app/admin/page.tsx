@@ -1191,7 +1191,7 @@ export default function AdminPage() {
                         </select>
                         {newSearchRole.apply_method === 'link' && <input placeholder="Apply URL" value={newSearchRole.apply_url} onChange={e => setNewSearchRole(p => ({ ...p, apply_url: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
                         {newSearchRole.apply_method === 'email' && <input placeholder="Apply email" value={newSearchRole.apply_email} onChange={e => setNewSearchRole(p => ({ ...p, apply_email: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />}
-                        <textarea placeholder="Role description (optional)" value={newSearchRole.description} onChange={e => setNewSearchRole(p => ({ ...p, description: e.target.value }))} rows={2} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] col-span-2 resize-none" />
+                        <textarea placeholder="Role description — shown publicly on the position page (strongly recommended)" value={newSearchRole.description} onChange={e => setNewSearchRole(p => ({ ...p, description: e.target.value }))} rows={4} className="border border-[#d6a758]/60 bg-[#fffdf7] px-3 py-2 text-sm focus:outline-none focus:border-[#d6a758] col-span-2 resize-none" />
                         <div className="col-span-2">
                           <p className="text-[11px] text-gray-500 mb-1.5 uppercase tracking-wide">Job Description PDF</p>
                           {newSearchRole.job_description_pdf ? (

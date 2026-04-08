@@ -33,6 +33,8 @@ export default function PlacementCRMPage() {
   const [searches, setSearches] = useState<CRMSearch[]>([])
   const [pipeline, setPipeline] = useState<CRMPipelineEntry[]>([])
   const [loading, setLoading] = useState(false)
+  const [syncing, setSyncing] = useState(false)
+  const [syncMsg, setSyncMsg] = useState<string | null>(null)
 
   // Restore session
   useEffect(() => {
@@ -65,6 +67,20 @@ export default function PlacementCRMPage() {
   }, [adminPw])
 
   useEffect(() => { if (auth) loadAll() }, [auth, loadAll])
+
+  async function handleSyncMatchHub() {
+    setSyncing(true)
+    setSyncMsg(null)
+    try {
+      const res = await api('/api/admin/sync-matchhub', { method: 'POST' })
+      const data = await res.json()
+      if (!res.ok) { setSyncMsg(`Error: ${data.error ?? 'sync failed'}`); return }
+      setSyncMsg(`Synced: ${data.inserted} inserted, ${data.updated} updated`)
+      if (data.total > 0) loadAll()
+    } finally {
+      setSyncing(false)
+    }
+  }
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -117,8 +133,23 @@ export default function PlacementCRMPage() {
                 Placement CRM
               </h1>
             </div>
-            <div className="text-right text-xs text-[#94A3B8] pb-2">
-              <span>{candidates.length} candidates · {searches.length} searches</span>
+            <div className="flex items-center gap-4 pb-2">
+              <div className="text-right text-xs text-[#94A3B8]">
+                <span>{candidates.length} candidates · {searches.length} searches · </span>
+                <span className="text-[#d6a758] font-medium">
+                  {candidates.filter(c => c.source === 'MatchHub').length} MatchHub inbound
+                </span>
+              </div>
+              <div className="flex flex-col items-end gap-1">
+                <button
+                  onClick={handleSyncMatchHub}
+                  disabled={syncing}
+                  className="text-xs border border-[#d6a758] text-[#d6a758] px-3 py-1.5 hover:bg-[#d6a758] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                >
+                  {syncing ? 'Syncing…' : 'Sync MatchHub Profiles'}
+                </button>
+                {syncMsg && <p className="text-[10px] text-[#94A3B8]">{syncMsg}</p>}
+              </div>
             </div>
           </div>
           {/* Tabs */}

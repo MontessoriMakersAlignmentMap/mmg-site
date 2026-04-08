@@ -24,6 +24,8 @@ export type CRMCandidate = {
   open_to_role_types: string[] | null
   email_enriched: boolean
   enrichment_source: string | null
+  matchhub_profile_url: string | null
+  matchhub_synced_at: string | null
 }
 
 export type CRMSearch = {
@@ -42,6 +44,18 @@ export type CRMSearch = {
   school_contact_email: string | null
   notes: string | null
   pipeline_count?: number
+  // Source link
+  source_role_id: string | null
+  // Matching fields
+  credential_required: string | null
+  levels_required: string[] | null
+  location_flexible: boolean
+  languages_required: string[] | null
+  role_type_required: string | null
+  years_experience_min: number | null
+  equity_focused: boolean
+  position_description: string | null
+  compensation_range: string | null
 }
 
 export type CRMPipelineEntry = {

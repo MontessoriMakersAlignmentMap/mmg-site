@@ -9,14 +9,18 @@ function checkAuth(req: NextRequest) {
 export type MatchResult = {
   candidate_id: string
   full_name: string
-  score: number
-  reason: string
-  holds_role_type: boolean
-  open_to_role_type: boolean
+  overall_score: number
+  credential_score: number
+  location_score: number
+  level_score: number
+  role_score: number
+  match_summary: string
+  contact_priority: 'Immediate' | 'This Week' | 'Pipeline'
   credential: string | null
   location_city: string | null
   location_state: string | null
   actively_looking: boolean
+  levels_certified: string[]
 }
 
 export async function POST(req: NextRequest) {
@@ -27,7 +31,7 @@ export async function POST(req: NextRequest) {
 
   const sb = createServiceClient()
 
-  // Load search details
+  // Load full search record including all matching fields
   const { data: search, error: searchErr } = await sb
     .from('crm_searches')
     .select('*')
@@ -35,7 +39,7 @@ export async function POST(req: NextRequest) {
     .single()
   if (searchErr || !search) return NextResponse.json({ error: 'Search not found' }, { status: 404 })
 
-  // Load already-placed candidate IDs for this search
+  // Load candidates already placed in this search (exclude them)
   const { data: placedPipeline } = await sb
     .from('crm_pipeline')
     .select('candidate_id')
@@ -43,80 +47,113 @@ export async function POST(req: NextRequest) {
     .eq('placed', true)
   const placedIds = new Set((placedPipeline ?? []).map(p => p.candidate_id))
 
-  // Load all unplaced candidates
+  // Load all candidates — filter to those actively looking OR open to the required role type
   const { data: candidates, error: candErr } = await sb
     .from('crm_candidates')
     .select('*')
   if (candErr) return NextResponse.json({ error: candErr.message }, { status: 500 })
 
-  const eligible = (candidates ?? []).filter(c => !placedIds.has(c.id))
-  if (eligible.length === 0) return NextResponse.json({ matches: [] })
+  const eligible = (candidates ?? []).filter(c => {
+    if (placedIds.has(c.id)) return false
+    if (c.actively_looking) return true
+    if (search.role_type_required) {
+      const openTo = c.open_to_role_types ?? []
+      const holds  = c.role_types ?? []
+      if (openTo.includes(search.role_type_required) || holds.includes(search.role_type_required)) return true
+    }
+    return false
+  })
+
+  if (eligible.length === 0) return NextResponse.json({ matches: [], search })
 
   const searchSummary = [
     `School: ${search.school_name}`,
-    `Role: ${search.position_title}`,
-    search.level ? `Level: ${search.level}` : null,
-    search.location_city ? `Location: ${search.location_city}, ${search.location_state ?? ''}` : null,
-    search.notes ? `Additional context: ${search.notes}` : null,
+    `Position: ${search.position_title}`,
+    search.level               ? `Level: ${search.level}`                                       : null,
+    search.role_type_required  ? `Role type required: ${search.role_type_required}`             : null,
+    search.credential_required ? `Credential required: ${search.credential_required}`           : null,
+    search.levels_required?.length ? `Levels required: ${search.levels_required.join(', ')}`   : null,
+    search.location_city       ? `Location: ${search.location_city}, ${search.location_state ?? ''}` : null,
+    search.location_flexible   ? 'Location is flexible / open to relocation'                   : null,
+    search.languages_required?.length ? `Languages required: ${search.languages_required.join(', ')}` : null,
+    search.years_experience_min ? `Minimum years experience: ${search.years_experience_min}`   : null,
+    search.equity_focused      ? 'School is equity-focused — prioritize candidates with DEI background' : null,
+    search.position_description ? `Position description: ${search.position_description}`       : null,
+    search.notes               ? `Additional context: ${search.notes}`                         : null,
   ].filter(Boolean).join('\n')
 
   const candidateList = eligible.map(c => ({
-    id: c.id,
-    full_name: c.full_name,
-    credential: c.credential,
-    levels_certified: c.levels_certified ?? [],
-    years_experience: c.years_experience,
-    location_city: c.location_city,
-    location_state: c.location_state,
-    actively_looking: c.actively_looking,
-    role_types: c.role_types ?? [],
+    id:                 c.id,
+    full_name:          c.full_name,
+    credential:         c.credential,
+    training_program:   c.training_program,
+    levels_certified:   c.levels_certified ?? [],
+    years_experience:   c.years_experience,
+    location_city:      c.location_city,
+    location_state:     c.location_state,
+    actively_looking:   c.actively_looking,
+    role_types:         c.role_types ?? [],
     open_to_role_types: c.open_to_role_types ?? [],
-    languages: c.languages ?? [],
-    source: c.source,
-    notes: c.notes,
+    languages:          c.languages ?? [],
+    source:             c.source,
+    notes:              c.notes,
   }))
 
-  const prompt = `You are an expert Montessori educator placement specialist at Montessori Makers Group.
+  const prompt = `You are an expert Montessori educator placement specialist at Montessori Makers Group. Score each candidate for fit with this search across five dimensions.
 
-SEARCH DETAILS:
+SEARCH REQUIREMENTS:
 ${searchSummary}
 
 CANDIDATES (${eligible.length} total):
 ${JSON.stringify(candidateList, null, 2)}
 
-Score each candidate from 0–10 for fit with this search. Consider:
-- Credential match (AMI/AMS/MACTE for the required level)
-- Level alignment (levels_certified vs search level)
-- Role type fit: if the search role type matches role_types, they currently hold it; if it matches open_to_role_types, they want to grow into it
-- Location proximity
-- Years of experience
-- Actively looking status
+SCORING RULES — score each dimension 1–10:
+- credential_score: Exact credential match = 10. Same tier (AMI/AMS) = 7. Adjacent or partial = 4. No credential when one required = 1.
+- location_score: Same city = 10. Same state = 8. Neighboring state = 5. Remote but open to relocate = 4. Far with no flexibility = 2. (If location_flexible is noted, be generous.)
+- level_score: Exact level overlap = 10. Adjacent levels (e.g. Lower + Upper El) = 6. No certified level match = 2.
+- role_score: role_types includes required role = 10. open_to_role_types includes it = 6. Transferable background evident in notes = 4. No match = 2.
+- overall_score: Holistic 1–10 considering all dimensions, years_experience vs minimum, actively_looking status, languages, equity background, and notes context.
 
-Return ONLY a valid JSON array (no markdown, no explanation) sorted by score descending:
-[{
-  "candidate_id": "...",
-  "full_name": "...",
-  "score": 8.5,
-  "reason": "One sentence explaining fit. Explicitly note if they currently hold this role type or are open to growing into it.",
-  "holds_role_type": true,
-  "open_to_role_type": false,
-  "credential": "AMI",
-  "location_city": "...",
-  "location_state": "...",
-  "actively_looking": true
-}]`
+CONTACT PRIORITY:
+- "Immediate": overall_score >= 8 AND actively_looking
+- "This Week": overall_score >= 6
+- "Pipeline": overall_score >= 5
+
+CRITICAL INSTRUCTIONS:
+- Return ONLY a valid JSON array. Start directly with [. No markdown, no code fences, no explanation.
+- Only include candidates with overall_score >= 5.
+- Sort by overall_score descending.
+- match_summary must be exactly two sentences: first explains the strongest fit signal, second notes any gap or caveat.
+
+Required shape for each array element:
+{
+  "candidate_id": "uuid string",
+  "full_name": "string",
+  "overall_score": number,
+  "credential_score": number,
+  "location_score": number,
+  "level_score": number,
+  "role_score": number,
+  "match_summary": "Two sentences.",
+  "contact_priority": "Immediate" or "This Week" or "Pipeline",
+  "credential": "string or null",
+  "location_city": "string or null",
+  "location_state": "string or null",
+  "actively_looking": boolean,
+  "levels_certified": ["array of strings"]
+}`
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY!,
+      'Content-Type':     'application/json',
+      'x-api-key':        process.env.ANTHROPIC_API_KEY!,
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
-      messages: [{ role: 'user', content: prompt }],
+      model:      'claude-sonnet-4-20250514',
+      max_tokens: 8096,
+      messages:   [{ role: 'user', content: prompt }],
     }),
   })
 

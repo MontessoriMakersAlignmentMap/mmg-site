@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { CRMSearch, CRMPipelineEntry, CRMCandidate, SEARCH_STATUSES, getPipelineStage } from './types'
 import type { MatchResult } from '@/app/api/placement/match/route'
+import MatchModal from './MatchModal'
 
 type Props = {
   searches: CRMSearch[]
@@ -22,15 +23,17 @@ const statusStyle: Record<string, string> = {
 
 export default function SearchesTab({ searches, pipeline, candidates, adminPw, api, onRefresh }: Props) {
   const [selectedSearchId, setSelectedSearchId] = useState<string | null>(null)
-  const [matchSearchId, setMatchSearchId] = useState<string | null>(null)
-  const [matchLoading, setMatchLoading] = useState(false)
-  const [matchResults, setMatchResults] = useState<MatchResult[]>([])
-  const [matchSearch, setMatchSearch] = useState<CRMSearch | null>(null)
-  const [matchErr, setMatchErr] = useState<string | null>(null)
-  const [filterStatus, setFilterStatus] = useState('')
+  const [matchSearchId,    setMatchSearchId]    = useState<string | null>(null)
+  const [matchLoading,     setMatchLoading]     = useState(false)
+  const [matchResults,     setMatchResults]     = useState<MatchResult[]>([])
+  const [matchSearch,      setMatchSearch]      = useState<CRMSearch | null>(null)
+  const [matchErr,         setMatchErr]         = useState<string | null>(null)
+  const [filterStatus,     setFilterStatus]     = useState('')
 
-  const filtered = filterStatus ? searches.filter(s => s.status === filterStatus) : searches
-  const candidateMap = Object.fromEntries(candidates.map(c => [c.id, c]))
+  const filtered      = filterStatus ? searches.filter(s => s.status === filterStatus) : searches
+  const candidateMap  = Object.fromEntries(candidates.map(c => [c.id, c]))
+  const selectedSearch = searches.find(s => s.id === selectedSearchId)
+  const searchPipeline = pipeline.filter(p => p.search_id === selectedSearchId)
 
   async function runMatch(searchId: string) {
     setMatchSearchId(searchId)
@@ -38,10 +41,7 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
     setMatchResults([])
     setMatchErr(null)
     try {
-      const res = await api('/api/placement/match', {
-        method: 'POST',
-        body: JSON.stringify({ search_id: searchId }),
-      })
+      const res  = await api('/api/placement/match', { method: 'POST', body: JSON.stringify({ search_id: searchId }) })
       const data = await res.json()
       if (!res.ok) { setMatchErr(data.error ?? 'Match failed'); return }
       setMatchResults(data.matches ?? [])
@@ -53,8 +53,12 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
     }
   }
 
-  const selectedSearch = searches.find(s => s.id === selectedSearchId)
-  const searchPipeline = pipeline.filter(p => p.search_id === selectedSearchId)
+  function closeModal() {
+    setMatchSearchId(null)
+    setMatchResults([])
+    setMatchSearch(null)
+    setMatchErr(null)
+  }
 
   return (
     <div>
@@ -70,7 +74,7 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
 
       {/* Table */}
       {filtered.length === 0 ? (
-        <div className="text-center py-20 text-[#64748B] text-sm">No searches yet. Add one in the Add New tab.</div>
+        <div className="text-center py-20 text-[#64748B] text-sm">No searches yet. Use Post a Position in the Add New tab.</div>
       ) : (
         <div className="bg-white border border-[#E2DDD6] overflow-x-auto mb-6">
           <table className="w-full text-sm">
@@ -81,7 +85,7 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
                 <th className="text-left px-4 py-3 font-medium hidden md:table-cell">Level</th>
                 <th className="text-left px-4 py-3 font-medium hidden md:table-cell">Location</th>
                 <th className="text-left px-4 py-3 font-medium hidden lg:table-cell">Start Date</th>
-                <th className="text-left px-4 py-3 font-medium">Candidates</th>
+                <th className="text-left px-4 py-3 font-medium">In Pipeline</th>
                 <th className="text-left px-4 py-3 font-medium">Status</th>
                 <th className="px-4 py-3"></th>
               </tr>
@@ -93,11 +97,24 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
                   className={`border-b border-[#E2DDD6] cursor-pointer transition-colors ${
                     selectedSearchId === s.id ? 'bg-[#f5e8cc]' : i % 2 === 0 ? 'bg-white hover:bg-[#FAF9F7]' : 'bg-[#FAF9F7] hover:bg-[#f5f0ea]'
                   }`}>
-                  <td className="px-4 py-3 font-medium text-[#0e1a7a]">{s.school_name}</td>
-                  <td className="px-4 py-3 text-[#374151]">{s.position_title}</td>
+                  <td className="px-4 py-3 font-medium text-[#0e1a7a]">
+                    <div>{s.school_name}</div>
+                    {s.source_role_id && (
+                      <span className="text-[9px] font-bold bg-[#0e1a7a] text-white px-1.5 py-0.5 tracking-wide mt-1 inline-block">
+                        Strategic Search
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-[#374151]">
+                    <div>{s.position_title}</div>
+                    {s.role_type_required && (
+                      <div className="text-[10px] text-[#64748B] mt-0.5">{s.role_type_required}</div>
+                    )}
+                  </td>
                   <td className="px-4 py-3 text-[#374151] hidden md:table-cell">{s.level ?? '—'}</td>
                   <td className="px-4 py-3 text-[#374151] hidden md:table-cell">
                     {[s.location_city, s.location_state].filter(Boolean).join(', ') || '—'}
+                    {s.location_flexible && <span className="text-[10px] text-[#64748B] block">Flexible</span>}
                   </td>
                   <td className="px-4 py-3 text-[#374151] hidden lg:table-cell">{s.start_date ?? '—'}</td>
                   <td className="px-4 py-3 text-[#374151]">{s.pipeline_count ?? 0}</td>
@@ -133,13 +150,19 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
               <p className="text-[#94A3B8] text-xs mt-0.5">
                 {[selectedSearch.location_city, selectedSearch.location_state].filter(Boolean).join(', ')}
                 {selectedSearch.level ? ` · ${selectedSearch.level}` : ''}
+                {selectedSearch.credential_required ? ` · ${selectedSearch.credential_required} required` : ''}
               </p>
             </div>
             <button onClick={() => setSelectedSearchId(null)} className="text-white/60 hover:text-white text-xl">&times;</button>
           </div>
           <div className="p-5">
+            {selectedSearch.position_description && (
+              <p className="text-sm text-[#374151] leading-relaxed mb-4 border-l-2 border-[#d6a758] pl-4">
+                {selectedSearch.position_description}
+              </p>
+            )}
             {searchPipeline.length === 0 ? (
-              <p className="text-sm text-[#94A3B8]">No candidates in this pipeline yet. Add one in the Add New tab.</p>
+              <p className="text-sm text-[#94A3B8]">No candidates in this pipeline yet. Use Find Matches to surface candidates.</p>
             ) : (
               <table className="w-full text-sm">
                 <thead>
@@ -172,56 +195,17 @@ export default function SearchesTab({ searches, pipeline, candidates, adminPw, a
         </div>
       )}
 
-      {/* Match results modal */}
+      {/* Match modal */}
       {(matchLoading || matchResults.length > 0 || matchErr) && matchSearchId && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-2xl max-h-[85vh] flex flex-col">
-            <div className="bg-[#060d3a] px-6 py-4 flex items-center justify-between shrink-0">
-              <h2 className="text-white font-semibold" style={{ fontFamily: 'var(--font-cormorant, serif)' }}>
-                AI Match Results {matchSearch ? `— ${matchSearch.school_name}` : ''}
-              </h2>
-              <button onClick={() => { setMatchSearchId(null); setMatchResults([]); setMatchErr(null) }}
-                className="text-white/60 hover:text-white text-xl">&times;</button>
-            </div>
-            <div className="overflow-y-auto p-6">
-              {matchLoading && <p className="text-sm text-[#64748B] text-center py-8">Running AI match analysis…</p>}
-              {matchErr && <p className="text-red-600 text-sm">{matchErr}</p>}
-              {matchResults.length > 0 && (
-                <div className="flex flex-col gap-3">
-                  {matchResults.map((m, i) => (
-                    <div key={m.candidate_id} className="border border-[#E2DDD6] p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <span className="text-lg font-bold text-[#060d3a]" style={{ fontFamily: 'var(--font-cormorant, serif)' }}>
-                            #{i + 1}
-                          </span>
-                          <div>
-                            <p className="font-medium text-[#0e1a7a]">{m.full_name}</p>
-                            <p className="text-xs text-[#64748B]">
-                              {m.credential} · {[m.location_city, m.location_state].filter(Boolean).join(', ')}
-                              {m.actively_looking && ' · Actively looking'}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-2xl font-bold text-[#d6a758]" style={{ fontFamily: 'var(--font-cormorant, serif)' }}>
-                            {m.score}
-                          </span>
-                          <span className="text-[#64748B] text-xs">/10</span>
-                        </div>
-                      </div>
-                      <p className="text-sm text-[#374151] leading-relaxed">{m.reason}</p>
-                      <div className="flex gap-2 mt-2">
-                        {m.holds_role_type && <span className="text-[10px] bg-[#E8F0FE] text-[#0e1a7a] px-2 py-0.5">Holds this role type</span>}
-                        {m.open_to_role_type && <span className="text-[10px] bg-[#f5e8cc] text-[#8A6014] px-2 py-0.5">Open to grow into role</span>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <MatchModal
+          matchResults={matchResults}
+          matchSearch={matchSearch}
+          matchLoading={matchLoading}
+          matchErr={matchErr}
+          onClose={closeModal}
+          candidates={candidates}
+          api={api}
+        />
       )}
     </div>
   )

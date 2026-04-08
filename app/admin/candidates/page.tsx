@@ -26,6 +26,38 @@ type OutreachDrafts = {
   training_email: string
 }
 
+type ActiveSearchOption = {
+  role_id: string
+  crm_search_id: string | null
+  school_name: string
+  role_title: string
+  role_description: string | null
+  location: string | null
+  level: string | null
+}
+
+type CRMMatchResult = {
+  candidate_id: string
+  full_name: string
+  overall_score: number
+  credential_score: number
+  location_score: number
+  level_score: number
+  role_score: number
+  match_summary: string
+  contact_priority: 'Immediate' | 'This Week' | 'Pipeline'
+  credential: string | null
+  location_city: string | null
+  location_state: string | null
+  actively_looking: boolean
+  levels_certified: string[]
+}
+
+type CandidateEmail = {
+  subject: string
+  body: string
+}
+
 function fmt(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
@@ -59,6 +91,18 @@ export default function CandidatesAdminPage() {
   const [drafts, setDrafts] = useState<OutreachDrafts | null>(null)
   const [draftsError, setDraftsError] = useState<string | null>(null)
   const [copied, setCopied] = useState<string | null>(null)
+
+  // Active searches for role picker
+  const [activeSearches, setActiveSearches] = useState<ActiveSearchOption[]>([])
+  const [selectedSearchRoleId, setSelectedSearchRoleId] = useState<string>('')
+  const [selectedCrmSearchId, setSelectedCrmSearchId] = useState<string | null>(null)
+  const [crmMatches, setCrmMatches] = useState<CRMMatchResult[]>([])
+  const [crmMatchLoading, setCrmMatchLoading] = useState(false)
+  const [crmMatchError, setCrmMatchError] = useState<string | null>(null)
+
+  // Per-candidate email drafts: keyed by candidate_id
+  const [candidateEmails, setCandidateEmails] = useState<Record<string, CandidateEmail | 'loading' | 'error'>>({})
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
   // Restore session
   useEffect(() => {
@@ -129,23 +173,113 @@ export default function CandidatesAdminPage() {
     setCandidates(prev => prev.map(c => c.id === id ? { ...c, outreach_sent: true } : c))
   }
 
+  async function loadActiveSearches() {
+    try {
+      const res = await fetch('/api/admin/active-searches', {
+        headers: { 'x-admin-password': adminPw },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setActiveSearches(data.options ?? [])
+      }
+    } catch { /* non-fatal */ }
+  }
+
+  function openOutreachModal() {
+    setOutreachOpen(true)
+    setDrafts(null)
+    setDraftsError(null)
+    setCrmMatches([])
+    setCrmMatchError(null)
+    setSelectedSearchRoleId('')
+    setSelectedCrmSearchId(null)
+    setCandidateEmails({})
+    setCopiedEmail(null)
+    loadActiveSearches()
+  }
+
+  function selectSearchRole(roleId: string) {
+    setSelectedSearchRoleId(roleId)
+    const option = activeSearches.find(o => o.role_id === roleId)
+    if (!option) return
+    setSelectedCrmSearchId(option.crm_search_id)
+    setOutreachRole(`${option.role_title} at ${option.school_name}`)
+    setOutreachRegion(option.location ?? '')
+    setOutreachLevel(option.level ?? '')
+  }
+
   async function generateDrafts() {
     setGeneratingDrafts(true)
     setDraftsError(null)
     setDrafts(null)
+    setCrmMatches([])
+    setCrmMatchError(null)
+
+    // Run broadcast draft generation and CRM matching in parallel
+    const draftsPromise = fetch('/api/generate-outreach', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+      body: JSON.stringify({ role: outreachRole, region: outreachRegion, level: outreachLevel }),
+    })
+
+    const matchPromise = selectedCrmSearchId
+      ? fetch('/api/placement/match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+          body: JSON.stringify({ search_id: selectedCrmSearchId }),
+        })
+      : Promise.resolve(null)
+
     try {
-      const res = await fetch('/api/generate-outreach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
-        body: JSON.stringify({ role: outreachRole, region: outreachRegion, level: outreachLevel }),
-      })
-      const data = await res.json()
-      if (res.ok) setDrafts(data)
-      else setDraftsError(data.error ?? 'Failed to generate drafts.')
+      const [draftsRes, matchRes] = await Promise.all([draftsPromise, matchPromise])
+      const draftsData = await draftsRes.json()
+      if (draftsRes.ok) setDrafts(draftsData)
+      else setDraftsError(draftsData.error ?? 'Failed to generate drafts.')
+
+      if (matchRes) {
+        const matchData = await matchRes.json()
+        if (matchRes.ok) setCrmMatches(matchData.matches ?? [])
+        else setCrmMatchError(matchData.error ?? 'Matching failed.')
+      }
     } catch {
       setDraftsError('Request failed.')
     } finally {
       setGeneratingDrafts(false)
+    }
+  }
+
+  async function draftCandidateEmail(match: CRMMatchResult) {
+    const option = activeSearches.find(o => o.role_id === selectedSearchRoleId)
+    setCandidateEmails(prev => ({ ...prev, [match.candidate_id]: 'loading' }))
+    try {
+      const res = await fetch('/api/generate-candidate-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPw },
+        body: JSON.stringify({
+          candidate: {
+            name: match.full_name,
+            credential: match.credential,
+            levels: match.levels_certified,
+            location_city: match.location_city,
+            location_state: match.location_state,
+          },
+          role: {
+            title: option?.role_title ?? outreachRole,
+            school_name: option?.school_name ?? '',
+            description: option?.role_description,
+            level: option?.level,
+          },
+          match_rationale: match.match_summary,
+        }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setCandidateEmails(prev => ({ ...prev, [match.candidate_id]: data as CandidateEmail }))
+      } else {
+        setCandidateEmails(prev => ({ ...prev, [match.candidate_id]: 'error' }))
+      }
+    } catch {
+      setCandidateEmails(prev => ({ ...prev, [match.candidate_id]: 'error' }))
     }
   }
 
@@ -212,7 +346,7 @@ export default function CandidatesAdminPage() {
               {searching ? 'Searching…' : 'Run Search Now'}
             </button>
             <button
-              onClick={() => { setOutreachOpen(true); setDrafts(null); setDraftsError(null) }}
+              onClick={openOutreachModal}
               className="border border-white/30 text-white text-sm px-5 py-2.5 hover:border-white/60 transition-colors"
             >
               Generate Outreach Drafts
@@ -386,6 +520,31 @@ export default function CandidatesAdminPage() {
             <div className="p-6">
               {!drafts && (
                 <div className="flex flex-col gap-4 mb-6">
+                  {/* Role picker — pull from active Strategic Searches */}
+                  {activeSearches.length > 0 && (
+                    <div>
+                      <label className="text-xs text-[#64748B] uppercase tracking-wide block mb-1">Load from Active Search</label>
+                      <select
+                        value={selectedSearchRoleId}
+                        onChange={e => selectSearchRole(e.target.value)}
+                        className="w-full border border-[#d6a758] bg-[#fffdf7] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]"
+                      >
+                        <option value="">— pick a posted role —</option>
+                        {activeSearches.map(o => (
+                          <option key={o.role_id} value={o.role_id}>
+                            {o.school_name} · {o.role_title}
+                          </option>
+                        ))}
+                      </select>
+                      {selectedCrmSearchId && (
+                        <p className="text-[10px] text-green-700 mt-1">✓ Linked to CRM — will also run candidate matching</p>
+                      )}
+                      {selectedSearchRoleId && !selectedCrmSearchId && (
+                        <p className="text-[10px] text-[#64748B] mt-1">No CRM search linked yet — broadcast drafts only</p>
+                      )}
+                    </div>
+                  )}
+
                   <div>
                     <label className="text-xs text-[#64748B] uppercase tracking-wide block mb-1">Role (optional)</label>
                     <input
@@ -421,7 +580,10 @@ export default function CandidatesAdminPage() {
                     disabled={generatingDrafts}
                     className="bg-[#0e1a7a] text-white text-sm px-6 py-3 hover:bg-[#162270] transition-colors disabled:opacity-50 font-medium"
                   >
-                    {generatingDrafts ? 'Generating…' : 'Generate Drafts'}
+                    {generatingDrafts
+                      ? selectedCrmSearchId ? 'Generating drafts + matching…' : 'Generating…'
+                      : selectedCrmSearchId ? 'Generate Drafts + Find CRM Matches' : 'Generate Drafts'
+                    }
                   </button>
                   {draftsError && <p className="text-red-600 text-sm">{draftsError}</p>}
                 </div>
@@ -429,6 +591,101 @@ export default function CandidatesAdminPage() {
 
               {drafts && (
                 <div className="flex flex-col gap-5">
+
+                  {/* ── CRM Matches ── */}
+                  {(crmMatchLoading || crmMatches.length > 0 || crmMatchError) && (
+                    <div className="border border-[#0e1a7a]/20 bg-[#f5f7ff]">
+                      <div className="bg-[#060d3a] px-4 py-3 flex items-center justify-between">
+                        <p className="text-white text-xs font-semibold uppercase tracking-wide">CRM Matches — Who to Contact First</p>
+                        <span className="text-[#94A3B8] text-xs">{crmMatches.length} candidate{crmMatches.length !== 1 ? 's' : ''}</span>
+                      </div>
+                      {crmMatchLoading && <p className="text-sm text-[#64748B] p-4">Running matching engine…</p>}
+                      {crmMatchError && <p className="text-sm text-red-600 p-4">{crmMatchError}</p>}
+                      {crmMatches.length > 0 && (
+                        <div className="divide-y divide-[#E2DDD6]">
+                          {crmMatches.map(m => {
+                            const priorityStyle =
+                              m.contact_priority === 'Immediate'
+                                ? 'bg-[#d6a758] text-white'
+                                : m.contact_priority === 'This Week'
+                                ? 'bg-amber-100 text-amber-800'
+                                : 'bg-[#F1F5F9] text-[#64748B]'
+                            const emailState = candidateEmails[m.candidate_id]
+                            const emailDraft = emailState && emailState !== 'loading' && emailState !== 'error'
+                              ? emailState as CandidateEmail
+                              : null
+                            return (
+                              <div key={m.candidate_id} className="px-4 py-3">
+                                <div className="flex items-start gap-3">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                                      <span className="font-medium text-[#0e1a7a] text-sm">{m.full_name}</span>
+                                      <span className={`text-[10px] font-medium px-2 py-0.5 ${priorityStyle}`}>
+                                        {m.contact_priority}
+                                      </span>
+                                      {m.credential && (
+                                        <span className="text-[10px] text-[#64748B]">{m.credential}</span>
+                                      )}
+                                    </div>
+                                    <p className="text-xs text-[#64748B] leading-relaxed">{m.match_summary}</p>
+                                    <div className="flex gap-3 mt-1 text-[10px] text-[#94A3B8]">
+                                      <span>Overall: <strong className="text-[#374151]">{m.overall_score}/10</strong></span>
+                                      <span>Cred: {m.credential_score}</span>
+                                      <span>Loc: {m.location_score}</span>
+                                      <span>Level: {m.level_score}</span>
+                                      <span>Role: {m.role_score}</span>
+                                    </div>
+                                  </div>
+                                  <button
+                                    onClick={() => draftCandidateEmail(m)}
+                                    disabled={emailState === 'loading'}
+                                    className="shrink-0 text-[11px] border border-[#d6a758] text-[#8A6014] px-3 py-1.5 hover:bg-[#d6a758] hover:text-white transition-colors disabled:opacity-50 whitespace-nowrap"
+                                  >
+                                    {emailState === 'loading' ? 'Drafting…' : emailDraft ? 'Re-draft Email' : 'Draft Email'}
+                                  </button>
+                                </div>
+
+                                {/* Inline email draft */}
+                                {emailState === 'error' && (
+                                  <p className="text-xs text-red-500 mt-2">Failed to generate email — try again.</p>
+                                )}
+                                {emailDraft && (
+                                  <div className="mt-3 bg-[#FAF9F7] border border-[#E2DDD6] p-4">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <div>
+                                        <p className="text-[10px] text-[#64748B] uppercase tracking-wide mb-0.5">Subject</p>
+                                        <p className="text-sm font-medium text-[#0e1a7a]">{emailDraft.subject}</p>
+                                      </div>
+                                      <button
+                                        onClick={() => {
+                                          navigator.clipboard.writeText(`Subject: ${emailDraft.subject}\n\n${emailDraft.body}`)
+                                          setCopiedEmail(m.candidate_id)
+                                          setTimeout(() => setCopiedEmail(null), 2000)
+                                        }}
+                                        className="shrink-0 text-[11px] border border-[#0e1a7a] text-[#0e1a7a] px-2 py-1 hover:bg-[#0e1a7a] hover:text-white transition-colors"
+                                      >
+                                        {copiedEmail === m.candidate_id ? '✓ Copied' : 'Copy'}
+                                      </button>
+                                    </div>
+                                    <div className="border-t border-[#E2DDD6] pt-3 mt-2">
+                                      <p className="text-[10px] text-[#64748B] uppercase tracking-wide mb-1">Body</p>
+                                      <p className="text-sm text-[#374151] leading-relaxed whitespace-pre-wrap">{emailDraft.body}</p>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                      {crmMatches.length === 0 && !crmMatchLoading && !crmMatchError && (
+                        <p className="text-sm text-[#64748B] p-4">No strong matches found in CRM database.</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Broadcast Drafts ── */}
+                  <p className="text-xs text-[#8A6014] uppercase tracking-wide font-medium">Broadcast Drafts</p>
                   {([
                     { key: 'facebook_post', label: 'Facebook Group Post' },
                     { key: 'newsletter', label: 'Newsletter' },
@@ -449,7 +706,7 @@ export default function CandidatesAdminPage() {
                     </div>
                   ))}
                   <button
-                    onClick={() => { setDrafts(null); setDraftsError(null) }}
+                    onClick={() => { setDrafts(null); setDraftsError(null); setCrmMatches([]); setCrmMatchError(null); setCandidateEmails({}) }}
                     className="text-sm text-[#64748B] underline text-left"
                   >
                     Generate new drafts

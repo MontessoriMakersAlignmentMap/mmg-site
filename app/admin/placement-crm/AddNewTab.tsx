@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { CRMCandidate, CRMSearch, CREDENTIALS, LEVELS, SOURCES, SEARCH_STATUSES, ROLE_TYPES } from './types'
+import type { MatchResult } from '@/app/api/placement/match/route'
+import MatchModal from './MatchModal'
 
 type Props = {
   candidates: CRMCandidate[]
@@ -11,7 +13,7 @@ type Props = {
   onRefresh: () => void
 }
 
-type SubTab = 'candidate' | 'search' | 'pipeline'
+type SubTab = 'candidate' | 'search' | 'pipeline' | 'post-position'
 
 // ── Reusable multi-checkbox ───────────────────────────────────────────────────
 function CheckList({ label, options, selected, onChange, goldAccent }: {
@@ -385,6 +387,210 @@ function AddToPipelineForm({ candidates, searches, api, onDone }: { candidates: 
   )
 }
 
+// ── Post a Position form ──────────────────────────────────────────────────────
+function PostAPositionForm({ api, candidates, onDone }: { api: Props['api']; candidates: CRMCandidate[]; onDone: () => void }) {
+  const blank = {
+    school_name: '', position_title: '', role_type_required: '', credential_required: '',
+    levels_required: [] as string[], location_city: '', location_state: '',
+    location_flexible: false, languages_required: [] as string[], years_experience_min: '',
+    equity_focused: false, position_description: '', compensation_range: '',
+    start_date: '', target_fill_date: '', school_contact_name: '', school_contact_email: '',
+    fee_notes: '', notes: '', status: 'active',
+  }
+  const [form,         setForm]         = useState({ ...blank })
+  const [saving,       setSaving]       = useState(false)
+  const [saveErr,      setSaveErr]      = useState<string | null>(null)
+  const [matchLoading, setMatchLoading] = useState(false)
+  const [matchResults, setMatchResults] = useState<MatchResult[]>([])
+  const [matchSearch,  setMatchSearch]  = useState<import('./types').CRMSearch | null>(null)
+  const [matchErr,     setMatchErr]     = useState<string | null>(null)
+  const [showModal,    setShowModal]    = useState(false)
+
+  const set  = (k: string, v: unknown) => setForm(prev => ({ ...prev, [k]: v }))
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!form.school_name.trim() || !form.position_title.trim()) { setSaveErr('School name and position are required'); return }
+    setSaving(true)
+    setSaveErr(null)
+    try {
+      const payload = {
+        ...form,
+        years_experience_min: form.years_experience_min ? parseInt(form.years_experience_min) : null,
+        credential_required:  form.credential_required  || null,
+        role_type_required:   form.role_type_required   || null,
+        levels_required:      form.levels_required.length ? form.levels_required : null,
+        languages_required:   form.languages_required.length ? form.languages_required : null,
+        compensation_range:   form.compensation_range   || null,
+        position_description: form.position_description || null,
+        start_date:           form.start_date           || null,
+        target_fill_date:     form.target_fill_date     || null,
+        school_contact_name:  form.school_contact_name  || null,
+        school_contact_email: form.school_contact_email || null,
+        fee_notes:            form.fee_notes            || null,
+        notes:                form.notes                || null,
+        location_city:        form.location_city        || null,
+        location_state:       form.location_state       || null,
+      }
+      const res = await api('/api/admin/crm/searches', { method: 'POST', body: JSON.stringify(payload) })
+      if (!res.ok) { const d = await res.json(); setSaveErr(d.error ?? 'Save failed'); return }
+      const created = await res.json()
+      onDone()
+
+      // Immediately run match algorithm
+      setMatchLoading(true)
+      setShowModal(true)
+      setMatchSearch(created)
+      try {
+        const mRes  = await api('/api/placement/match', { method: 'POST', body: JSON.stringify({ search_id: created.id }) })
+        const mData = await mRes.json()
+        if (!mRes.ok) { setMatchErr(mData.error ?? 'Match failed'); return }
+        setMatchResults(mData.matches ?? [])
+        setMatchSearch(mData.search ?? created)
+      } catch {
+        setMatchErr('Match request failed')
+      } finally {
+        setMatchLoading(false)
+      }
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <>
+      <form onSubmit={submit} className="flex flex-col gap-4 max-w-3xl">
+        <div className="bg-[#f5e8cc] border border-[#d6a758]/40 px-4 py-3 text-xs text-[#8A6014]">
+          Post a position to instantly surface matched candidates from your database. Filling in requirements gives the AI more signal.
+        </div>
+
+        {/* School + Position */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { k: 'school_name',          label: 'School Name *' },
+            { k: 'position_title',       label: 'Position Title *' },
+            { k: 'location_city',        label: 'City' },
+            { k: 'location_state',       label: 'State' },
+            { k: 'start_date',           label: 'Start Date',         type: 'date' },
+            { k: 'target_fill_date',     label: 'Target Fill Date',   type: 'date' },
+            { k: 'compensation_range',   label: 'Compensation Range' },
+            { k: 'school_contact_name',  label: 'School Contact Name' },
+            { k: 'school_contact_email', label: 'School Contact Email', type: 'email' },
+            { k: 'fee_notes',            label: 'Fee Notes' },
+          ].map(({ k, label, type }) => (
+            <div key={k}>
+              <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">{label}</label>
+              <input type={type ?? 'text'} value={(form as unknown as Record<string, string>)[k] ?? ''}
+                onChange={e => set(k, e.target.value)}
+                className="w-full border border-[#E2DDD6] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+            </div>
+          ))}
+
+          <div>
+            <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Role Type Required</label>
+            <select value={form.role_type_required} onChange={e => set('role_type_required', e.target.value)}
+              className="w-full border border-[#E2DDD6] px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0e1a7a]">
+              <option value="">Select…</option>
+              {ROLE_TYPES.map(r => <option key={r} value={r}>{r}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Credential Required</label>
+            <select value={form.credential_required} onChange={e => set('credential_required', e.target.value)}
+              className="w-full border border-[#E2DDD6] px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0e1a7a]">
+              <option value="">Not required / any</option>
+              {CREDENTIALS.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Min. Years Experience</label>
+            <input type="number" min={0} max={40} value={form.years_experience_min}
+              onChange={e => set('years_experience_min', e.target.value)}
+              className="w-full border border-[#E2DDD6] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+          </div>
+
+          <div>
+            <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Status</label>
+            <select value={form.status} onChange={e => set('status', e.target.value)}
+              className="w-full border border-[#E2DDD6] px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0e1a7a]">
+              {SEARCH_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <CheckList label="Levels Required" options={LEVELS} selected={form.levels_required}
+          onChange={v => set('levels_required', v)} />
+
+        <div>
+          <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-1">Languages Required</label>
+          <div className="flex flex-wrap gap-2">
+            {['Spanish', 'French', 'Mandarin', 'Portuguese', 'Arabic'].map(lang => (
+              <label key={lang} className={`flex items-center gap-1 text-xs border px-2 py-1 cursor-pointer hover:bg-[#FAF9F7] ${
+                form.languages_required.includes(lang) ? 'border-[#0e1a7a] bg-[#E8F0FE]' : 'border-[#E2DDD6]'
+              }`}>
+                <input type="checkbox" className="accent-[#0e1a7a]"
+                  checked={form.languages_required.includes(lang)}
+                  onChange={e => set('languages_required', e.target.checked
+                    ? [...form.languages_required, lang]
+                    : form.languages_required.filter(l => l !== lang)
+                  )} />
+                {lang}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex gap-6">
+          <label className="flex items-center gap-2 text-sm text-[#374151] cursor-pointer">
+            <input type="checkbox" className="accent-[#0e1a7a]" checked={form.location_flexible}
+              onChange={e => set('location_flexible', e.target.checked)} />
+            Location flexible / open to relocation
+          </label>
+          <label className="flex items-center gap-2 text-sm text-[#374151] cursor-pointer">
+            <input type="checkbox" className="accent-[#0e1a7a]" checked={form.equity_focused}
+              onChange={e => set('equity_focused', e.target.checked)} />
+            Equity-focused school
+          </label>
+        </div>
+
+        <div>
+          <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Position Description</label>
+          <textarea rows={4} value={form.position_description} onChange={e => set('position_description', e.target.value)}
+            placeholder="Describe the role, school culture, key requirements…"
+            className="w-full border border-[#E2DDD6] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] resize-y" />
+        </div>
+
+        <div>
+          <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Internal Notes</label>
+          <textarea rows={2} value={form.notes} onChange={e => set('notes', e.target.value)}
+            className="w-full border border-[#E2DDD6] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] resize-y" />
+        </div>
+
+        {saveErr && <p className="text-red-600 text-sm">{saveErr}</p>}
+
+        <button type="submit" disabled={saving}
+          className="bg-[#d6a758] text-white text-sm px-8 py-3 hover:bg-[#c09240] transition-colors disabled:opacity-50 w-fit font-medium">
+          {saving ? 'Creating & matching…' : '✦ Post Position & Find Matches'}
+        </button>
+      </form>
+
+      {showModal && (
+        <MatchModal
+          matchResults={matchResults}
+          matchSearch={matchSearch}
+          matchLoading={matchLoading}
+          matchErr={matchErr}
+          onClose={() => setShowModal(false)}
+          candidates={candidates}
+          api={api}
+        />
+      )}
+    </>
+  )
+}
+
 // ── Main tab ──────────────────────────────────────────────────────────────────
 export default function AddNewTab({ candidates, searches, api, onRefresh }: Props) {
   const [subTab, setSubTab] = useState<SubTab>('candidate')
@@ -392,19 +598,29 @@ export default function AddNewTab({ candidates, searches, api, onRefresh }: Prop
   return (
     <div>
       <div className="flex gap-0 mb-6 border-b border-[#E2DDD6]">
-        {([['candidate', 'Add Candidate'], ['search', 'Start New Search'], ['pipeline', 'Add to Pipeline']] as [SubTab, string][]).map(([id, label]) => (
+        {([
+          ['candidate',    'Add Candidate'],
+          ['search',       'Start New Search'],
+          ['pipeline',     'Add to Pipeline'],
+          ['post-position','Post a Position'],
+        ] as [SubTab, string][]).map(([id, label]) => (
           <button key={id} onClick={() => setSubTab(id)}
             className={`px-5 py-3 text-sm transition-colors border-b-2 ${
-              subTab === id ? 'border-[#0e1a7a] text-[#0e1a7a] font-medium' : 'border-transparent text-[#64748B] hover:text-[#0e1a7a]'
+              subTab === id
+                ? id === 'post-position'
+                  ? 'border-[#d6a758] text-[#8A6014] font-medium'
+                  : 'border-[#0e1a7a] text-[#0e1a7a] font-medium'
+                : 'border-transparent text-[#64748B] hover:text-[#0e1a7a]'
             }`}>
             {label}
           </button>
         ))}
       </div>
 
-      {subTab === 'candidate' && <AddCandidateForm api={api} onDone={() => { onRefresh() }} />}
-      {subTab === 'search' && <AddSearchForm api={api} onDone={() => { onRefresh() }} />}
-      {subTab === 'pipeline' && <AddToPipelineForm candidates={candidates} searches={searches} api={api} onDone={() => { onRefresh() }} />}
+      {subTab === 'candidate'     && <AddCandidateForm api={api} onDone={() => { onRefresh() }} />}
+      {subTab === 'search'        && <AddSearchForm api={api} onDone={() => { onRefresh() }} />}
+      {subTab === 'pipeline'      && <AddToPipelineForm candidates={candidates} searches={searches} api={api} onDone={() => { onRefresh() }} />}
+      {subTab === 'post-position' && <PostAPositionForm api={api} candidates={candidates} onDone={() => { onRefresh() }} />}
     </div>
   )
 }

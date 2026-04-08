@@ -133,9 +133,14 @@ export default function CandidatePanel({ candidate, pipeline, searches, adminPw,
       {/* Panel header */}
       <div className="bg-[#060d3a] px-5 py-4 flex items-start justify-between sticky top-0 z-10">
         <div>
-          <h2 className="text-white text-lg font-semibold" style={{ fontFamily: 'var(--font-cormorant, serif)' }}>
-            {candidate.full_name}
-          </h2>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-white text-lg font-semibold" style={{ fontFamily: 'var(--font-cormorant, serif)' }}>
+              {candidate.full_name}
+            </h2>
+            {(candidate.source === 'MatchHub' || candidate.matchhub_profile_url) && (
+              <span className="text-[9px] font-bold bg-[#d6a758] text-white px-2 py-0.5 tracking-wide">MatchHub</span>
+            )}
+          </div>
           <p className="text-[#94A3B8] text-xs mt-0.5">
             {[candidate.location_city, candidate.location_state].filter(Boolean).join(', ')}
             {candidate.credential && ` · ${candidate.credential}`}

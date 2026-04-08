@@ -47,8 +47,11 @@ export type GuideProfile = {
   photo_url: string | null
   status: ProfileStatus
   source: string | null
+  open_to_placement: boolean
   created_at: string
 }
 
 export type JobInsert = Omit<Job, 'id' | 'created_at' | 'status' | 'payment_status' | 'approved_at' | 'expires_at' | 'notes'>
-export type GuideProfileInsert = Omit<GuideProfile, 'id' | 'created_at' | 'status'>
+export type GuideProfileInsert = Omit<GuideProfile, 'id' | 'created_at' | 'status'> & {
+  open_to_placement?: boolean
+}

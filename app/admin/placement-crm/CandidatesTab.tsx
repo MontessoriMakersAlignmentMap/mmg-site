@@ -169,7 +169,14 @@ export default function CandidatesTab({ candidates, pipeline, searches, adminPw,
                     className={`border-b border-[#E2DDD6] cursor-pointer transition-colors ${
                       selectedId === c.id ? 'bg-[#f5e8cc]' : i % 2 === 0 ? 'bg-white hover:bg-[#FAF9F7]' : 'bg-[#FAF9F7] hover:bg-[#f5f0ea]'
                     }`}>
-                    <td className="px-4 py-3 font-medium text-[#0e1a7a]">{c.full_name}</td>
+                    <td className="px-4 py-3 font-medium text-[#0e1a7a]">
+                      <div className="flex items-center gap-1.5">
+                        {c.full_name}
+                        {(c.source === 'MatchHub' || c.matchhub_profile_url) && (
+                          <span className="text-[9px] font-bold bg-[#d6a758] text-white px-1.5 py-0.5 tracking-wide flex-shrink-0">MatchHub</span>
+                        )}
+                      </div>
+                    </td>
                     <td className="px-4 py-3 text-[#374151]">{[c.location_city, c.location_state].filter(Boolean).join(', ') || '—'}</td>
                     <td className="px-4 py-3">
                       {c.credential && (

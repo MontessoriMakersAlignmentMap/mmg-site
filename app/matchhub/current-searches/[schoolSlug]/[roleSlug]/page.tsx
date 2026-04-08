@@ -80,15 +80,63 @@ export default async function RoleDetailPage({
               <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">
                 Position Overview
               </p>
-              {role.description ? (
-                <div className="text-[#374151] text-base leading-relaxed whitespace-pre-wrap">
+
+              {/* Brief intro text if available */}
+              {role.description && (
+                <div className="text-[#374151] text-base leading-relaxed whitespace-pre-wrap mb-8">
                   {role.description}
                 </div>
-              ) : (
-                <p className="text-[#64748B] text-base leading-relaxed italic">
-                  Full position details available upon inquiry.
-                </p>
               )}
+
+              {/* Full PDF description — embedded inline */}
+              {role.job_description_pdf ? (
+                <div>
+                  <object
+                    data={role.job_description_pdf}
+                    type="application/pdf"
+                    className="w-full border border-[#E2DDD6]"
+                    style={{ height: '860px' }}
+                  >
+                    {/* Fallback for browsers that can't embed PDFs */}
+                    <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+                      <p className="text-[#374151] text-sm mb-4">Your browser cannot display the PDF inline.</p>
+                      <a
+                        href={role.job_description_pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-[#0e1a7a] text-white text-sm px-6 py-3 hover:bg-[#060d3a] transition-colors"
+                      >
+                        Open Full Position Description (PDF)
+                      </a>
+                    </div>
+                  </object>
+                  <a
+                    href={role.job_description_pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-3 text-sm text-[#64748B] hover:text-[#0e1a7a] transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    Open PDF in new tab
+                  </a>
+                </div>
+              ) : !role.description ? (
+                <div className="space-y-4">
+                  <p className="text-[#374151] text-base leading-relaxed">
+                    Montessori Makers Group is conducting a retained search for this position.
+                    Full role details including compensation are shared with qualified candidates after an initial conversation.
+                  </p>
+                  <p className="text-[#374151] text-base leading-relaxed">
+                    To learn more, reach out at{' '}
+                    <a href="mailto:hello@montessorimakersgroup.org" className="text-[#d6a758] hover:underline">
+                      hello@montessorimakersgroup.org
+                    </a>.
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
 

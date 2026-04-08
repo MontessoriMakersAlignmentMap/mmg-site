@@ -68,6 +68,7 @@ const matchhubSections = [
     links: [
       { name: 'Strategic Search', href: '/matchhub/strategic-search', tagline: 'Retained, Hannah-led' },
       { name: 'Current Searches', href: '/matchhub/current-searches', tagline: 'Open placements' },
+      { name: 'Open Positions', href: '/matchhub/positions', tagline: 'Active placement searches' },
     ],
   },
 ]

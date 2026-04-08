@@ -60,10 +60,11 @@ export default function SubmitProfilePage() {
     open_to_relocate: '',
     summary: '',
   })
-  const [selectedLevels,  setSelectedLevels]  = useState<string[]>([])
-  const [leadership,      setLeadership]      = useState(false)
-  const [bilingual,       setBilingual]       = useState(false)
-  const [publicMontessori,setPublicMontessori]= useState(false)
+  const [selectedLevels,    setSelectedLevels]    = useState<string[]>([])
+  const [leadership,        setLeadership]        = useState(false)
+  const [bilingual,         setBilingual]         = useState(false)
+  const [publicMontessori,  setPublicMontessori]  = useState(false)
+  const [openToPlacement,   setOpenToPlacement]   = useState(false)
 
   function set(field: keyof typeof form, value: string) {
     setForm(prev => ({ ...prev, [field]: value }))
@@ -176,7 +177,8 @@ export default function SubmitProfilePage() {
       tags,
       leadership_experience: leadership,
       bilingual,
-      public_montessori: publicMontessori,
+      public_montessori:  publicMontessori,
+      open_to_placement:  openToPlacement,
       resume_url: resumeUrl,
       photo_url:  photoUrl,
       source: 'MatchHub talent',
@@ -444,6 +446,27 @@ export default function SubmitProfilePage() {
               {!resumeFile && (
                 <p className="text-[#94A3B8] text-xs mt-1.5">PDF only. Word documents are not accepted.</p>
               )}
+            </div>
+
+            {/* Placement opt-in */}
+            <div className="border border-[#E2DDD6] bg-[#F2EDE6] px-5 py-5">
+              <p className="text-[#374151] text-xs font-medium uppercase tracking-wide mb-3">Placement Opportunities</p>
+              <p className="text-[#64748B] text-xs leading-relaxed mb-4">
+                Checking this box adds your profile to our private placement database. Your information is never shared with schools without your explicit permission.
+              </p>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <div
+                  onClick={() => setOpenToPlacement(v => !v)}
+                  className={`w-4 h-4 border flex items-center justify-center cursor-pointer transition-colors flex-shrink-0 mt-0.5 ${
+                    openToPlacement ? 'bg-[#0e1a7a] border-[#0e1a7a]' : 'border-[#94A3B8] bg-white'
+                  }`}
+                >
+                  {openToPlacement && <span className="text-white" style={{ fontSize: 9 }}>✓</span>}
+                </div>
+                <span className="text-[#374151] text-sm leading-relaxed">
+                  I am open to being contacted by Montessori Makers for executive search and placement opportunities.
+                </span>
+              </label>
             </div>
 
             {/* Error */}
