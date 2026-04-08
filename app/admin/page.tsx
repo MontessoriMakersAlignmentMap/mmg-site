@@ -776,6 +776,12 @@ export default function AdminPage() {
           >
             Careers Admin →
           </button>
+          <button
+            onClick={() => { window.location.href = '/admin/candidates' }}
+            className="text-xs border border-[#0e1a7a] text-[#0e1a7a] px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors"
+          >
+            Candidate Discovery →
+          </button>
         </div>
 
         {/* Tabs */}
