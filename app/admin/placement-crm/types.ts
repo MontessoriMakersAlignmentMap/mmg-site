@@ -22,6 +22,8 @@ export type CRMCandidate = {
   added_by: string | null
   role_types: string[] | null
   open_to_role_types: string[] | null
+  email_enriched: boolean
+  enrichment_source: string | null
 }
 
 export type CRMSearch = {

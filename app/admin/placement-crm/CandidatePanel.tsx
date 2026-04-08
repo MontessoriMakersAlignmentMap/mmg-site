@@ -105,9 +105,9 @@ export default function CandidatePanel({ candidate, pipeline, searches, adminPw,
       if (data.not_found) { setEnrichMsg('No match found in Apollo.'); return }
       if (data.error) { setEnrichMsg(`Error: ${data.error}`); return }
       // Patch the candidate with enriched data
-      const updates: Partial<CRMCandidate> = { email_enriched: true, enrichment_source: 'Apollo' } as never
-      if (data.email && !candidate.email) (updates as Record<string, unknown>).email = data.email
-      if (data.phone && !candidate.phone) (updates as Record<string, unknown>).phone = data.phone
+      const updates: Partial<CRMCandidate> = { email_enriched: true, enrichment_source: 'Apollo' }
+      if (data.email && !candidate.email) updates.email = data.email
+      if (data.phone && !candidate.phone) updates.phone = data.phone
       const patchRes = await api('/api/admin/crm/candidates', {
         method: 'PATCH',
         body: JSON.stringify({ id: candidate.id, ...updates }),
@@ -291,7 +291,7 @@ export default function CandidatePanel({ candidate, pipeline, searches, adminPw,
                   {candidate.email ? (
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-[#374151]">{candidate.email}</span>
-                      {(candidate as unknown as Record<string, unknown>).email_enriched && (
+                      {candidate.email_enriched && (
                         <span className="text-[10px] bg-[#f5e8cc] text-[#8A6014] border border-[#d6a758]/40 px-2 py-0.5 font-medium">Enriched via Apollo</span>
                       )}
                     </div>
