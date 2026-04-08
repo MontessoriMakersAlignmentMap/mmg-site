@@ -27,21 +27,18 @@ const formats = [
     name: 'Communication Audit',
     description:
       'A structured review of all family-facing communication, with a clear map of where understanding breaks down and what to build in its place.',
-    pricing: 'Starting at $2,000',
   },
   {
     label: 'Project-Based',
     name: 'Family Engagement Architecture',
     description:
       'Full design of the family communication and engagement system. A 2 to 4 month engagement covering orientation, education programming, conference design, and guide communication protocols.',
-    pricing: 'Starting at $5,000',
   },
   {
     label: 'Retained',
     name: 'Ongoing Family Engagement Advisory',
     description:
       'Quarterly review, annual planning, and on-call support for family engagement systems. For schools committed to treating family alignment as ongoing work.',
-    pricing: 'Starting at $8,000/year',
   },
 ]
 
@@ -197,7 +194,6 @@ export default function FamilyEngagementPage() {
                   <h3 className="text-[#0e1a7a] font-semibold text-xl" style={serif}>{format.name}</h3>
                 </div>
                 <p className="text-[#374151] text-sm leading-relaxed flex-1">{format.description}</p>
-                <p className="text-[#8A6014] text-sm font-medium">{format.pricing}</p>
               </div>
             ))}
           </div>

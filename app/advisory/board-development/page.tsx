@@ -29,21 +29,18 @@ const formats = [
     name: 'Board Retreat',
     description:
       'A facilitated half-day or full-day retreat for the full board. Used to reset expectations, clarify roles, align on governance fundamentals, or begin strategic planning.',
-    pricing: 'Starting at $5,000',
   },
   {
     label: 'Multi-Session',
     name: 'Board Formation Series',
     description:
       '4 to 6 sessions over 3 to 6 months building governance infrastructure from the ground up. Designed for boards that have inherited structure without ever examined it.',
-    pricing: 'Starting at $10,000',
   },
   {
     label: 'Retained',
     name: 'Ongoing Board Advisory',
     description:
       'Quarterly facilitation, annual retreat, and on-call advisory support. For boards committed to governance as a continuous practice rather than a periodic intervention.',
-    pricing: 'Starting at $20,000/year',
   },
 ]
 
@@ -199,7 +196,6 @@ export default function BoardDevelopmentPage() {
                   <h3 className="text-[#0e1a7a] font-semibold text-xl" style={serif}>{format.name}</h3>
                 </div>
                 <p className="text-[#374151] text-sm leading-relaxed flex-1">{format.description}</p>
-                <p className="text-[#8A6014] text-sm font-medium">{format.pricing}</p>
               </div>
             ))}
           </div>

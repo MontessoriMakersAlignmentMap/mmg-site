@@ -28,21 +28,18 @@ const formats = [
     name: 'Feasibility Consultation',
     description:
       'A structured assessment of readiness, viability, and what needs to be true before opening. Two to three sessions covering organizational, financial, and community conditions.',
-    pricing: 'Starting at $1,500',
   },
   {
     label: 'Project-Based',
     name: 'Startup Design Package',
     description:
       'A 3 to 6 month engagement building the full organizational infrastructure for launch: roles, governance, hiring, communication, operations, and culture.',
-    pricing: 'Starting at $8,000',
   },
   {
     label: 'Retained',
     name: 'First-Year Advisory',
     description:
       'Ongoing advisory support through the first year of operation, when the gap between plan and reality is widest and the decisions made have the longest reach.',
-    pricing: 'Starting at $15,000/year',
   },
 ]
 
@@ -205,7 +202,6 @@ export default function StrongSystemsPage() {
                   <h3 className="text-[#0e1a7a] font-semibold text-xl" style={serif}>{format.name}</h3>
                 </div>
                 <p className="text-[#374151] text-sm leading-relaxed flex-1">{format.description}</p>
-                <p className="text-[#8A6014] text-sm font-medium">{format.pricing}</p>
               </div>
             ))}
           </div>
