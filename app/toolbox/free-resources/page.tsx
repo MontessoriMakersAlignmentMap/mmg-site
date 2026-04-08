@@ -27,6 +27,22 @@ const guides = [
     format: 'Free PDF download',
     file: '/free-resources/creating-strong-financial-structures.pdf',
   },
+  {
+    number: '04',
+    name: 'Progressive People Policies for Montessori Schools',
+    desc: 'Most employment policies in schools were written to protect the institution &mdash; not to reflect its values. This guide offers fifteen progressive HR policies designed for Montessori schools that take their adult culture seriously: compassionate separation processes, mutual accountability frameworks, flexible work structures, and employment practices that extend the same dignity to adults that Montessori extends to children.',
+    audience: 'Heads of school, directors, and HR leads building or revising employment policies',
+    format: 'Free PDF download',
+    file: '/free-resources/montessori-mutuality.pdf',
+  },
+  {
+    number: '05',
+    name: 'The Resident Guide Model',
+    desc: 'Coverage anxiety is a retention crisis in slow motion. The Resident Guide model &mdash; a shared guide who floats across all classrooms, knows every child, and covers for permanent guides who need real rest &mdash; is one structural answer. This framework covers the rationale for the role, what implementation looks like across program levels, how to communicate it to families, and what to look for when hiring someone into this unique position.',
+    audience: 'Heads of school and leadership teams exploring staffing and wellness structures',
+    format: 'Free PDF download',
+    file: '/free-resources/resident-guide-model.pdf',
+  },
 ]
 
 export default function FreeResourcesPage() {

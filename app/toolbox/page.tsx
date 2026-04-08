@@ -152,6 +152,18 @@ const freeResources = [
     desc: 'Budget development, financial reporting, reserve policy, and cash flow planning — practical and non-jargon, designed for school leaders who didn&apos;t come from finance backgrounds but need to build real financial health.',
     audience: 'Heads of school, business managers, and boards',
   },
+  {
+    name: 'Progressive People Policies for Montessori Schools',
+    file: '/free-resources/montessori-mutuality.pdf',
+    desc: 'Fifteen progressive HR policies built for the real culture of Montessori schools — covering compassionate separation, mutual accountability, flexible work, and the employment practices that reflect the values you hold for children.',
+    audience: 'Heads of school, directors, and HR leads',
+  },
+  {
+    name: 'The Resident Guide Model',
+    file: '/free-resources/resident-guide-model.pdf',
+    desc: 'A framework for building staff wellness and school continuity through a shared guide role that floats across classrooms. Covers the rationale, implementation, and what to look for when hiring for this role.',
+    audience: 'Heads of school and leadership teams exploring staffing models',
+  },
 ]
 
 export default function ToolboxPage() {
