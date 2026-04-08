@@ -126,6 +126,7 @@ export const SEARCH_STATUSES = ['active', 'filled', 'closed', 'on hold'] as cons
 export const ROLE_TYPES = [
   'Assistant',
   'Lead Guide',
+  'Resident Guide',
   'Specialist',
   'School Leader',
   'Operations',

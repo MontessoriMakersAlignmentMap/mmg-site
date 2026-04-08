@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { CRMCandidate, CRMSearch, CREDENTIALS, LEVELS, SOURCES, SEARCH_STATUSES, ROLE_TYPES } from './types'
+import { fillResidentGuideTemplate } from '@/lib/templates/resident-guide-position'
 import type { MatchResult } from '@/app/api/placement/match/route'
 import MatchModal from './MatchModal'
 
@@ -408,6 +409,19 @@ function PostAPositionForm({ api, candidates, onDone }: { api: Props['api']; can
 
   const set  = (k: string, v: unknown) => setForm(prev => ({ ...prev, [k]: v }))
 
+  function applyResidentGuideTemplate() {
+    const filled = fillResidentGuideTemplate({
+      school_name:        form.school_name       || undefined,
+      location_city:      form.location_city     || undefined,
+      location_state:     form.location_state    || undefined,
+      levels_required:    form.levels_required.length ? form.levels_required : undefined,
+      credential_required: form.credential_required || undefined,
+      start_date:         form.start_date        || undefined,
+    })
+    set('position_description', filled)
+    if (!form.position_title) set('position_title', 'Resident Guide')
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault()
     if (!form.school_name.trim() || !form.position_title.trim()) { setSaveErr('School name and position are required'); return }
@@ -556,8 +570,24 @@ function PostAPositionForm({ api, candidates, onDone }: { api: Props['api']; can
         </div>
 
         <div>
-          <label className="text-[10px] text-[#64748B] uppercase tracking-wide block mb-0.5">Position Description</label>
-          <textarea rows={4} value={form.position_description} onChange={e => set('position_description', e.target.value)}
+          <div className="flex items-center justify-between mb-0.5">
+            <label className="text-[10px] text-[#64748B] uppercase tracking-wide">Position Description</label>
+            {form.role_type_required === 'Resident Guide' && (
+              <button
+                type="button"
+                onClick={applyResidentGuideTemplate}
+                className="text-[10px] font-medium text-[#8A6014] border border-[#d6a758] px-2 py-0.5 hover:bg-[#d6a758] hover:text-white transition-colors"
+              >
+                Use Resident Guide Template
+              </button>
+            )}
+          </div>
+          {form.role_type_required === 'Resident Guide' && !form.position_description && (
+            <p className="text-[10px] text-[#64748B] mb-1">
+              This role has a standard position description template. Click above to pre-fill.
+            </p>
+          )}
+          <textarea rows={form.position_description ? 12 : 4} value={form.position_description} onChange={e => set('position_description', e.target.value)}
             placeholder="Describe the role, school culture, key requirements…"
             className="w-full border border-[#E2DDD6] px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] resize-y" />
         </div>

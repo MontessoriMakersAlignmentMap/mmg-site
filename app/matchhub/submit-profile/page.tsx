@@ -19,6 +19,7 @@ const roleTypeOptions = [
   'Elementary Guide (6–12)',
   'Infant & Toddler Guide (0–3)',
   'Adolescent / Middle School Guide',
+  'Resident Guide',
   'Admissions & Enrollment',
   'Administrative & Operations',
   'Other',

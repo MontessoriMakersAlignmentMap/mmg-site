@@ -114,6 +114,10 @@ SCORING RULES — score each dimension 1–10:
 - role_score: role_types includes required role = 10. open_to_role_types includes it = 6. Transferable background evident in notes = 4. No match = 2.
 - overall_score: Holistic 1–10 considering all dimensions, years_experience vs minimum, actively_looking status, languages, equity background, and notes context.
 
+RESIDENT GUIDE SPECIAL RULES (apply when role_type_required is "Resident Guide"):
+- level_score: Boost by +2 (max 10) for candidates certified across 2+ program levels. Single-level certification scores max 6 for this role type. Certification across 3+ levels scores 10.
+- overall_score: Add +1 for candidates who have worked in 3 or more Montessori schools (indicates adaptability). Add +1 for candidates whose notes mention field consulting, mentoring, coaching, or working across multiple classrooms. A candidate with multi-level certification AND multi-school experience should score 8+ overall even without being actively_looking.
+
 CONTACT PRIORITY:
 - "Immediate": overall_score >= 8 AND actively_looking
 - "This Week": overall_score >= 6

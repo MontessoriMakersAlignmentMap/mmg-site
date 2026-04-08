@@ -30,8 +30,8 @@ Extract structured data from the following text and return ONLY valid JSON (no m
   "source": "LinkedIn if LinkedIn profile, else Other",
   "linkedin_url": "string or null",
   "notes": "1-2 sentence summary of their background",
-  "role_types": ["array of best-fit values from: Assistant | Lead Guide | Specialist | School Leader | Operations | Marketing and Communications | Curriculum | Consultant | Trainer | Other — based on their actual experience"],
-  "open_to_role_types": ["array of best-fit values from the same list — based on stated interests, career trajectory, or aspirations mentioned in the text"]
+  "role_types": ["array of best-fit values from: Assistant | Lead Guide | Resident Guide | Specialist | School Leader | Operations | Marketing and Communications | Curriculum | Consultant | Trainer | Other — based on their actual experience. Use 'Resident Guide' if they have experience across multiple program levels, have done field consulting or mentoring, or have worked in 3+ Montessori schools suggesting strong adaptability."],
+  "open_to_role_types": ["array of best-fit values from the same list — based on stated interests, career trajectory, or aspirations mentioned in the text. Include 'Resident Guide' if they express interest in variety, flexibility, or cross-classroom work."]
 }
 
 TEXT TO PARSE:
