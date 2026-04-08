@@ -15,6 +15,9 @@ const advisoryLinks = [
   { name: 'Workshops & Speaking', href: '/advisory/workshops-speaking', tagline: 'Entry point & PD' },
   { name: 'Leadership Transition', href: '/advisory/leadership-transition-support', tagline: 'Succession support' },
   { name: 'Communication Strategy', href: '/advisory/communication-strategy', tagline: 'Systems-level design' },
+  { name: 'Board Development', href: '/advisory/board-development', tagline: 'Governance formation' },
+  { name: 'Strong Systems', href: '/advisory/strong-systems', tagline: 'Startup & new school design' },
+  { name: 'Family Engagement', href: '/advisory/family-engagement', tagline: 'Community alignment' },
 ]
 
 const instituteLinks = [

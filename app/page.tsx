@@ -487,6 +487,7 @@ const pathways = [
   { question: 'I need to find the right people', label: 'MatchHub', href: '/matchhub' },
   { question: 'Our systems need to work', label: 'MMAP', href: '/mmap' },
   { question: 'I need practical tools now', label: 'Toolbox', href: '/toolbox' },
+  { question: "We're starting a new school", label: 'Strong Systems', href: '/advisory/strong-systems' },
 ]
 
 function WhereToStart() {
@@ -503,7 +504,7 @@ function WhereToStart() {
           </h2>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-14">
           {pathways.map((p, i) => (
             <FadeIn key={p.label} delay={i * 0.06}>
               <motion.div
