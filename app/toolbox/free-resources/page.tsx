@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -46,6 +49,8 @@ const guides = [
 ]
 
 export default function FreeResourcesPage() {
+  const [expanded, setExpanded] = useState<string | null>(null)
+
   return (
     <>
       {/* ── 1. HERO ──────────────────────────────────────────────────────── */}
@@ -104,7 +109,13 @@ export default function FreeResourcesPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex md:flex-col items-start md:items-end gap-4 md:pt-2">
+                <div className="flex md:flex-col items-start md:items-end gap-3 md:pt-2">
+                  <button
+                    onClick={() => setExpanded(expanded === guide.number ? null : guide.number)}
+                    className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-8 py-4 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors text-center font-medium whitespace-nowrap"
+                  >
+                    {expanded === guide.number ? 'Collapse' : 'View Guide'}
+                  </button>
                   <a
                     href={guide.file}
                     download
@@ -114,6 +125,40 @@ export default function FreeResourcesPage() {
                   </a>
                 </div>
               </div>
+
+              {expanded === guide.number && (
+                <div className="mt-8 border-t border-[#E2DDD6] pt-8">
+                  <object
+                    data={guide.file}
+                    type="application/pdf"
+                    className="w-full border border-[#E2DDD6]"
+                    style={{ height: '800px' }}
+                  >
+                    <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+                      <p className="text-[#374151] text-sm mb-4">
+                        Your browser cannot display the PDF inline.
+                      </p>
+                      <a
+                        href={guide.file}
+                        download
+                        className="bg-[#d6a758] text-white text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                      >
+                        Download PDF
+                      </a>
+                    </div>
+                  </object>
+                  <div className="mt-4 flex justify-end">
+                    <a
+                      href={guide.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#0e1a7a] text-sm hover:underline"
+                    >
+                      Open in new tab &rarr;
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
