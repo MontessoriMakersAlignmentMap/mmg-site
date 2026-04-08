@@ -132,18 +132,33 @@ export default function FreeResourcesPage() {
 
               {expanded === guide.number && (
                 <div className="mt-8 border-t border-[#E2DDD6] pt-8">
-                  <object
-                    data={guide.file}
-                    type="application/pdf"
-                    className="w-full border border-[#E2DDD6]"
-                    style={{ height: '800px' }}
-                  >
-                    <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
-                      <p className="text-[#374151] text-sm">
-                        Your browser cannot display the PDF inline.
-                      </p>
-                    </div>
-                  </object>
+                  {'referral' in guide && guide.referral ? (
+                    <iframe
+                      src={`https://docs.google.com/gview?url=https://montessorimakersgroup.org${guide.file}&embedded=true`}
+                      className="w-full border border-[#E2DDD6]"
+                      style={{ height: '800px' }}
+                    />
+                  ) : (
+                    <object
+                      data={guide.file}
+                      type="application/pdf"
+                      className="w-full border border-[#E2DDD6]"
+                      style={{ height: '800px' }}
+                    >
+                      <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+                        <p className="text-[#374151] text-sm mb-4">
+                          Your browser cannot display the PDF inline.
+                        </p>
+                        <a
+                          href={guide.file}
+                          download
+                          className="bg-[#d6a758] text-white text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                        >
+                          Download PDF
+                        </a>
+                      </div>
+                    </object>
+                  )}
                   <div className="mt-4 flex items-center justify-between">
                     <p className="text-[#64748B] text-xs">
                       {'referral' in guide && guide.referral
