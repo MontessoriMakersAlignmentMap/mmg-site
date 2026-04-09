@@ -104,7 +104,7 @@ export default function CoursesPage() {
             Professional learning built on Montessori philosophy and modern research.
           </h1>
           <p className="text-[#94A3B8] text-lg leading-relaxed mb-12">
-            Short, rigorous, self-paced courses for working Montessori educators. $250 per course &middot; Lifetime access.
+            Short, rigorous, self-paced courses for working Montessori educators. $250 per course &middot; 90-day access from first login.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
@@ -130,7 +130,7 @@ export default function CoursesPage() {
             {[
               { label: 'Format', value: 'Async, self-paced — complete on your schedule' },
               { label: 'Time', value: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)' },
-              { label: 'Access', value: 'Lifetime access to all course materials after purchase' },
+              { label: 'Access', value: '90-day access beginning from your first login' },
             ].map((item) => (
               <div key={item.label} className="border-l-2 border-[#d6a758] pl-5">
                 <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">{item.label}</p>

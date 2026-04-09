@@ -50,7 +50,7 @@ const categories = [
     headline: 'Professional learning built on Montessori philosophy and modern research.',
     desc: 'Rigorous, self-paced courses for working Montessori educators. Five courses — all grounded in real classroom practice, each equivalent to a full-day professional development experience.',
     for: 'Primary and elementary Montessori guides, literacy leads, instructional coaches',
-    price: '$250 per course · Lifetime access',
+    price: '$250 per course · 90-day access',
     cta: 'Browse Courses',
     ctaHref: '/learning/courses',
     secondary: 'See what\'s coming →',
@@ -126,7 +126,7 @@ export default function LearningPage() {
               {[
                 { label: 'Shop Decodable Books', sub: '96 books · 8 sets', href: '/learning/decodable-books' },
                 { label: 'Reading Assessment Hub', sub: 'From $99/year', href: '/learning/reading-assessment' },
-                { label: 'Browse Courses', sub: '$250 each · Lifetime access', href: '/learning/courses' },
+                { label: 'Browse Courses', sub: '$250 each · 90-day access', href: '/learning/courses' },
                 { label: 'Chart Sets', sub: 'Origins Series · Fundamental Needs · More coming', href: '/learning/charts' },
                 { label: 'Authagraph Map Collection', sub: 'Primary + Elementary · From $55', href: '/learning/maps' },
                 { label: 'Timeline Collection', sub: 'Life · Humans · Clock of Eras · From $75', href: '/learning/timelines' },
@@ -296,7 +296,7 @@ export default function LearningPage() {
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1 mt-6">For</p>
             <p className="text-[#374151] text-sm mb-5">Primary and elementary guides, literacy leads, instructional coaches</p>
             <p className="text-[#64748B] text-xs tracking-wide uppercase mb-1">Pricing</p>
-            <p className="text-[#374151] text-sm mb-8">$250 per course &middot; Lifetime access</p>
+            <p className="text-[#374151] text-sm mb-8">$250 per course &middot; 90-day access from first login</p>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/learning/courses"

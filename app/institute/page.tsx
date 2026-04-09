@@ -263,7 +263,7 @@ export default function InstitutePage() {
                     </div>
                     <div>
                       <p className="text-[#64748B] text-xs tracking-[0.1em] uppercase">Access</p>
-                      <p className="text-[#374151] text-sm">Lifetime access after purchase</p>
+                      <p className="text-[#374151] text-sm">90-day access from first login</p>
                     </div>
                   </div>
                   <a
@@ -273,7 +273,7 @@ export default function InstitutePage() {
                     Register Now &rarr;
                   </a>
                   <p className="text-[#64748B] text-xs text-center -mt-2">
-                    Secure checkout via Stripe. Lifetime access delivered immediately after purchase.
+                    Secure checkout via Stripe. 90-day access begins on your first login.
                   </p>
                 </div>
               </div>
