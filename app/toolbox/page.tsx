@@ -255,10 +255,18 @@ export default function ToolboxPage() {
                     Download Free
                   </a>
                 ) : (
-                  <p className="text-[#64748B] text-xs leading-relaxed">
-                    Share this with your community &mdash; direct them to{' '}
-                    <span className="text-[#0e1a7a] font-medium">montessorimakersgroup.org</span>
-                  </p>
+                  <div className="flex flex-col gap-3">
+                    <Link
+                      href="/toolbox/free-resources"
+                      className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-6 py-3 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors text-center font-medium self-start"
+                    >
+                      View Guide
+                    </Link>
+                    <p className="text-[#64748B] text-xs leading-relaxed">
+                      Share with your community &mdash;{' '}
+                      <span className="text-[#0e1a7a] font-medium">montessorimakersgroup.org</span>
+                    </p>
+                  </div>
                 )}
               </div>
             ))}
