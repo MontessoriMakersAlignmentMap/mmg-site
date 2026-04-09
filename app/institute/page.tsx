@@ -243,7 +243,7 @@ export default function InstitutePage() {
                   </div>
                   <p className="text-[#64748B] text-xs">
                     <span className="font-medium text-[#374151]">Designed for: </span>
-                    Heads of school, academic directors, and anyone in a Montessori school responsible for adult culture — who understand the pedagogy and are ready to examine what they actually do with and to one another.
+                    Heads of school, executive directors, academic directors, and anyone in a Montessori school responsible for adult culture — who understand the pedagogy and are ready to examine what they actually do with and to one another.
                   </p>
                 </div>
                 {/* Sidebar */}
