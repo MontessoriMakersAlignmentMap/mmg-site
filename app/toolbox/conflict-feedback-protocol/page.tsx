@@ -230,6 +230,33 @@ export default function ConflictFeedbackProtocolPage() {
       </section>
 
       {/* ── PURCHASE CTA ──────────────────────────────────────────────────── */}
+
+      {/* ── PREVIEW ──────────────────────────────────────────────────────── */}
+      <section className="bg-white py-24 md:py-28 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-10">
+            <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-4">
+              Inside the Toolkit
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight tracking-tight"
+              style={serif}
+            >
+              A look inside.
+            </h2>
+          </div>
+          <object
+            data="/toolbox-previews/conflict-feedback-protocol-preview.pdf#toolbar=0&navpanes=0"
+            type="application/pdf"
+            className="w-full border border-[#E2DDD6]"
+            style={{ height: '960px' }}
+          >
+            <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+              <p className="text-[#374151] text-sm">PDF preview not available in this browser.</p>
+            </div>
+          </object>
+        </div>
+      </section>
       <section className="bg-[#0e1a7a] py-24 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-xl">
