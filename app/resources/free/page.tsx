@@ -3,7 +3,7 @@ import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const leaderResources = [
+const leaderResourcesStrategy = [
   {
     title: 'Growing Your Montessori School',
     type: 'E-Book',
@@ -41,6 +41,37 @@ const leaderResources = [
       'Building and protecting financial reserves',
       'Tuition modeling and financial accessibility',
       'Financial governance and board oversight',
+    ],
+  },
+]
+
+const leaderResourcesCulture = [
+  {
+    title: 'Progressive People Policies for Montessori Schools',
+    type: 'Framework Guide',
+    file: '/free-resources/montessori-mutuality.pdf',
+    referral: true,
+    description:
+      'Fifteen progressive HR policies designed for Montessori schools that take their adult culture seriously: compassionate separation processes, mutual accountability frameworks, flexible work structures, and employment practices that extend the same dignity to adults that Montessori extends to children.',
+    topics: [
+      'Compassionate separation and off-boarding',
+      'Mutual accountability frameworks',
+      'Flexible work and wellness structures',
+      'Employment practices grounded in Montessori values',
+    ],
+  },
+  {
+    title: 'The Resident Guide Model',
+    type: 'Framework Guide',
+    file: '/free-resources/resident-guide-model.pdf',
+    referral: true,
+    description:
+      'Coverage anxiety is a retention crisis in slow motion. The Resident Guide model — a shared guide who floats across all classrooms, knows every child, and covers for permanent guides who need real rest — is one structural answer.',
+    topics: [
+      'Rationale for the role and what it solves',
+      'Implementation across program levels',
+      'How to communicate it to families',
+      'What to look for when hiring into this role',
     ],
   },
   {
@@ -165,6 +196,73 @@ const educatorResources = [
   },
 ]
 
+type Resource = {
+  title: string
+  type: string
+  file: string
+  referral?: boolean
+  description: string
+  topics: string[]
+}
+
+function LeaderCard({ book }: { book: Resource }) {
+  return (
+    <div className="bg-white border border-[#E2DDD6] p-8 md:p-10">
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="bg-[#F2EDE6] text-[#64748B] text-xs tracking-[0.1em] uppercase px-3 py-1">
+              {book.type}
+            </span>
+            <span className="bg-[#0e1a7a] text-[#d6a758] text-xs tracking-[0.1em] uppercase px-3 py-1">
+              Free
+            </span>
+          </div>
+          <h3 className="text-[#0e1a7a] text-xl font-semibold mb-4" style={serif}>
+            {book.title}
+          </h3>
+          <p className="text-[#374151] text-base leading-relaxed">{book.description}</p>
+        </div>
+        <div>
+          <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">What&rsquo;s inside</p>
+          <ul className="space-y-2 mb-8">
+            {book.topics.map((topic, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="text-[#d6a758] flex-shrink-0 mt-0.5 text-xs">—</span>
+                <span className="text-[#374151] text-xs leading-relaxed">{topic}</span>
+              </li>
+            ))}
+          </ul>
+          {book.referral ? (
+            <div>
+              <a
+                href={book.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0e1a7a] text-white text-xs px-6 py-3 tracking-wide hover:bg-[#162270] transition-colors inline-block mb-3"
+              >
+                View Guide →
+              </a>
+              <p className="text-[#64748B] text-xs leading-relaxed">
+                Share with your community —{' '}
+                <span className="text-[#0e1a7a] font-medium">montessorimakersgroup.org</span>
+              </p>
+            </div>
+          ) : (
+            <a
+              href={book.file}
+              download
+              className="bg-[#0e1a7a] text-white text-xs px-6 py-3 tracking-wide hover:bg-[#162270] transition-colors inline-block"
+            >
+              Download Free →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function FreeResourcesPage() {
   return (
     <>
@@ -186,13 +284,13 @@ export default function FreeResourcesPage() {
       <section className="bg-[#F2EDE6] py-10 px-6 md:px-10 border-b border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto max-w-3xl">
           <p className="text-[#374151] text-base leading-relaxed">
-            Twelve free downloads organized by audience: six tools for{' '}
+            Fourteen free resources organized by audience:{' '}
             <a href="#for-leaders" className="text-[#0e1a7a] font-semibold hover:underline">
-              school leaders
+              eight for school leaders
             </a>{' '}
-            (strategy, operations, and culture) and six for{' '}
+            (strategy, operations, and culture) and{' '}
             <a href="#for-educators" className="text-[#0e1a7a] font-semibold hover:underline">
-              guides and educators
+              six for guides and educators
             </a>{' '}
             (literacy, curriculum, and professional development).
           </p>
@@ -208,51 +306,36 @@ export default function FreeResourcesPage() {
               Strategy, operations, and culture tools.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              E-books, templates, and operational tools for Montessori school leaders — from
-              financial sustainability and fundraising to staff culture, onboarding, and
-              professional development planning.
+              E-books, frameworks, and operational tools for Montessori school leaders — from
+              financial sustainability and fundraising to staff culture, adult infrastructure, and
+              professional development.
             </p>
           </div>
-          <div className="space-y-6">
-            {leaderResources.map((book) => (
-              <div key={book.title} className="bg-white border border-[#E2DDD6] p-8 md:p-10">
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="md:col-span-2">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="bg-[#F2EDE6] text-[#64748B] text-xs tracking-[0.1em] uppercase px-3 py-1">
-                        {book.type}
-                      </span>
-                      <span className="bg-[#0e1a7a] text-[#d6a758] text-xs tracking-[0.1em] uppercase px-3 py-1">
-                        Free
-                      </span>
-                    </div>
-                    <h3 className="text-[#0e1a7a] text-xl font-semibold mb-4" style={serif}>
-                      {book.title}
-                    </h3>
-                    <p className="text-[#374151] text-base leading-relaxed">{book.description}</p>
-                  </div>
-                  <div>
-                    <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">What&rsquo;s inside</p>
-                    <ul className="space-y-2 mb-8">
-                      {book.topics.map((topic, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#d6a758] flex-shrink-0 mt-0.5 text-xs">—</span>
-                          <span className="text-[#374151] text-xs leading-relaxed">{topic}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={book.file}
-                      download
-                      className="bg-[#0e1a7a] text-white text-xs px-6 py-3 tracking-wide hover:bg-[#162270] transition-colors inline-block"
-                    >
-                      Download Free →
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+
+          {/* Strategy & Operations */}
+          <div className="mb-12">
+            <p className="text-[#8A6014] text-xs tracking-[0.18em] uppercase mb-6 pb-3 border-b border-[#E2DDD6]">
+              Strategy &amp; Operations
+            </p>
+            <div className="space-y-6">
+              {leaderResourcesStrategy.map((book) => (
+                <LeaderCard key={book.title} book={book} />
+              ))}
+            </div>
           </div>
+
+          {/* Staff & Culture */}
+          <div>
+            <p className="text-[#8A6014] text-xs tracking-[0.18em] uppercase mb-6 pb-3 border-b border-[#E2DDD6]">
+              Staff &amp; Culture
+            </p>
+            <div className="space-y-6">
+              {leaderResourcesCulture.map((book) => (
+                <LeaderCard key={book.title} book={book} />
+              ))}
+            </div>
+          </div>
+
           <div className="mt-8 flex items-center justify-between gap-6 bg-[#F2EDE6] p-6 border border-[#D4CEC6]">
             <div>
               <p className="text-[#0e1a7a] font-semibold text-sm">Looking for the full Toolbox?</p>
