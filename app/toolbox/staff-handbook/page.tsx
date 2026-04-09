@@ -111,7 +111,7 @@ export default function StaffHandbookPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            A complete 124-page editable staff handbook template.
+            A complete 234-page editable staff handbook template.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             Every policy domain a Montessori school needs to cover, written coherently,

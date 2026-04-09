@@ -133,11 +133,18 @@ export default function FreeResourcesPage() {
               {expanded === guide.number && (
                 <div className="mt-8 border-t border-[#E2DDD6] pt-8">
                   {'referral' in guide && guide.referral ? (
-                    <iframe
-                      src={`https://docs.google.com/gview?url=https://montessorimakersgroup.org${guide.file}&embedded=true`}
+                    <object
+                      data={`${guide.file}#toolbar=0&navpanes=0&scrollbar=1`}
+                      type="application/pdf"
                       className="w-full border border-[#E2DDD6]"
                       style={{ height: '800px' }}
-                    />
+                    >
+                      <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+                        <p className="text-[#374151] text-sm">
+                          PDF preview not available in this browser.
+                        </p>
+                      </div>
+                    </object>
                   ) : (
                     <object
                       data={guide.file}

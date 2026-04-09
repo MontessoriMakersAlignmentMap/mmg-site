@@ -108,7 +108,7 @@ export default function FamilyHandbookPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            A complete 58-page editable handbook template.
+            A complete 72-page editable handbook template.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             Every section families need, written for Montessori schools specifically, and fully
@@ -276,7 +276,7 @@ export default function FamilyHandbookPage() {
                 title: 'Staff Handbook Toolkit',
                 slug: 'staff-handbook',
                 desc:
-                  'The internal counterpart to the Family Handbook &mdash; a 124-page staff handbook template that codifies the adult culture expectations families experience when they interact with your team.',
+                  'The internal counterpart to the Family Handbook &mdash; a 234-page staff handbook template that codifies the adult culture expectations families experience when they interact with your team.',
               },
               {
                 title: 'Adult Culture Framework',

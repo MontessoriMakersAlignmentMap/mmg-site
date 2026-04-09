@@ -115,7 +115,7 @@ export default function AdultCultureFrameworkPage() {
             Everything you need to build principled adult culture.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
-            The Adult Culture Framework includes a 57-page field guide plus culture audit
+            The Adult Culture Framework includes a 55-page field guide plus culture audit
             instruments, facilitation guides, and policy templates &mdash; structured for
             phased implementation across your whole school community.
           </p>
@@ -301,7 +301,7 @@ export default function AdultCultureFrameworkPage() {
                 title: 'Staff Handbook Toolkit',
                 slug: 'staff-handbook',
                 desc:
-                  'A 124-page editable staff handbook template that codifies the cultural expectations the Adult Culture Framework helps you define &mdash; turning norms into written policy.',
+                  'A 234-page editable staff handbook template that codifies the cultural expectations the Adult Culture Framework helps you define &mdash; turning norms into written policy.',
               },
             ].map((item) => (
               <div key={item.slug} className="bg-white border border-[#E2DDD6] p-7">

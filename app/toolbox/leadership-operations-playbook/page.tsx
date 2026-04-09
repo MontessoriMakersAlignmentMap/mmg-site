@@ -108,7 +108,7 @@ export default function LeadershipOperationsPlaybookPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            40+ documents across 6 operational domains.
+            65-page playbook across 6 operational domains.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             Every document addresses a specific operational failure mode common in Montessori

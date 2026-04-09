@@ -109,7 +109,7 @@ export default function PerformanceSeparationToolkitPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            33 documents covering performance management through separation.
+            112-page toolkit covering performance management through separation.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             Every document in this toolkit was built to address a specific failure point in

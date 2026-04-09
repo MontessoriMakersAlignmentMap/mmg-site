@@ -112,7 +112,7 @@ export default function BoardOnboardingToolkitPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            21 documents for board culture, onboarding, and governance alignment.
+            61-page toolkit for board culture, onboarding, and governance alignment.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             From the first orientation session through annual self-assessment, every major

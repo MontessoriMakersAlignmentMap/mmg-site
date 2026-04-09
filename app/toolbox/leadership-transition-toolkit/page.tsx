@@ -111,7 +111,7 @@ export default function LeadershipTransitionToolkitPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            40 documents across the full transition lifecycle.
+            64-page toolkit across the full transition lifecycle.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             From proactive succession planning through the incoming leader&rsquo;s first 90 days,

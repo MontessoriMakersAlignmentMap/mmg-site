@@ -110,7 +110,7 @@ export default function HiringSelectionToolkitPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
             style={serif}
           >
-            38+ documents across the full hiring cycle.
+            26-page toolkit across the full hiring cycle.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             From the moment you define a role through the day a new hire starts, every stage of

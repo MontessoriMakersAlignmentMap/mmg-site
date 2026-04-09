@@ -70,7 +70,7 @@ export default function ConflictFeedbackProtocolPage() {
                   Buy Now &mdash; $210
                 </a>
                 <p className="text-[#64748B] text-sm self-center">
-                  7 tools + implementation guide
+                  26-page protocol + tools
                 </p>
               </div>
             </div>
