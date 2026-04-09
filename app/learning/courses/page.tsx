@@ -10,7 +10,7 @@ const serif = { fontFamily: 'var(--font-heading)' }
 const STRIPE_LINKS: Record<string, string> = {
   'science-of-reading':   'https://buy.stripe.com/eVqdRbgmA7T24sDgk92cg0b',
   'math-materials':       'https://buy.stripe.com/eVqeVf9Ycc9i2kvd7X2cg0c',
-  'adult-culture':        'https://buy.stripe.com/6oU8wR7Q40qA0cn1pf2cg0d',
+
   'art-of-observation':   'https://buy.stripe.com/7sYdRbfiw0qAe3daZP2cg0e',
   'equity-in-montessori': 'https://buy.stripe.com/bJeaEZ2vK1uE2kvc3T2cg0f',
 }
@@ -32,7 +32,7 @@ const courses = [
     time: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)',
     price: '$250',
     format: 'Async, self-paced',
-    audience: 'Primary and lower elementary Montessori guides, literacy leads, and instructional coaches',
+    audience: 'Primary and lower elementary Montessori educators, literacy leads, and instructional coaches',
   },
   {
     id: 'math-materials',
@@ -50,27 +50,9 @@ const courses = [
     time: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)',
     price: '$250',
     format: 'Async, self-paced',
-    audience: 'Primary and elementary Montessori guides, math leads, and school-level instructional leaders',
+    audience: 'Primary and elementary Montessori educators, math leads, and school-level instructional leaders',
   },
-  {
-    id: 'adult-culture',
-    name: 'Adult Culture & Montessori Practice',
-    tagline: 'What Montessori requires of the adults in the building — not just the children.',
-    description:
-      'The Montessori environment cannot function at its highest level when the adult culture beneath it is misaligned, avoidant, or unexamined. This course takes the philosophical commitments of Montessori — interior preparation, respect for the individual, genuine collaboration — and applies them directly to the adult community. It is rigorous, uncomfortable at moments, and practical throughout.',
-    outcomes: [
-      'Distinguish between performing Montessori practice and inhabiting a Montessori identity as an adult',
-      'Examine the interior conditions — reactivity, ego, assumption — that undermine the prepared adult',
-      'Diagnose and address alignment gaps in your school\'s adult culture',
-      'Lead through conflict and give and receive feedback in ways that model your school\'s stated values',
-      'Build professional learning structures that reflect how adults actually develop',
-    ],
-    hours: '7 hours',
-    time: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)',
-    price: '$250',
-    format: 'Async, self-paced',
-    audience: 'Montessori guides, lead teachers, heads of school, and academic directors working to develop a coherent adult culture',
-  },
+
   {
     id: 'art-of-observation',
     name: 'The Art of Observation',
@@ -88,7 +70,7 @@ const courses = [
     time: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)',
     price: '$250',
     format: 'Async, self-paced',
-    audience: 'Montessori guides at all levels, aspiring lead teachers, coaches and mentors, and school leaders building a school-wide observation culture',
+    audience: 'Montessori educators at all levels, aspiring lead teachers, coaches and mentors, and school leaders building a school-wide observation culture',
   },
   {
     id: 'equity-in-montessori',
@@ -165,7 +147,7 @@ export default function CoursesPage() {
           <div className="max-w-2xl mb-16">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Current Courses</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
-              Five courses. All built for guides doing the real work.
+              Four courses. All built for practitioners doing the real work.
             </h2>
           </div>
           <div className="space-y-8">

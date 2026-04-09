@@ -344,7 +344,7 @@ export default function LearningPage() {
                 href="/learning/courses"
                 className="text-[#8A6014] text-xs pl-1 hover:underline"
               >
-                View all five courses →
+                View all four courses →
               </Link>
           </div>
         </div>
