@@ -32,23 +32,23 @@ const features = [
 const featureGroups = [
   {
     label: 'Admissions',
-    items: ['Pipeline', 'Inquiries', 'Applications', 'Tours', 'Enrollments', 'Agreements', 'Placement Builder', 'Templates', 'Settings'],
+    items: ['Pipeline', 'Inquiries', 'Applications', 'Tours', 'Enrollments', 'Agreements', 'Placement Builder', 'Admissions Templates', 'Admissions Settings', 'Data Import'],
   },
   {
-    label: 'HR',
-    items: ['HR Hub', 'Appraisals', 'Coaching', 'Upward Feedback', 'PTO', 'Staff Calendar & Dashboard', 'HR Templates', 'HR Compliance', 'Onboarding', 'SSO'],
+    label: 'HR & Staffing',
+    items: ['HR Hub', 'Appraisals', 'Coaching & Mentorship', 'Upward Feedback', 'PTO Tracking', 'Staff Calendar & Dashboard', 'HR Templates', 'HR Compliance', 'Onboarding Checklists', 'Job Postings', 'Hiring Pipeline (ATS)', 'Level Meeting Planner', 'Staff Offboarding', 'Compensation & Benefits', 'Credentials Tracking', 'SSO'],
   },
   {
-    label: 'Equity',
-    items: ['Community Portraits', 'Student Equity Dashboard', 'Pulse Analytics', 'ABAR Pathways', 'Adult Culture Hub', 'PAI', 'Role Clarity'],
+    label: 'Equity & Culture',
+    items: ['Community Portraits', 'Student Equity Dashboard', 'Student Pulse Analytics', 'ABAR Pathways', 'EBC Pathways', 'Adult Culture Hub', 'Prepared Adult Index', 'Role Clarity Mapping'],
   },
   {
     label: 'Academic',
-    items: ['Progress Reports', 'Conference Tools', 'Assessment Benchmarks'],
+    items: ['Progress Reports', 'Progress Report Templates', 'Conference Tools', 'Assessment Benchmarks', 'Materials Inventory'],
   },
   {
-    label: 'Adolescent',
-    items: ['Program Hub', 'Council', 'Seminars', 'Occupations', 'Portrait of a Graduate', 'Trips'],
+    label: 'Adolescent Programs',
+    items: ['Program Hub', 'Council System', 'Seminar Toolkit', 'Occupations & Projects', 'Portrait of a Graduate', 'Trips & Place-Based Learning'],
   },
   {
     label: 'Other',

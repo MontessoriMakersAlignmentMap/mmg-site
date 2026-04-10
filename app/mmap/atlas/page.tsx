@@ -30,18 +30,22 @@ const features = [
 ]
 
 const allFeatures = [
-  'Board Dashboard & Snapshots',
+  'Board Dashboard',
+  'Board Snapshots',
   'Weekly Snapshots',
   'Governance Reports',
   'Strategic Planning Hub',
   'Advanced Equity Analytics',
-  'Financial Equity',
+  'Financial Equity Analysis',
   'Mission-Linked Budgeting',
   'Executive AI Insights',
   'Cartography Analytics',
   'Assessment Insights',
   'Data Retention & Archiving',
-  'Platform Admin Tools',
+  'School Data Export',
+  'View as Role',
+  'Platform Dashboard',
+  'Feature Toggle Control',
 ]
 
 const whoItIsFor = [

@@ -8,16 +8,16 @@ const features = [
     body: 'Log every presentation across curriculum areas. Search the full scope and sequence by area, material, or child. See what has been introduced, what is ready for extension, and what has not been touched in weeks.',
   },
   {
-    title: 'Observation Records',
-    body: 'Document observations in a format that reflects Montessori practice. Timestamped, child-linked, searchable. The record that supports the guide\'s planning, not the administrator\'s audit.',
-  },
-  {
     title: 'Album & Curriculum Library',
     body: 'A structured library of your school\'s curriculum organized by area and level. Albums, sequences, and materials in one place. Guides see the full scope of what has been introduced, what is pending, and what is next.',
   },
   {
-    title: 'Work Sample Attachments',
-    body: 'Attach photos, audio, and files directly to observation records and lesson logs. The child\'s actual work, connected to the documentation that contextualizes it.',
+    title: 'Curriculum Management',
+    body: 'Manage and organize your curriculum across levels and areas. Add, edit, and structure lessons and sequences to reflect your school\'s specific scope. The curriculum belongs to the school, not a vendor\'s default library.',
+  },
+  {
+    title: 'Observations & Student Portfolios',
+    body: 'Document observations in a format that reflects Montessori practice. Timestamped, child-linked, searchable. Attach work samples, photos, and audio directly to records. The portfolio grows with the child.',
   },
   {
     title: 'Standards Alignment',
@@ -28,12 +28,12 @@ const features = [
     body: 'Manage classroom rosters, group assignments, and multi-age configurations in a system built for Montessori groupings. No age-based grade levels required.',
   },
   {
-    title: 'Individual Progress Visibility',
-    body: 'A longitudinal view of each child\'s development across the curriculum, organized by area and continuum. See the whole child. Not checkboxes.',
+    title: 'Work Sample Attachments',
+    body: 'Attach photos, audio, and files directly to observation records and lesson logs. The child\'s actual work, connected to the documentation that contextualizes it.',
   },
   {
-    title: 'Guide Workflow & Planning Tools',
-    body: 'Daily and weekly planning tools designed for the Montessori work cycle. Child-responsive planning that respects the three-hour flow.',
+    title: 'Student Progress Maps',
+    body: 'A longitudinal view of each child\'s development across the curriculum, organized by area and continuum. See the whole child. Not checkboxes.',
   },
 ]
 
