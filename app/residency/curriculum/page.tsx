@@ -1,13 +1,8 @@
-import { createServerClient } from '@/lib/supabase/server'
-import { getStrandsWithCounts } from '@/lib/residency/queries'
 import Link from 'next/link'
 
 export const metadata = { title: 'Curriculum Library' }
 
-export default async function CurriculumPage() {
-  const supabase = createServerClient()
-  const strands = await getStrandsWithCounts(supabase)
-
+export default function CurriculumPage() {
   return (
     <>
       {/* Header */}
@@ -42,99 +37,101 @@ export default async function CurriculumPage() {
             color: 'rgba(255,255,255,0.75)',
             maxWidth: '640px',
           }}>
-            Six strands. Every lesson a Montessori resident needs to study, practice, and master.
-            Select a strand to explore its categories and lessons.
+            Choose your level to explore the curriculum. Each level contains the full
+            sequence of strands, categories, and lessons a resident needs to study and master.
           </p>
         </div>
       </section>
 
-      {/* Strand cards */}
+      {/* Level cards */}
       <section className="r-section">
-        <div className="r-container">
+        <div className="r-container" style={{ maxWidth: '800px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '1.5rem',
           }}>
-            {strands.map((strand: any) => (
-              <Link
-                key={strand.id}
-                href={`/residency/curriculum/${strand.slug}`}
-                className="r-card r-strand-card"
-                style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
-              >
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  background: strand.slug === 'equity-and-community' ? 'var(--r-navy)' : 'var(--r-gold-light)',
-                  borderRadius: '10px',
-                  marginBottom: '1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <span style={{
-                    fontSize: '1.25rem',
-                    color: strand.slug === 'equity-and-community' ? 'var(--r-gold)' : 'var(--r-navy)',
-                  }}>
-                    {strand.slug === 'practical-life' && '\u2726'}
-                    {strand.slug === 'sensorial' && '\u25C9'}
-                    {strand.slug === 'language' && '\u270E'}
-                    {strand.slug === 'math' && '\u2234'}
-                    {strand.slug === 'cultural' && '\u2641'}
-                    {strand.slug === 'equity-and-community' && '\u2661'}
-                  </span>
-                </div>
+            {/* Primary */}
+            <Link
+              href="/residency/curriculum/primary"
+              className="r-card r-strand-card"
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+              }}
+            >
+              <div style={{
+                width: '64px',
+                height: '64px',
+                background: 'var(--r-gold-light)',
+                borderRadius: '14px',
+                margin: '0 auto 1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <span style={{ fontSize: '1.75rem', color: 'var(--r-navy)' }}>3–6</span>
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--r-font-heading)',
+                fontSize: '1.75rem',
+                color: 'var(--r-navy)',
+                marginBottom: '0.75rem',
+              }}>
+                Primary
+              </h2>
+              <p style={{
+                fontSize: '0.9375rem',
+                color: 'var(--r-text-muted)',
+                lineHeight: 1.7,
+              }}>
+                Ages 3 through 6. The foundational Montessori curriculum — Practical Life,
+                Sensorial, Language, Math, Cultural, and Equity and Community.
+              </p>
+            </Link>
 
-                <h2 style={{
-                  fontFamily: 'var(--r-font-heading)',
-                  fontSize: '1.375rem',
-                  color: 'var(--r-navy)',
-                  marginBottom: '0.625rem',
-                }}>
-                  {strand.name}
-                </h2>
-
-                <p style={{
-                  fontSize: '0.875rem',
-                  color: 'var(--r-text-muted)',
-                  lineHeight: 1.7,
-                  marginBottom: '1.25rem',
-                  flex: 1,
-                }}>
-                  {strand.description}
-                </p>
-
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid var(--r-border)',
-                  paddingTop: '1rem',
-                  marginTop: 'auto',
-                }}>
-                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    {strand.levels && strand.levels.length > 0 ? (
-                      strand.levels.map((lv: any) => (
-                        <span key={lv.id} className="r-badge r-badge-level" style={{ fontSize: '0.6875rem' }}>
-                          {lv.name} ({lv.age_range})
-                        </span>
-                      ))
-                    ) : (
-                      <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>All levels</span>
-                    )}
-                  </div>
-                  <span style={{
-                    fontSize: '0.8125rem',
-                    fontWeight: 600,
-                    color: 'var(--r-navy)',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {strand.lesson_count} {strand.lesson_count === 1 ? 'lesson' : 'lessons'}
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {/* Elementary */}
+            <Link
+              href="/residency/curriculum/elementary"
+              className="r-card r-strand-card"
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+              }}
+            >
+              <div style={{
+                width: '64px',
+                height: '64px',
+                background: 'rgba(14, 26, 122, 0.08)',
+                borderRadius: '14px',
+                margin: '0 auto 1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <span style={{ fontSize: '1.75rem', color: 'var(--r-navy)' }}>6–12</span>
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--r-font-heading)',
+                fontSize: '1.75rem',
+                color: 'var(--r-navy)',
+                marginBottom: '0.75rem',
+              }}>
+                Elementary
+              </h2>
+              <p style={{
+                fontSize: '0.9375rem',
+                color: 'var(--r-text-muted)',
+                lineHeight: 1.7,
+              }}>
+                Ages 6 through 12. The expanded curriculum — Great Lessons, advanced
+                mathematics, research skills, and deeper cultural studies.
+              </p>
+            </Link>
           </div>
         </div>
       </section>

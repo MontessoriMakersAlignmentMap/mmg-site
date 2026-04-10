@@ -123,7 +123,18 @@ export async function getCategoriesByStrand(supabase: SupabaseClient, strandId: 
   return data ?? []
 }
 
-export async function getStrandsWithCounts(supabase: SupabaseClient) {
+export async function getLevelBySlug(supabase: SupabaseClient, slug: string) {
+  const { data, error } = await supabase
+    .from('residency_levels')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+export async function getStrandsWithCounts(supabase: SupabaseClient, levelId?: string) {
   const { data: strands } = await supabase
     .from('residency_strands')
     .select('*')
@@ -131,27 +142,44 @@ export async function getStrandsWithCounts(supabase: SupabaseClient) {
 
   if (!strands) return []
 
-  const { data: lessons } = await supabase
+  let lessonsQuery = supabase
     .from('residency_lessons')
     .select('strand_id, level_id')
     .eq('status', 'published')
 
-  const { data: levels } = await supabase
-    .from('residency_levels')
-    .select('*')
-    .order('sort_order')
+  if (levelId) {
+    lessonsQuery = lessonsQuery.eq('level_id', levelId)
+  }
+
+  const { data: lessons } = await lessonsQuery
+
+  const { data: categories } = await supabase
+    .from('residency_categories')
+    .select('strand_id')
 
   return strands.map((strand: any) => {
     const strandLessons = (lessons ?? []).filter((l: any) => l.strand_id === strand.id)
-    const strandLevelIds = [...new Set(strandLessons.map((l: any) => l.level_id))]
-    const strandLevels = (levels ?? []).filter((lv: any) => strandLevelIds.includes(lv.id))
+    const strandCategories = (categories ?? []).filter((c: any) => c.strand_id === strand.id)
 
     return {
       ...strand,
       lesson_count: strandLessons.length,
-      levels: strandLevels,
+      category_count: strandCategories.length,
     }
   })
+}
+
+export async function getLessonsByStrandAndLevel(supabase: SupabaseClient, strandId: string, levelId: string) {
+  const { data, error } = await supabase
+    .from('residency_lessons')
+    .select('*, strand:residency_strands(*), level:residency_levels(*), category:residency_categories(*)')
+    .eq('strand_id', strandId)
+    .eq('level_id', levelId)
+    .eq('status', 'published')
+    .order('sort_order')
+
+  if (error) throw error
+  return data ?? []
 }
 
 // ─── Assignment queries ────────────────────────────────────────────────────

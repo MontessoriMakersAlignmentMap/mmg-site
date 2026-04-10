@@ -21,6 +21,8 @@ export default async function LessonPage({
   const { prev, next } = await getAdjacentLessons(supabase, lesson)
 
   const strandSlug = lesson.strand?.slug ?? ''
+  const levelSlug = lesson.level?.slug ?? 'primary'
+  const levelLabel = lesson.level?.name ?? 'Primary'
 
   return (
     <>
@@ -31,7 +33,7 @@ export default async function LessonPage({
         padding: '3rem 0 2.5rem',
       }}>
         <div className="r-container r-lesson-header">
-          <Link href={`/residency/curriculum/${strandSlug}`} style={{
+          <Link href={`/residency/curriculum/${levelSlug}/${strandSlug}`} style={{
             fontSize: '0.8125rem',
             color: 'var(--r-gold)',
             textDecoration: 'none',

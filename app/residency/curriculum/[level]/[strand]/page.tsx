@@ -1,33 +1,42 @@
 import { createServerClient } from '@/lib/supabase/server'
-import { getStrandBySlug, getCategoriesByStrand, getLessonsByStrand } from '@/lib/residency/queries'
+import { getStrandBySlug, getLevelBySlug, getCategoriesByStrand, getLessonsByStrandAndLevel } from '@/lib/residency/queries'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-export default async function StrandPage({
+const VALID_LEVELS = ['primary', 'elementary']
+
+export default async function StrandLevelPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ level: string; strand: string }>
 }) {
-  const { slug } = await params
+  const { level: levelSlug, strand: strandSlug } = await params
+
+  if (!VALID_LEVELS.includes(levelSlug)) notFound()
+
   const supabase = createServerClient()
 
-  let strand
+  let strand, levelRecord
   try {
-    strand = await getStrandBySlug(supabase, slug)
+    ;[strand, levelRecord] = await Promise.all([
+      getStrandBySlug(supabase, strandSlug),
+      getLevelBySlug(supabase, levelSlug),
+    ])
   } catch {
     notFound()
   }
 
   const [categories, lessons] = await Promise.all([
     getCategoriesByStrand(supabase, strand.id),
-    getLessonsByStrand(supabase, strand.id),
+    getLessonsByStrandAndLevel(supabase, strand.id, levelRecord.id),
   ])
 
-  // Group lessons by category
   const lessonsByCategory = categories.map((cat: any) => ({
     ...cat,
     lessons: lessons.filter((l: any) => l.category_id === cat.id),
   }))
+
+  const levelLabel = levelSlug === 'primary' ? 'Primary' : 'Elementary'
 
   return (
     <>
@@ -38,7 +47,7 @@ export default async function StrandPage({
         padding: '3.5rem 0 3rem',
       }}>
         <div className="r-container" style={{ maxWidth: '900px' }}>
-          <Link href="/residency/curriculum" style={{
+          <Link href={`/residency/curriculum/${levelSlug}`} style={{
             fontSize: '0.8125rem',
             color: 'var(--r-gold)',
             textDecoration: 'none',
@@ -47,8 +56,17 @@ export default async function StrandPage({
             gap: '0.375rem',
             marginBottom: '1.25rem',
           }}>
-            &larr; All Strands
+            &larr; {levelLabel} Strands
           </Link>
+
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+            <span className="r-badge" style={{
+              background: 'rgba(255,255,255,0.1)',
+              color: 'rgba(255,255,255,0.8)',
+            }}>
+              {levelLabel}
+            </span>
+          </div>
 
           <h1 style={{
             fontFamily: 'var(--r-font-heading)',
@@ -70,17 +88,11 @@ export default async function StrandPage({
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-            <span style={{
-              fontSize: '0.875rem',
-              color: 'rgba(255,255,255,0.6)',
-            }}>
+            <span style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>
               {categories.length} {categories.length === 1 ? 'category' : 'categories'}
             </span>
             <span style={{ color: 'rgba(255,255,255,0.3)' }}>&middot;</span>
-            <span style={{
-              fontSize: '0.875rem',
-              color: 'rgba(255,255,255,0.6)',
-            }}>
+            <span style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>
               {lessons.length} {lessons.length === 1 ? 'lesson' : 'lessons'}
             </span>
           </div>
@@ -99,7 +111,6 @@ export default async function StrandPage({
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
               {lessonsByCategory.map((cat: any) => (
                 <div key={cat.id}>
-                  {/* Category header */}
                   <div style={{ marginBottom: '1.25rem' }}>
                     <h2 style={{
                       fontFamily: 'var(--r-font-heading)',
@@ -121,7 +132,6 @@ export default async function StrandPage({
                     )}
                   </div>
 
-                  {/* Lessons list */}
                   {cat.lessons.length === 0 ? (
                     <div style={{
                       padding: '2rem 1.5rem',
@@ -156,7 +166,6 @@ export default async function StrandPage({
                             borderBottom: idx < cat.lessons.length - 1 ? '1px solid var(--r-border)' : 'none',
                           }}
                         >
-                          {/* Sequence number */}
                           <span style={{
                             width: '32px',
                             height: '32px',
@@ -173,7 +182,6 @@ export default async function StrandPage({
                             {idx + 1}
                           </span>
 
-                          {/* Lesson info */}
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <h3 style={{
                               fontFamily: 'var(--r-font-body)',
@@ -185,23 +193,12 @@ export default async function StrandPage({
                               {lesson.title}
                             </h3>
                             {lesson.age_range && (
-                              <span style={{
-                                fontSize: '0.75rem',
-                                color: 'var(--r-text-muted)',
-                              }}>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
                                 Ages {lesson.age_range}
                               </span>
                             )}
                           </div>
 
-                          {/* Level badge */}
-                          {lesson.level && (
-                            <span className="r-badge r-badge-level" style={{ fontSize: '0.6875rem', flexShrink: 0 }}>
-                              {lesson.level.name}
-                            </span>
-                          )}
-
-                          {/* Arrow */}
                           <span style={{ color: 'var(--r-text-muted)', fontSize: '1.25rem', flexShrink: 0 }}>
                             &rsaquo;
                           </span>
