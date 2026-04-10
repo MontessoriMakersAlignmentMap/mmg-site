@@ -368,12 +368,37 @@ export default function EquityPage() {
               Additional equity resources are in development. When they are ready, they will be here.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5 mb-16">
+          {/* Reading List PDF embed */}
+          <div className="bg-white border border-[#E2DDD6] mb-8">
+            <div className="p-8 md:p-10 border-b border-[#E2DDD6] flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div>
+                <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-3">Reading & Reference</p>
+                <h3 className="text-[#0e1a7a] text-xl font-semibold leading-snug max-w-xl" style={serif}>
+                  MMG Equity Reading &amp; Reference List
+                </h3>
+                <p className="text-[#64748B] text-sm leading-relaxed mt-2 max-w-xl">
+                  The scholars, research, and theoretical frameworks behind MMG&apos;s equity approach — from Ladson-Billings, Kendi, Love, and Crenshaw to Montessori&apos;s own writing on human dignity and the prepared adult.
+                </p>
+              </div>
+              <a
+                href="/equity-reading-list.pdf"
+                download="MMG-Equity-Reading-List.pdf"
+                className="flex-shrink-0 bg-[#0e1a7a] text-white text-sm px-7 py-3 tracking-wide hover:bg-[#162270] transition-colors font-medium whitespace-nowrap"
+              >
+                Download PDF ↓
+              </a>
+            </div>
+            <div className="w-full" style={{ height: '780px' }}>
+              <iframe
+                src="/equity-reading-list.pdf#toolbar=1&navpanes=0&scrollbar=1"
+                className="w-full h-full"
+                title="MMG Equity Reading & Reference List"
+              />
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5 mb-16">
             {[
-              {
-                title: 'Equity Reading & Reference List',
-                body: "The scholars, research, and theoretical frameworks behind MMG's equity approach: from Ladson-Billings, Kendi, Love, and Crenshaw to Montessori's own writing on human dignity and the prepared adult.",
-              },
               {
                 title: 'School Equity Self-Assessment',
                 body: 'A free diagnostic tool for Montessori schools to assess equity practice across admissions, curriculum, discipline, hiring, and family engagement. A lead into deeper advisory or Institute work.',
