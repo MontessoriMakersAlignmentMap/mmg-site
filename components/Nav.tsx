@@ -42,7 +42,10 @@ const mmapLinks = [
   { name: 'Platform Tour', href: '/mmap/tour', tagline: 'See how it works' },
   { name: 'Watch a Demo', href: '/mmap/demo', tagline: 'Full walkthrough videos' },
   { name: 'Pricing', href: '/mmap/pricing', tagline: 'Tiers, calculator & early access' },
-  { name: 'North Star', href: '/mmap/north-star', tagline: 'Vision & alignment tool' },
+  { name: 'Surveyor', href: '/mmap/surveyor', tagline: 'Classroom documentation' },
+  { name: 'North Star', href: '/mmap/north-star', tagline: 'Core school operations' },
+  { name: 'Mapmaker', href: '/mmap/mapmaker', tagline: 'Admissions, staffing, equity' },
+  { name: 'Atlas', href: '/mmap/atlas', tagline: 'Leadership & governance' },
   { name: 'Sign In', href: '/mmap/signin', tagline: 'Access the platform' },
 ]
 

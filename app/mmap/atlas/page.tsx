@@ -4,29 +4,44 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const features = [
   {
-    title: 'Financial Dashboards & Planning',
-    body: 'Financial visibility built for Montessori institutions—not adapted from corporate accounting tools. Revenue, expenses, financial aid patterns, and enrollment-revenue relationships visible in one dashboard, organized around the decisions school leaders actually make.',
+    title: 'Board Dashboard, Snapshots & Governance Reports',
+    body: 'Board meeting documentation, weekly snapshots, governance records, and policy tracking in one place. Everything a board needs, organized around the decisions governance actually requires. Not adapted from corporate tools.',
   },
   {
-    title: 'Governance & Board Tools',
-    body: 'Board meeting documentation, governance records, policy tracking, and the board communication infrastructure that supports healthy school governance. Everything a board needs—and nothing it doesn\'t.',
-  },
-  {
-    title: 'Strategic Planning Workflows',
+    title: 'Strategic Planning Hub',
     body: 'Multi-year planning tools that connect strategic goals to operational realities. Track initiatives, measure progress, and see how the school\'s long-range direction is playing out against real data.',
   },
   {
-    title: 'Leadership Insight & Reporting',
-    body: 'Longitudinal insight across all four tiers—from classroom trends to financial health. The view that helps a head of school see the school as a whole, not as disconnected departments.',
+    title: 'Mission-Linked Budgeting & Financial Equity',
+    body: 'Financial visibility built around mission, not just revenue. Mission-linked budgeting, financial equity analysis, and enrollment-revenue relationships in one dashboard organized around the decisions school leaders actually make.',
   },
   {
-    title: 'Long-Range Enrollment & Financial Modeling',
-    body: 'Model enrollment scenarios, financial aid impacts, and growth trajectories against real data. Informed decisions about capacity, sustainability, and long-term health.',
+    title: 'Executive AI Insights',
+    body: 'Pattern recognition and synthesis across all four tiers. AI-surfaced insights that give leadership a starting point for the right conversations, without burying the decision-maker in dashboards.',
   },
   {
-    title: 'Equity at the Leadership Level',
-    body: 'The full equity dashboard in its leadership context—financial equity patterns, family belonging trends, staff culture health—visible to governance alongside operational and financial data.',
+    title: 'Advanced Equity Analytics & Assessment Insights',
+    body: 'The full equity picture at the leadership level: financial equity patterns, family belonging trends, staff culture health, and assessment insights across the school, visible alongside operational and governance data.',
   },
+  {
+    title: 'Cartography Analytics, Data Retention & Platform Admin',
+    body: 'Whole-school analytics, long-range data retention and archiving, and platform administration tools. The infrastructure that keeps a complex institution running cleanly over time.',
+  },
+]
+
+const allFeatures = [
+  'Board Dashboard & Snapshots',
+  'Weekly Snapshots',
+  'Governance Reports',
+  'Strategic Planning Hub',
+  'Advanced Equity Analytics',
+  'Financial Equity',
+  'Mission-Linked Budgeting',
+  'Executive AI Insights',
+  'Cartography Analytics',
+  'Assessment Insights',
+  'Data Retention & Archiving',
+  'Platform Admin Tools',
 ]
 
 const whoItIsFor = [
@@ -182,6 +197,21 @@ export default function AtlasPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Full feature list */}
+      <section className="bg-[#F2EDE6] py-16 md:py-20 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">Everything in Atlas</p>
+          <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-2">
+            {allFeatures.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-[#374151] text-sm">
+                <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

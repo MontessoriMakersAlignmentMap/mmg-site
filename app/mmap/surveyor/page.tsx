@@ -4,28 +4,36 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const features = [
   {
-    title: 'Lesson Tracking & Presentation Logs',
-    body: 'Track individual lesson presentations across curriculum areas. See what each child has worked with, what\'s been introduced, and what\'s ready for extension—without the overhead of a generic gradebook.',
+    title: 'Lesson Tracking & Lesson Lookup',
+    body: 'Log every presentation across curriculum areas. Search the full scope and sequence by area, material, or child. See what has been introduced, what is ready for extension, and what has not been touched in weeks.',
   },
   {
     title: 'Observation Records',
     body: 'Document observations in a format that reflects Montessori practice. Timestamped, child-linked, searchable. The record that supports the guide\'s planning, not the administrator\'s audit.',
   },
   {
-    title: 'Classroom Material Inventory',
-    body: 'Track material availability, condition, and usage across the classroom. Know what\'s on the shelf, what\'s being used, and what needs to be repaired or replaced.',
+    title: 'Album & Curriculum Library',
+    body: 'A structured library of your school\'s curriculum organized by area and level. Albums, sequences, and materials in one place. Guides see the full scope of what has been introduced, what is pending, and what is next.',
+  },
+  {
+    title: 'Work Sample Attachments',
+    body: 'Attach photos, audio, and files directly to observation records and lesson logs. The child\'s actual work, connected to the documentation that contextualizes it.',
+  },
+  {
+    title: 'Standards Alignment',
+    body: 'Optional alignment to state or national learning standards. For schools that need to demonstrate external alignment without letting those frameworks drive the pedagogy.',
+  },
+  {
+    title: 'Classroom Management',
+    body: 'Manage classroom rosters, group assignments, and multi-age configurations in a system built for Montessori groupings. No age-based grade levels required.',
   },
   {
     title: 'Individual Progress Visibility',
-    body: 'A longitudinal view of each child\'s development across the curriculum—organized by area, not by grade level. See the continuum, not the checkboxes.',
+    body: 'A longitudinal view of each child\'s development across the curriculum, organized by area and continuum. See the whole child. Not checkboxes.',
   },
   {
     title: 'Guide Workflow & Planning Tools',
-    body: 'Daily and weekly planning tools designed for the Montessori work cycle. Not period-by-period scheduling—time-blocked, child-responsive planning that respects the three-hour flow.',
-  },
-  {
-    title: 'Cross-Classroom Data (with North Star)',
-    body: 'When connected to North Star, observation data and child records flow between classroom and school systems. One record. No duplication.',
+    body: 'Daily and weekly planning tools designed for the Montessori work cycle. Child-responsive planning that respects the three-hour flow.',
   },
 ]
 

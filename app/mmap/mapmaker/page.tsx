@@ -4,28 +4,55 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const features = [
   {
-    title: 'Admissions & Enrollment Management',
-    body: 'A structured admissions pipeline built for Montessori—from inquiry to enrollment. Track family interest, manage visits, communicate with prospective families, and connect enrollment data to student records in North Star.',
+    title: 'Admissions Pipeline',
+    body: 'A structured admissions system built for Montessori, from inquiry through enrollment. Inquiries, applications, tours, agreements, and placement all in one place. Connected directly to student records in North Star.',
   },
   {
-    title: 'Staffing & HR Systems',
-    body: 'Staff records, contracts, onboarding workflows, and HR documentation in one system. Designed for the specific documentation patterns of Montessori schools—including credential tracking, AMI/AMS certification, and philosophy alignment records.',
+    title: 'HR Hub: Staffing & Adult Culture',
+    body: 'Staff records, contracts, onboarding workflows, appraisals, coaching, upward feedback, and PTO all in one system. Designed for the specific documentation patterns of Montessori schools. Not adapted from corporate HR software.',
   },
   {
-    title: 'Adult Culture & Performance Tools',
-    body: 'Tools for supporting adult development—observation cycles, feedback documentation, and performance records that reflect Montessori organizational values. Not a generic HR performance system. A system that takes adult culture seriously.',
+    title: 'Equity & Belonging',
+    body: 'Community portraits, student equity dashboard, pulse analytics, ABAR pathways, adult culture hub, and role clarity tools. Equity is visible at the organizational level, not buried in a separate system or reserved for a special project.',
   },
   {
-    title: 'Organization-Level Scheduling',
-    body: 'Cross-program scheduling that accommodates multi-level classrooms, specialist staff, leadership time, and the organizational rhythms of a school managing multiple programs.',
+    title: 'Academic Tools',
+    body: 'Progress reports, conference tools, and assessment benchmarks built for Montessori documentation standards. Reports that reflect the continuum, not the report card.',
   },
   {
-    title: 'Cross-Team Communication & Coordination',
-    body: 'Structured communication between leadership, classroom teams, and administrative staff—with full organizational context. Reduces the institutional memory loss that happens when communication lives in email threads.',
+    title: 'Adolescent Program',
+    body: 'A dedicated module for Montessori adolescent programs: program hub, council, seminars, occupations, portrait of a graduate, and trips. The secondary level tools that generic school software has never included.',
   },
   {
-    title: 'Equity Integration',
-    body: 'All six equity features—including Staff Culture Insights and Family Belonging Index—run through Mapmaker. Organizational health data and adult community equity are visible at the same level as operational data.',
+    title: 'Cartography Sessions',
+    body: 'Structured facilitation sessions built into the platform for school-wide alignment work. The tool for bringing data and conversation together in the right format for organizational decision-making.',
+  },
+]
+
+const featureGroups = [
+  {
+    label: 'Admissions',
+    items: ['Pipeline', 'Inquiries', 'Applications', 'Tours', 'Enrollments', 'Agreements', 'Placement Builder', 'Templates', 'Settings'],
+  },
+  {
+    label: 'HR',
+    items: ['HR Hub', 'Appraisals', 'Coaching', 'Upward Feedback', 'PTO', 'Staff Calendar & Dashboard', 'HR Templates', 'HR Compliance', 'Onboarding', 'SSO'],
+  },
+  {
+    label: 'Equity',
+    items: ['Community Portraits', 'Student Equity Dashboard', 'Pulse Analytics', 'ABAR Pathways', 'Adult Culture Hub', 'PAI', 'Role Clarity'],
+  },
+  {
+    label: 'Academic',
+    items: ['Progress Reports', 'Conference Tools', 'Assessment Benchmarks'],
+  },
+  {
+    label: 'Adolescent',
+    items: ['Program Hub', 'Council', 'Seminars', 'Occupations', 'Portrait of a Graduate', 'Trips'],
+  },
+  {
+    label: 'Other',
+    items: ['Cartography Sessions'],
   },
 ]
 
@@ -152,6 +179,28 @@ export default function MapmakerPage() {
                   {feature.title}
                 </h3>
                 <p className="text-[#374151] text-sm leading-relaxed">{feature.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Full feature list */}
+      <section className="bg-[#F2EDE6] py-16 md:py-20 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">Everything in Mapmaker</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featureGroups.map((group) => (
+              <div key={group.label}>
+                <p className="text-[#0e1a7a] text-xs font-semibold tracking-[0.15em] uppercase mb-3">{group.label}</p>
+                <ul className="space-y-1.5">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-[#374151] text-sm">
+                      <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

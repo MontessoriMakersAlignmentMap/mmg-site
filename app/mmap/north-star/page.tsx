@@ -4,28 +4,44 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const features = [
   {
-    title: 'Student Records & Profiles',
-    body: 'Complete student profiles connected to classroom documentation from Surveyor. One record across the school\'s life cycle—from enrollment to alumni. No duplication, no data migration.',
+    title: 'SIS & Student Profiles',
+    body: 'Complete student information system with full profiles connected to classroom documentation from Surveyor. One record across the school\'s life cycle, from enrollment to alumni. No duplication, no data migration.',
   },
   {
-    title: 'Attendance & Daily Operations',
-    body: 'Attendance systems designed for Montessori daily rhythms—including multi-age groupings, flexible scheduling, and the documentation patterns that Montessori schools actually use.',
+    title: 'Attendance',
+    body: 'Daily, QR code, morning check-in, and attendance monitoring, designed for Montessori daily rhythms and multi-age groupings. Daily roster always current. No separate attendance system.',
   },
   {
-    title: 'Family Communication Tools',
-    body: 'Direct, organized communication between the school and families—linked to student profiles and classroom records. No separate communication platforms. One system with full context.',
+    title: 'Multilingual Family Portal',
+    body: 'A dedicated portal for families with full language switching. Families access their children\'s records, tuition, communication, and school community in their home language. Not a translation overlay. Language switching built into the design.',
   },
   {
-    title: 'School-Wide Scheduling',
-    body: 'Flexible scheduling tools that accommodate the Montessori work cycle, specialist programming, all-school gatherings, and the rhythms that make Montessori schools distinct.',
+    title: 'Messaging, Newsletters & Digests',
+    body: 'Direct messaging, structured school-wide newsletters, and automated digests, all in one system with full student context. Families receive organized updates. Staff are not rebuilding information from multiple sources.',
   },
   {
-    title: 'Compliance & Documentation Tracking',
-    body: 'State reporting, licensing documentation, and compliance workflows that surface what\'s needed and when—without requiring a dedicated compliance staff member.',
+    title: 'Before & After Care',
+    body: 'Full extended day management: sign-in and sign-out, kiosk mode for drop-off, program registration, drop-in care, and charges connected directly to family billing. One system for extended day.',
   },
   {
-    title: 'Surveyor Integration',
-    body: 'When North Star connects to Surveyor data, classroom observations and lesson records become part of the school-wide student record automatically. One system. One record.',
+    title: 'Safety & Health Log',
+    body: 'Health incident documentation, medication tracking, and safety log for each student. Connected to student profiles and accessible to authorized staff. Meets compliance requirements without a separate health management system.',
+  },
+  {
+    title: 'Handbooks & Signatures',
+    body: 'Distribute family and staff handbooks digitally. Collect signatures, track completion, and store signed documents within student and staff records.',
+  },
+  {
+    title: 'Compliance Hub',
+    body: 'State reporting, licensing documentation, and compliance workflows that surface what is needed and when, without requiring a dedicated compliance staff member.',
+  },
+  {
+    title: 'Intervention & Discipline Tracking',
+    body: 'Document behavioral concerns, interventions, and restorative conversations in a structured system connected to student records. Patterns are visible, not buried in email threads.',
+  },
+  {
+    title: 'School Configuration, Integrations & Global Search',
+    body: 'User management, school config, bulk import and export, third-party integrations, and global search across all records. The operational infrastructure that keeps a growing school running.',
   },
 ]
 
