@@ -242,7 +242,7 @@ export default function MmapPricingPage() {
       )}
 
       {/* ── 1. HERO ─────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
+      <section className={`bg-[#0e1a7a] pb-24 md:pb-32 px-6 md:px-10 ${live ? 'pt-32 md:pt-40' : 'pt-20 md:pt-28'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-8">
