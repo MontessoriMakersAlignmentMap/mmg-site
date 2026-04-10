@@ -12,18 +12,30 @@ export async function getLessons(supabase: SupabaseClient, filters?: CurriculumF
     .order('sort_order')
 
   if (filters?.strand) {
-    query = query.eq('strand:residency_strands.slug', filters.strand)
+    query = query.eq('strand_id', filters.strand)
   }
   if (filters?.level) {
-    query = query.eq('level:residency_levels.slug', filters.level)
+    query = query.eq('level_id', filters.level)
   }
   if (filters?.category) {
-    query = query.eq('category:residency_categories.slug', filters.category)
+    query = query.eq('category_id', filters.category)
   }
 
   const { data, error } = await query
   if (error) throw error
   return data
+}
+
+export async function getLessonsByStrand(supabase: SupabaseClient, strandId: string) {
+  const { data, error } = await supabase
+    .from('residency_lessons')
+    .select('*, strand:residency_strands(*), level:residency_levels(*), category:residency_categories(*)')
+    .eq('strand_id', strandId)
+    .eq('status', 'published')
+    .order('sort_order')
+
+  if (error) throw error
+  return data ?? []
 }
 
 export async function getLesson(supabase: SupabaseClient, id: string) {
@@ -37,12 +49,53 @@ export async function getLesson(supabase: SupabaseClient, id: string) {
   return data
 }
 
+export async function getAdjacentLessons(supabase: SupabaseClient, lesson: { strand_id: string; category_id: string; sort_order: number }) {
+  const [prevResult, nextResult] = await Promise.all([
+    supabase
+      .from('residency_lessons')
+      .select('id, title, sort_order')
+      .eq('strand_id', lesson.strand_id)
+      .eq('category_id', lesson.category_id)
+      .eq('status', 'published')
+      .lt('sort_order', lesson.sort_order)
+      .order('sort_order', { ascending: false })
+      .limit(1)
+      .single(),
+    supabase
+      .from('residency_lessons')
+      .select('id, title, sort_order')
+      .eq('strand_id', lesson.strand_id)
+      .eq('category_id', lesson.category_id)
+      .eq('status', 'published')
+      .gt('sort_order', lesson.sort_order)
+      .order('sort_order')
+      .limit(1)
+      .single(),
+  ])
+
+  return {
+    prev: prevResult.data ?? null,
+    next: nextResult.data ?? null,
+  }
+}
+
 export async function getStrands(supabase: SupabaseClient) {
   const { data } = await supabase
     .from('residency_strands')
     .select('*')
     .order('sort_order')
   return data ?? []
+}
+
+export async function getStrandBySlug(supabase: SupabaseClient, slug: string) {
+  const { data, error } = await supabase
+    .from('residency_strands')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+  if (error) throw error
+  return data
 }
 
 export async function getLevels(supabase: SupabaseClient) {
@@ -59,6 +112,46 @@ export async function getCategories(supabase: SupabaseClient) {
     .select('*')
     .order('sort_order')
   return data ?? []
+}
+
+export async function getCategoriesByStrand(supabase: SupabaseClient, strandId: string) {
+  const { data } = await supabase
+    .from('residency_categories')
+    .select('*')
+    .eq('strand_id', strandId)
+    .order('sort_order')
+  return data ?? []
+}
+
+export async function getStrandsWithCounts(supabase: SupabaseClient) {
+  const { data: strands } = await supabase
+    .from('residency_strands')
+    .select('*')
+    .order('sort_order')
+
+  if (!strands) return []
+
+  const { data: lessons } = await supabase
+    .from('residency_lessons')
+    .select('strand_id, level_id')
+    .eq('status', 'published')
+
+  const { data: levels } = await supabase
+    .from('residency_levels')
+    .select('*')
+    .order('sort_order')
+
+  return strands.map((strand: any) => {
+    const strandLessons = (lessons ?? []).filter((l: any) => l.strand_id === strand.id)
+    const strandLevelIds = [...new Set(strandLessons.map((l: any) => l.level_id))]
+    const strandLevels = (levels ?? []).filter((lv: any) => strandLevelIds.includes(lv.id))
+
+    return {
+      ...strand,
+      lesson_count: strandLessons.length,
+      levels: strandLevels,
+    }
+  })
 }
 
 // ─── Assignment queries ────────────────────────────────────────────────────

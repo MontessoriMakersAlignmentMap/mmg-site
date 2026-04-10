@@ -20,8 +20,17 @@ export default function NewLessonPage() {
     level_id: '',
     category_id: '',
     status: 'draft' as 'draft' | 'published',
+    age_range: '',
     objectives: '',
     materials: '',
+    why_this_lesson_matters: '',
+    direct_aim: '',
+    indirect_aim: '',
+    equity_aim: '',
+    presentation: '',
+    points_of_interest: '',
+    variations: '',
+    neurodivergence_notes: '',
   })
   const [files, setFiles] = useState<File[]>([])
   const [error, setError] = useState('')
@@ -80,8 +89,17 @@ export default function NewLessonPage() {
         level_id: form.level_id,
         category_id: form.category_id,
         status: form.status,
+        age_range: form.age_range || null,
         objectives: form.objectives ? form.objectives.split('\n').filter(Boolean) : null,
         materials: form.materials ? form.materials.split('\n').filter(Boolean) : null,
+        why_this_lesson_matters: form.why_this_lesson_matters || null,
+        direct_aim: form.direct_aim || null,
+        indirect_aim: form.indirect_aim || null,
+        equity_aim: form.equity_aim || null,
+        presentation: form.presentation || null,
+        points_of_interest: form.points_of_interest || null,
+        variations: form.variations || null,
+        neurodivergence_notes: form.neurodivergence_notes || null,
         file_urls: fileUrls.length > 0 ? fileUrls : null,
         created_by: user?.id ?? null,
       })
@@ -134,7 +152,7 @@ export default function NewLessonPage() {
               <label className="r-label">Category</label>
               <select className="r-input" value={form.category_id} onChange={e => update('category_id', e.target.value)} required>
                 <option value="">Select...</option>
-                {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                {(form.strand_id ? categories.filter(c => c.strand_id === form.strand_id) : categories).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
           </div>
@@ -148,18 +166,87 @@ export default function NewLessonPage() {
           </div>
 
           <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Age Range</label>
+            <input type="text" className="r-input" value={form.age_range}
+              onChange={e => update('age_range', e.target.value)}
+              placeholder="e.g., 3–6" />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
             <label className="r-label">Description</label>
             <textarea className="r-textarea" value={form.description}
               onChange={e => update('description', e.target.value)}
               placeholder="Brief description of the lesson..." />
           </div>
+        </div>
+
+        <div className="r-card" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '1.25rem' }}>Lesson Content</h2>
 
           <div style={{ marginBottom: '1.25rem' }}>
-            <label className="r-label">Content</label>
-            <textarea className="r-textarea" value={form.content}
-              onChange={e => update('content', e.target.value)}
+            <label className="r-label">Why This Lesson Matters</label>
+            <textarea className="r-textarea" value={form.why_this_lesson_matters}
+              onChange={e => update('why_this_lesson_matters', e.target.value)}
+              style={{ minHeight: '140px' }}
+              placeholder="Narrative introduction — why this lesson is important in the sequence..." />
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+            <div>
+              <label className="r-label">Direct Aim</label>
+              <textarea className="r-textarea" value={form.direct_aim}
+                onChange={e => update('direct_aim', e.target.value)}
+                placeholder="What the child directly practices..." />
+            </div>
+            <div>
+              <label className="r-label">Indirect Aim</label>
+              <textarea className="r-textarea" value={form.indirect_aim}
+                onChange={e => update('indirect_aim', e.target.value)}
+                placeholder="What the child indirectly prepares for..." />
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Equity Aim</label>
+            <textarea className="r-textarea" value={form.equity_aim}
+              onChange={e => update('equity_aim', e.target.value)}
+              placeholder="How this lesson connects to equity, belonging, and justice..." />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Materials (one per line)</label>
+            <textarea className="r-textarea" value={form.materials}
+              onChange={e => update('materials', e.target.value)}
+              placeholder="List materials needed..." />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">The Presentation</label>
+            <textarea className="r-textarea" value={form.presentation}
+              onChange={e => update('presentation', e.target.value)}
               style={{ minHeight: '200px' }}
-              placeholder="Full lesson content..." />
+              placeholder="Step-by-step presentation of the lesson..." />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Points of Interest</label>
+            <textarea className="r-textarea" value={form.points_of_interest}
+              onChange={e => update('points_of_interest', e.target.value)}
+              placeholder="Key moments of engagement and discovery..." />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Variations and Extensions</label>
+            <textarea className="r-textarea" value={form.variations}
+              onChange={e => update('variations', e.target.value)}
+              placeholder="Ways to adapt, extend, or vary the lesson..." />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Neurodivergence and Behavior</label>
+            <textarea className="r-textarea" value={form.neurodivergence_notes}
+              onChange={e => update('neurodivergence_notes', e.target.value)}
+              placeholder="Considerations for neurodivergent learners and behavioral support..." />
           </div>
         </div>
 
@@ -174,10 +261,11 @@ export default function NewLessonPage() {
           </div>
 
           <div style={{ marginBottom: '1.25rem' }}>
-            <label className="r-label">Materials (one per line)</label>
-            <textarea className="r-textarea" value={form.materials}
-              onChange={e => update('materials', e.target.value)}
-              placeholder="List materials needed..." />
+            <label className="r-label">Content (general notes)</label>
+            <textarea className="r-textarea" value={form.content}
+              onChange={e => update('content', e.target.value)}
+              style={{ minHeight: '120px' }}
+              placeholder="Any additional notes or content..." />
           </div>
 
           <div>

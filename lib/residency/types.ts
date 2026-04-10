@@ -28,6 +28,7 @@ export interface Category {
   slug: string
   description: string | null
   sort_order: number
+  strand_id: string | null
 }
 
 export interface ResidencyProfile {
@@ -72,6 +73,15 @@ export interface Lesson {
   materials: string[] | null
   file_urls: string[] | null
   sort_order: number
+  age_range: string | null
+  why_this_lesson_matters: string | null
+  direct_aim: string | null
+  indirect_aim: string | null
+  equity_aim: string | null
+  presentation: string | null
+  points_of_interest: string | null
+  variations: string | null
+  neurodivergence_notes: string | null
   created_by: string | null
   created_at: string
   updated_at: string

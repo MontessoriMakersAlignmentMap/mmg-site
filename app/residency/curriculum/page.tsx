@@ -1,158 +1,143 @@
 import { createServerClient } from '@/lib/supabase/server'
-import { getStrands, getLevels, getCategories, getLessons } from '@/lib/residency/queries'
+import { getStrandsWithCounts } from '@/lib/residency/queries'
 import Link from 'next/link'
-import EmptyState from '../components/EmptyState'
 
 export const metadata = { title: 'Curriculum Library' }
 
-export default async function CurriculumPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ strand?: string; level?: string; category?: string }>
-}) {
-  const params = await searchParams
+export default async function CurriculumPage() {
   const supabase = createServerClient()
-  const [strands, levels, categories, lessons] = await Promise.all([
-    getStrands(supabase),
-    getLevels(supabase),
-    getCategories(supabase),
-    getLessons(supabase, {
-      strand: params.strand,
-      level: params.level,
-      category: params.category,
-    }),
-  ])
-
-  function filterUrl(key: string, value: string) {
-    const p = new URLSearchParams()
-    if (params.strand && key !== 'strand') p.set('strand', params.strand)
-    if (params.level && key !== 'level') p.set('level', params.level)
-    if (params.category && key !== 'category') p.set('category', params.category)
-    if (value) p.set(key, value)
-    const qs = p.toString()
-    return `/residency/curriculum${qs ? `?${qs}` : ''}`
-  }
+  const strands = await getStrandsWithCounts(supabase)
 
   return (
-    <div className="r-section">
-      <div className="r-container">
-        <h1 style={{ fontSize: '2.25rem', marginBottom: '0.5rem' }}>Curriculum Library</h1>
-        <p style={{ color: 'var(--r-text-muted)', marginBottom: '2.5rem', maxWidth: '600px' }}>
-          Browse the full scope of the residency curriculum. Filter by strand, level, or lesson category.
-        </p>
-
-        {/* Filters */}
-        <div style={{
-          display: 'flex',
-          gap: '1rem',
-          marginBottom: '2rem',
-          flexWrap: 'wrap',
-        }}>
-          {/* Strand filter */}
-          <div>
-            <label className="r-label">Strand</label>
-            <div style={{ display: 'flex', gap: '0.375rem', flexWrap: 'wrap' }}>
-              <Link href={filterUrl('strand', '')}
-                className={`r-badge ${!params.strand ? 'r-badge-strand' : ''}`}
-                style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                All
-              </Link>
-              {strands.map((s: any) => (
-                <Link key={s.slug} href={filterUrl('strand', s.slug)}
-                  className={`r-badge ${params.strand === s.slug ? 'r-badge-strand' : ''}`}
-                  style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                  {s.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Level filter */}
-          <div>
-            <label className="r-label">Level</label>
-            <div style={{ display: 'flex', gap: '0.375rem', flexWrap: 'wrap' }}>
-              <Link href={filterUrl('level', '')}
-                className={`r-badge ${!params.level ? 'r-badge-level' : ''}`}
-                style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                All
-              </Link>
-              {levels.map((l: any) => (
-                <Link key={l.slug} href={filterUrl('level', l.slug)}
-                  className={`r-badge ${params.level === l.slug ? 'r-badge-level' : ''}`}
-                  style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                  {l.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Category filter */}
-          <div>
-            <label className="r-label">Category</label>
-            <div style={{ display: 'flex', gap: '0.375rem', flexWrap: 'wrap' }}>
-              <Link href={filterUrl('category', '')}
-                className={`r-badge ${!params.category ? 'r-badge-strand' : ''}`}
-                style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                All
-              </Link>
-              {categories.map((c: any) => (
-                <Link key={c.slug} href={filterUrl('category', c.slug)}
-                  className={`r-badge ${params.category === c.slug ? 'r-badge-strand' : ''}`}
-                  style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--r-border)' }}>
-                  {c.name}
-                </Link>
-              ))}
-            </div>
-          </div>
+    <>
+      {/* Header */}
+      <section style={{
+        background: 'var(--r-navy)',
+        color: '#fff',
+        padding: '4rem 0 3.5rem',
+      }}>
+        <div className="r-container" style={{ maxWidth: '900px' }}>
+          <p style={{
+            color: 'var(--r-gold)',
+            fontSize: '0.8125rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            marginBottom: '0.75rem',
+          }}>
+            Curriculum Library
+          </p>
+          <h1 style={{
+            fontFamily: 'var(--r-font-heading)',
+            fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+            lineHeight: 1.2,
+            marginBottom: '1rem',
+            color: '#fff',
+          }}>
+            The Full Scope of Practice
+          </h1>
+          <p style={{
+            fontSize: '1.0625rem',
+            lineHeight: 1.7,
+            color: 'rgba(255,255,255,0.75)',
+            maxWidth: '640px',
+          }}>
+            Six strands. Every lesson a Montessori resident needs to study, practice, and master.
+            Select a strand to explore its categories and lessons.
+          </p>
         </div>
+      </section>
 
-        {/* Lessons grid */}
-        {lessons.length === 0 ? (
-          <EmptyState
-            title="No lessons yet"
-            message="Lessons will appear here once the curriculum is populated. Check back soon."
-          />
-        ) : (
+      {/* Strand cards */}
+      <section className="r-section">
+        <div className="r-container">
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '1.25rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gap: '1.5rem',
           }}>
-            {lessons.map((lesson: any) => (
+            {strands.map((strand: any) => (
               <Link
-                key={lesson.id}
-                href={`/residency/curriculum/${lesson.id}`}
-                className="r-card"
-                style={{ textDecoration: 'none', color: 'inherit' }}
+                key={strand.id}
+                href={`/residency/curriculum/${strand.slug}`}
+                className="r-card r-strand-card"
+                style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
               >
-                <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
-                  {lesson.strand && <span className="r-badge r-badge-strand">{lesson.strand.name}</span>}
-                  {lesson.level && <span className="r-badge r-badge-level">{lesson.level.name}</span>}
-                </div>
-                <h3 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>{lesson.title}</h3>
-                {lesson.description && (
-                  <p style={{
-                    fontSize: '0.8125rem',
-                    color: 'var(--r-text-muted)',
-                    lineHeight: 1.6,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: 'vertical' as const,
-                    overflow: 'hidden',
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: strand.slug === 'equity-and-community' ? 'var(--r-navy)' : 'var(--r-gold-light)',
+                  borderRadius: '10px',
+                  marginBottom: '1.25rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <span style={{
+                    fontSize: '1.25rem',
+                    color: strand.slug === 'equity-and-community' ? 'var(--r-gold)' : 'var(--r-navy)',
                   }}>
-                    {lesson.description}
-                  </p>
-                )}
-                {lesson.category && (
-                  <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.75rem' }}>
-                    {lesson.category.name}
-                  </p>
-                )}
+                    {strand.slug === 'practical-life' && '\u2726'}
+                    {strand.slug === 'sensorial' && '\u25C9'}
+                    {strand.slug === 'language' && '\u270E'}
+                    {strand.slug === 'math' && '\u2234'}
+                    {strand.slug === 'cultural' && '\u2641'}
+                    {strand.slug === 'equity-and-community' && '\u2661'}
+                  </span>
+                </div>
+
+                <h2 style={{
+                  fontFamily: 'var(--r-font-heading)',
+                  fontSize: '1.375rem',
+                  color: 'var(--r-navy)',
+                  marginBottom: '0.625rem',
+                }}>
+                  {strand.name}
+                </h2>
+
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--r-text-muted)',
+                  lineHeight: 1.7,
+                  marginBottom: '1.25rem',
+                  flex: 1,
+                }}>
+                  {strand.description}
+                </p>
+
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid var(--r-border)',
+                  paddingTop: '1rem',
+                  marginTop: 'auto',
+                }}>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    {strand.levels && strand.levels.length > 0 ? (
+                      strand.levels.map((lv: any) => (
+                        <span key={lv.id} className="r-badge r-badge-level" style={{ fontSize: '0.6875rem' }}>
+                          {lv.name} ({lv.age_range})
+                        </span>
+                      ))
+                    ) : (
+                      <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>All levels</span>
+                    )}
+                  </div>
+                  <span style={{
+                    fontSize: '0.8125rem',
+                    fontWeight: 600,
+                    color: 'var(--r-navy)',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {strand.lesson_count} {strand.lesson_count === 1 ? 'lesson' : 'lessons'}
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   )
 }
