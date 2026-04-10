@@ -41,6 +41,13 @@ const ecosystemItems = [
     cta: 'Explore Toolbox',
   },
   {
+    label: 'Authagraph Maps',
+    href: '/learning/maps',
+    headline: 'The map your students have been looking at is wrong. Not metaphorically. Geometrically.',
+    body: 'The Mercator projection — the map in most Montessori classrooms — systematically inflates the size of Europe and North America while shrinking Africa, South America, and Southeast Asia. This is not a neutral distortion. It encodes a Eurocentric view of the world into children\'s spatial intuition. The Authagraph projection shows accurate relative land masses. Africa is larger than the United States, Europe, and China combined. These maps make that visible.',
+    cta: 'Explore Authagraph Maps',
+  },
+  {
     label: 'Advisory',
     href: '/advisory',
     headline: 'Schools working with MMG Advisory engage equity as a structural question, not a standalone initiative.',
@@ -330,10 +337,10 @@ export default function EquityPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            {ecosystemItems.map((item) => (
+            {ecosystemItems.map((item, i) => (
               <div
                 key={item.label}
-                className="bg-white/5 border border-white/10 p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+                className={`bg-white/5 border border-white/10 p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-200${i === ecosystemItems.length - 1 && ecosystemItems.length % 2 !== 0 ? ' md:col-span-2' : ''}`}
               >
                 <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-3">{item.label}</p>
                 <h3 className="text-white font-semibold text-lg mb-4 leading-snug" style={serif}>
