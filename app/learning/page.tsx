@@ -344,9 +344,30 @@ export default function LearningPage() {
                 href="/learning/courses"
                 className="text-[#8A6014] text-xs pl-1 hover:underline"
               >
-                View all four courses →
+                View all three courses →
               </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Equity callout */}
+      <section className="bg-[#0e1a7a] py-14 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="max-w-2xl">
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-3">Equity Work</p>
+            <h3 className="text-white text-2xl mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+              Equity is built into the materials, not added on.
+            </h3>
+            <p className="text-[#94A3B8] text-sm leading-relaxed">
+              The Origins chart sets, decodable books, and Family Education series are all equity work. So is the Equity in Montessori practitioner course. See the full picture in one place.
+            </p>
+          </div>
+          <a
+            href="/equity"
+            className="border border-white/30 text-white text-sm px-8 py-4 tracking-wide hover:border-white/60 transition-colors whitespace-nowrap flex-shrink-0"
+          >
+            Explore Equity Work &rarr;
+          </a>
         </div>
       </section>
 

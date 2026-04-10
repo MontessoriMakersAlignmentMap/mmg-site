@@ -12,7 +12,7 @@ const STRIPE_LINKS: Record<string, string> = {
   'math-materials':       'https://buy.stripe.com/eVqeVf9Ycc9i2kvd7X2cg0c',
 
   'art-of-observation':   'https://buy.stripe.com/7sYdRbfiw0qAe3daZP2cg0e',
-  'equity-in-montessori': 'https://buy.stripe.com/bJeaEZ2vK1uE2kvc3T2cg0f',
+
 }
 
 const courses = [
@@ -72,25 +72,7 @@ const courses = [
     format: 'Async, self-paced',
     audience: 'Montessori educators at all levels, aspiring lead teachers, coaches and mentors, and school leaders building a school-wide observation culture',
   },
-  {
-    id: 'equity-in-montessori',
-    name: 'Equity in Montessori: A Practitioner Course',
-    tagline: 'Moving from equity statements to equity practice — the hard, necessary work.',
-    description:
-      'Most Montessori schools have written equity commitments. Fewer have examined their admissions processes, curriculum materials, discipline practices, and family partnerships through an equity lens — rigorously, honestly, and with the intention to change something. This course is designed for educators and school leaders who are past the introductory conversation and ready to engage structurally with what justice actually requires in a Montessori context.',
-    outcomes: [
-      'Apply structural and systemic frameworks to equity analysis — beyond interpersonal awareness',
-      'Examine Montessori admissions, curriculum, and discipline practices for embedded inequity',
-      'Build more equitable family partnerships with communities whose backgrounds differ from the dominant school culture',
-      'Distinguish between performative equity commitments and institutional equity practice',
-      'Develop a personal equity action plan with specific, accountable steps',
-    ],
-    hours: '7 hours',
-    time: 'Total time: 6.5–7 hours (equivalent to one full-day professional development experience)',
-    price: '$250',
-    format: 'Async, self-paced',
-    audience: 'Montessori educators and school leaders who have completed introductory equity work and are ready for practitioner-level structural analysis',
-  },
+
 ]
 
 export default function CoursesPage() {
@@ -147,7 +129,7 @@ export default function CoursesPage() {
           <div className="max-w-2xl mb-16">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Current Courses</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
-              Four courses. All built for practitioners doing the real work.
+              Three courses. All built for practitioners doing the real work.
             </h2>
           </div>
           <div className="space-y-8">
@@ -215,6 +197,29 @@ export default function CoursesPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Equity callout */}
+      <section className="bg-[#F2EDE6] py-16 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="max-w-2xl">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-3">Equity Work</p>
+            <h3 className="text-[#0e1a7a] text-xl font-semibold mb-2" style={serif}>
+              Looking for the Equity in Montessori practitioner course?
+            </h3>
+            <p className="text-[#374151] text-sm leading-relaxed">
+              The Equity in Montessori course has moved to its own dedicated page alongside live
+              equity programming, equity-centered materials, and the full scope of MMG&apos;s
+              equity work across the ecosystem.
+            </p>
+          </div>
+          <Link
+            href="/equity"
+            className="bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#162270] transition-colors whitespace-nowrap font-medium flex-shrink-0"
+          >
+            Go to Equity &rarr;
+          </Link>
         </div>
       </section>
 

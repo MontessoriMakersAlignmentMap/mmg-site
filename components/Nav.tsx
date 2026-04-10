@@ -108,6 +108,7 @@ const allMobileLinks = [
   { name: 'MatchHub', href: '/matchhub' },
   { name: 'Learning', href: '/learning' },
   { name: 'Toolbox', href: '/toolbox' },
+  { name: 'Equity', href: '/equity' },
   { name: 'Studio', href: '/studio' },
   { name: 'Field Pulse', href: '/field-intelligence' },
   { name: 'In Community With', href: '/in-community-with' },
@@ -413,6 +414,9 @@ export default function Nav() {
                   <Link href="/field-intelligence" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Field Pulse →
                   </Link>
+                  <Link href="/equity" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
+                    Equity →
+                  </Link>
                   <Link href="/learning/free-resources" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Free Resources →
                   </Link>
@@ -533,6 +537,7 @@ export default function Nav() {
           {[
             { name: 'Learning',       href: '/learning',                prefixes: ['/learning'] },
             { name: 'Toolbox',        href: '/toolbox',                 prefixes: ['/toolbox'] },
+            { name: 'Equity',         href: '/equity',                  prefixes: ['/equity'] },
             { name: 'Free Resources', href: '/learning/free-resources', prefixes: [] as string[] },
           ].map((link) => (
             <Link
