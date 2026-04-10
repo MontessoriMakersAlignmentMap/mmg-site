@@ -5,7 +5,7 @@ const serif = { fontFamily: 'var(--font-heading)' }
 const features = [
   {
     title: 'Lesson Tracking & Lesson Lookup',
-    body: 'Log every presentation across curriculum areas. Search the full scope and sequence by area, material, or child. See what has been introduced, what is ready for extension, and what has not been touched in weeks.',
+    body: 'Log every presentation across curriculum areas. Search the full scope and sequence by area, material, or child. See what has been introduced, what is ready for extension, and what has not been touched in weeks. Lesson Gap Nudges surface children who may be ready for work that has not been offered.',
   },
   {
     title: 'Album & Curriculum Library',
@@ -17,7 +17,7 @@ const features = [
   },
   {
     title: 'Observations & Student Portfolios',
-    body: 'Document observations in a format that reflects Montessori practice. Timestamped, child-linked, searchable. Attach work samples, photos, and audio directly to records. The portfolio grows with the child.',
+    body: 'Document observations in a format that reflects Montessori practice. Timestamped, child-linked, searchable. Quick Log captures in-the-moment notes without interrupting the work period. The AI Reflection Panel helps synthesize patterns across a child\'s record. The portfolio grows with the child.',
   },
   {
     title: 'Standards Alignment',

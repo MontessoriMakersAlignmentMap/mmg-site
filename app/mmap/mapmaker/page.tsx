@@ -40,7 +40,7 @@ const featureGroups = [
   },
   {
     label: 'Equity & Culture',
-    items: ['Community Portraits', 'Student Equity Dashboard', 'Student Pulse Analytics', 'ABAR Pathways', 'EBC Pathways', 'Adult Culture Hub', 'Prepared Adult Index', 'Role Clarity Mapping'],
+    items: ['Community Portraits', 'Student Equity Dashboard', 'Student Pulse Analytics', 'ABAR Pathways', 'EBC Pathways', 'Adult Culture Hub', 'Community Health Dashboard', 'Prepared Adult Index', 'Role Clarity Mapping'],
   },
   {
     label: 'Academic',
