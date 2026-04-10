@@ -23,6 +23,9 @@ const tiers = [
       'Observation records',
       'Classroom material inventory',
       'Individual child progress visibility',
+      'Student learning portfolios',
+      'Assessment and benchmark tracking',
+      'Progress documentation for families',
     ],
   },
   {
@@ -37,6 +40,12 @@ const tiers = [
       'Attendance and daily operations',
       'Family communication',
       'School-wide scheduling',
+      'Multilingual Family Portal with full language switching',
+      'Family billing and tuition payment',
+      'Program registration and drop-in care',
+      'Volunteer coordination and resource exchange',
+      'Pulse surveys for family engagement',
+      'Enrollment document management',
     ],
   },
   {
@@ -51,6 +60,12 @@ const tiers = [
       'Staffing and HR systems',
       'Adult culture and performance',
       'Cross-team communication',
+      'Compensation, benefits, and contract management',
+      'Stipend tracking',
+      'Candidate pipeline and hiring workflow',
+      'Onboarding and offboarding with templates',
+      'Equity and belonging insights',
+      'Community health dashboard',
     ],
   },
   {
@@ -65,6 +80,13 @@ const tiers = [
       'Governance and board tools',
       'Strategic planning workflows',
       'Leadership insight and reporting',
+      'Full finance engine: tuition billing, invoice management, payment processing',
+      'Mission-aligned budgeting',
+      'Overdue invoice tracking with automated actions',
+      'Board snapshot reporting',
+      'Compliance and governance tracking',
+      'Modular add-on system (Finance, Family Pulse, SMS, and more)',
+      'Getting Started onboarding with guided setup checklist',
     ],
   },
 ]
@@ -88,6 +110,8 @@ const whatMmapContrasts = [
   { before: 'Generic lesson plan templates', after: 'Workflows built for the three-hour work cycle' },
   { before: 'Compliance-first data collection', after: 'Observation-first documentation that serves the guide' },
   { before: 'Equity as a premium add-on', after: 'Equity embedded across every tier from day one' },
+  { before: 'Families piecing together information from emails, paper forms, and separate payment portals', after: 'One multilingual family portal for tuition, progress, communication, and community' },
+  { before: 'HR records scattered across spreadsheets, filing cabinets, and email threads', after: 'Compensation, benefits, contracts, and onboarding in one system connected to everything else' },
 ]
 
 const differentiationCards = [
@@ -110,10 +134,13 @@ const differentiationCards = [
 ]
 
 const ecosystemCards = [
-  { title: 'Advisory', desc: 'System design & leadership support', href: '/advisory' },
+  { title: 'Advisory', desc: 'System design and leadership support', href: '/advisory' },
   { title: 'Institute', desc: 'Leadership development', href: '/institute' },
   { title: 'MatchHub', desc: 'Philosophy-aligned hiring', href: '/matchhub' },
   { title: 'MMAS', desc: 'Montessori-native assessment', href: '/mmas' },
+  { title: 'Toolbox', desc: 'Operational frameworks and HR protocols for Montessori schools', href: '/toolbox' },
+  { title: 'Learning', desc: 'Curriculum materials built for Montessori classrooms', href: '/learning' },
+  { title: 'Studio', desc: 'Design and production for Montessori schools', href: '/studio' },
 ]
 
 function TopographicIllustration() {
@@ -1102,6 +1129,32 @@ export default function MMAPPage() {
 
       <DemoCTA />
 
+      {/* Built for Every Role */}
+      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Built for Every Role</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
+              One system. Different views for different people.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-5 gap-px bg-[#D4CEC6]">
+            {[
+              { role: 'Guides', view: 'Their classroom: lessons, observations, and each child\'s progress.' },
+              { role: 'Families', view: 'Their portal: children, tuition, communication, and community.' },
+              { role: 'Office staff', view: 'Operations: enrollment, scheduling, and daily systems.' },
+              { role: 'Directors', view: 'The whole school: people, programs, data, and culture.' },
+              { role: 'Leadership and boards', view: 'The big picture: finances, compliance, governance, and strategic alignment.' },
+            ].map((item) => (
+              <div key={item.role} className="bg-[#FAF9F7] p-7">
+                <p className="text-[#0e1a7a] font-semibold text-sm mb-3" style={serif}>{item.role}</p>
+                <p className="text-[#64748B] text-sm leading-relaxed">{item.view}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Part of a larger system */}
       <section className="bg-[#0e1a7a] py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -1118,7 +1171,7 @@ export default function MMAPPage() {
               the leaders who run them. MatchHub finds aligned staff when growth requires it.
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {ecosystemCards.map((card) => (
               <Link key={card.href} href={card.href} className="border border-white/15 p-5 hover:border-white/30 transition-colors">
                 <p className="text-white text-sm font-semibold">{card.title}</p>
