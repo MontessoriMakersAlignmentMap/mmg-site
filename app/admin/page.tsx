@@ -837,7 +837,7 @@ export default function AdminPage() {
               </p>
             </div>
             <div className="flex items-center justify-between mb-5">
-              <p className="text-sm text-gray-500">5 async courses · $250 each · Lifetime access</p>
+              <p className="text-sm text-gray-500">5 async courses · $250 each · 90-day access (customers) · Lifetime access (you)</p>
               <div className="flex items-center gap-3">
                 {enrollmentsLoading && <span className="text-xs text-gray-400">Loading stats…</span>}
                 {!enrollmentsLoading && !enrollmentStats && (
