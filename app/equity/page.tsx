@@ -400,20 +400,18 @@ export default function EquityPage() {
                 View &amp; download &rarr;
               </Link>
             </div>
-            {/* Curriculum Review Protocol — in development */}
+            {/* Language & Terminology Guide — live */}
             <div className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4">
-              <span
-                className="text-[10px] font-semibold tracking-widest uppercase px-2 py-1 inline-block self-start"
-                style={{ backgroundColor: '#F2EDE6', color: '#8A6014' }}
-              >
-                In development
-              </span>
+              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase">Language & Terminology</p>
               <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
-                Curriculum Equity Review Protocol
+                Language and Terminology Guide
               </h3>
               <p className="text-[#64748B] text-sm leading-relaxed flex-1">
-                The rubric MMG uses to evaluate Montessori curriculum materials for representation, cultural accuracy, and equity framing. Adapted for school-level use.
+                Not a glossary to memorize. A thinking tool for examining the language norms in your school — the words in your handbook, your progress reports, your Great Lessons — and the reasoning behind the choices MMG has made across its products and publications.
               </p>
+              <Link href="/equity/language-guide" className="text-[#0e1a7a] text-sm font-medium hover:underline">
+                View &amp; download &rarr;
+              </Link>
             </div>
           </div>
 
