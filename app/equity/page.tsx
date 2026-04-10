@@ -377,17 +377,10 @@ export default function EquityPage() {
               <p className="text-[#64748B] text-sm leading-relaxed flex-1">
                 The scholars, research, and theoretical frameworks behind MMG&apos;s equity approach — from Ladson-Billings, Kendi, Love, and Crenshaw to Montessori&apos;s own writing on human dignity and the prepared adult.
               </p>
-              <Link
-                href="/equity/reading-list"
-                className="text-[#0e1a7a] text-sm font-medium hover:underline"
-              >
+              <Link href="/equity/reading-list" className="text-[#0e1a7a] text-sm font-medium hover:underline">
                 View &amp; download &rarr;
               </Link>
             </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5 mb-16">
-            {/* Self-Assessment — live */}
             <div className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4">
               <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase">Self-Assessment</p>
               <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
@@ -400,7 +393,6 @@ export default function EquityPage() {
                 View &amp; download &rarr;
               </Link>
             </div>
-            {/* Language & Terminology Guide — live */}
             <div className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4">
               <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase">Language & Terminology</p>
               <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
