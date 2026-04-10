@@ -387,34 +387,34 @@ export default function EquityPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-5 mb-16">
-            {[
-              {
-                title: 'School Equity Self-Assessment',
-                body: 'A free diagnostic tool for Montessori schools to assess equity practice across admissions, curriculum, discipline, hiring, and family engagement. A lead into deeper advisory or Institute work.',
-              },
-              {
-                title: 'Curriculum Equity Review Protocol',
-                body: "The rubric MMG uses to evaluate Montessori curriculum materials for representation, cultural accuracy, and equity framing. Adapted for school-level use.",
-              },
-            ].map((resource) => (
-              <div
-                key={resource.title}
-                className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4"
+            {/* Self-Assessment — live */}
+            <div className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4">
+              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase">Self-Assessment</p>
+              <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
+                School Equity Self-Assessment
+              </h3>
+              <p className="text-[#64748B] text-sm leading-relaxed flex-1">
+                A free diagnostic tool for Montessori schools to assess equity practice across admissions, curriculum, discipline, hiring, and family engagement. A lead into deeper advisory or Institute work.
+              </p>
+              <Link href="/equity/self-assessment" className="text-[#0e1a7a] text-sm font-medium hover:underline">
+                View &amp; download &rarr;
+              </Link>
+            </div>
+            {/* Curriculum Review Protocol — in development */}
+            <div className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-4">
+              <span
+                className="text-[10px] font-semibold tracking-widest uppercase px-2 py-1 inline-block self-start"
+                style={{ backgroundColor: '#F2EDE6', color: '#8A6014' }}
               >
-                <div>
-                  <span
-                    className="text-[10px] font-semibold tracking-widest uppercase px-2 py-1 inline-block"
-                    style={{ backgroundColor: '#F2EDE6', color: '#8A6014' }}
-                  >
-                    In development
-                  </span>
-                </div>
-                <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
-                  {resource.title}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed flex-1">{resource.body}</p>
-              </div>
-            ))}
+                In development
+              </span>
+              <h3 className="text-[#0e1a7a] font-semibold text-base leading-snug" style={serif}>
+                Curriculum Equity Review Protocol
+              </h3>
+              <p className="text-[#64748B] text-sm leading-relaxed flex-1">
+                The rubric MMG uses to evaluate Montessori curriculum materials for representation, cultural accuracy, and equity framing. Adapted for school-level use.
+              </p>
+            </div>
           </div>
 
           {/* Newsletter CTA */}
