@@ -1,14 +1,27 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-/**
- * Injects the request pathname as a header so the root layout's
- * generateMetadata can produce a correct canonical URL for every route
- * without modifying each page file individually.
- */
+// Residency routes that require authentication
+const PROTECTED_RESIDENCY_ROUTES = ['/residency/portal', '/residency/admin', '/residency/mentor']
+
 export function middleware(request: NextRequest) {
   const response = NextResponse.next()
-  response.headers.set('x-pathname', request.nextUrl.pathname)
+  const { pathname } = request.nextUrl
+
+  // Inject pathname header for canonical URL generation
+  response.headers.set('x-pathname', pathname)
+
+  // Residency auth: check for Supabase auth cookie on protected routes
+  const isProtectedResidency = PROTECTED_RESIDENCY_ROUTES.some(route => pathname.startsWith(route))
+  if (isProtectedResidency) {
+    const hasAuthCookie = request.cookies.getAll().some(c => c.name.startsWith('sb-') && c.name.endsWith('-auth-token'))
+    if (!hasAuthCookie) {
+      const loginUrl = new URL('/residency/auth/login', request.url)
+      loginUrl.searchParams.set('redirect', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
+
   return response
 }
 
