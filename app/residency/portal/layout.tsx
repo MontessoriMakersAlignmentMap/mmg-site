@@ -10,6 +10,7 @@ const navItems = [
   { href: '/residency/portal/lessons', label: 'My Lessons' },
   { href: '/residency/portal/albums', label: 'Album Entries' },
   { href: '/residency/portal/progress', label: 'Progress' },
+  { href: '/residency/portal/portfolio', label: 'Portfolio' },
 ]
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {

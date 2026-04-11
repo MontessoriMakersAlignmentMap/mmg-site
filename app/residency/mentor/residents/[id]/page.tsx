@@ -12,6 +12,7 @@ export default function MentorResidentDetailPage() {
   const [resident, setResident] = useState<any>(null)
   const [entries, setEntries] = useState<any[]>([])
   const [assignments, setAssignments] = useState<any[]>([])
+  const [assessments, setAssessments] = useState<any[]>([])
   const [mentorNotes, setMentorNotes] = useState('')
   const [notesSaving, setNotesSaving] = useState(false)
   const [notesSaved, setNotesSaved] = useState(false)
@@ -45,6 +46,15 @@ export default function MentorResidentDetailPage() {
         .order('created_at', { ascending: false })
 
       if (a) setAssignments(a)
+
+      const { data: assess } = await supabase
+        .from('residency_rubric_submissions')
+        .select('*')
+        .eq('resident_id', id)
+        .is('deleted_at', null)
+        .order('submitted_at', { ascending: false })
+
+      if (assess) setAssessments(assess)
       setLoading(false)
     }
     load()
@@ -160,6 +170,87 @@ export default function MentorResidentDetailPage() {
               )
             })}
           </div>
+        )}
+      </div>
+
+      {/* Formal Assessments */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: '1.125rem', margin: 0 }}>Formal Assessments</h2>
+        </div>
+
+        {/* Assessment buttons */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
+          {[
+            { type: 'practice', label: 'Practice Rubric', desc: 'Montessori practice domains' },
+            { type: 'reflective', label: 'Reflective Practice', desc: 'Reflective practice dimensions' },
+            { type: 'equity', label: 'Equity Checklist', desc: 'Anti-bias/equity focus areas' },
+          ].map(r => (
+            <Link
+              key={r.type}
+              href={`/residency/mentor/assessments/new?resident=${id}&type=${r.type}`}
+              style={{
+                display: 'block',
+                padding: '1rem',
+                background: 'var(--r-cream)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                color: 'inherit',
+                textAlign: 'center',
+                border: '1px solid var(--r-border)',
+              }}
+            >
+              <p style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--r-navy)', marginBottom: '0.25rem' }}>{r.label}</p>
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>{r.desc}</p>
+            </Link>
+          ))}
+        </div>
+
+        {/* Completed assessments */}
+        {assessments.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+            {assessments.map(a => {
+              const typeLabels: Record<string, string> = { practice: 'Practice', reflective: 'Reflective', equity: 'Equity' }
+              const bandColors: Record<string, string> = {
+                highly_proficient: '#2e7d32', proficient: '#1565c0', developing: '#f57f17', needs_support: '#c62828',
+              }
+              return (
+                <div key={a.id} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '0.625rem 0.875rem',
+                  background: 'var(--r-cream)',
+                  borderRadius: '6px',
+                }}>
+                  <div>
+                    <p style={{ fontSize: '0.875rem', fontWeight: 500 }}>
+                      {typeLabels[a.rubric_type] ?? a.rubric_type} — {new Date(a.observation_date).toLocaleDateString()}
+                    </p>
+                    {a.semester && <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>{a.semester}</p>}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    {a.rubric_type !== 'equity' && a.overall_score != null && (
+                      <span style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--r-navy)' }}>
+                        {Number(a.overall_score).toFixed(2)}
+                      </span>
+                    )}
+                    {a.proficiency_band && (
+                      <span style={{
+                        fontSize: '0.6875rem',
+                        fontWeight: 600,
+                        color: bandColors[a.proficiency_band] ?? 'var(--r-text-muted)',
+                      }}>
+                        {a.proficiency_band.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        ) : (
+          <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>No formal assessments completed yet.</p>
         )}
       </div>
 
