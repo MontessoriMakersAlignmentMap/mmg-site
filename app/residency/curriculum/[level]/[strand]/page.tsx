@@ -18,10 +18,8 @@ export default async function StrandLevelPage({
 
   let strand, levelRecord
   try {
-    ;[strand, levelRecord] = await Promise.all([
-      getStrandBySlug(supabase, strandSlug),
-      getLevelBySlug(supabase, levelSlug),
-    ])
+    levelRecord = await getLevelBySlug(supabase, levelSlug)
+    strand = await getStrandBySlug(supabase, strandSlug, levelRecord.id)
   } catch {
     notFound()
   }

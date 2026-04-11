@@ -135,24 +135,24 @@ export default function NewLessonPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
             <div>
-              <label className="r-label">Strand</label>
-              <select className="r-input" value={form.strand_id} onChange={e => update('strand_id', e.target.value)} required>
+              <label className="r-label">Level</label>
+              <select className="r-input" value={form.level_id} onChange={e => { update('level_id', e.target.value); setForm(prev => ({ ...prev, level_id: e.target.value, strand_id: '', category_id: '' })) }} required>
                 <option value="">Select...</option>
-                {strands.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                {levels.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
               </select>
             </div>
             <div>
-              <label className="r-label">Level</label>
-              <select className="r-input" value={form.level_id} onChange={e => update('level_id', e.target.value)} required>
+              <label className="r-label">Strand</label>
+              <select className="r-input" value={form.strand_id} onChange={e => { setForm(prev => ({ ...prev, strand_id: e.target.value, category_id: '' })) }} required>
                 <option value="">Select...</option>
-                {levels.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
+                {strands.filter(s => s.level_id === form.level_id).map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
             </div>
             <div>
               <label className="r-label">Category</label>
               <select className="r-input" value={form.category_id} onChange={e => update('category_id', e.target.value)} required>
                 <option value="">Select...</option>
-                {(form.strand_id ? categories.filter(c => c.strand_id === form.strand_id) : categories).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                {categories.filter(c => c.strand_id === form.strand_id).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
           </div>
