@@ -48,17 +48,21 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') ?? '/'
+  const isResidency = pathname.startsWith('/residency')
+
   return (
     <html lang="en" className={`${montserrat.variable} h-full`}>
       <body className="min-h-full flex flex-col">
-        <ScrollProgress />
-        <Nav />
+        {!isResidency && <ScrollProgress />}
+        {!isResidency && <Nav />}
         <main className="flex-1">{children}</main>
-        <Footer />
-        <MoselleWidget />
+        {!isResidency && <Footer />}
+        {!isResidency && <MoselleWidget />}
         <Analytics />
       </body>
     </html>
