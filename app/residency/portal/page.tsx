@@ -11,6 +11,9 @@ export default function PortalDashboard() {
   const [profile, setProfile] = useState<any>(null)
   const [resident, setResident] = useState<any>(null)
   const [assignedLevel, setAssignedLevel] = useState<any>(null)
+  const [bundles, setBundles] = useState<any[]>([])
+  const [bundleEngagements, setBundleEngagements] = useState<any[]>([])
+  const [lessonEngagements, setLessonEngagements] = useState<any[]>([])
   const [recentAssignments, setRecentAssignments] = useState<any[]>([])
   const [progress, setProgress] = useState<any[]>([])
   const [unreadFeedback, setUnreadFeedback] = useState<any[]>([])
@@ -38,7 +41,36 @@ export default function PortalDashboard() {
       setResident(res)
       if (res.assigned_level) setAssignedLevel(res.assigned_level)
 
-      // Recent assignments (most recently accessed or created)
+      // Load bundles for this resident's cohort
+      if (res.cohort_id) {
+        const { data: bdles } = await supabase
+          .from('residency_bundles')
+          .select(`*, bundle_lessons:residency_bundle_lessons(id, lesson_id, sequence_order, lesson:residency_lessons(id, title, slug, strand:residency_strands(name)))`)
+          .eq('cohort_id', res.cohort_id)
+          .in('status', ['released', 'completed', 'scheduled'])
+          .is('deleted_at', null)
+          .order('bundle_number')
+
+        setBundles(bdles || [])
+
+        // Load this resident's bundle engagements
+        const { data: be } = await supabase
+          .from('residency_bundle_engagements')
+          .select('*')
+          .eq('resident_id', res.id)
+
+        setBundleEngagements(be || [])
+
+        // Load lesson engagements
+        const { data: le } = await supabase
+          .from('residency_lesson_engagements')
+          .select('*')
+          .eq('resident_id', res.id)
+
+        setLessonEngagements(le || [])
+      }
+
+      // Recent assignments
       const { data: assignments } = await supabase
         .from('residency_assignments')
         .select('*, lesson:residency_lessons(id, title, strand:residency_strands(name))')
@@ -48,11 +80,7 @@ export default function PortalDashboard() {
       if (assignments) setRecentAssignments(assignments)
 
       // Progress by strand
-      const { data: strands } = await supabase
-        .from('residency_strands')
-        .select('*')
-        .order('sort_order')
-
+      const { data: strands } = await supabase.from('residency_strands').select('*').order('sort_order')
       const { data: allAssignments } = await supabase
         .from('residency_assignments')
         .select('*, lesson:residency_lessons(strand_id)')
@@ -66,7 +94,6 @@ export default function PortalDashboard() {
             strand_name: s.name,
             total_lessons: sa.length,
             completed: sa.filter((a: any) => a.status === 'completed').length,
-            in_progress: sa.filter((a: any) => ['in_progress', 'submitted', 'reviewed'].includes(a.status)).length,
           }
         }))
       }
@@ -85,7 +112,6 @@ export default function PortalDashboard() {
           .in('album_entry_id', entryIds)
           .is('read_at', null)
           .order('created_at', { ascending: false })
-
         if (feedback) setUnreadFeedback(feedback)
       }
 
@@ -95,78 +121,194 @@ export default function PortalDashboard() {
   }, [])
 
   async function markFeedbackRead(feedbackId: string) {
-    await supabase
-      .from('residency_feedback')
-      .update({ read_at: new Date().toISOString() })
-      .eq('id', feedbackId)
-
+    await supabase.from('residency_feedback').update({ read_at: new Date().toISOString() }).eq('id', feedbackId)
     setUnreadFeedback(prev => prev.filter(f => f.id !== feedbackId))
   }
 
   if (loading) return <p style={{ color: 'var(--r-text-muted)', padding: '2rem' }}>Loading...</p>
+
+  // Find current, recent, and upcoming bundles
+  const today = new Date().toISOString().split('T')[0]
+  const releasedBundles = bundles.filter(b => b.status === 'released' || (b.status === 'scheduled' && b.unlock_date <= today))
+  const currentBundle = releasedBundles.find(b => b.unlock_date <= today && (!b.lock_date || b.lock_date >= today))
+    || releasedBundles[releasedBundles.length - 1]
+  const completedBundles = releasedBundles.filter(b => {
+    const eng = bundleEngagements.find(e => e.bundle_id === b.id)
+    return eng?.completion_status === 'complete' || (b.lock_date && b.lock_date < today)
+  }).slice(-2)
+  const nextBundle = bundles.find(b => b.unlock_date > today && b.status === 'scheduled')
+
+  function getBundleProgress(bundleId: string, bundleLessons: any[]) {
+    const eng = bundleEngagements.find(e => e.bundle_id === bundleId)
+    const engaged = eng?.lessons_engaged?.length || 0
+    const total = bundleLessons?.length || 0
+    return { engaged, total, complete: eng?.completion_status === 'complete' }
+  }
+
+  function isLessonEngaged(lessonId: string) {
+    return lessonEngagements.some(le => le.lesson_id === lessonId && le.engaged)
+  }
 
   return (
     <div>
       <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>
         {profile ? `Welcome back, ${profile.first_name}` : 'Dashboard'}
       </h1>
-      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem' }}>
+      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
         Your residency at a glance.
       </p>
 
-      {/* Assigned level badge */}
-      {assignedLevel && (
+      {/* ═══ Current week's bundle — the primary element ═══ */}
+      {currentBundle && (
         <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          padding: '0.5rem 1rem',
-          background: 'var(--r-gold-light)',
-          borderRadius: '8px',
+          background: 'linear-gradient(135deg, var(--r-navy) 0%, #1a365d 100%)',
+          borderRadius: '12px',
+          padding: '2rem',
           marginBottom: '1.5rem',
-          border: '1px solid var(--r-gold)',
+          color: 'white',
         }}>
-          <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)' }}>
-            {assignedLevel.name} Level
-          </span>
-          {assignedLevel.age_range && (
-            <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
-              Ages {assignedLevel.age_range}
+          <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '0.5rem' }}>
+            This Week &middot; Week {currentBundle.week_number}
+          </p>
+          <h2 style={{ fontSize: '1.75rem', fontWeight: 700, lineHeight: 1.2, marginBottom: '0.75rem' }}>
+            {currentBundle.weekly_theme}
+          </h2>
+          <p style={{ fontSize: '0.9375rem', opacity: 0.85, lineHeight: 1.6, marginBottom: '1.25rem', maxWidth: '600px' }}>
+            {currentBundle.practicum_focus}
+          </p>
+
+          {/* Progress indicator */}
+          {(() => {
+            const { engaged, total, complete } = getBundleProgress(currentBundle.id, currentBundle.bundle_lessons)
+            return (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                <div style={{ flex: 1, maxWidth: '300px' }}>
+                  <div style={{ height: '6px', background: 'rgba(255,255,255,0.2)', borderRadius: '3px', overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${total > 0 ? (engaged / total) * 100 : 0}%`, background: complete ? '#66bb6a' : '#ffd54f', borderRadius: '3px', transition: 'width 0.3s' }} />
+                  </div>
+                </div>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 600, opacity: 0.9 }}>
+                  {complete ? 'Complete' : `${engaged} of ${total} lessons`}
+                </span>
+              </div>
+            )
+          })()}
+
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {currentBundle.album_submission_required && (
+              <Link href="/residency/portal/albums" style={{
+                fontSize: '0.8125rem', fontWeight: 600, background: '#ffd54f', color: 'var(--r-navy)',
+                padding: '0.5rem 1rem', borderRadius: '6px', textDecoration: 'none',
+              }}>
+                Album Submission Due
+              </Link>
+            )}
+            {currentBundle.live_session_week && (
+              <span style={{ fontSize: '0.8125rem', fontWeight: 600, background: 'rgba(255,255,255,0.15)', padding: '0.5rem 1rem', borderRadius: '6px' }}>
+                Live Session This Week
+              </span>
+            )}
+            <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>
+              {currentBundle.strands_included} &middot; {currentBundle.bundle_lessons?.length || 0} lessons
             </span>
-          )}
+          </div>
+
+          {/* Lesson list within bundle */}
+          <div style={{ marginTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+            {currentBundle.bundle_lessons?.sort((a: any, b: any) => a.sequence_order - b.sequence_order).map((bl: any) => {
+              const engaged = isLessonEngaged(bl.lesson_id)
+              return (
+                <Link
+                  key={bl.id}
+                  href={`/residency/portal/bundles/${currentBundle.id}/lessons/${bl.lesson_id}`}
+                  style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    padding: '0.5rem 0.75rem', background: engaged ? 'rgba(102,187,106,0.15)' : 'rgba(255,255,255,0.08)',
+                    borderRadius: '6px', textDecoration: 'none', color: 'white', fontSize: '0.8125rem',
+                  }}
+                >
+                  <span>{bl.lesson?.title?.replace(/^(Primary|Elementary): \w+: /, '')}</span>
+                  <span style={{ fontSize: '0.6875rem', opacity: 0.6 }}>
+                    {engaged ? '\u2713' : bl.lesson?.strand?.name}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Live session banner */}
+      {currentBundle?.live_session_week && currentBundle.live_session_discussion_theme && (
+        <div style={{
+          background: '#f3e5f5',
+          borderLeft: '4px solid #7b1fa2',
+          borderRadius: '8px',
+          padding: '1rem 1.25rem',
+          marginBottom: '1.5rem',
+        }}>
+          <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#7b1fa2', marginBottom: '0.25rem' }}>
+            Live Session This Month
+          </p>
+          <p style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#4a148c' }}>
+            {currentBundle.live_session_discussion_theme}
+          </p>
+        </div>
+      )}
+
+      {/* Recent completed bundles + upcoming preview */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        {completedBundles.map(b => {
+          const { engaged, total } = getBundleProgress(b.id, b.bundle_lessons)
+          return (
+            <div key={b.id} className="r-card" style={{ opacity: 0.8 }}>
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginBottom: '0.25rem' }}>Week {b.week_number}</p>
+              <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.375rem', lineHeight: 1.3 }}>{b.weekly_theme}</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
+                <span>{engaged}/{total} lessons</span>
+                <span style={{ color: engaged >= total ? '#2e7d32' : '#f57f17', fontWeight: 600 }}>
+                  {engaged >= total ? 'Complete' : 'Incomplete'}
+                </span>
+              </div>
+            </div>
+          )
+        })}
+        {nextBundle && (
+          <div className="r-card" style={{ borderStyle: 'dashed', borderColor: 'var(--r-border)', opacity: 0.7 }}>
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginBottom: '0.25rem' }}>
+              Coming Week {nextBundle.week_number} &middot; {new Date(nextBundle.unlock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </p>
+            <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.375rem', lineHeight: 1.3 }}>{nextBundle.weekly_theme}</h3>
+            <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>{nextBundle.practicum_focus?.substring(0, 100)}...</p>
+          </div>
+        )}
+      </div>
+
+      {/* Album prompt for current bundle */}
+      {currentBundle?.album_submission_required && currentBundle.album_prompt && (
+        <div className="r-card" style={{ borderLeft: '4px solid #1565c0', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>This Week&apos;s Album Prompt</h2>
+          <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--r-text)', marginBottom: '0.75rem' }}>
+            {currentBundle.album_prompt}
+          </p>
+          <Link href="/residency/portal/albums" className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem', textDecoration: 'none' }}>
+            Write Your Submission
+          </Link>
         </div>
       )}
 
       {/* Unread feedback alert */}
       {unreadFeedback.length > 0 && (
-        <div className="r-card" style={{
-          marginBottom: '1.5rem',
-          borderLeft: '4px solid var(--r-gold)',
-          background: 'var(--r-gold-light)',
-        }}>
+        <div className="r-card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid var(--r-gold)', background: 'var(--r-gold-light)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-            <h2 style={{ fontSize: '1.125rem', color: 'var(--r-navy)' }}>
-              New Mentor Feedback
-            </h2>
-            <span className="r-badge" style={{
-              background: 'var(--r-gold)',
-              color: '#fff',
-              fontSize: '0.75rem',
-            }}>
+            <h2 style={{ fontSize: '1.125rem', color: 'var(--r-navy)' }}>New Mentor Feedback</h2>
+            <span className="r-badge" style={{ background: 'var(--r-gold)', color: '#fff', fontSize: '0.75rem' }}>
               {unreadFeedback.length} new
             </span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
             {unreadFeedback.slice(0, 3).map((fb: any) => (
-              <div key={fb.id} style={{
-                padding: '0.75rem',
-                background: 'var(--r-white)',
-                borderRadius: '8px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                gap: '1rem',
-              }}>
+              <div key={fb.id} style={{ padding: '0.75rem', background: 'var(--r-white)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--r-navy)', marginBottom: '0.125rem' }}>
                     {fb.album_entry?.lesson?.title ?? fb.album_entry?.title}
@@ -178,18 +320,7 @@ export default function PortalDashboard() {
                     {fb.content.length > 120 ? fb.content.slice(0, 120) + '...' : fb.content}
                   </p>
                 </div>
-                <button
-                  onClick={() => markFeedbackRead(fb.id)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'var(--r-navy)',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
+                <button onClick={() => markFeedbackRead(fb.id)} style={{ background: 'none', border: 'none', color: 'var(--r-navy)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
                   Mark read
                 </button>
               </div>
@@ -198,67 +329,17 @@ export default function PortalDashboard() {
         </div>
       )}
 
-      {/* Progress overview */}
-      {progress.length > 0 && (
+      {/* Progress by strand */}
+      {progress.length > 0 && progress.some(p => p.total_lessons > 0) && (
         <div className="r-card" style={{ marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Progress by Strand</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {progress.filter(p => p.total_lessons > 0).map(p => (
-              <ProgressBar
-                key={p.strand_id}
-                label={p.strand_name}
-                completed={p.completed}
-                total={p.total_lessons}
-              />
+              <ProgressBar key={p.strand_id} label={p.strand_name} completed={p.completed} total={p.total_lessons} />
             ))}
-            {progress.every(p => p.total_lessons === 0) && (
-              <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>
-                No lessons assigned yet. Your progress will appear here once assignments begin.
-              </p>
-            )}
           </div>
         </div>
       )}
-
-      {/* Recent lessons */}
-      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-          <h2 style={{ fontSize: '1.125rem' }}>Recent Lessons</h2>
-          <Link href="/residency/portal/lessons" style={{ fontSize: '0.8125rem', color: 'var(--r-navy)' }}>
-            View all
-          </Link>
-        </div>
-
-        {recentAssignments.length === 0 ? (
-          <EmptyState
-            title="No lessons yet"
-            message="Assigned lessons will appear here. Your journey begins soon."
-          />
-        ) : (
-          <table className="r-table">
-            <thead>
-              <tr>
-                <th>Lesson</th>
-                <th>Strand</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentAssignments.map((a: any) => (
-                <tr key={a.id}>
-                  <td>
-                    <Link href={`/residency/curriculum/lesson/${a.lesson_id}`} style={{ color: 'var(--r-navy)', fontWeight: 500, textDecoration: 'none' }}>
-                      {a.lesson?.title}
-                    </Link>
-                  </td>
-                  <td style={{ color: 'var(--r-text-muted)' }}>{a.lesson?.strand?.name}</td>
-                  <td><StatusBadge status={a.status} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
 
       {/* Mentor notes */}
       {resident?.mentor_notes && (

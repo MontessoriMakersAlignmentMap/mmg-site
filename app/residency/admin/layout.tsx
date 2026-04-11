@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase/client'
 
 const navItems = [
   { href: '/residency/admin', label: 'Overview' },
+  { href: '/residency/admin/cohorts', label: 'Cohorts' },
   { href: '/residency/admin/lessons', label: 'Lessons' },
   { href: '/residency/admin/residents', label: 'Residents' },
   { href: '/residency/admin/strands', label: 'Strands & Categories' },

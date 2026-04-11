@@ -9,6 +9,8 @@ import ProgressBar from '../../components/ProgressBar'
 export default function AdminProgressPage() {
   const [residents, setResidents] = useState<any[]>([])
   const [submissions, setSubmissions] = useState<any[]>([])
+  const [bundleProgress, setBundleProgress] = useState<any[]>([])
+  const [cohorts, setCohorts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -29,9 +31,67 @@ export default function AdminProgressPage() {
 
           const total = (assignments ?? []).length
           const completed = (assignments ?? []).filter((a: any) => a.status === 'completed').length
-          return { ...r, total, completed }
+
+          // Bundle engagement data
+          const { data: bundleEngs } = await supabase
+            .from('residency_bundle_engagements')
+            .select('completion_status, bundle_id')
+            .eq('resident_id', r.id)
+
+          const completeBundles = (bundleEngs ?? []).filter((e: any) => e.completion_status === 'complete').length
+          const incompleteBundles = (bundleEngs ?? []).filter((e: any) => e.completion_status === 'incomplete').length
+
+          // Determine bundle standing
+          let bundleStanding = 'on_track'
+          if (incompleteBundles >= 2) bundleStanding = 'academic_watch'
+          else if (incompleteBundles === 1) bundleStanding = 'behind'
+
+          return { ...r, total, completed, completeBundles, incompleteBundles, bundleStanding }
         }))
         setResidents(enriched)
+      }
+
+      // Load cohorts
+      const { data: cohortData } = await supabase
+        .from('residency_cohorts')
+        .select('id, name, track')
+        .in('status', ['active', 'draft'])
+        .is('deleted_at', null)
+      setCohorts(cohortData || [])
+
+      // Bundle completion rates per cohort
+      if (cohortData?.length) {
+        const bp = []
+        for (const c of cohortData) {
+          const { data: bundles } = await supabase
+            .from('residency_bundles')
+            .select('id, week_number, weekly_theme, unlock_date, status')
+            .eq('cohort_id', c.id)
+            .eq('status', 'released')
+            .order('bundle_number')
+
+          const cohortResidents = residentData?.filter((r: any) => r.cohort_id === c.id) || []
+          if (bundles && cohortResidents.length > 0) {
+            const rIds = cohortResidents.map((r: any) => r.id)
+            const { data: allEngs } = await supabase
+              .from('residency_bundle_engagements')
+              .select('bundle_id, completion_status')
+              .in('resident_id', rIds)
+
+            const bundleRates = bundles.map(b => {
+              const engs = (allEngs ?? []).filter(e => e.bundle_id === b.id)
+              const complete = engs.filter(e => e.completion_status === 'complete').length
+              return {
+                ...b,
+                complete,
+                total: cohortResidents.length,
+                rate: cohortResidents.length > 0 ? Math.round((complete / cohortResidents.length) * 100) : 0,
+              }
+            })
+            bp.push({ cohort: c, bundleRates })
+          }
+        }
+        setBundleProgress(bp)
       }
 
       // Pending submissions
@@ -58,9 +118,72 @@ export default function AdminProgressPage() {
         Track resident progress and review pending submissions.
       </p>
 
+      {/* Bundle completion rates */}
+      {bundleProgress.map(bp => (
+        <div key={bp.cohort.id} className="r-card" style={{ marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>
+            Bundle Completion: {bp.cohort.name}
+          </h2>
+          <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '1rem' }}>
+            Percentage of cohort that has completed each released bundle.
+          </p>
+          <div style={{ display: 'flex', gap: '0.375rem', flexWrap: 'wrap' }}>
+            {bp.bundleRates.map((br: any) => (
+              <div key={br.id} style={{
+                width: '48px', textAlign: 'center', padding: '0.375rem',
+                background: br.rate >= 80 ? '#e8f5e9' : br.rate >= 50 ? '#fff8e1' : '#fce4ec',
+                borderRadius: '6px',
+              }}>
+                <p style={{ fontSize: '0.875rem', fontWeight: 700, color: br.rate >= 80 ? '#2e7d32' : br.rate >= 50 ? '#f57f17' : '#c62828' }}>
+                  {br.rate}%
+                </p>
+                <p style={{ fontSize: '0.5625rem', color: 'var(--r-text-muted)' }}>Wk {br.week_number}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {/* Resident bundle standing */}
+      {residents.some(r => r.bundleStanding) && (
+        <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Bundle Standing by Resident</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.75rem' }}>
+            <thead>
+              <tr>
+                {['Resident', 'Bundles Complete', 'Incomplete', 'Standing'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '0.5rem', borderBottom: '2px solid var(--r-border)', fontWeight: 600, fontSize: '0.6875rem' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {residents.map(r => (
+                <tr key={r.id}>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', fontWeight: 500 }}>
+                    {r.profile?.first_name} {r.profile?.last_name}
+                  </td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>{r.completeBundles}</td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: r.incompleteBundles > 0 ? '#f57f17' : 'inherit' }}>{r.incompleteBundles}</td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>
+                    <span style={{
+                      fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
+                      textTransform: 'uppercase',
+                      background: r.bundleStanding === 'on_track' ? '#e8f5e9' : r.bundleStanding === 'behind' ? '#fff8e1' : '#fce4ec',
+                      color: r.bundleStanding === 'on_track' ? '#2e7d32' : r.bundleStanding === 'behind' ? '#f57f17' : '#c62828',
+                    }}>
+                      {r.bundleStanding === 'on_track' ? 'On Track' : r.bundleStanding === 'behind' ? 'Behind' : 'Academic Watch'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       {/* Resident progress */}
       <div className="r-card" style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Resident Completion</h2>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Lesson Completion</h2>
         {residents.length === 0 ? (
           <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>No active residents.</p>
         ) : (
