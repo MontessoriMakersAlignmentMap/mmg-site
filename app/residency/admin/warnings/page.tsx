@@ -54,7 +54,7 @@ export default function WarningsPage() {
 
     const newWarnings: any[] = []
 
-    for (const r of residents) {
+    for (const r of residents as any[]) {
       const name = `${r.profile?.first_name} ${r.profile?.last_name}`
 
       // Check practicum hours
