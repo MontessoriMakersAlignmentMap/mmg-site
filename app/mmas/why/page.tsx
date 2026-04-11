@@ -27,7 +27,9 @@ const problems = [
 
 const whatMMASMakesPossible = [
   'Understand each child\'s exact position in the Montessori materials sequence',
-  'Know precisely what lesson or material comes next — for every child, every domain',
+  'Know precisely what lesson or material comes next, for every child, every domain',
+  'Track developmental flourishing across 7 indicators, not just academic progress',
+  'Log work cycles and observe concentration, independence, and material choices in real time',
   'Surface school-wide patterns without interrupting classroom rhythm',
   'Share developmental profiles with families in language that reflects Montessori values',
   'Demonstrate outcomes to boards and accreditation bodies on your own terms',
@@ -54,6 +56,16 @@ const materials = [
     connection:
       'Writing and language development assessments track conceptual understanding of parts of speech as children work through the grammar materials sequence.',
   },
+  {
+    name: 'Geometry Cabinet',
+    connection:
+      'Geometry assessments track shape recognition, measurement, and spatial reasoning as children progress through the geometric materials sequence.',
+  },
+  {
+    name: 'Science and Geography Materials',
+    connection:
+      'Botany, zoology, physical science, landforms, timelines, and cultural studies are tracked through structured teacher observation across all 9 curriculum areas: Language, Math, Writing, Research, Geometry, Science, Geography/History, Practical Life, and Sensorial.',
+  },
 ]
 
 export default function MMASWhyPage() {
@@ -65,7 +77,7 @@ export default function MMASWhyPage() {
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
             <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
-              Currently in development
+              Demo live now
             </span>
           </div>
           <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
@@ -203,9 +215,11 @@ export default function MMASWhyPage() {
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
               Every MMAS assessment maps directly to the Montessori materials
-              sequence. When a child is assessed, the result places them within
-              the progression of actual classroom materials — so the guide knows
-              not just where the child is, but which tray to pull next.
+              sequence across all 9 curriculum areas: Language, Math, Writing,
+              Research, Geometry, Science, Geography/History, Practical Life,
+              and Sensorial. When a child is assessed, the result places them
+              within the progression of actual classroom materials — so the
+              guide knows not just where the child is, but which tray to pull next.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -259,7 +273,7 @@ export default function MMASWhyPage() {
             className="text-white text-2xl md:text-3xl max-w-xl leading-snug"
             style={serif}
           >
-            Montessori-native assessment. In development now.
+            Montessori-native assessment. The demo is live.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link

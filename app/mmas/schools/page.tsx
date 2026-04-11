@@ -55,7 +55,7 @@ const implementationSteps = [
     number: '02',
     title: 'Set Up Your School',
     description:
-      'When MMAS becomes available, onboarding is straightforward. Guides are oriented quickly — the assessments are intuitive and take 10\u201315 minutes per student.',
+      'Onboarding is straightforward. Guides are oriented quickly — the assessments are intuitive and take 10\u201315 minutes per student.',
   },
   {
     number: '03',
@@ -74,7 +74,7 @@ export default function MMASSchoolsPage() {
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
             <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
-              Currently in development
+              Demo live now
             </span>
           </div>
           <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
@@ -92,12 +92,14 @@ export default function MMASSchoolsPage() {
             designed to give school leadership visibility across every classroom.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/contact"
+            <a
+              href="https://app.montessorimakersassessmentsystem.com/demo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors inline-block text-center"
             >
-              Request a Demo
-            </Link>
+              Explore the Demo
+            </a>
             <Link
               href="/mmas/how-it-works"
               className="border border-white text-white text-sm px-8 py-4 tracking-wide hover:bg-white hover:text-[#0e1a7a] transition-colors inline-block text-center"
@@ -294,7 +296,7 @@ export default function MMASSchoolsPage() {
               See what assessment clarity looks like for your school.
             </p>
             <p className="text-[#94A3B8] text-sm leading-relaxed">
-              MMAS is currently in development. Get in touch to learn more or stay informed about availability.
+              The demo is live. Get in touch to discuss access and fit for your school.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">

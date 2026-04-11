@@ -56,20 +56,20 @@ function AnimatedPctBar({ pct }: { pct: number }) {
 
 const differentiators = [
   {
-    label: 'Materials-Aligned Tracking',
-    desc: 'Every data point maps to a specific Montessori material or sequence step — not a grade level, standard, or age norm. Results tell guides which tray to pull next.',
+    label: 'Flourishing Tracker',
+    desc: 'Seven developmental indicators measured on a 1-5 scale: love of work, concentration, self-discipline, joyful community, joy in order, connection to reality, and independence. Academic scores alone have never been the point.',
   },
   {
-    label: 'Progression-Based Language',
-    desc: 'Development is described as movement: emerging → developing → secure → ready for next material. No grades. No judgment. Just clarity about where a child is in the sequence.',
+    label: 'Work Cycle Logger',
+    desc: 'Track morning and afternoon work periods with material choices, duration, and independence level. The work cycle itself becomes data.',
   },
   {
-    label: 'No Grade Levels. Ever.',
-    desc: 'Traditional assessments force Montessori children into grade-level frameworks that contradict how the method works. MMAS is built on Montessori premises from the ground up.',
+    label: 'Material Readiness Engine',
+    desc: 'Automatically recommends which materials each student is ready for next, based on where they actually are in the sequence. No guesswork. No inference.',
   },
   {
-    label: 'Guide-Administered',
-    desc: 'Assessment happens in the natural flow of the classroom. No testing specialist. No pulling children from authentic work. 10–15 minutes per student.',
+    label: 'Classroom Pull Lists',
+    desc: 'Group students by skill level for small-group lessons with one click. The data you already collect becomes the planning tool you have been missing.',
   },
 ]
 
@@ -146,7 +146,7 @@ export default function MMASPage() {
                 <span className="relative w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
               </span>
               <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
-                Currently in development
+                Demo live now
               </span>
             </div>
             <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-6">
@@ -203,10 +203,10 @@ export default function MMASPage() {
       <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: '0',      label: 'Grade levels. Ever.', sub: 'Built on Montessori premises' },
-            { value: '4',      label: 'Progression stages', sub: 'Emerging → ready for next material' },
+            { value: '9',      label: 'Curriculum areas', sub: 'Language, Math, Writing, and more' },
+            { value: '3',      label: 'Assessment windows', sub: 'Fall, Winter, Spring' },
             { value: '10–15',  label: 'Minutes per student', sub: 'In the natural classroom flow' },
-            { value: '100%',   label: 'Materials-aligned', sub: 'Every data point maps to a material' },
+            { value: '0',      label: 'Grade levels. Ever.', sub: 'Built on Montessori premises' },
           ].map((s) => (
             <div key={s.label} className="text-center md:text-left">
               <div className="text-[#d6a758] text-3xl md:text-4xl font-bold tracking-tight mb-1" style={serif}>{s.value}</div>
@@ -349,18 +349,26 @@ export default function MMASPage() {
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
               style={serif}
             >
-              In development. Moving toward launch.
+              The core platform is built. Schools can access it now.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
-              MMAS is a platform in active development. The core assessment engine is built. We are refining assessment design, reporting, and MMAP integration ahead of launch.
+              Assessment engine, Flourishing Tracker, Work Cycle Logger, parent reports, admin dashboards, student PIN login — all built and live. MMAP integration is in progress.
             </p>
             <p className="text-[#374151] text-base leading-relaxed mb-8">
-              Interested in being among the first schools to access the platform when it becomes available? Get in touch.
+              Try the public demo or get in touch to discuss access for your school.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://app.montessorimakersassessmentsystem.com/demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#162270] transition-colors text-center font-medium"
+              >
+                Explore the Demo
+              </a>
               <Link
                 href="/contact"
-                className="bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#162270] transition-colors text-center font-medium"
+                className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center font-medium"
               >
                 Get in Touch
               </Link>
@@ -368,10 +376,12 @@ export default function MMASPage() {
           </div>
           <div className="space-y-4">
             {[
-              { status: 'Complete', label: 'Core assessment engine', desc: 'All assessment types built and validated against the Montessori materials sequence.' },
-              { status: 'In Progress', label: 'Reporting & profiles', desc: 'Guide-facing dashboards and share-ready student profiles in active development.' },
-              { status: 'In Progress', label: 'MMAP integration', desc: 'Assessment data flow into MMAP lesson logs in active development.' },
-              { status: 'Upcoming', label: 'General availability', desc: 'Platform launches to schools when development milestones are met.' },
+              { status: 'Complete', label: 'Core assessment engine', desc: 'All 9 curriculum areas built and mapped to the Montessori materials sequence.' },
+              { status: 'Complete', label: 'Flourishing Tracker and Work Cycle Logger', desc: 'Seven developmental indicators and full work cycle logging are live.' },
+              { status: 'Complete', label: 'Student PIN login and audio support', desc: 'Students log in with a code and 4-digit PIN. Every question is read aloud.' },
+              { status: 'Complete', label: 'Parent progress reports', desc: 'Narrative summaries, curriculum area breakdowns, and At Home activity suggestions.' },
+              { status: 'Complete', label: 'Admin dashboards and CSV export', desc: 'School-wide completion tracking, mastery trends, and data export for compliance.' },
+              { status: 'In Progress', label: 'MMAP integration', desc: 'Assessment data flowing into MMAP lesson logs is in active development.' },
             ].map((item, i) => (
               <FadeIn key={item.label} delay={i * 0.08}>
                 <div className="bg-white border border-[#E2DDD6] p-6 flex items-start gap-5">
@@ -529,6 +539,77 @@ export default function MMASPage() {
             >
               See the full case for Montessori-native assessment &rarr;
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── BUILT FOR EVERY ROLE ─────────────────────────────────────────── */}
+      <section className="bg-white py-20 md:py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
+              Built for Every Role
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight"
+              style={serif}
+            >
+              Every person in the building has what they need.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                title: 'For Guides',
+                items: [
+                  'Adaptive assessments across 9 curriculum areas',
+                  'Observation tools for work choices, concentration, and material mastery',
+                  'Skill Graph Maps showing mastery progression',
+                  'Material Readiness Engine and Classroom Pull Lists',
+                ],
+              },
+              {
+                title: 'For Families',
+                items: [
+                  'Progress reports with narrative summaries',
+                  'Flourishing snapshot showing whole-child development',
+                  'At Home suggestions tied to classroom work',
+                ],
+              },
+              {
+                title: 'For Students',
+                items: [
+                  'Large buttons, audio prompts, picture-based questions for Primary',
+                  'Text-based interface for Upper Elementary',
+                  'PIN login with no email required',
+                ],
+              },
+              {
+                title: 'For Administrators',
+                items: [
+                  'School-wide dashboards for completion and mastery trends',
+                  'Standards alignment to Common Core',
+                  'CSV import, demo mode, and data seeding tools',
+                ],
+              },
+            ].map((role) => (
+              <div key={role.title} className="bg-[#FAF9F7] border border-[#E2DDD6] p-7">
+                <h3
+                  className="text-[#0e1a7a] font-semibold text-base mb-4"
+                  style={serif}
+                >
+                  {role.title}
+                </h3>
+                <ul className="space-y-2.5">
+                  {role.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className="text-[#8A6014] flex-shrink-0 mt-0.5 text-sm">&rarr;</span>
+                      <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -711,7 +792,7 @@ export default function MMASPage() {
               The assessment system Montessori schools deserve.
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed">
-              MMAS is currently in development. If you&apos;d like to stay informed about availability or discuss fit for your school, we&apos;d love to hear from you.
+              The demo is live. Schools can request access now. Try it at <a href="https://app.montessorimakersassessmentsystem.com/demo" target="_blank" rel="noopener noreferrer" className="text-[#d6a758] underline hover:text-white transition-colors">app.montessorimakersassessmentsystem.com/demo</a> or get in touch to discuss fit for your school.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">

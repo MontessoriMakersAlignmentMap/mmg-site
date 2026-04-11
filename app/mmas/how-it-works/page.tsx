@@ -84,14 +84,29 @@ const platformCapabilities = [
       '186 skill nodes mapped to 133 Montessori materials. Questions adapt in real time based on each child\'s responses — no fixed test form, no one-size-fits-all.',
   },
   {
+    name: 'Flourishing Tracker',
+    description:
+      'Seven developmental indicators measured on a 1-5 scale: love of work, concentration, self-discipline, joyful community, joy in order, connection to reality, and independence. Tracked across all three assessment windows.',
+  },
+  {
+    name: 'Work Cycle Logger',
+    description:
+      'Guides log morning and afternoon work periods with material choices, duration, and independence level. The work cycle itself becomes structured data — not just impressions.',
+  },
+  {
     name: 'Teacher Dashboard',
     description:
-      'Class roster, individual result cards, lesson recommendations, material pull lists, growth charts, and cycle summary — all in one place. No interpretation required.',
+      'Class roster, individual result cards, lesson recommendations, Classroom Pull Lists, Skill Graph Maps, and cycle summary in one place. No interpretation required.',
   },
   {
     name: 'Parent Reports',
     description:
-      'Auto-generated, strengths-centered progress reports in family-friendly language. Print-ready or delivered through the platform.',
+      'Auto-generated progress reports with narrative summaries, curriculum area breakdowns, a Flourishing snapshot, and At Home activity suggestions. Delivered through the platform or print-ready.',
+  },
+  {
+    name: 'Student Login',
+    description:
+      'Students log in with a school code and 4-digit PIN — no email required. Primary students get large buttons, picture-based questions, and audio prompts. Upper elementary uses a text-based interface.',
   },
   {
     name: 'School Leadership View',
@@ -119,7 +134,7 @@ export default function MMASHowItWorksPage() {
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
             <span className="text-white/80 text-xs tracking-[0.12em] uppercase">
-              Currently in development
+              Demo live now
             </span>
           </div>
           <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
@@ -201,7 +216,7 @@ export default function MMASHowItWorksPage() {
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
               style={serif}
             >
-              186 skills. 10 curriculum areas. One platform.
+              186 skills. 9 curriculum areas. One platform.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
               MMAS covers the full Montessori curriculum — not just literacy.
@@ -266,7 +281,7 @@ export default function MMASHowItWorksPage() {
                 key={cap.name}
                 className={`p-8 border-[#E2DDD6] ${
                   i % 3 !== 2 ? 'md:border-r' : ''
-                } ${i < 3 ? 'border-b' : ''}`}
+                } ${i < 6 ? 'border-b' : ''}`}
               >
                 <h3
                   className="text-[#0e1a7a] text-base font-semibold mb-3"
