@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
@@ -58,18 +59,26 @@ const differentiators = [
   {
     label: 'Flourishing Tracker',
     desc: 'Seven developmental indicators measured on a 1-5 scale: love of work, concentration, self-discipline, joyful community, joy in order, connection to reality, and independence. Academic scores alone have never been the point.',
+    screenshot: '/images/mmas/06-flourishing-student.png',
+    screenshotAlt: 'MMAS Flourishing Tracker showing 7 developmental indicators',
   },
   {
     label: 'Work Cycle Logger',
     desc: 'Track morning and afternoon work periods with material choices, duration, and independence level. The work cycle itself becomes data.',
+    screenshot: '/images/mmas/10-work-cycles-tab.png',
+    screenshotAlt: 'MMAS Work Cycle Logger interface',
   },
   {
     label: 'Material Readiness Engine',
     desc: 'Automatically recommends which materials each student is ready for next, based on where they actually are in the sequence. No guesswork. No inference.',
+    screenshot: '/images/mmas/12-readiness-tab.png',
+    screenshotAlt: 'MMAS Material Readiness tab showing recommended next materials',
   },
   {
     label: 'Classroom Pull Lists',
     desc: 'Group students by skill level for small-group lessons with one click. The data you already collect becomes the planning tool you have been missing.',
+    screenshot: '/images/mmas/05-flourishing-tab.png',
+    screenshotAlt: 'MMAS Teacher Dashboard showing curriculum area tabs',
   },
 ]
 
@@ -240,99 +249,32 @@ export default function MMASPage() {
           <p className="text-[#64748B] text-[10px] tracking-[0.2em] uppercase mb-8">
             What a guide sees
           </p>
-          <div className="grid md:grid-cols-3 gap-4">
-            {/* Student card 1 */}
-            <motion.div
-              className="bg-white border border-[#E2DDD6] p-6"
-              whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.08)' }}
-              transition={{ duration: 0.18, ease: 'easeOut' }}
-            >
-              <div className="flex items-start justify-between mb-5">
-                <div>
-                  <p className="text-[#0e1a7a] font-semibold text-sm" style={serif}>Amara T.</p>
-                  <p className="text-[#64748B] text-xs mt-0.5">Primary · Age 6</p>
-                </div>
-                <span className="bg-[#F2EDE6] text-[#8A6014] text-[10px] tracking-wide px-2 py-1 font-medium">Active</span>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="border border-[#E2DDD6] overflow-hidden shadow-sm">
+              <div className="bg-[#070e3d] px-4 py-2.5 flex items-center gap-2">
+                <span className="text-[#d6a758] text-[9px] tracking-[0.18em] uppercase font-medium">Teacher Dashboard</span>
+                <span className="text-white/25 text-[9px]">· Language · Skills · Skill Map</span>
               </div>
-              <div className="space-y-3">
-                {[
-                  { domain: 'Phonics', status: 'Developing', stage: 2 },
-                  { domain: 'Early Math', status: 'Secure', stage: 3 },
-                  { domain: 'Writing', status: 'Emerging', stage: 1 },
-                ].map((item) => (
-                  <div key={item.domain}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[#374151] text-xs">{item.domain}</span>
-                      <span className="text-[#64748B] text-[10px]">{item.status}</span>
-                    </div>
-                    <AnimatedBar stage={item.stage} />
-                  </div>
-                ))}
+              <Image
+                src="/images/mmas/04-teacher-dashboard-skills.png"
+                alt="MMAS Teacher Dashboard showing skill maps and curriculum areas"
+                width={900}
+                height={1100}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="border border-[#E2DDD6] overflow-hidden shadow-sm">
+              <div className="bg-[#070e3d] px-4 py-2.5 flex items-center gap-2">
+                <span className="text-[#d6a758] text-[9px] tracking-[0.18em] uppercase font-medium">Developmental Flourishing</span>
+                <span className="text-white/25 text-[9px]">· 7 indicators · 1-5 scale</span>
               </div>
-              <div className="mt-5 pt-4 border-t border-[#F2EDE6]">
-                <p className="text-[#8A6014] text-[10px] tracking-wide font-medium uppercase">Next material</p>
-                <p className="text-[#374151] text-xs mt-1">Set 3 — Digraphs</p>
-              </div>
-            </motion.div>
-
-            {/* Student card 2 */}
-            <motion.div
-              className="bg-white border border-[#E2DDD6] p-6"
-              whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.08)' }}
-              transition={{ duration: 0.18, ease: 'easeOut' }}
-            >
-              <div className="flex items-start justify-between mb-5">
-                <div>
-                  <p className="text-[#0e1a7a] font-semibold text-sm" style={serif}>Elias R.</p>
-                  <p className="text-[#64748B] text-xs mt-0.5">Primary · Age 5</p>
-                </div>
-                <span className="bg-[#F2EDE6] text-[#8A6014] text-[10px] tracking-wide px-2 py-1 font-medium">Active</span>
-              </div>
-              <div className="space-y-3">
-                {[
-                  { domain: 'Phonics', status: 'Emerging', stage: 1 },
-                  { domain: 'Early Math', status: 'Developing', stage: 2 },
-                  { domain: 'Writing', status: 'Emerging', stage: 1 },
-                ].map((item) => (
-                  <div key={item.domain}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[#374151] text-xs">{item.domain}</span>
-                      <span className="text-[#64748B] text-[10px]">{item.status}</span>
-                    </div>
-                    <AnimatedBar stage={item.stage} />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-5 pt-4 border-t border-[#F2EDE6]">
-                <p className="text-[#8A6014] text-[10px] tracking-wide font-medium uppercase">Next material</p>
-                <p className="text-[#374151] text-xs mt-1">Set 1 — CVC Words (review)</p>
-              </div>
-            </motion.div>
-
-            {/* Class summary card */}
-            <div className="bg-[#0e1a7a] p-6 flex flex-col">
-              <p className="text-[#d6a758] text-[10px] tracking-[0.2em] uppercase mb-5">Classroom View</p>
-              <div className="space-y-4 flex-1">
-                {[
-                  { label: 'Ready for next material', count: 8, pct: 53 },
-                  { label: 'Developing — on track', count: 5, pct: 33 },
-                  { label: 'Emerging — needs attention', count: 2, pct: 14 },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-white/70 text-xs">{item.label}</span>
-                      <span className="text-white text-xs font-semibold">{item.count}</span>
-                    </div>
-                    <AnimatedPctBar pct={item.pct} />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/15">
-                <p className="text-white/50 text-[10px] uppercase tracking-wide mb-1">Progression language</p>
-                <p className="text-white/70 text-xs">
-                  emerging &rarr; developing &rarr; secure &rarr; ready for next material
-                </p>
-              </div>
+              <Image
+                src="/images/mmas/06-flourishing-student.png"
+                alt="MMAS Flourishing Tracker showing 7 developmental indicators for a student"
+                width={900}
+                height={1100}
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>
@@ -516,18 +458,30 @@ export default function MMASPage() {
             {differentiators.map((d, i) => (
               <FadeIn key={d.label} delay={i * 0.08}>
                 <motion.div
-                  className="bg-white border border-[#E2DDD6] p-8 h-full"
+                  className="bg-white border border-[#E2DDD6] overflow-hidden h-full flex flex-col"
                   whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(14,26,122,0.07)' }}
                   transition={{ duration: 0.18, ease: 'easeOut' }}
                 >
-                  <div className="w-0.5 h-6 bg-[#d6a758] mb-5" />
-                  <h3
-                    className="text-[#0e1a7a] font-semibold text-base mb-3"
-                    style={serif}
-                  >
-                    {d.label}
-                  </h3>
-                  <p className="text-[#374151] text-sm leading-relaxed">{d.desc}</p>
+                  <div className="p-8 pb-5">
+                    <div className="w-0.5 h-6 bg-[#d6a758] mb-5" />
+                    <h3
+                      className="text-[#0e1a7a] font-semibold text-base mb-3"
+                      style={serif}
+                    >
+                      {d.label}
+                    </h3>
+                    <p className="text-[#374151] text-sm leading-relaxed">{d.desc}</p>
+                  </div>
+                  <div className="mt-auto border-t border-[#F2EDE6] overflow-hidden">
+                    <Image
+                      src={d.screenshot}
+                      alt={d.screenshotAlt}
+                      width={800}
+                      height={500}
+                      className="w-full h-auto object-top"
+                      style={{ maxHeight: '220px', objectFit: 'cover' }}
+                    />
+                  </div>
                 </motion.div>
               </FadeIn>
             ))}
@@ -593,21 +547,35 @@ export default function MMASPage() {
                 ],
               },
             ].map((role) => (
-              <div key={role.title} className="bg-[#FAF9F7] border border-[#E2DDD6] p-7">
-                <h3
-                  className="text-[#0e1a7a] font-semibold text-base mb-4"
-                  style={serif}
-                >
-                  {role.title}
-                </h3>
-                <ul className="space-y-2.5">
-                  {role.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5">
-                      <span className="text-[#8A6014] flex-shrink-0 mt-0.5 text-sm">&rarr;</span>
-                      <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div key={role.title} className="bg-[#FAF9F7] border border-[#E2DDD6] overflow-hidden flex flex-col">
+                <div className="p-7 flex-1">
+                  <h3
+                    className="text-[#0e1a7a] font-semibold text-base mb-4"
+                    style={serif}
+                  >
+                    {role.title}
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {role.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <span className="text-[#8A6014] flex-shrink-0 mt-0.5 text-sm">&rarr;</span>
+                        <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {role.title === 'For Students' && (
+                  <div className="border-t border-[#E2DDD6] overflow-hidden">
+                    <Image
+                      src="/images/mmas/13-student-login.png"
+                      alt="MMAS student PIN login screen"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto"
+                      style={{ maxHeight: '200px', objectFit: 'cover', objectPosition: 'top' }}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
