@@ -30,10 +30,10 @@ export function useResidencyAuth(requiredRoles?: string[]) {
         return
       }
 
-      if (requiredRoles && !requiredRoles.includes(prof.role)) {
+      // Admin role can access everything
+      if (requiredRoles && !requiredRoles.includes(prof.role) && prof.role !== 'admin') {
         // Redirect to the right place based on actual role
-        if (prof.role === 'admin') router.replace('/residency/admin')
-        else if (prof.role === 'mentor') router.replace('/residency/mentor')
+        if (prof.role === 'mentor') router.replace('/residency/mentor')
         else router.replace('/residency/portal')
         return
       }
