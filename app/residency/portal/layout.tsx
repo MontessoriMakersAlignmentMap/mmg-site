@@ -10,6 +10,8 @@ const navItems = [
   { href: '/residency/portal/lessons', label: 'My Lessons' },
   { href: '/residency/portal/albums', label: 'Album Entries' },
   { href: '/residency/portal/progress', label: 'Progress' },
+  { href: '/residency/portal/practicum', label: 'Practicum Hours' },
+  { href: '/residency/portal/artifacts', label: 'Portfolio Artifacts' },
   { href: '/residency/portal/portfolio', label: 'Portfolio' },
 ]
 

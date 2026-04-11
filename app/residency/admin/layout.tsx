@@ -11,8 +11,11 @@ const navItems = [
   { href: '/residency/admin/residents', label: 'Residents' },
   { href: '/residency/admin/strands', label: 'Strands & Categories' },
   { href: '/residency/admin/progress', label: 'Progress' },
+  { href: '/residency/admin/practicum', label: 'Practicum Hours' },
   { href: '/residency/admin/assessments', label: 'Assessments' },
   { href: '/residency/admin/standing', label: 'Standing' },
+  { href: '/residency/admin/seminars', label: 'Seminars' },
+  { href: '/residency/admin/competencies', label: 'Competencies' },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
