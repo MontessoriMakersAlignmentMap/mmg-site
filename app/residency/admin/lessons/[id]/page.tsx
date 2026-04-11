@@ -129,17 +129,17 @@ export default function EditLessonPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
             <div>
-              <label className="r-label">Strand</label>
-              <select className="r-input" value={form.strand_id} onChange={e => update('strand_id', e.target.value)} required>
+              <label className="r-label">Level</label>
+              <select className="r-input" value={form.level_id} onChange={e => setForm(prev => ({ ...prev, level_id: e.target.value, strand_id: '', category_id: '' }))} required>
                 <option value="">Select...</option>
-                {strands.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                {levels.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
               </select>
             </div>
             <div>
-              <label className="r-label">Level</label>
-              <select className="r-input" value={form.level_id} onChange={e => update('level_id', e.target.value)} required>
+              <label className="r-label">Strand</label>
+              <select className="r-input" value={form.strand_id} onChange={e => setForm(prev => ({ ...prev, strand_id: e.target.value, category_id: '' }))} required>
                 <option value="">Select...</option>
-                {levels.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
+                {strands.filter(s => s.level_id === form.level_id).map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
             </div>
             <div>

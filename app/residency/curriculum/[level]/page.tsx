@@ -9,10 +9,14 @@ const STRAND_ICONS: Record<string, string> = {
   'practical-life': '\u2726',
   'sensorial': '\u25C9',
   'language': '\u270E',
-  'math': '\u2234',
-  'cultural': '\u2641',
-  'equity-and-community': '\u2661',
-  'great-lessons': '\u2605',
+  'mathematics': '\u2234',
+  'theory': '\u2606',
+  'geography': '\u2641',
+  'biology': '\u2698',
+  'history': '\u231B',
+  'geometry': '\u25B3',
+  'art': '\u2710',
+  'music': '\u266B',
 }
 
 export default async function LevelPage({
@@ -95,7 +99,7 @@ export default async function LevelPage({
                 <div style={{
                   width: '48px',
                   height: '48px',
-                  background: strand.slug === 'equity-and-community' ? 'var(--r-navy)' : 'var(--r-gold-light)',
+                  background: 'var(--r-gold-light)',
                   borderRadius: '10px',
                   marginBottom: '1.25rem',
                   display: 'flex',
@@ -104,7 +108,7 @@ export default async function LevelPage({
                 }}>
                   <span style={{
                     fontSize: '1.25rem',
-                    color: strand.slug === 'equity-and-community' ? 'var(--r-gold)' : 'var(--r-navy)',
+                    color: 'var(--r-navy)',
                   }}>
                     {STRAND_ICONS[strand.slug] ?? '\u2022'}
                   </span>

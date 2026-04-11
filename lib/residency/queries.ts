@@ -87,13 +87,17 @@ export async function getStrands(supabase: SupabaseClient) {
   return data ?? []
 }
 
-export async function getStrandBySlug(supabase: SupabaseClient, slug: string) {
-  const { data, error } = await supabase
+export async function getStrandBySlug(supabase: SupabaseClient, slug: string, levelId?: string) {
+  let query = supabase
     .from('residency_strands')
     .select('*')
     .eq('slug', slug)
-    .single()
 
+  if (levelId) {
+    query = query.eq('level_id', levelId)
+  }
+
+  const { data, error } = await query.single()
   if (error) throw error
   return data
 }
@@ -135,21 +139,22 @@ export async function getLevelBySlug(supabase: SupabaseClient, slug: string) {
 }
 
 export async function getStrandsWithCounts(supabase: SupabaseClient, levelId?: string) {
-  const { data: strands } = await supabase
+  let strandsQuery = supabase
     .from('residency_strands')
     .select('*')
     .order('sort_order')
 
+  if (levelId) {
+    strandsQuery = strandsQuery.eq('level_id', levelId)
+  }
+
+  const { data: strands } = await strandsQuery
   if (!strands) return []
 
   let lessonsQuery = supabase
     .from('residency_lessons')
-    .select('strand_id, level_id')
+    .select('strand_id')
     .eq('status', 'published')
-
-  if (levelId) {
-    lessonsQuery = lessonsQuery.eq('level_id', levelId)
-  }
 
   const { data: lessons } = await lessonsQuery
 

@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 
 export default function StrandsManagementPage() {
+  const [levels, setLevels] = useState<any[]>([])
   const [strands, setStrands] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [activeLevel, setActiveLevel] = useState<string>('')
 
   // New strand form
-  const [newStrand, setNewStrand] = useState({ name: '', description: '' })
+  const [newStrand, setNewStrand] = useState({ name: '', description: '', level_id: '' })
   const [strandSaving, setStrandSaving] = useState(false)
 
   // New category form
@@ -22,10 +24,15 @@ export default function StrandsManagementPage() {
   const [editForm, setEditForm] = useState({ name: '', description: '' })
 
   async function loadData() {
-    const [s, c] = await Promise.all([
+    const [l, s, c] = await Promise.all([
+      supabase.from('residency_levels').select('*').order('sort_order'),
       supabase.from('residency_strands').select('*').order('sort_order'),
       supabase.from('residency_categories').select('*').order('sort_order'),
     ])
+    if (l.data) {
+      setLevels(l.data)
+      if (!activeLevel && l.data.length > 0) setActiveLevel(l.data[0].id)
+    }
     if (s.data) setStrands(s.data)
     if (c.data) setCategories(c.data)
     setLoading(false)
@@ -37,16 +44,18 @@ export default function StrandsManagementPage() {
     e.preventDefault()
     setStrandSaving(true)
     const slug = newStrand.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-    const maxOrder = strands.length > 0 ? Math.max(...strands.map(s => s.sort_order)) : 0
+    const levelStrands = strands.filter(s => s.level_id === newStrand.level_id)
+    const maxOrder = levelStrands.length > 0 ? Math.max(...levelStrands.map(s => s.sort_order)) : 0
 
     await supabase.from('residency_strands').insert({
       name: newStrand.name,
       slug,
       description: newStrand.description || null,
       sort_order: maxOrder + 1,
+      level_id: newStrand.level_id,
     })
 
-    setNewStrand({ name: '', description: '' })
+    setNewStrand({ name: '', description: '', level_id: '' })
     setStrandSaving(false)
     loadData()
   }
@@ -91,20 +100,45 @@ export default function StrandsManagementPage() {
 
   if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
 
+  const filteredStrands = strands.filter(s => s.level_id === activeLevel)
+  const activeLevelName = levels.find(l => l.id === activeLevel)?.name ?? ''
+
   return (
     <div>
       <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>Strands & Categories</h1>
-      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem' }}>
-        Manage the curriculum taxonomy. Changes apply across all levels.
+      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+        Manage the curriculum taxonomy. Strands are organized by level.
       </p>
+
+      {/* Level tabs */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem' }}>
+        {levels.map(l => (
+          <button
+            key={l.id}
+            onClick={() => setActiveLevel(l.id)}
+            style={{
+              padding: '0.5rem 1.25rem',
+              borderRadius: '6px',
+              border: '1px solid var(--r-border)',
+              background: activeLevel === l.id ? 'var(--r-navy)' : 'var(--r-white)',
+              color: activeLevel === l.id ? '#fff' : 'var(--r-text)',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            {l.name} ({l.age_range})
+          </button>
+        ))}
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         {/* Strands */}
         <div>
           <div className="r-card" style={{ marginBottom: '1rem' }}>
-            <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Strands</h2>
+            <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>{activeLevelName} Strands</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {strands.map(s => (
+              {filteredStrands.map(s => (
                 <div key={s.id} style={{
                   padding: '0.75rem',
                   background: 'var(--r-cream)',
@@ -141,12 +175,21 @@ export default function StrandsManagementPage() {
                   )}
                 </div>
               ))}
+              {filteredStrands.length === 0 && (
+                <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>No strands for this level yet.</p>
+              )}
             </div>
           </div>
 
           {/* New strand form */}
           <form onSubmit={createStrand} className="r-card">
             <h3 style={{ fontSize: '0.9375rem', marginBottom: '0.75rem', fontFamily: 'var(--r-font-body)', fontWeight: 600 }}>Add Strand</h3>
+            <select className="r-input" value={newStrand.level_id}
+              onChange={e => setNewStrand(s => ({ ...s, level_id: e.target.value }))}
+              required style={{ marginBottom: '0.5rem' }}>
+              <option value="">Select level...</option>
+              {levels.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
+            </select>
             <input className="r-input" placeholder="Strand name" value={newStrand.name}
               onChange={e => setNewStrand(s => ({ ...s, name: e.target.value }))}
               required style={{ marginBottom: '0.5rem' }} />
@@ -162,8 +205,8 @@ export default function StrandsManagementPage() {
         {/* Categories */}
         <div>
           <div className="r-card" style={{ marginBottom: '1rem' }}>
-            <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Categories</h2>
-            {strands.map(s => {
+            <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>{activeLevelName} Categories</h2>
+            {filteredStrands.map(s => {
               const strandCats = categories.filter(c => c.strand_id === s.id)
               if (strandCats.length === 0) return null
               return (
@@ -222,7 +265,7 @@ export default function StrandsManagementPage() {
               onChange={e => setNewCategory(c => ({ ...c, strand_id: e.target.value }))}
               required style={{ marginBottom: '0.5rem' }}>
               <option value="">Select strand...</option>
-              {strands.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+              {filteredStrands.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
             <input className="r-input" placeholder="Category name" value={newCategory.name}
               onChange={e => setNewCategory(c => ({ ...c, name: e.target.value }))}
