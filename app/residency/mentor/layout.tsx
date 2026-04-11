@@ -11,6 +11,7 @@ const navItems = [
   { href: '/residency/mentor/submissions', label: 'Submissions' },
   { href: '/residency/mentor/assessments', label: 'Assessments' },
   { href: '/residency/mentor/observations', label: 'Observations' },
+  { href: '/residency/mentor/evaluations', label: 'Evaluations' },
 ]
 
 export default function MentorLayout({ children }: { children: React.ReactNode }) {
