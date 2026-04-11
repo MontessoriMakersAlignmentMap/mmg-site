@@ -5,290 +5,327 @@ import { supabase } from '@/lib/supabase/client'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
+const FIELD_CONFIG = [
+  { key: 'why_this_lesson_matters', label: 'Why This Lesson Matters', prompt: 'In your own words, why does this lesson matter in a child\'s development? What does it build, what does it prepare, and why is it placed where it is in the sequence?' },
+  { key: 'direct_aim', label: 'Direct Aim', prompt: 'What is the concrete, observable skill this lesson develops? What will the child be able to do after this presentation?' },
+  { key: 'indirect_aim', label: 'Indirect Aim', prompt: 'What are the deeper developmental purposes this lesson serves? What is being prepared indirectly — concentration, coordination, independence, order?' },
+  { key: 'equity_aim', label: 'Equity Aim', prompt: 'What does this lesson communicate to children about their own competence, their right to make and correct mistakes, and their cultural identity? How does it honor every child in the room?' },
+  { key: 'materials', label: 'Materials', prompt: 'List every material needed for this presentation. For each item, note why it matters — what role does it play in isolating the concept or supporting the child\'s success?' },
+  { key: 'presentation', label: 'The Presentation', prompt: 'Describe the full lesson sequence exactly as you would give it. Include your positioning, your language, your movements, and the child\'s role at each step. Write this as if you are teaching someone to give this presentation.' },
+  { key: 'points_of_interest', label: 'Points of Interest', prompt: 'What are the moments in this lesson where the child\'s concentration naturally deepens? Where does the control of error live? What draws the child back to this work?' },
+  { key: 'variations', label: 'Variations and Extensions', prompt: 'How does this work grow with the child? What variations increase complexity? What extensions connect this lesson to other areas of the curriculum?' },
+  { key: 'neurodivergence_notes', label: 'Neurodivergence and Behavior', prompt: 'How does this lesson need to be adapted for children with different sensory profiles, motor planning differences, attention profiles, or trauma histories? What modifications preserve the integrity of the lesson while meeting the child where they are?' },
+]
+
 export default function NewAlbumEntryPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const preselectedLesson = searchParams.get('lesson')
+  const editId = searchParams.get('edit')
 
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [residentNotes, setResidentNotes] = useState('')
   const [lessonId, setLessonId] = useState(preselectedLesson ?? '')
-  const [lessonInfo, setLessonInfo] = useState<any>(null)
+  const [lesson, setLesson] = useState<any>(null)
   const [lessons, setLessons] = useState<any[]>([])
-  const [files, setFiles] = useState<File[]>([])
-  const [error, setError] = useState('')
+  const [residentId, setResidentId] = useState('')
+  const [entryId, setEntryId] = useState(editId ?? '')
+  const [fields, setFields] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [lastSaved, setLastSaved] = useState<string | null>(null)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    async function loadLessons() {
+    async function load() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 
       const { data: resident } = await supabase
         .from('residency_residents')
-        .select('id')
+        .select('id, assigned_level_id')
         .eq('profile_id', user.id)
         .single()
+      if (!resident) return
+      setResidentId(resident.id)
 
-      if (resident) {
-        // Load assignments to populate lesson dropdown
-        const { data } = await supabase
-          .from('residency_assignments')
-          .select('lesson_id, lesson:residency_lessons(id, title, strand:residency_strands(name), level:residency_levels(name))')
-          .eq('resident_id', resident.id)
+      // Load available lessons
+      const { data: lessonData } = await supabase
+        .from('residency_lessons')
+        .select('id, title, strand:residency_strands(id, name), level:residency_levels(name)')
+        .eq('level_id', resident.assigned_level_id)
+        .order('sort_order')
+      if (lessonData) setLessons(lessonData)
 
-        if (data) setLessons(data.map((a: any) => a.lesson).filter(Boolean))
-      }
-
-      // If preselected lesson, load its info directly
-      if (preselectedLesson) {
-        const { data: lesson } = await supabase
-          .from('residency_lessons')
-          .select('id, title, strand:residency_strands(name), level:residency_levels(name)')
-          .eq('id', preselectedLesson)
+      // If editing existing entry, load it
+      if (editId) {
+        const { data: entry } = await supabase
+          .from('residency_album_entries')
+          .select('*')
+          .eq('id', editId)
           .single()
-
-        if (lesson) {
-          setLessonInfo(lesson)
-          setTitle(`Album Entry: ${lesson.title}`)
+        if (entry) {
+          setLessonId(entry.lesson_id)
+          const loaded: Record<string, string> = {}
+          for (const f of FIELD_CONFIG) {
+            loaded[f.key] = entry[f.key] || ''
+          }
+          setFields(loaded)
         }
       }
     }
-    loadLessons()
-  }, [preselectedLesson])
+    load()
+  }, [editId])
 
-  // When lesson selection changes, update context
+  // Load lesson details when lessonId changes
   useEffect(() => {
-    if (lessonId && !preselectedLesson) {
-      const found = lessons.find(l => l.id === lessonId)
-      if (found) {
-        setLessonInfo(found)
-        if (!title) setTitle(`Album Entry: ${found.title}`)
-      }
+    if (!lessonId) { setLesson(null); return }
+    async function loadLesson() {
+      const { data } = await supabase
+        .from('residency_lessons')
+        .select('id, title, strand:residency_strands(name), level:residency_levels(name)')
+        .eq('id', lessonId)
+        .single()
+      setLesson(data)
     }
-  }, [lessonId, lessons, preselectedLesson, title])
+    loadLesson()
+  }, [lessonId])
 
-  async function handleSubmit(e: React.FormEvent, asDraft: boolean) {
-    e.preventDefault()
-    setError('')
+  function updateField(key: string, value: string) {
+    setFields(prev => ({ ...prev, [key]: value }))
+  }
+
+  function wordCount(text: string) {
+    return text?.trim() ? text.trim().split(/\s+/).length : 0
+  }
+
+  async function saveDraft() {
+    if (!lessonId || !residentId) return
     setSaving(true)
+    setError('')
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { setError('Not authenticated'); setSaving(false); return }
-
-    const { data: resident } = await supabase
-      .from('residency_residents')
-      .select('id')
-      .eq('profile_id', user.id)
-      .single()
-
-    if (!resident) { setError('Resident record not found'); setSaving(false); return }
-
-    // Check for existing entry for this lesson
-    const { data: existing } = await supabase
-      .from('residency_album_entries')
-      .select('id')
-      .eq('resident_id', resident.id)
-      .eq('lesson_id', lessonId)
-      .limit(1)
-
-    if (existing && existing.length > 0) {
-      setError('You already have an album entry for this lesson. You can edit it from your Album Entries page.')
-      setSaving(false)
-      return
+    const record: any = {
+      lesson_id: lessonId,
+      resident_id: residentId,
+      title: lesson?.title || 'Untitled',
+      is_draft: true,
+      draft_saved_at: new Date().toISOString(),
+      status: 'draft',
+      updated_at: new Date().toISOString(),
+    }
+    for (const f of FIELD_CONFIG) {
+      record[f.key] = fields[f.key] || null
     }
 
-    // Upload files
-    const fileUrls: string[] = []
-    for (const file of files) {
-      const path = `albums/${resident.id}/${Date.now()}-${file.name}`
-      const { error: uploadError } = await supabase.storage
-        .from('residency')
-        .upload(path, file)
-
-      if (!uploadError) {
-        const { data: urlData } = supabase.storage.from('residency').getPublicUrl(path)
-        fileUrls.push(urlData.publicUrl)
+    try {
+      if (entryId) {
+        const { error: err } = await supabase
+          .from('residency_album_entries')
+          .update(record)
+          .eq('id', entryId)
+        if (err) throw err
+      } else {
+        const { data, error: err } = await supabase
+          .from('residency_album_entries')
+          .insert(record)
+          .select('id')
+          .single()
+        if (err) throw err
+        if (data) setEntryId(data.id)
       }
+      setLastSaved(new Date().toLocaleTimeString())
+    } catch (e: any) {
+      setError(e.message || 'Failed to save')
     }
+    setSaving(false)
+  }
 
-    // Get assignment ID if one exists
-    const { data: assignment } = await supabase
-      .from('residency_assignments')
-      .select('id')
-      .eq('resident_id', resident.id)
-      .eq('lesson_id', lessonId)
-      .single()
+  async function submitForAIReview() {
+    // Save first
+    await saveDraft()
+    if (!entryId && !lessonId) return
 
-    const { error: insertError } = await supabase
-      .from('residency_album_entries')
-      .insert({
-        resident_id: resident.id,
-        lesson_id: lessonId,
-        assignment_id: assignment?.id ?? null,
-        title,
-        content,
-        resident_notes: residentNotes || null,
-        file_urls: fileUrls.length > 0 ? fileUrls : null,
-        status: asDraft ? 'draft' : 'submitted',
-        submitted_at: asDraft ? null : new Date().toISOString(),
+    setSubmitting(true)
+    setError('')
+
+    try {
+      // Update status
+      await supabase
+        .from('residency_album_entries')
+        .update({
+          is_draft: false,
+          status: 'ai_review',
+          ai_review_status: 'in_review',
+          submitted_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', entryId)
+
+      // Call AI review API
+      const res = await fetch('/api/residency/ai-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ entry_id: entryId }),
       })
 
-    if (insertError) {
-      setError(insertError.message)
-      setSaving(false)
-      return
-    }
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'AI review failed')
+      }
 
-    // Update assignment status if submitting
-    if (!asDraft && assignment) {
-      await supabase
-        .from('residency_assignments')
-        .update({ status: 'submitted' })
-        .eq('id', assignment.id)
+      router.push(`/residency/portal/albums/${entryId}`)
+    } catch (e: any) {
+      setError(e.message || 'Failed to submit')
+      setSubmitting(false)
     }
-
-    setSubmitted(true)
   }
 
-  if (submitted) {
-    return (
-      <div style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-        <div style={{
-          width: '64px',
-          height: '64px',
-          background: '#d1fae5',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '0 auto 1.5rem',
-          fontSize: '1.5rem',
-        }}>
-          &#10003;
-        </div>
-        <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Entry Submitted</h1>
-        <p style={{ color: 'var(--r-text-muted)', fontSize: '0.9375rem', marginBottom: '2rem', maxWidth: '400px', margin: '0 auto 2rem' }}>
-          Your album entry has been submitted for review. Your mentor will provide feedback soon.
-        </p>
-        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
-          <Link href="/residency/portal/albums" className="r-btn r-btn-primary">
-            View My Entries
-          </Link>
-          <Link href="/residency/portal" className="r-btn r-btn-secondary">
-            Back to Dashboard
-          </Link>
-        </div>
-      </div>
-    )
-  }
+  const totalWords = FIELD_CONFIG.reduce((sum, f) => sum + wordCount(fields[f.key] || ''), 0)
+  const filledFields = FIELD_CONFIG.filter(f => wordCount(fields[f.key] || '') > 0).length
 
   return (
-    <div>
-      <Link href="/residency/portal/albums" style={{
-        fontSize: '0.8125rem', color: 'var(--r-text-muted)', textDecoration: 'none', marginBottom: '1.5rem', display: 'block',
-      }}>
+    <div style={{ maxWidth: '800px' }}>
+      <Link href="/residency/portal/albums" style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', textDecoration: 'none', display: 'block', marginBottom: '1rem' }}>
         &larr; Back to Album Entries
       </Link>
 
-      <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>New Album Entry</h1>
+      <h1 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+        {editId ? 'Edit Album Entry' : 'New Album Entry'}
+      </h1>
+      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+        Write your album entry for this lesson in your own words. Each field mirrors the master lesson structure.
+      </p>
 
-      {/* Lesson context banner */}
-      {lessonInfo && (
-        <div style={{
-          padding: '0.875rem 1.25rem',
-          background: 'var(--r-gold-light)',
-          borderRadius: '8px',
-          marginBottom: '1.5rem',
-          border: '1px solid var(--r-gold)',
-        }}>
-          <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
-            Submitting for
-          </p>
-          <p style={{ fontWeight: 600, color: 'var(--r-navy)', fontSize: '0.9375rem' }}>
-            {lessonInfo.title}
-          </p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.125rem' }}>
-            {lessonInfo.strand?.name}{lessonInfo.level?.name ? ` -- ${lessonInfo.level.name}` : ''}
-          </p>
+      {/* Lesson selector */}
+      {!editId && (
+        <div style={{ marginBottom: '2rem' }}>
+          <label style={{ fontSize: '0.8125rem', fontWeight: 600, display: 'block', marginBottom: '0.375rem', color: 'var(--r-navy)' }}>
+            Select Lesson
+          </label>
+          <select
+            className="r-input"
+            value={lessonId}
+            onChange={e => setLessonId(e.target.value)}
+            style={{ fontSize: '0.9375rem' }}
+          >
+            <option value="">Choose a lesson...</option>
+            {lessons.map(l => (
+              <option key={l.id} value={l.id}>
+                {l.title}
+              </option>
+            ))}
+          </select>
         </div>
       )}
 
-      <form style={{ maxWidth: '640px' }}>
-        <div className="r-card" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
-          {!preselectedLesson && (
-            <div style={{ marginBottom: '1.25rem' }}>
-              <label className="r-label" htmlFor="lesson">Lesson</label>
-              <select id="lesson" className="r-input" value={lessonId} onChange={e => setLessonId(e.target.value)} required>
-                <option value="">Select a lesson...</option>
-                {lessons.map((l: any) => (
-                  <option key={l.id} value={l.id}>{l.title}</option>
-                ))}
-              </select>
-            </div>
+      {/* Lesson header */}
+      {lesson && (
+        <div style={{
+          background: 'var(--r-navy)',
+          color: 'white',
+          borderRadius: '10px',
+          padding: '1.25rem 1.5rem',
+          marginBottom: '2rem',
+        }}>
+          <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '0.25rem' }}>
+            {lesson.level?.name} &middot; {lesson.strand?.name}
+          </p>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>
+            {lesson.title?.replace(/^(Primary|Elementary): \w[\w\s]*: /, '')}
+          </h2>
+        </div>
+      )}
+
+      {!lessonId && (
+        <div className="r-card" style={{ textAlign: 'center', padding: '3rem', color: 'var(--r-text-muted)' }}>
+          Select a lesson above to begin writing your album entry.
+        </div>
+      )}
+
+      {/* Structured form fields */}
+      {lessonId && (
+        <div>
+          {/* Progress summary */}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            padding: '0.625rem 1rem', background: 'var(--r-bg-muted)', borderRadius: '8px',
+            marginBottom: '2rem', fontSize: '0.8125rem',
+          }}>
+            <span>{filledFields} of {FIELD_CONFIG.length} fields started</span>
+            <span style={{ color: 'var(--r-text-muted)' }}>{totalWords} words total</span>
+            {lastSaved && <span style={{ color: '#2e7d32', fontSize: '0.75rem' }}>Saved {lastSaved}</span>}
+          </div>
+
+          {FIELD_CONFIG.map((field, idx) => {
+            const value = fields[field.key] || ''
+            const wc = wordCount(value)
+            return (
+              <div key={field.key} style={{ marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
+                  <label style={{
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    color: 'var(--r-navy)',
+                    display: 'block',
+                  }}>
+                    {idx + 1}. {field.label}
+                  </label>
+                  <span style={{ fontSize: '0.6875rem', color: wc > 0 ? 'var(--r-text-muted)' : 'transparent' }}>
+                    {wc} words
+                  </span>
+                </div>
+                <textarea
+                  value={value}
+                  onChange={e => updateField(field.key, e.target.value)}
+                  placeholder={field.prompt}
+                  rows={field.key === 'presentation' ? 12 : field.key === 'direct_aim' || field.key === 'indirect_aim' ? 4 : 6}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--r-border)',
+                    fontSize: '0.9375rem',
+                    lineHeight: 1.8,
+                    fontFamily: 'inherit',
+                    resize: 'vertical',
+                    background: 'white',
+                    transition: 'border-color 0.2s',
+                    outline: 'none',
+                  }}
+                  onFocus={e => e.target.style.borderColor = 'var(--r-navy)'}
+                  onBlur={e => e.target.style.borderColor = 'var(--r-border)'}
+                />
+              </div>
+            )
+          })}
+
+          {error && (
+            <p style={{ color: '#c62828', fontSize: '0.875rem', marginBottom: '1rem' }}>{error}</p>
           )}
 
-          <div style={{ marginBottom: '1.25rem' }}>
-            <label className="r-label" htmlFor="title">Entry Title</label>
-            <input id="title" type="text" className="r-input"
-              value={title} onChange={e => setTitle(e.target.value)} required
-              placeholder="Name your album entry" />
-          </div>
-
-          <div style={{ marginBottom: '1.25rem' }}>
-            <label className="r-label" htmlFor="content">Your Album Entry</label>
-            <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.5rem' }}>
-              Describe your work, observations, reflections, and what you learned through this lesson.
-            </p>
-            <textarea id="content" className="r-textarea"
-              value={content} onChange={e => setContent(e.target.value)}
-              style={{ minHeight: '200px' }}
-              placeholder="Write your album entry here..." />
-          </div>
-
-          <div style={{ marginBottom: '1.25rem' }}>
-            <label className="r-label">Documentation (optional)</label>
-            <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.5rem' }}>
-              Photos, videos, or documents from your practicum placement.
-            </p>
-            <input type="file" multiple
-              onChange={e => setFiles(Array.from(e.target.files ?? []))}
-              style={{ fontSize: '0.875rem' }} />
-            {files.length > 0 && (
-              <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.375rem' }}>
-                {files.length} file(s) selected
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="r-label" htmlFor="notes">Notes for Your Mentor (optional)</label>
-            <textarea id="notes" className="r-textarea"
-              value={residentNotes} onChange={e => setResidentNotes(e.target.value)}
-              style={{ minHeight: '80px' }}
-              placeholder="Anything you want to flag for your mentor -- questions, areas you struggled with, what you'd like feedback on..." />
+          {/* Action buttons */}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            padding: '1.5rem 0', borderTop: '1px solid var(--r-border)',
+            position: 'sticky', bottom: 0, background: 'white',
+          }}>
+            <button
+              className="r-btn"
+              onClick={saveDraft}
+              disabled={saving}
+              style={{ fontSize: '0.875rem' }}
+            >
+              {saving ? 'Saving...' : 'Save Draft'}
+            </button>
+            <button
+              className="r-btn r-btn-primary"
+              onClick={submitForAIReview}
+              disabled={submitting || filledFields < FIELD_CONFIG.length}
+              style={{ fontSize: '0.875rem' }}
+            >
+              {submitting ? 'Submitting...' : 'Submit for AI Review'}
+            </button>
           </div>
         </div>
-
-        {error && (
-          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.75rem', background: '#fef2f2', borderRadius: '6px' }}>
-            {error}
-          </p>
-        )}
-
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button type="button" onClick={e => handleSubmit(e, false)}
-            className="r-btn r-btn-primary" disabled={saving || !lessonId || !title}>
-            {saving ? 'Submitting...' : 'Submit for Review'}
-          </button>
-          <button type="button" onClick={e => handleSubmit(e, true)}
-            className="r-btn r-btn-secondary" disabled={saving || !lessonId || !title}>
-            Save as Draft
-          </button>
-        </div>
-      </form>
+      )}
     </div>
   )
 }

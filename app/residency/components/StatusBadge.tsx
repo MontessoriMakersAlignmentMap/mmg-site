@@ -9,6 +9,7 @@ const statusLabels: Record<string, string> = {
   submitted: 'Submitted',
   reviewed: 'Reviewed',
   completed: 'Completed',
+  complete: 'Complete',
   draft: 'Draft',
   published: 'Published',
   archived: 'Archived',
@@ -18,6 +19,9 @@ const statusLabels: Record<string, string> = {
   withdrawn: 'Withdrawn',
   approved: 'Approved',
   revision_requested: 'Revision Requested',
+  ai_review: 'AI Review',
+  ai_passed: 'AI Passed',
+  mentor_review: 'Mentor Review',
 }
 
 export default function StatusBadge({ status, size = 'sm' }: StatusBadgeProps) {
