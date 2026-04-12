@@ -19,14 +19,10 @@ const tiers = [
     description:
       'Classroom visibility and guide workflow. Track lessons, observations, and each child\u2019s progress without retrofitting generic tools.',
     features: [
-      'Lesson tracking with album linkage and configurable status labels',
-      'Voice-to-text observation recording, hands-free during the work cycle',
-      'Classroom and student development maps with visual lesson coverage',
-      'Curriculum browser with ~1,130 Montessori lessons and CCSS alignment',
-      'AI reflection panel for non-evaluative pattern recognition',
-      'Student portfolios with work sample attachments',
-      'Materials inventory with 200+ pre-seeded items per classroom',
-      'Lesson gap nudges with equity-aware demographic breakdowns',
+      'Lesson tracking and planning',
+      'Observation records',
+      'Classroom material inventory',
+      'Individual child progress visibility',
     ],
   },
   {
@@ -37,16 +33,10 @@ const tiers = [
     description:
       'The operational layer that keeps the school running. Student records, attendance, family communication, and daily systems.',
     features: [
-      'Student information system with full profiles, timelines, and risk analysis',
-      'Attendance dashboard with chronic absence detection and demographic breakdowns',
-      'Multilingual family portal with full language switching for non-English families',
-      'Family billing with invoice history and online payment',
-      'School calendar, messaging, newsletters, and SMS broadcasts',
-      'Before and after care with kiosk mode and incidental billing',
-      'Compliance hub with safety logs, health records, and FERPA tools',
-      'Digital handbooks with e-signature collection',
-      'Intervention tracking and student visibility alerts',
-      'Scheduling and timetable management',
+      'Student records and profiles',
+      'Attendance and daily operations',
+      'Family communication',
+      'School-wide scheduling',
     ],
   },
   {
@@ -57,18 +47,10 @@ const tiers = [
     description:
       'Organizational coordination. Admissions, staffing, adult culture, and the systems that make a school function as an institution.',
     features: [
-      'Full admissions CRM: inquiry, tour, application, pipeline board, drip campaigns',
-      '30-step enrollment workflow with digital agreements and e-signatures',
-      'Class builder for next-year placement with drag-and-drop',
-      'HR hub with compensation, benefits, contracts, stipends, and credentials tracking',
-      '12-stage hiring pipeline with Montessori-specific demo lesson stage',
-      'Onboarding and offboarding with configurable templates',
-      'Prepared Adult Index: composite score measuring adult culture health',
-      'Culture diagnostic with 7-dimension radar from anonymous staff surveys',
-      'ABAR and equity pathways for staff professional development',
-      'AI-assisted progress reports with narrative drafting from actual student data',
-      'Conference preparation with live session interface and family co-planning',
-      'Adolescent program suite: council system, seminars, occupations, Portrait of a Graduate',
+      'Admissions and enrollment',
+      'Staffing and HR systems',
+      'Adult culture and performance',
+      'Cross-team communication',
     ],
   },
   {
@@ -79,16 +61,10 @@ const tiers = [
     description:
       'Leadership and governance. Financial visibility, board tools, strategic planning, and the insight that enables values-aligned decisions at scale.',
     features: [
-      'Leadership dashboard with operational alerts, school pulse, and priority signals',
-      'Finance engine: tuition billing, invoicing, payment processing, reconciliation (add-on)',
-      'Mission-linked budgeting aligned to educational priorities',
-      'Financial equity analysis across demographics',
-      'Board dashboard, snapshots, and governance reports',
-      'Strategic planning hub with goal hierarchies and initiative tracking',
-      'Accreditation report generation with configurable templates',
-      'AI insights with cross-domain pattern detection and recommended actions',
-      'Community health dashboard aggregating family, staff, student, and equity data',
-      'Enrollment-to-revenue forecasting',
+      'Financial dashboards and planning',
+      'Governance and board tools',
+      'Strategic planning workflows',
+      'Leadership insight and reporting',
     ],
   },
 ]
@@ -112,8 +88,6 @@ const whatMmapContrasts = [
   { before: 'Generic lesson plan templates', after: 'Workflows built for the three-hour work cycle' },
   { before: 'Compliance-first data collection', after: 'Observation-first documentation that serves the guide' },
   { before: 'Equity as a premium add-on', after: 'Equity embedded across every tier from day one' },
-  { before: 'Families navigating emails, paper forms, and separate payment portals', after: 'One multilingual family portal for communication, records, and community' },
-  { before: 'HR records scattered across spreadsheets, filing cabinets, and email threads', after: 'Compensation, contracts, onboarding, and culture data in one system' },
 ]
 
 const differentiationCards = [
@@ -136,13 +110,10 @@ const differentiationCards = [
 ]
 
 const ecosystemCards = [
-  { title: 'Advisory', desc: 'System design and leadership support', href: '/advisory' },
+  { title: 'Advisory', desc: 'System design & leadership support', href: '/advisory' },
   { title: 'Institute', desc: 'Leadership development', href: '/institute' },
   { title: 'MatchHub', desc: 'Philosophy-aligned hiring', href: '/matchhub' },
   { title: 'MMAS', desc: 'Montessori-native assessment', href: '/mmas' },
-  { title: 'Toolbox', desc: 'Operational frameworks and HR protocols for Montessori schools', href: '/toolbox' },
-  { title: 'Learning', desc: 'Curriculum materials built for Montessori classrooms', href: '/learning' },
-  { title: 'Studio', desc: 'Design and production for Montessori schools', href: '/studio' },
 ]
 
 function TopographicIllustration() {
@@ -671,7 +642,7 @@ export default function MMAPPage() {
                   />
                   <span className="relative w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
                 </span>
-                <span className="text-white text-xs tracking-[0.15em] uppercase">Founding School Cohort &mdash; Limited Spots Available</span>
+                <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.18}>
@@ -711,10 +682,10 @@ export default function MMAPPage() {
           <div className="hidden md:flex items-center justify-center">
             <div className="relative w-full max-w-[560px] rounded-sm overflow-hidden shadow-2xl ring-1 ring-white/10">
               <Image
-                src="/images/mapp-dashboard.png"
+                src="/images/mmap/mmap-01-leadership-dashboard.png"
                 alt="MMAP Leadership Dashboard"
-                width={1120}
-                height={840}
+                width={1200}
+                height={678}
                 className="w-full h-auto"
                 priority
               />
@@ -1039,78 +1010,77 @@ export default function MMAPPage() {
         </div>
       </section>
 
-      {/* Transparent Pricing */}
-      <section className="bg-white py-20 md:py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Transparent Pricing</p>
-            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
-              What it costs.
-            </h2>
-            <p className="text-[#374151] text-lg leading-relaxed">
-              Per student, per month. Each tier includes everything in the tier below it. No contracts required for pilot participants.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            {[
-              { name: 'Surveyor', rate: '$2', scope: 'Classroom documentation and visibility' },
-              { name: 'North Star', rate: '$3', scope: 'Core school operations' },
-              { name: 'Mapmaker', rate: '$5', scope: 'Admissions, staffing, equity, and program coordination' },
-              { name: 'Atlas', rate: '$7', scope: 'Leadership, governance, and strategic insight' },
-            ].map((t) => (
-              <div key={t.name} className="bg-[#FAF9F7] border border-[#E2DDD6] p-6">
-                <p className="text-[#0e1a7a] font-semibold text-lg mb-1" style={serif}>{t.name}</p>
-                <p className="mb-3">
-                  <span className="text-[#d6a758] text-3xl font-bold" style={serif}>{t.rate}</span>
-                  <span className="text-[#64748B] text-sm">/student/month</span>
-                </p>
-                <p className="text-[#374151] text-sm leading-relaxed">{t.scope}</p>
-              </div>
-            ))}
-          </div>
-          <div>
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">Add-ons available at any tier</p>
-            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-              {[
-                { name: 'Finance Engine', rate: '$2/student/month', desc: 'Full billing, invoicing, and payment processing' },
-                { name: 'Family Pulse', rate: '$0.50/student/month', desc: 'Family survey and belonging analytics' },
-                { name: 'Peace & Restoration', rate: '$0.50/student/month', desc: 'Restorative practice documentation' },
-                { name: 'SMS Broadcasts', rate: '$0.50/student/month', desc: 'Text message communication with families' },
-              ].map((a) => (
-                <div key={a.name} className="border border-[#E2DDD6] p-5">
-                  <p className="text-[#0e1a7a] text-sm font-semibold mb-1">{a.name}</p>
-                  <p className="text-[#d6a758] text-xs font-medium mb-2">{a.rate}</p>
-                  <p className="text-[#64748B] text-xs leading-relaxed">{a.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <DemoCTA />
 
-      {/* Built for Every Role */}
-      <section className="bg-[#F2EDE6] py-20 md:py-24 px-6 md:px-10 border-t border-[#D4CEC6]">
+      {/* Platform Screenshots */}
+      <section className="bg-[#F7F5F1] py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Built for Every Role</p>
-            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
-              One system. Different views for different people.
+          <div className="max-w-2xl mb-16">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">The Platform</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
+              What it actually looks like.
             </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              Every screen below is the live platform — not a mockup. This is what pilot schools
+              are using today.
+            </p>
           </div>
-          <div className="grid md:grid-cols-5 gap-px bg-[#D4CEC6]">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
-              { role: 'Guides', view: 'Their classroom: lessons, observations, and each child\u2019s progress.' },
-              { role: 'Families', view: 'Their portal: children, tuition, communication, and community, in their language.' },
-              { role: 'Office staff', view: 'Operations: enrollment, attendance, scheduling, and compliance.' },
-              { role: 'Directors', view: 'The whole school: people, programs, culture, and data that reflects Montessori values.' },
-              { role: 'Leadership and boards', view: 'The big picture: finances, strategic goals, accreditation, and school health.' },
-            ].map((item) => (
-              <div key={item.role} className="bg-[#FAF9F7] p-7">
-                <p className="text-[#0e1a7a] font-semibold text-sm mb-3" style={serif}>{item.role}</p>
-                <p className="text-[#64748B] text-sm leading-relaxed">{item.view}</p>
-              </div>
+              {
+                src: '/images/mmap/mmap-01-leadership-dashboard.png',
+                alt: 'MMAP Leadership Dashboard',
+                label: 'Leadership Dashboard',
+                desc: 'Real-time school snapshot — attendance, coverage alerts, observation data, and top priorities surfaced automatically for administrators.',
+              },
+              {
+                src: '/images/mmap/mmap-06-enrollment-hub.png',
+                alt: 'Enrollment Season Hub',
+                label: 'Enrollment Season Hub',
+                desc: 'The entire admissions-to-billing workflow in one command center — from first inquiry through signed agreements and reconciled tuition.',
+              },
+              {
+                src: '/images/mmap/mmap-07-equity-hub.png',
+                alt: 'Equity & Belonging Hub',
+                label: 'Equity & Belonging Hub',
+                desc: 'Student demographics, equity dashboards, community health, ABAR pathways, and pulse surveys — built in from day one, not bolted on.',
+              },
+              {
+                src: '/images/mmap/mmap-03-board-dashboard.png',
+                alt: 'Board Dashboard',
+                label: 'Board Dashboard',
+                desc: 'Mission-level oversight for governance — equity indicators, financial sustainability, strategic plan progress, and exportable board reports.',
+              },
+              {
+                src: '/images/mmap/mmap-05-lesson-tracking.png',
+                alt: 'Lesson Tracking',
+                label: 'Lesson Tracking & Planning',
+                desc: 'Log lessons, track mastery progression, and plan upcoming presentations — built around the three-hour work cycle, not a generic gradebook.',
+              },
+              {
+                src: '/images/mmap/mmap-02-staff-dashboard.png',
+                alt: 'Faculty & Staff Workspace',
+                label: 'Faculty & Staff Workspace',
+                desc: 'Each role sees exactly what they need — guides have their own workspace with observations, appraisals, goals, messages, and portfolios in one place.',
+              },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 0.07}>
+                <div className="flex flex-col gap-4">
+                  <div className="overflow-hidden border border-[#DDD8D0] shadow-sm">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={1200}
+                      height={678}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[#0e1a7a] font-semibold text-sm mb-1">{item.label}</p>
+                    <p className="text-[#374151] text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -1208,36 +1178,6 @@ export default function MMAPPage() {
 
       <DemoCTA />
 
-      {/* Recently Shipped */}
-      <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10 border-t border-[#E2DDD6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Recently Shipped</p>
-            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
-              MMAP ships continuously.
-            </h2>
-            <p className="text-[#374151] text-lg leading-relaxed">
-              The platform is in active development. Here is what has landed recently.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              { item: 'Multilingual family portal', desc: 'Full language switching built into the architecture, not layered on top.' },
-              { item: 'Finance engine with Stripe integration', desc: 'Tuition billing, invoicing, payment processing, and reconciliation.' },
-              { item: 'Adolescent program suite', desc: 'Council system, seminars, occupations, trips, and Portrait of a Graduate for Erdkinder programs.' },
-              { item: 'Cartography Sessions', desc: 'Structured facilitation built into the platform for school-wide alignment and learner support.' },
-              { item: 'Materials inventory system', desc: '200+ pre-seeded items per classroom, trackable and editable by guides.' },
-              { item: 'Modular add-on architecture', desc: 'Finance Engine, Family Pulse, Peace & Restoration, and SMS Broadcasts available at any tier.' },
-            ].map((s) => (
-              <div key={s.item} className="border border-[#E2DDD6] p-6 bg-white">
-                <p className="text-[#0e1a7a] font-semibold text-sm mb-2" style={serif}>{s.item}</p>
-                <p className="text-[#64748B] text-xs leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Part of a larger system */}
       <section className="bg-[#0e1a7a] py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -1254,7 +1194,7 @@ export default function MMAPPage() {
               the leaders who run them. MatchHub finds aligned staff when growth requires it.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-4 gap-4">
             {ecosystemCards.map((card) => (
               <Link key={card.href} href={card.href} className="border border-white/15 p-5 hover:border-white/30 transition-colors">
                 <p className="text-white text-sm font-semibold">{card.title}</p>
