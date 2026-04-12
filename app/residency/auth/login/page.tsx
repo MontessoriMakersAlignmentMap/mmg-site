@@ -39,6 +39,8 @@ export default function LoginPage() {
 
       if (profile?.role === 'admin') {
         router.push('/residency/admin')
+      } else if (profile?.role === 'instructor') {
+        router.push('/residency/instructor')
       } else if (profile?.role === 'mentor') {
         router.push('/residency/mentor')
       } else {

@@ -343,13 +343,67 @@ export default function PortalDashboard() {
 
       {/* Mentor notes */}
       {resident?.mentor_notes && (
-        <div className="r-card" style={{ borderLeft: '3px solid var(--r-gold)' }}>
+        <div className="r-card" style={{ borderLeft: '3px solid var(--r-gold)', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Note from Your Mentor</h2>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--r-text)' }}>
             {resident.mentor_notes}
           </p>
         </div>
       )}
+
+      {/* Announcements feed */}
+      <AnnouncementsFeed cohortId={resident?.cohort_id} />
+    </div>
+  )
+}
+
+function AnnouncementsFeed({ cohortId }: { cohortId?: string }) {
+  const [announcements, setAnnouncements] = useState<any[]>([])
+
+  useEffect(() => {
+    if (!cohortId) return
+    async function load() {
+      const { data } = await supabase
+        .from('residency_cohort_posts')
+        .select('*, author:residency_profiles(first_name, last_name)')
+        .eq('cohort_id', cohortId)
+        .eq('post_type', 'announcement')
+        .is('deleted_at', null)
+        .order('pinned', { ascending: false })
+        .order('created_at', { ascending: false })
+        .limit(3)
+      if (data) setAnnouncements(data)
+    }
+    load()
+  }, [cohortId])
+
+  if (announcements.length === 0) return null
+
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+        <h2 style={{ fontSize: '1.125rem' }}>Announcements</h2>
+        <Link href="/residency/portal/board" style={{ fontSize: '0.8125rem', color: 'var(--r-navy)', textDecoration: 'none' }}>
+          View all &rarr;
+        </Link>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        {announcements.map(a => (
+          <div key={a.id} className="r-card" style={{
+            borderLeft: a.pinned ? '3px solid var(--r-gold)' : undefined,
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem' }}>
+              <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: 0 }}>{a.title}</h3>
+              <span style={{ fontSize: '0.625rem', color: 'var(--r-text-muted)', flexShrink: 0 }}>
+                {new Date(a.created_at).toLocaleDateString()}
+              </span>
+            </div>
+            <p style={{ fontSize: '0.8125rem', lineHeight: 1.7, color: 'var(--r-text)' }}>
+              {a.body.length > 200 ? a.body.slice(0, 200) + '...' : a.body}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -169,6 +169,40 @@ export default function BundleLessonPage() {
         </span>
       </div>
 
+      {/* Video player */}
+      {lesson.video_url && (
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{
+            position: 'relative', width: '100%', paddingBottom: '56.25%', borderRadius: '12px',
+            overflow: 'hidden', background: '#000',
+          }}>
+            <iframe
+              src={lesson.video_url}
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              onLoad={() => {
+                // Log video view
+                if (resident) {
+                  fetch('/api/residency/video-engagement', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      resident_id: resident.id,
+                      lesson_id: lessonId,
+                      video_url: lesson.video_url,
+                    }),
+                  }).catch(() => {})
+                }
+              }}
+            />
+          </div>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginTop: '0.5rem' }}>
+            Lesson Introduction &middot; {displayTitle}
+          </p>
+        </div>
+      )}
+
       {/* Lesson content */}
       <h1 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.2 }}>
         {displayTitle}
