@@ -92,7 +92,27 @@ function Btn({ label, onClick, loading, color }: {
 }
 
 // ─── Tab types ────────────────────────────────────────────────────────────────
-type Tab = 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent' | 'partners' | 'community'
+type Tab = 'institute' | 'courses' | 'jobs' | 'profiles' | 'searches' | 'talent' | 'partners' | 'community'
+
+interface InstituteSetting {
+  course_slug: string
+  course_title: string
+  registration_open: boolean
+  updated_at: string
+}
+interface InstituteRegistration {
+  id: string
+  course_slug: string
+  course_title: string
+  name: string
+  email: string
+  phone: string | null
+  organization: string | null
+  role: string | null
+  notes: string | null
+  status: string
+  created_at: string
+}
 type JobFilter = 'all' | 'pending' | 'approved' | 'rejected' | 'archived' | 'expired'
 type ProfileFilter = 'all' | 'pending' | 'approved' | 'rejected'
 
@@ -106,7 +126,59 @@ export default function AdminPage() {
   const [pwInput, setPwInput] = useState('')
   const [pwError, setPwError] = useState<string | null>(null)
 
-  const [tab, setTab] = useState<Tab>('courses')
+  const [tab, setTab] = useState<Tab>('institute')
+
+  // Institute state
+  const [instituteSettings, setInstituteSettings] = useState<InstituteSetting[]>([])
+  const [instituteRegs, setInstituteRegs] = useState<InstituteRegistration[]>([])
+  const [instituteLoading, setInstituteLoading] = useState(false)
+  const [instituteToggling, setInstituteToggling] = useState<string | null>(null)
+  const [instituteError, setInstituteError] = useState<string | null>(null)
+
+  const loadInstitute = useCallback(async (pw: string) => {
+    setInstituteLoading(true)
+    setInstituteError(null)
+    try {
+      const [settingsRes, regsRes] = await Promise.all([
+        fetch('/api/institute/course-settings', {
+          headers: { 'x-admin-key': pw },
+        }),
+        fetch('/api/admin/institute-registrations', {
+          headers: { 'x-admin-pw': pw, 'x-admin-email': 'hannah@montessorimakers.org' },
+        }),
+      ])
+      if (settingsRes.ok) {
+        const d = await settingsRes.json()
+        setInstituteSettings(d.settings ?? [])
+      }
+      if (regsRes.ok) {
+        const d = await regsRes.json()
+        setInstituteRegs(d.registrations ?? [])
+      }
+    } catch {
+      setInstituteError('Failed to load institute data')
+    } finally {
+      setInstituteLoading(false)
+    }
+  }, [ADMIN_EMAIL])
+
+  const toggleRegistration = async (slug: string, currentOpen: boolean) => {
+    setInstituteToggling(slug)
+    try {
+      const res = await fetch('/api/institute/course-settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminPw },
+        body: JSON.stringify({ course_slug: slug, registration_open: !currentOpen }),
+      })
+      if (res.ok) {
+        setInstituteSettings(prev =>
+          prev.map(s => s.course_slug === slug ? { ...s, registration_open: !currentOpen } : s)
+        )
+      }
+    } finally {
+      setInstituteToggling(null)
+    }
+  }
 
   // Jobs state
   const [jobs, setJobs] = useState<Job[]>([])
@@ -278,8 +350,8 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent(); loadPartners(); loadCommunity() }
-  }, [auth, loadJobs, loadProfiles, loadEnrollments, loadSearches, loadTalent, loadCommunity])
+    if (auth) { loadJobs(); loadProfiles(); loadEnrollments(); loadSearches(); loadTalent(); loadPartners(); loadCommunity(); loadInstitute(adminPw) }
+  }, [auth, loadJobs, loadProfiles, loadEnrollments, loadSearches, loadTalent, loadCommunity, loadInstitute, adminPw])
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -302,6 +374,7 @@ export default function AdminPage() {
     loadTalent(pwInput)
     loadPartners(pwInput)
     loadCommunity(pwInput)
+    loadInstitute(pwInput)
   }
 
   async function handleJobAction(jobId: string, action: 'approve' | 'reject' | 'archive') {
@@ -793,7 +866,8 @@ export default function AdminPage() {
         {/* Tabs */}
         <div className="flex gap-1 mb-8 border-b border-gray-200 overflow-x-auto">
           {([
-            { key: 'courses', label: 'Courses', count: COURSES.length },
+            { key: 'institute', label: 'Institute', count: instituteRegs.length, badge: instituteRegs.filter(r => r.status === 'registered').length > 0 ? instituteRegs.filter(r => r.status === 'registered').length : undefined },
+            { key: 'courses', label: 'Async Courses', count: COURSES.length },
             { key: 'jobs',    label: 'MatchHub Jobs', count: jobs.length, badge: pendingJobs },
             { key: 'profiles', label: 'Educator Profiles', count: profiles.length, badge: pendingProfiles },
             { key: 'searches', label: 'Current Searches', count: searches.length },
@@ -820,6 +894,106 @@ export default function AdminPage() {
             </button>
           ))}
         </div>
+
+        {/* ── INSTITUTE TAB ───────────────────────────────────────────────────── */}
+        {tab === 'institute' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-sm font-semibold text-gray-900">Institute — Live Course Registrations</h2>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  Toggle registration open/closed per course. Closes automatically Sunday before each course starts (manual for now).
+                </p>
+              </div>
+              <button onClick={() => loadInstitute(adminPw)} className="text-xs text-gray-400 hover:text-gray-600 px-3 py-1.5">
+                ↻ Refresh
+              </button>
+            </div>
+
+            {instituteError && (
+              <div className="bg-red-50 border border-red-100 px-4 py-3 text-xs text-red-700 mb-6">{instituteError}</div>
+            )}
+
+            {/* Registration toggles */}
+            <div className="mb-8">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Registration Status</p>
+              <div className="space-y-2">
+                {instituteSettings.length === 0 && !instituteLoading && (
+                  <p className="text-xs text-gray-400">No courses found.</p>
+                )}
+                {instituteSettings.map(s => {
+                  const regsForCourse = instituteRegs.filter(r => r.course_slug === s.course_slug)
+                  return (
+                    <div key={s.course_slug} className="bg-white border border-gray-200 px-5 py-4 flex items-center justify-between gap-6">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">{s.course_title}</p>
+                        <p className="text-[10px] text-gray-400 mt-0.5">
+                          {regsForCourse.length} registration{regsForCourse.length !== 1 ? 's' : ''}
+                          {' · '}updated {new Date(s.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => toggleRegistration(s.course_slug, s.registration_open)}
+                        disabled={instituteToggling === s.course_slug}
+                        className={`flex items-center gap-2 text-xs px-4 py-2 font-medium transition-colors disabled:opacity-40 ${
+                          s.registration_open
+                            ? 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100'
+                            : 'bg-gray-100 text-gray-500 border border-gray-200 hover:bg-gray-200'
+                        }`}
+                      >
+                        <span className={`w-2 h-2 rounded-full ${s.registration_open ? 'bg-green-500' : 'bg-gray-400'}`} />
+                        {instituteToggling === s.course_slug ? '…' : s.registration_open ? 'Open — click to close' : 'Closed — click to open'}
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Registrations list */}
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                All Registrations ({instituteRegs.length})
+              </p>
+              {instituteLoading && <p className="text-xs text-gray-400">Loading…</p>}
+              {!instituteLoading && instituteRegs.length === 0 && (
+                <p className="text-xs text-gray-400">No registrations yet.</p>
+              )}
+              {instituteRegs.length > 0 && (
+                <div className="border border-gray-200 overflow-hidden">
+                  <table className="w-full text-xs">
+                    <thead className="bg-gray-50 border-b border-gray-200">
+                      <tr>
+                        {['Name', 'Email', 'Phone', 'Organization', 'Role', 'Course', 'Registered'].map(h => (
+                          <th key={h} className="text-left px-4 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {instituteRegs.map(r => (
+                        <tr key={r.id} className="hover:bg-gray-50">
+                          <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{r.name}</td>
+                          <td className="px-4 py-3 text-gray-600">
+                            <a href={`mailto:${r.email}`} className="hover:underline text-[#0e1a7a]">{r.email}</a>
+                          </td>
+                          <td className="px-4 py-3 text-gray-500">{r.phone ?? '—'}</td>
+                          <td className="px-4 py-3 text-gray-500 max-w-[160px] truncate">{r.organization ?? '—'}</td>
+                          <td className="px-4 py-3 text-gray-500">{r.role ?? '—'}</td>
+                          <td className="px-4 py-3 text-gray-600 max-w-[180px] truncate">{r.course_title}</td>
+                          <td className="px-4 py-3 text-gray-400 whitespace-nowrap">
+                            {new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* ── COURSES TAB ─────────────────────────────────────────────────────── */}
         {tab === 'courses' && (

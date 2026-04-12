@@ -6,12 +6,31 @@ import {
   getOfferingBySlug,
   FORMAT_CONFIG,
 } from '@/lib/institute-catalog'
+import { createServiceClient } from '@/lib/supabase/server'
+import RegisterSidebar from './RegisterSidebar'
+
+// Must be dynamic so registration status is always fresh
+export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
   return getAllOfferings().map((o) => ({ slug: o.slug }))
 }
 
 const serif = { fontFamily: 'var(--font-heading)' }
+
+async function getRegistrationOpen(slug: string): Promise<boolean> {
+  try {
+    const client = createServiceClient()
+    const { data } = await client
+      .from('institute_course_settings')
+      .select('registration_open')
+      .eq('course_slug', slug)
+      .single()
+    return data?.registration_open ?? false
+  } catch {
+    return false
+  }
+}
 
 export default async function CourseDetailPage({
   params,
@@ -26,7 +45,7 @@ export default async function CourseDetailPage({
   const formatLabel = config ? config.label : offering.format
   const price = config ? config.price : ''
   const stripeHref = offering.stripeHref
-  const isExternal = stripeHref?.startsWith('https://')
+  const registrationOpen = await getRegistrationOpen(slug)
 
   // Extract season eyebrow from slug (e.g. "people-policies-by-design--spring-2026" → "Spring 2026")
   const seasonSlug = slug.split('--')[1] ?? ''
@@ -132,58 +151,15 @@ export default async function CourseDetailPage({
 
           {/* Sidebar */}
           <div className="md:col-span-1">
-            <div className="bg-white border border-[#E2DDD6] p-8 sticky top-8">
-              <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase font-medium mb-6">
-                Registration
-              </p>
-
-              <div className="space-y-4 mb-8 text-sm">
-                <div>
-                  <p className="text-[#94A3B8] text-xs uppercase tracking-wider mb-1">Format</p>
-                  <p className="text-[#374151] font-medium">{offering.format}</p>
-                </div>
-                <div>
-                  <p className="text-[#94A3B8] text-xs uppercase tracking-wider mb-1">Date</p>
-                  <p className="text-[#374151]">{offering.dates}</p>
-                </div>
-                <div>
-                  <p className="text-[#94A3B8] text-xs uppercase tracking-wider mb-1">Price</p>
-                  <p className="text-[#374151] font-semibold text-lg">{price}</p>
-                </div>
-              </div>
-
-              {stripeHref ? (
-                isExternal ? (
-                  <a
-                    href={stripeHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-[#d6a758] text-white text-sm px-6 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium mb-3"
-                  >
-                    Register &rarr;
-                  </a>
-                ) : (
-                  <Link
-                    href={stripeHref}
-                    className="block w-full bg-[#d6a758] text-white text-sm px-6 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium mb-3"
-                  >
-                    Register &rarr;
-                  </Link>
-                )
-              ) : (
-                <span className="block w-full bg-[#E8E3DB] text-[#94A3B8] text-sm px-6 py-4 text-center cursor-default select-none mb-3">
-                  Links Coming Soon
-                </span>
-              )}
-              <a
-                href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full border border-[#0e1a7a] text-[#0e1a7a] text-xs px-6 py-3 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center"
-              >
-                Book a Consultation
-              </a>
-            </div>
+            <RegisterSidebar
+              courseSlug={slug}
+              courseTitle={offering.title}
+              price={price}
+              format={offering.format}
+              dates={offering.dates}
+              stripeHref={stripeHref}
+              registrationOpen={registrationOpen}
+            />
           </div>
         </div>
       </section>
