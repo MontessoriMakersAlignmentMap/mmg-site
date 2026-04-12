@@ -336,12 +336,12 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
-      {/* ── Testimonials (placeholder) ───────────────────────────────────────── */}
+      {/* ── Who This Is For ──────────────────────────────────────────────────── */}
       <section style={{ background: '#FAF9F7', padding: '6rem 0' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <FadeIn>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
-              What Residents Say
+              Who This Is For
             </p>
             <h2
               style={{
@@ -349,128 +349,110 @@ export default function MMRLandingPage() {
                 fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
                 color: '#0e1a7a',
                 lineHeight: 1.2,
-                marginBottom: '0.75rem',
+                maxWidth: '700px',
+                marginBottom: '1rem',
               }}
             >
-              Cohort Zero voices
+              Built for the educator the field kept turning away.
             </h2>
-            <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: '3rem' }}>
-              Placeholder testimonials — real cohort voices will be added once applications open.
+            <p
+              style={{
+                color: '#64748B',
+                fontSize: '1rem',
+                lineHeight: 1.75,
+                maxWidth: '620px',
+                marginBottom: '3.5rem',
+              }}
+            >
+              MMR does not have cohort stories yet — we are building toward that first
+              cohort now. What we do have is a clear picture of who this program was
+              designed to serve.
             </p>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
-            {/* Primary track placeholders */}
+          <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.06}>
             {[
               {
-                quote:
-                  'I have been teaching in public schools for eleven years. I knew Montessori was right for the children I work with, but I could not take six weeks off to attend a summer intensive. MMR was the first program I found that was actually designed for someone in my situation.',
-                name: '[Resident Name]',
-                role: 'Primary Track, Detroit MI',
+                label: 'The public school teacher who found Montessori',
+                body: 'You have been doing Montessori-aligned work in a public or charter school for years. You know the principles. Your classroom reflects them. But you cannot get a seat at a training center that requires you to take six weeks off without pay and travel to a residency you cannot afford. You should have a credential for the work you are already doing.',
               },
               {
-                quote:
-                  'The equity framework in this curriculum is not performative. It is built into every single lesson. Reading the Equity Aim section of each album entry changed how I thought about my own practice — and I have been doing Montessori for eight years.',
-                name: '[Resident Name]',
-                role: 'Primary Track, Atlanta GA',
+                label: 'The working parent who cannot disappear for a summer',
+                body: 'Traditional Montessori credentialing was designed for people without caregiving responsibilities. You have them. You are also one of the most committed educators in the field. MMR is built around your life, not the other way around.',
               },
               {
-                quote:
-                  'I was skeptical of the AI feedback component. I expected something generic. What I got was specific, challenging, and genuinely useful. It pushed me to go deeper in my writing in ways that made me a better observer.',
-                name: '[Resident Name]',
-                role: 'Primary Track, Oakland CA',
+                label: 'The educator of color who found Montessori and felt the gap',
+                body: 'You walked into a Montessori training space and saw its potential for liberation — and also saw who was in the room and who was writing the curriculum. MMR was built by someone who saw the same thing and decided to do something about it rather than wait for the field to change on its own.',
               },
-            ].map((t) => (
+              {
+                label: 'The experienced guide ready to formalize what they know',
+                body: 'You have been practicing Montessori for a decade. Your albums are in your head and your hands. You want the credential — both for the professional recognition and because you know going through a rigorous program will sharpen what you already know. MMR will meet you at your level.',
+              },
+            ].map((card) => (
               <div
-                key={t.name + t.role}
+                key={card.label}
                 style={{
                   background: '#F2EDE6',
                   padding: '2rem',
-                  borderLeft: '3px solid #d6a758',
+                  borderTop: '3px solid #d6a758',
                 }}
               >
-                <div
+                <h3
                   style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    background: '#d6a758',
-                    marginBottom: '1.25rem',
-                    opacity: 0.3,
-                  }}
-                />
-                <p
-                  style={{
-                    fontSize: '0.9375rem',
-                    lineHeight: 1.75,
-                    color: '#374151',
-                    marginBottom: '1.25rem',
-                    fontStyle: 'italic',
+                    fontSize: '1rem',
+                    fontWeight: 600,
+                    color: '#0e1a7a',
+                    lineHeight: 1.35,
+                    marginBottom: '0.875rem',
                   }}
                 >
-                  &ldquo;{t.quote}&rdquo;
+                  {card.label}
+                </h3>
+                <p style={{ fontSize: '0.9375rem', color: '#374151', lineHeight: 1.8 }}>
+                  {card.body}
                 </p>
-                <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#0e1a7a' }}>{t.name}</p>
-                <p style={{ fontSize: '0.75rem', color: '#64748B' }}>{t.role}</p>
               </div>
             ))}
-          </div>
+          </FadeInStagger>
+        </div>
+      </section>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-            {/* Elementary track placeholders */}
-            {[
-              {
-                quote:
-                  'The Elementary curriculum in MMR is the most complete and honest Montessori curriculum I have seen. The Great Lessons are told with an equity lens that I have never seen in any other training. It changed how I understand what I am supposed to be doing in my classroom.',
-                name: '[Resident Name]',
-                role: 'Elementary Track, Chicago IL',
-              },
-              {
-                quote:
-                  'I am a neurodivergent educator who has always struggled with the culture of traditional Montessori training. The way MMR approaches neurodivergence — as something woven through every lesson, not as an accommodation — made me feel like this program was built for me.',
-                name: '[Resident Name]',
-                role: 'Elementary Track, New York NY',
-              },
-              {
-                quote:
-                  'The mentor relationship in this program is unlike anything I have experienced in professional development. My mentor has been in the classroom for twenty years and she pushes me hard. She is also the most generous teacher I have ever had.',
-                name: '[Resident Name]',
-                role: 'Elementary Track, Houston TX',
-              },
-            ].map((t) => (
-              <div
-                key={t.name + t.role}
+      {/* ── From the Founder ─────────────────────────────────────────────────── */}
+      <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div style={{ maxWidth: '780px', margin: '0 auto', textAlign: 'center' }}>
+            <FadeIn>
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8 font-medium">
+                From the Founder
+              </p>
+              <blockquote
                 style={{
-                  background: '#F2EDE6',
-                  padding: '2rem',
-                  borderLeft: '3px solid #0e1a7a',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(1.25rem, 3vw, 1.875rem)',
+                  color: '#fff',
+                  lineHeight: 1.5,
+                  marginBottom: '2rem',
+                  fontStyle: 'normal',
                 }}
               >
-                <div
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    background: '#0e1a7a',
-                    marginBottom: '1.25rem',
-                    opacity: 0.2,
-                  }}
-                />
-                <p
-                  style={{
-                    fontSize: '0.9375rem',
-                    lineHeight: 1.75,
-                    color: '#374151',
-                    marginBottom: '1.25rem',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#0e1a7a' }}>{t.name}</p>
-                <p style={{ fontSize: '0.75rem', color: '#64748B' }}>{t.role}</p>
+                &ldquo;I have spent fifteen years inside Montessori schools watching gifted
+                educators leave the field because the credential was not designed for their
+                lives. MMR is my answer to that. It is the program I would have wanted when
+                I was starting out — rigorous, honest about history, built for working
+                adults, and serious about the children most Montessori programs still
+                do not know how to serve.&rdquo;
+              </blockquote>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+                <div>
+                  <p style={{ color: '#fff', fontWeight: 600, fontSize: '0.9375rem' }}>
+                    Hannah Richardson
+                  </p>
+                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.8125rem', marginTop: '0.2rem' }}>
+                    Founder, Montessori Makers Group · AMI USA · BMEF · VMCA
+                  </p>
+                </div>
               </div>
-            ))}
+            </FadeIn>
           </div>
         </div>
       </section>
