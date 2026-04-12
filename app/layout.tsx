@@ -53,16 +53,19 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers()
   const pathname = headersList.get('x-pathname') ?? '/'
-  const isResidency = pathname.startsWith('/residency')
+  // Marketing pages at /residency and /residency/sample-lessons use the MMG nav/footer.
+  // All other /residency/* paths are the Residency platform (no MMG chrome).
+  const MMR_MARKETING_PATHS = ['/residency', '/residency/sample-lessons']
+  const isResidencyPlatform = pathname.startsWith('/residency') && !MMR_MARKETING_PATHS.includes(pathname)
 
   return (
     <html lang="en" className={`${montserrat.variable} h-full`}>
       <body className="min-h-full flex flex-col">
-        {!isResidency && <ScrollProgress />}
-        {!isResidency && <Nav />}
+        {!isResidencyPlatform && <ScrollProgress />}
+        {!isResidencyPlatform && <Nav />}
         <main className="flex-1">{children}</main>
-        {!isResidency && <Footer />}
-        {!isResidency && <MoselleWidget />}
+        {!isResidencyPlatform && <Footer />}
+        {!isResidencyPlatform && <MoselleWidget />}
         <Analytics />
       </body>
     </html>

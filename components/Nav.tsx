@@ -91,6 +91,7 @@ const ecosystemGroups = [
       { name: 'MMAP',     logo: 'mmap'     as LogoName, href: '/mmap',     tagline: 'School operating system' },
       { name: 'MMAS',     logo: 'mmas'     as LogoName, href: '/mmas',     tagline: 'Assessment platform' },
       { name: 'MatchHub', logo: 'matchhub' as LogoName, href: '/matchhub', tagline: 'Montessori hiring' },
+      { name: 'Residency', logo: 'institute' as LogoName, href: '/residency', tagline: 'Montessori teacher preparation' },
     ],
   },
   {
@@ -106,6 +107,7 @@ const ecosystemGroups = [
 const allMobileLinks = [
   { name: 'Advisory', href: '/advisory' },
   { name: 'Institute', href: '/institute' },
+  { name: 'Residency', href: '/residency' },
   { name: 'MMAP', href: '/mmap' },
   { name: 'MMAS', href: '/mmas' },
   { name: 'MatchHub', href: '/matchhub' },
@@ -234,6 +236,17 @@ export default function Nav() {
               </div>
             </div>
           </div>
+          {/* Residency link */}
+          <Link
+            href="/residency"
+            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/residency']) ? 'text-[#0e1a7a] font-medium' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
+          >
+            {active(['/residency']) && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />
+            )}
+            Residency
+          </Link>
+
           {/* Speaking dropdown */}
           <div className="relative group">
             <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/speaking', '/advisory/workshops-speaking']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
