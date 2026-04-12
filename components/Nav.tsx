@@ -12,7 +12,6 @@ const advisoryLinks = [
   { name: 'Montessori Mapping', href: '/advisory/mapping', tagline: 'Diagnostic & planning' },
   { name: 'Leadership Coaching', href: '/advisory/coaching', tagline: '1:1 support for leaders' },
   { name: 'Strategic Partnerships', href: '/advisory/partnership', tagline: 'Retained advisory' },
-  { name: 'Workshops & Speaking', href: '/advisory/workshops-speaking', tagline: 'Entry point & PD' },
   { name: 'Leadership Transition', href: '/advisory/leadership-transition-support', tagline: 'Succession support' },
   { name: 'Communication Strategy', href: '/advisory/communication-strategy', tagline: 'Systems-level design' },
 ]
@@ -158,27 +157,54 @@ export default function Nav() {
               </svg>
             </button>
             <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[340px] p-4">
-                <div className="space-y-0.5">
-                  {advisoryLinks.map((link) => (
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[480px] overflow-hidden">
+                <div className="p-4">
+                  <div className="space-y-0.5">
+                    {advisoryLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                      >
+                        <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
+                        <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-[#F2EDE6]">
                     <Link
-                      key={link.name}
-                      href={link.href}
-                      className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                      href="/contact"
+                      className="block w-full text-center bg-[#0e1a7a] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#162270] transition-colors font-medium"
                     >
-                      <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
-                      <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                      Book a Consultation
                     </Link>
-                  ))}
+                  </div>
                 </div>
-                <div className="mt-3 pt-3 border-t border-[#F2EDE6]">
-                  <Link
-                    href="/contact"
-                    className="block w-full text-center bg-[#0e1a7a] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#162270] transition-colors font-medium"
-                  >
-                    Book a Consultation
-                  </Link>
-                </div>
+                {/* Featured: Workshops & Speaking */}
+                <Link
+                  href="/advisory/workshops-speaking"
+                  className="flex items-stretch border-t border-[#E2DDD6] group/speaking hover:bg-[#FAF9F7] transition-colors"
+                >
+                  <div className="relative w-24 flex-shrink-0 overflow-hidden">
+                    <Image
+                      src="/images/hannah.jpg"
+                      alt="Hannah Richardson"
+                      fill
+                      className="object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10" />
+                  </div>
+                  <div className="flex-1 px-4 py-3">
+                    <p className="text-[#d6a758] text-[10px] tracking-[0.15em] uppercase font-semibold mb-0.5">Featured</p>
+                    <p className="text-[#0e1a7a] text-sm font-semibold leading-snug">Workshops &amp; Speaking</p>
+                    <p className="text-[#64748B] text-xs mt-0.5 leading-relaxed">Keynotes, workshops &amp; facilitation — book Hannah for your event</p>
+                  </div>
+                  <div className="flex items-center pr-4 text-[#d6a758]">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
