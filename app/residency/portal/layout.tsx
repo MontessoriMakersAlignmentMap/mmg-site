@@ -14,6 +14,8 @@ const navItems = [
   { href: '/residency/portal/sessions', label: 'Live Sessions' },
   { href: '/residency/portal/board', label: 'Community Board' },
   { href: '/residency/portal/artifacts', label: 'Portfolio Artifacts' },
+  { href: '/residency/portal/resources', label: 'Resources' },
+  { href: '/residency/portal/surveys', label: 'Surveys' },
   { href: '/residency/portal/capstone', label: 'Capstone' },
   { href: '/residency/portal/portfolio', label: 'Portfolio' },
 ]
