@@ -39,7 +39,10 @@ export default function ResidencyHome() {
             A teacher preparation program built on the belief that Montessori educators deserve rigorous, respectful, and deeply practical training.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/residency/curriculum" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem' }}>
+            <Link href="/residency/apply" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem' }}>
+              Apply Now
+            </Link>
+            <Link href="/residency/curriculum" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
               Explore Curriculum
             </Link>
             <Link href="/residency/auth/login" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
