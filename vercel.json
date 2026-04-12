@@ -11,6 +11,10 @@
     {
       "path": "/api/cron/toolbox-followup-sender",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/close-institute-registration",
+      "schedule": "0 12 * * 0"
     }
   ]
 }
