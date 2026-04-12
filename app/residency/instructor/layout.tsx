@@ -6,21 +6,15 @@ import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 import { supabase } from '@/lib/supabase/client'
 
 const navItems = [
-  { href: '/residency/portal', label: 'Dashboard' },
-  { href: '/residency/portal/lessons', label: 'My Lessons' },
-  { href: '/residency/portal/albums', label: 'Album Entries' },
-  { href: '/residency/portal/progress', label: 'Progress' },
-  { href: '/residency/portal/practicum', label: 'Practicum Hours' },
-  { href: '/residency/portal/sessions', label: 'Live Sessions' },
-  { href: '/residency/portal/board', label: 'Community Board' },
-  { href: '/residency/portal/artifacts', label: 'Portfolio Artifacts' },
-  { href: '/residency/portal/portfolio', label: 'Portfolio' },
+  { href: '/residency/instructor', label: 'Dashboard' },
+  { href: '/residency/instructor/sessions', label: 'Live Sessions' },
+  { href: '/residency/instructor/patterns', label: 'Album Patterns' },
 ]
 
-export default function PortalLayout({ children }: { children: React.ReactNode }) {
+export default function InstructorLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
-  const { profile, loading } = useResidencyAuth(['resident'])
+  const { profile, loading } = useResidencyAuth(['instructor', 'admin'])
 
   async function handleSignOut() {
     await supabase.auth.signOut()
@@ -47,7 +41,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             color: 'var(--r-text-muted)',
             marginBottom: '0.25rem',
           }}>
-            Resident Portal
+            Instructor
           </p>
           {profile && (
             <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)' }}>
@@ -60,7 +54,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === item.href ? 'active' : ''}
+              className={pathname === item.href || (item.href !== '/residency/instructor' && pathname.startsWith(item.href)) ? 'active' : ''}
             >
               {item.label}
             </Link>

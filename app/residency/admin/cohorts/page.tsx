@@ -10,11 +10,13 @@ interface Cohort {
   track: string
   start_date: string
   status: string
+  instructor_id: string | null
   created_at: string
 }
 
 export default function CohortsPage() {
   const [cohorts, setCohorts] = useState<Cohort[]>([])
+  const [instructors, setInstructors] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState(false)
   const [showForm, setShowForm] = useState(false)
@@ -24,12 +26,12 @@ export default function CohortsPage() {
   useEffect(() => { load() }, [])
 
   async function load() {
-    const { data } = await supabase
-      .from('residency_cohorts')
-      .select('*')
-      .is('deleted_at', null)
-      .order('created_at', { ascending: false })
-    setCohorts(data || [])
+    const [cohortRes, instrRes] = await Promise.all([
+      supabase.from('residency_cohorts').select('*').is('deleted_at', null).order('created_at', { ascending: false }),
+      supabase.from('residency_profiles').select('id, first_name, last_name').eq('role', 'instructor'),
+    ])
+    setCohorts(cohortRes.data || [])
+    setInstructors(instrRes.data || [])
     setLoading(false)
   }
 
@@ -171,33 +173,62 @@ export default function CohortsPage() {
         </div>
       ) : (
         <div style={{ display: 'grid', gap: '1rem' }}>
-          {cohorts.map(c => (
-            <div key={c.id} className="r-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <h3 style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>{c.name}</h3>
-                <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
-                  <span style={{ textTransform: 'capitalize' }}>{c.track} Track</span>
-                  <span>Starts {new Date(c.start_date).toLocaleDateString()}</span>
-                  <span style={{
-                    fontWeight: 600,
-                    color: c.status === 'active' ? '#2e7d32' : c.status === 'draft' ? '#f57f17' : 'var(--r-text-muted)',
-                  }}>
-                    {c.status.toUpperCase()}
-                  </span>
+          {cohorts.map(c => {
+            const assignedInstr = instructors.find(i => i.id === c.instructor_id)
+            return (
+              <div key={c.id} className="r-card">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>{c.name}</h3>
+                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
+                      <span style={{ textTransform: 'capitalize' }}>{c.track} Track</span>
+                      <span>Starts {new Date(c.start_date).toLocaleDateString()}</span>
+                      <span style={{
+                        fontWeight: 600,
+                        color: c.status === 'active' ? '#2e7d32' : c.status === 'draft' ? '#f57f17' : 'var(--r-text-muted)',
+                      }}>
+                        {c.status.toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    {c.status === 'draft' && (
+                      <button className="r-btn" style={{ fontSize: '0.75rem' }} onClick={() => activateCohort(c.id)}>
+                        Activate
+                      </button>
+                    )}
+                    <Link href={`/residency/admin/cohorts/${c.id}/calendar`} className="r-btn r-btn-primary" style={{ fontSize: '0.75rem', textDecoration: 'none' }}>
+                      View Calendar
+                    </Link>
+                  </div>
+                </div>
+                {/* Instructor assignment */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid var(--r-border)' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-text-muted)' }}>Instructor:</span>
+                  <select
+                    className="r-input"
+                    style={{ fontSize: '0.75rem', padding: '0.375rem 0.5rem', width: 'auto', minWidth: '180px' }}
+                    value={c.instructor_id || ''}
+                    onChange={async (e) => {
+                      const val = e.target.value || null
+                      await supabase.from('residency_cohorts').update({ instructor_id: val, updated_at: new Date().toISOString() }).eq('id', c.id)
+                      load()
+                    }}
+                  >
+                    <option value="">Unassigned</option>
+                    {instructors.map(i => (
+                      <option key={i.id} value={i.id}>{i.first_name} {i.last_name}</option>
+                    ))}
+                  </select>
+                  {assignedInstr && (
+                    <span style={{ fontSize: '0.6875rem', color: '#2e7d32' }}>
+                      {assignedInstr.first_name} {assignedInstr.last_name}
+                    </span>
+                  )}
                 </div>
               </div>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                {c.status === 'draft' && (
-                  <button className="r-btn" style={{ fontSize: '0.75rem' }} onClick={() => activateCohort(c.id)}>
-                    Activate
-                  </button>
-                )}
-                <Link href={`/residency/admin/cohorts/${c.id}/calendar`} className="r-btn r-btn-primary" style={{ fontSize: '0.75rem', textDecoration: 'none' }}>
-                  View Calendar
-                </Link>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       )}
     </div>
