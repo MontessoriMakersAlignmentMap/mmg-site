@@ -32,19 +32,12 @@ function LessonReader({ lesson, onClose }: { lesson: SampleLesson; onClose: () =
           background: '#fff',
           maxWidth: '780px',
           width: '100%',
-          padding: '0',
           position: 'relative',
           boxShadow: '0 25px 80px rgba(14,26,122,0.3)',
         }}
       >
         {/* Header */}
-        <div
-          style={{
-            background: '#0e1a7a',
-            padding: '2rem 2.5rem',
-            position: 'relative',
-          }}
-        >
+        <div style={{ background: '#0e1a7a', padding: '2rem 2.5rem', position: 'relative' }}>
           <button
             onClick={onClose}
             style={{
@@ -99,22 +92,8 @@ function LessonReader({ lesson, onClose }: { lesson: SampleLesson; onClose: () =
           <LessonSection label="Neurodivergence & Behavior" content={lesson.neurodivergenceNotes} highlighted />
 
           {/* CTA */}
-          <div
-            style={{
-              marginTop: '2.5rem',
-              padding: '1.75rem',
-              background: '#0e1a7a',
-              textAlign: 'center',
-            }}
-          >
-            <p
-              style={{
-                color: 'rgba(255,255,255,0.8)',
-                fontSize: '0.875rem',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}
-            >
+          <div style={{ marginTop: '2.5rem', padding: '1.75rem', background: '#0e1a7a', textAlign: 'center' }}>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
               This is one lesson. The full{' '}
               {lesson.level === 'primary' ? 'Primary' : 'Elementary'} curriculum has{' '}
               {lesson.level === 'primary' ? '213' : '303'} lessons written at this depth.
@@ -144,14 +123,8 @@ function LessonReader({ lesson, onClose }: { lesson: SampleLesson; onClose: () =
   )
 }
 
-function LessonSection({
-  label,
-  content,
-  highlighted = false,
-}: {
-  label: string
-  content: string
-  highlighted?: boolean
+function LessonSection({ label, content, highlighted = false }: {
+  label: string; content: string; highlighted?: boolean
 }) {
   return (
     <div
@@ -174,13 +147,7 @@ function LessonSection({
       >
         {label}
       </h3>
-      <p
-        style={{
-          fontSize: '0.9375rem',
-          lineHeight: 1.85,
-          color: '#374151',
-        }}
-      >
+      <p style={{ fontSize: '0.9375rem', lineHeight: 1.85, color: '#374151' }}>
         {content}
       </p>
     </div>
@@ -189,13 +156,7 @@ function LessonSection({
 
 // ── Strand Card ───────────────────────────────────────────────────────────────
 
-function StrandCard({
-  lesson,
-  onRead,
-}: {
-  lesson: SampleLesson
-  onRead: () => void
-}) {
+function StrandCard({ lesson, onRead }: { lesson: SampleLesson; onRead: () => void }) {
   return (
     <div
       style={{
@@ -205,7 +166,6 @@ function StrandCard({
         display: 'flex',
         flexDirection: 'column',
         gap: '0.75rem',
-        transition: 'box-shadow 0.2s',
       }}
     >
       <div>
@@ -260,13 +220,75 @@ function StrandCard({
   )
 }
 
+// ── Track Section ─────────────────────────────────────────────────────────────
+
+function TrackSection({
+  label,
+  tagline,
+  lessons,
+  onRead,
+  dark = false,
+}: {
+  label: string
+  tagline: string
+  lessons: SampleLesson[]
+  onRead: (lesson: SampleLesson) => void
+  dark?: boolean
+}) {
+  return (
+    <section style={{ background: dark ? '#F2EDE6' : '#FAF9F7', padding: '4rem 0 5rem' }}>
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div style={{ marginBottom: '2.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                color: '#0e1a7a',
+                lineHeight: 1.2,
+              }}
+            >
+              {label}
+            </h2>
+            <span
+              style={{
+                background: '#0e1a7a',
+                color: '#d6a758',
+                fontSize: '0.6875rem',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                padding: '0.25rem 0.75rem',
+              }}
+            >
+              {tagline}
+            </span>
+          </div>
+          <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: 1.7, maxWidth: '600px' }}>
+            One sample lesson from each strand. Every lesson in the full curriculum is written at this same depth.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
+          {lessons.map((lesson) => (
+            <StrandCard key={lesson.id} lesson={lesson} onRead={() => onRead(lesson)} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SampleLessonsPage() {
-  const [activeTab, setActiveTab] = useState<'primary' | 'elementary'>('primary')
   const [openLesson, setOpenLesson] = useState<SampleLesson | null>(null)
-
-  const activeLessons = activeTab === 'primary' ? primaryLessons : elementaryLessons
 
   return (
     <>
@@ -275,10 +297,7 @@ export default function SampleLessonsPage() {
       )}
 
       {/* ── Hero ── */}
-      <section
-        className="grain"
-        style={{ background: '#0e1a7a', padding: '7rem 0 4rem' }}
-      >
+      <section className="grain" style={{ background: '#0e1a7a', padding: '7rem 0 4rem' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-5 font-medium">
             <Link href="/residency" style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -312,117 +331,81 @@ export default function SampleLessonsPage() {
             attention to the full range of children in your classroom. What you see here
             is not a sample of what MMR aspires to be. It is what MMR already is.
           </p>
-          <a
-            href="/residency/waitlist"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-shimmer"
-            style={{
-              display: 'inline-block',
-              background: '#d6a758',
-              color: '#fff',
-              padding: '0.875rem 2rem',
-              fontSize: '0.9rem',
-              fontWeight: 600,
-              letterSpacing: '0.03em',
-              textDecoration: 'none',
-            }}
-          >
-            Join the Waitlist
-          </a>
+          {/* Quick jump links */}
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <a
+              href="#primary"
+              style={{
+                display: 'inline-block',
+                border: '1px solid rgba(255,255,255,0.3)',
+                color: '#fff',
+                padding: '0.625rem 1.25rem',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
+              ↓ Primary 3–6
+            </a>
+            <a
+              href="#elementary"
+              style={{
+                display: 'inline-block',
+                border: '1px solid rgba(255,255,255,0.3)',
+                color: '#fff',
+                padding: '0.625rem 1.25rem',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
+              ↓ Elementary 6–12
+            </a>
+            <a
+              href="/residency/waitlist"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-shimmer"
+              style={{
+                display: 'inline-block',
+                background: '#d6a758',
+                color: '#fff',
+                padding: '0.625rem 1.25rem',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+                letterSpacing: '0.03em',
+              }}
+            >
+              Join the Waitlist
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* ── Tab nav ── */}
-      <div
-        style={{
-          background: '#070e3d',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          position: 'sticky',
-          top: '0',
-          zIndex: 40,
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div style={{ display: 'flex', gap: '0' }}>
-            {(
-              [
-                { key: 'primary', label: 'Primary 3–6', count: '5 strands · 213 lessons' },
-                { key: 'elementary', label: 'Elementary 6–12', count: '9 strands · 303 lessons' },
-              ] as const
-            ).map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                style={{
-                  padding: '1.25rem 1.75rem',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  borderBottom: activeTab === tab.key ? '3px solid #d6a758' : '3px solid transparent',
-                  transition: 'border-color 0.15s',
-                  textAlign: 'left',
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    color: activeTab === tab.key ? '#fff' : 'rgba(255,255,255,0.5)',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {tab.label}
-                </p>
-                <p style={{ fontSize: '0.6875rem', color: '#d6a758', opacity: 0.75, marginTop: '0.125rem' }}>
-                  {tab.count}
-                </p>
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* ── Primary track ── */}
+      <div id="primary">
+        <TrackSection
+          label="Primary 3–6"
+          tagline="5 strands · 213 lessons"
+          lessons={primaryLessons}
+          onRead={setOpenLesson}
+        />
       </div>
 
-      {/* ── Strand grid ── */}
-      <section style={{ background: '#FAF9F7', padding: '4rem 0 6rem' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <p
-            style={{
-              fontSize: '0.875rem',
-              color: '#64748B',
-              lineHeight: 1.7,
-              maxWidth: '640px',
-              marginBottom: '3rem',
-            }}
-          >
-            {activeTab === 'primary'
-              ? 'The Primary curriculum covers five strands across 213 lessons. Each sample below is drawn from a different strand so you can experience the full range of what residents study.'
-              : 'The Elementary curriculum covers nine strands across 303 lessons. Each sample below represents a different strand — from the Great Lessons to Geometry to Music — all written at the same depth.'}
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
-            {activeLessons.map((lesson) => (
-              <StrandCard
-                key={lesson.id}
-                lesson={lesson}
-                onRead={() => setOpenLesson(lesson)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Elementary track ── */}
+      <div id="elementary">
+        <TrackSection
+          label="Elementary 6–12"
+          tagline="9 strands · 303 lessons"
+          lessons={elementaryLessons}
+          onRead={setOpenLesson}
+          dark
+        />
+      </div>
 
       {/* ── Bottom CTA ── */}
-      <section
-        className="grain"
-        style={{ background: '#0e1a7a', padding: '5rem 0', textAlign: 'center' }}
-      >
+      <section className="grain" style={{ background: '#0e1a7a', padding: '5rem 0', textAlign: 'center' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <h2
             style={{
