@@ -6,16 +6,14 @@ import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 import { supabase } from '@/lib/supabase/client'
 
 const navItems = [
-  { href: '/residency/instructor', label: 'Dashboard' },
-  { href: '/residency/instructor/sessions', label: 'Live Sessions' },
-  { href: '/residency/instructor/patterns', label: 'Album Patterns' },
-  { href: '/residency/instructor/capstones', label: 'Capstone Reviews' },
+  { href: '/residency/school', label: 'Overview' },
+  { href: '/residency/school/residents', label: 'Placed Residents' },
 ]
 
-export default function InstructorLayout({ children }: { children: React.ReactNode }) {
+export default function SchoolLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
-  const { profile, loading } = useResidencyAuth(['instructor', 'admin'])
+  const { profile, loading } = useResidencyAuth(['school_partner', 'admin'])
 
   async function handleSignOut() {
     await supabase.auth.signOut()
@@ -42,7 +40,7 @@ export default function InstructorLayout({ children }: { children: React.ReactNo
             color: 'var(--r-text-muted)',
             marginBottom: '0.25rem',
           }}>
-            Instructor
+            School Partner
           </p>
           {profile && (
             <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)' }}>
@@ -55,7 +53,7 @@ export default function InstructorLayout({ children }: { children: React.ReactNo
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === item.href || (item.href !== '/residency/instructor' && pathname.startsWith(item.href)) ? 'active' : ''}
+              className={pathname === item.href ? 'active' : ''}
             >
               {item.label}
             </Link>
