@@ -17,6 +17,7 @@ const STRAND_ICONS: Record<string, string> = {
   'geometry': '\u25B3',
   'art': '\u2710',
   'music': '\u266B',
+  'behavior': '\u2661',
 }
 
 export default async function LevelPage({
