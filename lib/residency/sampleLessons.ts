@@ -163,32 +163,29 @@ export const primaryTheory: SampleLesson = {
 
 // ─── ELEMENTARY 6–12 ──────────────────────────────────────────────────────────
 
-// TODO: Replace placeholder content below with real lesson from:
-// ~/Desktop/Montessori Albums/Residency Albums/Elementary/Geography/
-
 export const elementaryGeography: SampleLesson = {
   id: 'elementary-geography',
-  title: 'The Story of the Universe: First Great Lesson',
+  title: 'The Origins of the Universe: First Great Lesson',
   strand: 'Geography',
   level: 'elementary',
   whyThisMatters:
-    'The child at six years old is ready to hold the entire cosmos in their imagination. They are no longer satisfied with the immediate environment — they want to know where everything came from. The First Great Lesson does not answer that question with a textbook paragraph. It answers it with fire, darkness, swirling matter, and billions of years. This is not mythology dressed up as science. This is science told with the reverence it deserves.',
+    'The cosmic story is a foundational Great Lesson in Montessori education. It offers children an epic narrative of transformation, interconnection, and responsibility that shapes how they understand themselves and their place in the universe. The story is grounded in rigorous scientific understanding while maintaining a narrative quality that captivates children\'s imaginations. It is rooted in justice and equity, recognizing that all humans are made from the same cosmic materials and all depend on Earth\'s interconnected systems.',
   directAim:
-    'To give the child a cosmic sense of the origins of the universe and the Earth, to ignite wonder and curiosity about the physical world, and to establish the timeline framework within which all subsequent Elementary work will be situated.',
+    'To give the child a cosmic sense of the origins of the universe — from the singularity through the Big Bang, the cooling of matter, the birth of stars, the forging of elements in stellar cores, and the supernova explosions that seeded the universe with the chemistry of complexity. To establish the timeline framework within which all subsequent Elementary work will be situated.',
   indirectAim:
-    'To prepare the child for detailed study of physics, chemistry, geology, and astronomy, to develop the capacity for abstract temporal thinking, and to cultivate the disposition of a scientist: one who sits comfortably with the vastness of what is not yet known.',
+    'To prepare the child for detailed study of physics, chemistry, geology, and astronomy through the subsequent Great Lessons. To develop the capacity for abstract temporal thinking across 13.8 billion years. To establish the Cosmic Thread that connects all five Great Lessons — from the universe\'s origins to the origins of writing and mathematics.',
   equityAim:
-    'We tell this story with awareness that many cultures have creation narratives of extraordinary beauty and scientific sophistication. We do not present the scientific story as the only story or the correct story. We present it as one extraordinary account of the universe\'s origins — and we create space for children to bring other accounts they carry. The goal is wonder, not displacement.',
+    'This story carries profound justice implications that we name explicitly. All humans — regardless of race, geography, or background — are made of the same stardust. All share this common origin and this interconnected Earth. We guide children to ask: if we are all made from stars, how does that change how we see people who are different from us? If all life on Earth is connected to the same origin story, what is our responsibility to care for other species and ecosystems?',
   materials:
-    'Black cloth to represent the void, a bowl of steel filings and a magnet to demonstrate magnetic attraction, balloons to demonstrate expansion, a candle and a non-flammable bowl for the fire experiment, the First Great Lesson script (resident-written and memorized), and the Timeline of the Universe chart for follow-up.',
+    'Charts OU-C01 (The Big Bang and Formation of First Atoms), OU-C02 (Stars and Nuclear Fusion), OU-C03 (Supernova and Element Creation), and OU-C07 (The Singularity — Before Creation). Samples of iron, carbon, oxygen, and nitrogen if available. Optional model of solar system or galaxy formation. Whiteboard or poster paper for note-taking during story. The guide\'s memorized story script.',
   presentation:
-    'This lesson is a performance. The room should be as dark as possible. The guide begins in silence. Every detail of the presentation — the timing of the fire, the moment of the first light, the introduction of gravity — is rehearsed and intentional. The story takes approximately 20-30 minutes for the first telling. Children who hear it for the first time in Lower Elementary will ask for it again. By Upper Elementary, they know it by heart and begin to see it differently.',
+    'Gather children in a calm, dimly lit space. This is not performance — it is transmission. Speak slowly and deliberately. Pause frequently to allow children to absorb the magnitude of what they are hearing. Begin: "Close your eyes. Imagine a place where nothing exists. No light, no sound, no space, no time itself." Move through the singularity, the Big Bang, hydrogen and helium forming in the first three minutes, the birth of massive stars, the crushing fusion in their cores, and the supernovae that scattered carbon, oxygen, nitrogen, and iron across the universe. End: "Every atom that makes up your body was forged in the heart of a star. You were there." The full presentation with follow-up runs 45–60 minutes.',
   pointsOfInterest:
-    'The fire experiment, the moment the lights come back on, and the child\'s first question after the story ends — which invariably reveals what they are most alive to.',
+    'The moment children understand they were present in the singularity — that every atom in their body has a 13.8-billion-year history. The first child who asks: "So the iron in my blood came from a supernova?" That is when you know the story has landed.',
   variationsAndExtensions:
-    'Timeline of the Universe. Research projects on any element of the story. The Birth of the Earth impressionistic charts. The Coming of Life charts. Any question a child asks after the First Great Lesson is a valid entry point into months of research.',
+    'Timeline creation (children mark major events from the Big Bang to Earth\'s formation). Element investigation (each child researches one element created in stellar fusion and traces where it exists today — in their body, in the Earth, in the sky). Justice inquiry (what does knowing our cosmic origin mean for how we treat people who look different from us? For how we treat the Earth?). Mathematical exploration of cosmological timescales.',
   neurodivergenceNotes:
-    'For children with sensory sensitivities, preview the fire experiment in advance so there are no surprise sounds or smells. For children who have difficulty with the length of the presentation, allow them to engage with a portion and return. For children who are highly literal thinkers, provide scaffolding for the distinction between story and scientific theory. The immersive, dramatic nature of this lesson is often deeply engaging for children with ADHD — lean into that rather than sanitizing the presentation.',
+    'For children with sensory sensitivities, preview any materials or demonstrations in advance so there are no surprise sounds or unexpected stimuli. For children who have difficulty with extended presentations, allow engagement with a portion and a return — the story is designed to be told more than once. For highly literal thinkers, provide explicit scaffolding: "This is science, not myth — and this is what scientists currently understand." For children with ADHD, the epic scale and dramatic arc of this lesson are often intrinsically engaging. Lean into that rather than shortening the presentation.',
 }
 
 // TODO: Replace placeholder content below with real lesson from:
@@ -219,32 +216,29 @@ export const elementaryBiology: SampleLesson = {
     'For children with anxiety, the discussion of death as a characteristic of living things (mortality) should be handled with care. For children with sensory sensitivities, allow the use of gloves for handling biological specimens. For children with ADHD, the hands-on sorting activity at the beginning of this lesson is intentional — it provides movement and decision-making before any sitting or writing. For autistic children, the clear categorical framework of the Five Kingdoms is often intrinsically satisfying.',
 }
 
-// TODO: Replace placeholder content below with real lesson from:
-// ~/Desktop/Montessori Albums/Residency Albums/Elementary/History/
-
 export const elementaryHistory: SampleLesson = {
   id: 'elementary-history',
-  title: 'The Story of the Coming of Human Beings: Third Great Lesson',
+  title: 'The Origins of Humanity: Third Great Lesson',
   strand: 'History',
   level: 'elementary',
   whyThisMatters:
-    'The child at six, seven, eight years old is ready to understand that they are the inheritor of an unbroken chain of human ingenuity stretching back hundreds of thousands of years. Every tool they use, every word they speak, every system they live inside was built by human beings who came before them. This lesson does not begin with civilization. It begins with the fire-keeper, the tool-maker, and the storyteller — with the humans who lived before writing, before cities, and before the categories we use to divide ourselves.',
+    'The story of humanity\'s origins begins in Africa — specifically in the Great Rift Valley, in a landscape being reshaped by climate change, where early ancestors began walking upright and freeing their hands. This lesson refuses the truncated version of human history that begins with Greece and Rome. It begins where the science begins: in Africa, 6-7 million years ago, with Ardipithecus and Australopithecus and Lucy, and moves forward through the full, uncompromised story of human ingenuity across every continent.',
   directAim:
-    'To give the child a sense of the deep history of human beings on Earth, to introduce the concept of human exceptionalism through the specific gifts of mind, hand, and heart, and to situate the child\'s own life within the long arc of human history.',
+    'To give the child the full story of human origins — bipedalism, tool use, migration out of Africa, the development of culture and cooperation — told with the reverence and epic scope it deserves. To establish Africa as the cradle of humanity, not as a peripheral setting but as the essential center of the human story.',
   indirectAim:
-    'To prepare the child for detailed study of world history, economics, government, and culture, to develop the child\'s sense of moral imagination through historical empathy, and to build the foundation for understanding cause and effect across centuries.',
+    'To serve as the foundation for a yearlong curriculum organized around Three Connected Pathways: (1) Origins → Migration → Culture; (2) Power → Systems → Justice; (3) Identity → Community → Belonging. Every unit of study in the Elementary history strand connects back to this foundational story.',
   equityAim:
-    'Human history as typically taught in American schools begins with Greece and Rome and moves primarily through Europe. We refuse that truncation. The Third Great Lesson explicitly includes the civilizations of Africa, the Americas, Asia, and Oceania as primary contributors to human knowledge and culture. We use the Black History Timeline, the Indigenous Peoples\' contributions to governance and ecology, and the scientific achievements of the Islamic Golden Age as central — not supplemental — content.',
+    'This lesson names, explicitly and without apology, that race is an invention — a concept created roughly 400 years ago to justify the economic system of slavery. Skin tone is adaptation, not hierarchy. We teach African civilizations — Mali Empire, Great Zimbabwe, Nubia, Aksum, the Swahili Coast — as primary content, not supplemental enrichment. When studying 13th-century Mali and contemporary European kingdoms side by side, we ask: who was more sophisticated? The answer is not Europe. The goal is not to reverse the hierarchy but to dismantle it entirely.',
   materials:
-    'The Third Great Lesson script (resident-written), the Black History Timeline, the Timeline of Human Prehistory, artifacts or images representing early human tools and art, and the Fundamental Needs of Humans chart.',
+    'Thirteen charts (OH-C01 through OH-C13) including maps of the Great Rift Valley, human migration routes, African civilizations, and the invention of tools and language. A globe accessible throughout the year on the classroom shelf. A stone tool replica children can hold. The resident-written story script, memorized well enough for consistent eye contact.',
   presentation:
-    'This lesson is told as a story — not read from a script. The guide knows the story well enough to make eye contact with children throughout, to pause at moments of wonder, and to respond to questions without losing the narrative thread. The lesson typically takes 25-40 minutes for an experienced guide.',
+    'Tell the full story. Give it the space and time it deserves — this is the foundation for everything that follows. Begin with Africa in transition: the climate shifting, the Rift Valley forming, the forests fragmenting into grasslands. Move through bipedalism, tool use, fire, language, migration, cultural flourishing. Close with: "You are not separate from this story. You are part of it, and you help write what comes next." Follow immediately with circle conversation, embodied timelines, and identity reflection. Do not rush to the research. Children are processing.',
   pointsOfInterest:
-    'The moment when children realize that the fire-keeper was doing something no other animal had ever done, and the question of why human beings are the only species that transmits knowledge across generations through language and writing.',
+    'The moment children understand that every human being on Earth traces their ancestry to Africa. The question a child asks when they first see the migration routes — "How did they get all the way to Australia?" — is the entry point into months of research. The discovery that walking upright freed the hands, and freed hands changed everything.',
   variationsAndExtensions:
-    'The Fundamental Needs of Humans chart and sorting activity. Research projects on any early human civilization. Archaeology projects. The study of written language across cultures. The timeline of economic systems from barter to global trade.',
+    'In-depth research on African civilizations (Mali Empire, Great Zimbabwe, Nubia, Aksum, Swahili Coast). Migration mapping with specific route research and adaptation study. Antiracism timeline: when was race invented, how was it used, what are its ongoing impacts? Comparative timelines placing African empires alongside contemporary European kingdoms. Study of indigenous cultures — Aboriginal Australian, Ancestral Puebloan, Inuit, Pacific Islands — as civilizations of extraordinary sophistication.',
   neurodivergenceNotes:
-    'The story format of the Great Lessons is often more accessible for children with reading differences than text-based instruction. For children who process information more slowly, the Great Lessons should be told more than once — children benefit from hearing the full story before being asked to do any follow-up work. For children with attention differences, the natural pause-and-wonder moments in the story are built-in movement breaks. For children who have experienced historical trauma in their families, handle the portions of the story that involve slavery, colonization, and displacement with particular care and forewarning.',
+    'The story format of the Great Lessons is more accessible for children with reading differences than text-based instruction. Tell it more than once — children benefit from hearing the full story before any follow-up work begins. The embodied timeline activity (children physically place themselves along the timeline of human history) provides movement and spatial grounding for children with attention and sensory differences. For children who have experienced historical trauma related to slavery, colonization, or displacement, preview the relevant portions of the story in advance and offer choice about participation in whole-group discussion.',
 }
 
 // TODO: Replace placeholder content below with real lesson from:
