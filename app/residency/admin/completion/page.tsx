@@ -51,28 +51,50 @@ export default function AdminCompletionPage() {
     setChecking(true)
     setCheckData(null)
 
-    const res = await fetch(`/api/residency/completion-check?resident_id=${residentId}`)
-    const data = await res.json()
-    setCheckData(data)
+    try {
+      const res = await fetch(`/api/residency/completion-check?resident_id=${residentId}`)
+      if (!res.ok) {
+        alert('Failed to check eligibility')
+        setChecking(false)
+        return
+      }
+      const data = await res.json()
+      setCheckData(data)
+    } catch {
+      alert('Network error checking eligibility')
+    }
     setChecking(false)
   }
 
   async function confirmCompletion() {
     if (!checkData || !selected) return
+    if (!confirm('Confirm completion? This will generate a certificate and notify the resident.')) return
     setConfirming(true)
 
-    const res = await fetch('/api/residency/confirm-completion', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ resident_id: selected, confirmed_by: adminId }),
-    })
+    try {
+      const res = await fetch('/api/residency/confirm-completion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resident_id: selected, confirmed_by: adminId }),
+      })
 
-    if (res.ok) {
-      alert('Completion confirmed! Certificate generated and email sent.')
-      window.location.reload()
-    } else {
-      const data = await res.json()
-      alert(data.error || 'Failed to confirm completion')
+      if (res.ok) {
+        alert('Completion confirmed! Certificate generated and email sent.')
+        setSelected(null)
+        setCheckData(null)
+        // Reload residents and graduates
+        const [{ data: resData }, { data: gradData }] = await Promise.all([
+          supabase.from('residency_residents').select('id, status, profile:residency_profiles(first_name, last_name), cohort:residency_cohorts(name, track)').in('status', ['enrolled', 'active']),
+          supabase.from('residency_graduates').select('*, profile:residency_profiles(first_name, last_name), cohort:residency_cohorts(name, track)').is('deleted_at', null).order('completed_at', { ascending: false }),
+        ])
+        setResidents(resData || [])
+        setGraduates(gradData || [])
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Failed to confirm completion')
+      }
+    } catch {
+      alert('Network error confirming completion')
     }
     setConfirming(false)
   }

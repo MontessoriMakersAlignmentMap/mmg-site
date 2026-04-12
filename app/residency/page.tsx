@@ -771,6 +771,31 @@ export default function MMRLandingPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Additional Entry Points */}
+      <section className="r-section">
+        <div className="r-container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1rem',
+            textAlign: 'center',
+          }}>
+            <Link href="/residency/outcomes" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
+              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Program Outcomes</p>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Graduates, partner schools, and program reach</p>
+            </Link>
+            <Link href="/residency/mentors" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
+              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Become a Mentor</p>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Guide the next generation of Montessori educators</p>
+            </Link>
+            <Link href="/residency/waitlist" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
+              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Join the Waitlist</p>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Get notified when enrollment opens</p>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

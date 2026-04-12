@@ -28,17 +28,18 @@ export async function POST(req: NextRequest) {
   const nowEngaged = newTotal >= ENGAGEMENT_THRESHOLD_SECONDS
 
   if (existing) {
-    await supabase
+    const { error } = await supabase
       .from('residency_lesson_engagements')
       .update({
         total_seconds: newTotal,
         engaged: nowEngaged,
         last_activity_at: new Date().toISOString(),
-        bundle_id: bundle_id || existing.id ? undefined : bundle_id,
+        ...(bundle_id && !existing.engaged ? { bundle_id } : {}),
       })
       .eq('id', existing.id)
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   } else {
-    await supabase
+    const { error } = await supabase
       .from('residency_lesson_engagements')
       .insert({
         resident_id,
@@ -47,6 +48,7 @@ export async function POST(req: NextRequest) {
         total_seconds: seconds_to_add,
         engaged: seconds_to_add >= ENGAGEMENT_THRESHOLD_SECONDS,
       })
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
   // If now engaged and we have a bundle_id, update bundle engagement
@@ -86,7 +88,7 @@ async function updateBundleEngagement(
   const isComplete = updatedLessons.length >= totalLessons
 
   if (be) {
-    await supabase
+    const { error } = await supabase
       .from('residency_bundle_engagements')
       .update({
         lessons_engaged: updatedLessons,
@@ -95,8 +97,9 @@ async function updateBundleEngagement(
         updated_at: new Date().toISOString(),
       })
       .eq('id', be.id)
+    if (error) console.error('Bundle engagement update failed:', error.message)
   } else {
-    await supabase
+    const { error } = await supabase
       .from('residency_bundle_engagements')
       .insert({
         resident_id: residentId,
@@ -105,5 +108,6 @@ async function updateBundleEngagement(
         completion_status: isComplete ? 'complete' : 'in_progress',
         completed_at: isComplete ? new Date().toISOString() : null,
       })
+    if (error) console.error('Bundle engagement insert failed:', error.message)
   }
 }

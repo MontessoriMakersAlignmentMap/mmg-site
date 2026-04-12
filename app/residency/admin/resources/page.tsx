@@ -64,6 +64,7 @@ export default function AdminResourcesPage() {
   }
 
   async function deleteResource(id: string) {
+    if (!confirm('Remove this resource?')) return
     await supabase.from('residency_resources').update({ deleted_at: new Date().toISOString() }).eq('id', id)
     await load()
   }

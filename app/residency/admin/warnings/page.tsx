@@ -54,8 +54,9 @@ export default function WarningsPage() {
 
     const newWarnings: any[] = []
 
-    for (const r of residents as any[]) {
-      const name = `${r.profile?.first_name} ${r.profile?.last_name}`
+    for (const r of residents) {
+      const profile = r.profile as any
+      const name = `${profile?.first_name} ${profile?.last_name}`
 
       // Check practicum hours
       const { data: logs } = await supabase

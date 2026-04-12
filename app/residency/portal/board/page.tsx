@@ -68,10 +68,33 @@ export default function CommunityBoardPage() {
     load()
   }, [])
 
+  async function loadPosts() {
+    const { data: postData } = await supabase
+      .from('residency_cohort_posts')
+      .select('*, author:residency_profiles(first_name, last_name, role)')
+      .eq('cohort_id', cohortId)
+      .is('deleted_at', null)
+      .order('pinned', { ascending: false })
+      .order('created_at', { ascending: false })
+    setPosts(postData || [])
+
+    const replyMap: Record<string, any[]> = {}
+    for (const p of postData || []) {
+      const { data: r } = await supabase
+        .from('residency_post_replies')
+        .select('*, author:residency_profiles(first_name, last_name, role)')
+        .eq('post_id', p.id)
+        .is('deleted_at', null)
+        .order('created_at')
+      replyMap[p.id] = r || []
+    }
+    setReplies(replyMap)
+  }
+
   async function askQuestion() {
     if (!form.title || !form.body || !profile) return
     setCreating(true)
-    await supabase.from('residency_cohort_posts').insert({
+    const { error } = await supabase.from('residency_cohort_posts').insert({
       cohort_id: cohortId,
       author_id: profile.id,
       author_role: profile.role,
@@ -79,34 +102,40 @@ export default function CommunityBoardPage() {
       title: form.title,
       body: form.body,
     })
-    setForm({ title: '', body: '' })
-    setShowAsk(false)
+    if (!error) {
+      setForm({ title: '', body: '' })
+      setShowAsk(false)
+      await loadPosts()
+    }
     setCreating(false)
-    window.location.reload()
   }
 
   async function submitReply(postId: string) {
     const body = replyForm[postId]
     if (!body?.trim() || !profile) return
-    await supabase.from('residency_post_replies').insert({
+    const { error } = await supabase.from('residency_post_replies').insert({
       post_id: postId,
       author_id: profile.id,
       author_role: profile.role,
       body: body.trim(),
     })
-    setReplyForm(prev => ({ ...prev, [postId]: '' }))
-    setReplyingTo(null)
-    window.location.reload()
+    if (!error) {
+      setReplyForm(prev => ({ ...prev, [postId]: '' }))
+      setReplyingTo(null)
+      await loadPosts()
+    }
   }
 
   async function deleteOwnPost(postId: string) {
+    if (!confirm('Delete this post? This cannot be undone.')) return
     await supabase.from('residency_cohort_posts').update({ deleted_at: new Date().toISOString() }).eq('id', postId).eq('author_id', profile.id)
-    window.location.reload()
+    await loadPosts()
   }
 
   async function deleteOwnReply(replyId: string) {
+    if (!confirm('Delete this reply?')) return
     await supabase.from('residency_post_replies').update({ deleted_at: new Date().toISOString() }).eq('id', replyId).eq('author_id', profile.id)
-    window.location.reload()
+    await loadPosts()
   }
 
   if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>

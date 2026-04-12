@@ -63,7 +63,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === item.href ? 'active' : ''}
+              className={pathname === item.href || (item.href !== '/residency/portal' && pathname.startsWith(item.href)) ? 'active' : ''}
             >
               {item.label}
             </Link>
