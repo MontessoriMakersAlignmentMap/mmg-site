@@ -15,9 +15,6 @@ const advisoryLinks = [
   { name: 'Workshops & Speaking', href: '/advisory/workshops-speaking', tagline: 'Entry point & PD' },
   { name: 'Leadership Transition', href: '/advisory/leadership-transition-support', tagline: 'Succession support' },
   { name: 'Communication Strategy', href: '/advisory/communication-strategy', tagline: 'Systems-level design' },
-  { name: 'Board Development', href: '/advisory/board-development', tagline: 'Governance formation' },
-  { name: 'Strong Systems', href: '/advisory/strong-systems', tagline: 'Startup & new school design' },
-  { name: 'Family Engagement', href: '/advisory/family-engagement', tagline: 'Community alignment' },
 ]
 
 const instituteLinks = [
@@ -30,22 +27,11 @@ const instituteLinks = [
   { name: 'Course Catalog', href: '/institute/catalog', tagline: 'Dates, pricing & registration' },
 ]
 
-const speakingLinks = [
-  { name: 'Speaking Overview', href: '/advisory/workshops-speaking', tagline: 'Topics, formats & experience' },
-  { name: 'Keynotes & Formats', href: '/advisory/workshops-speaking#formats', tagline: 'Keynote · Workshop · Intensive · Panel' },
-  { name: 'Workshop Menu', href: '/advisory/workshops-speaking#workshops', tagline: '15 topics, half-day to multi-day' },
-  { name: 'Book Hannah', href: '/advisory/workshops-speaking#request-workshop', tagline: 'Inquire about your event' },
-]
-
 const mmapLinks = [
   { name: 'MMAP Overview', href: '/mmap', tagline: 'The school operating system' },
   { name: 'Platform Tour', href: '/mmap/tour', tagline: 'See how it works' },
   { name: 'Watch a Demo', href: '/mmap/demo', tagline: 'Full walkthrough videos' },
-  { name: 'Pricing', href: '/mmap/pricing', tagline: 'Tiers, calculator & early access' },
-  { name: 'Surveyor', href: '/mmap/surveyor', tagline: 'Classroom documentation' },
-  { name: 'North Star', href: '/mmap/north-star', tagline: 'Core school operations' },
-  { name: 'Mapmaker', href: '/mmap/mapmaker', tagline: 'Admissions, staffing, equity' },
-  { name: 'Atlas', href: '/mmap/atlas', tagline: 'Leadership & governance' },
+  { name: 'North Star', href: '/mmap/north-star', tagline: 'Vision & alignment tool' },
   { name: 'Sign In', href: '/mmap/signin', tagline: 'Access the platform' },
 ]
 
@@ -54,15 +40,14 @@ const matchhubSections = [
     label: 'Open Roles',
     links: [
       { name: 'Browse Open Roles', href: '/matchhub/open-roles', tagline: 'School openings' },
-      { name: 'Find Your School', href: '/matchhub/guides', tagline: 'For educators & leaders' },
-      { name: 'Submit a Profile', href: '/matchhub/submit-profile', tagline: 'Free — all roles welcome' },
+      { name: 'For Guides', href: '/matchhub/guides', tagline: 'How MatchHub works for you' },
+      { name: 'Submit a Profile', href: '/matchhub/submit-profile', tagline: 'Free guide profiles' },
     ],
   },
   {
     label: 'Talent Pool',
     links: [
-      { name: 'View Candidates', href: '/matchhub/talent', tagline: 'Browse anonymized profiles' },
-      { name: 'Browse Talent Pool', href: '/matchhub/talent-pool', tagline: 'How it works & introductions' },
+      { name: 'Browse Talent Pool', href: '/matchhub/talent-pool', tagline: 'Curated candidate profiles' },
       { name: 'Post a Role', href: '/matchhub/post-job', tagline: 'Self-serve posting' },
       { name: 'Pricing', href: '/matchhub/pricing', tagline: 'Plans & rates' },
     ],
@@ -72,7 +57,6 @@ const matchhubSections = [
     links: [
       { name: 'Strategic Search', href: '/matchhub/strategic-search', tagline: 'Retained, Hannah-led' },
       { name: 'Current Searches', href: '/matchhub/current-searches', tagline: 'Open placements' },
-      { name: 'Open Positions', href: '/matchhub/positions', tagline: 'Active placement searches' },
     ],
   },
 ]
@@ -91,7 +75,6 @@ const ecosystemGroups = [
       { name: 'MMAP',     logo: 'mmap'     as LogoName, href: '/mmap',     tagline: 'School operating system' },
       { name: 'MMAS',     logo: 'mmas'     as LogoName, href: '/mmas',     tagline: 'Assessment platform' },
       { name: 'MatchHub', logo: 'matchhub' as LogoName, href: '/matchhub', tagline: 'Montessori hiring' },
-      { name: 'Residency', logo: 'institute' as LogoName, href: '/residency', tagline: 'Montessori teacher preparation' },
     ],
   },
   {
@@ -107,13 +90,11 @@ const ecosystemGroups = [
 const allMobileLinks = [
   { name: 'Advisory', href: '/advisory' },
   { name: 'Institute', href: '/institute' },
-  { name: 'Residency', href: '/residency' },
   { name: 'MMAP', href: '/mmap' },
   { name: 'MMAS', href: '/mmas' },
   { name: 'MatchHub', href: '/matchhub' },
   { name: 'Learning', href: '/learning' },
   { name: 'Toolbox', href: '/toolbox' },
-  { name: 'Equity', href: '/equity' },
   { name: 'Studio', href: '/studio' },
   { name: 'Field Pulse', href: '/field-intelligence' },
   { name: 'In Community With', href: '/in-community-with' },
@@ -166,7 +147,7 @@ export default function Nav() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-7">
           {/* Advisory dropdown */}
           <div className="relative group">
             <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/advisory']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
@@ -236,72 +217,6 @@ export default function Nav() {
               </div>
             </div>
           </div>
-          {/* Residency link */}
-          <Link
-            href="/residency"
-            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/residency']) ? 'text-[#0e1a7a] font-medium' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
-          >
-            {active(['/residency']) && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />
-            )}
-            Residency
-          </Link>
-
-          {/* Speaking dropdown */}
-          <div className="relative group">
-            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/speaking', '/advisory/workshops-speaking']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
-              {active(['/speaking', '/advisory/workshops-speaking']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
-              Speaking
-              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[460px] overflow-hidden flex">
-                {/* Links */}
-                <div className="flex-1 p-4">
-                  <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium px-3">
-                    Keynotes & Workshops
-                  </p>
-                  <div className="space-y-0.5">
-                    {speakingLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
-                      >
-                        <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
-                        <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mt-3 px-3">
-                    <Link
-                      href="/advisory/workshops-speaking#request-workshop"
-                      className="block w-full text-center bg-[#d6a758] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
-                    >
-                      Book Hannah →
-                    </Link>
-                  </div>
-                </div>
-                {/* Hannah photo */}
-                <div className="w-44 relative flex-shrink-0">
-                  <Image
-                    src="/images/hannah.jpg"
-                    alt="Hannah Richardson"
-                    fill
-                    className="object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a7a]/80 via-[#0e1a7a]/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-white text-xs font-semibold leading-tight">Hannah Richardson</p>
-                    <p className="text-white/70 text-[10px] mt-0.5 leading-relaxed">AMI USA · BMEF · VMCA · USMI · CCSD</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* MMAP dropdown */}
           <div className="relative group">
             <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/mmap']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
@@ -382,15 +297,6 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Studio — direct link */}
-          <Link
-            href="/studio"
-            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/studio']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
-          >
-            {active(['/studio']) && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />}
-            Studio
-          </Link>
-
           {/* Ecosystem mega dropdown */}
           <div className="relative group">
             <button className="relative flex items-center gap-1 text-[#64748B] hover:text-[#0e1a7a] text-sm tracking-wide transition-colors pb-1">
@@ -429,9 +335,6 @@ export default function Nav() {
                 <div className="mt-4 pt-4 border-t border-[#F2EDE6] flex items-center justify-between">
                   <Link href="/field-intelligence" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Field Pulse →
-                  </Link>
-                  <Link href="/equity" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
-                    Equity →
                   </Link>
                   <Link href="/learning/free-resources" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Free Resources →
@@ -533,45 +436,6 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* ── Resources strip (desktop only, collapses on scroll) ───────────── */}
-      <div
-        className="hidden md:block overflow-hidden"
-        style={{
-          maxHeight: scrolled ? '0px' : '40px',
-          opacity: scrolled ? 0 : 1,
-          transition: 'max-height 0.3s ease, opacity 0.25s ease',
-          borderTop: '1px solid rgba(210,206,198,0.35)',
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center h-[40px] gap-8">
-          <span
-            className="text-[9px] tracking-[0.2em] uppercase font-medium flex-shrink-0"
-            style={{ color: 'rgba(138,96,20,0.65)' }}
-          >
-            Resources
-          </span>
-          {[
-            { name: 'Learning',       href: '/learning',                prefixes: ['/learning'] },
-            { name: 'Toolbox',        href: '/toolbox',                 prefixes: ['/toolbox'] },
-            { name: 'Equity',         href: '/equity',                  prefixes: ['/equity'] },
-            { name: 'Free Resources', href: '/learning/free-resources', prefixes: [] as string[] },
-          ].map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`relative text-xs tracking-wide transition-colors pb-0.5 ${
-                active(link.prefixes) ? 'text-[#0e1a7a] font-medium' : 'text-[#64748B] hover:text-[#0e1a7a]'
-              }`}
-            >
-              {active(link.prefixes) && (
-                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#d6a758]" />
-              )}
-              {link.name}
-            </Link>
-          ))}
-        </div>
-      </div>
-
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-b border-[#E2DDD6] px-6 py-5 max-h-[80vh] overflow-y-auto">
@@ -611,22 +475,6 @@ export default function Nav() {
               <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Institute</p>
               <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
                 {instituteLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="block py-2 text-[#374151] text-sm hover:text-[#0e1a7a] transition-colors"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="py-3">
-              <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Speaking</p>
-              <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
-                {speakingLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}

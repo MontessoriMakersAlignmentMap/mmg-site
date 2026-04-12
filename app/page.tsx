@@ -3,11 +3,10 @@
 import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
-import { EcosystemMap } from '@/components/EcosystemMap'
 import { Testimonials } from '@/components/Testimonials'
 
 const serif = { fontFamily: 'var(--font-heading)' }
@@ -16,32 +15,20 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 function Counter({ to, suffix = '', duration = 1800 }: { to: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true })
   const [count, setCount] = useState(0)
-  const animated = useRef(false)
   useEffect(() => {
-    const el = ref.current
-    if (!el || to === 0) return
-    function run() {
-      if (animated.current) return
-      animated.current = true
-      const start = performance.now()
-      function tick(now: number) {
-        const elapsed = now - start
-        const progress = Math.min(elapsed / duration, 1)
-        const eased = 1 - Math.pow(1 - progress, 3)
-        setCount(Math.round(eased * to))
-        if (progress < 1) requestAnimationFrame(tick)
-      }
-      requestAnimationFrame(tick)
+    if (!inView) return
+    const start = performance.now()
+    function tick(now: number) {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * to))
+      if (progress < 1) requestAnimationFrame(tick)
     }
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight && rect.bottom > 0) { run(); return }
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) { observer.disconnect(); run() }
-    }, { threshold: 0.1 })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [to, duration])
+    requestAnimationFrame(tick)
+  }, [inView, to, duration])
   return <span ref={ref}>{count}{suffix}</span>
 }
 
@@ -349,43 +336,6 @@ const secondaryItems = [
   },
 ]
 
-// ─── Ecosystem Strip ────────────────────────────────────────────────────────
-
-const stripItems: { name: string; logo: LogoName; href: string }[] = [
-  { name: 'Advisory',  logo: 'advisory',  href: '/advisory'  },
-  { name: 'Institute', logo: 'institute', href: '/institute' },
-  { name: 'MMAP',      logo: 'mmap',      href: '/mmap'      },
-  { name: 'MatchHub',  logo: 'matchhub',  href: '/matchhub'  },
-  { name: 'Toolbox',   logo: 'toolbox',   href: '/toolbox'   },
-  { name: 'Learning',  logo: 'learning',  href: '/learning'  },
-]
-
-const marqueeItems = [...stripItems, ...stripItems]
-
-function EcosystemStrip() {
-  return (
-    <section className="bg-white border-t border-[#E2DDD6] py-14 overflow-hidden">
-      <div className="flex animate-marquee">
-        {marqueeItems.map((item, i) => (
-          <Link
-            key={i}
-            href={item.href}
-            className="flex flex-col items-center gap-2.5 group flex-shrink-0 px-10"
-          >
-            <Logo name={item.logo} size="md" className="opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
-            <span className="text-[#64748B] text-[10px] tracking-[0.15em] uppercase group-hover:text-[#0e1a7a] transition-colors duration-200 whitespace-nowrap">
-              {item.name}
-            </span>
-          </Link>
-        ))}
-      </div>
-      <p className="text-center text-[#64748B] text-sm tracking-wide mt-8 px-6" style={{ fontFamily: 'var(--font-heading)' }}>
-        Not separate services. One system.
-      </p>
-    </section>
-  )
-}
-
 function PrimaryCard({ item, delay }: { item: typeof primaryItems[0]; delay: number }) {
   return (
     <FadeIn delay={delay}>
@@ -487,7 +437,6 @@ const pathways = [
   { question: 'I need to find the right people', label: 'MatchHub', href: '/matchhub' },
   { question: 'Our systems need to work', label: 'MMAP', href: '/mmap' },
   { question: 'I need practical tools now', label: 'Toolbox', href: '/toolbox' },
-  { question: "We're starting a new school", label: 'Strong Systems', href: '/advisory/strong-systems' },
 ]
 
 function WhereToStart() {
@@ -504,7 +453,7 @@ function WhereToStart() {
           </h2>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-14">
           {pathways.map((p, i) => (
             <FadeIn key={p.label} delay={i * 0.06}>
               <motion.div
@@ -622,28 +571,16 @@ const PRESS = [
     context: 'Co-founder of The Peace Rebellion in conversation on justice, Montessori, and structural change.',
   },
   {
-    org: 'PMAI',
+    org: 'Montessori in Action',
     full: 'Public Montessori in Action International · Podcast',
+    role: 'Featured Guest',
+    context: 'Highlighted for the Decodable Book Series — called out as a primary classroom veteran and school leader.',
+  },
+  {
+    org: 'PMAI',
+    full: 'Public Montessori in Action International',
     role: 'Recurring Guest',
-    context: 'Multiple episodes on school reopening strategies, adult culture, Montessori leadership, and the Decodable Book Series.',
-  },
-  {
-    org: 'Black Montessori Conference',
-    full: 'Black Montessori Education Fund',
-    role: 'Conference Presenter',
-    context: 'Keynote on building organizational trust in Montessori schools.',
-  },
-  {
-    org: 'CCSD Keynote',
-    full: 'Charleston County School District · South Carolina',
-    role: 'District Keynote',
-    context: 'Keynote address to district leadership and school staff.',
-  },
-  {
-    org: 'USMI',
-    full: 'United States Montessori Institute',
-    role: 'Conference Presenter',
-    context: 'Liberation Through Literacy: Reading in Montessori.',
+    context: 'Multiple episodes on school reopening strategies, adult culture, and Montessori leadership.',
   },
 ]
 
@@ -692,57 +629,6 @@ function Press() {
   )
 }
 
-// ─── Systems Build ──────────────────────────────────────────────────────────────
-
-function SystemsBuild() {
-  return (
-    <section className="bg-white py-28 md:py-36 px-6 md:px-10 border-t border-[#E2DDD6]">
-      <div className="max-w-7xl mx-auto">
-        <FadeIn className="max-w-3xl">
-          <h2
-            className="text-[2.5rem] md:text-[3.25rem] text-[#0e1a7a] leading-[1.06] tracking-tight mb-10"
-            style={serif}
-          >
-            This isn&apos;t just a website. It&apos;s a system.
-          </h2>
-          <div className="space-y-6 mb-10">
-            <p className="text-[#374151] text-lg leading-[1.85]">
-              Most Montessori schools don&apos;t need a website redesign — they need an integrated system that reflects how they actually work.
-            </p>
-            <p className="text-[#374151] text-lg leading-[1.85]">
-              What you&apos;re seeing here is a fully built example: an integrated system connecting enrollment, hiring, learning, products, and leadership into one aligned experience.
-            </p>
-            <p className="text-[#374151] text-lg leading-[1.85]">
-              We design and build systems like this for schools ready to move beyond disconnected tools and into clarity.
-            </p>
-            <p className="text-[#64748B] text-base leading-relaxed italic">
-              Built from Montessori principles. Designed for real-world operation.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
-              <Link
-                href="/contact"
-                className="bg-[#0e1a7a] text-white text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#162270] transition-colors inline-block"
-              >
-                Inquire About a Build
-              </Link>
-            </motion.div>
-            <motion.div whileTap={{ scale: 0.97 }} className="inline-block">
-              <Link
-                href="/studio/demo"
-                className="border border-[#0e1a7a] text-[#0e1a7a] text-[13px] px-9 py-4 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors inline-block"
-              >
-                See a Live Example &rarr;
-              </Link>
-            </motion.div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  )
-}
-
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -773,29 +659,10 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <EcosystemStrip />
-
-      {/* ─── Interactive Ecosystem Map ─────────────────────────────────────── */}
-      <section className="bg-white py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-6">The Full Picture</p>
-            <h2 className="text-[2.5rem] md:text-[3.25rem] text-[#0e1a7a] leading-[1.06] tracking-tight mb-4" style={serif}>
-              How it all connects.
-            </h2>
-            <p className="text-[#374151] text-lg leading-relaxed">
-              Hover any node to see what it does. Every service is designed to work together — not as separate tools, but as one aligned system.
-            </p>
-          </FadeIn>
-          <EcosystemMap />
-        </div>
-      </section>
-
       <WhereToStart />
       <Founder />
       <Testimonials />
       <Press />
-      <SystemsBuild />
       <NewsletterSignup />
     </>
   )
