@@ -435,7 +435,7 @@ export default function MMRLandingPage() {
                   fontStyle: 'normal',
                 }}
               >
-                &ldquo;I have spent fifteen years inside Montessori schools watching gifted
+                &ldquo;I have spent twenty-five years inside Montessori schools watching gifted
                 educators leave the field because the credential was not designed for their
                 lives. MMR is my answer to that. It is the program I would have wanted when
                 I was starting out — rigorous, honest about history, built for working
@@ -448,7 +448,7 @@ export default function MMRLandingPage() {
                     Hannah Richardson
                   </p>
                   <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.8125rem', marginTop: '0.2rem' }}>
-                    Founder, Montessori Makers Group · AMI USA · BMEF · VMCA
+                    Founder, Montessori Makers Group
                   </p>
                 </div>
               </div>
