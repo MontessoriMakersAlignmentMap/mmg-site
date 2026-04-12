@@ -30,6 +30,7 @@ const navItems = [
   { href: '/residency/admin/lesson-feedback', label: 'Lesson Feedback' },
   { href: '/residency/admin/resources', label: 'Resources' },
   { href: '/residency/admin/analytics-dashboard', label: 'Analytics Dashboard' },
+  { href: '/residency/admin/surveys', label: 'Surveys' },
   { href: '/residency/admin/ecosystem', label: 'Ecosystem' },
   { href: '/residency/admin/analytics', label: 'Analytics' },
   { href: '/residency/admin/export', label: 'Export' },
