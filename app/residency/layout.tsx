@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { headers } from 'next/headers'
 import { Montserrat } from 'next/font/google'
 import ResidencyNav from './components/ResidencyNav'
@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     template: '%s — Montessori Makers Residency',
   },
   description: 'A teacher residency program built on the belief that Montessori educators deserve rigorous, respectful preparation.',
+  manifest: '/residency-manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'MMR',
+  },
+  themeColor: '#0e1a7a',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 // Marketing pages (/residency, /residency/sample-lessons) use the MMG nav/footer

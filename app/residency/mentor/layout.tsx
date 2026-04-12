@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 import { supabase } from '@/lib/supabase/client'
+import { useMobileNav, MobileNavToggle, MobileOverlay } from '../components/MobileNav'
 
 const navItems = [
   { href: '/residency/mentor', label: 'Dashboard' },
@@ -20,6 +21,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname()
   const router = useRouter()
   const { profile, loading } = useResidencyAuth(['mentor', 'admin'])
+  const { open, setOpen, toggle } = useMobileNav()
 
   async function handleSignOut() {
     await supabase.auth.signOut()
@@ -36,7 +38,9 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="r-sidebar-layout">
-      <aside className="r-sidebar">
+      <MobileOverlay open={open} onClose={() => setOpen(false)} />
+      <MobileNavToggle open={open} toggle={toggle} />
+      <aside className={`r-sidebar${open ? ' open' : ''}`}>
         <div style={{ marginBottom: '1.5rem' }}>
           <p style={{
             fontSize: '0.6875rem',
