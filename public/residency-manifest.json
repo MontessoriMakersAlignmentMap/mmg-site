@@ -1,0 +1,22 @@
+{
+  "name": "Montessori Makers Residency",
+  "short_name": "MMR",
+  "description": "Montessori Makers Residency — rigorous, respectful teacher preparation.",
+  "start_url": "/residency",
+  "scope": "/residency",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0e1a7a",
+  "icons": [
+    {
+      "src": "/residency-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/residency-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
