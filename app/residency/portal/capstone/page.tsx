@@ -10,6 +10,7 @@ export default function CapstonePortalPage() {
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     video_url: '',
     reflection: '',
@@ -59,29 +60,44 @@ export default function CapstonePortalPage() {
   async function handleSubmit() {
     if (!form.video_url || !form.reflection) return
     setSubmitting(true)
+    setError('')
 
-    if (capstone && capstone.status === 'revision_requested') {
-      // Resubmit
-      await fetch('/api/residency/capstones', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'resubmit',
-          capstone_id: capstone.id,
-          video_url: form.video_url,
-          reflection: form.reflection,
-        }),
-      })
-    } else {
-      // New submission
-      await fetch('/api/residency/capstones', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ resident_id: residentId, ...form }),
-      })
+    try {
+      const res = capstone && capstone.status === 'revision_requested'
+        ? await fetch('/api/residency/capstones', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'resubmit',
+              capstone_id: capstone.id,
+              video_url: form.video_url,
+              reflection: form.reflection,
+            }),
+          })
+        : await fetch('/api/residency/capstones', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ resident_id: residentId, ...form }),
+          })
+
+      if (!res.ok) {
+        const data = await res.json()
+        setError(data.error || 'Submission failed. Please try again.')
+        setSubmitting(false)
+        return
+      }
+
+      // Reload capstone data
+      const { data: updated } = await supabase
+        .from('residency_capstones')
+        .select('*, reviews:residency_capstone_reviews(reviewer_role, verdict, strengths, growth_areas, practicum_connection, revision_notes, created_at)')
+        .eq('resident_id', residentId)
+        .maybeSingle()
+      if (updated) setCapstone(updated)
+    } catch {
+      setError('Network error. Please try again.')
     }
-
-    window.location.reload()
+    setSubmitting(false)
   }
 
   if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
@@ -165,6 +181,10 @@ export default function CapstonePortalPage() {
               {form.reflection.split(/\s+/).filter(Boolean).length} words
             </p>
           </div>
+
+          {error && (
+            <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '0.5rem' }}>{error}</p>
+          )}
 
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button className="r-btn r-btn-primary" onClick={handleSubmit}

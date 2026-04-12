@@ -5,34 +5,48 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 import { supabase } from '@/lib/supabase/client'
 
-const navItems = [
+type NavItem = { href: string; label: string } | { section: string }
+
+const navItems: NavItem[] = [
   { href: '/residency/admin', label: 'Overview' },
+
+  { section: 'Pipeline' },
   { href: '/residency/admin/applications', label: 'Applications' },
   { href: '/residency/admin/waitlist', label: 'Waitlist' },
+  { href: '/residency/admin/scholarships', label: 'Scholarships' },
+
+  { section: 'Program' },
   { href: '/residency/admin/cohorts', label: 'Cohorts' },
-  { href: '/residency/admin/lessons', label: 'Lessons' },
   { href: '/residency/admin/residents', label: 'Residents' },
+  { href: '/residency/admin/lessons', label: 'Lessons' },
   { href: '/residency/admin/strands', label: 'Strands & Categories' },
+  { href: '/residency/admin/seminars', label: 'Seminars' },
+  { href: '/residency/admin/resources', label: 'Resources' },
+
+  { section: 'Progress & Assessment' },
   { href: '/residency/admin/progress', label: 'Progress' },
   { href: '/residency/admin/practicum', label: 'Practicum Hours' },
   { href: '/residency/admin/assessments', label: 'Assessments' },
-  { href: '/residency/admin/standing', label: 'Standing' },
-  { href: '/residency/admin/seminars', label: 'Seminars' },
   { href: '/residency/admin/competencies', label: 'Competencies' },
+  { href: '/residency/admin/completion', label: 'Completion' },
+
+  { section: 'Standing & Support' },
+  { href: '/residency/admin/standing', label: 'Standing' },
   { href: '/residency/admin/warnings', label: 'Warnings' },
   { href: '/residency/admin/support-plans', label: 'Support Plans' },
+
+  { section: 'Placements & Mentors' },
   { href: '/residency/admin/placements', label: 'Placements' },
   { href: '/residency/admin/placement-matching', label: 'Placement Matching' },
   { href: '/residency/admin/schools', label: 'Schools' },
-  { href: '/residency/admin/scholarships', label: 'Scholarships' },
   { href: '/residency/admin/mentor-applications', label: 'Mentor Applications' },
-  { href: '/residency/admin/completion', label: 'Completion' },
-  { href: '/residency/admin/lesson-feedback', label: 'Lesson Feedback' },
-  { href: '/residency/admin/resources', label: 'Resources' },
-  { href: '/residency/admin/analytics-dashboard', label: 'Analytics Dashboard' },
+
+  { section: 'Feedback & Data' },
   { href: '/residency/admin/surveys', label: 'Surveys' },
+  { href: '/residency/admin/lesson-feedback', label: 'Lesson Feedback' },
+  { href: '/residency/admin/analytics-dashboard', label: 'Program Dashboard' },
+  { href: '/residency/admin/analytics', label: 'Resident Analytics' },
   { href: '/residency/admin/ecosystem', label: 'Ecosystem' },
-  { href: '/residency/admin/analytics', label: 'Analytics' },
   { href: '/residency/admin/export', label: 'Export' },
 ]
 
@@ -73,15 +87,32 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </p>
         </div>
         <nav className="r-sidebar-nav">
-          {navItems.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={pathname === item.href || (item.href !== '/residency/admin' && pathname.startsWith(item.href)) ? 'active' : ''}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item, i) => {
+            if ('section' in item) {
+              return (
+                <p key={i} style={{
+                  fontSize: '0.5625rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: 'var(--r-text-muted)',
+                  margin: '1rem 0 0.25rem 0.875rem',
+                  opacity: 0.7,
+                }}>
+                  {item.section}
+                </p>
+              )
+            }
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={pathname === item.href || (item.href !== '/residency/admin' && pathname.startsWith(item.href)) ? 'active' : ''}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
         </nav>
         <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid var(--r-border)' }}>
           <button
