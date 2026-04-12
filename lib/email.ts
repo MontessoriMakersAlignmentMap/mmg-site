@@ -28,7 +28,7 @@ export async function sendEmail({
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      from: 'Montessori Makers <noreply@montessorimakers.co>',
+      from: 'Montessori Makers <info@montessorimakers.org>',
       to,
       subject,
       ...(html ? { html } : {}),

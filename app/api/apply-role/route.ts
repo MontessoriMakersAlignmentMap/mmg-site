@@ -44,7 +44,19 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Send notification email via contact API pattern
+    // Save to database first — email is fire-and-forget after this
+    const supabaseClient = createServiceClient()
+    await supabaseClient.from('role_applications').insert({
+      name,
+      email,
+      phone: phone || null,
+      role_title: roleTitle || null,
+      school_name: schoolName || null,
+      message: message || null,
+      resume_url: resumeUrl,
+    })
+
+    // Send notification email — non-critical, application is already saved
     const adminEmail = process.env.ADMIN_EMAIL ?? 'hannah@montessorimakers.org'
     const subject = `Role Application: ${roleTitle} — ${schoolName}`
     const body = [
@@ -59,8 +71,9 @@ export async function POST(req: NextRequest) {
       resumeUrl ? `\nResume: ${resumeUrl}` : null,
     ].filter(Boolean).join('\n')
 
-    // Use the existing email infrastructure (Resend)
-    await sendEmail({ to: adminEmail, subject, text: body }).catch(() => {})
+    sendEmail({ to: adminEmail, subject, text: body }).catch((err) => {
+      console.error('apply-role: email notification failed (application saved to DB):', err)
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
