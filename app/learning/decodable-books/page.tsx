@@ -4,6 +4,25 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+function ResearchCallout({ stat, claim, href }: { stat: string; claim: string; href: string }) {
+  return (
+    <Link
+      href={href}
+      className="flex items-start gap-4 bg-[#0e1a7a]/[0.04] border border-[#0e1a7a]/10 px-5 py-4 hover:border-[#d6a758] hover:bg-[#fdf5e4] transition-colors group"
+    >
+      <span className="text-[#d6a758] text-xl font-bold flex-shrink-0" style={{ fontFamily: 'var(--font-heading)' }}>
+        {stat}
+      </span>
+      <div className="flex-1">
+        <p className="text-[#374151] text-sm leading-relaxed">{claim}</p>
+        <p className="text-[#d6a758] text-[10px] tracking-[0.12em] uppercase font-semibold mt-1.5 group-hover:underline">
+          See the research →
+        </p>
+      </div>
+    </Link>
+  )
+}
+
 const serif = { fontFamily: 'var(--font-heading)' }
 
 const PDF_URL = '/decodable-books-title-sight-word-list.pdf'
@@ -375,6 +394,12 @@ export default function DecodableBooksPage() {
               >
                 Get Free Resources
               </Link>
+              <Link
+                href="/learning/decodable-books/research"
+                className="text-[#d6a758] text-sm px-2 py-4 tracking-wide hover:underline inline-block"
+              >
+                Read the research →
+              </Link>
             </div>
           </div>
 
@@ -495,6 +520,18 @@ export default function DecodableBooksPage() {
                 <span className="text-[#374151] text-base">{item}</span>
               </div>
             ))}
+            <div className="pt-6 space-y-3">
+              <ResearchCallout
+                stat="95%+"
+                claim="Our books average 95%+ decodable words — well above the 75–85% minimum in most state mandates."
+                href="/learning/decodable-books/research#decodability-percentage"
+              />
+              <ResearchCallout
+                stat="Simple View"
+                claim="Decoding × Language Comprehension = Reading. Decodables build the decoding side so everything else can follow."
+                href="/learning/decodable-books/research#decodables-and-comprehension"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -507,10 +544,15 @@ export default function DecodableBooksPage() {
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
               Eight sets. A complete phonics progression.
             </h2>
-            <p className="text-[#374151] text-base leading-relaxed mb-2">
+            <p className="text-[#374151] text-base leading-relaxed mb-4">
               A complete, phonics-aligned progression across 96 decodable books — from first
               sounds to advanced patterns.
             </p>
+            <ResearchCallout
+              stat="Ehri"
+              claim="The sequence from CVC → blends → long vowels → multisyllabic maps directly to Ehri's phases of reading development — the research model for how the brain builds the reading network."
+              href="/learning/decodable-books/research#scope-and-sequence"
+            />
           </div>
 
           {/* PDF download */}
@@ -731,11 +773,16 @@ export default function DecodableBooksPage() {
                 </div>
               ))}
             </div>
-            <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-6">
+            <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-6 mb-4">
               <p className="text-[#374151] text-sm leading-relaxed italic">
                 Our decodable book series is designed to meet every one of these conditions.
               </p>
             </div>
+            <ResearchCallout
+              stat="3 cueing"
+              claim="Running records and three-cueing systems are based on disproven theory. Here's what replaced them — and why it matters for every book in your classroom."
+              href="/learning/decodable-books/research#three-cueing"
+            />
             <div className="mt-8">
               <a
                 href={PDF_URL}
