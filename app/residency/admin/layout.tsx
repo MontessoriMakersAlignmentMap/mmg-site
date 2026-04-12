@@ -22,6 +22,8 @@ const navItems = [
   { href: '/residency/admin/warnings', label: 'Warnings' },
   { href: '/residency/admin/support-plans', label: 'Support Plans' },
   { href: '/residency/admin/placements', label: 'Placements' },
+  { href: '/residency/admin/schools', label: 'Schools' },
+  { href: '/residency/admin/completion', label: 'Completion' },
   { href: '/residency/admin/analytics', label: 'Analytics' },
   { href: '/residency/admin/export', label: 'Export' },
 ]
