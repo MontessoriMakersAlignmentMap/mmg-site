@@ -322,29 +322,49 @@ export default function WorkshopsSpeakingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10">
+      <section className="bg-[#0e1a7a] pt-32 pb-0 md:pt-40 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl">
-            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
-              Advisory · Workshops &amp; Speaking
-            </p>
-            <h1
-              className="text-5xl md:text-6xl text-white leading-[1.05] mb-8"
-              style={serif}
-            >
-              The work that often starts here.
-            </h1>
-            <p className="text-[#94A3B8] text-lg leading-relaxed mb-12 max-w-2xl">
-              Keynotes, workshops, and facilitation for Montessori schools and organizations.
-              Grounded in philosophy. Built to move rooms—and the leaders in them.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#request-workshop"
-                className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+          <div className="flex flex-col md:flex-row md:items-end gap-12 md:gap-20">
+            {/* Text */}
+            <div className="flex-1 pb-16 md:pb-24">
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
+                Advisory · Workshops &amp; Speaking
+              </p>
+              <h1
+                className="text-5xl md:text-6xl text-white leading-[1.05] mb-8"
+                style={serif}
               >
-                Request a Workshop
-              </a>
+                The work that often starts here.
+              </h1>
+              <p className="text-[#94A3B8] text-lg leading-relaxed mb-12 max-w-2xl">
+                Keynotes, workshops, and facilitation for Montessori schools and organizations.
+                Grounded in philosophy. Built to move rooms—and the leaders in them.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#request-workshop"
+                  className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+                >
+                  Request a Workshop
+                </a>
+              </div>
+            </div>
+            {/* Photo */}
+            <div className="relative w-full md:w-80 lg:w-96 flex-shrink-0 self-end">
+              <div className="relative overflow-hidden" style={{ aspectRatio: '3/4' }}>
+                <Image
+                  src="/images/hannah.jpg"
+                  alt="Hannah Richardson"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a7a]/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white font-semibold leading-tight">Hannah Richardson</p>
+                  <p className="text-white/70 text-sm mt-1">AMI USA · BMEF · VMCA · USMI · CCSD</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -393,18 +413,11 @@ export default function WorkshopsSpeakingPage() {
         </div>
       </section>
 
-      {/* Image break */}
-      <div className="relative w-full h-64 md:h-80 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&q=80"
-          alt="School leaders engaged in professional development — the collaborative spirit of Montessori workshops"
-          fill
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[#0e1a7a]/30" />
-        <div className="absolute inset-0 flex items-center justify-center px-6">
+      {/* Pull quote break */}
+      <div className="bg-[#0e1a7a] py-16 md:py-20 px-6 md:px-10 border-t border-white/10">
+        <div className="max-w-3xl mx-auto text-center">
           <p
-            className="text-white text-xl md:text-2xl lg:text-3xl text-center max-w-2xl leading-relaxed"
+            className="text-white text-xl md:text-2xl lg:text-3xl leading-relaxed"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             &ldquo;These are rooms full of people doing the work. Sessions are designed for people who are already leading.&rdquo;
