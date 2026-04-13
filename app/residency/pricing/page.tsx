@@ -505,6 +505,25 @@ export default function MMRPricingPage() {
                     automatically unless you request a manual arrangement. You may pay in full at any
                     point during the program without penalty.
                   </p>
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      marginTop: '1.25rem',
+                      padding: '0.5rem 0.875rem',
+                      background: '#F2EDE6',
+                      border: '1px solid #E2DDD6',
+                    }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <span style={{ color: '#64748B', fontSize: '0.75rem', letterSpacing: '0.03em' }}>
+                      Secure payment processed via <strong style={{ color: '#374151' }}>Stripe</strong>
+                    </span>
+                  </div>
                 </div>
               </div>
             </FadeIn>

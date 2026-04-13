@@ -65,6 +65,7 @@ const residencyLinks = [
   { name: 'Primary Track (3–6)', href: '/residency/pricing', tagline: '9-month credential, 224 lessons' },
   { name: 'Elementary Track (6–12)', href: '/residency/pricing', tagline: '12-month credential, 325 lessons' },
   { name: 'Equity Fellows', href: '/residency/pricing#equity-fellows', tagline: 'Need-based tuition support' },
+  { name: 'Student Login', href: 'https://mmr.montessorimakersgroup.org/login', tagline: 'Access your coursework' },
 ]
 
 const ecosystemGroups = [
@@ -265,6 +266,13 @@ export default function Nav() {
                     <p className="text-[#d6a758] text-[10px] tracking-[0.15em] uppercase font-semibold mb-0.5">Teacher Preparation</p>
                     <p className="text-[#0e1a7a] text-sm font-semibold leading-snug">Montessori Makers Residency</p>
                     <p className="text-[#64748B] text-xs mt-0.5 leading-relaxed">Primary &amp; Elementary credentials — launching fall 2026</p>
+                    <a
+                      href="https://mmr.montessorimakersgroup.org/login"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-block mt-2 text-[10px] tracking-[0.1em] uppercase text-[#0e1a7a] border border-[#0e1a7a] px-2 py-0.5 hover:bg-[#0e1a7a] hover:text-white transition-colors"
+                    >
+                      Student Login
+                    </a>
                   </div>
                   <div className="flex items-center pr-4 text-[#d6a758]">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
