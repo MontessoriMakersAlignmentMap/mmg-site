@@ -260,11 +260,11 @@ export default function MMRLandingPage() {
                 duration: '9-month program',
                 lessons: '224 lessons',
                 strands: [
+                  'Theory',
                   'Practical Life',
                   'Sensorial',
                   'Language',
                   'Mathematics',
-                  'Theory',
                   'Behavior Support',
                   'Elementary Bridge',
                 ],
@@ -282,6 +282,7 @@ export default function MMRLandingPage() {
                 duration: '12-month program',
                 lessons: '325 lessons',
                 strands: [
+                  'Theory',
                   'Geography',
                   'Biology',
                   'History',
@@ -290,7 +291,6 @@ export default function MMRLandingPage() {
                   'Geometry',
                   'Art',
                   'Music',
-                  'Theory',
                   'Behavior Support',
                   'Primary Foundation',
                 ],
