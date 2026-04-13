@@ -108,7 +108,7 @@ export default function EditLessonPage() {
     router.push('/residency/admin/lessons')
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -263,7 +263,7 @@ export default function EditLessonPage() {
         </div>
 
         {error && (
-          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.5rem', background: '#fef2f2', borderRadius: '6px' }}>
+          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.5rem', background: 'var(--r-error-light)', borderRadius: '6px' }}>
             {error}
           </p>
         )}

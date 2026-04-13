@@ -68,7 +68,7 @@ export default function MentorDashboard() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -124,7 +124,7 @@ export default function MentorDashboard() {
                   top: '1rem',
                   right: '1rem',
                   background: 'var(--r-gold)',
-                  color: '#fff',
+                  color: 'var(--r-white)',
                   fontSize: '0.6875rem',
                   fontWeight: 700,
                   padding: '0.25rem 0.625rem',

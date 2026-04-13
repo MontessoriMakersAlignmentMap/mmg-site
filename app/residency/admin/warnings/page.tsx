@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 
 const SEVERITY_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  notice: { bg: '#e3f2fd', color: '#1565c0', label: 'Notice' },
-  warning: { bg: '#fff8e1', color: '#f57f17', label: 'Warning' },
+  notice: { bg: 'var(--r-info-light)', color: 'var(--r-info)', label: 'Notice' },
+  warning: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Warning' },
   critical: { bg: '#fce4ec', color: '#c62828', label: 'Critical' },
 }
 
@@ -187,7 +187,7 @@ export default function WarningsPage() {
     setWarnings(prev => prev.map(w => w.id === id ? { ...w, acknowledged: true } : w))
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const criticalCount = warnings.filter(w => w.severity === 'critical' && !w.resolved).length
   const warningCount = warnings.filter(w => w.severity === 'warning' && !w.resolved).length
@@ -216,9 +216,9 @@ export default function WarningsPage() {
             </div>
           )}
           {warningCount > 0 && (
-            <div style={{ padding: '0.75rem 1.25rem', background: '#fff8e1', borderRadius: '8px', border: '1px solid #ffe082' }}>
-              <span style={{ fontWeight: 700, color: '#f57f17', fontSize: '1.25rem' }}>{warningCount}</span>
-              <span style={{ fontSize: '0.8125rem', color: '#f57f17', marginLeft: '0.5rem' }}>Warnings</span>
+            <div style={{ padding: '0.75rem 1.25rem', background: 'var(--r-feedback-bg)', borderRadius: '8px', border: '1px solid #ffe082' }}>
+              <span style={{ fontWeight: 700, color: 'var(--r-feedback-color)', fontSize: '1.25rem' }}>{warningCount}</span>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--r-feedback-color)', marginLeft: '0.5rem' }}>Warnings</span>
             </div>
           )}
         </div>
@@ -256,7 +256,7 @@ export default function WarningsPage() {
               return (
                 <div key={w.id} style={{
                   padding: '0.75rem 0.875rem',
-                  background: w.resolved ? '#f5f5f5' : 'var(--r-cream)',
+                  background: w.resolved ? 'var(--r-muted-light)' : 'var(--r-cream)',
                   borderRadius: '6px',
                   borderLeft: `3px solid ${sev.color}`,
                   opacity: w.resolved ? 0.6 : 1,
@@ -273,7 +273,7 @@ export default function WarningsPage() {
                       }}>
                         {sev.label}
                       </span>
-                      <span style={{ fontSize: '0.625rem', color: 'var(--r-text-muted)', padding: '0.125rem 0.5rem', background: '#f5f5f5', borderRadius: '9999px' }}>
+                      <span style={{ fontSize: '0.625rem', color: 'var(--r-text-muted)', padding: '0.125rem 0.5rem', background: 'var(--r-muted-light)', borderRadius: '9999px' }}>
                         {WARNING_TYPE_LABELS[w.warning_type] ?? w.warning_type}
                       </span>
                     </div>
@@ -295,7 +295,7 @@ export default function WarningsPage() {
                       )}
                       <button onClick={() => resolveWarning(w.id)} style={{
                         padding: '0.25rem 0.625rem', borderRadius: '6px', border: '1px solid var(--r-border)',
-                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: '#2e7d32',
+                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: 'var(--r-success)',
                       }}>
                         Resolve
                       </button>

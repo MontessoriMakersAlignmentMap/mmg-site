@@ -370,7 +370,7 @@ export default function NewAssessmentPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1rem' }}>
                   <span style={{
                     width: '36px', height: '36px', borderRadius: '50%',
-                    background: 'var(--r-navy)', color: '#fff',
+                    background: 'var(--r-navy)', color: 'var(--r-white)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '0.875rem', fontWeight: 700, flexShrink: 0,
                   }}>{idx + 1}</span>
@@ -427,7 +427,7 @@ export default function NewAssessmentPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1rem' }}>
                   <span style={{
                     width: '36px', height: '36px', borderRadius: '50%',
-                    background: 'var(--r-gold)', color: '#fff',
+                    background: 'var(--r-gold)', color: 'var(--r-white)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '0.875rem', fontWeight: 700, flexShrink: 0,
                   }}>{idx + 1}</span>
@@ -555,7 +555,7 @@ export default function NewAssessmentPage() {
         </div>
 
         {error && (
-          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.75rem', background: '#fef2f2', borderRadius: '6px' }}>
+          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.75rem', background: 'var(--r-error-light)', borderRadius: '6px' }}>
             {error}
           </p>
         )}

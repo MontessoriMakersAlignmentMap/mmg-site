@@ -191,8 +191,8 @@ export default function SessionDetailPage() {
         <span style={{
           fontSize: '0.625rem', fontWeight: 600, padding: '0.25rem 0.75rem', borderRadius: '3px',
           textTransform: 'uppercase',
-          background: isCompleted ? '#e8f5e9' : isInProgress ? '#fff8e1' : '#e3f2fd',
-          color: isCompleted ? '#2e7d32' : isInProgress ? '#f57f17' : '#1565c0',
+          background: isCompleted ? 'var(--r-success-light)' : isInProgress ? 'var(--r-feedback-bg)' : 'var(--r-info-light)',
+          color: isCompleted ? 'var(--r-success)' : isInProgress ? 'var(--r-feedback-color)' : 'var(--r-info)',
         }}>
           {session.status}
         </span>
@@ -228,14 +228,14 @@ export default function SessionDetailPage() {
 
           {/* AI Review Patterns */}
           {fieldPatterns.length > 0 && (
-            <div className="r-card" style={{ marginBottom: '1rem', borderLeft: '3px solid #f57f17' }}>
+            <div className="r-card" style={{ marginBottom: '1rem', borderLeft: '3px solid var(--r-feedback-color)' }}>
               <h3 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>AI Review Patterns (since last session)</h3>
               <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
                 Fields most frequently flagged — address these in today's session:
               </p>
               {fieldPatterns.slice(0, 5).map(fp => (
                 <div key={fp.key} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.375rem 0' }}>
-                  <span style={{ fontWeight: 700, color: '#f57f17', width: '1.5rem', textAlign: 'right', fontSize: '0.875rem' }}>{fp.count}</span>
+                  <span style={{ fontWeight: 700, color: 'var(--r-feedback-color)', width: '1.5rem', textAlign: 'right', fontSize: '0.875rem' }}>{fp.count}</span>
                   <span style={{ fontSize: '0.8125rem' }}>{fp.label}</span>
                 </div>
               ))}

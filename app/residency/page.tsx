@@ -6,7 +6,7 @@ export default function ResidencyHome() {
       {/* Hero */}
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '6rem 0 5rem',
         textAlign: 'center',
       }}>
@@ -26,7 +26,7 @@ export default function ResidencyHome() {
             fontSize: 'clamp(2rem, 5vw, 3.25rem)',
             lineHeight: 1.15,
             marginBottom: '1.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             The Residency
           </h1>
@@ -42,10 +42,10 @@ export default function ResidencyHome() {
             <Link href="/residency/apply" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem' }}>
               Apply Now
             </Link>
-            <Link href="/residency/curriculum" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
+            <Link href="/residency/curriculum" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: 'var(--r-white)', borderColor: 'rgba(255,255,255,0.3)' }}>
               Explore Curriculum
             </Link>
-            <Link href="/residency/auth/login" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
+            <Link href="/residency/auth/login" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: 'var(--r-white)', borderColor: 'rgba(255,255,255,0.3)' }}>
               Resident Sign In
             </Link>
           </div>

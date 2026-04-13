@@ -10,15 +10,15 @@ const RUBRIC_LABELS: Record<string, string> = {
 }
 
 const BAND_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  highly_proficient: { bg: '#e8f5e9', color: '#2e7d32', label: 'Highly Proficient' },
-  proficient: { bg: '#e3f2fd', color: '#1565c0', label: 'Proficient' },
-  developing: { bg: '#fff8e1', color: '#f57f17', label: 'Developing' },
+  highly_proficient: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Highly Proficient' },
+  proficient: { bg: 'var(--r-info-light)', color: 'var(--r-info)', label: 'Proficient' },
+  developing: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Developing' },
   needs_support: { bg: '#fce4ec', color: '#c62828', label: 'Needs Support' },
 }
 
 const STANDING_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  good_standing: { bg: '#e8f5e9', color: '#2e7d32', label: 'Good Standing' },
-  academic_watch: { bg: '#fff8e1', color: '#f57f17', label: 'Academic Watch' },
+  good_standing: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Good Standing' },
+  academic_watch: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Academic Watch' },
   formal_remediation: { bg: '#fce4ec', color: '#c62828', label: 'Formal Remediation' },
 }
 
@@ -122,7 +122,7 @@ export default function PortfolioPage() {
     if (data) setHandbookAck(data)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!resident) return <p>Resident record not found.</p>
 
   const standing = resident.current_standing
@@ -170,7 +170,7 @@ export default function PortfolioPage() {
             </p>
           </div>
           {handbookAck ? (
-            <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#2e7d32' }}>Acknowledged</span>
+            <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-success)' }}>Acknowledged</span>
           ) : (
             <button onClick={acknowledgeHandbook} className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem' }}>
               I Acknowledge

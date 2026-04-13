@@ -266,7 +266,7 @@ export default function PortalDashboard() {
               <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.375rem', lineHeight: 1.3 }}>{b.weekly_theme}</h3>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
                 <span>{engaged}/{total} lessons</span>
-                <span style={{ color: engaged >= total ? '#2e7d32' : '#f57f17', fontWeight: 600 }}>
+                <span style={{ color: engaged >= total ? 'var(--r-success)' : 'var(--r-feedback-color)', fontWeight: 600 }}>
                   {engaged >= total ? 'Complete' : 'Incomplete'}
                 </span>
               </div>
@@ -286,7 +286,7 @@ export default function PortalDashboard() {
 
       {/* Album prompt for current bundle */}
       {currentBundle?.album_submission_required && currentBundle.album_prompt && (
-        <div className="r-card" style={{ borderLeft: '4px solid #1565c0', marginBottom: '1.5rem' }}>
+        <div className="r-card" style={{ borderLeft: '4px solid var(--r-info)', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>This Week&apos;s Album Prompt</h2>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--r-text)', marginBottom: '0.75rem' }}>
             {currentBundle.album_prompt}
@@ -302,7 +302,7 @@ export default function PortalDashboard() {
         <div className="r-card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid var(--r-gold)', background: 'var(--r-gold-light)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <h2 style={{ fontSize: '1.125rem', color: 'var(--r-navy)' }}>New Mentor Feedback</h2>
-            <span className="r-badge" style={{ background: 'var(--r-gold)', color: '#fff', fontSize: '0.75rem' }}>
+            <span className="r-badge" style={{ background: 'var(--r-gold)', color: 'var(--r-white)', fontSize: '0.75rem' }}>
               {unreadFeedback.length} new
             </span>
           </div>

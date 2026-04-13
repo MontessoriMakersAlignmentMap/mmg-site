@@ -30,7 +30,7 @@ export default function AdminLessonFeedbackPage() {
     await load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const filtered = filter === 'all' ? feedback : feedback.filter(f => f.status === filter)
   const counts = {
@@ -82,7 +82,7 @@ export default function AdminLessonFeedbackPage() {
                   fontSize: '0.625rem', fontWeight: 600, textTransform: 'uppercase',
                   padding: '0.25rem 0.5rem', borderRadius: '4px',
                   color: f.status === 'new' ? '#b45309' : f.status === 'reviewed' ? '#0E1A7A' : '#2d6a4f',
-                  background: f.status === 'new' ? '#fef3c7' : f.status === 'reviewed' ? '#e8e9f5' : '#d1fae5',
+                  background: f.status === 'new' ? 'var(--r-warning-light)' : f.status === 'reviewed' ? '#e8e9f5' : 'var(--r-success-light)',
                 }}>
                   {f.status}
                 </span>

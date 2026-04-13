@@ -39,8 +39,9 @@ export default function ResidencyLayout({
 }) {
   return (
     <div className={`${montserrat.variable} residency-root`}>
+      <a href="#main-content" className="r-skip-link">Skip to content</a>
       <ResidencyNav />
-      <main className="residency-main">{children}</main>
+      <main id="main-content" className="residency-main">{children}</main>
       <ResidencyFooter />
     </div>
   )

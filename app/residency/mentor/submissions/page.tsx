@@ -39,7 +39,7 @@ export default function MentorSubmissionsPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const needsReview = submissions.filter(s => s.status === 'ai_passed')
   const inReview = submissions.filter(s => s.status === 'mentor_review')
@@ -59,7 +59,7 @@ export default function MentorSubmissionsPage() {
           {/* Needs mentor review */}
           {needsReview.length > 0 && (
             <div style={{ marginBottom: '2rem' }}>
-              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: '#1565c0' }}>
+              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-info)' }}>
                 Ready for Review ({needsReview.length})
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -73,7 +73,7 @@ export default function MentorSubmissionsPage() {
           {/* In progress */}
           {inReview.length > 0 && (
             <div style={{ marginBottom: '2rem' }}>
-              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: '#f57f17' }}>
+              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-feedback-color)' }}>
                 Revision Requested ({inReview.length})
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -87,7 +87,7 @@ export default function MentorSubmissionsPage() {
           {/* Completed */}
           {completed.length > 0 && (
             <div style={{ marginBottom: '2rem' }}>
-              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: '#2e7d32' }}>
+              <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-success)' }}>
                 Completed ({completed.length})
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>

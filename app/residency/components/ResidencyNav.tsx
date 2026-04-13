@@ -9,7 +9,7 @@ export default function ResidencyNav() {
   return (
     <header style={{
       background: 'var(--r-navy)',
-      color: '#fff',
+      color: 'var(--r-white)',
       position: 'sticky',
       top: 0,
       zIndex: 50,
@@ -22,7 +22,7 @@ export default function ResidencyNav() {
       }}>
         <Link href="/residency" style={{
           textDecoration: 'none',
-          color: '#fff',
+          color: 'var(--r-white)',
           display: 'flex',
           alignItems: 'center',
           gap: '0.75rem',
@@ -46,7 +46,7 @@ export default function ResidencyNav() {
         </Link>
 
         {/* Desktop nav */}
-        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}
+        <nav aria-label="Main navigation" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}
              className="residency-desktop-nav">
           <Link href="/residency/curriculum" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: '0.875rem' }}>
             Curriculum
@@ -67,7 +67,7 @@ export default function ResidencyNav() {
             display: 'none',
             background: 'none',
             border: 'none',
-            color: '#fff',
+            color: 'var(--r-white)',
             fontSize: '1.5rem',
             cursor: 'pointer',
           }}
@@ -79,7 +79,7 @@ export default function ResidencyNav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="residency-mobile-menu" style={{
+        <nav aria-label="Mobile navigation" className="residency-mobile-menu" style={{
           padding: '1rem 1.5rem 1.5rem',
           display: 'flex',
           flexDirection: 'column',

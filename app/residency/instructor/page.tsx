@@ -99,7 +99,7 @@ export default function InstructorDashboard() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -127,8 +127,8 @@ export default function InstructorDashboard() {
                 {c.daysUntilSession !== null && (
                   <div style={{
                     padding: '0.375rem 0.75rem', borderRadius: '6px', fontSize: '0.6875rem', fontWeight: 600,
-                    background: c.daysUntilSession <= 3 ? '#fff8e1' : 'var(--r-bg-muted)',
-                    color: c.daysUntilSession <= 3 ? '#f57f17' : 'var(--r-text-muted)',
+                    background: c.daysUntilSession <= 3 ? 'var(--r-feedback-bg)' : 'var(--r-bg-muted)',
+                    color: c.daysUntilSession <= 3 ? 'var(--r-feedback-color)' : 'var(--r-text-muted)',
                   }}>
                     {c.daysUntilSession === 0 ? 'Session TODAY' :
                      c.daysUntilSession === 1 ? 'Session tomorrow' :
@@ -163,11 +163,11 @@ function StatBox({ label, value, highlight }: { label: string; value: number; hi
   return (
     <div style={{
       textAlign: 'center', padding: '0.75rem 0.5rem', borderRadius: '8px',
-      background: highlight ? '#fff8e1' : 'var(--r-bg-muted)',
+      background: highlight ? 'var(--r-feedback-bg)' : 'var(--r-bg-muted)',
     }}>
       <p style={{
         fontSize: '1.5rem', fontWeight: 700,
-        color: highlight ? '#f57f17' : 'var(--r-navy)',
+        color: highlight ? 'var(--r-feedback-color)' : 'var(--r-navy)',
       }}>{value}</p>
       <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>{label}</p>
     </div>

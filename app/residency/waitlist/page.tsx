@@ -49,7 +49,7 @@ export default function WaitlistPage() {
     return (
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '6rem 0 5rem',
         textAlign: 'center',
         minHeight: '60vh',
@@ -72,7 +72,7 @@ export default function WaitlistPage() {
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             lineHeight: 1.2,
             marginBottom: '1.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             Thank You, {form.first_name}
           </h1>
@@ -83,7 +83,7 @@ export default function WaitlistPage() {
             <Link href="/residency/curriculum" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem' }}>
               Explore Curriculum
             </Link>
-            <Link href="/residency" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
+            <Link href="/residency" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', color: 'var(--r-white)', borderColor: 'rgba(255,255,255,0.3)' }}>
               Back to Residency
             </Link>
           </div>
@@ -96,7 +96,7 @@ export default function WaitlistPage() {
     <>
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '5rem 0 4rem',
         textAlign: 'center',
       }}>
@@ -116,7 +116,7 @@ export default function WaitlistPage() {
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             lineHeight: 1.2,
             marginBottom: '1.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             Join the Waitlist
           </h1>
@@ -174,7 +174,7 @@ export default function WaitlistPage() {
                 color: 'var(--r-error)',
                 fontSize: '0.8125rem',
                 padding: '0.5rem 0.75rem',
-                background: '#fef2f2',
+                background: 'var(--r-error-light)',
                 borderRadius: '6px',
                 marginBottom: '1rem',
               }}>

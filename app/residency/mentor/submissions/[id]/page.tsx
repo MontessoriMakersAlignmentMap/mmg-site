@@ -19,8 +19,8 @@ const FIELD_CONFIG = [
 ]
 
 const VERDICT_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  complete: { bg: '#e8f5e9', color: '#2e7d32', label: 'Complete' },
-  needs_revision: { bg: '#fff8e1', color: '#f57f17', label: 'Needs Revision' },
+  complete: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Complete' },
+  needs_revision: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Needs Revision' },
   missing: { bg: '#fce4ec', color: '#c62828', label: 'Missing' },
 }
 
@@ -138,7 +138,7 @@ export default function MentorSubmissionDetailPage() {
     }
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!entry) return <p>Entry not found.</p>
 
   const fieldFeedback = latestReview?.field_feedback || {}
@@ -173,15 +173,15 @@ export default function MentorSubmissionDetailPage() {
       {latestReview && (
         <div className="r-card" style={{
           marginBottom: '1.5rem',
-          borderLeft: `4px solid ${latestReview.overall_verdict === 'passed' ? '#2e7d32' : '#f57f17'}`,
+          borderLeft: `4px solid ${latestReview.overall_verdict === 'passed' ? 'var(--r-success)' : 'var(--r-feedback-color)'}`,
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
             <h2 style={{ fontSize: '1rem', margin: 0 }}>AI Review (Cycle {latestReview.cycle_number})</h2>
             <span style={{
               fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
               textTransform: 'uppercase',
-              background: latestReview.overall_verdict === 'passed' ? '#e8f5e9' : '#fff8e1',
-              color: latestReview.overall_verdict === 'passed' ? '#2e7d32' : '#f57f17',
+              background: latestReview.overall_verdict === 'passed' ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+              color: latestReview.overall_verdict === 'passed' ? 'var(--r-success)' : 'var(--r-feedback-color)',
             }}>
               {latestReview.overall_verdict === 'passed' ? 'Passed' : 'Needs Revision'}
             </span>
@@ -229,7 +229,7 @@ export default function MentorSubmissionDetailPage() {
             {fb?.feedback && (
               <div style={{
                 marginTop: '0.375rem', padding: '0.5rem 0.875rem', borderRadius: '6px',
-                background: vs?.bg || '#f5f5f5', fontSize: '0.75rem', lineHeight: 1.6,
+                background: vs?.bg || 'var(--r-muted-light)', fontSize: '0.75rem', lineHeight: 1.6,
                 borderLeft: `3px solid ${vs?.color || '#999'}`,
               }}>
                 <strong>AI:</strong> {fb.feedback}
@@ -247,7 +247,7 @@ export default function MentorSubmissionDetailPage() {
           </h2>
 
           <div style={{ marginBottom: '1.25rem' }}>
-            <label style={{ fontSize: '0.8125rem', fontWeight: 600, display: 'block', marginBottom: '0.375rem', color: '#2e7d32' }}>
+            <label style={{ fontSize: '0.8125rem', fontWeight: 600, display: 'block', marginBottom: '0.375rem', color: 'var(--r-success)' }}>
               Strengths
             </label>
             <textarea
@@ -264,7 +264,7 @@ export default function MentorSubmissionDetailPage() {
           </div>
 
           <div style={{ marginBottom: '1.25rem' }}>
-            <label style={{ fontSize: '0.8125rem', fontWeight: 600, display: 'block', marginBottom: '0.375rem', color: '#f57f17' }}>
+            <label style={{ fontSize: '0.8125rem', fontWeight: 600, display: 'block', marginBottom: '0.375rem', color: 'var(--r-feedback-color)' }}>
               Growth Edge
             </label>
             <textarea

@@ -42,7 +42,7 @@ export default function SchoolResidentsPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -71,7 +71,7 @@ export default function SchoolResidentsPage() {
                   <span style={{
                     fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                     padding: '0.25rem 0.625rem', borderRadius: '4px',
-                    background: res?.status === 'enrolled' ? '#d1fae5' : '#fef3c7',
+                    background: res?.status === 'enrolled' ? 'var(--r-success-light)' : 'var(--r-warning-light)',
                     color: res?.status === 'enrolled' ? '#2d6a4f' : '#b45309',
                   }}>
                     {res?.status || '—'}

@@ -54,7 +54,7 @@ export default function MentorCalendarPage() {
     loadCohortData()
   }, [selectedCohort])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const today = new Date().toISOString().split('T')[0]
   const currentBundle = bundles.find(b => b.unlock_date <= today && (!b.lock_date || b.lock_date >= today))
@@ -151,18 +151,18 @@ export default function MentorCalendarPage() {
                     {b.practicum_focus?.substring(0, 70)}...
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', textAlign: 'center' }}>
-                    {b.album_submission_required ? <span style={{ color: '#1565c0', fontWeight: 600 }}>Due</span> : '—'}
+                    {b.album_submission_required ? <span style={{ color: 'var(--r-info)', fontWeight: 600 }}>Due</span> : '—'}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', textAlign: 'center' }}>
                     {b.live_session_week ? (
-                      <span style={{ color: hasLog ? '#2e7d32' : '#7b1fa2', fontWeight: 600 }}>
+                      <span style={{ color: hasLog ? 'var(--r-success)' : '#7b1fa2', fontWeight: 600 }}>
                         {hasLog ? 'Logged' : 'Yes'}
                       </span>
                     ) : '—'}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>
                     {residents.length > 0 && b.status === 'released' ? (
-                      <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: complete === residents.length ? '#2e7d32' : 'var(--r-navy)' }}>
+                      <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: complete === residents.length ? 'var(--r-success)' : 'var(--r-navy)' }}>
                         {complete}/{residents.length}
                       </span>
                     ) : (

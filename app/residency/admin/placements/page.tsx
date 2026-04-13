@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 
 const SITE_STATUS_STYLES: Record<string, { bg: string; color: string }> = {
-  pending: { bg: '#fff8e1', color: '#f57f17' },
-  approved: { bg: '#e3f2fd', color: '#1565c0' },
-  active: { bg: '#e8f5e9', color: '#2e7d32' },
-  inactive: { bg: '#f5f5f5', color: '#757575' },
+  pending: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)' },
+  approved: { bg: 'var(--r-info-light)', color: 'var(--r-info)' },
+  active: { bg: 'var(--r-success-light)', color: 'var(--r-success)' },
+  inactive: { bg: 'var(--r-muted-light)', color: 'var(--r-muted)' },
   suspended: { bg: '#fce4ec', color: '#c62828' },
 }
 
@@ -98,7 +98,7 @@ export default function PlacementsPage() {
     setSites(prev => prev.map(s => s.id === id ? { ...s, status: 'approved' } : s))
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -246,7 +246,7 @@ export default function PlacementsPage() {
                     {s.status === 'pending' && (
                       <button onClick={() => approveSite(s.id)} style={{
                         padding: '0.25rem 0.625rem', borderRadius: '6px', border: '1px solid var(--r-border)',
-                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: '#2e7d32',
+                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: 'var(--r-success)',
                       }}>Approve</button>
                     )}
                   </div>

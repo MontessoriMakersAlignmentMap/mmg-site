@@ -5,7 +5,7 @@ export default function MentorRecruitmentPage() {
     <>
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '5rem 0 4rem',
         textAlign: 'center',
       }}>
@@ -25,7 +25,7 @@ export default function MentorRecruitmentPage() {
             fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
             lineHeight: 1.2,
             marginBottom: '1.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             Become a Mentor Teacher
           </h1>

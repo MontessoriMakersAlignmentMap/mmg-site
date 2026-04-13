@@ -19,8 +19,8 @@ const FIELD_CONFIG = [
 ]
 
 const VERDICT_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  complete: { bg: '#e8f5e9', color: '#2e7d32', label: 'Complete' },
-  needs_revision: { bg: '#fff8e1', color: '#f57f17', label: 'Needs Revision' },
+  complete: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Complete' },
+  needs_revision: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Needs Revision' },
   missing: { bg: '#fce4ec', color: '#c62828', label: 'Missing' },
 }
 
@@ -125,15 +125,15 @@ export default function AlbumEntryDetailPage() {
       {latestReview && (
         <div className="r-card" style={{
           marginBottom: '2rem',
-          borderLeft: `4px solid ${latestReview.overall_verdict === 'passed' ? '#2e7d32' : '#f57f17'}`,
+          borderLeft: `4px solid ${latestReview.overall_verdict === 'passed' ? 'var(--r-success)' : 'var(--r-feedback-color)'}`,
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <h2 style={{ fontSize: '1.125rem', margin: 0 }}>AI Review</h2>
             <span style={{
               fontSize: '0.6875rem', fontWeight: 600, padding: '0.125rem 0.625rem', borderRadius: '3px',
               textTransform: 'uppercase',
-              background: latestReview.overall_verdict === 'passed' ? '#e8f5e9' : '#fff8e1',
-              color: latestReview.overall_verdict === 'passed' ? '#2e7d32' : '#f57f17',
+              background: latestReview.overall_verdict === 'passed' ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+              color: latestReview.overall_verdict === 'passed' ? 'var(--r-success)' : 'var(--r-feedback-color)',
             }}>
               {latestReview.overall_verdict === 'passed' ? 'Passed' : 'Needs Revision'}
             </span>
@@ -153,13 +153,13 @@ export default function AlbumEntryDetailPage() {
           <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Mentor Feedback</h2>
           {entry.mentor_strengths && (
             <div style={{ marginBottom: '0.75rem' }}>
-              <h3 style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#2e7d32', marginBottom: '0.25rem' }}>Strengths</h3>
+              <h3 style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-success)', marginBottom: '0.25rem' }}>Strengths</h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{entry.mentor_strengths}</p>
             </div>
           )}
           {entry.mentor_growth_edge && (
             <div style={{ marginBottom: '0.75rem' }}>
-              <h3 style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#f57f17', marginBottom: '0.25rem' }}>Growth Edge</h3>
+              <h3 style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-feedback-color)', marginBottom: '0.25rem' }}>Growth Edge</h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{entry.mentor_growth_edge}</p>
             </div>
           )}
@@ -209,7 +209,7 @@ export default function AlbumEntryDetailPage() {
             {fb?.feedback && (
               <div style={{
                 marginTop: '0.5rem', padding: '0.625rem 1rem', borderRadius: '6px',
-                background: vs?.bg || '#f5f5f5', fontSize: '0.8125rem', lineHeight: 1.6,
+                background: vs?.bg || 'var(--r-muted-light)', fontSize: '0.8125rem', lineHeight: 1.6,
                 borderLeft: `3px solid ${vs?.color || '#999'}`,
               }}>
                 {fb.feedback}
@@ -248,12 +248,12 @@ export default function AlbumEntryDetailPage() {
           </>
         )}
         {isPassed && entry.status !== 'complete' && (
-          <span style={{ fontSize: '0.8125rem', color: '#2e7d32', padding: '0.5rem 0', fontWeight: 500 }}>
+          <span style={{ fontSize: '0.8125rem', color: 'var(--r-success)', padding: '0.5rem 0', fontWeight: 500 }}>
             AI Review Passed — awaiting mentor review.
           </span>
         )}
         {entry.status === 'complete' && (
-          <span style={{ fontSize: '0.8125rem', color: '#2e7d32', padding: '0.5rem 0', fontWeight: 600 }}>
+          <span style={{ fontSize: '0.8125rem', color: 'var(--r-success)', padding: '0.5rem 0', fontWeight: 600 }}>
             Entry Complete
           </span>
         )}
@@ -271,8 +271,8 @@ export default function AlbumEntryDetailPage() {
                   <span style={{
                     fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
                     textTransform: 'uppercase',
-                    background: cycle.overall_verdict === 'passed' ? '#e8f5e9' : '#fff8e1',
-                    color: cycle.overall_verdict === 'passed' ? '#2e7d32' : '#f57f17',
+                    background: cycle.overall_verdict === 'passed' ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+                    color: cycle.overall_verdict === 'passed' ? 'var(--r-success)' : 'var(--r-feedback-color)',
                   }}>
                     {cycle.overall_verdict === 'passed' ? 'Passed' : 'Needs Revision'}
                   </span>

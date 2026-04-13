@@ -87,7 +87,7 @@ export default function CompetenciesPage() {
     loadData()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Build matrix: resident x competency
   const signoffMap = new Map<string, any>()
@@ -176,8 +176,8 @@ export default function CompetenciesPage() {
               padding: '0.5rem',
               borderRadius: '6px',
               marginBottom: '1rem',
-              background: parseFloat(rubricScore) >= 3.5 ? '#e8f5e9' : '#fff8e1',
-              color: parseFloat(rubricScore) >= 3.5 ? '#2e7d32' : '#f57f17',
+              background: parseFloat(rubricScore) >= 3.5 ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+              color: parseFloat(rubricScore) >= 3.5 ? 'var(--r-success)' : 'var(--r-feedback-color)',
             }}>
               {parseFloat(rubricScore) >= 3.5
                 ? 'Score meets competency threshold (3.5+). Will be marked as MET.'
@@ -234,13 +234,13 @@ export default function CompetenciesPage() {
                             borderRadius: '50%',
                             fontSize: '0.625rem',
                             fontWeight: 700,
-                            background: so.met ? '#e8f5e9' : '#fff8e1',
-                            color: so.met ? '#2e7d32' : '#f57f17',
+                            background: so.met ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+                            color: so.met ? 'var(--r-success)' : 'var(--r-feedback-color)',
                           }}>
                             {so.met ? '\u2713' : Number(so.rubric_score).toFixed(1)}
                           </span>
                         ) : (
-                          <span style={{ color: '#e0e0e0' }}>&mdash;</span>
+                          <span style={{ color: 'var(--r-border)' }}>&mdash;</span>
                         )}
                       </td>
                     )

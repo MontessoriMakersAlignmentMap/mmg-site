@@ -72,7 +72,7 @@ export default function MentorResidentDetailPage() {
     setTimeout(() => setNotesSaved(false), 2000)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!resident) return <p>Resident not found.</p>
 
   const total = assignments.length
@@ -110,7 +110,7 @@ export default function MentorResidentDetailPage() {
         {submitted.length > 0 && (
           <span style={{
             background: 'var(--r-gold)',
-            color: '#fff',
+            color: 'var(--r-white)',
             fontSize: '0.75rem',
             fontWeight: 700,
             padding: '0.375rem 0.875rem',
@@ -212,7 +212,7 @@ export default function MentorResidentDetailPage() {
             {assessments.map(a => {
               const typeLabels: Record<string, string> = { practice: 'Practice', reflective: 'Reflective', equity: 'Equity' }
               const bandColors: Record<string, string> = {
-                highly_proficient: '#2e7d32', proficient: '#1565c0', developing: '#f57f17', needs_support: '#c62828',
+                highly_proficient: 'var(--r-success)', proficient: 'var(--r-info)', developing: 'var(--r-feedback-color)', needs_support: '#c62828',
               }
               return (
                 <div key={a.id} style={{

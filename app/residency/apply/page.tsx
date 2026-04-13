@@ -87,7 +87,7 @@ export default function ApplyPage() {
       <>
         <section style={{
           background: 'var(--r-navy)',
-          color: '#fff',
+          color: 'var(--r-white)',
           padding: '5rem 0 4rem',
           textAlign: 'center',
         }}>
@@ -107,7 +107,7 @@ export default function ApplyPage() {
               fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
               lineHeight: 1.2,
               marginBottom: '1.5rem',
-              color: '#fff',
+              color: 'var(--r-white)',
             }}>
               Thank You, {form.first_name}
             </h1>
@@ -133,7 +133,7 @@ export default function ApplyPage() {
       {/* Hero */}
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '5rem 0 4rem',
         textAlign: 'center',
       }}>
@@ -153,7 +153,7 @@ export default function ApplyPage() {
             fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
             lineHeight: 1.2,
             marginBottom: '1.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             Apply to the Residency
           </h1>
@@ -340,7 +340,7 @@ export default function ApplyPage() {
                 color: 'var(--r-error)',
                 fontSize: '0.875rem',
                 padding: '0.75rem 1rem',
-                background: '#fef2f2',
+                background: 'var(--r-error-light)',
                 borderRadius: '8px',
                 marginBottom: '1.5rem',
               }}>

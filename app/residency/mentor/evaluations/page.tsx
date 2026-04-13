@@ -16,9 +16,9 @@ const EVAL_AREAS = [
 ]
 
 const RECOMMENDATION_OPTIONS = [
-  { value: 'ready', label: 'Ready for Credential', color: '#2e7d32' },
-  { value: 'ready_with_conditions', label: 'Ready with Conditions', color: '#1565c0' },
-  { value: 'needs_additional_support', label: 'Needs Additional Support', color: '#f57f17' },
+  { value: 'ready', label: 'Ready for Credential', color: 'var(--r-success)' },
+  { value: 'ready_with_conditions', label: 'Ready with Conditions', color: 'var(--r-info)' },
+  { value: 'needs_additional_support', label: 'Needs Additional Support', color: 'var(--r-feedback-color)' },
   { value: 'not_recommended', label: 'Not Recommended', color: '#c62828' },
 ]
 
@@ -121,7 +121,7 @@ export default function MentorEvaluationsPage() {
     setLoading(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -199,7 +199,7 @@ export default function MentorEvaluationsPage() {
           </div>
 
           {evalType === 'end_of_year' && (
-            <div style={{ marginBottom: '1rem', padding: '1rem', background: '#f5f5f5', borderRadius: '8px' }}>
+            <div style={{ marginBottom: '1rem', padding: '1rem', background: 'var(--r-muted-light)', borderRadius: '8px' }}>
               <label className="r-label">Final Recommendation</label>
               <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
                 {RECOMMENDATION_OPTIONS.map(opt => (
@@ -255,8 +255,8 @@ export default function MentorEvaluationsPage() {
                       {ev.final_recommendation && (
                         <span style={{
                           padding: '0.125rem 0.5rem', borderRadius: '9999px', fontSize: '0.625rem', fontWeight: 600,
-                          background: ev.final_recommendation === 'ready' ? '#e8f5e9' : '#fff8e1',
-                          color: ev.final_recommendation === 'ready' ? '#2e7d32' : '#f57f17',
+                          background: ev.final_recommendation === 'ready' ? 'var(--r-success-light)' : 'var(--r-feedback-bg)',
+                          color: ev.final_recommendation === 'ready' ? 'var(--r-success)' : 'var(--r-feedback-color)',
                         }}>
                           {ev.final_recommendation.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}
                         </span>

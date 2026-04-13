@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 
 const STATUS_STYLES: Record<string, { bg: string; color: string }> = {
-  draft: { bg: '#f5f5f5', color: '#757575' },
-  active: { bg: '#e3f2fd', color: '#1565c0' },
-  completed: { bg: '#e8f5e9', color: '#2e7d32' },
-  extended: { bg: '#fff8e1', color: '#f57f17' },
+  draft: { bg: 'var(--r-muted-light)', color: 'var(--r-muted)' },
+  active: { bg: 'var(--r-info-light)', color: 'var(--r-info)' },
+  completed: { bg: 'var(--r-success-light)', color: 'var(--r-success)' },
+  extended: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)' },
   withdrawn: { bg: '#fce4ec', color: '#c62828' },
 }
 
@@ -131,7 +131,7 @@ export default function SupportPlansPage() {
     loadData()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const activePlans = plans.filter(p => p.status === 'active' || p.status === 'extended')
 
@@ -156,7 +156,7 @@ export default function SupportPlansPage() {
           <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>Active Plans</p>
         </div>
         <div className="r-card" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '2rem', fontWeight: 700, color: '#2e7d32' }}>{plans.filter(p => p.status === 'completed').length}</p>
+          <p style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--r-success)' }}>{plans.filter(p => p.status === 'completed').length}</p>
           <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>Completed</p>
         </div>
         <div className="r-card" style={{ textAlign: 'center' }}>
@@ -296,11 +296,11 @@ export default function SupportPlansPage() {
                       }}>Add Check-In</button>
                       <button onClick={() => completePlan(p.id, 'completed')} style={{
                         padding: '0.25rem 0.625rem', borderRadius: '6px', border: '1px solid var(--r-border)',
-                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: '#2e7d32',
+                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: 'var(--r-success)',
                       }}>Complete</button>
                       <button onClick={() => completePlan(p.id, 'extended')} style={{
                         padding: '0.25rem 0.625rem', borderRadius: '6px', border: '1px solid var(--r-border)',
-                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: '#f57f17',
+                        background: 'transparent', fontSize: '0.625rem', fontWeight: 600, cursor: 'pointer', color: 'var(--r-feedback-color)',
                       }}>Extend</button>
                     </div>
                   )}

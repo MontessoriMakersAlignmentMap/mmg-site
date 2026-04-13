@@ -118,7 +118,7 @@ export default function CohortDetailPage() {
     load()
   }, [cohortId])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!cohort) return <p>Cohort not found.</p>
 
   const now = new Date()
@@ -188,7 +188,7 @@ function PulseTab({ bundles, fieldPatterns, residentCount }: { bundles: any[]; f
               <div style={{
                 width: '60px', height: '60px', borderRadius: '50%', margin: '0 auto 0.5rem',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: `conic-gradient(${pct >= 80 ? '#2e7d32' : pct >= 50 ? '#f57f17' : '#e0e0e0'} ${pct}%, #f5f5f5 ${pct}%)`,
+                background: `conic-gradient(${pct >= 80 ? 'var(--r-success)' : pct >= 50 ? 'var(--r-feedback-color)' : 'var(--r-border)'} ${pct}%, #f5f5f5 ${pct}%)`,
               }}>
                 <div style={{
                   width: '48px', height: '48px', borderRadius: '50%', background: 'white',
@@ -225,11 +225,11 @@ function PulseTab({ bundles, fieldPatterns, residentCount }: { bundles: any[]; f
               <span style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--r-navy)', width: '2rem', textAlign: 'right' }}>
                 {fp.count}
               </span>
-              <div style={{ flex: 1, height: '6px', background: '#f5f5f5', borderRadius: '3px', overflow: 'hidden' }}>
+              <div style={{ flex: 1, height: '6px', background: 'var(--r-muted-light)', borderRadius: '3px', overflow: 'hidden' }}>
                 <div style={{
                   height: '100%', borderRadius: '3px',
                   width: `${Math.min((fp.count / (fieldPatterns[0]?.count || 1)) * 100, 100)}%`,
-                  background: idx === 0 ? '#c62828' : idx < 3 ? '#f57f17' : '#e0e0e0',
+                  background: idx === 0 ? '#c62828' : idx < 3 ? 'var(--r-feedback-color)' : 'var(--r-border)',
                 }} />
               </div>
               <span style={{ fontSize: '0.8125rem', fontWeight: 500, minWidth: '160px' }}>{fp.label}</span>
@@ -298,8 +298,8 @@ function RosterTab({ residents, cohortId }: { residents: any[]; cohortId: string
                     <span style={{
                       fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
                       textTransform: 'uppercase',
-                      background: r.status === 'active' ? '#e8f5e9' : '#fef3c7',
-                      color: r.status === 'active' ? '#2e7d32' : '#92400e',
+                      background: r.status === 'active' ? 'var(--r-success-light)' : 'var(--r-warning-light)',
+                      color: r.status === 'active' ? 'var(--r-success)' : 'var(--r-warning)',
                     }}>
                       {r.status}
                     </span>
@@ -392,8 +392,8 @@ function SessionsTab({ sessions, cohortId, weekNum }: { sessions: any[]; cohortI
                 <span style={{
                   fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
                   textTransform: 'uppercase',
-                  background: s.status === 'completed' ? '#e8f5e9' : s.status === 'scheduled' ? '#e3f2fd' : '#fef3c7',
-                  color: s.status === 'completed' ? '#2e7d32' : s.status === 'scheduled' ? '#1565c0' : '#92400e',
+                  background: s.status === 'completed' ? 'var(--r-success-light)' : s.status === 'scheduled' ? 'var(--r-info-light)' : 'var(--r-warning-light)',
+                  color: s.status === 'completed' ? 'var(--r-success)' : s.status === 'scheduled' ? 'var(--r-info)' : 'var(--r-warning)',
                 }}>
                   {s.status}
                 </span>
@@ -572,7 +572,7 @@ function PostCard({ post, onPin, onResolve, onDelete, isInstructor }: {
             </button>
           )}
           {onResolve && (
-            <button onClick={onResolve} style={{ fontSize: '0.6875rem', color: '#2e7d32', background: 'none', border: 'none', cursor: 'pointer' }}>
+            <button onClick={onResolve} style={{ fontSize: '0.6875rem', color: 'var(--r-success)', background: 'none', border: 'none', cursor: 'pointer' }}>
               Mark Answered
             </button>
           )}

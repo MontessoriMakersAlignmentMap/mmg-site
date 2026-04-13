@@ -29,7 +29,7 @@ export default function AdminPracticumPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Per-resident summaries
   const summaries = residents.map(r => {
@@ -98,12 +98,12 @@ export default function AdminPracticumPage() {
                 </div>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   {r.teachingPct >= 100 && (
-                    <span style={{ padding: '0.125rem 0.5rem', borderRadius: '9999px', fontSize: '0.625rem', fontWeight: 600, background: '#e8f5e9', color: '#2e7d32' }}>
+                    <span style={{ padding: '0.125rem 0.5rem', borderRadius: '9999px', fontSize: '0.625rem', fontWeight: 600, background: 'var(--r-success-light)', color: 'var(--r-success)' }}>
                       Teaching Complete
                     </span>
                   )}
                   {r.observationPct >= 100 && (
-                    <span style={{ padding: '0.125rem 0.5rem', borderRadius: '9999px', fontSize: '0.625rem', fontWeight: 600, background: '#e8f5e9', color: '#2e7d32' }}>
+                    <span style={{ padding: '0.125rem 0.5rem', borderRadius: '9999px', fontSize: '0.625rem', fontWeight: 600, background: 'var(--r-success-light)', color: 'var(--r-success)' }}>
                       Observation Complete
                     </span>
                   )}
@@ -115,8 +115,8 @@ export default function AdminPracticumPage() {
                   <span>Teaching</span>
                   <span style={{ color: 'var(--r-text-muted)' }}>{r.totalTeaching.toFixed(1)}/{TEACHING_TARGET}</span>
                 </div>
-                <div style={{ height: '6px', background: '#e0e0e0', borderRadius: '3px', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${Math.min(100, r.teachingPct)}%`, background: r.teachingPct >= 100 ? '#2e7d32' : 'var(--r-navy)', borderRadius: '3px' }} />
+                <div style={{ height: '6px', background: 'var(--r-border)', borderRadius: '3px', overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${Math.min(100, r.teachingPct)}%`, background: r.teachingPct >= 100 ? 'var(--r-success)' : 'var(--r-navy)', borderRadius: '3px' }} />
                 </div>
               </div>
               {/* Observation bar */}
@@ -125,8 +125,8 @@ export default function AdminPracticumPage() {
                   <span>Observation</span>
                   <span style={{ color: 'var(--r-text-muted)' }}>{r.totalObservation.toFixed(1)}/{OBSERVATION_TARGET}</span>
                 </div>
-                <div style={{ height: '6px', background: '#e0e0e0', borderRadius: '3px', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${Math.min(100, r.observationPct)}%`, background: r.observationPct >= 100 ? '#2e7d32' : '#1565c0', borderRadius: '3px' }} />
+                <div style={{ height: '6px', background: 'var(--r-border)', borderRadius: '3px', overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${Math.min(100, r.observationPct)}%`, background: r.observationPct >= 100 ? 'var(--r-success)' : 'var(--r-info)', borderRadius: '3px' }} />
                 </div>
               </div>
             </div>

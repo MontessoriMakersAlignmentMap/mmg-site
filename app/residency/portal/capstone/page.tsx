@@ -100,13 +100,13 @@ export default function CapstonePortalPage() {
     setSubmitting(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const statusLabels: Record<string, { label: string; color: string; bg: string }> = {
-    submitted: { label: 'Submitted', color: '#b45309', bg: '#fef3c7' },
-    in_review: { label: 'In Review', color: '#6b21a8', bg: '#ede9fe' },
-    revision_requested: { label: 'Revision Requested', color: '#991b1b', bg: '#fef2f2' },
-    approved: { label: 'Approved', color: '#2d6a4f', bg: '#d1fae5' },
+    submitted: { label: 'Submitted', color: '#b45309', bg: 'var(--r-warning-light)' },
+    in_review: { label: 'In Review', color: '#6b21a8', bg: 'var(--r-purple-light)' },
+    revision_requested: { label: 'Revision Requested', color: '#991b1b', bg: 'var(--r-error-light)' },
+    approved: { label: 'Approved', color: '#2d6a4f', bg: 'var(--r-success-light)' },
   }
 
   return (
@@ -259,7 +259,7 @@ export default function CapstonePortalPage() {
                       padding: '0.125rem 0.5rem',
                       borderRadius: '4px',
                       color: r.verdict === 'approved' ? '#2d6a4f' : '#991b1b',
-                      background: r.verdict === 'approved' ? '#d1fae5' : '#fef2f2',
+                      background: r.verdict === 'approved' ? 'var(--r-success-light)' : 'var(--r-error-light)',
                     }}>
                       {r.verdict === 'approved' ? 'Approved' : 'Needs Revision'}
                     </span>

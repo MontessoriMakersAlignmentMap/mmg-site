@@ -29,7 +29,7 @@ export default function AdminDashboard() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const cards = [
     { label: 'Total Residents', value: stats.residents, href: '/residency/admin/residents' },
@@ -40,10 +40,10 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>Admin Overview</h1>
-      <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem' }}>
-        Program-wide metrics and management.
-      </p>
+      <div className="r-page-header">
+        <h1>Admin Overview</h1>
+        <p>Program-wide metrics and management.</p>
+      </div>
 
       <div style={{
         display: 'grid',
@@ -52,9 +52,9 @@ export default function AdminDashboard() {
         marginBottom: '2rem',
       }}>
         {cards.map(c => (
-          <Link key={c.label} href={c.href} className="r-card" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'center', padding: '1.5rem' }}>
-            <p style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>{c.value}</p>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>{c.label}</p>
+          <Link key={c.label} href={c.href} className="r-stat-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <p className="r-stat-value">{c.value}</p>
+            <p className="r-stat-label">{c.label}</p>
           </Link>
         ))}
       </div>

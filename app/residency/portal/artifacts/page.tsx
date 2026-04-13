@@ -27,10 +27,10 @@ interface Artifact {
 }
 
 const STATUS_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  draft: { bg: '#f5f5f5', color: '#757575', label: 'Draft' },
-  submitted: { bg: '#e3f2fd', color: '#1565c0', label: 'Submitted' },
-  approved: { bg: '#e8f5e9', color: '#2e7d32', label: 'Approved' },
-  revision_requested: { bg: '#fff8e1', color: '#f57f17', label: 'Revision Needed' },
+  draft: { bg: 'var(--r-muted-light)', color: 'var(--r-muted)', label: 'Draft' },
+  submitted: { bg: 'var(--r-info-light)', color: 'var(--r-info)', label: 'Submitted' },
+  approved: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Approved' },
+  revision_requested: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Revision Needed' },
 }
 
 export default function ArtifactsPage() {
@@ -112,7 +112,7 @@ export default function ArtifactsPage() {
     setArtifacts(prev => prev.map(a => a.id === id ? { ...a, status: 'submitted' } : a))
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Calculate completion per requirement
   const completionMap = requirements.map(req => {
@@ -147,13 +147,10 @@ export default function ArtifactsPage() {
             {totalApproved} / {totalRequired} items approved
           </span>
         </div>
-        <div style={{ height: '8px', background: '#e0e0e0', borderRadius: '4px', overflow: 'hidden' }}>
-          <div style={{
-            height: '100%',
+        <div className="r-progress-track">
+          <div className="r-progress-fill" style={{
             width: `${overallPct}%`,
-            background: overallPct >= 100 ? '#2e7d32' : 'var(--r-navy)',
-            borderRadius: '4px',
-            transition: 'width 0.3s',
+            background: overallPct >= 100 ? 'var(--r-success)' : undefined,
           }} />
         </div>
       </div>
@@ -203,12 +200,12 @@ export default function ArtifactsPage() {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '0.75rem 0.875rem',
-              background: req.complete ? '#e8f5e9' : 'var(--r-cream)',
+              background: req.complete ? 'var(--r-success-light)' : 'var(--r-cream)',
               borderRadius: '6px',
-              border: req.complete ? '1px solid #a5d6a7' : '1px solid transparent',
+              border: req.complete ? '1px solid var(--r-success)' : '1px solid transparent',
             }}>
               <div>
-                <p style={{ fontSize: '0.875rem', fontWeight: 500, color: req.complete ? '#2e7d32' : 'inherit' }}>
+                <p style={{ fontSize: '0.875rem', fontWeight: 500, color: req.complete ? 'var(--r-success)' : 'inherit' }}>
                   {req.complete ? '\u2713 ' : ''}{req.label}
                 </p>
                 {req.description && (
@@ -221,12 +218,12 @@ export default function ArtifactsPage() {
                 <span style={{
                   fontSize: '0.75rem',
                   fontWeight: 600,
-                  color: req.complete ? '#2e7d32' : req.submitted > 0 ? '#1565c0' : 'var(--r-text-muted)',
+                  color: req.complete ? 'var(--r-success)' : req.submitted > 0 ? 'var(--r-info)' : 'var(--r-text-muted)',
                 }}>
                   {req.approved}/{req.required_count} approved
                 </span>
                 {req.submitted > req.approved && (
-                  <span style={{ fontSize: '0.625rem', color: '#f57f17' }}>
+                  <span style={{ fontSize: '0.625rem', color: 'var(--r-feedback-color)' }}>
                     ({req.submitted - req.approved} pending)
                   </span>
                 )}
@@ -288,9 +285,9 @@ export default function ArtifactsPage() {
                     </div>
                   </div>
                   {a.mentor_feedback && (
-                    <div style={{ marginTop: '0.375rem', padding: '0.5rem', background: '#fff8e1', borderRadius: '4px' }}>
-                      <p style={{ fontSize: '0.6875rem', fontWeight: 600, color: '#f57f17', marginBottom: '0.125rem' }}>Mentor Feedback</p>
-                      <p style={{ fontSize: '0.75rem', color: '#5d4037' }}>{a.mentor_feedback}</p>
+                    <div className="r-feedback-block" style={{ marginTop: '0.375rem' }}>
+                      <p className="r-feedback-label">Mentor Feedback</p>
+                      <p className="r-feedback-text">{a.mentor_feedback}</p>
                     </div>
                   )}
                 </div>

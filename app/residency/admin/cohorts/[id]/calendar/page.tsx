@@ -101,7 +101,7 @@ export default function CurriculumCalendarPage() {
     load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!cohort) return <p>Cohort not found.</p>
 
   const today = new Date().toISOString().split('T')[0]
@@ -115,16 +115,16 @@ export default function CurriculumCalendarPage() {
   }
 
   const healthColors: Record<string, string> = {
-    green: '#2e7d32',
-    yellow: '#f57f17',
+    green: 'var(--r-success)',
+    yellow: 'var(--r-feedback-color)',
     red: '#c62828',
     gray: '#9e9e9e',
   }
   const healthBg: Record<string, string> = {
-    green: '#e8f5e9',
-    yellow: '#fff8e1',
+    green: 'var(--r-success-light)',
+    yellow: 'var(--r-feedback-bg)',
     red: '#fce4ec',
-    gray: '#f5f5f5',
+    gray: 'var(--r-muted-light)',
   }
 
   return (
@@ -154,7 +154,7 @@ export default function CurriculumCalendarPage() {
             </div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               {currentWeek.album_submission_required && (
-                <span style={{ fontSize: '0.6875rem', background: '#e3f2fd', color: '#1565c0', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Album Due</span>
+                <span style={{ fontSize: '0.6875rem', background: 'var(--r-info-light)', color: 'var(--r-info)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Album Due</span>
               )}
               {currentWeek.live_session_week && (
                 <span style={{ fontSize: '0.6875rem', background: '#f3e5f5', color: '#7b1fa2', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Live Session</span>
@@ -200,7 +200,7 @@ export default function CurriculumCalendarPage() {
                     {b.practicum_focus?.substring(0, 80)}...
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', textAlign: 'center' }}>
-                    {b.album_submission_required ? <span style={{ color: '#1565c0', fontWeight: 600 }}>Due</span> : '—'}
+                    {b.album_submission_required ? <span style={{ color: 'var(--r-info)', fontWeight: 600 }}>Due</span> : '—'}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', textAlign: 'center' }}>
                     {b.live_session_week ? <span style={{ color: '#7b1fa2', fontWeight: 600 }}>Yes</span> : '—'}
@@ -218,12 +218,12 @@ export default function CurriculumCalendarPage() {
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>
                     {b.status === 'scheduled' && (
-                      <button onClick={() => releaseBundle(b.id)} style={{ fontSize: '0.6875rem', color: '#1565c0', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
+                      <button onClick={() => releaseBundle(b.id)} style={{ fontSize: '0.6875rem', color: 'var(--r-info)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
                         Release
                       </button>
                     )}
                     {b.status === 'released' && (
-                      <button onClick={() => holdBundle(b.id)} style={{ fontSize: '0.6875rem', color: '#f57f17', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
+                      <button onClick={() => holdBundle(b.id)} style={{ fontSize: '0.6875rem', color: 'var(--r-feedback-color)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
                         Hold
                       </button>
                     )}

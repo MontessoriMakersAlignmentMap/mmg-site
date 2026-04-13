@@ -117,18 +117,18 @@ export default function BundleDetailPage() {
     load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!bundle) return <p>Bundle not found.</p>
 
   const lessons = bundle.bundle_lessons?.sort((a: any, b: any) => a.sequence_order - b.sequence_order) || []
 
   function getResidentStatus(residentId: string) {
     const eng = engagements.find(e => e.resident_id === residentId)
-    if (!eng) return { status: 'not_started', label: 'Not Started', color: '#9e9e9e', bg: '#f5f5f5' }
-    if (eng.completion_status === 'complete') return { status: 'complete', label: 'Complete', color: '#2e7d32', bg: '#e8f5e9' }
-    if (eng.completion_status === 'in_progress') return { status: 'in_progress', label: `${eng.lessons_engaged?.length || 0}/${lessons.length}`, color: '#1565c0', bg: '#e3f2fd' }
-    if (eng.completion_status === 'incomplete') return { status: 'incomplete', label: 'Incomplete', color: '#f57f17', bg: '#fff8e1' }
-    return { status: 'not_started', label: 'Not Started', color: '#9e9e9e', bg: '#f5f5f5' }
+    if (!eng) return { status: 'not_started', label: 'Not Started', color: '#9e9e9e', bg: 'var(--r-muted-light)' }
+    if (eng.completion_status === 'complete') return { status: 'complete', label: 'Complete', color: 'var(--r-success)', bg: 'var(--r-success-light)' }
+    if (eng.completion_status === 'in_progress') return { status: 'in_progress', label: `${eng.lessons_engaged?.length || 0}/${lessons.length}`, color: 'var(--r-info)', bg: 'var(--r-info-light)' }
+    if (eng.completion_status === 'incomplete') return { status: 'incomplete', label: 'Incomplete', color: 'var(--r-feedback-color)', bg: 'var(--r-feedback-bg)' }
+    return { status: 'not_started', label: 'Not Started', color: '#9e9e9e', bg: 'var(--r-muted-light)' }
   }
 
   return (
@@ -160,7 +160,7 @@ export default function BundleDetailPage() {
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.75rem' }}>
           {bundle.album_submission_required && (
-            <span style={{ fontSize: '0.6875rem', background: '#e3f2fd', color: '#1565c0', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Album Submission Due</span>
+            <span style={{ fontSize: '0.6875rem', background: 'var(--r-info-light)', color: 'var(--r-info)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Album Submission Due</span>
           )}
           {bundle.live_session_week && (
             <span style={{ fontSize: '0.6875rem', background: '#f3e5f5', color: '#7b1fa2', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Live Session Week</span>

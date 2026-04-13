@@ -98,7 +98,7 @@ export default function StrandsManagementPage() {
     else { setEditingCategory(item.id); setEditingStrand(null) }
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const filteredStrands = strands.filter(s => s.level_id === activeLevel)
   const activeLevelName = levels.find(l => l.id === activeLevel)?.name ?? ''

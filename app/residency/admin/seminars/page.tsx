@@ -87,7 +87,7 @@ export default function SeminarsPage() {
     loadAttendance(selectedSeminar)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Absence counts per resident across all seminars
   const selectedSeminarData = seminars.find(s => s.id === selectedSeminar)
@@ -195,10 +195,10 @@ export default function SeminarsPage() {
                             border: '1px solid',
                             borderColor: status === s ? 'transparent' : 'var(--r-border)',
                             background: status === s
-                              ? s === 'present' ? '#e8f5e9' : s === 'absent' ? '#fce4ec' : '#fff8e1'
+                              ? s === 'present' ? 'var(--r-success-light)' : s === 'absent' ? '#fce4ec' : 'var(--r-feedback-bg)'
                               : 'transparent',
                             color: status === s
-                              ? s === 'present' ? '#2e7d32' : s === 'absent' ? '#c62828' : '#f57f17'
+                              ? s === 'present' ? 'var(--r-success)' : s === 'absent' ? '#c62828' : 'var(--r-feedback-color)'
                               : 'var(--r-text-muted)',
                             fontSize: '0.6875rem',
                             fontWeight: 600,
