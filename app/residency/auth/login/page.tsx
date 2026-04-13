@@ -59,9 +59,9 @@ export default function LoginPage() {
           <Image
             src="/mmr-logo-light.png"
             alt="Montessori Makers Institute Residency"
-            width={180}
-            height={90}
-            style={{ objectFit: 'contain', margin: '0 auto 1.25rem' }}
+            width={160}
+            height={80}
+            style={{ objectFit: 'contain', margin: '0 auto 1.25rem', mixBlendMode: 'multiply' }}
           />
           <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Sign In</h1>
           <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>
