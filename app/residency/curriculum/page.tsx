@@ -88,7 +88,7 @@ export default function CurriculumPage() {
                 lineHeight: 1.7,
               }}>
                 Ages 3 through 6. The foundational Montessori curriculum — Practical Life,
-                Sensorial, Language, Math, Cultural, and Equity and Community.
+                Sensorial, Language, Math, Behavior, and an Elementary Bridge.
               </p>
             </Link>
 
@@ -128,8 +128,8 @@ export default function CurriculumPage() {
                 color: 'var(--r-text-muted)',
                 lineHeight: 1.7,
               }}>
-                Ages 6 through 12. The expanded curriculum — Great Lessons, advanced
-                mathematics, research skills, and deeper cultural studies.
+                Ages 6 through 12. The expanded curriculum — Primary Foundation,
+                Great Lessons, advanced mathematics, research skills, and deeper cultural studies.
               </p>
             </Link>
           </div>

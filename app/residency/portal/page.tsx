@@ -17,6 +17,8 @@ export default function PortalDashboard() {
   const [recentAssignments, setRecentAssignments] = useState<any[]>([])
   const [progress, setProgress] = useState<any[]>([])
   const [unreadFeedback, setUnreadFeedback] = useState<any[]>([])
+  const [observationPrompt, setObservationPrompt] = useState<any>(null)
+  const [observationLog, setObservationLog] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -97,6 +99,26 @@ export default function PortalDashboard() {
           }
         }))
       }
+
+      // Load observation data
+      const currentMonth = new Date().getMonth() + 1
+      const track = res.assigned_level?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+
+      const { data: obsPrompt } = await supabase
+        .from('residency_observation_prompts')
+        .select('*')
+        .eq('track', track)
+        .eq('month_number', currentMonth)
+        .single()
+      if (obsPrompt) setObservationPrompt(obsPrompt)
+
+      const { data: obsLog } = await supabase
+        .from('residency_observation_logs')
+        .select('*')
+        .eq('resident_id', res.id)
+        .eq('month_number', currentMonth)
+        .maybeSingle()
+      if (obsLog) setObservationLog(obsLog)
 
       // Unread feedback
       const { data: entries } = await supabase
@@ -294,6 +316,52 @@ export default function PortalDashboard() {
           <Link href="/residency/portal/albums" className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem', textDecoration: 'none' }}>
             Write Your Submission
           </Link>
+        </div>
+      )}
+
+      {/* Monthly observation visit */}
+      {observationPrompt && (
+        <div style={{
+          background: '#f5e8cc',
+          borderLeft: '4px solid var(--r-navy)',
+          borderRadius: '8px',
+          padding: '1.25rem 1.5rem',
+          marginBottom: '1.5rem',
+        }}>
+          <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--r-navy)', marginBottom: '0.25rem' }}>
+            Monthly Observation Visit
+          </p>
+          <h2 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.5rem' }}>
+            {new Date().toLocaleDateString('en-US', { month: 'long' })} {new Date().getFullYear()}
+          </h2>
+          <p style={{ fontSize: '0.875rem', lineHeight: 1.7, color: 'var(--r-text)', marginBottom: '1rem' }}>
+            {observationPrompt.curriculum_connection}
+          </p>
+          {observationLog ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{
+                fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.75rem',
+                background: 'var(--r-success-light)', color: 'var(--r-success)',
+                borderRadius: '9999px',
+              }}>
+                Complete
+              </span>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>
+                {new Date(observationLog.observation_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </span>
+              <Link href={`/residency/portal/observations/${observationLog.id}`} style={{
+                fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)', textDecoration: 'none',
+              }}>
+                View Entry &rarr;
+              </Link>
+            </div>
+          ) : (
+            <Link href={`/residency/portal/observations/new?month=${new Date().getMonth() + 1}`} className="r-btn r-btn-primary" style={{
+              fontSize: '0.8125rem', textDecoration: 'none', display: 'inline-block',
+            }}>
+              Log This Month&apos;s Observation
+            </Link>
+          )}
         </div>
       )}
 
