@@ -53,6 +53,7 @@ const navLinks = [
 
 export function SchoolNav() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -61,62 +62,178 @@ export function SchoolNav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return (
-    <nav
-      className="fixed left-0 right-0 flex items-center justify-between px-6 md:px-12 transition-all duration-400"
-      style={{
-        top: 104,
-        zIndex: 44,
-        height: 60,
-        background: scrolled ? `rgba(61,36,16,0.96)` : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-      }}
-    >
-      <Link
-        href="/studio/demo"
-        style={{ ...serif, color: '#fff', fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', textDecoration: 'none' }}
-      >
-        MMS
-      </Link>
+  // Close menu on route change
+  useEffect(() => { setMenuOpen(false) }, [pathname])
 
-      <div className="hidden md:flex items-center gap-7">
-        {navLinks.map((l) => (
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  return (
+    <>
+      <nav
+        className="fixed left-0 right-0 flex items-center justify-between px-6 md:px-12 transition-all duration-400"
+        style={{
+          top: 104,
+          zIndex: 44,
+          height: 60,
+          background: scrolled || menuOpen ? `rgba(61,36,16,0.97)` : 'transparent',
+          backdropFilter: scrolled || menuOpen ? 'blur(12px)' : 'none',
+        }}
+      >
+        <Link
+          href="/studio/demo"
+          style={{ ...serif, color: '#fff', fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', textDecoration: 'none' }}
+        >
+          MMS
+        </Link>
+
+        <div className="hidden md:flex items-center gap-7">
+          {navLinks.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              style={{
+                color: pathname === l.href ? '#fff' : 'rgba(255,255,255,0.65)',
+                fontSize: 12,
+                letterSpacing: '0.07em',
+                textDecoration: 'none',
+                transition: 'color 0.2s',
+                borderBottom: pathname === l.href ? `1px solid ${C.copper}` : 'none',
+                paddingBottom: 2,
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4">
           <Link
-            key={l.href}
-            href={l.href}
+            href="/studio/demo/admissions"
+            className="hidden md:block"
             style={{
-              color: pathname === l.href ? '#fff' : 'rgba(255,255,255,0.65)',
-              fontSize: 12,
-              letterSpacing: '0.07em',
+              background: C.copper,
+              color: '#fff',
+              fontSize: 11,
+              letterSpacing: '0.1em',
+              padding: '9px 22px',
               textDecoration: 'none',
-              transition: 'color 0.2s',
-              borderBottom: pathname === l.href ? `1px solid ${C.copper}` : 'none',
-              paddingBottom: 2,
+              textTransform: 'uppercase',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#b8902e')}
+            onMouseLeave={e => (e.currentTarget.style.background = C.copper)}
+          >
+            Apply
+          </Link>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8"
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            <span
+              style={{
+                display: 'block', width: 22, height: 1.5, background: '#fff',
+                transformOrigin: 'center',
+                transition: 'transform 0.3s, opacity 0.3s',
+                transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
+              }}
+            />
+            <span
+              style={{
+                display: 'block', width: 22, height: 1.5, background: '#fff',
+                transition: 'opacity 0.3s',
+                opacity: menuOpen ? 0 : 1,
+              }}
+            />
+            <span
+              style={{
+                display: 'block', width: 22, height: 1.5, background: '#fff',
+                transformOrigin: 'center',
+                transition: 'transform 0.3s, opacity 0.3s',
+                transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+              }}
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu overlay */}
+      <div
+        className="md:hidden fixed inset-0 flex flex-col"
+        style={{
+          top: 164,
+          zIndex: 43,
+          background: C.slate,
+          transform: menuOpen ? 'translateY(0)' : 'translateY(-100%)',
+          transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1)',
+          paddingTop: 40,
+          paddingBottom: 40,
+          paddingLeft: 32,
+          paddingRight: 32,
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {navLinks.map((l, i) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                ...serif,
+                color: pathname === l.href ? C.copper : 'rgba(255,255,255,0.85)',
+                fontSize: 28,
+                letterSpacing: '-0.01em',
+                textDecoration: 'none',
+                padding: '16px 0',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                transform: menuOpen ? 'none' : 'translateY(20px)',
+                opacity: menuOpen ? 1 : 0,
+                transition: `transform 0.5s cubic-bezier(0.16,1,0.3,1) ${0.05 + i * 0.06}s, opacity 0.4s ease ${0.05 + i * 0.06}s`,
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+        <div
+          style={{
+            marginTop: 40,
+            transform: menuOpen ? 'none' : 'translateY(20px)',
+            opacity: menuOpen ? 1 : 0,
+            transition: 'all 0.5s ease 0.35s',
+          }}
+        >
+          <Link
+            href="/studio/demo/admissions"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'inline-block',
+              background: C.copper,
+              color: '#fff',
+              fontSize: 12,
+              letterSpacing: '0.12em',
+              padding: '14px 36px',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
             }}
           >
-            {l.label}
+            Apply Now
           </Link>
-        ))}
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 11, marginTop: 32 }}>
+            2615 N Orchard Street · Lincoln Park, Chicago
+          </p>
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 11, marginTop: 6 }}>
+            (773) 555-0142
+          </p>
+        </div>
       </div>
-
-      <Link
-        href="/studio/demo/admissions"
-        style={{
-          background: C.copper,
-          color: '#fff',
-          fontSize: 11,
-          letterSpacing: '0.1em',
-          padding: '9px 22px',
-          textDecoration: 'none',
-          textTransform: 'uppercase',
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={e => (e.currentTarget.style.background = '#b8902e')}
-        onMouseLeave={e => (e.currentTarget.style.background = C.copper)}
-      >
-        Apply
-      </Link>
-    </nav>
+    </>
   )
 }
 

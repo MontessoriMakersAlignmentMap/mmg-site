@@ -223,6 +223,9 @@ export default function DemoHome() {
       {/* ── SCHOOL LIFE ───────────────────────────────────────────────────── */}
       <SchoolLifeSection />
 
+      {/* ── FROM THE CLASSROOM ────────────────────────────────────────────── */}
+      <FromTheClassroom />
+
       {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
       <TestimonialsSection />
 
@@ -525,6 +528,107 @@ function SchoolLifeSection() {
                 {photo.label}
               </p>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ── From the Classroom ───────────────────────────────────────────────────────
+
+const classroomPosts = [
+  {
+    tag: 'Upper Elementary',
+    date: 'March 2025',
+    title: 'What does a three-year cycle actually look like?',
+    excerpt: 'In a Montessori classroom, learning isn\'t measured in semesters. Our Upper Elementary guides reflect on why the three-year cycle produces something that annual grade levels simply can\'t.',
+    readTime: '4 min read',
+    color: C.sage,
+  },
+  {
+    tag: 'From the Head of School',
+    date: 'February 2025',
+    title: 'Why we don\'t grade children — and what we do instead.',
+    excerpt: 'Grades were designed to sort children, not know them. Dr. Osei-Bonsu writes on the observational record-keeping behind every MMS portfolio and what it makes possible.',
+    readTime: '6 min read',
+    color: C.copper,
+  },
+  {
+    tag: 'Primary',
+    date: 'January 2025',
+    title: 'The Great Lesson of the Universe: what happened in classroom three.',
+    excerpt: 'Each year the cosmos begins again. This January, our Primary guides share what the children\'s questions revealed — and why "I don\'t know" is sometimes the most educational answer.',
+    readTime: '3 min read',
+    color: '#5B6E8A',
+  },
+]
+
+function FromTheClassroom() {
+  const { ref, visible } = useReveal(0.1)
+  return (
+    <section style={{ background: C.white, padding: '100px 64px', borderTop: `1px solid rgba(0,0,0,0.06)` }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div
+          ref={ref}
+          style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
+            marginBottom: 52, flexWrap: 'wrap', gap: 20,
+            opacity: visible ? 1 : 0, transition: 'all 0.7s ease',
+          }}
+        >
+          <div>
+            <p style={{ color: C.copper, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', marginBottom: 12 }}>
+              From the Classroom
+            </p>
+            <h2 style={{ ...serif, fontSize: 'clamp(26px,3vw,40px)', color: C.text, lineHeight: 1.1 }}>
+              What we&rsquo;re thinking about this season.
+            </h2>
+          </div>
+          <a
+            href="#"
+            style={{ color: C.muted, fontSize: 13, letterSpacing: '0.04em', textDecoration: 'none', borderBottom: `1px solid ${C.muted}`, paddingBottom: 2, whiteSpace: 'nowrap' }}
+          >
+            All posts &rarr;
+          </a>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+          {classroomPosts.map((post, i) => (
+            <a
+              key={i}
+              href="#"
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 16px 48px rgba(61,36,16,0.1)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = visible ? 'none' : 'translateY(24px)'; (e.currentTarget as HTMLAnchorElement).style.boxShadow = 'none' }}
+              style={{
+                textDecoration: 'none', display: 'flex', flexDirection: 'column',
+                background: C.cream, border: '1px solid rgba(0,0,0,0.06)',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'none' : 'translateY(24px)',
+                transition: `transform 0.6s cubic-bezier(0.16,1,0.3,1) ${0.1 + i * 0.1}s, opacity 0.6s ease ${0.1 + i * 0.1}s, box-shadow 0.25s ease`,
+              }}
+            >
+              {/* Color bar */}
+              <div style={{ height: 4, background: post.color, flexShrink: 0 }} />
+              <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                  <span style={{ color: post.color, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600 }}>
+                    {post.tag}
+                  </span>
+                  <span style={{ color: C.muted, fontSize: 11 }}>{post.date}</span>
+                </div>
+                <p style={{ ...serif, fontSize: 20, color: C.text, lineHeight: 1.3, marginBottom: 14, flex: 1 }}>
+                  {post.title}
+                </p>
+                <p style={{ color: C.muted, fontSize: 13, lineHeight: 1.7, marginBottom: 24 }}>
+                  {post.excerpt}
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 16, borderTop: '1px solid rgba(0,0,0,0.07)' }}>
+                  <span style={{ color: C.copper, fontSize: 12, letterSpacing: '0.04em' }}>Read more &rarr;</span>
+                  <span style={{ color: C.muted, fontSize: 11 }}>{post.readTime}</span>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </div>

@@ -224,6 +224,105 @@ export default function StudioPortfolioPage() {
         </div>
       </section>
 
+      {/* Case Study 3: Demo School */}
+      <section className="bg-[#FAF9F7] py-24 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-12">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">
+              Case Study 03
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
+              style={serif}
+            >
+              Montessori Makers School
+            </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              A fully realized demo school website — five pages, live animations, and a complete
+              content system — built to show exactly what Studio produces for a Montessori school.
+            </p>
+          </div>
+
+          {/* Live preview link — full bleed */}
+          <div className="relative w-full aspect-[16/7] overflow-hidden mb-10 group bg-[#3D2410]">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <p className="text-white/40 text-sm tracking-[0.18em] uppercase mb-2">Interactive Demo</p>
+                <p className="text-white text-2xl mb-6" style={serif}>This is a live site — explore it.</p>
+                <Link
+                  href="/studio/demo"
+                  className="inline-block bg-[#C8A24A] text-white text-xs tracking-[0.15em] uppercase font-medium px-8 py-4 hover:bg-[#b8902e] transition-colors"
+                >
+                  Open the Demo School →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white border border-[#E2DDD6] p-8">
+              <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">
+                What It Demonstrates
+              </p>
+              <ul className="space-y-3">
+                {[
+                  'Fully responsive design — including mobile navigation',
+                  'School-specific content system (programs, admissions, school life)',
+                  'Scroll-triggered animations and parallax effects',
+                  '"From the Classroom" blog/news architecture',
+                  'Transparent admissions flow with tuition and FAQ',
+                  'Five linked pages: home, about, programs, admissions',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                    <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white border border-[#E2DDD6] p-8">
+              <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">
+                What's Included in a Real Build
+              </p>
+              <ul className="space-y-3">
+                {[
+                  'Your school's actual photography, voice, and brand',
+                  'Domain, hosting, and deployment setup',
+                  'Contact and inquiry forms with email delivery',
+                  'Google Maps and calendar integration',
+                  'Ongoing content support (optional)',
+                  'Handoff to your team or fully managed',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
+                    <span className="text-[#374151] text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-[#0e1a7a] p-8">
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-6">
+                This Is What We Build
+              </p>
+              <p className="text-white text-xl leading-snug mb-6" style={serif}>
+                A website your school actually deserves.
+              </p>
+              <p className="text-[#94A3B8] text-sm leading-relaxed mb-8">
+                Not a template. Not a CMS you'll forget to update. A site built
+                around your school's specific voice, philosophy, and community —
+                that works as hard as your admissions team.
+              </p>
+              <Link
+                href="/studio/demo"
+                className="inline-block border border-white/30 text-white text-xs tracking-[0.12em] uppercase px-6 py-3 hover:bg-white/10 transition-colors"
+              >
+                Explore the demo →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What's next */}
       <section className="bg-[#F2EDE6] py-24 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
