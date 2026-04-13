@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import Link from 'next/link'
+import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
 
 const PING_INTERVAL_MS = 30_000 // Send engagement every 30 seconds
 const ENGAGE_THRESHOLD_S = 180 // 3 minutes
@@ -210,6 +211,10 @@ export default function BundleLessonPage() {
 
       {lesson.age_range && (
         <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '1.5rem' }}>{lesson.age_range}</p>
+      )}
+
+      {lesson.script_introduction && (
+        <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
       )}
 
       {lesson.why_this_lesson_matters && (
