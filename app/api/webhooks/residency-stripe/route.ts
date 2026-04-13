@@ -137,10 +137,10 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
   const { data: linkData } = await supabase.auth.admin.generateLink({
     type: 'magiclink',
     email: app.email,
-    options: { redirectTo: 'https://mmr.montessorimakersgroup.org/login' },
+    options: { redirectTo: 'https://montessorimakersgroup.org/residency/auth/login' },
   })
 
-  const loginLink = linkData?.properties?.action_link || 'https://mmr.montessorimakersgroup.org/login'
+  const loginLink = linkData?.properties?.action_link || 'https://montessorimakersgroup.org/residency/auth/login'
   const track = app.track_interest === 'elementary' ? 'Elementary' : 'Primary'
 
   // Send welcome email
