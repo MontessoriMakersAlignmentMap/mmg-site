@@ -221,6 +221,8 @@ const connections = [
 ]
 
 function WhyEcosystem() {
+  const [hovered, setHovered] = useState<number | null>(null)
+
   return (
     <section className="grain bg-[#0e1a7a] pt-28 pb-44 md:pt-40 md:pb-56 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
@@ -237,27 +239,67 @@ function WhyEcosystem() {
           </p>
         </FadeIn>
 
+        {/* Chain visualization — horizontal on desktop, vertical on mobile */}
         <div className="mb-20">
-          {connections.map((c, i) => (
-            <div key={i}>
-              <FadeIn delay={i * 0.08}>
-                <div className="border border-white/10 px-8 py-6 flex items-start gap-7 hover:border-white/20 hover:bg-white/[0.02] transition-colors">
-                  <span className="text-[#8A6014] text-xs font-medium flex-shrink-0 mt-1 tabular-nums tracking-wider">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className="flex-1 sm:flex sm:items-baseline sm:gap-8">
-                    <p className="text-white font-medium text-lg sm:text-xl sm:w-60 flex-shrink-0 mb-1 sm:mb-0" style={serif}>
+          <div className="flex flex-col md:flex-row items-stretch">
+            {connections.flatMap((c, i) => {
+              const nodes = [
+                <FadeIn key={`node-${i}`} delay={i * 0.1} className="flex-1 min-w-0">
+                  <motion.div
+                    className="h-full border border-white/10 p-8 flex flex-col cursor-default"
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
+                    animate={{
+                      borderColor: hovered === i ? 'rgba(214,167,88,0.45)' : 'rgba(255,255,255,0.1)',
+                      backgroundColor: hovered === i ? 'rgba(214,167,88,0.04)' : 'rgba(255,255,255,0)',
+                    }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    <motion.span
+                      className="text-[11px] tracking-[0.22em] uppercase mb-5 block font-medium"
+                      animate={{ color: hovered === i ? '#d6a758' : 'rgba(214,167,88,0.35)' }}
+                      transition={{ duration: 0.18 }}
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </motion.span>
+                    <p className="text-white font-medium text-xl leading-snug mb-5 flex-1" style={serif}>
                       {c.trigger}
                     </p>
-                    <p className="text-[#64748B] text-base leading-relaxed">{c.reveals}</p>
-                  </div>
-                </div>
-              </FadeIn>
-              {i < connections.length - 1 && (
-                <div className="ml-[43px] w-px h-2 bg-gradient-to-b from-white/20 to-transparent" />
-              )}
-            </div>
-          ))}
+                    <motion.div
+                      className="h-px mb-5"
+                      style={{ transformOrigin: 'left' }}
+                      animate={{
+                        backgroundColor: hovered === i ? '#d6a758' : 'rgba(255,255,255,0.15)',
+                        scaleX: hovered === i ? 1 : 0.5,
+                      }}
+                      transition={{ duration: 0.22 }}
+                    />
+                    <p className="text-[#64748B] text-sm leading-[1.8]">{c.reveals}</p>
+                  </motion.div>
+                </FadeIn>,
+              ]
+              if (i < connections.length - 1) {
+                nodes.push(
+                  /* Mobile: vertical connector */
+                  <div key={`conn-mobile-${i}`} className="md:hidden w-[2px] h-8 bg-gradient-to-b from-white/20 to-transparent ml-8 flex-shrink-0" />,
+                  /* Desktop: horizontal arrow */
+                  <FadeIn key={`conn-${i}`} delay={i * 0.1 + 0.08} className="hidden md:flex items-center flex-shrink-0 w-10 justify-center">
+                    <motion.span
+                      className="text-xl leading-none"
+                      animate={{
+                        color: hovered === i || hovered === i + 1 ? '#d6a758' : 'rgba(255,255,255,0.12)',
+                        x: hovered === i ? 3 : 0,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      →
+                    </motion.span>
+                  </FadeIn>
+                )
+              }
+              return nodes
+            })}
+          </div>
         </div>
 
         <FadeIn>
