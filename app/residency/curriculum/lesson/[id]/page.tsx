@@ -3,6 +3,7 @@ import { getLesson, getAdjacentLessons } from '@/lib/residency/queries'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
+import TeachingPackageDownload from '@/app/residency/components/TeachingPackageDownload'
 
 export default async function LessonPage({
   params,
@@ -101,6 +102,14 @@ export default async function LessonPage({
 
           {lesson.script_introduction && (
             <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
+          )}
+
+          {lesson.teaching_package_url && (
+            <TeachingPackageDownload
+              lessonId={id}
+              packageUrl={lesson.teaching_package_url}
+              lessonTitle={lesson.title}
+            />
           )}
 
           {/* Why This Lesson Matters */}

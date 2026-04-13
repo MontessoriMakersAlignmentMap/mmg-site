@@ -19,7 +19,7 @@ export default function EditLessonPage() {
     why_this_lesson_matters: '', direct_aim: '', indirect_aim: '',
     equity_aim: '', presentation: '', points_of_interest: '',
     variations: '', neurodivergence_notes: '', video_url: '',
-    script_introduction: '',
+    script_introduction: '', teaching_package_url: '',
   })
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
@@ -55,6 +55,7 @@ export default function EditLessonPage() {
           neurodivergence_notes: d.neurodivergence_notes ?? '',
           video_url: d.video_url ?? '',
           script_introduction: d.script_introduction ?? '',
+          teaching_package_url: d.teaching_package_url ?? '',
         })
       }
       setLoading(false)
@@ -99,6 +100,7 @@ export default function EditLessonPage() {
         neurodivergence_notes: form.neurodivergence_notes || null,
         video_url: form.video_url || null,
         script_introduction: form.script_introduction || null,
+        teaching_package_url: form.teaching_package_url || null,
       })
       .eq('id', id)
 
@@ -180,6 +182,16 @@ export default function EditLessonPage() {
               placeholder="https://player.vimeo.com/... or embed URL from HeyGen, Synthesia, etc." />
             <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginTop: '0.25rem' }}>
               Paste an embed URL. The video will appear at the top of the lesson page for residents.
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Teaching Package PDF (download URL)</label>
+            <input type="url" className="r-input" value={form.teaching_package_url}
+              onChange={e => update('teaching_package_url', e.target.value)}
+              placeholder="https://... URL to downloadable teaching package PDF" />
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginTop: '0.25rem' }}>
+              Residents can download this PDF only after their album entry is approved.
             </p>
           </div>
 

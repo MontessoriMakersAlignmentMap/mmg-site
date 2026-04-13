@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import Link from 'next/link'
 import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
+import TeachingPackageDownload from '@/app/residency/components/TeachingPackageDownload'
 
 const PING_INTERVAL_MS = 30_000 // Send engagement every 30 seconds
 const ENGAGE_THRESHOLD_S = 180 // 3 minutes
@@ -215,6 +216,14 @@ export default function BundleLessonPage() {
 
       {lesson.script_introduction && (
         <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
+      )}
+
+      {lesson.teaching_package_url && (
+        <TeachingPackageDownload
+          lessonId={lesson.id}
+          packageUrl={lesson.teaching_package_url}
+          lessonTitle={lesson.title}
+        />
       )}
 
       {lesson.why_this_lesson_matters && (

@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import StatusBadge from '../../../components/StatusBadge'
 import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
+import TeachingPackageDownload from '@/app/residency/components/TeachingPackageDownload'
 
 export default function ResidentLessonPage() {
   const { id } = useParams<{ id: string }>()
@@ -88,6 +89,14 @@ export default function ResidentLessonPage() {
 
       {lesson.script_introduction && (
         <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
+      )}
+
+      {lesson.teaching_package_url && (
+        <TeachingPackageDownload
+          lessonId={id}
+          packageUrl={lesson.teaching_package_url}
+          lessonTitle={lesson.title}
+        />
       )}
 
       {/* Lesson content */}
