@@ -483,7 +483,7 @@ export default function MMRLandingPage() {
           <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.06}>
             {[
               {
-                label: 'Educators of color who have been told Montessori is not for their communities',
+                label: 'Educators of color building Montessori in communities the field has overlooked',
                 body: 'You found Montessori and saw its liberatory potential immediately. You also saw who was in the training room, who wrote the curriculum, and who the program was designed around. MMR was built by someone who made the same observation and decided the answer was not to wait for the field to change.',
               },
               {
