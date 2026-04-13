@@ -286,7 +286,7 @@ export default function StudioPortfolioPage() {
               </p>
               <ul className="space-y-3">
                 {[
-                  'Your school's actual photography, voice, and brand',
+                  "Your school's actual photography, voice, and brand",
                   'Domain, hosting, and deployment setup',
                   'Contact and inquiry forms with email delivery',
                   'Google Maps and calendar integration',
