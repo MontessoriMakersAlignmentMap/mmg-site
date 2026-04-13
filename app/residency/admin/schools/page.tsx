@@ -58,7 +58,7 @@ export default function AdminSchoolsPage() {
     await load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   if (selected) {
     return (
@@ -80,7 +80,7 @@ export default function AdminSchoolsPage() {
               fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
               padding: '0.25rem 0.75rem', borderRadius: '6px',
               color: selected.practicum_agreement_signed ? '#2d6a4f' : '#b45309',
-              background: selected.practicum_agreement_signed ? '#d1fae5' : '#fef3c7',
+              background: selected.practicum_agreement_signed ? 'var(--r-success-light)' : 'var(--r-warning-light)',
             }}>
               {selected.practicum_agreement_signed ? 'Agreement Signed' : 'Agreement Pending'}
             </span>
@@ -210,7 +210,7 @@ export default function AdminSchoolsPage() {
                 fontSize: '0.625rem', fontWeight: 600, textTransform: 'uppercase',
                 padding: '0.25rem 0.5rem', borderRadius: '4px',
                 color: s.practicum_agreement_signed ? '#2d6a4f' : '#b45309',
-                background: s.practicum_agreement_signed ? '#d1fae5' : '#fef3c7',
+                background: s.practicum_agreement_signed ? 'var(--r-success-light)' : 'var(--r-warning-light)',
               }}>
                 {s.partnership_status}
               </span>

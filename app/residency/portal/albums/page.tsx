@@ -59,7 +59,7 @@ export default function AlbumsPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Group entries by strand
   const entriesByStrand: Record<string, any[]> = {}
@@ -142,14 +142,14 @@ export default function AlbumsPage() {
                 return (
                   <div key={strand.id} style={{
                     flex: '1 1 120px', maxWidth: '160px', textAlign: 'center', padding: '0.75rem 0.5rem',
-                    background: pct === 100 ? '#e8f5e9' : 'var(--r-bg-muted)', borderRadius: '8px',
+                    background: pct === 100 ? 'var(--r-success-light)' : 'var(--r-bg-muted)', borderRadius: '8px',
                   }}>
                     <p style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--r-text-muted)', marginBottom: '0.25rem' }}>
                       {strand.name}
                     </p>
                     <p style={{
                       fontSize: '1.25rem', fontWeight: 700,
-                      color: pct === 100 ? '#2e7d32' : 'var(--r-navy)',
+                      color: pct === 100 ? 'var(--r-success)' : 'var(--r-navy)',
                     }}>
                       {completed}/{total}
                     </p>

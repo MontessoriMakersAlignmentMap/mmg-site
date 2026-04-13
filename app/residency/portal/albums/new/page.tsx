@@ -251,7 +251,7 @@ export default function NewAlbumEntryPage() {
           }}>
             <span>{filledFields} of {FIELD_CONFIG.length} fields started</span>
             <span style={{ color: 'var(--r-text-muted)' }}>{totalWords} words total</span>
-            {lastSaved && <span style={{ color: '#2e7d32', fontSize: '0.75rem' }}>Saved {lastSaved}</span>}
+            {lastSaved && <span style={{ color: 'var(--r-success)', fontSize: '0.75rem' }}>Saved {lastSaved}</span>}
           </div>
 
           {FIELD_CONFIG.map((field, idx) => {

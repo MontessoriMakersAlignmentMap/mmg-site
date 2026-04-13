@@ -99,7 +99,7 @@ export default function AdminCompletionPage() {
     setConfirming(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -168,7 +168,7 @@ export default function AdminCompletionPage() {
                         fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase',
                         padding: '0.25rem 0.75rem', borderRadius: '6px',
                         color: checkData.eligible ? '#2d6a4f' : '#b45309',
-                        background: checkData.eligible ? '#d1fae5' : '#fef3c7',
+                        background: checkData.eligible ? 'var(--r-success-light)' : 'var(--r-warning-light)',
                       }}>
                         {checkData.eligible ? 'Eligible' : 'Not Yet Eligible'}
                       </span>

@@ -10,9 +10,9 @@ const RUBRIC_LABELS: Record<string, string> = {
 }
 
 const BAND_STYLES: Record<string, { bg: string; color: string }> = {
-  highly_proficient: { bg: '#e8f5e9', color: '#2e7d32' },
-  proficient: { bg: '#e3f2fd', color: '#1565c0' },
-  developing: { bg: '#fff8e1', color: '#f57f17' },
+  highly_proficient: { bg: 'var(--r-success-light)', color: 'var(--r-success)' },
+  proficient: { bg: 'var(--r-info-light)', color: 'var(--r-info)' },
+  developing: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)' },
   needs_support: { bg: '#fce4ec', color: '#c62828' },
 }
 
@@ -51,7 +51,7 @@ export default function AdminAssessmentsPage() {
     load()
   }, [filter])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   // Stats
   const practiceCount = assessments.filter(a => a.rubric_type === 'practice').length

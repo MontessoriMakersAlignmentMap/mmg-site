@@ -97,7 +97,7 @@ export default function AlbumPatternsPage() {
     loadPatterns()
   }, [selectedCohort])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -127,13 +127,13 @@ export default function AlbumPatternsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {patterns.map((p, idx) => (
             <div key={p.key} className="r-card" style={{
-              borderLeft: `4px solid ${idx === 0 ? '#c62828' : idx < 3 ? '#f57f17' : '#e0e0e0'}`,
+              borderLeft: `4px solid ${idx === 0 ? '#c62828' : idx < 3 ? 'var(--r-feedback-color)' : 'var(--r-border)'}`,
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.375rem' }}>
                 <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: 0 }}>{p.label}</h3>
                 <span style={{
                   fontSize: '1.25rem', fontWeight: 700,
-                  color: idx === 0 ? '#c62828' : idx < 3 ? '#f57f17' : 'var(--r-text-muted)',
+                  color: idx === 0 ? '#c62828' : idx < 3 ? 'var(--r-feedback-color)' : 'var(--r-text-muted)',
                 }}>
                   {p.count}
                 </span>

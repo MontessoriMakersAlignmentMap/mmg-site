@@ -83,7 +83,7 @@ export default function AdminMentorApplicationsPage() {
     await load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const pending = apps.filter(a => a.status === 'pending')
   const approved = apps.filter(a => a.status === 'approved')
@@ -140,11 +140,11 @@ export default function AdminMentorApplicationsPage() {
                   {acting ? 'Processing...' : 'Approve & Create Account'}
                 </button>
                 <button className="r-btn" disabled={acting} onClick={() => handleAction('pending_review')}
-                  style={{ justifyContent: 'center', background: '#fef3c7', color: '#b45309', border: 'none' }}>
+                  style={{ justifyContent: 'center', background: 'var(--r-warning-light)', color: '#b45309', border: 'none' }}>
                   Pending Further Review
                 </button>
                 <button className="r-btn" disabled={acting} onClick={() => handleAction('declined')}
-                  style={{ justifyContent: 'center', background: '#fef2f2', color: '#991b1b', border: 'none' }}>
+                  style={{ justifyContent: 'center', background: 'var(--r-error-light)', color: '#991b1b', border: 'none' }}>
                   Decline
                 </button>
               </div>

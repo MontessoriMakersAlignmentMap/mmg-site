@@ -154,13 +154,13 @@ export default function BundleLessonPage() {
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: '0.625rem 1rem', borderRadius: '8px', marginBottom: '1.5rem',
-        background: engaged ? '#e8f5e9' : 'var(--r-bg-muted)',
+        background: engaged ? 'var(--r-success-light)' : 'var(--r-bg-muted)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ width: '100px', height: '4px', background: engaged ? '#c8e6c9' : '#e0e0e0', borderRadius: '2px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${progressPct}%`, background: engaged ? '#2e7d32' : 'var(--r-navy)', borderRadius: '2px', transition: 'width 1s' }} />
+          <div style={{ width: '100px', height: '4px', background: engaged ? '#c8e6c9' : 'var(--r-border)', borderRadius: '2px', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${progressPct}%`, background: engaged ? 'var(--r-success)' : 'var(--r-navy)', borderRadius: '2px', transition: 'width 1s' }} />
           </div>
-          <span style={{ fontSize: '0.75rem', color: engaged ? '#2e7d32' : 'var(--r-text-muted)', fontWeight: 500 }}>
+          <span style={{ fontSize: '0.75rem', color: engaged ? 'var(--r-success)' : 'var(--r-text-muted)', fontWeight: 500 }}>
             {engaged ? 'Engaged' : `${minutes}:${seconds.toString().padStart(2, '0')} / 3:00`}
           </span>
         </div>

@@ -87,12 +87,12 @@ export default function MentorApplyPage() {
 
   if (submitted) {
     return (
-      <section style={{ background: 'var(--r-navy)', color: '#fff', padding: '6rem 0', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
+      <section style={{ background: 'var(--r-navy)', color: 'var(--r-white)', padding: '6rem 0', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
         <div className="r-container" style={{ maxWidth: '550px' }}>
           <p style={{ color: 'var(--r-gold)', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>
             Application Received
           </p>
-          <h1 style={{ fontFamily: 'var(--r-font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: '#fff' }}>
+          <h1 style={{ fontFamily: 'var(--r-font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: 'var(--r-white)' }}>
             Thank You, {form.first_name}
           </h1>
           <p style={{ fontSize: '1.0625rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)' }}>
@@ -108,12 +108,12 @@ export default function MentorApplyPage() {
 
   return (
     <>
-      <section style={{ background: 'var(--r-navy)', color: '#fff', padding: '5rem 0 4rem', textAlign: 'center' }}>
+      <section style={{ background: 'var(--r-navy)', color: 'var(--r-white)', padding: '5rem 0 4rem', textAlign: 'center' }}>
         <div className="r-container" style={{ maxWidth: '600px' }}>
           <p style={{ color: 'var(--r-gold)', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>
             Montessori Makers Residency
           </p>
-          <h1 style={{ fontFamily: 'var(--r-font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: '#fff' }}>
+          <h1 style={{ fontFamily: 'var(--r-font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: 'var(--r-white)' }}>
             Mentor Application
           </h1>
         </div>
@@ -231,7 +231,7 @@ export default function MentorApplyPage() {
             </div>
 
             {error && (
-              <div style={{ color: 'var(--r-error)', fontSize: '0.875rem', padding: '0.75rem 1rem', background: '#fef2f2', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <div style={{ color: 'var(--r-error)', fontSize: '0.875rem', padding: '0.75rem 1rem', background: 'var(--r-error-light)', borderRadius: '8px', marginBottom: '1.5rem' }}>
                 {error}
               </div>
             )}

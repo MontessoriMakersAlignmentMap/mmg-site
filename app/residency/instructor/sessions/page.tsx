@@ -26,7 +26,7 @@ export default function InstructorSessionsPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const upcoming = sessions.filter(s => s.status === 'scheduled' || s.status === 'in_progress')
   const past = sessions.filter(s => s.status === 'completed' || s.status === 'cancelled')
@@ -40,7 +40,7 @@ export default function InstructorSessionsPage() {
 
       {upcoming.length > 0 && (
         <div style={{ marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: '#1565c0' }}>
+          <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-info)' }}>
             Upcoming ({upcoming.length})
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -59,8 +59,8 @@ export default function InstructorSessionsPage() {
                   <span style={{
                     fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
                     textTransform: 'uppercase',
-                    background: s.status === 'in_progress' ? '#fff8e1' : '#e3f2fd',
-                    color: s.status === 'in_progress' ? '#f57f17' : '#1565c0',
+                    background: s.status === 'in_progress' ? 'var(--r-feedback-bg)' : 'var(--r-info-light)',
+                    color: s.status === 'in_progress' ? 'var(--r-feedback-color)' : 'var(--r-info)',
                   }}>
                     {s.status === 'in_progress' ? 'In Progress' : 'Scheduled'}
                   </span>
@@ -87,7 +87,7 @@ export default function InstructorSessionsPage() {
                     </p>
                     <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>{s.cohort?.name}</p>
                   </div>
-                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: '#2e7d32' }}>COMPLETED</span>
+                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--r-success)' }}>COMPLETED</span>
                 </div>
               </Link>
             ))}

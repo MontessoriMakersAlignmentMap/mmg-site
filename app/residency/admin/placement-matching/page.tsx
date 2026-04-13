@@ -100,7 +100,7 @@ export default function PlacementMatchingPage() {
     await load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const availableMentors = mentors.filter(m => m.available)
   const availableSchools = schools.filter(s => s.available)

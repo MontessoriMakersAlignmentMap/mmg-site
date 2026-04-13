@@ -24,7 +24,7 @@ export default function ResidencyFooter() {
             </p>
           </div>
           <div>
-            <h5 style={{ color: '#fff', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+            <h5 style={{ color: 'var(--r-white)', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
               Platform
             </h5>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -40,7 +40,7 @@ export default function ResidencyFooter() {
             </nav>
           </div>
           <div>
-            <h5 style={{ color: '#fff', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+            <h5 style={{ color: 'var(--r-white)', fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
               Ecosystem
             </h5>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

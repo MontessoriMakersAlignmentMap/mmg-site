@@ -73,7 +73,7 @@ export default function ResidentSurveysPage() {
     setSubmitting(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const pending = surveys.filter(s => !s.completed_at)
   const completed = surveys.filter(s => s.completed_at)
@@ -218,7 +218,7 @@ export default function ResidentSurveysPage() {
                 <span style={{
                   fontSize: '0.625rem', fontWeight: 600, textTransform: 'uppercase',
                   padding: '0.25rem 0.5rem', borderRadius: '4px',
-                  color: '#2d6a4f', background: '#d1fae5',
+                  color: '#2d6a4f', background: 'var(--r-success-light)',
                 }}>
                   Done
                 </span>

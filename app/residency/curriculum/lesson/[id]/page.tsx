@@ -29,7 +29,7 @@ export default async function LessonPage({
       {/* Lesson header */}
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '3rem 0 2.5rem',
       }}>
         <div className="r-container r-lesson-header">
@@ -77,7 +77,7 @@ export default async function LessonPage({
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             lineHeight: 1.2,
             marginBottom: '0.5rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             {lesson.title}
           </h1>

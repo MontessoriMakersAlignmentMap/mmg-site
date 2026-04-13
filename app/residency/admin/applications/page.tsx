@@ -111,7 +111,7 @@ export default function AdminApplicationsPage() {
     })
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const filtered = filter === 'all' ? apps : apps.filter(a => a.status === filter)
   const counts = {
@@ -145,7 +145,7 @@ export default function AdminApplicationsPage() {
             textTransform: 'uppercase',
             padding: '0.375rem 0.75rem',
             borderRadius: '6px',
-            color: '#fff',
+            color: 'var(--r-white)',
             background: statusColors[selected.status],
           }}>
             {statusLabels[selected.status]}
@@ -201,7 +201,7 @@ export default function AdminApplicationsPage() {
                     textTransform: 'uppercase',
                     padding: '0.25rem 0.625rem',
                     borderRadius: '4px',
-                    background: '#ede9fe',
+                    background: 'var(--r-purple-light)',
                     color: '#6b21a8',
                     marginLeft: '0.5rem',
                   }}>
@@ -264,11 +264,11 @@ export default function AdminApplicationsPage() {
                     {acting ? 'Processing...' : 'Accept Application'}
                   </button>
                   <button className="r-btn" disabled={acting} onClick={() => handleAction('waitlist')}
-                    style={{ justifyContent: 'center', background: '#ede9fe', color: '#6b21a8', border: 'none' }}>
+                    style={{ justifyContent: 'center', background: 'var(--r-purple-light)', color: '#6b21a8', border: 'none' }}>
                     Move to Waitlist
                   </button>
                   <button className="r-btn" disabled={acting} onClick={() => handleAction('decline')}
-                    style={{ justifyContent: 'center', background: '#fef2f2', color: '#991b1b', border: 'none' }}>
+                    style={{ justifyContent: 'center', background: 'var(--r-error-light)', color: '#991b1b', border: 'none' }}>
                     Decline Application
                   </button>
                 </div>
@@ -296,7 +296,7 @@ export default function AdminApplicationsPage() {
                     Accept Application
                   </button>
                   <button className="r-btn" disabled={acting} onClick={() => handleAction('decline')}
-                    style={{ justifyContent: 'center', background: '#fef2f2', color: '#991b1b', border: 'none' }}>
+                    style={{ justifyContent: 'center', background: 'var(--r-error-light)', color: '#991b1b', border: 'none' }}>
                     Decline
                   </button>
                 </div>
@@ -385,7 +385,7 @@ export default function AdminApplicationsPage() {
                   textTransform: 'uppercase',
                   padding: '0.25rem 0.5rem',
                   borderRadius: '4px',
-                  color: '#fff',
+                  color: 'var(--r-white)',
                   background: statusColors[app.status],
                 }}>
                   {statusLabels[app.status]}

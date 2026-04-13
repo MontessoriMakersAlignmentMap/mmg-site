@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 
 const STANDING_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  good_standing: { bg: '#e8f5e9', color: '#2e7d32', label: 'Good Standing' },
-  academic_watch: { bg: '#fff8e1', color: '#f57f17', label: 'Academic Watch' },
+  good_standing: { bg: 'var(--r-success-light)', color: 'var(--r-success)', label: 'Good Standing' },
+  academic_watch: { bg: 'var(--r-feedback-bg)', color: 'var(--r-feedback-color)', label: 'Academic Watch' },
   formal_remediation: { bg: '#fce4ec', color: '#c62828', label: 'Formal Remediation' },
 }
 
@@ -99,7 +99,7 @@ export default function StandingManagementPage() {
     loadData()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const watchCount = residents.filter(r => r.current_standing === 'academic_watch').length
   const remediationCount = residents.filter(r => r.current_standing === 'formal_remediation').length
@@ -122,9 +122,9 @@ export default function StandingManagementPage() {
       {(watchCount > 0 || remediationCount > 0) && (
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
           {watchCount > 0 && (
-            <div style={{ padding: '0.75rem 1.25rem', background: '#fff8e1', borderRadius: '8px', border: '1px solid #ffe082' }}>
-              <span style={{ fontWeight: 700, color: '#f57f17', fontSize: '1.25rem' }}>{watchCount}</span>
-              <span style={{ fontSize: '0.8125rem', color: '#f57f17', marginLeft: '0.5rem' }}>on Academic Watch</span>
+            <div style={{ padding: '0.75rem 1.25rem', background: 'var(--r-feedback-bg)', borderRadius: '8px', border: '1px solid #ffe082' }}>
+              <span style={{ fontWeight: 700, color: 'var(--r-feedback-color)', fontSize: '1.25rem' }}>{watchCount}</span>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--r-feedback-color)', marginLeft: '0.5rem' }}>on Academic Watch</span>
             </div>
           )}
           {remediationCount > 0 && (
@@ -171,7 +171,7 @@ export default function StandingManagementPage() {
               required />
           </div>
           {newStanding && newStanding !== 'good_standing' && (
-            <p style={{ fontSize: '0.75rem', color: '#f57f17', marginBottom: '1rem', padding: '0.5rem', background: '#fff8e1', borderRadius: '6px' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--r-feedback-color)', marginBottom: '1rem', padding: '0.5rem', background: 'var(--r-feedback-bg)', borderRadius: '6px' }}>
               A 7-day mentor check-in window will be created. The mentor will be notified.
             </p>
           )}
@@ -261,7 +261,7 @@ export default function StandingManagementPage() {
                   </div>
                   <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>{h.reason}</p>
                   {h.mentor_checkin_due_at && (
-                    <p style={{ fontSize: '0.6875rem', color: h.mentor_checkin_at ? '#2e7d32' : '#f57f17', marginTop: '0.25rem' }}>
+                    <p style={{ fontSize: '0.6875rem', color: h.mentor_checkin_at ? 'var(--r-success)' : 'var(--r-feedback-color)', marginTop: '0.25rem' }}>
                       {h.mentor_checkin_at
                         ? `Mentor checked in ${new Date(h.mentor_checkin_at).toLocaleDateString()}`
                         : `Mentor check-in due by ${new Date(h.mentor_checkin_due_at).toLocaleDateString()}`

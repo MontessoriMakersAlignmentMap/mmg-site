@@ -105,7 +105,7 @@ export default function PracticumPage() {
     setSaving(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -130,11 +130,11 @@ export default function PracticumPage() {
               {totalTeaching.toFixed(1)} / {TEACHING_TARGET}
             </span>
           </div>
-          <div style={{ height: '8px', background: '#e0e0e0', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ height: '8px', background: 'var(--r-border)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{
               height: '100%',
               width: `${teachingPct}%`,
-              background: teachingPct >= 100 ? '#2e7d32' : 'var(--r-navy)',
+              background: teachingPct >= 100 ? 'var(--r-success)' : 'var(--r-navy)',
               borderRadius: '4px',
               transition: 'width 0.3s',
             }} />
@@ -151,11 +151,11 @@ export default function PracticumPage() {
               {totalObservation.toFixed(1)} / {OBSERVATION_TARGET}
             </span>
           </div>
-          <div style={{ height: '8px', background: '#e0e0e0', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ height: '8px', background: 'var(--r-border)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{
               height: '100%',
               width: `${observationPct}%`,
-              background: observationPct >= 100 ? '#2e7d32' : '#1565c0',
+              background: observationPct >= 100 ? 'var(--r-success)' : 'var(--r-info)',
               borderRadius: '4px',
               transition: 'width 0.3s',
             }} />
@@ -256,11 +256,11 @@ export default function PracticumPage() {
                     <span style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600 }}>
                       {Number(l.hours_teaching).toFixed(1)}h teaching
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: '#1565c0', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--r-info)', fontWeight: 600 }}>
                       {Number(l.hours_observation).toFixed(1)}h observation
                     </span>
                     {l.verified_at && (
-                      <span style={{ fontSize: '0.625rem', padding: '0.125rem 0.5rem', background: '#e8f5e9', color: '#2e7d32', borderRadius: '9999px', fontWeight: 600 }}>
+                      <span style={{ fontSize: '0.625rem', padding: '0.125rem 0.5rem', background: 'var(--r-success-light)', color: 'var(--r-success)', borderRadius: '9999px', fontWeight: 600 }}>
                         Verified
                       </span>
                     )}

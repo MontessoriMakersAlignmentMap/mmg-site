@@ -30,9 +30,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-        <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
-      </div>
+      <div className="r-loading" role="status" style={{ minHeight: "60vh" }}><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
     )
   }
 
@@ -40,7 +38,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
     <div className="r-sidebar-layout">
       <MobileOverlay open={open} onClose={() => setOpen(false)} />
       <MobileNavToggle open={open} toggle={toggle} />
-      <aside className={`r-sidebar${open ? ' open' : ''}`}>
+      <aside role="complementary" className={`r-sidebar${open ? ' open' : ''}`}>
         <div style={{ marginBottom: '1.5rem' }}>
           <p style={{
             fontSize: '0.6875rem',
@@ -58,7 +56,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             </p>
           )}
         </div>
-        <nav className="r-sidebar-nav">
+        <nav className="r-sidebar-nav" aria-label="Sidebar navigation">
           {navItems.map(item => (
             <Link
               key={item.href}

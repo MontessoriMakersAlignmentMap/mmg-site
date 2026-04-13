@@ -276,7 +276,7 @@ export default function NewLessonPage() {
         </div>
 
         {error && (
-          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.5rem', background: '#fef2f2', borderRadius: '6px' }}>
+          <p style={{ color: 'var(--r-error)', fontSize: '0.8125rem', marginBottom: '1rem', padding: '0.5rem', background: 'var(--r-error-light)', borderRadius: '6px' }}>
             {error}
           </p>
         )}

@@ -44,7 +44,7 @@ export default function AnalyticsPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const { residents, logs, rubrics, artifacts, requirements, attendance, seminars, signoffs, warnings, plans, evaluations } = data
 
@@ -97,17 +97,17 @@ export default function AnalyticsPage() {
 
   const statCards = [
     { label: 'Active Candidates', value: activeResidents, color: 'var(--r-navy)' },
-    { label: 'Completed', value: completedResidents, color: '#2e7d32' },
+    { label: 'Completed', value: completedResidents, color: 'var(--r-success)' },
     { label: 'Avg Teaching Hours', value: avgTeachingPerResident.toFixed(0), color: 'var(--r-navy)' },
-    { label: 'Avg Observation Hours', value: avgObservationPerResident.toFixed(0), color: '#1565c0' },
+    { label: 'Avg Observation Hours', value: avgObservationPerResident.toFixed(0), color: 'var(--r-info)' },
     { label: 'Total Rubric Assessments', value: totalRubrics, color: 'var(--r-navy)' },
     { label: 'Avg Rubric Score', value: avgRubricScore?.toFixed(2) ?? '—', color: 'var(--r-navy)' },
     { label: 'Portfolio Completion', value: totalRequired > 0 ? `${((totalApproved / totalRequired) * 100).toFixed(0)}%` : '—', color: 'var(--r-navy)' },
-    { label: 'Seminar Attendance', value: attendanceRate != null ? `${attendanceRate.toFixed(0)}%` : '—', color: attendanceRate != null && attendanceRate >= 90 ? '#2e7d32' : '#f57f17' },
+    { label: 'Seminar Attendance', value: attendanceRate != null ? `${attendanceRate.toFixed(0)}%` : '—', color: attendanceRate != null && attendanceRate >= 90 ? 'var(--r-success)' : 'var(--r-feedback-color)' },
     { label: 'Competencies Met', value: `${totalCompetenciesMet}/${totalCompetenciesPossible}`, color: 'var(--r-navy)' },
-    { label: 'Active Warnings', value: activeWarnings, color: activeWarnings > 0 ? '#f57f17' : '#2e7d32' },
+    { label: 'Active Warnings', value: activeWarnings, color: activeWarnings > 0 ? 'var(--r-feedback-color)' : 'var(--r-success)' },
     { label: 'Active Support Plans', value: activePlans, color: 'var(--r-navy)' },
-    { label: 'Ready for Credential', value: readyCount, color: '#2e7d32' },
+    { label: 'Ready for Credential', value: readyCount, color: 'var(--r-success)' },
   ]
 
   return (
@@ -132,9 +132,9 @@ export default function AnalyticsPage() {
         <div className="r-card">
           <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Proficiency Band Distribution</h2>
           {[
-            { key: 'highly_proficient', label: 'Highly Proficient (3.5-4.0)', color: '#2e7d32', bg: '#e8f5e9' },
-            { key: 'proficient', label: 'Proficient (2.5-3.4)', color: '#1565c0', bg: '#e3f2fd' },
-            { key: 'developing', label: 'Developing (1.5-2.4)', color: '#f57f17', bg: '#fff8e1' },
+            { key: 'highly_proficient', label: 'Highly Proficient (3.5-4.0)', color: 'var(--r-success)', bg: 'var(--r-success-light)' },
+            { key: 'proficient', label: 'Proficient (2.5-3.4)', color: 'var(--r-info)', bg: 'var(--r-info-light)' },
+            { key: 'developing', label: 'Developing (1.5-2.4)', color: 'var(--r-feedback-color)', bg: 'var(--r-feedback-bg)' },
             { key: 'needs_support', label: 'Needs Support (1.0-1.4)', color: '#c62828', bg: '#fce4ec' },
           ].map(band => {
             const count = bandCounts[band.key as keyof typeof bandCounts]
@@ -145,7 +145,7 @@ export default function AnalyticsPage() {
                   <span style={{ color: band.color, fontWeight: 600 }}>{band.label}</span>
                   <span style={{ color: 'var(--r-text-muted)' }}>{count} ({pct.toFixed(0)}%)</span>
                 </div>
-                <div style={{ height: '6px', background: '#e0e0e0', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ height: '6px', background: 'var(--r-border)', borderRadius: '3px', overflow: 'hidden' }}>
                   <div style={{ height: '100%', width: `${pct}%`, background: band.color, borderRadius: '3px' }} />
                 </div>
               </div>
@@ -165,9 +165,9 @@ export default function AnalyticsPage() {
             ].map(item => (
               <div key={item.label} style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                padding: '0.5rem 0.75rem', background: item.ok ? '#e8f5e9' : '#fff8e1', borderRadius: '6px',
+                padding: '0.5rem 0.75rem', background: item.ok ? 'var(--r-success-light)' : 'var(--r-feedback-bg)', borderRadius: '6px',
               }}>
-                <span style={{ fontSize: '0.8125rem', fontWeight: 500, color: item.ok ? '#2e7d32' : '#f57f17' }}>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 500, color: item.ok ? 'var(--r-success)' : 'var(--r-feedback-color)' }}>
                   {item.ok ? '\u2713' : '\u26A0'} {item.label}
                 </span>
                 <span style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>{item.detail}</span>
@@ -207,8 +207,8 @@ export default function AnalyticsPage() {
                     {r.profile?.first_name} {r.profile?.last_name}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>{r.assigned_level?.name ?? '—'}</td>
-                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: tHrs >= TEACHING_TARGET ? '#2e7d32' : 'inherit' }}>{tHrs.toFixed(0)}</td>
-                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: oHrs >= OBSERVATION_TARGET ? '#2e7d32' : 'inherit' }}>{oHrs.toFixed(0)}</td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: tHrs >= TEACHING_TARGET ? 'var(--r-success)' : 'inherit' }}>{tHrs.toFixed(0)}</td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: oHrs >= OBSERVATION_TARGET ? 'var(--r-success)' : 'inherit' }}>{oHrs.toFixed(0)}</td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>{rRubrics.length}</td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', fontWeight: 600 }}>{rAvg?.toFixed(2) ?? '—'}</td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>{rArtifacts}</td>

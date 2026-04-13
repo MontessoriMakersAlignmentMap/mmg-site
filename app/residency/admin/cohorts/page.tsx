@@ -85,7 +85,7 @@ export default function CohortsPage() {
     load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -185,7 +185,7 @@ export default function CohortsPage() {
                       <span>Starts {new Date(c.start_date).toLocaleDateString()}</span>
                       <span style={{
                         fontWeight: 600,
-                        color: c.status === 'active' ? '#2e7d32' : c.status === 'draft' ? '#f57f17' : 'var(--r-text-muted)',
+                        color: c.status === 'active' ? 'var(--r-success)' : c.status === 'draft' ? 'var(--r-feedback-color)' : 'var(--r-text-muted)',
                       }}>
                         {c.status.toUpperCase()}
                       </span>
@@ -221,7 +221,7 @@ export default function CohortsPage() {
                     ))}
                   </select>
                   {assignedInstr && (
-                    <span style={{ fontSize: '0.6875rem', color: '#2e7d32' }}>
+                    <span style={{ fontSize: '0.6875rem', color: 'var(--r-success)' }}>
                       {assignedInstr.first_name} {assignedInstr.last_name}
                     </span>
                   )}

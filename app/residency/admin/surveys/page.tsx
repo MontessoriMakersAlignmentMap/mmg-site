@@ -127,7 +127,7 @@ export default function AdminSurveyDashboardPage() {
       {triggerResult && (
         <div style={{
           padding: '0.75rem 1rem', marginBottom: '1rem', borderRadius: '6px',
-          background: '#d1fae5', color: '#065f46', fontSize: '0.8125rem',
+          background: 'var(--r-success-light)', color: 'var(--r-success)', fontSize: '0.8125rem',
         }}>
           {triggerResult}
         </div>

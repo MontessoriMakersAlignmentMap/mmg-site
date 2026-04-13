@@ -8,7 +8,7 @@ export default function CurriculumPage() {
       {/* Header */}
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '4rem 0 3.5rem',
       }}>
         <div className="r-container" style={{ maxWidth: '900px' }}>
@@ -27,7 +27,7 @@ export default function CurriculumPage() {
             fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
             lineHeight: 1.2,
             marginBottom: '1rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             The Full Scope of Practice
           </h1>

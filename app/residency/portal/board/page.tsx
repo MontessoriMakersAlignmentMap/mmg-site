@@ -138,7 +138,7 @@ export default function CommunityBoardPage() {
     await loadPosts()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const announcements = posts.filter(p => p.post_type === 'announcement')
   const questions = posts.filter(p => p.post_type === 'question' && !p.resolved)
@@ -261,7 +261,7 @@ function PostWithReplies({
     <div className="r-card" style={{ marginBottom: '0.75rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem' }}>
         <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: 0 }}>
-          {post.resolved && <span style={{ fontSize: '0.625rem', color: '#2e7d32', marginRight: '0.375rem' }}>ANSWERED</span>}
+          {post.resolved && <span style={{ fontSize: '0.625rem', color: 'var(--r-success)', marginRight: '0.375rem' }}>ANSWERED</span>}
           {post.title}
         </h3>
         <span style={{ fontSize: '0.625rem', color: 'var(--r-text-muted)', flexShrink: 0 }}>

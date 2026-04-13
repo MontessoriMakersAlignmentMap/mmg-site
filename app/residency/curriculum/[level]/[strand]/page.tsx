@@ -41,7 +41,7 @@ export default async function StrandLevelPage({
       {/* Strand header */}
       <section style={{
         background: 'var(--r-navy)',
-        color: '#fff',
+        color: 'var(--r-white)',
         padding: '3.5rem 0 3rem',
       }}>
         <div className="r-container" style={{ maxWidth: '900px' }}>
@@ -71,7 +71,7 @@ export default async function StrandLevelPage({
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             lineHeight: 1.2,
             marginBottom: '1rem',
-            color: '#fff',
+            color: 'var(--r-white)',
           }}>
             {strand.name}
           </h1>

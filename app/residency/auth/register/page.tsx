@@ -124,7 +124,7 @@ export default function RegisterPage() {
               fontSize: '0.8125rem',
               marginBottom: '1rem',
               padding: '0.5rem 0.75rem',
-              background: '#fef2f2',
+              background: 'var(--r-error-light)',
               borderRadius: '6px',
             }}>
               {error}

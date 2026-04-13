@@ -5,10 +5,10 @@ import { supabase } from '@/lib/supabase/client'
 import EmptyState from '../../components/EmptyState'
 
 const statusColors: Record<string, { color: string; bg: string }> = {
-  pending: { color: '#b45309', bg: '#fef3c7' },
-  full_award: { color: '#2d6a4f', bg: '#d1fae5' },
+  pending: { color: '#b45309', bg: 'var(--r-warning-light)' },
+  full_award: { color: '#2d6a4f', bg: 'var(--r-success-light)' },
   partial_award: { color: '#0E1A7A', bg: '#e8e9f5' },
-  declined: { color: '#991b1b', bg: '#fef2f2' },
+  declined: { color: '#991b1b', bg: 'var(--r-error-light)' },
 }
 
 export default function AdminScholarshipsPage() {
@@ -104,7 +104,7 @@ export default function AdminScholarshipsPage() {
     await load()
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const pending = scholarships.filter(s => s.award_status === 'pending')
   const awarded = scholarships.filter(s => s.award_status === 'full_award' || s.award_status === 'partial_award')

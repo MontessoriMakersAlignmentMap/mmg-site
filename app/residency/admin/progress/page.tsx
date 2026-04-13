@@ -109,7 +109,7 @@ export default function AdminProgressPage() {
     load()
   }, [])
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   return (
     <div>
@@ -131,10 +131,10 @@ export default function AdminProgressPage() {
             {bp.bundleRates.map((br: any) => (
               <div key={br.id} style={{
                 width: '48px', textAlign: 'center', padding: '0.375rem',
-                background: br.rate >= 80 ? '#e8f5e9' : br.rate >= 50 ? '#fff8e1' : '#fce4ec',
+                background: br.rate >= 80 ? 'var(--r-success-light)' : br.rate >= 50 ? 'var(--r-feedback-bg)' : '#fce4ec',
                 borderRadius: '6px',
               }}>
-                <p style={{ fontSize: '0.875rem', fontWeight: 700, color: br.rate >= 80 ? '#2e7d32' : br.rate >= 50 ? '#f57f17' : '#c62828' }}>
+                <p style={{ fontSize: '0.875rem', fontWeight: 700, color: br.rate >= 80 ? 'var(--r-success)' : br.rate >= 50 ? 'var(--r-feedback-color)' : '#c62828' }}>
                   {br.rate}%
                 </p>
                 <p style={{ fontSize: '0.5625rem', color: 'var(--r-text-muted)' }}>Wk {br.week_number}</p>
@@ -163,13 +163,13 @@ export default function AdminProgressPage() {
                     {r.profile?.first_name} {r.profile?.last_name}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>{r.completeBundles}</td>
-                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: r.incompleteBundles > 0 ? '#f57f17' : 'inherit' }}>{r.incompleteBundles}</td>
+                  <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', color: r.incompleteBundles > 0 ? 'var(--r-feedback-color)' : 'inherit' }}>{r.incompleteBundles}</td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>
                     <span style={{
                       fontSize: '0.625rem', fontWeight: 600, padding: '0.125rem 0.5rem', borderRadius: '3px',
                       textTransform: 'uppercase',
-                      background: r.bundleStanding === 'on_track' ? '#e8f5e9' : r.bundleStanding === 'behind' ? '#fff8e1' : '#fce4ec',
-                      color: r.bundleStanding === 'on_track' ? '#2e7d32' : r.bundleStanding === 'behind' ? '#f57f17' : '#c62828',
+                      background: r.bundleStanding === 'on_track' ? 'var(--r-success-light)' : r.bundleStanding === 'behind' ? 'var(--r-feedback-bg)' : '#fce4ec',
+                      color: r.bundleStanding === 'on_track' ? 'var(--r-success)' : r.bundleStanding === 'behind' ? 'var(--r-feedback-color)' : '#c62828',
                     }}>
                       {r.bundleStanding === 'on_track' ? 'On Track' : r.bundleStanding === 'behind' ? 'Behind' : 'Academic Watch'}
                     </span>

@@ -78,7 +78,7 @@ export default function MentorCapstonesPage() {
     setSubmittingReview(false)
   }
 
-  if (loading) return <p style={{ color: 'var(--r-text-muted)' }}>Loading...</p>
+  if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const needsReview = capstones.filter(c => c.status === 'submitted' || c.status === 'in_review')
   const reviewed = capstones.filter(c => c.status === 'approved' || c.status === 'revision_requested')
@@ -244,7 +244,7 @@ export default function MentorCapstonesPage() {
                   fontSize: '0.625rem', fontWeight: 600, textTransform: 'uppercase',
                   padding: '0.25rem 0.5rem', borderRadius: '4px',
                   color: c.status === 'approved' ? '#2d6a4f' : '#991b1b',
-                  background: c.status === 'approved' ? '#d1fae5' : '#fef2f2',
+                  background: c.status === 'approved' ? 'var(--r-success-light)' : 'var(--r-error-light)',
                 }}>
                   {c.status === 'approved' ? 'Approved' : 'Revision Requested'}
                 </span>
