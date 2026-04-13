@@ -18,27 +18,39 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    try {
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-    if (authError) {
-      setError(authError.message)
-      setLoading(false)
-      return
-    }
+      if (authError) {
+        setError(authError.message)
+        setLoading(false)
+        return
+      }
 
-    // Check the user's residency role to redirect appropriately
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
+      // Check the user's residency role to redirect appropriately
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        setError('Sign in succeeded but session could not be established. Please try again.')
+        setLoading(false)
+        return
+      }
+
       const { data: profile } = await supabase
         .from('residency_profiles')
         .select('role')
         .eq('id', user.id)
         .single()
 
-      if (profile?.role === 'admin') {
+      // Use redirect param if present, otherwise route by role
+      const params = new URLSearchParams(window.location.search)
+      const redirect = params.get('redirect')
+
+      if (redirect && redirect.startsWith('/residency/')) {
+        router.push(redirect)
+      } else if (profile?.role === 'admin') {
         router.push('/residency/admin')
       } else if (profile?.role === 'instructor') {
         router.push('/residency/instructor')
@@ -49,6 +61,9 @@ export default function LoginPage() {
       } else {
         router.push('/residency/portal')
       }
+    } catch (err: any) {
+      setError(err?.message || 'Something went wrong. Please try again.')
+      setLoading(false)
     }
   }
 

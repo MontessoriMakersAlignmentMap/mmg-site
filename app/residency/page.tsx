@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
@@ -226,6 +227,31 @@ export default function MMRLandingPage() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      {/* ── Classroom photo break ──────────────────────────────────────────── */}
+      <section style={{ position: 'relative', overflow: 'hidden', height: '280px', isolation: 'isolate' }}>
+        <Image
+          src="/residency/classroom-beadchain.jpg"
+          alt="Two children working with Montessori bead chain materials on the classroom floor"
+          fill
+          style={{ objectFit: 'cover', filter: 'blur(3px) brightness(0.45)', transform: 'scale(1.05)' }}
+          priority={false}
+        />
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          <p style={{
+            fontFamily: 'var(--font-playfair), Georgia, serif',
+            fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+            color: '#fff',
+            textAlign: 'center',
+            maxWidth: '600px',
+            lineHeight: 1.5,
+            padding: '0 2rem',
+            fontStyle: 'italic',
+          }}>
+            Real children. Real materials. Real Montessori.
+          </p>
         </div>
       </section>
 
