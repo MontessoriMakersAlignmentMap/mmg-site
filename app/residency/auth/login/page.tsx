@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { supabase } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -55,6 +56,13 @@ export default function LoginPage() {
     <div className="r-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
       <div style={{ width: '100%', maxWidth: '420px', padding: '0 1.5rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <Image
+            src="/mmr-logo-light.png"
+            alt="Montessori Makers Institute Residency"
+            width={180}
+            height={90}
+            style={{ objectFit: 'contain', margin: '0 auto 1.25rem' }}
+          />
           <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Sign In</h1>
           <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>
             Access your Residency account
