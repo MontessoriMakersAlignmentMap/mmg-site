@@ -718,8 +718,7 @@ export default function MMRLandingPage() {
                 }}
               >
                 <p>
-                  Applicants to MMR need either a bachelor&rsquo;s degree or an associate degree combined with
-                  at least three years of documented experience working with children in an educational setting.
+                  Applicants to MMR must hold a bachelor&rsquo;s degree.
                   We are looking for people who are serious about this work — not people who have already
                   completed it.
                 </p>
@@ -765,7 +764,7 @@ export default function MMRLandingPage() {
                   </p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
                     {[
-                      "Bachelor's degree — or associate degree plus 3+ years working with children",
+                      "Bachelor's degree (required)",
                       'Demonstrated commitment to equity and justice-centered education',
                       'Access to an approved Montessori observation site',
                       'Ability to secure a paid practicum placement',
