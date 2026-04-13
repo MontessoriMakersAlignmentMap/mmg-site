@@ -28,14 +28,16 @@ export default function ResidencyNav() {
           alignItems: 'center',
           gap: '0.75rem',
         }}>
-          <Image
-            src="/mmr-logo-dark.png"
-            alt="Montessori Makers Institute Residency"
-            width={140}
-            height={40}
-            style={{ objectFit: 'contain', objectPosition: 'left' }}
-            priority
-          />
+          <div style={{ height: '44px', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+            <Image
+              src="/mmr-logo-dark.png"
+              alt="Montessori Makers Institute Residency"
+              width={200}
+              height={200}
+              style={{ objectFit: 'contain', width: 'auto', height: '120px', marginTop: '-2px' }}
+              priority
+            />
+          </div>
         </Link>
 
         {/* Desktop nav */}
