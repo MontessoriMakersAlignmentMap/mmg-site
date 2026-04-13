@@ -45,22 +45,24 @@ export default function LoginPage() {
         .single()
 
       // Use redirect param if present, otherwise route by role
+      // Use window.location for a full page load so auth cookies propagate
       const params = new URLSearchParams(window.location.search)
       const redirect = params.get('redirect')
 
+      let dest = '/residency/portal'
       if (redirect && redirect.startsWith('/residency/')) {
-        router.push(redirect)
+        dest = redirect
       } else if (profile?.role === 'admin') {
-        router.push('/residency/admin')
+        dest = '/residency/admin'
       } else if (profile?.role === 'instructor') {
-        router.push('/residency/instructor')
+        dest = '/residency/instructor'
       } else if (profile?.role === 'mentor') {
-        router.push('/residency/mentor')
+        dest = '/residency/mentor'
       } else if (profile?.role === 'school_partner') {
-        router.push('/residency/school')
-      } else {
-        router.push('/residency/portal')
+        dest = '/residency/school'
       }
+
+      window.location.href = dest
     } catch (err: any) {
       setError(err?.message || 'Something went wrong. Please try again.')
       setLoading(false)
