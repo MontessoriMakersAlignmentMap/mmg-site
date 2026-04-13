@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase/client'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import StatusBadge from '../../../components/StatusBadge'
+import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
 
 export default function ResidentLessonPage() {
   const { id } = useParams<{ id: string }>()
@@ -83,6 +84,10 @@ export default function ResidentLessonPage() {
         <p style={{ color: 'var(--r-text-muted)', fontSize: '0.9375rem', lineHeight: 1.7, marginBottom: '2rem' }}>
           {lesson.description}
         </p>
+      )}
+
+      {lesson.script_introduction && (
+        <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
       )}
 
       {/* Lesson content */}

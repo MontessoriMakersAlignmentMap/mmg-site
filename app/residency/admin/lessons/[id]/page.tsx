@@ -19,6 +19,7 @@ export default function EditLessonPage() {
     why_this_lesson_matters: '', direct_aim: '', indirect_aim: '',
     equity_aim: '', presentation: '', points_of_interest: '',
     variations: '', neurodivergence_notes: '', video_url: '',
+    script_introduction: '',
   })
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
@@ -53,6 +54,7 @@ export default function EditLessonPage() {
           variations: d.variations ?? '',
           neurodivergence_notes: d.neurodivergence_notes ?? '',
           video_url: d.video_url ?? '',
+          script_introduction: d.script_introduction ?? '',
         })
       }
       setLoading(false)
@@ -96,6 +98,7 @@ export default function EditLessonPage() {
         variations: form.variations || null,
         neurodivergence_notes: form.neurodivergence_notes || null,
         video_url: form.video_url || null,
+        script_introduction: form.script_introduction || null,
       })
       .eq('id', id)
 
@@ -188,6 +191,17 @@ export default function EditLessonPage() {
 
         <div className="r-card" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '1.25rem' }}>Lesson Content</h2>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label className="r-label">Script Introduction</label>
+            <textarea className="r-textarea" value={form.script_introduction}
+              onChange={e => update('script_introduction', e.target.value)}
+              style={{ minHeight: '140px' }}
+              placeholder="The instructor's spoken introduction for this lesson..." />
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginTop: '0.25rem' }}>
+              Appears in a gold-tinted block above &ldquo;Why This Lesson Matters&rdquo; on the lesson page.
+            </p>
+          </div>
 
           <div style={{ marginBottom: '1.25rem' }}>
             <label className="r-label">Why This Lesson Matters</label>

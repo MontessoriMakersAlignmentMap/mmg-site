@@ -2,6 +2,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { getLesson, getAdjacentLessons } from '@/lib/residency/queries'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import ScriptIntroduction from '@/app/residency/components/ScriptIntroduction'
 
 export default async function LessonPage({
   params,
@@ -97,6 +98,10 @@ export default async function LessonPage({
       {/* Lesson body */}
       <section className="r-section" style={{ paddingTop: '3rem' }}>
         <div className="r-container r-lesson-body">
+
+          {lesson.script_introduction && (
+            <ScriptIntroduction script={lesson.script_introduction} levelName={lesson.level?.name} />
+          )}
 
           {/* Why This Lesson Matters */}
           {lesson.why_this_lesson_matters && (
