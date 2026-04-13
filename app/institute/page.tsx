@@ -223,6 +223,37 @@ export default function InstitutePage() {
         </div>
       </section>
 
+      {/* MMR Callout */}
+      <section className="grain bg-[#0e1a7a] py-16 md:py-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+          <div className="max-w-2xl">
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">Teacher Preparation</p>
+            <h2 className="text-2xl md:text-3xl text-white leading-snug mb-4" style={serif}>
+              Montessori Makers Residency — Launching Fall 2026
+            </h2>
+            <p className="text-[#94A3B8] text-base leading-relaxed">
+              The Institute develops school leaders. MMR prepares the teachers those leaders need.
+              Primary and Elementary credentials, built with an equity lens, a paid practicum model,
+              and a curriculum depth the field has never produced at this price.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 flex-shrink-0">
+            <Link
+              href="/residency"
+              className="bg-[#d6a758] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#c09240] transition-colors text-center whitespace-nowrap font-medium"
+            >
+              Learn About MMR
+            </Link>
+            <Link
+              href="/residency/pricing"
+              className="border border-white/30 text-white/70 text-sm px-8 py-3.5 tracking-wide hover:border-white/60 hover:text-white transition-colors text-center whitespace-nowrap"
+            >
+              View Tuition &amp; Pricing
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* What Makes This Different */}
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
