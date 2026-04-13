@@ -109,37 +109,8 @@ export async function PATCH(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   if (action === 'accept') {
-    // Create auth user
-    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-      email: app.email,
-      password: crypto.randomUUID().slice(0, 12),
-      email_confirm: true,
-      user_metadata: { first_name: app.first_name, last_name: app.last_name },
-    })
-
-    if (authError) {
-      return NextResponse.json({ error: `Account creation failed: ${authError.message}` }, { status: 500 })
-    }
-
-    const userId = authData.user.id
-
-    // Create residency profile
-    await supabase.from('residency_profiles').insert({
-      id: userId,
-      role: 'resident',
-      first_name: app.first_name,
-      last_name: app.last_name,
-      email: app.email,
-    })
-
-    // Create resident record with cohort if provided
-    await supabase.from('residency_residents').insert({
-      profile_id: userId,
-      cohort_id: cohort_id || null,
-      status: 'enrolled',
-    })
-
-    // Update application
+    // Mark application as accepted. Provisioning happens after payment via webhook.
+    // The admin UI calls /api/residency/invoice separately to send the Stripe invoice.
     await supabase.from('residency_applications').update({
       status: 'accepted',
       accepted_at: new Date().toISOString(),
@@ -147,21 +118,13 @@ export async function PATCH(req: NextRequest) {
       internal_notes: internal_notes || app.internal_notes,
     }).eq('id', id)
 
-    // Generate password reset link so user can set their own password
-    const { data: resetData } = await supabase.auth.admin.generateLink({
-      type: 'magiclink',
-      email: app.email,
-      options: { redirectTo: 'https://montessorimakersgroup.org/residency/auth/login' },
-    })
-
-    const loginLink = resetData?.properties?.action_link || 'https://montessorimakersgroup.org/residency/auth/login'
-
-    // Send acceptance email
+    // Send acceptance + invoice-coming email
     try {
+      const track = app.track_interest === 'primary' ? 'Primary' : 'Elementary'
       await resend.emails.send({
         from: 'Montessori Makers Residency <noreply@montessorimakersgroup.org>',
         to: app.email,
-        subject: 'Welcome to the Montessori Makers Residency!',
+        subject: 'You\'ve Been Accepted — Montessori Makers Residency!',
         html: `
           <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: #0E1A7A; padding: 2rem; border-radius: 8px 8px 0 0; text-align: center;">
@@ -170,22 +133,16 @@ export async function PATCH(req: NextRequest) {
             <div style="padding: 2rem; border: 1px solid #e2ddd6; border-top: none; border-radius: 0 0 8px 8px;">
               <h2 style="color: #0E1A7A; font-size: 18px;">Welcome, ${app.first_name}!</h2>
               <p style="font-size: 15px; line-height: 1.7; color: #333;">
-                We are excited to inform you that your application to the Montessori Makers Residency
-                has been accepted. You are now officially a resident in the
-                ${app.track_interest === 'primary' ? 'Primary' : 'Elementary'} track.
+                We are thrilled to inform you that your application to the Montessori Makers Residency
+                has been accepted for the ${track} track.
               </p>
               <p style="font-size: 15px; line-height: 1.7; color: #333;">
-                Your account has been created. Click the link below to access your portal:
+                You will receive a tuition invoice via email shortly. Once payment is received,
+                your portal account will be created and you'll receive login credentials.
               </p>
-              <div style="text-align: center; margin: 2rem 0;">
-                <a href="${loginLink}" style="
-                  background: #0E1A7A; color: #fff; padding: 12px 32px; border-radius: 8px;
-                  text-decoration: none; font-weight: 600; font-size: 15px; display: inline-block;
-                ">Access Your Portal</a>
-              </div>
               <p style="font-size: 14px; line-height: 1.7; color: #666;">
-                You'll be able to view your curriculum, submit album entries, log practicum hours, and connect
-                with your cohort through the resident portal.
+                If you have questions about tuition, payment plans, or scholarship options,
+                please don't hesitate to reach out.
               </p>
               <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e2ddd6;" />
               <p style="font-size: 13px; color: #999; text-align: center;">
@@ -198,7 +155,7 @@ export async function PATCH(req: NextRequest) {
       })
     } catch { /* best-effort */ }
 
-    return NextResponse.json({ success: true, userId })
+    return NextResponse.json({ success: true })
   }
 
   if (action === 'waitlist') {
