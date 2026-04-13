@@ -25,6 +25,10 @@ interface Application {
   equity_statement: string | null
   heard_about: string | null
   status: AppStatus
+  payment_status: 'pending' | 'invoiced' | 'paid' | 'failed'
+  stripe_customer_id: string | null
+  stripe_invoice_id: string | null
+  tuition_amount: number | null
   internal_notes: string | null
   submitted_at: string
   reviewed_at: string | null
@@ -79,6 +83,7 @@ export default function AdminApplicationsPage() {
     setActing(true)
 
     try {
+      // Step 1: Update application status
       const res = await fetch('/api/residency/applications', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -93,9 +98,48 @@ export default function AdminApplicationsPage() {
       if (!res.ok) {
         const data = await res.json()
         alert(data.error || 'Action failed')
+        return
+      }
+
+      // Step 2: If accepting, send Stripe invoice
+      if (action === 'accept') {
+        const invoiceRes = await fetch('/api/residency/invoice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ application_id: selected.id }),
+        })
+
+        if (!invoiceRes.ok) {
+          const data = await invoiceRes.json()
+          alert(`Accepted but invoice failed: ${data.error}. You can resend from the detail view.`)
+        }
+      }
+
+      setSelected(null)
+      await load()
+    } finally {
+      setActing(false)
+    }
+  }
+
+  async function handleResendInvoice() {
+    if (!selected) return
+    setActing(true)
+    try {
+      const res = await fetch('/api/residency/invoice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ application_id: selected.id }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        alert(data.error || 'Invoice failed')
       } else {
-        setSelected(null)
+        alert('Invoice sent!')
         await load()
+        // Refresh selected with updated data
+        const { data: updated } = await supabase.from('residency_applications').select('*').eq('id', selected.id).single()
+        if (updated) setSelected(updated as Application)
       }
     } finally {
       setActing(false)
@@ -261,7 +305,7 @@ export default function AdminApplicationsPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <button className="r-btn r-btn-primary" disabled={acting} onClick={() => handleAction('accept')}
                     style={{ justifyContent: 'center' }}>
-                    {acting ? 'Processing...' : 'Accept Application'}
+                    {acting ? 'Processing...' : 'Approve + Send Invoice'}
                   </button>
                   <button className="r-btn" disabled={acting} onClick={() => handleAction('waitlist')}
                     style={{ justifyContent: 'center', background: 'var(--r-purple-light)', color: '#6b21a8', border: 'none' }}>
@@ -305,10 +349,46 @@ export default function AdminApplicationsPage() {
 
             {selected.status === 'accepted' && selected.reviewed_at && (
               <div className="r-card" style={{ padding: '1.5rem' }}>
-                <h2 style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>Accepted</h2>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>
-                  Accepted on {new Date(selected.accepted_at!).toLocaleDateString()}. Account created and welcome email sent.
+                <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>Accepted</h2>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
+                  Accepted on {new Date(selected.accepted_at!).toLocaleDateString()}.
                 </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>Payment:</span>
+                  <span style={{
+                    fontSize: '0.6875rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '4px',
+                    background: selected.payment_status === 'paid' ? '#d1fae5' : selected.payment_status === 'invoiced' ? '#fef3c7' : selected.payment_status === 'failed' ? '#fee2e2' : '#f3f4f6',
+                    color: selected.payment_status === 'paid' ? '#065f46' : selected.payment_status === 'invoiced' ? '#92400e' : selected.payment_status === 'failed' ? '#991b1b' : '#6b7280',
+                  }}>
+                    {selected.payment_status}
+                  </span>
+                  {selected.tuition_amount && (
+                    <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
+                      ${(selected.tuition_amount / 100).toLocaleString()}
+                    </span>
+                  )}
+                </div>
+                {selected.payment_status === 'paid' && (
+                  <p style={{ fontSize: '0.8125rem', color: '#065f46' }}>
+                    Paid. Account created and welcome email sent.
+                  </p>
+                )}
+                {(selected.payment_status === 'invoiced' || selected.payment_status === 'failed') && (
+                  <button className="r-btn" disabled={acting} onClick={handleResendInvoice}
+                    style={{ fontSize: '0.8125rem', marginTop: '0.5rem' }}>
+                    {acting ? 'Sending...' : 'Resend Invoice'}
+                  </button>
+                )}
+                {selected.payment_status === 'pending' && (
+                  <button className="r-btn r-btn-primary" disabled={acting} onClick={handleResendInvoice}
+                    style={{ fontSize: '0.8125rem', marginTop: '0.5rem' }}>
+                    {acting ? 'Sending...' : 'Send Invoice'}
+                  </button>
+                )}
               </div>
             )}
 
@@ -375,10 +455,23 @@ export default function AdminApplicationsPage() {
                   </p>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
                   {new Date(app.submitted_at).toLocaleDateString()}
                 </span>
+                {app.status === 'accepted' && app.payment_status !== 'pending' && (
+                  <span style={{
+                    fontSize: '0.5625rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    padding: '0.1875rem 0.375rem',
+                    borderRadius: '3px',
+                    background: app.payment_status === 'paid' ? '#d1fae5' : app.payment_status === 'invoiced' ? '#fef3c7' : '#fee2e2',
+                    color: app.payment_status === 'paid' ? '#065f46' : app.payment_status === 'invoiced' ? '#92400e' : '#991b1b',
+                  }}>
+                    {app.payment_status}
+                  </span>
+                )}
                 <span style={{
                   fontSize: '0.625rem',
                   fontWeight: 600,
