@@ -11,16 +11,9 @@ export function middleware(request: NextRequest) {
   // Inject pathname header for canonical URL generation
   response.headers.set('x-pathname', pathname)
 
-  // Residency auth: check for Supabase auth cookie on protected routes
-  const isProtectedResidency = PROTECTED_RESIDENCY_ROUTES.some(route => pathname.startsWith(route))
-  if (isProtectedResidency) {
-    const hasAuthCookie = request.cookies.getAll().some(c => c.name.startsWith('sb-') && c.name.endsWith('-auth-token'))
-    if (!hasAuthCookie) {
-      const loginUrl = new URL('/residency/auth/login', request.url)
-      loginUrl.searchParams.set('redirect', pathname)
-      return NextResponse.redirect(loginUrl)
-    }
-  }
+  // Residency auth is handled client-side by useResidencyAuth hook.
+  // Supabase JS v2 stores sessions in localStorage, not cookies,
+  // so middleware cannot reliably check auth state.
 
   return response
 }
