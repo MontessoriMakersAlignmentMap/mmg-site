@@ -194,6 +194,21 @@ export default function MMRPricingPage() {
                   </p>
                 </div>
 
+                <div
+                  style={{
+                    background: 'rgba(14,26,122,0.04)',
+                    border: '1px solid rgba(14,26,122,0.1)',
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.8125rem',
+                    color: '#374151',
+                    lineHeight: 1.7,
+                  }}
+                >
+                  <strong style={{ color: '#0e1a7a' }}>Annual materials intensive:</strong>{' '}
+                  $200–$300 per resident, billed separately from tuition.{' '}
+                  <span style={{ color: '#64748B' }}>A remote practice option is available at no additional cost for residents who cannot travel.</span>
+                </div>
+
                 <div style={{ borderTop: '1px solid #E2DDD6', paddingTop: '1.25rem' }}>
                   <p style={{ color: '#374151', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
                     Includes full access to all 224 structured lessons across Practical Life, Sensorial,
@@ -301,6 +316,21 @@ export default function MMRPricingPage() {
                   <p style={{ color: '#64748B', fontSize: '0.8125rem', marginTop: '0.25rem' }}>
                     Over {ELEMENTARY_MONTHS}, no interest
                   </p>
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(14,26,122,0.04)',
+                    border: '1px solid rgba(14,26,122,0.1)',
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.8125rem',
+                    color: '#374151',
+                    lineHeight: 1.7,
+                  }}
+                >
+                  <strong style={{ color: '#0e1a7a' }}>Annual materials intensive:</strong>{' '}
+                  $200–$300 per resident, billed separately from tuition.{' '}
+                  <span style={{ color: '#64748B' }}>A remote practice option is available at no additional cost for residents who cannot travel.</span>
                 </div>
 
                 <div style={{ borderTop: '1px solid #E2DDD6', paddingTop: '1.25rem' }}>
@@ -734,6 +764,14 @@ export default function MMRPricingPage() {
               {
                 q: 'How does MMR compare in cost to traditional programs?',
                 a: 'Traditional MACTE-accredited Montessori credentialing programs typically range from $7,000 to $15,000 in tuition, often with additional fees for materials, observations, and certification exams. MMR is substantially below that range. The curriculum is not abbreviated to reach that price — the cost difference reflects a different mission, not a different depth.',
+              },
+              {
+                q: 'Do I need to own Montessori materials to complete the program?',
+                a: 'No. You do not need to purchase materials to complete MMR. The program is built around three pathways to materials access so that every resident works with real Montessori materials — regardless of what they own or where they live. Monthly observation visits include a 60-minute supervised materials session at the host school. Once a year, there is an in-person materials intensive held in a fully equipped Montessori classroom. And for residents who cannot travel, a remote practice option provides materials access without requiring in-person attendance. The annual intensive is billed separately from tuition at $200–$300 per resident. The remote option is included at no additional cost. Every resident completes MMR with genuine hands-on materials experience. That is not optional — it is a program requirement.',
+              },
+              {
+                q: 'What is the annual intensive?',
+                a: 'Once per year, MMR residents gather in a fully equipped Montessori classroom for a multi-day in-person intensive. The intensive is organized around hands-on materials work — residents present lessons to each other, receive feedback from a trained guide, and work through the physical sequences that are difficult to approximate at a distance. It is also a cohort experience: the in-person time is designed to deepen the relationships that sustain residents through the rest of the program. The intensive typically runs over a weekend. Exact dates and location are confirmed in your cohort welcome materials. For residents who cannot travel, a remote practice option is available. The remote option is structured to cover the same materials sequences through a combination of video demonstration, guided practice at an observation site, and mentor check-in. Residents who complete the remote option fulfill the same program requirement as those who attend in person. The intensive is billed separately from tuition at $200–$300 per resident. The remote practice option is available at no additional cost.',
               },
             ].map((item, i) => (
               <div

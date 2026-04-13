@@ -271,6 +271,7 @@ export default function MMRLandingPage() {
                 features: [
                   'Monthly live cohort seminars',
                   'Structured observation visits',
+                  'Each monthly observation includes a 60-minute supervised materials session at the host school',
                   'Paid practicum placement',
                   'Album entries reviewed by mentor and AI',
                   'MACTE-track certification',
@@ -297,6 +298,7 @@ export default function MMRLandingPage() {
                 features: [
                   'Monthly live cohort seminars',
                   'Structured observation visits',
+                  'Each monthly observation includes a 60-minute supervised materials session at the host school',
                   'Paid practicum placement',
                   'Album entries reviewed by mentor and AI',
                   'MACTE-track certification',
@@ -553,7 +555,7 @@ export default function MMRLandingPage() {
                 maxWidth: '600px',
               }}
             >
-              Five things no other Montessori program offers.
+              Six things no other Montessori program offers.
             </h2>
           </FadeIn>
 
@@ -585,6 +587,11 @@ export default function MMRLandingPage() {
                   title: 'The price reflects the mission.',
                   body: "MMR is priced significantly below traditional Montessori credentialing programs. It is structured with payment plans that work for working educators — not as a courtesy, but as a design decision. The Equity Fellows scholarship offers full tuition for candidates who face the highest structural access barriers. The price of this program is not an accident. It is a statement about who Montessori is actually for.",
                 },
+                {
+                  num: '06',
+                  title: 'Every resident touches the materials.',
+                  body: "We built three pathways to make sure that happens regardless of where you are starting from. Monthly observation visits include a 60-minute supervised materials session at the host school — so residents are working with real materials from the beginning of the program, not waiting until a practicum that may be months away. Once a year, there is an in-person intensive held in a fully equipped Montessori classroom where residents work through materials presentations together with a trained guide. And for residents who cannot travel, there is a remote practice option that preserves materials access without requiring in-person attendance. No one completes MMR without genuine hands-on experience. That is not aspirational. It is structural.",
+                },
               ].map((item, i) => (
                 <div
                   key={item.num}
@@ -592,7 +599,7 @@ export default function MMRLandingPage() {
                     display: 'flex',
                     gap: '2rem',
                     padding: '2.5rem 0',
-                    borderBottom: i < 4 ? '1px solid #E2DDD6' : 'none',
+                    borderBottom: i < 5 ? '1px solid #E2DDD6' : 'none',
                     alignItems: 'flex-start',
                   }}
                 >
