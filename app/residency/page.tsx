@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ResidencyHome() {
   return (
@@ -101,11 +102,28 @@ export default function ResidencyHome() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="r-section" style={{ background: 'var(--r-white)' }}>
-        <div className="r-container" style={{ maxWidth: '700px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Built with Intention</h2>
-          <p style={{ fontSize: '1rem', color: 'var(--r-text-muted)', lineHeight: 1.8 }}>
+      {/* Values — blurred classroom photo background */}
+      <section className="r-section" style={{
+        position: 'relative',
+        overflow: 'hidden',
+        isolation: 'isolate',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+        }}>
+          <Image
+            src="/residency/classroom-beadchain.jpg"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', filter: 'blur(6px) brightness(0.35)', transform: 'scale(1.1)' }}
+            aria-hidden="true"
+          />
+        </div>
+        <div className="r-container" style={{ maxWidth: '700px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--r-white)' }}>Built with Intention</h2>
+          <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.8 }}>
             This platform is not a course marketplace. It is the infrastructure for a residency program that takes Montessori teacher preparation seriously &mdash; with structured curriculum, mentorship, and accountability at every stage.
           </p>
         </div>

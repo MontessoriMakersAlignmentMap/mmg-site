@@ -20,7 +20,11 @@ export async function GET(req: NextRequest) {
 
   const track = (resident.cohort as any)?.track || 'primary'
   const requiredHours = 540
+  const requiredObservationHours = 90
+  const requiredObservationVisits = track === 'elementary' ? 12 : 9
   const requiredObservations = 6
+  const requiredSeminars = 9
+  const requiredFacultyVisits = 4
   const requiredMaterialsHours = 0 // Configurable — default 0 for initial cohort
 
   // 1. Bundle completion: check how many bundles they've engaged with
@@ -48,25 +52,47 @@ export async function GET(req: NextRequest) {
     .from('residency_lessons')
     .select('*', { count: 'exact', head: true })
     .eq('level_id', resident.assigned_level_id)
-    .eq('published', true)
+    .eq('status', 'published')
 
-  // 3. Practicum hours
+  // 3. Practicum hours (teaching and observation tracked separately)
   const { data: practicumLogs } = await supabase
     .from('residency_practicum_logs')
     .select('hours_teaching, hours_observation')
     .eq('resident_id', residentId)
     .is('deleted_at', null)
 
-  const totalHours = (practicumLogs || []).reduce(
-    (sum, l) => sum + (Number(l.hours_teaching) || 0) + (Number(l.hours_observation) || 0),
-    0
+  const teachingHours = (practicumLogs || []).reduce(
+    (sum, l) => sum + (Number(l.hours_teaching) || 0), 0
+  )
+  const observationHoursTotal = (practicumLogs || []).reduce(
+    (sum, l) => sum + (Number(l.hours_observation) || 0), 0
   )
 
-  // 4. Observations
+  // 4. Formal observations (mentor/faculty)
   const { count: observationCount } = await supabase
     .from('residency_observation_forms')
     .select('*', { count: 'exact', head: true })
     .eq('resident_id', residentId)
+    .is('deleted_at', null)
+
+  // 4b. Monthly observation visits
+  const { count: observationVisitCount } = await supabase
+    .from('residency_observation_logs')
+    .select('*', { count: 'exact', head: true })
+    .eq('resident_id', residentId)
+
+  // 4c. Seminar attendance
+  const { count: seminarCount } = await supabase
+    .from('residency_seminar_attendances')
+    .select('*', { count: 'exact', head: true })
+    .eq('resident_id', residentId)
+
+  // 4d. Faculty observation visits
+  const { count: facultyVisitCount } = await supabase
+    .from('residency_observation_forms')
+    .select('*', { count: 'exact', head: true })
+    .eq('resident_id', residentId)
+    .eq('observer_role', 'faculty')
     .is('deleted_at', null)
 
   // 5. Capstone
@@ -125,17 +151,41 @@ export async function GET(req: NextRequest) {
       required: totalLessons || 0,
       met: (albumsComplete || 0) >= (totalLessons || 1),
     },
-    practicum: {
-      label: 'Practicum Hours',
-      current: Math.round(totalHours),
+    teaching_hours: {
+      label: 'Teaching Practice Hours',
+      current: Math.round(teachingHours),
       required: requiredHours,
-      met: totalHours >= requiredHours,
+      met: teachingHours >= requiredHours,
+    },
+    observation_hours: {
+      label: 'Observation Hours',
+      current: Math.round(observationHoursTotal),
+      required: requiredObservationHours,
+      met: observationHoursTotal >= requiredObservationHours,
+    },
+    observation_visits: {
+      label: 'Monthly Observation Visits',
+      current: observationVisitCount || 0,
+      required: requiredObservationVisits,
+      met: (observationVisitCount || 0) >= requiredObservationVisits,
     },
     observations: {
-      label: 'Classroom Observations',
+      label: 'Formal Observations',
       current: observationCount || 0,
       required: requiredObservations,
       met: (observationCount || 0) >= requiredObservations,
+    },
+    seminars: {
+      label: 'Monthly Seminars',
+      current: seminarCount || 0,
+      required: requiredSeminars,
+      met: (seminarCount || 0) >= requiredSeminars,
+    },
+    faculty_visits: {
+      label: 'Supervising Faculty Visits',
+      current: facultyVisitCount || 0,
+      required: requiredFacultyVisits,
+      met: (facultyVisitCount || 0) >= requiredFacultyVisits,
     },
     capstone: {
       label: 'Capstone Project',
