@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -27,22 +28,14 @@ export default function ResidencyNav() {
           alignItems: 'center',
           gap: '0.75rem',
         }}>
-          <span style={{
-            width: '32px',
-            height: '32px',
-            background: 'var(--r-gold)',
-            borderRadius: '6px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '0.875rem',
-            fontWeight: 700,
-          }}>
-            MM
-          </span>
-          <span style={{ fontWeight: 600, fontSize: '1rem' }}>
-            Montessori Makers Residency
-          </span>
+          <Image
+            src="/mmr-logo-dark.png"
+            alt="Montessori Makers Institute Residency"
+            width={140}
+            height={40}
+            style={{ objectFit: 'contain', objectPosition: 'left' }}
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

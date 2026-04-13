@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ResidencyFooter() {
@@ -16,9 +17,13 @@ export default function ResidencyFooter() {
           marginBottom: '2rem',
         }}>
           <div>
-            <h4 style={{ color: 'var(--r-gold)', fontFamily: 'var(--r-font-heading)', fontSize: '1.125rem', marginBottom: '0.75rem' }}>
-              Montessori Makers Residency
-            </h4>
+            <Image
+              src="/mmr-logo-dark.png"
+              alt="Montessori Makers Institute Residency"
+              width={160}
+              height={80}
+              style={{ objectFit: 'contain', objectPosition: 'left', marginBottom: '0.75rem' }}
+            />
             <p style={{ fontSize: '0.8125rem', lineHeight: 1.6 }}>
               A program of Montessori Makers Institute within the Montessori Makers Group ecosystem.
             </p>
