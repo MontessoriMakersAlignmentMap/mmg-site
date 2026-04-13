@@ -14,6 +14,7 @@ const PRICING = {
   clarityAudit: 'Starting at $1,800',
   commArchitecture: 'From $6,000',
   leadershipVoice: 'From $3,000 / quarter',
+  websiteBuild: 'Custom engagement',
 }
 
 const serif = { fontFamily: 'var(--font-heading)' }
@@ -21,7 +22,7 @@ const serif = { fontFamily: 'var(--font-heading)' }
 const MARQUEE_ITEMS = [
   'Brand Identity',
   'Messaging Architecture',
-  'Website Narrative',
+  'Website Design & Build',
   'Enrollment Systems',
   'Leadership Voice',
   'Content Strategy',
@@ -532,12 +533,12 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── THREE OFFERS ──────────────────────────────────────────────────── */}
+      {/* ── FOUR OFFERS ──────────────────────────────────────────────────── */}
       <section className="bg-[#F2EDE6] py-20 md:py-28 px-6 md:px-10 border-t border-[#D4CEC6]">
         <div className="max-w-7xl mx-auto">
           <FadeIn className="max-w-2xl mb-14">
             <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-5">
-              Three Ways to Engage
+              Four Ways to Engage
             </p>
             <h2
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5"
@@ -550,7 +551,7 @@ export default function StudioPage() {
               Every engagement begins with understanding what you actually stand for — and builds from there.
             </p>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-5">
             <OfferCard
               number="01"
               name="Communication Audit & Clarity Map"
@@ -581,6 +582,16 @@ export default function StudioPage() {
               price={PRICING.leadershipVoice}
               href="/studio/services#leadership-voice"
               delay={0.2}
+            />
+            <OfferCard
+              number="04"
+              name="Website Design & Build"
+              tagline="Built to match your actual program"
+              desc="A website designed and built from your identity — not borrowed from a template. Every structural decision, from information architecture to page flow to copy, is grounded in what you actually stand for."
+              forWho="Your online presence doesn't match what families find in person. You want a site that earns trust before a family walks through your door — built on a modern web stack, not a drag-and-drop platform."
+              price={PRICING.websiteBuild}
+              href="/studio/services#website-design-build"
+              delay={0.3}
             />
           </div>
 
