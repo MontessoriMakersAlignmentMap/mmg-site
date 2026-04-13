@@ -18,28 +18,84 @@ const SCRIPT_DIRS = [
 
 function parseScriptFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8')
+  const hasSeparators = /^---$/m.test(content)
+
+  if (hasSeparators) {
+    return parseWithSeparators(content)
+  } else {
+    return parseWithoutSeparators(content)
+  }
+}
+
+function parseWithSeparators(content) {
   const entries = []
   const blocks = content.split(/^---$/m).filter(b => b.trim())
 
-  for (let i = 0; i < blocks.length; i += 2) {
-    const meta = blocks[i]
-    const script = blocks[i + 1]
-    if (!meta || !script) continue
+  for (let i = 0; i < blocks.length; i++) {
+    const block = blocks[i]
+    const lessonMatch = block.match(/(?:##?\s*)?LESSON:\s*(.+)/i)
+    if (!lessonMatch) continue
 
-    const lessonMatch = meta.match(/LESSON:\s*(.+)/i)
-    const strandMatch = meta.match(/STRAND:\s*(.+)/i)
-    const levelMatch = meta.match(/LEVEL:\s*(.+)/i)
-    const seqMatch = meta.match(/SEQUENCE:\s*(\d+)/i)
+    const strandMatch = block.match(/\*{0,2}STRAND:\*{0,2}\s*(.+)/i)
+    const levelMatch = block.match(/\*{0,2}LEVEL:\*{0,2}\s*(.+)/i)
+    const seqMatch = block.match(/\*{0,2}SEQUENCE:\*{0,2}\s*(\d+)/i)
 
-    if (lessonMatch) {
-      entries.push({
-        lesson_name: lessonMatch[1].trim(),
-        strand: strandMatch?.[1]?.trim() || '',
-        level: levelMatch?.[1]?.trim() || '',
-        sequence: seqMatch ? parseInt(seqMatch[1]) : null,
-        script: script.trim(),
-      })
+    let scriptText = ''
+
+    const nextBlock = blocks[i + 1]
+    if (nextBlock && !nextBlock.match(/(?:##?\s*)?LESSON:/i)) {
+      scriptText = nextBlock.trim()
+    } else {
+      const lines = block.split('\n')
+      let metaEnd = 0
+      for (let j = 0; j < lines.length; j++) {
+        if (/SEQUENCE:|LEVEL:|STRAND:|LESSON:/i.test(lines[j])) metaEnd = j
+      }
+      scriptText = lines.slice(metaEnd + 1).join('\n').trim()
     }
+
+    if (!scriptText) continue
+
+    entries.push({
+      lesson_name: lessonMatch[1].trim(),
+      strand: strandMatch?.[1]?.trim().replace(/\*+/g, '').trim() || '',
+      level: levelMatch?.[1]?.trim().replace(/\*+/g, '').trim() || '',
+      sequence: seqMatch ? parseInt(seqMatch[1]) : null,
+      script: scriptText,
+    })
+  }
+  return entries
+}
+
+function parseWithoutSeparators(content) {
+  const entries = []
+  // Split on LESSON: lines - each chunk starts with a LESSON: line
+  const chunks = content.split(/(?=^LESSON:\s)/m).filter(c => c.trim())
+
+  for (const chunk of chunks) {
+    const lessonMatch = chunk.match(/^LESSON:\s*(.+)/i)
+    if (!lessonMatch) continue
+
+    const strandMatch = chunk.match(/^STRAND:\s*(.+)/mi)
+    const levelMatch = chunk.match(/^LEVEL:\s*(.+)/mi)
+    const seqMatch = chunk.match(/^SEQUENCE:\s*(\d+)/mi)
+
+    // Extract script: everything after the metadata lines (LESSON, STRAND, LEVEL, SEQUENCE)
+    const lines = chunk.split('\n')
+    let metaEnd = 0
+    for (let j = 0; j < lines.length; j++) {
+      if (/^(LESSON|STRAND|LEVEL|SEQUENCE):/i.test(lines[j])) metaEnd = j
+    }
+    const scriptText = lines.slice(metaEnd + 1).join('\n').trim()
+    if (!scriptText) continue
+
+    entries.push({
+      lesson_name: lessonMatch[1].trim(),
+      strand: strandMatch?.[1]?.trim() || '',
+      level: levelMatch?.[1]?.trim() || '',
+      sequence: seqMatch ? parseInt(seqMatch[1]) : null,
+      script: scriptText,
+    })
   }
   return entries
 }
@@ -69,14 +125,68 @@ function normalizeStrandName(strand) {
   return map[strand.toLowerCase()] || strand
 }
 
+// Normalize a title to a comparable key:
+// - Strip "Level: Strand: " prefix
+// - Lowercase
+// - Remove all punctuation (colons, commas, hyphens, apostrophes, parentheses)
+// - Collapse whitespace
+// - Fix concatenated words from docx import (e.g. "Typesand" -> "types and")
+function normalizeTitle(title) {
+  let t = title
+  // Strip "Primary: Strand: " or "Elementary: Strand: " prefix
+  t = t.replace(/^(Primary|Elementary)\s*:\s*[^:]+\s*:\s*/i, '')
+  // Strip "** Primary (3-6) > ** Strand > " prefix
+  t = t.replace(/^\*+\s*(Primary|Elementary)\s*\([^)]*\)\s*>\s*\*+\s*[^>]+>\s*/i, '')
+  t = t.toLowerCase()
+  // Remove all punctuation
+  t = t.replace(/[:\-–—,.''""\(\)\/\\]/g, ' ')
+  // Fix common concatenated words from docx import
+  t = t.replace(/(\w)(and|of|the|in|to|for|with|from|by|as|or|on|at|is|are|an|a)(\s|$)/gi, (m, before, word, after) => {
+    // Only split if the char before is lowercase and the word starts lowercase
+    if (before.match(/[a-z]/)) return before + ' ' + word.toLowerCase() + after
+    return m
+  })
+  // Also fix patterns like "Introductionto" -> "introduction to"
+  t = t.replace(/introduction\s*to/gi, 'introduction to')
+  t = t.replace(/solids\s*of/gi, 'solids of')
+  // Collapse whitespace
+  t = t.replace(/\s+/g, ' ').trim()
+  return t
+}
+
+// Build a bag-of-words set for fuzzy matching
+function wordSet(str) {
+  const stopWords = new Set(['the', 'a', 'an', 'and', 'or', 'of', 'in', 'to', 'for', 'with', 'from', 'by', 'as', 'on', 'at', 'is', 'are', 'its', 'part'])
+  return new Set(
+    str.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/)
+      .filter(w => w.length > 2 && !stopWords.has(w))
+  )
+}
+
+function jaccardSimilarity(setA, setB) {
+  if (setA.size === 0 && setB.size === 0) return 0
+  let intersection = 0
+  for (const w of setA) if (setB.has(w)) intersection++
+  return intersection / (setA.size + setB.size - intersection)
+}
+
 async function main() {
   // Get all lessons from DB
   const { data: lessons, error: fetchErr } = await supabase
     .from('residency_lessons')
-    .select('id, title, strand:residency_strands(name), level:residency_levels(name)')
+    .select('id, title, sort_order, strand:residency_strands(name), level:residency_levels(name)')
 
   if (fetchErr) { console.error('Failed to fetch lessons:', fetchErr); return }
   console.log(`Found ${lessons.length} lessons in database`)
+
+  // Pre-compute normalized titles and word sets for all lessons
+  const lessonIndex = lessons.map(l => ({
+    ...l,
+    normTitle: normalizeTitle(l.title),
+    words: wordSet(l.title),
+    levelName: l.level?.name || '',
+    strandName: l.strand?.name || '',
+  }))
 
   // Collect all scripts from files
   const allScripts = []
@@ -89,7 +199,8 @@ async function main() {
   }
   console.log(`Parsed ${allScripts.length} scripts from files`)
 
-  // Match scripts to lessons
+  // Track which lessons have been matched to avoid duplicates
+  const matchedLessonIds = new Set()
   let matched = 0
   let unmatched = 0
   const unmatchedList = []
@@ -97,31 +208,85 @@ async function main() {
   for (const script of allScripts) {
     const normLevel = normalizeLevelName(script.level)
     const normStrand = normalizeStrandName(script.strand)
+    const normScriptTitle = normalizeTitle(script.lesson_name)
+    const scriptWords = wordSet(script.lesson_name)
 
-    // Try exact title match within level+strand
-    let match = lessons.find(l => {
-      const lLevel = l.level?.name || ''
-      const lStrand = l.strand?.name || ''
-      return lLevel === normLevel && lStrand === normStrand && l.title.toLowerCase().includes(script.lesson_name.toLowerCase())
-    })
+    // Filter to lessons in the same level+strand
+    const candidates = lessonIndex.filter(l =>
+      l.levelName === normLevel && l.strandName === normStrand && !matchedLessonIds.has(l.id)
+    )
 
-    // Fallback: try just title match
+    // Also keep a broader fallback pool (same level, any strand)
+    const broadCandidates = lessonIndex.filter(l =>
+      l.levelName === normLevel && !matchedLessonIds.has(l.id)
+    )
+
+    let match = null
+
+    // Strategy 1: Exact normalized title match within strand
+    match = candidates.find(l => l.normTitle === normScriptTitle)
+
+    // Strategy 2: Normalized title contains or is contained
     if (!match) {
-      match = lessons.find(l => l.title.toLowerCase().includes(script.lesson_name.toLowerCase()))
+      match = candidates.find(l =>
+        l.normTitle.includes(normScriptTitle) || normScriptTitle.includes(l.normTitle)
+      )
     }
 
-    // Fallback: try fuzzy match (first significant words)
+    // Strategy 3: Match by sequence number within strand
+    if (!match && script.sequence != null) {
+      const sortedCandidates = [...candidates].sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+      if (script.sequence > 0 && script.sequence <= sortedCandidates.length) {
+        const seqCandidate = sortedCandidates[script.sequence - 1]
+        // Verify with Jaccard similarity > 0.2 (at least some word overlap)
+        const sim = jaccardSimilarity(scriptWords, seqCandidate.words)
+        if (sim >= 0.15) {
+          match = seqCandidate
+        }
+      }
+    }
+
+    // Strategy 4: Best Jaccard similarity within strand (threshold 0.4)
     if (!match) {
-      const words = script.lesson_name.toLowerCase().split(/\s+/).filter(w => w.length > 3).slice(0, 3)
-      if (words.length >= 2) {
-        match = lessons.find(l => {
-          const lt = l.title.toLowerCase()
-          return words.every(w => lt.includes(w))
-        })
+      let bestSim = 0
+      let bestCandidate = null
+      for (const c of candidates) {
+        const sim = jaccardSimilarity(scriptWords, c.words)
+        if (sim > bestSim) {
+          bestSim = sim
+          bestCandidate = c
+        }
+      }
+      if (bestSim >= 0.35 && bestCandidate) {
+        match = bestCandidate
+      }
+    }
+
+    // Strategy 5: Broader search across all strands in same level
+    if (!match) {
+      match = broadCandidates.find(l =>
+        l.normTitle === normScriptTitle || l.normTitle.includes(normScriptTitle) || normScriptTitle.includes(l.normTitle)
+      )
+    }
+
+    // Strategy 6: Broad Jaccard across level
+    if (!match) {
+      let bestSim = 0
+      let bestCandidate = null
+      for (const c of broadCandidates) {
+        const sim = jaccardSimilarity(scriptWords, c.words)
+        if (sim > bestSim) {
+          bestSim = sim
+          bestCandidate = c
+        }
+      }
+      if (bestSim >= 0.4 && bestCandidate) {
+        match = bestCandidate
       }
     }
 
     if (match) {
+      matchedLessonIds.add(match.id)
       const { error: updateErr } = await supabase
         .from('residency_lessons')
         .update({ script_introduction: script.script })
@@ -134,7 +299,7 @@ async function main() {
       }
     } else {
       unmatched++
-      unmatchedList.push(`${script.level} > ${script.strand} > ${script.lesson_name}`)
+      unmatchedList.push(`[seq ${script.sequence}] ${script.level} > ${script.strand} > ${script.lesson_name}`)
     }
   }
 
