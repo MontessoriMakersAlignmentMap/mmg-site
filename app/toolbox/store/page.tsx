@@ -4,121 +4,105 @@ import Image from 'next/image'
 const serif = { fontFamily: 'var(--font-heading)' }
 
 const products = [
-  // ── Culture & Adult Development ──────────────────────────────────────────
   {
     name: 'Adult Culture Framework',
-    category: 'Culture & Adult Development',
+    category: 'Frameworks',
     slug: 'adult-culture-framework',
     image: '/images/toolbox/adult-culture-framework.png',
     price: '$695',
-    docs: '55-page field guide + supporting tools',
+    docs: '57-page field guide + supporting tools',
     desc: 'A principled architecture for the adult culture of your school. Replaces informal norms and reactive conflict with coherent, Montessori-aligned structures for how adults lead, communicate, and hold one another accountable.',
     stripeHref: 'https://buy.stripe.com/bJe28t1rGc9i1gr9VL2cg0N',
   },
   {
-    name: 'Conflict & Feedback Protocol',
-    category: 'Culture & Adult Development',
-    slug: 'conflict-feedback-protocol',
-    image: '/images/toolbox/conflict-feedback-protocol.png',
-    price: '$210',
-    docs: '26-page protocol + tools',
-    desc: 'An equity-centered system for navigating conflict and delivering feedback in Montessori schools — tiered, documented, and built for the real complexity of adult professional relationships.',
-    stripeHref: 'https://buy.stripe.com/dRm28tdaoa1a5wH6Jz2cg0O',
-  },
-  {
-    name: 'Year-Long PD Planning Template',
-    category: 'Culture & Adult Development',
-    slug: 'year-long-planner',
-    image: '/images/toolbox/year-long-planner.png',
-    price: '$197',
-    docs: 'Editable Excel workbook · 5 tabs',
-    desc: 'A full-year professional development planning workbook with suggested weekly topics, differentiated tracks for guides and assistants, and a Beginning of Year tab for in-service planning. Editable in Excel or Google Sheets.',
-    stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
-  },
-  // ── Leadership & Organizational Systems ─────────────────────────────────
-  {
     name: 'Montessori Leadership Operations Playbook',
-    category: 'Leadership & Organizational Systems',
+    category: 'Leadership Tools',
     slug: 'leadership-operations-playbook',
     image: '/images/toolbox/montessori-leadership-operations-playbook.png',
     price: '$595',
-    docs: '65-page playbook',
+    docs: '40+ documents',
     desc: 'The operating infrastructure for a functioning Montessori leadership team. Meeting rhythms, decision protocols, delegation frameworks, and accountability systems built to reduce friction and bring clarity.',
     stripeHref: 'https://buy.stripe.com/bJefZj6M0flu6ALec12cg0I',
   },
   {
     name: 'Montessori Hiring & Selection Toolkit',
-    category: 'Leadership & Organizational Systems',
+    category: 'Leadership Tools',
     slug: 'hiring-selection-toolkit',
     image: '/images/toolbox/hiring-selection-toolkit.png',
     price: '$450',
-    docs: '26-page toolkit',
+    docs: '38+ documents',
     desc: 'Equitable, philosophy-aligned hiring from job description through offer letter. Structured to find candidates who align with your mission and values &mdash; not just your credential list.',
     stripeHref: 'https://buy.stripe.com/8x2cN72vK5KUcZ9fg52cg0J',
   },
   {
     name: 'Leadership Transition & Succession Toolkit',
-    category: 'Leadership & Organizational Systems',
+    category: 'Leadership Tools',
     slug: 'leadership-transition-toolkit',
     image: '/images/toolbox/leadership-transition-succession-toolkit.png',
     price: '$425',
-    docs: '64-page toolkit',
+    docs: '40 documents',
     desc: 'When a leader leaves, schools lose more than a person. This toolkit structures the transition before, during, and after &mdash; protecting institutional memory and keeping the school stable through change.',
     stripeHref: 'https://buy.stripe.com/8x25kF5HWc9i5wHc3T2cg0K',
   },
   {
     name: 'Performance Concerns & Separation Toolkit',
-    category: 'Leadership & Organizational Systems',
+    category: 'Leadership Tools',
     slug: 'performance-separation-toolkit',
     image: '/images/toolbox/performance-concerns-separation-toolkit.png',
     price: '$395',
-    docs: '112-page toolkit',
+    docs: '33 documents',
     desc: 'Structured, dignified, and legally sound processes for managing performance concerns through to separation when needed. For the conversations no one prepares you for.',
     stripeHref: 'https://buy.stripe.com/bJedRb4DS8X61grc3T2cg0L',
   },
-  // ── Governance & Community ───────────────────────────────────────────────
   {
     name: 'Board Onboarding & Alignment Toolkit',
-    category: 'Governance & Community',
+    category: 'Governance & Stewardship',
     slug: 'board-onboarding-toolkit',
     image: '/images/toolbox/board-onboarding-alignment-toolkit.png',
     price: '$325',
-    docs: '61-page toolkit',
+    docs: '21 documents',
     desc: 'Builds shared understanding of roles, culture, and expectations from the first board meeting. So new members can contribute from day one and governance stays strong over time.',
     stripeHref: 'https://buy.stripe.com/fZubJ33zOehqe3dec12cg0M',
   },
   {
+    name: 'Montessori Family Handbook',
+    category: 'Handbooks',
+    slug: 'family-handbook',
+    image: '/images/toolbox/family-handbook.png',
+    price: '$197',
+    docs: '58-page editable template',
+    desc: 'A comprehensive, editable family handbook built specifically for Montessori schools. Reflects your philosophy and community &mdash; not a generic school district template adapted to fit.',
+    stripeHref: 'https://buy.stripe.com/6oU4gB1rG1uEbV51pf2cg0H',
+  },
+  {
     name: 'Montessori Staff Handbook Toolkit',
-    category: 'Governance & Community',
+    category: 'Handbooks',
     slug: 'staff-handbook',
     image: '/images/toolbox/staff-handbook.png',
     price: '$297',
-    docs: '234-page editable template',
+    docs: '124-page editable template',
     desc: 'A full editable staff handbook covering policies, culture, expectations, and procedures &mdash; written with Montessori adult culture in mind. Ready to adapt and implement.',
     stripeHref: 'https://buy.stripe.com/14AaEZ3zO7T2f7hec12cg0G',
   },
   {
-    name: 'Montessori Family Handbook',
-    category: 'Governance & Community',
-    slug: 'family-handbook',
-    image: '/images/toolbox/family-handbook.png',
-    price: '$197',
-    docs: '72-page editable template',
-    desc: 'A comprehensive, editable family handbook built specifically for Montessori schools. Reflects your philosophy and community &mdash; not a generic school district template adapted to fit.',
-    stripeHref: 'https://buy.stripe.com/6oU4gB1rG1uEbV51pf2cg0H',
+    name: 'Conflict & Feedback Protocol',
+    category: 'Frameworks',
+    slug: 'conflict-feedback-protocol',
+    image: '/images/toolbox/conflict-feedback-protocol.png',
+    price: '$210',
+    docs: '7 tools + implementation guide',
+    desc: 'An equity-centered system for navigating conflict and delivering feedback in Montessori schools — tiered, documented, and built for the real complexity of adult professional relationships.',
+    stripeHref: 'https://buy.stripe.com/dRm28tdaoa1a5wH6Jz2cg0O',
   },
 ]
 
-const categories = [
-  'Culture & Adult Development',
-  'Leadership & Organizational Systems',
-  'Governance & Community',
-]
+const categories = ['Frameworks', 'Leadership Tools', 'Governance & Stewardship', 'Handbooks']
 
 const categoryHeadlines: Record<string, string> = {
-  'Culture & Adult Development': 'Building the people and practices that make a school work',
-  'Leadership & Organizational Systems': 'Infrastructure for how leaders lead and organizations run',
-  'Governance & Community': 'Board, staff, and family-facing tools',
+  'Frameworks': 'Culture & organizational architecture',
+  'Leadership Tools': 'Systems for how leaders work',
+  'Governance & Stewardship': 'Board and governance infrastructure',
+  'Handbooks': 'Editable handbooks for your community',
 }
 
 const freeResources = [
@@ -148,7 +132,7 @@ const faqs = [
     a: 'These are editable, implementation-ready templates &mdash; not locked PDFs. Every product comes with a Word or Google Docs editable version designed to be adapted to your school&apos;s voice and context.',
   },
   {
-    q: 'Do I need to be working with Montessori Makers Advisory to use these?',
+    q: 'Do I need to be working with MMG Advisory to use these?',
     a: 'No. Each tool is designed to stand alone. That said, schools working with Advisory often use these as implementation resources during engagements.',
   },
   {
@@ -205,91 +189,123 @@ export default function StorePage() {
 
       {/* ── 2. CATALOG ───────────────────────────────────────────────────── */}
       <section id="catalog" className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto space-y-24">
+        <div className="max-w-7xl mx-auto space-y-28">
           {categories.map((category) => {
             const categoryProducts = products.filter((p) => p.category === category)
+            const [feature, ...rest] = categoryProducts
             return (
               <div key={category}>
-                <div className="mb-12">
-                  <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-3">
-                    {category}
-                  </p>
-                  <h2
-                    className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight tracking-tight"
-                    style={serif}
-                  >
-                    {categoryHeadlines[category]}
-                  </h2>
+                {/* Category header */}
+                <div className="mb-10 flex items-end justify-between gap-4 border-b border-[#E2DDD6] pb-6">
+                  <div>
+                    <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-2">
+                      {category}
+                    </p>
+                    <h2
+                      className="text-2xl md:text-3xl text-[#0e1a7a] leading-tight tracking-tight"
+                      style={serif}
+                    >
+                      {categoryHeadlines[category]}
+                    </h2>
+                  </div>
+                  <span className="text-[#94A3B8] text-xs tracking-wide flex-shrink-0">
+                    {categoryProducts.length} {categoryProducts.length === 1 ? 'tool' : 'tools'}
+                  </span>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {categoryProducts.map((p) => (
-                    <div
-                      key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
-                    >
-                      <div className="p-8 flex flex-col flex-1">
-                        {/* Header: category+title left, small thumbnail right */}
-                        <div className="flex items-start gap-5 mb-5">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">
-                              {p.category}
-                            </p>
-                            <h3
-                              className="text-[#0e1a7a] text-xl font-semibold leading-snug"
-                              style={serif}
-                            >
-                              {p.name}
-                            </h3>
+                {/* Feature card — first product in category */}
+                <div className="bg-white border border-[#E2DDD6] flex flex-col md:flex-row hover:-translate-y-1 hover:shadow-[0_20px_56px_rgba(14,26,122,0.10)] transition-all duration-200 mb-5">
+                  <div className="relative md:w-72 lg:w-80 flex-shrink-0 overflow-hidden bg-[#F2EDE6] min-h-[220px] md:min-h-0">
+                    <Image
+                      src={feature.image}
+                      alt={feature.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 320px"
+                    />
+                  </div>
+                  <div className="flex-1 p-8 md:p-10 flex flex-col justify-between">
+                    <div>
+                      <p className="text-[#64748B] text-[10px] tracking-[0.2em] uppercase mb-3">{feature.category} · Featured</p>
+                      <h3 className="text-[#0e1a7a] text-2xl md:text-3xl leading-snug mb-4" style={serif}>
+                        {feature.name}
+                      </h3>
+                      <p className="text-[#374151] text-base leading-relaxed mb-3 max-w-[56ch]">{feature.desc}</p>
+                      <p className="text-[#64748B] text-sm mb-6">{feature.docs}</p>
+                    </div>
+                    <div className="flex items-center justify-between pt-6 border-t border-[#E2DDD6]">
+                      <p className="text-[#0e1a7a] text-4xl tracking-tight" style={serif}>{feature.price}</p>
+                      <div className="flex items-center gap-3">
+                        <Link
+                          href={`/toolbox/${feature.slug}`}
+                          className="border border-[#0e1a7a] text-[#0e1a7a] text-[12px] px-5 py-2.5 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors font-medium"
+                        >
+                          Learn More
+                        </Link>
+                        <a
+                          href={feature.stripeHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#d6a758] text-white text-[12px] px-5 py-2.5 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                        >
+                          Buy Now
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Compact grid — remaining products */}
+                {rest.length > 0 && (
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {rest.map((p) => (
+                      <div
+                        key={p.slug}
+                        className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-0.5 hover:shadow-[0_10px_32px_rgba(14,26,122,0.09)] transition-all duration-200"
+                      >
+                        <div className="p-6 flex flex-col flex-1">
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="relative w-12 h-16 flex-shrink-0 overflow-hidden shadow-sm bg-[#F2EDE6]">
+                              <Image
+                                src={p.image}
+                                alt={p.name}
+                                fill
+                                className="object-cover object-top"
+                                sizes="48px"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-[#0e1a7a] text-base font-semibold leading-snug" style={serif}>
+                                {p.name}
+                              </h3>
+                              <p className="text-[#64748B] text-[10px] tracking-wide mt-0.5">{p.docs}</p>
+                            </div>
                           </div>
-                          <div className="relative w-16 h-20 flex-shrink-0 overflow-hidden shadow-sm">
-                            <Image
-                              src={p.image}
-                              alt={p.name}
-                              fill
-                              className="object-cover object-top"
-                              sizes="64px"
-                            />
-                          </div>
-                        </div>
-
-                        <p className="text-[#374151] text-sm leading-relaxed mb-4 flex-1">
-                          {p.desc}
-                        </p>
-
-                        <p className="text-[#64748B] text-xs mb-5">{p.docs}</p>
-
-                        <div className="flex items-center justify-between pt-5 border-t border-[#E2DDD6]">
-                          <p
-                            className="text-[#0e1a7a] text-2xl font-semibold tracking-tight"
-                            style={serif}
-                          >
-                            {p.price}
-                          </p>
-                          <div className="flex flex-col items-end gap-1">
-                            <div className="flex items-center gap-3">
+                          <p className="text-[#374151] text-sm leading-relaxed mb-4 flex-1 line-clamp-3">{p.desc}</p>
+                          <div className="flex items-center justify-between pt-4 border-t border-[#E2DDD6]">
+                            <p className="text-[#0e1a7a] text-xl font-semibold tracking-tight" style={serif}>{p.price}</p>
+                            <div className="flex items-center gap-2">
                               <Link
                                 href={`/toolbox/${p.slug}`}
-                                className="border border-[#0e1a7a] text-[#0e1a7a] text-[11px] px-4 py-2 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors font-medium"
+                                className="border border-[#0e1a7a] text-[#0e1a7a] text-[10px] px-3 py-1.5 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors"
                               >
-                                Learn More
+                                Details
                               </Link>
                               <a
                                 href={p.stripeHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-[#d6a758] text-white text-[11px] px-4 py-2 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                                className="bg-[#d6a758] text-white text-[10px] px-3 py-1.5 tracking-[0.07em] hover:bg-[#c09240] transition-colors"
                               >
-                                Buy Now
+                                Buy
                               </a>
                             </div>
-                            <p className="text-[#94A3B8] text-[9px]">Digital toolkit. Immediate download after purchase.</p>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )
           })}

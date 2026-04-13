@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Logo } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
 import { AnimatedStat } from '@/components/AnimatedStat'
-import { FadeIn } from '@/components/FadeIn'
+import { FadeIn, RevealEyebrow } from '@/components/FadeIn'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -172,123 +172,13 @@ export default function InstitutePage() {
         </div>
       </section>
 
-      {/* Foundational Coursework */}
-      <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">00 &mdash; Foundational Coursework</p>
-            <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight max-w-3xl" style={serif}>
-              The course that prepares the adult before the leader.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-12 items-start">
-            {/* Left: framing */}
-            <div className="md:col-span-2 space-y-6">
-              <p className="text-[#374151] text-lg leading-relaxed">
-                Montessori training is largely a training in child development. The AMI, AMS, and other MACTE-accredited programs are rigorous, serious, and deeply formative — and they leave almost entirely unaddressed the question of how adults function in community.
-              </p>
-              <p className="text-[#374151] text-base leading-relaxed">
-                The leadership crises in Montessori schools are rarely failures of pedagogy. They are failures of adult culture: avoidance, misaligned authority, feedback that never gets given, conflict that cycles without resolution. Before any live Institute program can do its work, this interior and structural foundation has to exist.
-              </p>
-              <p className="text-[#374151] text-base leading-relaxed">
-                This course draws on the same research tradition that informs leadership development at Harvard Kennedy School and Harvard Business School — Kegan and Lahey on immunity to change, Argyris and Sch&ouml;n on double-loop learning, Heifetz and Linsky on adaptive leadership, Edmondson on psychological safety, Schein on organizational culture — and brings it into direct, uncomfortable conversation with Montessori&apos;s own writing on the prepared adult.
-              </p>
-              <blockquote className="border-l-4 border-[#d6a758] pl-6 py-1">
-                <p className="text-[#374151] text-base italic leading-relaxed">
-                  &ldquo;The teacher&apos;s first duty is to watch over the environment.&rdquo;
-                </p>
-                <p className="text-[#64748B] text-xs mt-2">— Maria Montessori</p>
-              </blockquote>
-              <div className="pt-4 border-t border-[#E2DDD6]">
-                <p className="text-[#64748B] text-sm leading-relaxed">
-                  <span className="font-semibold text-[#374151]">Recommended before or alongside your first seminar or intensive.</span> Not a prerequisite — a foundation. The live programs assume you are doing this interior work. This course is where it begins.
-                </p>
-              </div>
-            </div>
-
-            {/* Right: full course card */}
-            <div className="md:col-span-3 bg-white border border-[#E2DDD6]">
-              <div className="p-8 md:p-10 grid md:grid-cols-3 gap-8">
-                {/* Main content */}
-                <div className="md:col-span-2">
-                  <div className="w-1 h-8 bg-[#d6a758] mb-6" />
-                  <h3 className="text-[#0e1a7a] text-xl font-semibold mb-2" style={serif}>
-                    Adult Culture &amp; Montessori Practice
-                  </h3>
-                  <p className="text-[#64748B] text-sm italic mb-6">
-                    What Montessori requires of the adults in the building — not just the children.
-                  </p>
-                  <p className="text-[#374151] text-base leading-relaxed mb-8">
-                    Montessori&apos;s philosophical commitments — observation without judgment, respect for the individual&apos;s developmental process, non-interference, genuine collaboration — are applied with fidelity to children and routinely abandoned when adults are in the room. This course is a rigorous, evidence-based examination of why that happens and what it structurally takes to change it. It is uncomfortable at moments. It is practical throughout.
-                  </p>
-                  <div className="mb-6">
-                    <p className="text-[#64748B] text-xs tracking-[0.15em] uppercase mb-4">
-                      What you&apos;ll learn
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        'Apply Kegan and Lahey\'s constructive-developmental framework to examine how immunity to change operates in adult professional communities — and why well-intentioned educators consistently fail to become the colleagues and leaders they intend to be.',
-                        'Use Argyris and Schön\'s theory of action to surface the gap between your espoused values and your theory-in-use — and develop the double-loop learning practices that close it in real professional contexts.',
-                        'Apply Schein\'s three-level model of organizational culture — artifacts, espoused values, and underlying assumptions — to diagnose alignment gaps in your school\'s adult community and design targeted, structural interventions.',
-                        'Draw on Heifetz and Linsky\'s adaptive leadership framework to distinguish technical from adaptive challenges in your school\'s interpersonal and cultural conflicts — and hold those conflicts without collapsing them into easier but unhelpful responses.',
-                        'Use Edmondson\'s research on psychological safety and Garvey Berger\'s adult development work to build professional learning structures that change how adults think, not just what they know.',
-                      ].map((outcome, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#8A6014] flex-shrink-0 mt-0.5">—</span>
-                          <span className="text-[#374151] text-sm leading-relaxed">{outcome}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <p className="text-[#64748B] text-xs">
-                    <span className="font-medium text-[#374151]">Designed for: </span>
-                    Heads of school, executive directors, academic directors, and anyone in a Montessori school responsible for adult culture — who understand the pedagogy and are ready to examine what they actually do with and to one another.
-                  </p>
-                </div>
-                {/* Sidebar */}
-                <div className="bg-[#F2EDE6] p-6 flex flex-col gap-5 self-start">
-                  <div>
-                    <p className="text-[#64748B] text-xs tracking-[0.1em] uppercase mb-1">Price</p>
-                    <p className="text-[#0e1a7a] text-2xl font-semibold" style={serif}>$250</p>
-                  </div>
-                  <div className="space-y-3 border-t border-[#D4CEC6] pt-4">
-                    <div>
-                      <p className="text-[#64748B] text-xs tracking-[0.1em] uppercase">Format</p>
-                      <p className="text-[#374151] text-sm">Async, self-paced</p>
-                    </div>
-                    <div>
-                      <p className="text-[#64748B] text-xs tracking-[0.1em] uppercase">Time</p>
-                      <p className="text-[#374151] text-sm">6.5&ndash;7 hours (equivalent to one full-day professional development experience)</p>
-                    </div>
-                    <div>
-                      <p className="text-[#64748B] text-xs tracking-[0.1em] uppercase">Access</p>
-                      <p className="text-[#374151] text-sm">90-day access from first login</p>
-                    </div>
-                  </div>
-                  <a
-                    href="https://buy.stripe.com/6oU8wR7Q40qA0cn1pf2cg0d"
-                    className="bg-[#d6a758] text-white text-sm px-6 py-3 tracking-wide hover:bg-[#c09240] transition-colors text-center mt-2"
-                  >
-                    Register Now &rarr;
-                  </a>
-                  <p className="text-[#64748B] text-xs text-center -mt-2">
-                    Secure checkout via Stripe. 90-day access begins on your first login.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Programs */}
       <section id="programs" className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Programs</p>
+            <RevealEyebrow className="mb-6">Programs</RevealEyebrow>
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-              Five live programs.
+              Five ways to engage.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
               Each format represents a different depth of engagement—from a single session to
@@ -296,27 +186,39 @@ export default function InstitutePage() {
               for it.
             </p>
           </div>
-          <div className="space-y-4">
-            {programs.map((p) => (
-              <div
-                key={p.name}
-                className="bg-white border border-[#E2DDD6] p-8 grid md:grid-cols-4 gap-6 items-start hover:shadow-md hover:border-[#C8C0B6] hover:-translate-y-[1px] transition-all duration-200"
-              >
-                <div className="md:col-span-1">
-                  <span className="text-[#8A6014] text-xs tracking-[0.2em] font-medium">{p.tier}</span>
-                  <h3 className="text-[#0e1a7a] font-semibold text-lg mt-1" style={serif}>{p.name}</h3>
-                  <p className="text-[#64748B] text-xs mt-1">{p.format}</p>
-                </div>
-                <div className="md:col-span-2">
-                  <p className="text-[#374151] text-sm leading-relaxed">{p.description}</p>
-                </div>
-                <div className="md:text-right">
-                  <Link href={p.href} className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide">
-                    {p.cta} →
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className="space-y-3">
+            {programs.map((p, i) => {
+              const stepClasses = ['', 'md:ml-12', 'md:ml-24', 'md:ml-36', 'md:ml-48']
+              return (
+                <FadeIn key={p.name} delay={i * 0.08}>
+                  <div className={`relative bg-white border border-[#E2DDD6] p-8 overflow-hidden hover:shadow-md hover:border-[#C8C0B6] hover:-translate-y-[1px] transition-all duration-200 ${stepClasses[i]}`}>
+                    {/* Background tier number as texture */}
+                    <span
+                      className="absolute right-6 top-1/2 -translate-y-1/2 text-[8rem] font-bold leading-none select-none pointer-events-none text-[#0e1a7a]/[0.035]"
+                      style={serif}
+                      aria-hidden
+                    >
+                      {p.tier}
+                    </span>
+                    <div className="relative grid md:grid-cols-4 gap-6 items-start">
+                      <div className="md:col-span-1">
+                        <span className="text-[#8A6014] text-xs tracking-[0.2em] font-medium">{p.tier}</span>
+                        <h3 className="text-[#0e1a7a] font-semibold text-lg mt-1" style={serif}>{p.name}</h3>
+                        <p className="text-[#64748B] text-xs mt-1">{p.format}</p>
+                      </div>
+                      <div className="md:col-span-2">
+                        <p className="text-[#374151] text-sm leading-relaxed">{p.description}</p>
+                      </div>
+                      <div className="md:text-right">
+                        <Link href={p.href} className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide">
+                          {p.cta} →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -397,7 +299,7 @@ export default function InstitutePage() {
               The Institute works alongside Advisory and Toolbox.
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-white border border-[#E2DDD6] p-6">
               <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">Advisory</p>
               <p className="text-[#374151] text-sm leading-relaxed mb-6">
@@ -417,18 +319,9 @@ export default function InstitutePage() {
               </Link>
             </div>
             <div className="bg-white border border-[#E2DDD6] p-6">
-              <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">Learning</p>
-              <p className="text-[#374151] text-sm leading-relaxed mb-6">
-                Curriculum, materials, and professional learning grounded in Montessori philosophy. The Institute&apos;s foundational coursework is built in partnership with Montessori Makers Learning.
-              </p>
-              <Link href="/learning" className="text-[#0e1a7a] text-sm font-medium hover:underline">
-                Explore Learning &rarr;
-              </Link>
-            </div>
-            <div className="bg-white border border-[#E2DDD6] p-6">
               <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">About Montessori Makers Group</p>
               <p className="text-[#374151] text-sm leading-relaxed mb-6">
-                Montessori Makers Group is the organization behind the Institute, Advisory, Toolbox, and Learning. Learn about the mission, the founder, and the thinking behind the work.
+                Montessori Makers Group is the organization behind the Institute, Advisory, and Toolbox. Learn about the mission, the founder, and the thinking behind the work.
               </p>
               <Link href="/about" className="text-[#0e1a7a] text-sm font-medium hover:underline">
                 About Montessori Makers Group &rarr;

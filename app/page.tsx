@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
-import { FadeIn } from '@/components/FadeIn'
+import { FadeIn, RevealEyebrow, GoldUnderline } from '@/components/FadeIn'
 import { Logo, type LogoName } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
 import { Testimonials } from '@/components/Testimonials'
@@ -183,12 +183,12 @@ function Problem() {
     <section className="bg-white py-28 md:py-40 px-6 md:px-10">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
         <FadeIn>
-          <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-8">The Reality</p>
+          <RevealEyebrow className="mb-8">The Reality</RevealEyebrow>
           <h2
             className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-[#0e1a7a] leading-[1.0] tracking-tight"
             style={serif}
           >
-            Strong classrooms.<br />Complex systems.
+            <GoldUnderline>Strong classrooms.</GoldUnderline><br />Complex systems.
           </h2>
         </FadeIn>
         <FadeIn delay={0.12}>
@@ -225,12 +225,12 @@ function WhyEcosystem() {
     <section className="grain bg-[#0e1a7a] pt-28 pb-44 md:pt-40 md:pb-56 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="max-w-xl mb-20">
-          <p className="text-[#d6a758] text-[11px] tracking-[0.24em] uppercase mb-8">Why an Ecosystem?</p>
+          <RevealEyebrow variant="dark" className="mb-8">Why an Ecosystem?</RevealEyebrow>
           <h2
             className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-white leading-[1.0] tracking-tight mb-6"
             style={serif}
           >
-            School challenges don&apos;t arrive alone.
+            School challenges <GoldUnderline>don&apos;t arrive alone.</GoldUnderline>
           </h2>
           <p className="text-[#94A3B8] text-lg leading-[1.75]">
             They arrive connected. Addressing them in isolation can resolve one layer while leaving the underlying pattern intact.
@@ -401,12 +401,12 @@ function Ecosystem() {
     <section id="ecosystem" className="bg-[#FAF9F7] py-28 md:py-40 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="max-w-2xl mb-20">
-          <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-8">The Ecosystem</p>
+          <RevealEyebrow className="mb-8">The Ecosystem</RevealEyebrow>
           <h2
             className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-[#0e1a7a] leading-[1.0] tracking-tight mb-6"
             style={serif}
           >
-            Where most schools begin.
+            Where most schools <GoldUnderline>begin.</GoldUnderline>
           </h2>
           <p className="text-[#374151] text-lg leading-[1.75]">
             You don&apos;t need everything. You need the right entry point.
@@ -444,7 +444,7 @@ function WhereToStart() {
     <section className="bg-[#F2EDE6] py-28 md:py-36 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="mb-14">
-          <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-8">Start Here</p>
+          <RevealEyebrow className="mb-8">Start Here</RevealEyebrow>
           <h2
             className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-[#0e1a7a] leading-[1.0] tracking-tight max-w-[14ch]"
             style={serif}
@@ -519,7 +519,7 @@ function Founder() {
         </FadeIn>
 
         <FadeIn delay={0.12}>
-          <p className="text-[#d6a758] text-[11px] tracking-[0.24em] uppercase mb-8">The Work Behind the Work</p>
+          <RevealEyebrow variant="dark" className="mb-8">The Work Behind the Work</RevealEyebrow>
           <h2
             className="text-[2.5rem] md:text-[3rem] text-white leading-[1.06] tracking-tight mb-10"
             style={serif}
@@ -589,7 +589,7 @@ function Press() {
     <section className="bg-[#FAF9F7] border-t border-[#E2DDD6] py-20 md:py-28 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="mb-14">
-          <p className="text-[#8A6014] text-[11px] tracking-[0.24em] uppercase mb-3">Voices &amp; Appearances</p>
+          <RevealEyebrow className="mb-3">Voices &amp; Appearances</RevealEyebrow>
           <h2 className="text-2xl md:text-3xl text-[#0e1a7a] leading-tight" style={serif}>
             Featured in Montessori's leading voices.
           </h2>
@@ -629,6 +629,39 @@ function Press() {
   )
 }
 
+// ─── Trust Ticker ──────────────────────────────────────────────────────────────
+
+const TICKER_ITEMS = [
+  'AMI', 'AMS', 'Public Montessori in Action International', 'Breaking the Paradigm',
+  'Asia Montessori Conference', 'Montessori in Action', 'The Peace Rebellion',
+  'AMI', 'AMS', 'Public Montessori in Action International', 'Breaking the Paradigm',
+  'Asia Montessori Conference', 'Montessori in Action', 'The Peace Rebellion',
+]
+
+function TrustTicker() {
+  return (
+    <div className="bg-[#0e1a7a] border-y border-white/10 py-4 overflow-hidden">
+      <div
+        className="flex gap-12 whitespace-nowrap"
+        style={{ animation: 'ticker 28s linear infinite' }}
+      >
+        {TICKER_ITEMS.map((item, i) => (
+          <span key={i} className="flex items-center gap-12 flex-shrink-0">
+            <span className="text-white/60 text-[11px] tracking-[0.22em] uppercase">{item}</span>
+            <span className="text-[#d6a758] text-[8px]">◆</span>
+          </span>
+        ))}
+      </div>
+      <style>{`
+        @keyframes ticker {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -659,6 +692,7 @@ export default function Home() {
           </p>
         </div>
       </div>
+      <TrustTicker />
       <WhereToStart />
       <Founder />
       <Testimonials />
