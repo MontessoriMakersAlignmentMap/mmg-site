@@ -3,10 +3,12 @@ import type { Metadata } from 'next'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Montessori Makers Residency',
+  title: 'Montessori Makers Residency — Equity-Centered Montessori Teacher Preparation',
   description:
-    'A MACTE-track Montessori teacher preparation program for working adults. Equity-centered, residency-based, and built for educators who have been shut out of traditional credentialing.',
+    'A Montessori teacher preparation program built for the educators the field has always needed. Primary and Elementary credentials. Paid practicum. Equity embedded throughout. Launching fall 2026.',
 }
+
+const serif = { fontFamily: 'var(--font-heading)' }
 
 export default function MMRLandingPage() {
   return (
@@ -16,7 +18,6 @@ export default function MMRLandingPage() {
         className="grain relative overflow-hidden"
         style={{ background: '#0e1a7a', paddingTop: '8rem', paddingBottom: '6rem' }}
       >
-        {/* subtle radial gradient for depth */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -26,44 +27,56 @@ export default function MMRLandingPage() {
         />
         <div className="max-w-7xl mx-auto px-6 md:px-10 relative">
           <FadeIn>
-            <p
-              className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-6 font-medium"
-            >
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-6 font-medium">
               Montessori Makers Group
             </p>
           </FadeIn>
           <FadeIn delay={0.06}>
             <h1
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(2.5rem, 6vw, 4rem)',
                 lineHeight: 1.1,
                 color: '#fff',
                 maxWidth: '820px',
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
               }}
             >
               Montessori Makers Residency
             </h1>
           </FadeIn>
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.09}>
             <p
               style={{
                 fontSize: 'clamp(1.125rem, 2vw, 1.3rem)',
-                lineHeight: 1.65,
-                color: 'rgba(255,255,255,0.75)',
-                maxWidth: '620px',
+                lineHeight: 1.6,
+                color: 'rgba(255,255,255,0.85)',
+                maxWidth: '680px',
+                marginBottom: '1.25rem',
+                fontWeight: 500,
+              }}
+            >
+              A teacher preparation program built for the educators Montessori has always needed but never trained.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.11}>
+            <p
+              style={{
+                fontSize: '1.0625rem',
+                lineHeight: 1.75,
+                color: 'rgba(255,255,255,0.65)',
+                maxWidth: '640px',
                 marginBottom: '2.5rem',
               }}
             >
-              A new kind of Montessori teacher preparation. Built for working adults.
-              Grounded in equity. Launching fall 2026.
+              Traditional Montessori credentialing is expensive, inaccessible, and built for a demographic that does
+              not reflect the children and communities that need Montessori most. MMR exists to change that.
             </p>
           </FadeIn>
           <FadeIn delay={0.14}>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <a
-                href="/residency/waitlist"
+                href="https://mmr.montessorimakersgroup.org/apply"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-shimmer"
@@ -76,13 +89,13 @@ export default function MMRLandingPage() {
                   fontWeight: 600,
                   letterSpacing: '0.03em',
                   textDecoration: 'none',
-                  transition: 'background 0.2s',
+                  minHeight: '44px',
                 }}
               >
-                Join the Waitlist
+                Apply Now
               </a>
-              <a
-                href="#sample-lessons"
+              <Link
+                href="/residency/sample-lessons"
                 style={{
                   display: 'inline-block',
                   border: '1px solid rgba(255,255,255,0.3)',
@@ -91,11 +104,11 @@ export default function MMRLandingPage() {
                   fontSize: '0.9rem',
                   fontWeight: 500,
                   textDecoration: 'none',
-                  transition: 'border-color 0.2s, background 0.2s',
+                  minHeight: '44px',
                 }}
               >
-                Explore Sample Lessons
-              </a>
+                Explore the Curriculum
+              </Link>
             </div>
           </FadeIn>
         </div>
@@ -118,15 +131,15 @@ export default function MMRLandingPage() {
             }}
           >
             {[
-              { value: '516', label: 'Total lessons written' },
+              { value: '549', label: 'Total lessons written' },
               { value: '2', label: 'Certification tracks' },
-              { value: '1,080', label: 'Practicum hours across both tracks' },
+              { value: '18', label: 'Curriculum strands across both tracks' },
               { value: 'Fall 2026', label: 'First cohort launches' },
             ].map((stat) => (
               <div key={stat.label} style={{ textAlign: 'center' }}>
                 <p
                   style={{
-                    fontFamily: 'var(--font-heading)',
+                    ...serif,
                     fontSize: 'clamp(1.5rem, 3vw, 2rem)',
                     color: '#d6a758',
                     lineHeight: 1,
@@ -156,7 +169,7 @@ export default function MMRLandingPage() {
             <FadeIn delay={0.05}>
               <h2
                 style={{
-                  fontFamily: 'var(--font-heading)',
+                  ...serif,
                   fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                   color: '#0e1a7a',
                   lineHeight: 1.2,
@@ -178,47 +191,37 @@ export default function MMRLandingPage() {
                 }}
               >
                 <p>
-                  I have been inside hundreds of Montessori schools. I have watched extraordinary
-                  educators leave the field — not because they were not committed, but because the
-                  path to Montessori certification was designed for people with time, money, and
-                  proximity to a training center. It was not designed for the working mother in
-                  Detroit. It was not designed for the public school teacher in rural Georgia who
-                  has been doing Montessori-aligned work for fifteen years without the credential
-                  to prove it. It was not designed for the educator of color who found Montessori
-                  and immediately saw its liberatory potential but could not get a seat at the
-                  training table.
+                  I have been inside hundreds of Montessori schools. I have watched extraordinary educators leave the
+                  field — not because they were not committed, but because the path to Montessori certification was
+                  designed for people with time, money, and proximity to a training center. It was not designed for the
+                  working mother in Detroit. It was not designed for the public school teacher in rural Georgia who has
+                  been doing Montessori-aligned work for fifteen years without the credential to prove it. It was not
+                  designed for the educator of color who found Montessori and immediately saw its liberatory potential
+                  but could not get a seat at the training table.
                 </p>
                 <p>
-                  MMR is built for those educators. It is a residency-based, MACTE-track
-                  certification program that meets working adults where they are — with an
-                  asynchronous curriculum, live monthly cohort sessions, a supported practicum
-                  model, and a mentorship relationship with an experienced Montessori guide.
-                  It is rigorous. It is not remedial. The depth of this curriculum is not
-                  something we are working toward — it is already here, in the 516 lessons
-                  written and the framework in place. What we are building now is the
-                  infrastructure to deliver it.
+                  MMR is built for those educators. It is a residency-based, MACTE-track certification program that
+                  meets working adults where they are — with an asynchronous curriculum, live monthly cohort sessions,
+                  a supported and paid practicum model, and a mentorship relationship with an experienced Montessori
+                  guide. It is rigorous. It is not remedial. The depth of this curriculum is not something we are
+                  working toward — it is already here, in the 549 lessons written and the framework in place.
                 </p>
                 <p>
-                  The program has three components. The curriculum component asks residents to
-                  engage with every lesson in the program through a structured album-building
-                  process — reading, reflecting, and writing their understanding of each lesson
-                  in their own words, with the help of AI-assisted feedback and mentor review.
-                  The practicum component places residents in Montessori environments for the
-                  hours required by MACTE, with structured observation protocols, reflective
-                  journaling, and a guide who knows how to supervise adult learners. The
-                  mentorship component pairs each resident with a mentor who has years of
-                  classroom experience and who meets with them monthly to work through what
-                  they are seeing and struggling with in their practicum classroom.
+                  The program has three components. The curriculum component asks residents to engage with every lesson
+                  through a structured album-building process — reading, reflecting, and writing their understanding of
+                  each lesson in their own words, with AI-assisted feedback and mentor review. The practicum component
+                  places residents in Montessori environments with structured observation protocols, reflective
+                  journaling, and a guide who knows how to supervise adult learners. Practicum placements are paid. The
+                  mentorship component pairs each resident with a mentor who has real classroom experience and meets
+                  with them monthly to work through what they are seeing and struggling with in their practicum classroom.
                 </p>
                 <p>
-                  The equity framework is not a module. It is woven through every lesson in
-                  the curriculum — not as an add-on but as a lens. Every lesson has an Equity
-                  Aim and a Neurodivergence section. Every Great Lesson is told with an honest
-                  account of whose contributions are in the story. Every theory component
-                  includes critical engagement with the historical context in which the
-                  Montessori method was developed and the ways that context requires updating.
-                  This is not Montessori-lite. It is Montessori taken seriously enough to be
-                  held accountable.
+                  The equity framework is not a module. It is woven through every lesson in the curriculum — not as an
+                  add-on but as a lens. Every lesson carries an explicit Equity Aim and a Neurodivergence section. The
+                  behavior support strand runs through the full program, alongside a science of reading integration that
+                  treats phonological awareness and decoding as Montessori work, not as remediation. Every Great Lesson
+                  is told with an honest account of whose contributions are in the story. This is not Montessori-lite.
+                  It is Montessori taken seriously enough to be held accountable.
                 </p>
               </div>
             </FadeIn>
@@ -226,48 +229,76 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
-      {/* ── Program At A Glance ──────────────────────────────────────────────── */}
+      {/* ── The Program ──────────────────────────────────────────────────────── */}
       <section style={{ background: '#F2EDE6', padding: '6rem 0' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <FadeIn>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
-              Program At A Glance
+              The Program
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
                 color: '#0e1a7a',
                 lineHeight: 1.2,
-                marginBottom: '3rem',
+                marginBottom: '0.75rem',
               }}
             >
               Two tracks. One standard of depth.
             </h2>
+            <p style={{ color: '#64748B', fontSize: '1rem', lineHeight: 1.7, maxWidth: '600px', marginBottom: '3rem' }}>
+              Both tracks share the same structural rigor, the same equity framework, and the same
+              expectation that you will finish knowing what you are doing and why.
+            </p>
           </FadeIn>
-          <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.06}>
             {[
               {
                 level: 'Primary 3–6',
+                credential: 'Primary Montessori Credential',
                 duration: '9-month program',
-                details: [
-                  '213 lessons across 5 strands',
-                  '540 practicum hours',
-                  'Monthly live cohort sessions',
-                  'AI-reviewed album entries',
-                  'Mentor-supported practicum',
+                lessons: '224 lessons',
+                strands: [
+                  'Practical Life',
+                  'Sensorial',
+                  'Language',
+                  'Mathematics',
+                  'Theory',
+                  'Behavior Support',
+                  'Elementary Bridge',
+                ],
+                features: [
+                  'Monthly live cohort seminars',
+                  'Structured observation visits',
+                  'Paid practicum placement',
+                  'Album entries reviewed by mentor and AI',
                   'MACTE-track certification',
                 ],
               },
               {
                 level: 'Elementary 6–12',
+                credential: 'Elementary Montessori Credential',
                 duration: '12-month program',
-                details: [
-                  '303 lessons across 9 strands',
-                  '540 practicum hours',
-                  'Monthly live cohort sessions',
-                  'AI-reviewed album entries',
-                  'Mentor-supported practicum',
+                lessons: '325 lessons',
+                strands: [
+                  'Geography',
+                  'Biology',
+                  'History',
+                  'Language',
+                  'Mathematics',
+                  'Geometry',
+                  'Art',
+                  'Music',
+                  'Theory',
+                  'Behavior Support',
+                  'Primary Foundation',
+                ],
+                features: [
+                  'Monthly live cohort seminars',
+                  'Structured observation visits',
+                  'Paid practicum placement',
+                  'Album entries reviewed by mentor and AI',
                   'MACTE-track certification',
                 ],
               },
@@ -278,58 +309,138 @@ export default function MMRLandingPage() {
                   background: '#0e1a7a',
                   padding: '2.5rem',
                   borderTop: '3px solid #d6a758',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '2rem',
                 }}
               >
-                <p
+                <div>
+                  <p
+                    style={{
+                      color: '#d6a758',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      marginBottom: '0.4rem',
+                    }}
+                  >
+                    {track.duration}
+                  </p>
+                  <h3
+                    style={{
+                      ...serif,
+                      fontSize: '1.75rem',
+                      color: '#fff',
+                      marginBottom: '0.25rem',
+                    }}
+                  >
+                    {track.level}
+                  </h3>
+                  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8125rem' }}>{track.credential}</p>
+                </div>
+
+                <div
                   style={{
-                    color: '#d6a758',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.5rem',
+                    background: 'rgba(214,167,88,0.1)',
+                    border: '1px solid rgba(214,167,88,0.25)',
+                    padding: '0.875rem 1rem',
+                    display: 'inline-block',
                   }}
                 >
-                  {track.duration}
-                </p>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.75rem',
-                    color: '#fff',
-                    marginBottom: '1.75rem',
-                  }}
-                >
-                  {track.level}
-                </h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {track.details.map((detail) => (
-                    <li
-                      key={detail}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '0.75rem',
-                        color: 'rgba(255,255,255,0.8)',
-                        fontSize: '0.9375rem',
-                        lineHeight: 1.5,
-                      }}
-                    >
+                  <p style={{ color: '#d6a758', fontSize: '1.375rem', fontWeight: 700, ...serif, lineHeight: 1 }}>
+                    {track.lessons}
+                  </p>
+                  <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', marginTop: '0.2rem' }}>
+                    across {track.strands.length} curriculum strands
+                  </p>
+                </div>
+
+                <div>
+                  <p
+                    style={{
+                      color: 'rgba(255,255,255,0.4)',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    Curriculum Strands
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    {track.strands.map((strand) => (
                       <span
+                        key={strand}
                         style={{
-                          display: 'inline-block',
-                          width: '6px',
-                          height: '6px',
-                          borderRadius: '50%',
-                          background: '#d6a758',
-                          flexShrink: 0,
-                          marginTop: '0.45rem',
+                          background: 'rgba(255,255,255,0.08)',
+                          color: 'rgba(255,255,255,0.75)',
+                          fontSize: '0.75rem',
+                          padding: '0.3rem 0.65rem',
+                          letterSpacing: '0.04em',
                         }}
-                      />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
+                      >
+                        {strand}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p
+                    style={{
+                      color: 'rgba(255,255,255,0.4)',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    Program Structure
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                    {track.features.map((feature) => (
+                      <li
+                        key={feature}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '0.75rem',
+                          color: 'rgba(255,255,255,0.75)',
+                          fontSize: '0.9rem',
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            width: '5px',
+                            height: '5px',
+                            borderRadius: '50%',
+                            background: '#d6a758',
+                            flexShrink: 0,
+                            marginTop: '0.5rem',
+                          }}
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                  <Link
+                    href="/residency/pricing"
+                    style={{
+                      color: '#d6a758',
+                      fontSize: '0.8125rem',
+                      textDecoration: 'none',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    View tuition & payment options →
+                  </Link>
+                </div>
               </div>
             ))}
           </FadeInStagger>
@@ -337,7 +448,7 @@ export default function MMRLandingPage() {
       </section>
 
       {/* ── Who This Is For ──────────────────────────────────────────────────── */}
-      <section style={{ background: '#FAF9F7', padding: '6rem 0' }}>
+      <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <FadeIn>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
@@ -345,70 +456,78 @@ export default function MMRLandingPage() {
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-                color: '#0e1a7a',
+                color: '#fff',
                 lineHeight: 1.2,
                 maxWidth: '700px',
                 marginBottom: '1rem',
               }}
             >
-              Built for the educator the field kept turning away.
+              This program was built for you specifically.
             </h2>
             <p
               style={{
-                color: '#64748B',
+                color: 'rgba(255,255,255,0.6)',
                 fontSize: '1rem',
                 lineHeight: 1.75,
-                maxWidth: '620px',
+                maxWidth: '640px',
                 marginBottom: '3.5rem',
               }}
             >
-              MMR does not have cohort stories yet — we are building toward that first
-              cohort now. What we do have is a clear picture of who this program was
-              designed to serve.
+              Not as a workaround. Not as an alternative for people who could not get into a real program.
+              As the program the field should have built decades ago.
             </p>
           </FadeIn>
 
           <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.06}>
             {[
               {
-                label: 'The public school teacher who found Montessori',
-                body: 'You have been doing Montessori-aligned work in a public or charter school for years. You know the principles. Your classroom reflects them. But you cannot get a seat at a training center that requires you to take six weeks off without pay and travel to a residency you cannot afford. You should have a credential for the work you are already doing.',
+                label: 'Educators of color who have been told Montessori is not for their communities',
+                body: 'You found Montessori and saw its liberatory potential immediately. You also saw who was in the training room, who wrote the curriculum, and who the program was designed around. MMR was built by someone who made the same observation and decided the answer was not to wait for the field to change.',
               },
               {
-                label: 'The working parent who cannot disappear for a summer',
-                body: 'Traditional Montessori credentialing was designed for people without caregiving responsibilities. You have them. You are also one of the most committed educators in the field. MMR is built around your life, not the other way around.',
+                label: 'Paraeducators and teaching assistants already doing the work',
+                body: 'You have been in a Montessori classroom for years. You know more than the title on your badge suggests. The credential has felt out of reach — financially, logistically, structurally. MMR was designed to close that gap, not explain it away.',
               },
               {
-                label: 'The educator of color who found Montessori and felt the gap',
-                body: 'You walked into a Montessori training space and saw its potential for liberation — and also saw who was in the room and who was writing the curriculum. MMR was built by someone who saw the same thing and decided to do something about it rather than wait for the field to change on its own.',
+                label: 'Public and charter school teachers transitioning into Montessori roles',
+                body: 'You have been doing Montessori-aligned work in a public school and you need the credential that reflects it. Traditional programs were not built for your schedule, your budget, or your school community. MMR is.',
               },
               {
-                label: 'The experienced guide ready to formalize what they know',
-                body: 'You have been practicing Montessori for a decade. Your albums are in your head and your hands. You want the credential — both for the professional recognition and because you know going through a rigorous program will sharpen what you already know. MMR will meet you at your level.',
+                label: 'Career changers with deep community roots entering education',
+                body: 'You are coming from social work, from community organizing, from health care, from somewhere that taught you what children and families actually need. You bring something most credentialed educators do not have. MMR will give you the Montessori framework to build on what you already know.',
+              },
+              {
+                label: 'Bilingual and multilingual educators',
+                body: 'The children who need Montessori most are often children whose home languages are not the language of instruction. You are fluent in the bridging work that takes. MMR was written with that reality in mind — not as a footnote, but as part of the curriculum itself.',
+              },
+              {
+                label: 'Anyone who looked at traditional credentialing and saw a system designed to keep them out',
+                body: 'You are not wrong about what you saw. The access barriers to Montessori credentialing are not accidental. MMR is a direct response to that history — built with intentional pricing, an asynchronous format, a paid practicum model, and an equity scholarship for the educators who face the highest barriers.',
               },
             ].map((card) => (
               <div
                 key={card.label}
                 style={{
-                  background: '#F2EDE6',
-                  padding: '2rem',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
                   borderTop: '3px solid #d6a758',
+                  padding: '2rem',
                 }}
               >
                 <h3
                   style={{
                     fontSize: '1rem',
                     fontWeight: 600,
-                    color: '#0e1a7a',
+                    color: '#fff',
                     lineHeight: 1.35,
                     marginBottom: '0.875rem',
                   }}
                 >
                   {card.label}
                 </h3>
-                <p style={{ fontSize: '0.9375rem', color: '#374151', lineHeight: 1.8 }}>
+                <p style={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>
                   {card.body}
                 </p>
               </div>
@@ -417,47 +536,103 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
-      {/* ── From the Founder ─────────────────────────────────────────────────── */}
-      <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
+      {/* ── What Makes MMR Different ─────────────────────────────────────────── */}
+      <section style={{ background: '#FAF9F7', padding: '6rem 0' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div style={{ maxWidth: '780px', margin: '0 auto', textAlign: 'center' }}>
-            <FadeIn>
-              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8 font-medium">
-                From the Founder
-              </p>
-              <blockquote
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.25rem, 3vw, 1.875rem)',
-                  color: '#fff',
-                  lineHeight: 1.5,
-                  marginBottom: '2rem',
-                  fontStyle: 'normal',
-                }}
-              >
-                &ldquo;I have spent twenty-five years inside Montessori schools watching gifted
-                educators leave the field because the credential was not designed for their
-                lives. MMR is my answer to that. It is the program I would have wanted when
-                I was starting out — rigorous, honest about history, built for working
-                adults, and serious about the children most Montessori programs still
-                do not know how to serve.&rdquo;
-              </blockquote>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-                <div>
-                  <p style={{ color: '#fff', fontWeight: 600, fontSize: '0.9375rem' }}>
-                    Hannah Richardson
-                  </p>
-                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.8125rem', marginTop: '0.2rem' }}>
-                    Founder, Montessori Makers Group
-                  </p>
+          <FadeIn>
+            <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
+              What Makes MMR Different
+            </p>
+            <h2
+              style={{
+                ...serif,
+                fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+                color: '#0e1a7a',
+                lineHeight: 1.2,
+                marginBottom: '3.5rem',
+                maxWidth: '600px',
+              }}
+            >
+              Five things no other Montessori program offers.
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.05}>
+            <div style={{ maxWidth: '820px', display: 'flex', flexDirection: 'column' }}>
+              {[
+                {
+                  num: '01',
+                  title: 'Equity is the curriculum, not a module.',
+                  body: 'Every lesson in the MMR curriculum carries two things that no other program includes as standard: an Equity Aim and a Neurodivergence section. These are not add-ons. They are part of the lesson structure itself, written at the same depth as the material presentation and the theory. The equity framework in MMR is not a weekend workshop or a supplemental reading list. It is the architecture.',
+                },
+                {
+                  num: '02',
+                  title: 'The practicum is paid.',
+                  body: 'Traditional Montessori programs expect candidates to secure unpaid observation hours in schools that often have no interest in supporting adult learners. MMR uses a supported, paid practicum model. Residents are placed in Montessori environments where they are treated as professionals in formation — not visitors with clipboards. The practicum is structured, observed, and mentored. And you are compensated for the work you do in it.',
+                },
+                {
+                  num: '03',
+                  title: 'Cross-plane bridge lessons that no other program offers.',
+                  body: 'The Primary track includes an Elementary Bridge strand — a set of lessons that prepares Primary guides to understand what children are moving toward, not just where they are. The Elementary track includes a Primary Foundation strand for the same reason. This is deliberate. Guides who understand the full arc of the Montessori sequence make different decisions in the classroom. No other credentialing program builds this in.',
+                },
+                {
+                  num: '04',
+                  title: 'Behavior support and the science of reading are core curriculum.',
+                  body: 'Both tracks include a dedicated Behavior Support strand — not as crisis management, but as a Montessori framework for understanding what behavior communicates and how the environment responds. The Language strand integrates the science of reading throughout, treating phonological awareness and systematic decoding as Montessori work rather than a separate remedial intervention. These are the two areas where Montessori classrooms most often struggle. MMR addresses them directly.',
+                },
+                {
+                  num: '05',
+                  title: 'The price reflects the mission.',
+                  body: "MMR is priced significantly below traditional Montessori credentialing programs. It is structured with payment plans that work for working educators — not as a courtesy, but as a design decision. The Equity Fellows scholarship offers full tuition for candidates who face the highest structural access barriers. The price of this program is not an accident. It is a statement about who Montessori is actually for.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={item.num}
+                  style={{
+                    display: 'flex',
+                    gap: '2rem',
+                    padding: '2.5rem 0',
+                    borderBottom: i < 4 ? '1px solid #E2DDD6' : 'none',
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <span
+                    style={{
+                      color: '#d6a758',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.1em',
+                      flexShrink: 0,
+                      paddingTop: '0.35rem',
+                      minWidth: '28px',
+                    }}
+                  >
+                    {item.num}
+                  </span>
+                  <div>
+                    <h3
+                      style={{
+                        fontSize: '1.0625rem',
+                        fontWeight: 600,
+                        color: '#0e1a7a',
+                        marginBottom: '0.75rem',
+                        lineHeight: 1.35,
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: '0.9375rem', color: '#374151', lineHeight: 1.85 }}>
+                      {item.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
-          </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* ── Sample Lessons teaser ────────────────────────────────────────────── */}
+      {/* ── The Curriculum ───────────────────────────────────────────────────── */}
       <section
         id="sample-lessons"
         style={{ background: '#0e1a7a', padding: '6rem 0' }}
@@ -466,11 +641,11 @@ export default function MMRLandingPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <FadeIn>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
-              Sample Lessons
+              The Curriculum
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                 color: '#fff',
                 lineHeight: 1.2,
@@ -478,21 +653,20 @@ export default function MMRLandingPage() {
                 marginBottom: '1.5rem',
               }}
             >
-              This is not a sample of what MMR aspires to be.
-              It is what MMR already is.
+              Read a real lesson before you apply.
             </h2>
             <p
               style={{
-                color: 'rgba(255,255,255,0.7)',
+                color: 'rgba(255,255,255,0.65)',
                 fontSize: '1.0625rem',
                 lineHeight: 1.75,
                 maxWidth: '640px',
                 marginBottom: '2.5rem',
               }}
             >
-              These are real lessons from the MMR curriculum. Every lesson in the program
-              is written at this depth, with this equity lens, and with this level of
-              attention to the full range of children in your classroom.
+              The sample lessons below are not previews of what MMR is working toward. They are
+              what MMR is right now — written at full depth, with the equity lens and neurodivergence
+              integration built in from the start. Read one before you decide whether to apply.
             </p>
             <Link
               href="/residency/sample-lessons"
@@ -505,6 +679,7 @@ export default function MMRLandingPage() {
                 fontWeight: 600,
                 textDecoration: 'none',
                 letterSpacing: '0.03em',
+                minHeight: '44px',
               }}
             >
               Read Sample Lessons →
@@ -513,138 +688,272 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
-      {/* ── The Difference ───────────────────────────────────────────────────── */}
+      {/* ── Requirements ─────────────────────────────────────────────────────── */}
+      <section style={{ background: '#F2EDE6', padding: '6rem 0' }}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <FadeIn>
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
+                Admissions Requirements
+              </p>
+              <h2
+                style={{
+                  ...serif,
+                  fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+                  color: '#0e1a7a',
+                  lineHeight: 1.2,
+                  marginBottom: '2rem',
+                }}
+              >
+                What we are looking for.
+              </h2>
+              <div
+                style={{
+                  fontSize: '1.0rem',
+                  lineHeight: 1.85,
+                  color: '#374151',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1.25rem',
+                }}
+              >
+                <p>
+                  Applicants to MMR need either a bachelor&rsquo;s degree or an associate degree combined with
+                  at least three years of documented experience working with children in an educational setting.
+                  We are looking for people who are serious about this work — not people who have already
+                  completed it.
+                </p>
+                <p>
+                  We require a demonstrated commitment to equity and justice-centered education. This does not
+                  mean you have to have the vocabulary or the credential. It means you have to be honest in your
+                  application about what you believe and why you are here.
+                </p>
+                <p>
+                  Applicants must have access to an approved Montessori observation site for the curriculum
+                  component and must be able to secure a paid practicum placement. We support residents in
+                  identifying practicum sites and will not leave you to navigate that alone.
+                </p>
+                <p>
+                  The MMR curriculum is written at a graduate reading level. Applicants need English language
+                  proficiency sufficient for graduate-level reading and writing. If that is a barrier for you,
+                  reach out to us before you apply — we want to know.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08}>
+              <div style={{ paddingTop: '3.5rem' }}>
+                <div
+                  style={{
+                    background: '#0e1a7a',
+                    padding: '2.5rem',
+                    borderTop: '3px solid #d6a758',
+                    marginBottom: '1.5rem',
+                  }}
+                >
+                  <p
+                    style={{
+                      color: '#d6a758',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    Requirements at a Glance
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+                    {[
+                      "Bachelor's degree — or associate degree plus 3+ years working with children",
+                      'Demonstrated commitment to equity and justice-centered education',
+                      'Access to an approved Montessori observation site',
+                      'Ability to secure a paid practicum placement',
+                      'English proficiency for graduate-level reading and writing',
+                    ].map((req) => (
+                      <li
+                        key={req}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '0.75rem',
+                          color: 'rgba(255,255,255,0.8)',
+                          fontSize: '0.9rem',
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            width: '5px',
+                            height: '5px',
+                            borderRadius: '50%',
+                            background: '#d6a758',
+                            flexShrink: 0,
+                            marginTop: '0.55rem',
+                          }}
+                        />
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: 1.7 }}>
+                  Not sure if you qualify? Reach out before you apply. We would rather have that conversation
+                  than have you talk yourself out of something you should be doing.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pricing ──────────────────────────────────────────────────────────── */}
       <section style={{ background: '#FAF9F7', padding: '6rem 0' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <FadeIn>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
-              The Difference
+              Tuition & Pricing
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
                 color: '#0e1a7a',
                 lineHeight: 1.2,
-                marginBottom: '3rem',
+                marginBottom: '2rem',
+                maxWidth: '560px',
               }}
             >
-              MMR vs. traditional Montessori credentialing
+              Priced for the educators this program is actually for.
             </h2>
           </FadeIn>
-
           <FadeIn delay={0.05}>
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9375rem' }}>
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        padding: '1rem 1.25rem',
-                        textAlign: 'left',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: '#64748B',
-                        borderBottom: '2px solid #E2DDD6',
-                        width: '22%',
-                      }}
-                    >
-                      Dimension
-                    </th>
-                    <th
-                      style={{
-                        padding: '1rem 1.25rem',
-                        textAlign: 'left',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: '#64748B',
-                        borderBottom: '2px solid #E2DDD6',
-                      }}
-                    >
-                      Traditional Programs
-                    </th>
-                    <th
-                      style={{
-                        padding: '1rem 1.25rem',
-                        textAlign: 'left',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: '#0e1a7a',
-                        borderBottom: '2px solid #d6a758',
-                      }}
-                    >
-                      Montessori Makers Residency
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    {
-                      dimension: 'Cost',
-                      traditional: '$8,000–$18,000+ for a full credentialing sequence, often not including materials or housing for residential intensives',
-                      mmr: 'Tiered tuition designed for working educators, with an Equity Fellows scholarship for participants who face the highest access barriers',
-                    },
-                    {
-                      dimension: 'Time commitment',
-                      traditional: 'Residential summer intensives of 4–8 weeks requiring unpaid leave or job loss; incompatible with most working adults\' lives',
-                      mmr: 'Asynchronous coursework accessible around a full-time schedule, with monthly live sessions that do not require travel or extended leave',
-                    },
-                    {
-                      dimension: 'Equity framework',
-                      traditional: 'Equity language added to existing curricula as supplemental modules; not embedded in the core content; ABAR lens absent',
-                      mmr: 'Every lesson in the curriculum carries an explicit Equity Aim. The ABAR framework is structural, not supplemental.',
-                    },
-                    {
-                      dimension: 'Neurodivergence',
-                      traditional: 'Neurodivergence addressed in optional add-on workshops, if at all; assumed to be an accommodation category rather than a design lens',
-                      mmr: 'Every lesson includes a Neurodivergence and Behavior section written at the same depth as the rest of the lesson, for every child — not just those with diagnoses',
-                    },
-                    {
-                      dimension: 'Practicum model',
-                      traditional: 'Practicum placement arranged independently by the candidate, often with limited institutional support or supervision quality',
-                      mmr: 'Supported practicum model with structured observation protocols, reflective journaling, and a mentor who knows how to supervise adult professional learners',
-                    },
-                  ].map((row, i) => (
-                    <tr
-                      key={row.dimension}
-                      style={{ borderBottom: '1px solid #E2DDD6', background: i % 2 === 0 ? '#fff' : '#FAF9F7' }}
-                    >
-                      <td
-                        style={{
-                          padding: '1.25rem',
-                          fontWeight: 600,
-                          color: '#0e1a7a',
-                          verticalAlign: 'top',
-                        }}
-                      >
-                        {row.dimension}
-                      </td>
-                      <td style={{ padding: '1.25rem', color: '#64748B', lineHeight: 1.7, verticalAlign: 'top' }}>
-                        {row.traditional}
-                      </td>
-                      <td
-                        style={{
-                          padding: '1.25rem',
-                          color: '#374151',
-                          lineHeight: 1.7,
-                          verticalAlign: 'top',
-                          borderLeft: '3px solid #d6a758',
-                        }}
-                      >
-                        {row.mmr}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ maxWidth: '700px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <p style={{ fontSize: '1.0625rem', lineHeight: 1.85, color: '#374151' }}>
+                MMR tuition is set significantly below the cost of traditional Montessori credentialing programs.
+                That is a deliberate design decision, not a compromise on quality. The curriculum is as deep as any
+                program in the field. The price reflects a belief that access to Montessori credentialing should not
+                require financial sacrifice on the scale the field has historically demanded.
+              </p>
+
+              <div
+                style={{
+                  border: '2px solid #d6a758',
+                  padding: '1.75rem 2rem',
+                  background: '#fffdf7',
+                }}
+              >
+                <p
+                  style={{
+                    color: '#8A6014',
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    marginBottom: '0.75rem',
+                  }}
+                >
+                  Equity Fellows Scholarship
+                </p>
+                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#374151' }}>
+                  The Equity Fellows program provides full or partial tuition for educators who face the highest
+                  structural access barriers to Montessori credentialing — typically educators of color, educators
+                  in under-resourced public schools, and educators in rural or geographically isolated communities.
+                  Fellows are selected as part of the standard admissions process. Every qualified applicant is
+                  automatically considered.
+                </p>
+              </div>
+
+              <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#374151' }}>
+                Payment plans are available for both tracks and are structured to work alongside a full-time
+                educator salary. Full tuition details and payment options are on the pricing page.
+              </p>
+
+              <Link
+                href="/residency/pricing"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  background: '#0e1a7a',
+                  color: '#fff',
+                  padding: '0.875rem 2rem',
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  letterSpacing: '0.03em',
+                  width: 'fit-content',
+                  minHeight: '44px',
+                }}
+              >
+                View full pricing & payment options →
+              </Link>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* ── A Note From Hannah ───────────────────────────────────────────────── */}
+      {/*
+        PLACEHOLDER: This section is reserved for Hannah's personal statement.
+        Length: 3–4 paragraphs.
+        Tone: Personal, direct, grounded in Hannah's specific experience and motivation for building MMR.
+        Content suggestions:
+          - Why she built this specifically, not a program like it
+          - Something she witnessed in a real school that crystallized the need
+          - What she wants the first cohort to know before they begin
+          - Her commitment to the educators who complete it
+        When ready, replace the placeholder content below with Hannah's text.
+      */}
+      <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div style={{ maxWidth: '780px' }}>
+            <FadeIn>
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8 font-medium">
+                A Note From Hannah
+              </p>
+
+              {/* PLACEHOLDER CONTENT — replace with Hannah's personal statement */}
+              <div
+                style={{
+                  border: '1px solid rgba(214,167,88,0.3)',
+                  padding: '2.5rem',
+                  background: 'rgba(214,167,88,0.05)',
+                  marginBottom: '2rem',
+                }}
+              >
+                <p
+                  style={{
+                    color: 'rgba(255,255,255,0.4)',
+                    fontSize: '0.8125rem',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  Placeholder — Hannah&rsquo;s personal statement goes here
+                </p>
+                <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.9375rem', lineHeight: 1.8, fontStyle: 'italic' }}>
+                  3–4 paragraphs. Personal, direct, and grounded in Hannah&rsquo;s specific experience
+                  and motivation for building MMR. Written in first person. Not a marketing statement —
+                  a real note to the educator who is reading this page and deciding whether to apply.
+                </p>
+              </div>
+              {/* END PLACEHOLDER */}
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div>
+                  <p style={{ color: '#fff', fontWeight: 600, fontSize: '0.9375rem' }}>
+                    Hannah Richardson
+                  </p>
+                  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8125rem', marginTop: '0.2rem' }}>
+                    Founder, Montessori Makers Group · Founder, Montessori Makers Residency
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -657,7 +966,7 @@ export default function MMRLandingPage() {
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
                 color: '#0e1a7a',
                 lineHeight: 1.2,
@@ -675,10 +984,6 @@ export default function MMRLandingPage() {
                 a: 'MMR is currently in development toward MACTE accreditation. MACTE — the Montessori Accreditation Council for Teacher Education — is the primary accrediting body for Montessori teacher preparation programs in the United States. We are building the program to meet MACTE standards from the ground up, so that the path to accreditation is a documentation process, not a redesign.',
               },
               {
-                q: 'What is MACTE accreditation and why does it matter?',
-                a: 'MACTE accreditation is the credential recognized by the Association Montessori Internationale and most reputable Montessori schools when hiring. A MACTE-accredited program has been reviewed against rigorous standards for curriculum depth, practicum hours, faculty qualifications, and program governance. We are pursuing this credential because the educators who complete MMR deserve to be taken seriously by every school they apply to.',
-              },
-              {
                 q: 'What does a typical week look like for a resident?',
                 a: 'Most residents spend four to six hours per week on curriculum work — reading, observing, and writing album entries. Practicum hours happen in a school environment and are arranged in coordination with your mentor. Monthly live cohort sessions are two to three hours long. The program is designed to be completed alongside a full-time teaching position, not instead of one.',
               },
@@ -688,15 +993,15 @@ export default function MMRLandingPage() {
               },
               {
                 q: 'What happens at the end of the program?',
-                a: 'Residents who complete all components — curriculum, practicum, and mentorship — receive a certificate of completion from Montessori Makers Residency. When MACTE accreditation is conferred, all MMR graduates will receive updated documentation reflecting that credential. We are committed to honoring the work of every resident who completes the program.',
+                a: 'Residents who complete all components — curriculum, practicum, and mentorship — receive a certificate of completion from Montessori Makers Residency. When MACTE accreditation is conferred, all MMR graduates will receive updated documentation reflecting that credential.',
               },
               {
                 q: 'How does the Equity Fellows scholarship work?',
-                a: 'The Equity Fellows program is designed for educators who face the highest structural access barriers to Montessori credentialing — typically educators of color, educators in under-resourced public schools, and educators in rural or geographically isolated communities. Fellows receive full or partial tuition support. Applications for the first cohort of Fellows will open alongside general applications in 2026.',
+                a: 'The Equity Fellows program is designed for educators who face the highest structural access barriers to Montessori credentialing. Fellows receive full or partial tuition support. Every qualified applicant is automatically considered — there is no separate application.',
               },
               {
-                q: 'What is the cost?',
-                a: 'Full tuition details will be published when applications open. We are committed to pricing that is significantly below the cost of traditional Montessori credentialing programs, with a transparent tiered structure. The Equity Fellows scholarship covers full tuition for qualifying applicants.',
+                q: 'When does the first cohort begin?',
+                a: 'The first MMR cohort launches fall 2026. Applications open in early 2026. If you want to be notified when applications open, use the Apply Now button to get on the list.',
               },
             ].map((faq) => (
               <div key={faq.q}>
@@ -720,16 +1025,13 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
-      {/* ── Final CTA ────────────────────────────────────────────────────────── */}
-      <section
-        style={{ background: '#0e1a7a', padding: '6rem 0' }}
-        className="grain"
-      >
+      {/* ── Apply Now (Final CTA) ─────────────────────────────────────────────── */}
+      <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
         <div className="max-w-7xl mx-auto px-6 md:px-10" style={{ textAlign: 'center' }}>
           <FadeIn>
             <h2
               style={{
-                fontFamily: 'var(--font-heading)',
+                ...serif,
                 fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                 color: '#fff',
                 lineHeight: 1.2,
@@ -740,60 +1042,53 @@ export default function MMRLandingPage() {
             </h2>
             <p
               style={{
-                color: 'rgba(255,255,255,0.7)',
+                color: 'rgba(255,255,255,0.65)',
                 fontSize: '1.0625rem',
                 lineHeight: 1.75,
-                maxWidth: '640px',
+                maxWidth: '600px',
                 margin: '0 auto 2.5rem',
               }}
             >
-              If you are a working educator who has been waiting for a Montessori
-              training program that was actually built for you, this is it.
+              If you are a working educator who has been waiting for a Montessori training
+              program that was actually built for you, this is it. Applications open early 2026.
             </p>
-            <a
-              href="/residency/waitlist"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-shimmer"
-              style={{
-                display: 'inline-block',
-                background: '#d6a758',
-                color: '#fff',
-                padding: '1rem 2.5rem',
-                fontSize: '0.9375rem',
-                fontWeight: 600,
-                letterSpacing: '0.04em',
-                textDecoration: 'none',
-              }}
-            >
-              Join the Waitlist
-            </a>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a
+                href="https://mmr.montessorimakersgroup.org/apply"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-shimmer"
+                style={{
+                  display: 'inline-block',
+                  background: '#d6a758',
+                  color: '#fff',
+                  padding: '1rem 2.5rem',
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
+                  textDecoration: 'none',
+                  minHeight: '44px',
+                }}
+              >
+                Apply Now
+              </a>
+              <Link
+                href="/residency/sample-lessons"
+                style={{
+                  display: 'inline-block',
+                  border: '1px solid rgba(255,255,255,0.3)',
+                  color: '#fff',
+                  padding: '1rem 2.5rem',
+                  fontSize: '0.9375rem',
+                  fontWeight: 500,
+                  textDecoration: 'none',
+                  minHeight: '44px',
+                }}
+              >
+                Explore the Curriculum
+              </Link>
+            </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* Additional Entry Points */}
-      <section className="r-section">
-        <div className="r-container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1rem',
-            textAlign: 'center',
-          }}>
-            <Link href="/residency/outcomes" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
-              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Program Outcomes</p>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Graduates, partner schools, and program reach</p>
-            </Link>
-            <Link href="/residency/mentors" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
-              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Become a Mentor</p>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Guide the next generation of Montessori educators</p>
-            </Link>
-            <Link href="/residency/waitlist" style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem 1rem' }}>
-              <p style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--r-navy)', marginBottom: '0.25rem' }}>Join the Waitlist</p>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>Get notified when enrollment opens</p>
-            </Link>
-          </div>
         </div>
       </section>
     </>
