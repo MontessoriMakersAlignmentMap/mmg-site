@@ -191,7 +191,7 @@ export default function MMRLandingPage() {
                 }}
               >
                 <p>
-                  I have been inside hundreds of Montessori schools. I have watched extraordinary educators leave the
+                  I have been inside Montessori schools all over this country — independent schools, public schools, charter schools, magnet programs, neighborhood schools. I have watched extraordinary educators leave the
                   field — not because they were not committed, but because the path to Montessori certification was
                   designed for people with time, money, and proximity to a training center. It was not designed for the
                   working mother in Detroit. It was not designed for the public school teacher in rural Georgia who has
