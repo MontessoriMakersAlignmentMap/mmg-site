@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
@@ -605,6 +605,141 @@ const systemGridStyle: React.CSSProperties = {
   backgroundSize: '48px 48px',
 }
 
+function TierExplorer() {
+  const [active, setActive] = useState(0)
+  const tier = tiers[active]
+
+  return (
+    <div className="flex flex-col md:flex-row gap-0 overflow-hidden border border-[#E2DDD6]">
+      {/* ── Left: tier selector stack ─────────────────────────────────── */}
+      <div className="flex flex-row md:flex-col md:w-64 flex-shrink-0 border-b md:border-b-0 md:border-r border-[#E2DDD6]">
+        {tiers.map((t, i) => (
+          <button
+            key={t.id}
+            onClick={() => setActive(i)}
+            className="relative flex-1 md:flex-none text-left px-5 py-4 md:py-5 transition-colors duration-150"
+            style={{
+              background: active === i ? '#fff' : '#F7F4EE',
+              borderBottom: i < tiers.length - 1 ? '1px solid #E2DDD6' : 'none',
+            }}
+          >
+            {/* Active indicator */}
+            {active === i && (
+              <motion.div
+                layoutId="tier-active-bar"
+                className="absolute left-0 top-0 bottom-0 w-[3px] md:w-[3px]"
+                style={{ background: t.color }}
+                transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+              />
+            )}
+            <div className="pl-2">
+              <p
+                className="text-[10px] tracking-[0.18em] uppercase font-medium mb-0.5"
+                style={{ color: active === i ? t.color : '#94A3B8' }}
+              >
+                {String(i + 1).padStart(2, '0')} · {t.scope}
+              </p>
+              <p
+                className="text-sm md:text-base font-semibold leading-tight"
+                style={{
+                  color: active === i ? '#0e1a7a' : '#94A3B8',
+                  fontFamily: 'var(--font-heading)',
+                }}
+              >
+                {t.name}
+              </p>
+            </div>
+          </button>
+        ))}
+        {/* Architecture hint — bottom label */}
+        <div className="hidden md:flex items-center gap-2 px-5 py-4 mt-auto border-t border-[#E2DDD6]">
+          <svg width="12" height="28" viewBox="0 0 12 28" fill="none" aria-hidden="true">
+            <line x1="6" y1="0" x2="6" y2="28" stroke="#d6a758" strokeWidth="1" strokeOpacity="0.4" />
+            <path d="M 3 22 L 6 28 L 9 22" stroke="#d6a758" strokeWidth="1" strokeOpacity="0.4" fill="none" />
+          </svg>
+          <span className="text-[9px] tracking-[0.16em] uppercase text-[#94A3B8]">Foundation up</span>
+        </div>
+      </div>
+
+      {/* ── Right: detail panel ────────────────────────────────────────── */}
+      <div className="flex-1 relative overflow-hidden bg-white">
+        {/* Faint tier-color wash behind the panel */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-colors duration-500"
+          style={{ background: `${tier.color}06` }}
+        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tier.id}
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="relative p-8 md:p-10 flex flex-col gap-6 h-full"
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div
+                  className="inline-block text-[10px] tracking-[0.2em] uppercase font-semibold px-2 py-0.5 mb-3"
+                  style={{ background: `${tier.color}18`, color: tier.color }}
+                >
+                  {tier.scope}
+                </div>
+                <h3
+                  className="text-2xl md:text-3xl text-[#0e1a7a] leading-tight"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
+                  {tier.name}
+                </h3>
+              </div>
+              <div className="opacity-40 flex-shrink-0 mt-1">
+                {TIER_ICONS[tier.id]}
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-[#374151] text-base md:text-lg leading-relaxed max-w-xl">
+              {tier.description}
+            </p>
+
+            {/* Features */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
+              {tier.features.map((f) => (
+                <div key={f} className="flex items-start gap-3">
+                  <span className="flex-shrink-0 mt-[5px] w-[5px] h-[5px] rounded-full" style={{ background: tier.color }} />
+                  <span className="text-sm text-[#374151] leading-snug">{f}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#E2DDD6]">
+              <Link
+                href={tierLinks[tier.id]}
+                className="text-[#0e1a7a] text-sm font-medium hover:underline"
+              >
+                Watch how it works &rarr;
+              </Link>
+              <div className="flex gap-1.5">
+                {tiers.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    className="w-1.5 h-1.5 rounded-full transition-all duration-200"
+                    style={{ background: i === active ? tier.color : '#D1D5DB' }}
+                    aria-label={`View ${tiers[i].name}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
 function DemoCTA() {
   return (
     <div className="flex justify-center py-10">
@@ -960,53 +1095,9 @@ export default function MMAPPage() {
               organization with tools that are built to work together.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {tiers.map((tier, i) => (
-              <FadeIn key={tier.id} delay={i * 0.08}>
-                <motion.div
-                  className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-5 h-full"
-                  whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(14,26,122,0.09)' }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  {/* Icon + name header */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <motion.div
-                        className="w-1 flex-shrink-0"
-                        style={{ backgroundColor: tier.color, height: 40 }}
-                        whileHover={{ height: 48 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                      <div>
-                        <h3 className="text-[#0e1a7a] font-semibold text-xl">{tier.name}</h3>
-                        <p className="text-[#64748B] text-xs uppercase tracking-wider mt-0.5">{tier.scope}</p>
-                      </div>
-                    </div>
-                    <div className="flex-shrink-0 opacity-50">
-                      {TIER_ICONS[tier.id]}
-                    </div>
-                  </div>
-                  <p className="text-[#374151] text-sm leading-relaxed">{tier.description}</p>
-                  <ul className="space-y-2">
-                    {tier.features.map((f, fi) => (
-                      <li key={fi} className="flex items-start gap-3 text-sm text-[#374151]">
-                        <span style={{ color: tier.color }} className="flex-shrink-0 mt-0.5">—</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto pt-2">
-                    <Link
-                      href={tierLinks[tier.id]}
-                      className="text-[#0e1a7a] text-xs font-medium hover:underline"
-                    >
-                      Watch how it works &rarr;
-                    </Link>
-                  </div>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn delay={0.1}>
+            <TierExplorer />
+          </FadeIn>
         </div>
       </section>
 
