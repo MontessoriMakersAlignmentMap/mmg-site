@@ -19,6 +19,8 @@ export default function PortalDashboard() {
   const [unreadFeedback, setUnreadFeedback] = useState<any[]>([])
   const [observationPrompt, setObservationPrompt] = useState<any>(null)
   const [observationLog, setObservationLog] = useState<any>(null)
+  const [intensives, setIntensives] = useState<any[]>([])
+  const [registeredIntensives, setRegisteredIntensives] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -119,6 +121,25 @@ export default function PortalDashboard() {
         .eq('month_number', currentMonth)
         .maybeSingle()
       if (obsLog) setObservationLog(obsLog)
+
+      // Upcoming intensives for this resident's level
+      const resLevel = res.assigned_level?.name?.toLowerCase() || 'primary'
+      const { data: intData } = await supabase
+        .from('residency_intensives')
+        .select('*')
+        .eq('level', resLevel)
+        .eq('status', 'upcoming')
+        .gte('registration_deadline', new Date().toISOString().split('T')[0])
+        .order('start_date')
+
+      if (intData && intData.length > 0) {
+        setIntensives(intData)
+        const { data: myRegs } = await supabase
+          .from('residency_intensive_registrations')
+          .select('intensive_id')
+          .eq('resident_id', res.id)
+        if (myRegs) setRegisteredIntensives(new Set(myRegs.map((r: any) => r.intensive_id)))
+      }
 
       // Unread feedback
       const { data: entries } = await supabase
@@ -362,6 +383,73 @@ export default function PortalDashboard() {
               Log This Month&apos;s Observation
             </Link>
           )}
+        </div>
+      )}
+
+      {/* Upcoming Intensives */}
+      {intensives.length > 0 && (
+        <div style={{ marginBottom: '1.5rem' }}>
+          {intensives.map(i => {
+            const isRegistered = registeredIntensives.has(i.id)
+            return (
+              <div key={i.id} style={{
+                background: 'linear-gradient(135deg, #1a237e 0%, #283593 100%)',
+                borderRadius: '12px',
+                padding: '1.75rem 2rem',
+                color: 'white',
+                marginBottom: '0.75rem',
+              }}>
+                <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '0.5rem' }}>
+                  Upcoming Intensive
+                </p>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.2, marginBottom: '0.75rem' }}>
+                  {i.name}
+                </h2>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.875rem', opacity: 0.9, marginBottom: '1rem' }}>
+                  <span>{new Date(i.start_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} – {new Date(i.end_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                  <span>{i.location_name}</span>
+                  {i.cost_cents > 0 && <span>${(i.cost_cents / 100).toFixed(0)}</span>}
+                </div>
+                {i.description && (
+                  <p style={{ fontSize: '0.8125rem', opacity: 0.8, lineHeight: 1.6, marginBottom: '1rem', maxWidth: '600px' }}>
+                    {i.description.length > 200 ? i.description.substring(0, 200) + '...' : i.description}
+                  </p>
+                )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  {isRegistered ? (
+                    <span style={{
+                      fontSize: '0.8125rem', fontWeight: 600, background: 'rgba(102,187,106,0.3)',
+                      padding: '0.5rem 1rem', borderRadius: '6px',
+                    }}>
+                      You&apos;re Registered
+                    </span>
+                  ) : (
+                    <button
+                      onClick={async () => {
+                        if (!resident) return
+                        const { error } = await supabase.from('residency_intensive_registrations').insert({
+                          intensive_id: i.id,
+                          resident_id: resident.id,
+                        })
+                        if (!error) {
+                          setRegisteredIntensives(prev => new Set([...prev, i.id]))
+                        }
+                      }}
+                      style={{
+                        fontSize: '0.8125rem', fontWeight: 600, background: '#ffd54f', color: '#1a237e',
+                        padding: '0.5rem 1.25rem', borderRadius: '6px', border: 'none', cursor: 'pointer',
+                      }}
+                    >
+                      Register Now
+                    </button>
+                  )}
+                  <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>
+                    Registration closes {new Date(i.registration_deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
         </div>
       )}
 

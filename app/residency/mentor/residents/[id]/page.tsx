@@ -16,6 +16,8 @@ export default function MentorResidentDetailPage() {
   const [mentorNotes, setMentorNotes] = useState('')
   const [notesSaving, setNotesSaving] = useState(false)
   const [notesSaved, setNotesSaved] = useState(false)
+  const [materialsSessions, setMaterialsSessions] = useState<any[]>([])
+  const [remotePractice, setRemotePractice] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -55,6 +57,23 @@ export default function MentorResidentDetailPage() {
         .order('submitted_at', { ascending: false })
 
       if (assess) setAssessments(assess)
+
+      // Materials practice data
+      const { data: ms } = await supabase
+        .from('residency_observation_logs')
+        .select('*')
+        .eq('resident_id', id)
+        .eq('materials_session_completed', true)
+        .order('observation_date', { ascending: false })
+      if (ms) setMaterialsSessions(ms)
+
+      const { data: rp } = await supabase
+        .from('residency_remote_materials_practice')
+        .select('*')
+        .eq('resident_id', id)
+        .order('submitted_at', { ascending: false })
+      if (rp) setRemotePractice(rp)
+
       setLoading(false)
     }
     load()
@@ -252,6 +271,79 @@ export default function MentorResidentDetailPage() {
         ) : (
           <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>No formal assessments completed yet.</p>
         )}
+      </div>
+
+      {/* Materials Practice */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Materials Practice</h2>
+
+        {(() => {
+          const totalMinutes = materialsSessions.reduce((s: number, m: any) => s + (m.materials_session_duration || 0), 0)
+          const totalHours = (totalMinutes / 60).toFixed(1)
+          const allAreas = ['Practical Life', 'Sensorial', 'Language', 'Mathematics', 'Geometry', 'Cultural Studies', 'Theory', 'Behavior Support']
+          const coveredAreas = new Set<string>()
+          materialsSessions.forEach((m: any) => (m.materials_areas || []).forEach((a: string) => coveredAreas.add(a)))
+          remotePractice.forEach((r: any) => { if (r.strand) coveredAreas.add(r.strand) })
+          const uncoveredAreas = allAreas.filter(a => !coveredAreas.has(a))
+
+          return (
+            <>
+              <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+                <div style={{ padding: '0.625rem 0.875rem', background: 'var(--r-cream)', borderRadius: '6px' }}>
+                  <span style={{ fontWeight: 700, color: 'var(--r-navy)' }}>{totalHours}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginLeft: '0.375rem' }}>practice hours</span>
+                </div>
+                <div style={{ padding: '0.625rem 0.875rem', background: 'var(--r-cream)', borderRadius: '6px' }}>
+                  <span style={{ fontWeight: 700, color: 'var(--r-navy)' }}>{materialsSessions.length}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginLeft: '0.375rem' }}>on-site</span>
+                </div>
+                <div style={{ padding: '0.625rem 0.875rem', background: 'var(--r-cream)', borderRadius: '6px' }}>
+                  <span style={{ fontWeight: 700, color: 'var(--r-navy)' }}>{remotePractice.length}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginLeft: '0.375rem' }}>remote</span>
+                </div>
+              </div>
+
+              {uncoveredAreas.length > 0 && (
+                <div style={{ marginBottom: '1rem', padding: '0.625rem 0.875rem', background: 'var(--r-feedback-bg)', borderRadius: '6px' }}>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-feedback-color)', marginBottom: '0.25rem' }}>Not Yet Covered</p>
+                  <p style={{ fontSize: '0.8125rem', color: 'var(--r-text)', margin: 0 }}>{uncoveredAreas.join(', ')}</p>
+                </div>
+              )}
+
+              {materialsSessions.length === 0 && remotePractice.length === 0 ? (
+                <p style={{ fontSize: '0.875rem', color: 'var(--r-text-muted)' }}>No materials practice sessions logged yet.</p>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+                  {materialsSessions.map((m: any) => (
+                    <div key={m.id} style={{ padding: '0.625rem 0.875rem', background: 'var(--r-cream)', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div>
+                        <p style={{ fontSize: '0.8125rem', fontWeight: 500, margin: 0 }}>{m.school_name}</p>
+                        <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>
+                          {new Date(m.observation_date).toLocaleDateString()} &bull; {m.materials_session_duration}min &bull; {(m.materials_areas || []).join(', ')}
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--r-navy)' }}>On-Site</span>
+                    </div>
+                  ))}
+                  {remotePractice.map((r: any) => (
+                    <div key={r.id} style={{ padding: '0.625rem 0.875rem', background: 'var(--r-cream)', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div>
+                        <p style={{ fontSize: '0.8125rem', fontWeight: 500, margin: 0 }}>{r.lesson_title}</p>
+                        <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>
+                          {new Date(r.submitted_at).toLocaleDateString()} &bull; {r.strand}
+                          {r.readiness_rating && ` \u2022 ${r.readiness_rating.replace(/_/g, ' ')}`}
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '0.625rem', fontWeight: 600, color: r.reviewed_at ? 'var(--r-success)' : 'var(--r-feedback-color)' }}>
+                        {r.reviewed_at ? 'Reviewed' : 'Pending'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          )
+        })()}
       </div>
 
       {/* Mentor notes */}

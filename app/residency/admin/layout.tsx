@@ -23,6 +23,7 @@ const navItems: NavItem[] = [
   { href: '/residency/admin/strands', label: 'Strands & Categories' },
   { href: '/residency/admin/seminars', label: 'Seminars' },
   { href: '/residency/admin/resources', label: 'Resources' },
+  { href: '/residency/admin/intensives', label: 'Intensives' },
 
   { section: 'Progress & Assessment' },
   { href: '/residency/admin/progress', label: 'Progress' },
