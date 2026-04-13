@@ -14,6 +14,18 @@ const SCHOOL_TYPES = [
   { value: 'other', label: 'Other' },
 ]
 
+const MATERIALS_AREAS = [
+  'Practical Life',
+  'Sensorial',
+  'Language',
+  'Mathematics',
+  'Geometry',
+  'Cultural Studies',
+  'Theory',
+  'Behavior Support',
+  'Other',
+]
+
 export default function NewObservationPage() {
   const { profile } = useResidencyAuth(['resident'])
   const searchParams = useSearchParams()
@@ -38,6 +50,14 @@ export default function NewObservationPage() {
   const [reflectionQuestions, setReflectionQuestions] = useState('')
   const [reflectionNextMonth, setReflectionNextMonth] = useState('')
   const [confirmed, setConfirmed] = useState(false)
+
+  // Materials session state
+  const [materialsCompleted, setMaterialsCompleted] = useState(false)
+  const [materialsSessionDuration, setMaterialsSessionDuration] = useState('60')
+  const [materialsAreas, setMaterialsAreas] = useState<string[]>([])
+  const [materialsOtherArea, setMaterialsOtherArea] = useState('')
+  const [materialsGuideFeedback, setMaterialsGuideFeedback] = useState('')
+  const [materialsPracticeNotes, setMaterialsPracticeNotes] = useState('')
 
   useEffect(() => {
     if (!profile) return
@@ -73,6 +93,27 @@ export default function NewObservationPage() {
     setSaving(true)
     setError('')
 
+    // Validate materials session fields if completed
+    if (materialsCompleted) {
+      const feedbackWords = materialsGuideFeedback.trim().split(/\s+/).filter(Boolean).length
+      const notesWords = materialsPracticeNotes.trim().split(/\s+/).filter(Boolean).length
+      if (materialsAreas.length === 0) {
+        setError('Please select at least one materials area.')
+        setSaving(false)
+        return
+      }
+      if (feedbackWords < 30) {
+        setError(`Guide feedback needs at least 30 words (currently ${feedbackWords}).`)
+        setSaving(false)
+        return
+      }
+      if (notesWords < 50) {
+        setError(`Personal practice notes need at least 50 words (currently ${notesWords}).`)
+        setSaving(false)
+        return
+      }
+    }
+
     const { error: insertError } = await supabase
       .from('residency_observation_logs')
       .insert({
@@ -89,6 +130,11 @@ export default function NewObservationPage() {
         reflection_questions: reflectionQuestions,
         reflection_next_month: reflectionNextMonth,
         confirmation_checkbox: confirmed,
+        materials_session_completed: materialsCompleted,
+        materials_session_duration: materialsCompleted ? parseInt(materialsSessionDuration) || 60 : null,
+        materials_areas: materialsCompleted ? materialsAreas : null,
+        materials_guide_feedback: materialsCompleted ? materialsGuideFeedback : null,
+        materials_practice_notes: materialsCompleted ? materialsPracticeNotes : null,
       })
 
     if (insertError) {
@@ -240,6 +286,118 @@ export default function NewObservationPage() {
               {reflectionNextMonth.length} / 50 characters minimum
             </p>
           </div>
+        </div>
+
+        {/* Materials Session */}
+        <div className="r-card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.375rem', color: 'var(--r-navy)' }}>Materials Session</h2>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+            Did you have the opportunity to practice with materials during this visit?
+          </p>
+
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: materialsCompleted ? '1.5rem' : '0' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.875rem' }}>
+              <input type="radio" name="materialsCompleted" checked={materialsCompleted}
+                onChange={() => setMaterialsCompleted(true)}
+                style={{ accentColor: 'var(--r-navy)' }} />
+              Yes
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.875rem' }}>
+              <input type="radio" name="materialsCompleted" checked={!materialsCompleted}
+                onChange={() => setMaterialsCompleted(false)}
+                style={{ accentColor: 'var(--r-navy)' }} />
+              No
+            </label>
+          </div>
+
+          {!materialsCompleted && (
+            <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.75rem', lineHeight: 1.5, fontStyle: 'italic' }}>
+              If you were unable to complete a materials session this month, note the reason in your observation reflections above and reach out to your mentor to discuss alternative practice opportunities.
+            </p>
+          )}
+
+          {materialsCompleted && (
+            <div>
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label className="r-label">Session Duration (minutes)</label>
+                <input type="number" min="15" max="480" step="15" className="r-input"
+                  value={materialsSessionDuration}
+                  onChange={e => setMaterialsSessionDuration(e.target.value)}
+                  style={{ maxWidth: '160px' }} />
+              </div>
+
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label className="r-label">Materials Areas Covered</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.375rem' }}>
+                  {MATERIALS_AREAS.map(area => (
+                    <label key={area} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.375rem',
+                      padding: '0.375rem 0.75rem',
+                      borderRadius: '6px',
+                      fontSize: '0.8125rem',
+                      cursor: 'pointer',
+                      border: `1px solid ${materialsAreas.includes(area) ? 'var(--r-navy)' : 'var(--r-border)'}`,
+                      background: materialsAreas.includes(area) ? 'var(--r-navy)' : 'transparent',
+                      color: materialsAreas.includes(area) ? 'white' : 'var(--r-text)',
+                      transition: 'all 0.15s ease',
+                    }}>
+                      <input type="checkbox" checked={materialsAreas.includes(area)}
+                        onChange={e => {
+                          if (e.target.checked) setMaterialsAreas(prev => [...prev, area])
+                          else setMaterialsAreas(prev => prev.filter(a => a !== area))
+                        }}
+                        style={{ display: 'none' }} />
+                      {area}
+                    </label>
+                  ))}
+                </div>
+                {materialsAreas.includes('Other') && (
+                  <input type="text" className="r-input" value={materialsOtherArea}
+                    onChange={e => setMaterialsOtherArea(e.target.value)}
+                    placeholder="Describe the other area..."
+                    style={{ marginTop: '0.5rem' }} />
+                )}
+              </div>
+
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label className="r-label">Guide Feedback</label>
+                <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.375rem' }}>
+                  What feedback did the supervising guide give you during or after the materials session?
+                </p>
+                <textarea className="r-textarea" value={materialsGuideFeedback}
+                  onChange={e => setMaterialsGuideFeedback(e.target.value)}
+                  style={{ minHeight: '100px' }}
+                  placeholder="Share the guide's observations and suggestions..." />
+                <p style={{
+                  fontSize: '0.6875rem',
+                  color: materialsGuideFeedback.trim().split(/\s+/).filter(Boolean).length >= 30 ? 'var(--r-success)' : 'var(--r-text-muted)',
+                  marginTop: '0.25rem',
+                }}>
+                  {materialsGuideFeedback.trim().split(/\s+/).filter(Boolean).length} / 30 words minimum
+                </p>
+              </div>
+
+              <div>
+                <label className="r-label">Personal Practice Notes</label>
+                <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.375rem' }}>
+                  What did you practice? What felt natural and confident? What needs more work? Be specific.
+                </p>
+                <textarea className="r-textarea" value={materialsPracticeNotes}
+                  onChange={e => setMaterialsPracticeNotes(e.target.value)}
+                  style={{ minHeight: '140px' }}
+                  placeholder="Describe your hands-on experience with the materials..." />
+                <p style={{
+                  fontSize: '0.6875rem',
+                  color: materialsPracticeNotes.trim().split(/\s+/).filter(Boolean).length >= 50 ? 'var(--r-success)' : 'var(--r-text-muted)',
+                  marginTop: '0.25rem',
+                }}>
+                  {materialsPracticeNotes.trim().split(/\s+/).filter(Boolean).length} / 50 words minimum
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Confirmation and submit */}

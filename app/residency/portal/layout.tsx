@@ -13,6 +13,7 @@ const navItems = [
   { href: '/residency/portal/progress', label: 'Progress' },
   { href: '/residency/portal/practicum', label: 'Practicum Hours' },
   { href: '/residency/portal/observations', label: 'Observations' },
+  { href: '/residency/portal/materials-practice', label: 'Materials Practice' },
   { href: '/residency/portal/sessions', label: 'Live Sessions' },
   { href: '/residency/portal/board', label: 'Community Board' },
   { href: '/residency/portal/artifacts', label: 'Portfolio Artifacts' },

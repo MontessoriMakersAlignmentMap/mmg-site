@@ -13,6 +13,7 @@ const navItems = [
   { href: '/residency/mentor/submissions', label: 'Submissions' },
   { href: '/residency/mentor/assessments', label: 'Assessments' },
   { href: '/residency/mentor/observations', label: 'Observations' },
+  { href: '/residency/mentor/materials-practice', label: 'Materials Practice' },
   { href: '/residency/mentor/evaluations', label: 'Evaluations' },
   { href: '/residency/mentor/capstones', label: 'Capstone Reviews' },
 ]

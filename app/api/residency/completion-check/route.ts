@@ -21,6 +21,7 @@ export async function GET(req: NextRequest) {
   const track = (resident.cohort as any)?.track || 'primary'
   const requiredHours = 540
   const requiredObservations = 6
+  const requiredMaterialsHours = 0 // Configurable — default 0 for initial cohort
 
   // 1. Bundle completion: check how many bundles they've engaged with
   const { count: bundleCount } = await supabase
@@ -80,7 +81,20 @@ export async function GET(req: NextRequest) {
 
   const capstoneComplete = capstone?.status === 'approved'
 
-  // 6. Handbook acknowledgment
+  // 6. Materials practice hours
+  const { data: materialsLogs } = await supabase
+    .from('residency_observation_logs')
+    .select('materials_session_duration')
+    .eq('resident_id', residentId)
+    .eq('materials_session_completed', true)
+
+  const materialsPracticeMinutes = (materialsLogs || []).reduce(
+    (sum, l) => sum + (Number(l.materials_session_duration) || 0),
+    0
+  )
+  const materialsPracticeHours = Math.round(materialsPracticeMinutes / 60 * 10) / 10
+
+  // 7. Handbook acknowledgment
   const { data: handbook } = await supabase
     .from('residency_handbook_acks')
     .select('id')
@@ -129,6 +143,12 @@ export async function GET(req: NextRequest) {
       required: 1,
       met: capstoneComplete,
       status: capstone?.status || 'not_submitted',
+    },
+    materials_practice: {
+      label: 'Materials Practice Hours',
+      current: materialsPracticeHours,
+      required: requiredMaterialsHours,
+      met: requiredMaterialsHours <= 0 || materialsPracticeHours >= requiredMaterialsHours,
     },
     handbook: {
       label: 'Handbook Acknowledgment',

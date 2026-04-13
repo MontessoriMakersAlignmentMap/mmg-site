@@ -38,6 +38,8 @@ export default function PortfolioPage() {
   const [observations, setObservations] = useState<any[]>([])
   const [standingHistory, setStandingHistory] = useState<any[]>([])
   const [handbookAck, setHandbookAck] = useState<any>(null)
+  const [materialsSessions, setMaterialsSessions] = useState<any[]>([])
+  const [remotePractice, setRemotePractice] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [reflectionId, setReflectionId] = useState<string | null>(null)
   const [reflectionText, setReflectionText] = useState('')
@@ -57,7 +59,7 @@ export default function PortfolioPage() {
       if (res) {
         setResident(res)
 
-        const [aResult, oResult, shResult, haResult] = await Promise.all([
+        const [aResult, oResult, shResult, haResult, msResult, rpResult] = await Promise.all([
           supabase
             .from('residency_rubric_submissions')
             .select('*, mentor:residency_profiles!residency_rubric_submissions_mentor_id_fkey(first_name, last_name)')
@@ -80,12 +82,25 @@ export default function PortfolioPage() {
             .select('*')
             .eq('resident_id', res.id)
             .maybeSingle(),
+          supabase
+            .from('residency_observation_logs')
+            .select('*')
+            .eq('resident_id', res.id)
+            .eq('materials_session_completed', true)
+            .order('observation_date', { ascending: false }),
+          supabase
+            .from('residency_remote_materials_practice')
+            .select('*')
+            .eq('resident_id', res.id)
+            .order('submitted_at', { ascending: false }),
         ])
 
         if (aResult.data) setAssessments(aResult.data)
         if (oResult.data) setObservations(oResult.data)
         if (shResult.data) setStandingHistory(shResult.data)
         if (haResult.data) setHandbookAck(haResult.data)
+        if (msResult.data) setMaterialsSessions(msResult.data)
+        if (rpResult.data) setRemotePractice(rpResult.data)
       }
 
       setLoading(false)
@@ -324,6 +339,145 @@ export default function PortfolioPage() {
                     <p style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--r-text-muted)', marginBottom: '0.125rem' }}>Next Steps</p>
                     <p style={{ fontSize: '0.8125rem', lineHeight: 1.5 }}>{o.suggested_next_steps}</p>
                   </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Materials Practice */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Materials Practice</h2>
+
+        {/* Summary stats */}
+        {(() => {
+          const totalMinutes = materialsSessions.reduce((s: number, m: any) => s + (m.materials_session_duration || 0), 0)
+          const totalHours = (totalMinutes / 60).toFixed(1)
+          const allAreas = ['Practical Life', 'Sensorial', 'Language', 'Mathematics', 'Geometry', 'Cultural Studies', 'Theory', 'Behavior Support']
+          const coveredAreas = new Set<string>()
+          materialsSessions.forEach((m: any) => (m.materials_areas || []).forEach((a: string) => coveredAreas.add(a)))
+          remotePractice.forEach((r: any) => { if (r.strand) coveredAreas.add(r.strand) })
+
+          return (
+            <div style={{ marginBottom: '1.25rem' }}>
+              <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1rem' }}>
+                <div style={{ padding: '0.75rem 1rem', background: 'var(--r-cream)', borderRadius: '8px', flex: 1 }}>
+                  <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)', margin: 0 }}>{totalHours}</p>
+                  <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>Practice Hours</p>
+                </div>
+                <div style={{ padding: '0.75rem 1rem', background: 'var(--r-cream)', borderRadius: '8px', flex: 1 }}>
+                  <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)', margin: 0 }}>{materialsSessions.length + remotePractice.length}</p>
+                  <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>Total Sessions</p>
+                </div>
+              </div>
+
+              {/* Coverage indicator */}
+              <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--r-text-muted)', marginBottom: '0.375rem' }}>
+                Curriculum Coverage
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem' }}>
+                {allAreas.map(area => (
+                  <span key={area} style={{
+                    padding: '0.25rem 0.625rem',
+                    borderRadius: '9999px',
+                    fontSize: '0.6875rem',
+                    fontWeight: 600,
+                    background: coveredAreas.has(area) ? 'var(--r-success-light)' : 'var(--r-cream)',
+                    color: coveredAreas.has(area) ? 'var(--r-success)' : 'var(--r-text-muted)',
+                    border: `1px solid ${coveredAreas.has(area) ? 'var(--r-success)' : 'var(--r-border)'}`,
+                  }}>
+                    {coveredAreas.has(area) ? '\u2713 ' : ''}{area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
+        {/* Observation site sessions timeline */}
+        {materialsSessions.length === 0 && remotePractice.length === 0 ? (
+          <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem' }}>No materials practice sessions logged yet.</p>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {materialsSessions.map((m: any) => (
+              <div key={m.id} style={{
+                padding: '0.875rem',
+                background: 'var(--r-cream)',
+                borderRadius: '8px',
+                borderLeft: '3px solid var(--r-navy)',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.375rem' }}>
+                  <div>
+                    <p style={{ fontSize: '0.8125rem', fontWeight: 600, margin: 0 }}>
+                      {m.school_name}
+                    </p>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', margin: 0 }}>
+                      {new Date(m.observation_date).toLocaleDateString()} &bull; {m.materials_session_duration} min
+                    </p>
+                  </div>
+                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--r-navy)', background: 'var(--r-white)', padding: '0.125rem 0.5rem', borderRadius: '4px' }}>
+                    On-Site
+                  </span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginBottom: '0.375rem' }}>
+                  {(m.materials_areas || []).map((a: string) => (
+                    <span key={a} style={{ fontSize: '0.625rem', padding: '0.125rem 0.375rem', borderRadius: '4px', background: 'var(--r-white)', color: 'var(--r-text-muted)' }}>
+                      {a}
+                    </span>
+                  ))}
+                </div>
+                {m.materials_practice_notes && (
+                  <p style={{ fontSize: '0.8125rem', color: 'var(--r-text)', lineHeight: 1.5, margin: 0 }}>
+                    {m.materials_practice_notes.length > 200
+                      ? m.materials_practice_notes.substring(0, 200) + '...'
+                      : m.materials_practice_notes}
+                  </p>
+                )}
+              </div>
+            ))}
+
+            {/* Remote practice submissions */}
+            {remotePractice.map((r: any) => (
+              <div key={r.id} style={{
+                padding: '0.875rem',
+                background: 'var(--r-cream)',
+                borderRadius: '8px',
+                borderLeft: '3px solid var(--r-feedback-color)',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.375rem' }}>
+                  <div>
+                    <p style={{ fontSize: '0.8125rem', fontWeight: 600, margin: 0 }}>
+                      {r.lesson_title}
+                    </p>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', margin: 0 }}>
+                      {new Date(r.submitted_at).toLocaleDateString()} &bull; {r.strand}
+                    </p>
+                  </div>
+                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--r-feedback-color)', background: 'var(--r-feedback-bg)', padding: '0.125rem 0.5rem', borderRadius: '4px' }}>
+                    Remote
+                  </span>
+                </div>
+                {r.readiness_rating && (
+                  <span style={{
+                    display: 'inline-block',
+                    fontSize: '0.625rem',
+                    fontWeight: 600,
+                    padding: '0.125rem 0.5rem',
+                    borderRadius: '9999px',
+                    marginBottom: '0.375rem',
+                    background: r.readiness_rating === 'ready_for_practicum' ? 'var(--r-success-light)' : r.readiness_rating === 'developing_well' ? 'var(--r-info-light)' : 'var(--r-feedback-bg)',
+                    color: r.readiness_rating === 'ready_for_practicum' ? 'var(--r-success)' : r.readiness_rating === 'developing_well' ? 'var(--r-info)' : 'var(--r-feedback-color)',
+                  }}>
+                    {r.readiness_rating.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}
+                  </span>
+                )}
+                {r.self_reflection && (
+                  <p style={{ fontSize: '0.8125rem', color: 'var(--r-text)', lineHeight: 1.5, margin: 0 }}>
+                    {r.self_reflection.length > 200
+                      ? r.self_reflection.substring(0, 200) + '...'
+                      : r.self_reflection}
+                  </p>
                 )}
               </div>
             ))}
