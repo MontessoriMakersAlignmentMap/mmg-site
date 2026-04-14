@@ -63,9 +63,18 @@ export default function SecondBrainAdmin() {
   }
 
   async function ingestDrive() {
-    const ids = folderIds.split(/[\s,]+/).map((s) => s.trim()).filter(Boolean)
+    // Accept raw IDs, full folder URLs, or a mix. Extract the ID segment
+    // from any drive.google.com/.../folders/<id>[?...] URL.
+    const ids = folderIds
+      .split(/[\s,]+/)
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((s) => {
+        const urlMatch = s.match(/\/folders\/([A-Za-z0-9_-]+)/)
+        return urlMatch ? urlMatch[1] : s
+      })
     if (ids.length === 0) {
-      setError('Paste one or more Drive folder IDs first.')
+      setError('Paste one or more Drive folder IDs (or folder URLs) first.')
       return
     }
     setBusy('drive')
@@ -212,7 +221,7 @@ export default function SecondBrainAdmin() {
           <h2 style={{ color: NAVY, fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Ingest</h2>
 
           <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: NAVY, marginBottom: 6 }}>
-            Google Drive folder IDs (comma or newline separated)
+            Google Drive folder IDs or URLs (comma or newline separated)
           </label>
           <textarea
             value={folderIds}
