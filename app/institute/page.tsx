@@ -186,37 +186,62 @@ export default function InstitutePage() {
               for it.
             </p>
           </div>
-          <div className="space-y-3">
+          <div>
             {programs.map((p, i) => {
               const stepClasses = ['', 'md:ml-12', 'md:ml-24', 'md:ml-36', 'md:ml-48']
+              const depthLabels = ['Entry point', 'Immersion', 'Ongoing', 'Team-based', 'Full year']
+              // Gold left border: opacity 0.25 → 1.0 across 5 tiers
+              const borderOpacity = 0.25 + i * 0.1875
               return (
-                <FadeIn key={p.name} delay={i * 0.08}>
-                  <div className={`relative bg-white border border-[#E2DDD6] p-8 overflow-hidden hover:shadow-md hover:border-[#C8C0B6] hover:-translate-y-[1px] transition-all duration-200 ${stepClasses[i]}`}>
-                    {/* Background tier number as texture */}
-                    <span
-                      className="absolute right-6 top-1/2 -translate-y-1/2 text-[8rem] font-bold leading-none select-none pointer-events-none text-[#0e1a7a]/[0.035]"
-                      style={serif}
-                      aria-hidden
+                <div key={p.name}>
+                  <FadeIn delay={i * 0.08}>
+                    <div
+                      className={`relative bg-white border border-[#E2DDD6] p-8 overflow-hidden hover:shadow-md hover:-translate-y-[1px] transition-all duration-200 ${stepClasses[i]}`}
+                      style={{ borderLeft: `4px solid rgba(214,167,88,${borderOpacity})` }}
                     >
-                      {p.tier}
-                    </span>
-                    <div className="relative grid md:grid-cols-4 gap-6 items-start">
-                      <div className="md:col-span-1">
-                        <span className="text-[#8A6014] text-xs tracking-[0.2em] font-medium">{p.tier}</span>
-                        <h3 className="text-[#0e1a7a] font-semibold text-lg mt-1" style={serif}>{p.name}</h3>
-                        <p className="text-[#64748B] text-xs mt-1">{p.format}</p>
-                      </div>
-                      <div className="md:col-span-2">
-                        <p className="text-[#374151] text-sm leading-relaxed">{p.description}</p>
-                      </div>
-                      <div className="md:text-right">
-                        <Link href={p.href} className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide">
-                          {p.cta} →
-                        </Link>
+                      {/* Background tier number as texture */}
+                      <span
+                        className="absolute right-6 top-1/2 -translate-y-1/2 text-[8rem] font-bold leading-none select-none pointer-events-none text-[#0e1a7a]/[0.035]"
+                        style={serif}
+                        aria-hidden
+                      >
+                        {p.tier}
+                      </span>
+                      <div className="relative grid md:grid-cols-4 gap-6 items-start">
+                        <div className="md:col-span-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[#8A6014] text-xs tracking-[0.2em] font-medium">{p.tier}</span>
+                            <span
+                              className="text-[10px] tracking-[0.14em] uppercase border px-1.5 py-0.5"
+                              style={{ color: `rgba(214,167,88,${borderOpacity + 0.3})`, borderColor: `rgba(214,167,88,${borderOpacity})` }}
+                            >
+                              {depthLabels[i]}
+                            </span>
+                          </div>
+                          <h3 className="text-[#0e1a7a] font-semibold text-lg" style={serif}>{p.name}</h3>
+                          <p className="text-[#64748B] text-xs mt-1">{p.format}</p>
+                        </div>
+                        <div className="md:col-span-2">
+                          <p className="text-[#374151] text-sm leading-relaxed">{p.description}</p>
+                        </div>
+                        <div className="md:text-right">
+                          <Link href={p.href} className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide">
+                            {p.cta} →
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </FadeIn>
+                  </FadeIn>
+                  {/* Step connector between cards */}
+                  {i < programs.length - 1 && (
+                    <div className={`flex items-center gap-2 py-1.5 ${stepClasses[i]}`}>
+                      <div className="w-[4px] ml-[calc(0.5rem-2px)] h-4 bg-gradient-to-b from-[#d6a758]/30 to-[#d6a758]/10 flex-shrink-0" />
+                      <span className="text-[#d6a758]/40 text-[9px] tracking-[0.18em] uppercase hidden md:block">
+                        deeper →
+                      </span>
+                    </div>
+                  )}
+                </div>
               )
             })}
           </div>
