@@ -695,8 +695,8 @@ export default function MMRLandingPage() {
                 },
                 {
                   num: '06',
-                  title: 'Every resident touches the materials.',
-                  body: "We built three pathways to make sure that happens regardless of where you are starting from. Monthly observation visits include a 60-minute supervised materials session at the host school, so residents are working with real materials from the beginning of the program, not waiting until a practicum that may be months away. Once a year, there is an in-person intensive held in a fully equipped Montessori classroom where residents work through materials presentations together with a trained guide. And for residents who cannot travel, there is a remote practice option that preserves materials access without requiring in-person attendance. No one completes MMR without genuine hands-on experience. That is not aspirational. It is structural.",
+                  title: 'You are in a school every month. Then we place you in a paid one.',
+                  body: "MMR residents visit a partner Montessori school every month from the start of the program. Not to observe once and move on — to return, build relationships, and work with materials in a real classroom consistently across the full credential year. At the end of that year, residents who are ready enter a matched, paid practicum placement. MMR works to connect residents with schools that can offer a paid position. That combination — sustained monthly school presence from day one, followed by a paid practicum year — is not something we have seen replicated elsewhere in Montessori teacher preparation.",
                 },
               ].map((item, i) => (
                 <div
