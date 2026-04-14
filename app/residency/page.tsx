@@ -1026,33 +1026,18 @@ export default function MMRLandingPage() {
                 A Note From Hannah
               </p>
 
-              {/* PLACEHOLDER CONTENT — replace with Hannah's personal statement */}
-              <div
-                style={{
-                  border: '1px solid rgba(214,167,88,0.3)',
-                  padding: '2.5rem',
-                  background: 'rgba(214,167,88,0.05)',
-                  marginBottom: '2rem',
-                }}
-              >
-                <p
-                  style={{
-                    color: 'rgba(255,255,255,0.4)',
-                    fontSize: '0.8125rem',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  Placeholder: Hannah&rsquo;s personal statement goes here
-                </p>
-                <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.9375rem', lineHeight: 1.8, fontStyle: 'italic' }}>
-                  3–4 paragraphs. Personal, direct, and grounded in Hannah&rsquo;s specific experience
-                  and motivation for building MMR. Written in first person. Not a marketing statement.
-                  A real note to the educator who is reading this page and deciding whether to apply.
-                </p>
+              <div style={{ marginBottom: '2rem' }}>
+                {[
+                  'I built MMR because I kept meeting educators who wanted to do this work and could not get in. Not because they were not capable. Because the programs were too expensive, too inflexible, or too far away. And I kept meeting children in communities that deserved Montessori and were not getting it, in large part because there were not enough trained guides who looked like them, came from where they came from, or could afford to stay.',
+                  'Those two things are connected. The barriers adults face in accessing Montessori training are the same barriers children face in accessing Montessori classrooms. If we want more children to have this education, we have to make it possible for more people to become the guides who deliver it.',
+                  'MMR is my attempt to address that directly. Not by abbreviating the credential or lowering the standard, but by removing the structural obstacles that have nothing to do with whether someone can do this work. Price. Geography. Scheduling. The assumption that you need to already work in a well-resourced Montessori school to get trained in one.',
+                  'If you are reading this page and wondering whether this program is for someone like you, I want to be direct: it probably is. That is not a marketing line. It is why this program exists.',
+                ].map((para, i) => (
+                  <p key={i} style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1.0625rem', lineHeight: 1.85, marginBottom: i < 3 ? '1.5rem' : 0 }}>
+                    {para}
+                  </p>
+                ))}
               </div>
-              {/* END PLACEHOLDER */}
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div>
