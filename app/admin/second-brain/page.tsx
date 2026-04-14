@@ -112,22 +112,41 @@ export default function SecondBrainAdmin() {
     }
   }
 
+  // Compile in a loop until everything is done. Each HTTP round-trip still
+  // processes a small batch (5 in parallel on the server, safe for Vercel's
+  // function time limit), but the client auto-chains so Hannah clicks once.
   async function compile() {
     setBusy('compile')
     setError('')
     setMessage('')
+    let totalCompiled = 0
+    let totalErrors = 0
+    let batches = 0
     try {
-      const res = await fetch('/api/admin/second-brain/compile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
-        body: JSON.stringify({ batchSize: 5 }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Compile failed')
+      while (true) {
+        const res = await fetch('/api/admin/second-brain/compile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
+          body: JSON.stringify({ batchSize: 5 }),
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Compile failed')
+
+        batches++
+        totalCompiled += data.compiled ?? 0
+        totalErrors += data.errors?.length ?? 0
+
+        // Live progress — updates between batches so Hannah can watch it tick.
+        setMessage(
+          `Batch ${batches}: ${totalCompiled} compiled, ${totalErrors} errors, ${data.remaining ?? 0} remaining…`
+        )
+        await loadStats(password)
+
+        if ((data.remaining ?? 0) === 0 || (data.compiled ?? 0) === 0) break
+      }
       setMessage(
-        `Compiled ${data.compiled} sources, ${data.errors?.length ?? 0} errors. ${data.remaining} still uncompiled.`
+        `Done. Compiled ${totalCompiled} sources across ${batches} batches, ${totalErrors} errors.`
       )
-      await loadStats(password)
     } catch (e) {
       setError((e as Error).message)
     } finally {
@@ -215,7 +234,7 @@ export default function SecondBrainAdmin() {
               Ingest Website
             </Btn>
             <Btn onClick={compile} busy={busy === 'compile'} disabled={!!busy} primary>
-              Compile next batch (5)
+              Compile all remaining
             </Btn>
           </div>
 
