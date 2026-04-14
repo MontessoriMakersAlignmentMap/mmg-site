@@ -25,7 +25,7 @@ export const maxDuration = 300
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-const COMPILE_SYSTEM = `You are the compiler for the MMG Second Brain — a knowledge base for Hannah Richardson and Montessori Makers Group.
+const COMPILE_SYSTEM_SINGLE = `You are the compiler for the MMG Second Brain — a knowledge base for Hannah Richardson and Montessori Makers Group.
 
 Given a single source document, produce a compact structured summary in markdown with these sections:
 
@@ -49,10 +49,30 @@ Up to 3 short direct quotes from the source, each under 25 words, in quotation m
 
 Write ONLY the markdown summary. No preamble, no trailing commentary.`
 
+const COMPILE_SYSTEM_SECTION = `You are the compiler for the MMG Second Brain. You are summarizing ONE SECTION of a larger document that has been split into parts.
+
+Produce a compact section summary in markdown:
+
+**Hook:** one sentence capturing the essence of this section.
+
+Key points:
+- bullet
+- bullet
+- (5–10 bullets from this section)
+
+Entities: comma-separated list of people, orgs, programs, products mentioned in this section.
+Topics: comma-separated themes.
+Notable quotes: up to 2 short direct quotes under 25 words each, in quotation marks. Omit if none compelling.
+
+Write ONLY the section summary. No title, no preamble, no trailing commentary.`
+
 type CompileBody = { batchSize?: number }
 
-// Rough character budget per source sent to Claude. 30k chars ≈ 7500 tokens.
-const MAX_SOURCE_CHARS = 30000
+// Per-chunk budget sent to Claude. 50k chars ≈ 12.5k tokens.
+const CHUNK_CHARS = 50000
+// Hard ceiling on how many chunks we'll compile per source (6 × 50k = 300k chars,
+// ~60 pages). Anything past this gets dropped — flag in the log.
+const MAX_CHUNKS = 6
 
 export async function POST(req: NextRequest) {
   if (!checkAdminAuth(req)) {
@@ -84,26 +104,89 @@ export async function POST(req: NextRequest) {
 
   type SourceRow = (typeof sources)[number]
 
+  /** Split text into chunks of ~CHUNK_CHARS, preferring paragraph boundaries. */
+  function chunkText(text: string): string[] {
+    if (text.length <= CHUNK_CHARS) return [text]
+    const chunks: string[] = []
+    let i = 0
+    while (i < text.length && chunks.length < MAX_CHUNKS) {
+      const end = Math.min(i + CHUNK_CHARS, text.length)
+      let cut = end
+      if (end < text.length) {
+        // Prefer a paragraph break, then a sentence, then a newline.
+        const windowStart = Math.max(i + CHUNK_CHARS * 0.6, i + 1)
+        const slice = text.slice(windowStart, end)
+        const paraIdx = slice.lastIndexOf('\n\n')
+        const sentIdx = slice.lastIndexOf('. ')
+        const nlIdx = slice.lastIndexOf('\n')
+        const rel = paraIdx !== -1 ? paraIdx + 2 : sentIdx !== -1 ? sentIdx + 2 : nlIdx !== -1 ? nlIdx + 1 : -1
+        if (rel !== -1) cut = Math.floor(windowStart) + rel
+      }
+      chunks.push(text.slice(i, cut))
+      i = cut
+    }
+    return chunks
+  }
+
+  async function callClaude(system: string, userMsg: string, maxTokens: number): Promise<string> {
+    const res = await anthropic.messages.create({
+      model: 'claude-sonnet-4-5-20250929',
+      max_tokens: maxTokens,
+      system,
+      messages: [{ role: 'user', content: userMsg }],
+    })
+    const textBlock = res.content.find((b) => b.type === 'text')
+    const text = textBlock && 'text' in textBlock ? textBlock.text : ''
+    if (!text) throw new Error('Empty compile response')
+    return text
+  }
+
   async function compileOne(source: SourceRow): Promise<{ ok: true } | { ok: false; error: string }> {
     try {
-      const content = (source.content ?? '').slice(0, MAX_SOURCE_CHARS)
-      const userMsg = `Source type: ${source.source_type}
+      const fullContent = source.content ?? ''
+      const chunks = chunkText(fullContent)
+      const wasTruncated = fullContent.length > chunks.reduce((s, c) => s + c.length, 0)
+
+      let markdown: string
+      if (chunks.length === 1) {
+        // Short doc — single-pass compile (fast path).
+        const userMsg = `Source type: ${source.source_type}
 Source title: ${source.title}
 Source URL: ${source.url ?? '(none)'}
 
 ---
 
-${content}`
+${chunks[0]}`
+        markdown = await callClaude(COMPILE_SYSTEM_SINGLE, userMsg, 1500)
+      } else {
+        // Long doc — compile each chunk, stitch into one wiki page body.
+        // Chunks run sequentially per doc so multi-doc batches stay within
+        // rate limits (5 docs in parallel × up to 6 chunks each is still
+        // bounded by per-doc serialization).
+        const sectionSummaries: string[] = []
+        for (let i = 0; i < chunks.length; i++) {
+          const userMsg = `Source title: ${source.title}
+Source URL: ${source.url ?? '(none)'}
+Section ${i + 1} of ${chunks.length}
 
-      const res = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5-20250929',
-        max_tokens: 1500,
-        system: COMPILE_SYSTEM,
-        messages: [{ role: 'user', content: userMsg }],
-      })
+---
 
-      const textBlock = res.content.find((b) => b.type === 'text')
-      const markdown = textBlock && 'text' in textBlock ? textBlock.text : ''
+${chunks[i]}`
+          const sectionMd = await callClaude(COMPILE_SYSTEM_SECTION, userMsg, 1200)
+          sectionSummaries.push(sectionMd.trim())
+        }
+
+        const truncNote = wasTruncated
+          ? `\n\n> ⚠️ This document exceeds ${CHUNK_CHARS * MAX_CHUNKS} characters. Only the first ${chunks.length} sections were compiled.\n`
+          : ''
+
+        markdown = `# ${source.title}
+
+**Hook:** Long document compiled in ${chunks.length} sections. See individual section summaries below.${truncNote}
+
+${sectionSummaries.map((s, i) => `## Section ${i + 1}\n\n${s}`).join('\n\n')}`
+      }
+
       if (!markdown) throw new Error('Empty compile response')
 
       const titleMatch = markdown.match(/^#\s+(.+)$/m)
@@ -140,7 +223,7 @@ ${content}`
         action: 'compile',
         status: 'ok',
         ref_id: source.id,
-        notes: `Compiled "${source.title}" → ${slug}`,
+        notes: `Compiled "${source.title}" → ${slug}${chunks.length > 1 ? ` (${chunks.length} sections${wasTruncated ? ', truncated' : ''})` : ''}`,
       })
 
       return { ok: true }
