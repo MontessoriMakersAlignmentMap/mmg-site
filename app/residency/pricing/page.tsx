@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'MMR Tuition & Pricing — Montessori Makers Residency',
+  title: 'MMR Tuition and Pricing | Montessori Makers Residency',
   description:
     'MMR tuition is set significantly below traditional Montessori credentialing. Payment plans designed for working educators. Equity Fellows program offers full tuition for candidates with the highest structural barriers.',
 }
@@ -89,7 +89,7 @@ export default function MMRPricingPage() {
                 margin: '0 auto',
               }}
             >
-              MMR is priced significantly below traditional Montessori credentialing — and structured
+              MMR is priced significantly below traditional Montessori credentialing, and structured
               with payment plans that work for working educators. The Equity Fellows program offers full
               tuition for the educators who face the highest structural barriers.
             </p>
@@ -125,7 +125,7 @@ export default function MMRPricingPage() {
             </h2>
             <p style={{ color: '#64748B', fontSize: '1rem', lineHeight: 1.7, maxWidth: '580px', marginBottom: '3rem' }}>
               Both tracks are available as pay-in-full or payment plan. All amounts listed are total
-              program tuition — there are no hidden fees, enrollment deposits, or material surcharges.
+              program tuition. There are no hidden fees, enrollment deposits, or material surcharges.
             </p>
           </FadeIn>
 
@@ -222,7 +222,7 @@ export default function MMRPricingPage() {
                       'Lifetime cohort access',
                     ].map((item) => (
                       <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
-                        <span style={{ color: '#d6a758', marginTop: '0.1rem', flexShrink: 0 }}>—</span>
+                        <span style={{ display: 'inline-block', width: '5px', height: '5px', borderRadius: '50%', background: '#d6a758', flexShrink: 0, marginTop: '0.45rem' }} />
                         <span style={{ color: '#374151', fontSize: '0.875rem' }}>{item}</span>
                       </div>
                     ))}
@@ -249,7 +249,7 @@ export default function MMRPricingPage() {
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#162270')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = '#0e1a7a')}
                 >
-                  Apply — Primary Track
+                  Apply to Primary Track
                 </a>
               </div>
             </FadeIn>
@@ -346,7 +346,7 @@ export default function MMRPricingPage() {
                       'Lifetime cohort access',
                     ].map((item) => (
                       <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
-                        <span style={{ color: '#d6a758', marginTop: '0.1rem', flexShrink: 0 }}>—</span>
+                        <span style={{ display: 'inline-block', width: '5px', height: '5px', borderRadius: '50%', background: '#d6a758', flexShrink: 0, marginTop: '0.45rem' }} />
                         <span style={{ color: '#374151', fontSize: '0.875rem' }}>{item}</span>
                       </div>
                     ))}
@@ -373,7 +373,7 @@ export default function MMRPricingPage() {
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#162270')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = '#0e1a7a')}
                 >
-                  Apply — Elementary Track
+                  Apply to Elementary Track
                 </a>
               </div>
             </FadeIn>
@@ -421,8 +421,8 @@ export default function MMRPricingPage() {
               </h2>
               <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, maxWidth: '620px' }}>
                 The Equity Fellows program is not a scholarship you apply for separately. Every qualified
-                applicant is automatically considered. Fellows receive full tuition — covering the entire
-                program cost for one track — along with a practicum placement stipend to offset the cost of
+                applicant is automatically considered. Fellows receive full tuition covering the entire
+                program cost for one track, along with a practicum placement stipend to offset the cost of
                 securing your school placement.
               </p>
             </div>
@@ -432,7 +432,7 @@ export default function MMRPricingPage() {
             {[
               {
                 label: 'Who qualifies',
-                body: 'Educators of color, educators in under-resourced public schools, educators in rural or geographically isolated communities, and first-generation credential seekers. These are not the only paths — they are examples of the structural barriers the fellowship is designed to address.',
+                body: 'Educators of color, educators in under-resourced public schools, educators in rural or geographically isolated communities, and first-generation credential seekers. These are not the only paths. They are examples of the structural barriers the fellowship is designed to address.',
               },
               {
                 label: 'What it covers',
@@ -482,7 +482,7 @@ export default function MMRPricingPage() {
               }}
             >
               The number of Equity Fellows per cohort is intentionally limited so that each Fellow receives
-              direct support — not just financial relief. If you face barriers to access that are not named
+              direct support, not just financial relief. If you face barriers to access that are not named
               here, say so in your application. This program is designed to be responsive to the actual
               landscape of who Montessori has excluded, not a fixed checklist.
             </p>
@@ -517,7 +517,7 @@ export default function MMRPricingPage() {
                     lineHeight: 1.2,
                   }}
                 >
-                  Built for working educators — not lump-sum thinking.
+                  Built for working educators. Not lump-sum thinking.
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <p style={{ color: '#374151', fontSize: '1rem', lineHeight: 1.8 }}>
@@ -632,7 +632,7 @@ export default function MMRPricingPage() {
                   }}
                 >
                   <p style={{ color: '#0e1a7a', fontSize: '0.875rem', lineHeight: 1.7 }}>
-                    <strong>Equity Fellows</strong> — Full tuition covered. Practicum stipend included.
+                    <strong>Equity Fellows:</strong> Full tuition covered. Practicum stipend included.
                     Automatically considered with your application.
                   </p>
                 </div>
@@ -678,13 +678,13 @@ export default function MMRPricingPage() {
             {[
               { label: 'Structured Curriculum', body: 'Full access to every lesson in your track, organized by strand and week. All lessons are asynchronous and available for life.' },
               { label: 'Practicum Support', body: 'Observation log templates, practicum hour tracking, and guidance on securing and completing your placement.' },
-              { label: 'Theory Strand', body: 'The full theoretical foundation — AMI/AMS-aligned, with MMR\'s equity framework integrated as core content, not addendum.' },
+              { label: 'Theory Strand', body: 'The full theoretical foundation: AMI/AMS-aligned, with MMR\'s equity framework integrated as core content, not as an addendum.' },
               { label: 'Behavior Support Strand', body: 'A full strand on behavior from an equity and neurodivergence lens. Not a module. Not supplemental. Core curriculum.' },
               { label: 'Science of Reading Integration', body: 'Language lessons that include current science of reading research alongside the Montessori reading sequence.' },
               { label: 'MACTE-Track Pathway', body: 'Program structure aligned with MACTE accreditation pathway. Credential recognized across NAMTA-affiliated schools.' },
-              { label: 'Cohort Access', body: 'Entry into the MMR cohort Slack, monthly group calls, and the peer network built through the program.' },
+              { label: 'Cohort Access', body: 'Entry into the MMR cohort Slack, twice-monthly group sessions, and the peer network built through the program.' },
               { label: 'Equity Fellows Review', body: 'Automatic consideration for the Equity Fellows program if you indicate financial access barriers in your application.' },
-              { label: 'Hannah Direct', body: 'All curriculum written by Hannah Richardson. Questions and application review go to Hannah directly — not a support team.' },
+              { label: 'Hannah Direct', body: 'All curriculum written by Hannah Richardson. Questions and application review go to Hannah directly, not a support team.' },
             ].map((item, i) => (
               <div
                 key={item.label}
@@ -751,11 +751,11 @@ export default function MMRPricingPage() {
               },
               {
                 q: 'Is there an enrollment deposit?',
-                a: 'Yes. A small enrollment deposit is required to hold your cohort spot. This deposit is applied to your tuition balance — it is not an additional fee. The deposit amount is listed in your acceptance letter.',
+                a: 'Yes. A small enrollment deposit is required to hold your cohort spot. This deposit is applied to your tuition balance. It is not an additional fee. The deposit amount is listed in your acceptance letter.',
               },
               {
                 q: 'What if I can\'t make the monthly payment one month?',
-                a: 'Contact the MMR team before the payment date. We will work with you. Missing a payment does not result in program suspension without prior communication. The payment plan is designed for working educators — we understand what real life looks like.',
+                a: 'Contact the MMR team before the payment date. We will work with you. Missing a payment does not result in program suspension without prior communication. The payment plan is designed for working educators. We understand what real life looks like.',
               },
               {
                 q: 'Does MMR accept employer reimbursement or Title I funds?',
@@ -763,15 +763,15 @@ export default function MMRPricingPage() {
               },
               {
                 q: 'How does MMR compare in cost to traditional programs?',
-                a: 'Traditional MACTE-accredited Montessori credentialing programs typically range from $7,000 to $15,000 in tuition, often with additional fees for materials, observations, and certification exams. MMR is substantially below that range. The curriculum is not abbreviated to reach that price — the cost difference reflects a different mission, not a different depth.',
+                a: 'Traditional MACTE-accredited Montessori credentialing programs typically range from $7,000 to $15,000 in tuition, often with additional fees for materials, observations, and certification exams. MMR is substantially below that range. The curriculum is not abbreviated to reach that price. The cost difference reflects a different mission, not a different depth.',
               },
               {
                 q: 'Do I need to own Montessori materials to complete the program?',
-                a: 'No. You do not need to purchase materials to complete MMR. The program is built around three pathways to materials access so that every resident works with real Montessori materials — regardless of what they own or where they live. Monthly observation visits include a 60-minute supervised materials session at the host school. Once a year, there is an in-person materials intensive held in a fully equipped Montessori classroom. And for residents who cannot travel, a remote practice option provides materials access without requiring in-person attendance. The annual intensive is billed separately from tuition at $200–$300 per resident. The remote option is included at no additional cost. Every resident completes MMR with genuine hands-on materials experience. That is not optional — it is a program requirement.',
+                a: 'No. You do not need to purchase materials to complete MMR. The program is built around three pathways to materials access so that every resident works with real Montessori materials, regardless of what they own or where they live. Monthly observation visits include a 60-minute supervised materials session at the host school. Once a year, there is an in-person materials intensive held in a fully equipped Montessori classroom. And for residents who cannot travel, a remote practice option provides materials access without requiring in-person attendance. The annual intensive is billed separately from tuition at $200–$300 per resident. The remote option is included at no additional cost. Every resident completes MMR with genuine hands-on materials experience. That is not optional. It is a program requirement.',
               },
               {
                 q: 'What is the annual intensive?',
-                a: 'Once per year, MMR residents gather in a fully equipped Montessori classroom for a multi-day in-person intensive. The intensive is organized around hands-on materials work — residents present lessons to each other, receive feedback from a trained guide, and work through the physical sequences that are difficult to approximate at a distance. It is also a cohort experience: the in-person time is designed to deepen the relationships that sustain residents through the rest of the program. The intensive typically runs over a weekend. Exact dates and location are confirmed in your cohort welcome materials. For residents who cannot travel, a remote practice option is available. The remote option is structured to cover the same materials sequences through a combination of video demonstration, guided practice at an observation site, and mentor check-in. Residents who complete the remote option fulfill the same program requirement as those who attend in person. The intensive is billed separately from tuition at $200–$300 per resident. The remote practice option is available at no additional cost.',
+                a: 'Once per year, MMR residents gather in a fully equipped Montessori classroom for a multi-day in-person intensive. The intensive is organized around hands-on materials work: residents present lessons to each other, receive feedback from a trained guide, and work through the physical sequences that are difficult to approximate at a distance. It is also a cohort experience: the in-person time is designed to deepen the relationships that sustain residents through the rest of the program. The intensive typically runs over a weekend. Exact dates and location are confirmed in your cohort welcome materials. For residents who cannot travel, a remote practice option is available. The remote option is structured to cover the same materials sequences through a combination of video demonstration, guided practice at an observation site, and Cohort Guide check-in. Residents who complete the remote option fulfill the same program requirement as those who attend in person. The intensive is billed separately from tuition at $200–$300 per resident. The remote practice option is available at no additional cost.',
               },
             ].map((item, i) => (
               <div

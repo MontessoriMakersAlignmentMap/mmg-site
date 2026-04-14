@@ -354,7 +354,7 @@ export default function SampleLessonsPage() {
           >
             {activeTab === 'primary'
               ? 'The Primary curriculum covers five strands across 213 lessons. Each sample below is drawn from a different strand so you can experience the full range of what residents study.'
-              : 'The Elementary curriculum covers nine strands across 303 lessons. Each sample below represents a different strand — from the Great Lessons to Geometry to Music — all written at the same depth.'}
+              : 'The Elementary curriculum covers nine strands across 303 lessons. Each sample below represents a different strand, from the Great Lessons to Geometry to Music, all written at the same depth.'}
           </p>
 
           <div

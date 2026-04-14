@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Montessori Makers Residency — Equity-Centered Montessori Teacher Preparation',
+  title: 'Montessori Makers Residency | Equity-Centered Montessori Teacher Preparation',
   description:
     'A Montessori teacher preparation program built for the educators the field has always needed. Primary and Elementary credentials. Paid practicum. Equity embedded throughout. Launching fall 2026.',
 }
@@ -192,8 +192,8 @@ export default function MMRLandingPage() {
                 }}
               >
                 <p>
-                  I have been inside Montessori schools all over this country — independent schools, public schools, charter schools, magnet programs, neighborhood schools. I have watched extraordinary educators leave the
-                  field — not because they were not committed, but because the path to Montessori certification was
+                  I have been inside Montessori schools all over this country: independent schools, public schools, charter schools, magnet programs, neighborhood schools. I have watched extraordinary educators leave the
+                  field, not because they were not committed, but because the path to Montessori certification was
                   designed for people with time, money, and proximity to a training center. It was not designed for the
                   working mother in Detroit. It was not designed for the public school teacher in rural Georgia who has
                   been doing Montessori-aligned work for fifteen years without the credential to prove it. It was not
@@ -202,22 +202,24 @@ export default function MMRLandingPage() {
                 </p>
                 <p>
                   MMR is built for those educators. It is a residency-based, MACTE-track certification program that
-                  meets working adults where they are — with an asynchronous curriculum, live monthly cohort sessions,
-                  a supported and paid practicum model, and a mentorship relationship with an experienced Montessori
-                  guide. It is rigorous. It is not remedial. The depth of this curriculum is not something we are
-                  working toward — it is already here, in the 549 lessons written and the framework in place.
+                  meets working adults where they are: an asynchronous curriculum, twice-monthly live cohort sessions,
+                  a supported and paid practicum model, and a Cohort Guide relationship with an experienced Montessori
+                  educator. It is rigorous. It is not remedial. The depth of this curriculum is not something we are
+                  working toward. It is already here, in the 549 lessons written and the framework in place.
                 </p>
                 <p>
                   The program has three components. The curriculum component asks residents to engage with every lesson
-                  through a structured album-building process — reading, reflecting, and writing their understanding of
-                  each lesson in their own words, with AI-assisted feedback and mentor review. The practicum component
+                  through a structured album-building process: reading, reflecting, and writing their understanding of
+                  each lesson in their own words, with AI-assisted feedback and Cohort Guide review. The practicum component
                   places residents in Montessori environments with structured observation protocols, reflective
                   journaling, and a guide who knows how to supervise adult learners. Practicum placements are paid. The
-                  mentorship component pairs each resident with a mentor who has real classroom experience and meets
-                  with them monthly to work through what they are seeing and struggling with in their practicum classroom.
+                  Cohort Guide component pairs each resident with a Cohort Guide: a trained Montessori educator who
+                  facilitates your twice-monthly seminars, reviews your album work, and supervises your practicum.
+                  Your Cohort Guide is the same person across the full arc of the program. They meet with you twice
+                  each month to work through what you are seeing and learning in your practicum classroom.
                 </p>
                 <p>
-                  The equity framework is not a module. It is woven through every lesson in the curriculum — not as an
+                  The equity framework is not a module. It is woven through every lesson in the curriculum, not as an
                   add-on but as a lens. Every lesson carries an explicit Equity Aim and a Neurodivergence section. The
                   behavior support strand runs through the full program, alongside a science of reading integration that
                   treats phonological awareness and decoding as Montessori work, not as remediation. Every Great Lesson
@@ -295,11 +297,11 @@ export default function MMRLandingPage() {
                   'Elementary Bridge',
                 ],
                 features: [
-                  'Monthly live cohort seminars',
+                  'Twice-monthly live cohort seminars facilitated by your Cohort Guide',
                   'Structured observation visits',
                   'Each monthly observation includes a 60-minute supervised materials session at the host school',
                   'Paid practicum placement',
-                  'Album entries reviewed by mentor and AI',
+                  'Album entries reviewed by your Cohort Guide and AI',
                   'MACTE-track certification',
                 ],
               },
@@ -322,11 +324,11 @@ export default function MMRLandingPage() {
                   'Primary Foundation',
                 ],
                 features: [
-                  'Monthly live cohort seminars',
+                  'Twice-monthly live cohort seminars facilitated by your Cohort Guide',
                   'Structured observation visits',
                   'Each monthly observation includes a 60-minute supervised materials session at the host school',
                   'Paid practicum placement',
-                  'Album entries reviewed by mentor and AI',
+                  'Album entries reviewed by your Cohort Guide and AI',
                   'MACTE-track certification',
                 ],
               },
@@ -475,6 +477,84 @@ export default function MMRLandingPage() {
         </div>
       </section>
 
+      {/* ── About Our Accreditation Track ────────────────────────────────────── */}
+      <section id="accreditation" style={{ background: '#fff', padding: '6rem 0' }}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div style={{ maxWidth: '820px' }}>
+            <FadeIn>
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-4 font-medium">
+                About Our Accreditation Track
+              </p>
+              <h2
+                style={{
+                  ...serif,
+                  fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+                  color: '#0e1a7a',
+                  lineHeight: 1.2,
+                  marginBottom: '2rem',
+                }}
+              >
+                MACTE accreditation: what it means, where we are, and what changes when we get there.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.06}>
+              <div style={{ fontSize: '1.0rem', lineHeight: 1.85, color: '#374151', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+                <div>
+                  <p style={{ fontWeight: 600, color: '#0e1a7a', marginBottom: '0.5rem' }}>What MACTE is.</p>
+                  <p>
+                    MACTE is the Montessori Accreditation Council for Teacher Education, the primary accrediting body
+                    for Montessori teacher preparation programs in the United States. Accreditation from MACTE is what
+                    tells schools, states, and the broader Montessori field that a program has been reviewed by an
+                    external body against defined standards.
+                  </p>
+                </div>
+                <div>
+                  <p style={{ fontWeight: 600, color: '#0e1a7a', marginBottom: '0.5rem' }}>Why it matters for your credential.</p>
+                  <p>
+                    A credential from an accredited program carries weight that a non-accredited credential does not.
+                    It affects how your credential is recognized in hiring, in state licensure processes, and in your
+                    professional identity within the Montessori field. MMR is designed to MACTE standards because the
+                    credential you earn should be built to last.
+                  </p>
+                </div>
+                <div>
+                  <p style={{ fontWeight: 600, color: '#0e1a7a', marginBottom: '0.5rem' }}>Where we are right now.</p>
+                  <p>
+                    MMR is on the MACTE accreditation track. The curriculum, practicum structure, and program design are
+                    complete and built to standard. We are not accredited yet. MACTE requires a program to complete at
+                    least one full cohort before a formal accreditation review can begin. We are transparent with every
+                    cohort about exactly where we are in that process. We are not going to tell you we are accredited
+                    before we are.
+                  </p>
+                </div>
+                <div>
+                  <p style={{ fontWeight: 600, color: '#0e1a7a', marginBottom: '0.5rem' }}>What you receive before accreditation is granted.</p>
+                  <p>
+                    Residents who complete all program components receive a certificate of completion from Montessori
+                    Makers Residency. That certificate reflects genuine completion of a rigorous, MACTE-track program.
+                    It is not yet from an accredited program. We say that plainly because it matters to you. The curriculum
+                    is not abbreviated. The practicum requirements are not reduced. The standard is the same. The
+                    accreditation review has not yet happened.
+                  </p>
+                </div>
+                <div>
+                  <p style={{ fontWeight: 600, color: '#0e1a7a', marginBottom: '0.5rem' }}>What changes when accreditation is granted.</p>
+                  <p>
+                    When MACTE accreditation is conferred, two things happen. First, all MMR graduates receive updated
+                    documentation reflecting accredited program status. That update applies retroactively to every
+                    cohort. Second, MMR tuition increases to reflect the market rate for accredited Montessori teacher
+                    preparation programs. The first cohort is enrolled at the current pre-accreditation rate. That is
+                    not a discount. It is the actual cost of the program at this stage. We will announce the rate
+                    change in advance with adequate time for planning. The timeline for accreditation depends on the
+                    MACTE review process, which typically takes two to three years from a program&rsquo;s first cohort launch.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* ── Who This Is For ──────────────────────────────────────────────────── */}
       <section style={{ background: '#0e1a7a', padding: '6rem 0' }} className="grain">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -516,7 +596,7 @@ export default function MMRLandingPage() {
               },
               {
                 label: 'Paraeducators and teaching assistants already doing the work',
-                body: 'You have been in a Montessori classroom for years. You know more than the title on your badge suggests. The credential has felt out of reach — financially, logistically, structurally. MMR was designed to close that gap, not explain it away.',
+                body: 'You have been in a Montessori classroom for years. You know more than the title on your badge suggests. The credential has felt out of reach: financially, logistically, and structurally. MMR was designed to close that gap, not explain it away.',
               },
               {
                 label: 'Public and charter school teachers transitioning into Montessori roles',
@@ -528,11 +608,11 @@ export default function MMRLandingPage() {
               },
               {
                 label: 'Bilingual and multilingual educators',
-                body: 'The children who need Montessori most are often children whose home languages are not the language of instruction. You are fluent in the bridging work that takes. MMR was written with that reality in mind — not as a footnote, but as part of the curriculum itself.',
+                body: 'The children who need Montessori most are often children whose home languages are not the language of instruction. You are fluent in the bridging work that takes. MMR was written with that reality in mind. Not as a footnote, but as part of the curriculum itself.',
               },
               {
                 label: 'Anyone who looked at traditional credentialing and saw a system designed to keep them out',
-                body: 'You are not wrong about what you saw. The access barriers to Montessori credentialing are not accidental. MMR is a direct response to that history — built with intentional pricing, an asynchronous format, a paid practicum model, and an equity scholarship for the educators who face the highest barriers.',
+                body: 'You are not wrong about what you saw. The access barriers to Montessori credentialing are not accidental. MMR is a direct response to that history: built with intentional pricing, an asynchronous format, a paid practicum model, and an equity scholarship for the educators who face the highest barriers.',
               },
             ].map((card) => (
               <div
@@ -596,27 +676,27 @@ export default function MMRLandingPage() {
                 {
                   num: '02',
                   title: 'The practicum is paid.',
-                  body: 'Traditional Montessori programs expect candidates to secure unpaid observation hours in schools that often have no interest in supporting adult learners. MMR uses a supported, paid practicum model. Residents are placed in Montessori environments where they are treated as professionals in formation — not visitors with clipboards. The practicum is structured, observed, and mentored. And you are compensated for the work you do in it.',
+                  body: 'Traditional Montessori programs expect candidates to secure unpaid observation hours in schools that often have no interest in supporting adult learners. MMR uses a supported, paid practicum model. Residents are placed in Montessori environments where they are treated as professionals in formation, not visitors with clipboards. The practicum is structured, observed, and Cohort Guide-supervised. And you are compensated for the work you do in it.',
                 },
                 {
                   num: '03',
                   title: 'Cross-plane bridge lessons that no other program offers.',
-                  body: 'The Primary track includes an Elementary Bridge strand — a set of lessons that prepares Primary guides to understand what children are moving toward, not just where they are. The Elementary track includes a Primary Foundation strand for the same reason. This is deliberate. Guides who understand the full arc of the Montessori sequence make different decisions in the classroom. No other credentialing program builds this in.',
+                  body: 'The Primary track includes an Elementary Bridge strand: a set of lessons that prepares Primary guides to understand what children are moving toward, not just where they are. The Elementary track includes a Primary Foundation strand for the same reason. This is deliberate. Guides who understand the full arc of the Montessori sequence make different decisions in the classroom. No other credentialing program builds this in.',
                 },
                 {
                   num: '04',
                   title: 'Behavior support and the science of reading are core curriculum.',
-                  body: 'Both tracks include a dedicated Behavior Support strand — not as crisis management, but as a Montessori framework for understanding what behavior communicates and how the environment responds. The Language strand integrates the science of reading throughout, treating phonological awareness and systematic decoding as Montessori work rather than a separate remedial intervention. These are the two areas where Montessori classrooms most often struggle. MMR addresses them directly.',
+                  body: 'Both tracks include a dedicated Behavior Support strand, not as crisis management, but as a Montessori framework for understanding what behavior communicates and how the environment responds. The Language strand integrates the science of reading throughout, treating phonological awareness and systematic decoding as Montessori work rather than a separate remedial intervention. These are the two areas where Montessori classrooms most often struggle. MMR addresses them directly.',
                 },
                 {
                   num: '05',
                   title: 'The price reflects the mission.',
-                  body: "MMR is priced significantly below traditional Montessori credentialing programs. It is structured with payment plans that work for working educators — not as a courtesy, but as a design decision. The Equity Fellows scholarship offers full tuition for candidates who face the highest structural access barriers. The price of this program is not an accident. It is a statement about who Montessori is actually for.",
+                  body: "MMR is priced significantly below traditional Montessori credentialing programs. It is structured with payment plans that work for working educators, not as a courtesy but as a design decision. The Equity Fellows scholarship offers full tuition for candidates who face the highest structural access barriers. The price of this program is not an accident. It is a statement about who Montessori is actually for.",
                 },
                 {
                   num: '06',
                   title: 'Every resident touches the materials.',
-                  body: "We built three pathways to make sure that happens regardless of where you are starting from. Monthly observation visits include a 60-minute supervised materials session at the host school — so residents are working with real materials from the beginning of the program, not waiting until a practicum that may be months away. Once a year, there is an in-person intensive held in a fully equipped Montessori classroom where residents work through materials presentations together with a trained guide. And for residents who cannot travel, there is a remote practice option that preserves materials access without requiring in-person attendance. No one completes MMR without genuine hands-on experience. That is not aspirational. It is structural.",
+                  body: "We built three pathways to make sure that happens regardless of where you are starting from. Monthly observation visits include a 60-minute supervised materials session at the host school, so residents are working with real materials from the beginning of the program, not waiting until a practicum that may be months away. Once a year, there is an in-person intensive held in a fully equipped Montessori classroom where residents work through materials presentations together with a trained guide. And for residents who cannot travel, there is a remote practice option that preserves materials access without requiring in-person attendance. No one completes MMR without genuine hands-on experience. That is not aspirational. It is structural.",
                 },
               ].map((item, i) => (
                 <div
@@ -698,7 +778,7 @@ export default function MMRLandingPage() {
               }}
             >
               The sample lessons below are not previews of what MMR is working toward. They are
-              what MMR is right now — written at full depth, with the equity lens and neurodivergence
+              what MMR is right now, written at full depth, with the equity lens and neurodivergence
               integration built in from the start. Read one before you decide whether to apply.
             </p>
             <Link
@@ -752,7 +832,7 @@ export default function MMRLandingPage() {
               >
                 <p>
                   Applicants to MMR must hold a bachelor&rsquo;s degree.
-                  We are looking for people who are serious about this work — not people who have already
+                  We are looking for people who are serious about this work. Not people who have already
                   completed it.
                 </p>
                 <p>
@@ -768,7 +848,7 @@ export default function MMRLandingPage() {
                 <p>
                   The MMR curriculum is written at a graduate reading level. Applicants need English language
                   proficiency sufficient for graduate-level reading and writing. If that is a barrier for you,
-                  reach out to us before you apply — we want to know.
+                  reach out to us before you apply. We want to know.
                 </p>
               </div>
             </FadeIn>
@@ -890,7 +970,7 @@ export default function MMRLandingPage() {
                 </p>
                 <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#374151' }}>
                   The Equity Fellows program provides full or partial tuition for educators who face the highest
-                  structural access barriers to Montessori credentialing — typically educators of color, educators
+                  structural access barriers to Montessori credentialing, typically educators of color, educators
                   in under-resourced public schools, and educators in rural or geographically isolated communities.
                   Fellows are selected as part of the standard admissions process. Every qualified applicant is
                   automatically considered.
@@ -964,12 +1044,12 @@ export default function MMRLandingPage() {
                     marginBottom: '1rem',
                   }}
                 >
-                  Placeholder — Hannah&rsquo;s personal statement goes here
+                  Placeholder: Hannah&rsquo;s personal statement goes here
                 </p>
                 <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.9375rem', lineHeight: 1.8, fontStyle: 'italic' }}>
                   3–4 paragraphs. Personal, direct, and grounded in Hannah&rsquo;s specific experience
-                  and motivation for building MMR. Written in first person. Not a marketing statement —
-                  a real note to the educator who is reading this page and deciding whether to apply.
+                  and motivation for building MMR. Written in first person. Not a marketing statement.
+                  A real note to the educator who is reading this page and deciding whether to apply.
                 </p>
               </div>
               {/* END PLACEHOLDER */}
@@ -1012,12 +1092,16 @@ export default function MMRLandingPage() {
           <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10" stagger={0.05}>
             {[
               {
+                q: 'What is MACTE and why does it matter?',
+                a: 'MACTE is the Montessori Accreditation Council for Teacher Education, the primary accrediting body for Montessori teacher preparation programs in the United States. A credential from an accredited program is recognized across Montessori schools, state licensure processes, and the broader field in ways that non-accredited programs are not. MMR is on the MACTE accreditation track: the program is designed to MACTE standards from the ground up. We have not yet received formal accreditation, and we are transparent about that. For full detail on what this means for your credential and what changes when accreditation is granted, see the About Our Accreditation Track section above.',
+              },
+              {
                 q: 'Is MMR accredited yet?',
-                a: 'MMR is currently in development toward MACTE accreditation. MACTE — the Montessori Accreditation Council for Teacher Education — is the primary accrediting body for Montessori teacher preparation programs in the United States. We are building the program to meet MACTE standards from the ground up, so that the path to accreditation is a documentation process, not a redesign.',
+                a: 'MMR is currently in development toward MACTE accreditation. MACTE is the Montessori Accreditation Council for Teacher Education, the primary accrediting body for Montessori teacher preparation programs in the United States. We are building the program to meet MACTE standards from the ground up, so that the path to accreditation is a documentation process, not a redesign. See the About Our Accreditation Track section on this page for full detail on what this means for your credential.',
               },
               {
                 q: 'What does a typical week look like for a resident?',
-                a: 'Most residents spend four to six hours per week on curriculum work — reading, observing, and writing album entries. Practicum hours happen in a school environment and are arranged in coordination with your mentor. Monthly live cohort sessions are two to three hours long. The program is designed to be completed alongside a full-time teaching position, not instead of one.',
+                a: 'Most residents spend four to six hours per week on curriculum work: reading, observing, and writing album entries. Practicum hours happen in a school environment and are arranged in coordination with your Cohort Guide. Twice-monthly live cohort sessions run two to three hours each. The program is designed to be completed alongside a full-time teaching position, not instead of one.',
               },
               {
                 q: 'Do I need prior Montessori experience to apply?',
@@ -1025,11 +1109,11 @@ export default function MMRLandingPage() {
               },
               {
                 q: 'What happens at the end of the program?',
-                a: 'Residents who complete all components — curriculum, practicum, and mentorship — receive a certificate of completion from Montessori Makers Residency. When MACTE accreditation is conferred, all MMR graduates will receive updated documentation reflecting that credential.',
+                a: 'Residents who complete all components (curriculum, practicum, and Cohort Guide sessions) receive a certificate of completion from Montessori Makers Residency. When MACTE accreditation is conferred, all MMR graduates will receive updated documentation reflecting accredited program status. That applies retroactively to every cohort.',
               },
               {
                 q: 'How does the Equity Fellows scholarship work?',
-                a: 'The Equity Fellows program is designed for educators who face the highest structural access barriers to Montessori credentialing. Fellows receive full or partial tuition support. Every qualified applicant is automatically considered — there is no separate application.',
+                a: 'The Equity Fellows program is designed for educators who face the highest structural access barriers to Montessori credentialing. Fellows receive full or partial tuition support. Every qualified applicant is automatically considered. There is no separate application.',
               },
               {
                 q: 'When does the first cohort begin?',
