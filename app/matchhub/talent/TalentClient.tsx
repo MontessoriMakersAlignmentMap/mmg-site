@@ -33,6 +33,9 @@ type Guide = {
 const LEVELS = ['Infant', 'Toddler', 'Primary', 'Lower Elementary', 'Upper Elementary', 'Adolescent', 'Leadership']
 const REGIONS = ['Northeast', 'Southeast', 'Midwest', 'Mountain West', 'Southwest', 'Pacific Northwest']
 const CREDENTIALS: Credential[] = ['AMI', 'AMS', 'MACTE', 'Other']
+
+/** AMI and AMS are both MACTE-accredited programs */
+const MACTE_ACCREDITED = new Set<Credential>(['AMI', 'AMS', 'MACTE'])
 const EXP_BUCKETS: ExperienceBucket[] = ['0–2', '3–5', '6–10', '10+']
 const ROLE_TYPES = [
   'Head of School / Executive Director',
@@ -296,6 +299,9 @@ function ProfileModal({ guide, onClose }: { guide: Guide; onClose: () => void })
               <div className="flex items-center gap-3 flex-wrap mb-0.5">
                 <h2 className="text-[#0e1a7a] text-2xl font-semibold" style={serif}>{guide.candidateId}</h2>
                 <span className="text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1" style={cs}>{guide.credential}</span>
+                {MACTE_ACCREDITED.has(guide.credential) && guide.credential !== 'MACTE' && (
+                  <span className="text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1" style={credentialStyle.MACTE}>MACTE</span>
+                )}
               </div>
               <p className="text-[#64748B] text-sm">{guide.roleSought}</p>
             </div>
@@ -307,7 +313,7 @@ function ProfileModal({ guide, onClose }: { guide: Guide; onClose: () => void })
               { label: 'Experience', value: `${guide.experienceYears} years` },
               { label: 'Relocation', value: guide.openToRelocate ? 'Open to relocate' : 'Local only' },
               { label: 'Availability', value: guide.availability },
-              { label: 'Credential', value: guide.credential },
+              { label: 'Credential', value: MACTE_ACCREDITED.has(guide.credential) && guide.credential !== 'MACTE' ? `${guide.credential} · MACTE` : guide.credential },
             ].map(({ label, value }) => (
               <div key={label}>
                 <p className="text-[#8A6014] text-[10px] tracking-[0.15em] uppercase mb-1">{label}</p>
@@ -363,9 +369,16 @@ function GuideCard({ guide, isPro, onViewProfile }: { guide: Guide; isPro: boole
                 </h3>
                 <p className="text-[#64748B] text-xs mt-0.5">{guide.roleSought}</p>
               </div>
-              <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 flex-shrink-0" style={cs}>
-                {guide.credential}
-              </span>
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1" style={cs}>
+                  {guide.credential}
+                </span>
+                {MACTE_ACCREDITED.has(guide.credential) && guide.credential !== 'MACTE' && (
+                  <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1" style={credentialStyle.MACTE}>
+                    MACTE
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -584,7 +597,12 @@ export default function TalentClient({ guides: rawGuides }: { guides: GuideProfi
     if (roleTypeFilter && g.roleSought !== roleTypeFilter) return false
     if (levelFilter && !g.levels.includes(levelFilter)) return false
     if (regionFilter && g.region !== regionFilter) return false
-    if (credentialFilter && g.credential !== credentialFilter) return false
+    if (credentialFilter) {
+      // Filtering by MACTE returns AMI and AMS candidates too (both are MACTE-accredited programs)
+      if (credentialFilter === 'MACTE') {
+        if (!MACTE_ACCREDITED.has(g.credential)) return false
+      } else if (g.credential !== credentialFilter) return false
+    }
     if (expFilter && expBucket(g.experienceYears) !== expFilter) return false
     if (relocateFilter && !g.openToRelocate) return false
     return true
