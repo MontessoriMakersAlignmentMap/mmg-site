@@ -21,6 +21,7 @@ export default function PortalDashboard() {
   const [observationLog, setObservationLog] = useState<any>(null)
   const [intensives, setIntensives] = useState<any[]>([])
   const [registeredIntensives, setRegisteredIntensives] = useState<Set<string>>(new Set())
+  const [currentReading, setCurrentReading] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -139,6 +140,22 @@ export default function PortalDashboard() {
           .select('intensive_id')
           .eq('resident_id', res.id)
         if (myRegs) setRegisteredIntensives(new Set(myRegs.map((r: any) => r.intensive_id)))
+      }
+
+      // Current reading assignment for this month
+      const readLevel = res.assigned_level?.name?.toLowerCase() || 'primary'
+      const readTrack = readLevel === 'elementary' ? 'elementary' : 'primary'
+      // Map calendar month to program month: Sep=1, Oct=2, ..., May=9
+      const calMonth = new Date().getMonth() + 1
+      const programMonthMap: Record<number, number> = { 9: 1, 10: 2, 11: 3, 12: 4, 1: 5, 2: 6, 3: 7, 4: 8, 5: 9 }
+      const progMonth = programMonthMap[calMonth]
+      if (progMonth) {
+        const { data: readings } = await supabase
+          .from('residency_reading_assignments')
+          .select('*')
+          .eq('track', readTrack)
+          .eq('month_number', progMonth)
+        if (readings) setCurrentReading(readings)
       }
 
       // Unread feedback
@@ -275,6 +292,92 @@ export default function PortalDashboard() {
                     {engaged ? '\u2713' : bl.lesson?.strand?.name}
                   </span>
                 </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Reading This Week */}
+      {currentReading.length > 0 && (
+        <div className="r-card" style={{
+          borderLeft: '4px solid #7b1fa2',
+          marginBottom: '1.5rem',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+            <h2 style={{ fontSize: '1.125rem', color: '#7b1fa2', margin: 0 }}>Reading This Week</h2>
+            <Link href="/residency/portal/reading-log" style={{
+              fontSize: '0.75rem', color: '#7b1fa2', fontWeight: 600, textDecoration: 'none',
+            }}>
+              View Full Reading Log &rarr;
+            </Link>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {currentReading.map((r: any) => {
+              const isFree = r.reading_type === 'montessori_source'
+              return (
+                <div key={r.id} style={{
+                  padding: '0.875rem 1rem',
+                  background: isFree ? 'var(--r-success-light)' : '#f3e5f5',
+                  borderRadius: '8px',
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                        <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: 0 }}>{r.book_title}</h3>
+                        <span style={{
+                          fontSize: '0.5rem', fontWeight: 700, textTransform: 'uppercase',
+                          padding: '0.125rem 0.375rem', borderRadius: '3px',
+                          background: isFree ? 'var(--r-success)' : '#7b1fa2',
+                          color: 'white',
+                        }}>
+                          {isFree ? 'Free' : 'Purchase'}
+                        </span>
+                      </div>
+                      <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>by {r.author}</p>
+                      {r.chapters_pages && (
+                        <p style={{ fontSize: '0.8125rem', marginTop: '0.25rem' }}>
+                          <strong>This month:</strong> {r.chapters_pages}
+                        </p>
+                      )}
+                      {r.focus_question && (
+                        <p style={{ fontSize: '0.8125rem', fontStyle: 'italic', marginTop: '0.375rem', lineHeight: 1.5, color: 'var(--r-text)' }}>
+                          Focus: {r.focus_question}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.625rem' }}>
+                    {r.free_access_link && (
+                      <a href={r.free_access_link} target="_blank" rel="noopener noreferrer"
+                        style={{
+                          fontSize: '0.75rem', fontWeight: 600, color: 'white',
+                          background: 'var(--r-success)', padding: '0.25rem 0.75rem',
+                          borderRadius: '4px', textDecoration: 'none',
+                        }}>
+                        Read Free (Archive.org) &rarr;
+                      </a>
+                    )}
+                    {r.amazon_link && (
+                      <a href={r.amazon_link} target="_blank" rel="noopener noreferrer"
+                        style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-navy)', textDecoration: 'none' }}>
+                        Amazon &rarr;
+                      </a>
+                    )}
+                    {r.bookshop_link && (
+                      <a href={r.bookshop_link} target="_blank" rel="noopener noreferrer"
+                        style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-navy)', textDecoration: 'none' }}>
+                        Bookshop.org &rarr;
+                      </a>
+                    )}
+                    {r.thriftbooks_link && (
+                      <a href={r.thriftbooks_link} target="_blank" rel="noopener noreferrer"
+                        style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-success)', textDecoration: 'none' }}>
+                        ThriftBooks (used) &rarr;
+                      </a>
+                    )}
+                  </div>
+                </div>
               )
             })}
           </div>
