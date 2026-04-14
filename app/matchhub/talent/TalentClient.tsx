@@ -133,9 +133,9 @@ const credentialStyle: Record<string, { color: string; bg: string }> = {
 
 // ─── Initials avatar ──────────────────────────────────────────────────────────
 
-function Avatar({ num }: { num: string }) {
+function Avatar({ num, bg = '#0e1a7a' }: { num: string; bg?: string }) {
   return (
-    <div className="w-11 h-11 rounded-full bg-[#0e1a7a] flex items-center justify-center flex-shrink-0">
+    <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: bg }}>
       <span className="text-white text-[10px] font-semibold tracking-wide">{num}</span>
     </div>
   )
@@ -347,11 +347,14 @@ function GuideCard({ guide, isPro, onViewProfile }: { guide: Guide; isPro: boole
   const teaser = guide.summary.length > 90 ? guide.summary.slice(0, 90).trimEnd() + '…' : guide.summary
 
   return (
-    <div className="bg-white border border-[#E2DDD6] flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)] overflow-hidden">
+    <div
+      className="bg-white border border-[#E2DDD6] flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)] overflow-hidden"
+      style={{ borderLeft: `3px solid ${cs.color}` }}
+    >
       {/* Always-visible teaser */}
       <div className="p-7 flex flex-col gap-4">
         <div className="flex items-start gap-4">
-          <Avatar num={guide.candidateNum} />
+          <Avatar num={guide.candidateNum} bg={cs.color} />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div>

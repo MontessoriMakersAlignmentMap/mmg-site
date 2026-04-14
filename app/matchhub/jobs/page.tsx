@@ -4,15 +4,36 @@ import type { Job } from '@/lib/types/matchhub'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
+const levelBorderColor: Record<string, string> = {
+  Primary: '#0e1a7a',
+  'Lower Elementary': '#2D6A4F',
+  'Upper Elementary': '#2D6A4F',
+  Elementary: '#2D6A4F',
+  'Head of School': '#d6a758',
+  Leadership: '#d6a758',
+  Director: '#d6a758',
+  'Infant/Toddler': '#7C3AED',
+  Infant: '#7C3AED',
+  Toddler: '#7C3AED',
+  Adolescent: '#64748B',
+}
+
 function JobCard({ job }: { job: Job }) {
+  const borderColor = levelBorderColor[job.level] ?? '#0e1a7a'
   return (
-    <div className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-4 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)] transition-all duration-200">
+    <div
+      className="bg-white border border-[#E2DDD6] p-8 flex flex-col gap-4 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(14,26,122,0.09)] transition-all duration-200"
+      style={{ borderLeft: `3px solid ${borderColor}` }}
+    >
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-[#0e1a7a] font-semibold text-lg leading-snug" style={serif}>{job.job_title}</h3>
           <p className="text-[#64748B] text-sm mt-1">{job.school_name}</p>
         </div>
-        <span className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 bg-[#0e1a7a12] text-[#0e1a7a] flex-shrink-0">
+        <span
+          className="text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 flex-shrink-0"
+          style={{ color: borderColor, backgroundColor: `${borderColor}12` }}
+        >
           {job.level}
         </span>
       </div>
