@@ -680,8 +680,8 @@ export default function MMRLandingPage() {
                 },
                 {
                   num: '03',
-                  title: 'Cross-plane bridge lessons that no other program offers.',
-                  body: 'The Primary track includes an Elementary Bridge strand: a set of lessons that prepares Primary guides to understand what children are moving toward, not just where they are. The Elementary track includes a Primary Foundation strand for the same reason. This is deliberate. Guides who understand the full arc of the Montessori sequence make different decisions in the classroom. No other credentialing program builds this in.',
+                  title: 'Primary guides learn where children are headed, not just where they are.',
+                  body: 'The Primary track includes an Elementary Bridge strand: a set of lessons that introduces Primary guides to the work children will encounter next. Some Elementary programs include something similar going the other direction. Very few Primary programs do. MMR builds it in because guides who understand the full arc of the Montessori sequence make different decisions in the classroom. What you introduce at age four looks different when you know what it becomes at age nine.',
                 },
                 {
                   num: '04',
