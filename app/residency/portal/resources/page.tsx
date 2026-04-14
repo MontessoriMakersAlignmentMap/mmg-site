@@ -12,12 +12,15 @@ const typeIcons: Record<string, string> = {
   research_paper: 'Research',
 }
 
+const MONTH_NAMES = ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']
+
 export default function ResourceLibraryPage() {
   const [collections, setCollections] = useState<any[]>([])
   const [resources, setResources] = useState<any[]>([])
   const [bookmarks, setBookmarks] = useState<Set<string>>(new Set())
   const [residentId, setResidentId] = useState('')
   const [readingAssignments, setReadingAssignments] = useState<any[]>([])
+  const [track, setTrack] = useState<string>('primary')
   const [loading, setLoading] = useState(true)
   const [activeCollection, setActiveCollection] = useState<string | null>(null)
   const [showBookmarked, setShowBookmarked] = useState(false)
@@ -36,12 +39,12 @@ export default function ResourceLibraryPage() {
         const { data: bm } = await supabase.from('residency_resource_bookmarks').select('resource_id').eq('resident_id', resident.id)
         setBookmarks(new Set((bm || []).map(b => b.resource_id)))
 
-        // Load reading assignments for this track
-        const track = (resident.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+        const t = (resident.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+        setTrack(t)
         const { data: ra } = await supabase
           .from('residency_reading_assignments')
           .select('*')
-          .eq('track', track)
+          .eq('track', t)
           .order('month_number')
         if (ra) setReadingAssignments(ra)
       }
@@ -70,12 +73,24 @@ export default function ResourceLibraryPage() {
   if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
   const displayedResources = showReadingList
-    ? [] // Reading list has its own display
+    ? []
     : showBookmarked
       ? resources.filter(r => bookmarks.has(r.id))
       : activeCollection
         ? resources.filter(r => r.collection_id === activeCollection)
         : resources.filter(r => r.featured)
+
+  // Group readings by month
+  const byMonth = new Map<number, any[]>()
+  readingAssignments.forEach(ra => {
+    const group = byMonth.get(ra.month_number) || []
+    group.push(ra)
+    byMonth.set(ra.month_number, group)
+  })
+
+  // Cost summary
+  const equityTexts = readingAssignments.filter(ra => ra.reading_type === 'equity')
+  const uniqueEquityTitles = [...new Set(equityTexts.map(ra => ra.book_title))]
 
   return (
     <div>
@@ -136,41 +151,114 @@ export default function ResourceLibraryPage() {
 
       {/* Required Reading List */}
       {showReadingList && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {(() => {
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-            const byMonth = new Map<number, typeof readingAssignments>()
-            readingAssignments.forEach(ra => {
-              const group = byMonth.get(ra.month_number) || []
-              group.push(ra)
-              byMonth.set(ra.month_number, group)
-            })
-            return Array.from(byMonth.entries()).sort(([a], [b]) => a - b).map(([month, items]) => (
+        <div>
+          {/* Track label and cost summary */}
+          <div className="r-card" style={{ marginBottom: '1.5rem', background: '#f3e5f5', border: '1px solid #ce93d8' }}>
+            <h2 style={{ fontSize: '1.125rem', color: '#7b1fa2', marginBottom: '0.5rem' }}>
+              {track === 'elementary' ? 'Elementary' : 'Primary'} Required Reading List
+            </h2>
+            <p style={{ fontSize: '0.8125rem', lineHeight: 1.7, color: 'var(--r-text)', marginBottom: '0.75rem' }}>
+              Montessori primary source texts are available free digitally and linked directly below.
+              Equity texts must be purchased — links to Amazon, Bookshop.org, and ThriftBooks are provided so you can choose your preferred source and price point.
+            </p>
+            <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.8125rem' }}>
+              <div>
+                <span style={{ fontWeight: 600, color: 'var(--r-success)' }}>Free: </span>
+                {readingAssignments.filter(ra => ra.reading_type === 'montessori_source').length} readings (Montessori source texts)
+              </div>
+              <div>
+                <span style={{ fontWeight: 600, color: '#7b1fa2' }}>Purchase: </span>
+                {uniqueEquityTitles.length} texts · Est. {track === 'primary' ? '$40–55 used, $54–70 new' : '$28–72 used, $66–86 new'}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {Array.from(byMonth.entries()).sort(([a], [b]) => a - b).map(([month, items]) => (
               <div key={month}>
                 <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-navy)' }}>
-                  {monthNames[month - 1]}
+                  Month {month}{track === 'primary' && MONTH_NAMES[month - 1] ? ` — ${MONTH_NAMES[month - 1]}` : ''}
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {items.map(ra => (
-                    <div key={ra.id} className="r-card" style={{ borderLeft: '3px solid #7b1fa2' }}>
-                      <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: '0 0 0.25rem' }}>{ra.book_title}</h4>
-                      {ra.author && <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>by {ra.author}</p>}
-                      {ra.chapters_pages && <p style={{ fontSize: '0.8125rem', marginTop: '0.375rem' }}><strong>Chapters/Pages:</strong> {ra.chapters_pages}</p>}
-                      {ra.focus_question && (
-                        <p style={{ fontSize: '0.8125rem', fontStyle: 'italic', background: '#f3e5f5', padding: '0.5rem 0.75rem', borderRadius: '6px', marginTop: '0.5rem', lineHeight: 1.6 }}>
-                          Focus: {ra.focus_question}
-                        </p>
-                      )}
-                      <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-                        {ra.purchase_link && <a href={ra.purchase_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600 }}>Purchase →</a>}
-                        {ra.free_access_link && <a href={ra.free_access_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--r-success)', fontWeight: 600 }}>Free Access →</a>}
+                  {items.map(ra => {
+                    const isFree = ra.reading_type === 'montessori_source'
+                    return (
+                      <div key={ra.id} className="r-card" style={{
+                        borderLeft: `3px solid ${isFree ? 'var(--r-success)' : '#7b1fa2'}`,
+                      }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                              <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: 0 }}>{ra.book_title}</h4>
+                              <span style={{
+                                fontSize: '0.5625rem', fontWeight: 700, textTransform: 'uppercase',
+                                padding: '0.125rem 0.5rem', borderRadius: '3px',
+                                background: isFree ? 'var(--r-success-light)' : '#f3e5f5',
+                                color: isFree ? 'var(--r-success)' : '#7b1fa2',
+                              }}>
+                                {isFree ? 'Free Digital' : 'Purchase'}
+                              </span>
+                            </div>
+                            <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '0.25rem' }}>
+                              by {ra.author}
+                            </p>
+                            {ra.chapters_pages && (
+                              <p style={{ fontSize: '0.8125rem', marginBottom: '0.375rem' }}>
+                                <strong>Assigned:</strong> {ra.chapters_pages}
+                              </p>
+                            )}
+                            {ra.focus_question && (
+                              <p style={{
+                                fontSize: '0.8125rem', fontStyle: 'italic',
+                                background: isFree ? 'var(--r-success-light)' : '#f3e5f5',
+                                padding: '0.5rem 0.75rem', borderRadius: '6px',
+                                marginTop: '0.5rem', lineHeight: 1.6,
+                                color: 'var(--r-text)',
+                              }}>
+                                Focus: {ra.focus_question}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Links */}
+                        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid var(--r-border)' }}>
+                          {ra.free_access_link && (
+                            <a href={ra.free_access_link} target="_blank" rel="noopener noreferrer"
+                              style={{
+                                fontSize: '0.75rem', fontWeight: 600, color: 'white',
+                                background: 'var(--r-success)', padding: '0.25rem 0.75rem',
+                                borderRadius: '4px', textDecoration: 'none',
+                              }}>
+                              Read Free (Archive.org) →
+                            </a>
+                          )}
+                          {ra.amazon_link && (
+                            <a href={ra.amazon_link} target="_blank" rel="noopener noreferrer"
+                              style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-navy)', textDecoration: 'none' }}>
+                              Amazon →
+                            </a>
+                          )}
+                          {ra.bookshop_link && (
+                            <a href={ra.bookshop_link} target="_blank" rel="noopener noreferrer"
+                              style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-navy)', textDecoration: 'none' }}>
+                              Bookshop.org →
+                            </a>
+                          )}
+                          {ra.thriftbooks_link && (
+                            <a href={ra.thriftbooks_link} target="_blank" rel="noopener noreferrer"
+                              style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--r-success)', textDecoration: 'none' }}>
+                              ThriftBooks (used) →
+                            </a>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
-            ))
-          })()}
+            ))}
+          </div>
         </div>
       )}
 

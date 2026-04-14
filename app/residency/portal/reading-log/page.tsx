@@ -12,6 +12,10 @@ interface ReadingAssignment {
   focus_question: string | null
   purchase_link: string | null
   free_access_link: string | null
+  amazon_link: string | null
+  bookshop_link: string | null
+  thriftbooks_link: string | null
+  reading_type: string | null
   month_number: number
   track: string
 }
@@ -24,7 +28,7 @@ interface ReadingLogEntry {
   completed_at: string | null
 }
 
-const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const MONTH_NAMES_PRIMARY = ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May']
 
 export default function ReadingLogPage() {
   const [assignments, setAssignments] = useState<ReadingAssignment[]>([])
@@ -32,6 +36,7 @@ export default function ReadingLogPage() {
   const [loading, setLoading] = useState(true)
   const [savingId, setSavingId] = useState<string | null>(null)
   const [residentId, setResidentId] = useState<string | null>(null)
+  const [track, setTrack] = useState<string>('primary')
   const [editingNotes, setEditingNotes] = useState<string | null>(null)
   const [notesText, setNotesText] = useState('')
 
@@ -49,13 +54,14 @@ export default function ReadingLogPage() {
       if (!resident) { setLoading(false); return }
       setResidentId(resident.id)
 
-      const track = (resident.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+      const t = (resident.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+      setTrack(t)
 
       const [{ data: ra }, { data: rl }] = await Promise.all([
         supabase
           .from('residency_reading_assignments')
           .select('*')
-          .eq('track', track)
+          .eq('track', t)
           .order('month_number'),
         supabase
           .from('residency_reading_log')
@@ -140,7 +146,12 @@ export default function ReadingLogPage() {
     byMonth.set(a.month_number, group)
   })
 
-  const currentMonth = new Date().getMonth() + 1
+  // Determine which month we're in (approximate — month 1 = September)
+  const now = new Date()
+  const calMonth = now.getMonth() + 1 // 1-12
+  // Map calendar months to program months: Sep=1, Oct=2, ..., May=9
+  const programMonthMap: Record<number, number> = { 9: 1, 10: 2, 11: 3, 12: 4, 1: 5, 2: 6, 3: 7, 4: 8, 5: 9 }
+  const currentProgramMonth = programMonthMap[calMonth] ?? 0
 
   return (
     <div>
@@ -168,7 +179,7 @@ export default function ReadingLogPage() {
           {Array.from(byMonth.entries())
             .sort(([a], [b]) => a - b)
             .map(([month, monthAssignments]) => {
-              const isCurrent = month === currentMonth
+              const isCurrent = month === currentProgramMonth
               const allComplete = monthAssignments.every(a =>
                 logEntries.find(l => l.reading_assignment_id === a.id)?.completed
               )
@@ -180,7 +191,7 @@ export default function ReadingLogPage() {
                       fontSize: '1rem', fontWeight: 600,
                       color: isCurrent ? 'var(--r-navy)' : 'var(--r-text-muted)',
                     }}>
-                      {MONTH_NAMES[month - 1]}
+                      Month {month}{track === 'primary' && MONTH_NAMES_PRIMARY[month - 1] ? ` — ${MONTH_NAMES_PRIMARY[month - 1]}` : ''}
                     </h2>
                     {isCurrent && (
                       <span style={{
@@ -201,16 +212,27 @@ export default function ReadingLogPage() {
                       const logEntry = logEntries.find(l => l.reading_assignment_id === a.id)
                       const isComplete = logEntry?.completed ?? false
                       const isEditingThis = editingNotes === a.id
+                      const isFree = a.reading_type === 'montessori_source'
 
                       return (
                         <div key={a.id} className="r-card" style={{
-                          borderLeft: isComplete ? '3px solid var(--r-success)' : '3px solid var(--r-border)',
+                          borderLeft: isComplete ? '3px solid var(--r-success)' : `3px solid ${isFree ? 'var(--r-success)' : '#7b1fa2'}`,
                         }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                             <div style={{ flex: 1 }}>
-                              <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.25rem' }}>
-                                {a.book_title}
-                              </h3>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                                <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: 0 }}>
+                                  {a.book_title}
+                                </h3>
+                                <span style={{
+                                  fontSize: '0.5rem', fontWeight: 700, textTransform: 'uppercase',
+                                  padding: '0.125rem 0.375rem', borderRadius: '3px',
+                                  background: isFree ? 'var(--r-success-light)' : '#f3e5f5',
+                                  color: isFree ? 'var(--r-success)' : '#7b1fa2',
+                                }}>
+                                  {isFree ? 'Free' : 'Purchase'}
+                                </span>
+                              </div>
                               {a.author && (
                                 <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '0.375rem' }}>
                                   by {a.author}
@@ -218,29 +240,47 @@ export default function ReadingLogPage() {
                               )}
                               {a.chapters_pages && (
                                 <p style={{ fontSize: '0.8125rem', marginBottom: '0.375rem' }}>
-                                  <strong>Chapters/Pages:</strong> {a.chapters_pages}
+                                  <strong>Assigned:</strong> {a.chapters_pages}
                                 </p>
                               )}
                               {a.focus_question && (
                                 <p style={{
                                   fontSize: '0.8125rem', fontStyle: 'italic', color: 'var(--r-text)',
-                                  background: 'var(--r-bg-muted)', padding: '0.5rem 0.75rem', borderRadius: '6px',
+                                  background: isFree ? 'var(--r-success-light)' : '#f3e5f5',
+                                  padding: '0.5rem 0.75rem', borderRadius: '6px',
                                   marginBottom: '0.5rem', lineHeight: 1.6,
                                 }}>
                                   Focus: {a.focus_question}
                                 </p>
                               )}
+                              {/* Access / purchase links */}
                               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-                                {a.purchase_link && (
-                                  <a href={a.purchase_link} target="_blank" rel="noopener noreferrer"
-                                    style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600 }}>
-                                    Purchase →
-                                  </a>
-                                )}
                                 {a.free_access_link && (
                                   <a href={a.free_access_link} target="_blank" rel="noopener noreferrer"
-                                    style={{ fontSize: '0.75rem', color: 'var(--r-success)', fontWeight: 600 }}>
-                                    Free Access →
+                                    style={{
+                                      fontSize: '0.75rem', fontWeight: 600, color: 'white',
+                                      background: 'var(--r-success)', padding: '0.2rem 0.625rem',
+                                      borderRadius: '4px', textDecoration: 'none',
+                                    }}>
+                                    Read Free →
+                                  </a>
+                                )}
+                                {a.amazon_link && (
+                                  <a href={a.amazon_link} target="_blank" rel="noopener noreferrer"
+                                    style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600, textDecoration: 'none' }}>
+                                    Amazon →
+                                  </a>
+                                )}
+                                {a.bookshop_link && (
+                                  <a href={a.bookshop_link} target="_blank" rel="noopener noreferrer"
+                                    style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600, textDecoration: 'none' }}>
+                                    Bookshop.org →
+                                  </a>
+                                )}
+                                {a.thriftbooks_link && (
+                                  <a href={a.thriftbooks_link} target="_blank" rel="noopener noreferrer"
+                                    style={{ fontSize: '0.75rem', color: 'var(--r-success)', fontWeight: 600, textDecoration: 'none' }}>
+                                    ThriftBooks (used) →
                                   </a>
                                 )}
                               </div>
