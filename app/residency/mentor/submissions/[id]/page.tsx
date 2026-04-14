@@ -243,7 +243,7 @@ export default function MentorSubmissionDetailPage() {
       {(isAIPassed || isComplete) && (
         <div className="r-card" style={{ marginTop: '2rem', borderLeft: '4px solid var(--r-gold)' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>
-            {isComplete ? 'Your Mentor Feedback' : 'Mentor Review'}
+            {isComplete ? 'Your Cohort Guide Feedback' : 'Cohort Guide Review'}
           </h2>
 
           <div style={{ marginBottom: '1.25rem' }}>

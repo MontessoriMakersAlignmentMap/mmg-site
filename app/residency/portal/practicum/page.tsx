@@ -224,9 +224,9 @@ export default function PracticumPage() {
               style={{ minHeight: '80px' }} />
           </div>
           <div style={{ marginBottom: '1rem' }}>
-            <label className="r-label">Questions for Mentor</label>
+            <label className="r-label">Questions for Cohort Guide</label>
             <textarea className="r-textarea" value={questions} onChange={e => setQuestions(e.target.value)}
-              placeholder="Any questions or areas you'd like to discuss with your mentor?"
+              placeholder="Any questions or areas you'd like to discuss with your Cohort Guide?"
               style={{ minHeight: '60px' }} />
           </div>
           <button type="submit" className="r-btn r-btn-primary" disabled={saving} style={{ fontSize: '0.8125rem' }}>

@@ -16,6 +16,7 @@ const navItems = [
   { href: '/residency/mentor/materials-practice', label: 'Materials Practice' },
   { href: '/residency/mentor/evaluations', label: 'Evaluations' },
   { href: '/residency/mentor/capstones', label: 'Capstone Reviews' },
+  { href: '/residency/mentor/onboarding', label: 'Onboarding' },
 ]
 
 export default function MentorLayout({ children }: { children: React.ReactNode }) {
@@ -49,7 +50,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             color: 'var(--r-text-muted)',
             marginBottom: '0.25rem',
           }}>
-            Mentor
+            Cohort Guide
           </p>
           {profile && (
             <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)' }}>

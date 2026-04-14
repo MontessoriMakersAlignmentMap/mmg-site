@@ -254,7 +254,7 @@ export default async function LessonPage({
               marginBottom: '1.25rem',
               lineHeight: 1.6,
             }}>
-              Submit an album entry for this lesson to receive mentor feedback.
+              Submit an album entry for this lesson to receive Cohort Guide feedback.
             </p>
             <Link
               href={`/residency/portal/albums/new?lesson=${lesson.id}`}

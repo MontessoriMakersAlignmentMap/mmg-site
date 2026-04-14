@@ -97,7 +97,7 @@ export default function MentorEvaluationsPage() {
         recipient_id: resident.profile_id,
         type: 'evaluation',
         title: `${evalType === 'mid_year' ? 'Mid-Year' : 'End-of-Year'} Evaluation Submitted`,
-        message: 'Your mentor has submitted an evaluation. View it in your portfolio.',
+        message: 'Your Cohort Guide has submitted an evaluation. View it in your portfolio.',
         link: '/residency/portal/portfolio',
       })
     }
@@ -139,7 +139,7 @@ export default function MentorEvaluationsPage() {
 
       {showForm && (
         <form onSubmit={handleSubmit} className="r-card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Mentor Evaluation</h2>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Cohort Guide Evaluation</h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
             <div>
               <label className="r-label">Resident</label>

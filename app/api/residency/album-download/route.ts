@@ -193,11 +193,11 @@ export async function GET(req: NextRequest) {
         }
       }
 
-      // Mentor feedback section
+      // Cohort Guide feedback section
       if (entry.mentor_strengths || entry.mentor_growth_edge || entry.mentor_practicum_connection) {
         children.push(
           new Paragraph({
-            children: [new TextRun({ text: 'Mentor Feedback', size: 24, bold: true, color: 'B8860B' })],
+            children: [new TextRun({ text: 'Cohort Guide Feedback', size: 24, bold: true, color: 'B8860B' })],
             spacing: { before: 400, after: 100 },
           }),
         )

@@ -11,6 +11,11 @@ export default function MentorDashboard() {
   const [pendingCount, setPendingCount] = useState(0)
   const [loading, setLoading] = useState(true)
 
+  // Session prep data
+  const [sessionAPrep, setSessionAPrep] = useState<any>(null)
+  const [sessionBPrep, setSessionBPrep] = useState<any>(null)
+  const [upcomingSessions, setUpcomingSessions] = useState<any[]>([])
+
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser()
@@ -63,20 +68,94 @@ export default function MentorDashboard() {
       const totalPending = enriched.reduce((sum: number, r: any) => sum + r.pending_submissions, 0)
       setPendingCount(totalPending)
 
+      // Load session prep data
+      await loadSessionPrep(enriched, user.id)
+
       setLoading(false)
     }
     load()
   }, [])
 
+  async function loadSessionPrep(residentList: any[], userId: string) {
+    const now = new Date()
+    const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    const today = now.toISOString().split('T')[0]
+    const currentMonth = now.getMonth() + 1
+    const currentYear = now.getFullYear()
+
+    // Get upcoming sessions for this month
+    const { data: sessions } = await supabase
+      .from('residency_seminars')
+      .select('*')
+      .gte('seminar_date', today)
+      .lte('seminar_date', `${currentYear}-${String(currentMonth).padStart(2, '0')}-31`)
+      .order('seminar_date')
+
+    if (sessions) setUpcomingSessions(sessions)
+
+    const residentIds = residentList.map((r: any) => r.id)
+    if (residentIds.length === 0) return
+
+    // Session A prep: curriculum themes and bundle content from past 2 weeks
+    const cohortIds = [...new Set(residentList.map((r: any) => r.cohort_id).filter(Boolean))]
+    if (cohortIds.length > 0) {
+      const { data: recentBundles } = await supabase
+        .from('residency_bundles')
+        .select('id, week_number, weekly_theme, strands_included, practicum_focus, album_submission_required')
+        .in('cohort_id', cohortIds)
+        .gte('unlock_date', twoWeeksAgo)
+        .lte('unlock_date', today)
+        .order('week_number')
+
+      const { data: recentEngagements } = await supabase
+        .from('residency_bundle_engagements')
+        .select('resident_id, bundle_id, completion_status')
+        .in('resident_id', residentIds)
+        .in('bundle_id', (recentBundles || []).map(b => b.id))
+
+      setSessionAPrep({
+        bundles: recentBundles || [],
+        engagements: recentEngagements || [],
+      })
+    }
+
+    // Session B prep: practicum log highlights and observation entries from past 2 weeks
+    const [{ data: recentLogs }, { data: recentObservations }] = await Promise.all([
+      supabase
+        .from('residency_practicum_logs')
+        .select('resident_id, log_date, hours_teaching, hours_observation, notes, highlights')
+        .in('resident_id', residentIds)
+        .gte('log_date', twoWeeksAgo)
+        .is('deleted_at', null)
+        .order('log_date', { ascending: false })
+        .limit(20),
+      supabase
+        .from('residency_observation_logs')
+        .select('resident_id, observation_date, school_name, key_observations, curriculum_connection_notes')
+        .in('resident_id', residentIds)
+        .gte('observation_date', twoWeeksAgo)
+        .order('observation_date', { ascending: false })
+        .limit(10),
+    ])
+
+    setSessionBPrep({
+      logs: recentLogs || [],
+      observations: recentObservations || [],
+    })
+  }
+
   if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
+
+  const nextSessionA = upcomingSessions.find(s => s.session_type === 'curriculum_integration')
+  const nextSessionB = upcomingSessions.find(s => s.session_type === 'practicum_community')
 
   return (
     <div>
       <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>
-        {profile ? `Welcome, ${profile.first_name}` : 'Mentor Dashboard'}
+        {profile ? `Welcome, ${profile.first_name}` : 'Cohort Guide Dashboard'}
       </h1>
       <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem' }}>
-        Your residents and pending reviews.
+        Your residents, upcoming sessions, and pending reviews.
       </p>
 
       {/* Stats */}
@@ -95,6 +174,116 @@ export default function MentorDashboard() {
             {pendingCount > 0 ? 'Reviews Waiting' : 'Pending Reviews'}
           </p>
         </Link>
+      </div>
+
+      {/* Session Prep Cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
+        {/* Session A Prep */}
+        <div className="r-card" style={{ borderLeft: '4px solid #1565c0' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+            <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#1565c0', margin: 0 }}>
+              Session A — Curriculum Integration
+            </h2>
+            {nextSessionA && (
+              <span style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>
+                {new Date(nextSessionA.seminar_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </span>
+            )}
+          </div>
+          <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
+            Curriculum themes &amp; bundle content from the past two weeks.
+          </p>
+
+          {sessionAPrep?.bundles?.length > 0 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {sessionAPrep.bundles.map((b: any) => {
+                const engagedCount = sessionAPrep.engagements.filter(
+                  (e: any) => e.bundle_id === b.id && e.completion_status === 'complete'
+                ).length
+                return (
+                  <div key={b.id} style={{ padding: '0.5rem 0.75rem', background: '#e3f2fd', borderRadius: '6px' }}>
+                    <p style={{ fontSize: '0.8125rem', fontWeight: 500 }}>
+                      Week {b.week_number}: {b.weekly_theme}
+                    </p>
+                    <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>
+                      {b.strands_included} · {engagedCount}/{residents.length} completed
+                      {b.album_submission_required && ' · Album due'}
+                    </p>
+                  </div>
+                )
+              })}
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', fontStyle: 'italic', marginTop: '0.25rem' }}>
+                Discussion prompt: Ask residents to connect one observation from their classroom to this cycle&apos;s curriculum focus.
+              </p>
+            </div>
+          ) : (
+            <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>No recent bundle activity.</p>
+          )}
+        </div>
+
+        {/* Session B Prep */}
+        <div className="r-card" style={{ borderLeft: '4px solid #7b1fa2' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+            <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#7b1fa2', margin: 0 }}>
+              Session B — Practicum &amp; Community
+            </h2>
+            {nextSessionB && (
+              <span style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>
+                {new Date(nextSessionB.seminar_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </span>
+            )}
+          </div>
+          <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
+            Practicum log highlights &amp; observation entries from the past two weeks.
+          </p>
+
+          {(sessionBPrep?.logs?.length > 0 || sessionBPrep?.observations?.length > 0) ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {sessionBPrep.logs.length > 0 && (
+                <div style={{ padding: '0.5rem 0.75rem', background: '#f3e5f5', borderRadius: '6px' }}>
+                  <p style={{ fontSize: '0.8125rem', fontWeight: 500, marginBottom: '0.25rem' }}>
+                    Practicum Logs ({sessionBPrep.logs.length})
+                  </p>
+                  {sessionBPrep.logs.slice(0, 3).map((l: any, i: number) => {
+                    const resident = residents.find((r: any) => r.id === l.resident_id)
+                    return (
+                      <p key={i} style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginBottom: '0.125rem' }}>
+                        {resident?.profile?.first_name}: {l.hours_teaching}h teaching, {l.hours_observation}h observation
+                        {l.highlights && ` — "${l.highlights.substring(0, 60)}..."`}
+                      </p>
+                    )
+                  })}
+                  {sessionBPrep.logs.length > 3 && (
+                    <p style={{ fontSize: '0.625rem', color: 'var(--r-text-muted)' }}>
+                      +{sessionBPrep.logs.length - 3} more entries
+                    </p>
+                  )}
+                </div>
+              )}
+              {sessionBPrep.observations.length > 0 && (
+                <div style={{ padding: '0.5rem 0.75rem', background: '#f3e5f5', borderRadius: '6px' }}>
+                  <p style={{ fontSize: '0.8125rem', fontWeight: 500, marginBottom: '0.25rem' }}>
+                    Observation Visits ({sessionBPrep.observations.length})
+                  </p>
+                  {sessionBPrep.observations.slice(0, 3).map((o: any, i: number) => {
+                    const resident = residents.find((r: any) => r.id === o.resident_id)
+                    return (
+                      <p key={i} style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginBottom: '0.125rem' }}>
+                        {resident?.profile?.first_name} at {o.school_name}
+                        {o.key_observations && ` — "${o.key_observations.substring(0, 60)}..."`}
+                      </p>
+                    )
+                  })}
+                </div>
+              )}
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', fontStyle: 'italic', marginTop: '0.25rem' }}>
+                Discussion prompt: Ask each resident to share one proud moment and one struggle from the past two weeks.
+              </p>
+            </div>
+          ) : (
+            <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>No recent practicum activity.</p>
+          )}
+        </div>
       </div>
 
       {/* Resident cards */}

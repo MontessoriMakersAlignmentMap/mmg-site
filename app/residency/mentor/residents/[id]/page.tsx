@@ -348,7 +348,7 @@ export default function MentorResidentDetailPage() {
 
       {/* Mentor notes */}
       <div className="r-card">
-        <h2 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>Mentor Notes</h2>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>Cohort Guide Notes</h2>
         <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
           General notes visible to this resident and to the admin.
         </p>

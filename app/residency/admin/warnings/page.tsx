@@ -145,8 +145,8 @@ export default function WarningsPage() {
           resident_id: r.id,
           warning_type: 'excessive_absences',
           severity: absences.length >= 5 ? 'critical' : 'warning',
-          title: `${name}: ${absences.length} seminar absences`,
-          details: `MACTE allows max ~1 absence per 9 seminars (90% threshold). Currently at ${absences.length} absences.`,
+          title: `${name}: ${absences.length} session absences`,
+          details: `MACTE requires 90% session attendance. Currently at ${absences.length} absences.`,
         })
       }
     }

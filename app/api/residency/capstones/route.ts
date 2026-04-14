@@ -67,7 +67,7 @@ export async function PATCH(req: NextRequest) {
 
     if (reviewError) return NextResponse.json({ error: reviewError.message }, { status: 500 })
 
-    // Check if both mentor and instructor have approved
+    // Check if both cohort guide and instructor have approved
     const { data: allReviews } = await supabase
       .from('residency_capstone_reviews')
       .select('reviewer_role, verdict')

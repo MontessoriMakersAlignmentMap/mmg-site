@@ -199,13 +199,13 @@ export default function SupportPlansPage() {
           <div style={{ marginBottom: '1rem' }}>
             <label className="r-label">Goals (one per line)</label>
             <textarea className="r-textarea" value={goals} onChange={e => setGoals(e.target.value)} required
-              placeholder="Achieve proficient rubric score on practice rubric&#10;Complete 3 additional observation records&#10;Attend all remaining seminars"
+              placeholder="Achieve proficient rubric score on practice rubric&#10;Complete 3 additional observation records&#10;Attend all remaining sessions"
               style={{ minHeight: '80px' }} />
           </div>
           <div style={{ marginBottom: '1rem' }}>
             <label className="r-label">Strategies & Supports (one per line)</label>
             <textarea className="r-textarea" value={strategies} onChange={e => setStrategies(e.target.value)}
-              placeholder="Weekly mentor meetings&#10;Peer observation sessions&#10;Additional workshop attendance"
+              placeholder="Weekly Cohort Guide meetings&#10;Peer observation sessions&#10;Additional workshop attendance"
               style={{ minHeight: '80px' }} />
           </div>
           <button type="submit" className="r-btn r-btn-primary" disabled={saving} style={{ fontSize: '0.8125rem' }}>

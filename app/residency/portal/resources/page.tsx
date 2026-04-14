@@ -17,20 +17,33 @@ export default function ResourceLibraryPage() {
   const [resources, setResources] = useState<any[]>([])
   const [bookmarks, setBookmarks] = useState<Set<string>>(new Set())
   const [residentId, setResidentId] = useState('')
+  const [readingAssignments, setReadingAssignments] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [activeCollection, setActiveCollection] = useState<string | null>(null)
   const [showBookmarked, setShowBookmarked] = useState(false)
+  const [showReadingList, setShowReadingList] = useState(false)
 
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 
-      const { data: resident } = await supabase.from('residency_residents').select('id').eq('profile_id', user.id).single()
+      const { data: resident } = await supabase.from('residency_residents')
+        .select('id, assigned_level:residency_levels(name)')
+        .eq('profile_id', user.id).single()
       if (resident) {
         setResidentId(resident.id)
         const { data: bm } = await supabase.from('residency_resource_bookmarks').select('resource_id').eq('resident_id', resident.id)
         setBookmarks(new Set((bm || []).map(b => b.resource_id)))
+
+        // Load reading assignments for this track
+        const track = (resident.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+        const { data: ra } = await supabase
+          .from('residency_reading_assignments')
+          .select('*')
+          .eq('track', track)
+          .order('month_number')
+        if (ra) setReadingAssignments(ra)
       }
 
       const [colRes, resRes] = await Promise.all([
@@ -56,11 +69,13 @@ export default function ResourceLibraryPage() {
 
   if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
 
-  const displayedResources = showBookmarked
-    ? resources.filter(r => bookmarks.has(r.id))
-    : activeCollection
-      ? resources.filter(r => r.collection_id === activeCollection)
-      : resources.filter(r => r.featured)
+  const displayedResources = showReadingList
+    ? [] // Reading list has its own display
+    : showBookmarked
+      ? resources.filter(r => bookmarks.has(r.id))
+      : activeCollection
+        ? resources.filter(r => r.collection_id === activeCollection)
+        : resources.filter(r => r.featured)
 
   return (
     <div>
@@ -71,18 +86,18 @@ export default function ResourceLibraryPage() {
 
       {/* Collection tabs */}
       <div style={{ display: 'flex', gap: '0.375rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-        <button onClick={() => { setActiveCollection(null); setShowBookmarked(false) }}
+        <button onClick={() => { setActiveCollection(null); setShowBookmarked(false); setShowReadingList(false) }}
           style={{
             padding: '0.375rem 0.875rem', fontSize: '0.8125rem', borderRadius: '20px', cursor: 'pointer',
-            border: !activeCollection && !showBookmarked ? '2px solid var(--r-navy)' : '1px solid var(--r-border)',
-            background: !activeCollection && !showBookmarked ? 'rgba(14,26,122,0.06)' : 'transparent',
-            fontWeight: !activeCollection && !showBookmarked ? 600 : 400,
-            color: !activeCollection && !showBookmarked ? 'var(--r-navy)' : 'var(--r-text-muted)',
+            border: !activeCollection && !showBookmarked && !showReadingList ? '2px solid var(--r-navy)' : '1px solid var(--r-border)',
+            background: !activeCollection && !showBookmarked && !showReadingList ? 'rgba(14,26,122,0.06)' : 'transparent',
+            fontWeight: !activeCollection && !showBookmarked && !showReadingList ? 600 : 400,
+            color: !activeCollection && !showBookmarked && !showReadingList ? 'var(--r-navy)' : 'var(--r-text-muted)',
           }}>
           Featured
         </button>
         {collections.map(c => (
-          <button key={c.id} onClick={() => { setActiveCollection(c.id); setShowBookmarked(false) }}
+          <button key={c.id} onClick={() => { setActiveCollection(c.id); setShowBookmarked(false); setShowReadingList(false) }}
             style={{
               padding: '0.375rem 0.875rem', fontSize: '0.8125rem', borderRadius: '20px', cursor: 'pointer',
               border: activeCollection === c.id ? '2px solid var(--r-navy)' : '1px solid var(--r-border)',
@@ -93,8 +108,20 @@ export default function ResourceLibraryPage() {
             {c.name}
           </button>
         ))}
+        {readingAssignments.length > 0 && (
+          <button onClick={() => { setActiveCollection(null); setShowBookmarked(false); setShowReadingList(true) }}
+            style={{
+              padding: '0.375rem 0.875rem', fontSize: '0.8125rem', borderRadius: '20px', cursor: 'pointer',
+              border: showReadingList ? '2px solid #7b1fa2' : '1px solid var(--r-border)',
+              background: showReadingList ? '#f3e5f5' : 'transparent',
+              fontWeight: showReadingList ? 600 : 400,
+              color: showReadingList ? '#7b1fa2' : 'var(--r-text-muted)',
+            }}>
+            Required Reading
+          </button>
+        )}
         {bookmarks.size > 0 && (
-          <button onClick={() => { setActiveCollection(null); setShowBookmarked(true) }}
+          <button onClick={() => { setActiveCollection(null); setShowBookmarked(true); setShowReadingList(false) }}
             style={{
               padding: '0.375rem 0.875rem', fontSize: '0.8125rem', borderRadius: '20px', cursor: 'pointer',
               border: showBookmarked ? '2px solid var(--r-gold)' : '1px solid var(--r-border)',
@@ -107,9 +134,49 @@ export default function ResourceLibraryPage() {
         )}
       </div>
 
-      {displayedResources.length === 0 ? (
+      {/* Required Reading List */}
+      {showReadingList && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          {(() => {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            const byMonth = new Map<number, typeof readingAssignments>()
+            readingAssignments.forEach(ra => {
+              const group = byMonth.get(ra.month_number) || []
+              group.push(ra)
+              byMonth.set(ra.month_number, group)
+            })
+            return Array.from(byMonth.entries()).sort(([a], [b]) => a - b).map(([month, items]) => (
+              <div key={month}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--r-navy)' }}>
+                  {monthNames[month - 1]}
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {items.map(ra => (
+                    <div key={ra.id} className="r-card" style={{ borderLeft: '3px solid #7b1fa2' }}>
+                      <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, margin: '0 0 0.25rem' }}>{ra.book_title}</h4>
+                      {ra.author && <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>by {ra.author}</p>}
+                      {ra.chapters_pages && <p style={{ fontSize: '0.8125rem', marginTop: '0.375rem' }}><strong>Chapters/Pages:</strong> {ra.chapters_pages}</p>}
+                      {ra.focus_question && (
+                        <p style={{ fontSize: '0.8125rem', fontStyle: 'italic', background: '#f3e5f5', padding: '0.5rem 0.75rem', borderRadius: '6px', marginTop: '0.5rem', lineHeight: 1.6 }}>
+                          Focus: {ra.focus_question}
+                        </p>
+                      )}
+                      <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                        {ra.purchase_link && <a href={ra.purchase_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--r-navy)', fontWeight: 600 }}>Purchase →</a>}
+                        {ra.free_access_link && <a href={ra.free_access_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--r-success)', fontWeight: 600 }}>Free Access →</a>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          })()}
+        </div>
+      )}
+
+      {!showReadingList && displayedResources.length === 0 ? (
         <EmptyState title={showBookmarked ? 'No bookmarks yet' : 'No resources'} message={showBookmarked ? 'Bookmark resources to save them here.' : 'Resources will be added by the program.'} />
-      ) : (
+      ) : !showReadingList ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {displayedResources.map(r => (
             <div key={r.id} className="r-card" style={{
@@ -162,7 +229,7 @@ export default function ResourceLibraryPage() {
             </div>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

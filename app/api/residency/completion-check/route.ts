@@ -68,7 +68,7 @@ export async function GET(req: NextRequest) {
     (sum, l) => sum + (Number(l.hours_observation) || 0), 0
   )
 
-  // 4. Formal observations (mentor/faculty)
+  // 4. Formal observations (cohort guide/faculty)
   const { count: observationCount } = await supabase
     .from('residency_observation_forms')
     .select('*', { count: 'exact', head: true })

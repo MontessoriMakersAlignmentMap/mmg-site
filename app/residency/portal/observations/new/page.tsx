@@ -312,7 +312,7 @@ export default function NewObservationPage() {
 
           {!materialsCompleted && (
             <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.75rem', lineHeight: 1.5, fontStyle: 'italic' }}>
-              If you were unable to complete a materials session this month, note the reason in your observation reflections above and reach out to your mentor to discuss alternative practice opportunities.
+              If you were unable to complete a materials session this month, note the reason in your observation reflections above and reach out to your Cohort Guide to discuss alternative practice opportunities.
             </p>
           )}
 

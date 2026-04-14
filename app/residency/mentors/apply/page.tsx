@@ -58,7 +58,7 @@ export default function MentorApplyPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!form.role_description_confirmed) {
-      setError('Please confirm you have read the mentor role description.')
+      setError('Please confirm you have read the Cohort Guide role description.')
       return
     }
     setSubmitting(true)
@@ -96,7 +96,7 @@ export default function MentorApplyPage() {
             Thank You, {form.first_name}
           </h1>
           <p style={{ fontSize: '1.0625rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)' }}>
-            We have received your mentor application and will review it carefully. You will hear from us within two weeks.
+            We have received your Cohort Guide application and will review it carefully. You will hear from us within two weeks.
           </p>
           <div style={{ marginTop: '2.5rem' }}>
             <Link href="/residency" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem' }}>Back to Residency</Link>
@@ -114,7 +114,7 @@ export default function MentorApplyPage() {
             Montessori Makers Residency
           </p>
           <h1 style={{ fontFamily: 'var(--r-font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: 'var(--r-white)' }}>
-            Mentor Application
+            Cohort Guide Application
           </h1>
         </div>
       </section>
@@ -226,7 +226,7 @@ export default function MentorApplyPage() {
                 <input type="checkbox" checked={form.role_description_confirmed}
                   onChange={e => setForm({ ...form, role_description_confirmed: e.target.checked })}
                   style={{ marginTop: '0.2rem', accentColor: 'var(--r-navy)', width: '18px', height: '18px' }} />
-                I have read the <Link href="/residency/mentors" style={{ color: 'var(--r-navy)', fontWeight: 600 }}>mentor role description</Link> and understand the responsibilities and time commitment involved. *
+                I have read the <Link href="/residency/mentors" style={{ color: 'var(--r-navy)', fontWeight: 600 }}>Cohort Guide role description</Link> and understand the responsibilities and time commitment involved. *
               </label>
             </div>
 
@@ -238,7 +238,7 @@ export default function MentorApplyPage() {
 
             <button type="submit" className="r-btn r-btn-primary" disabled={submitting}
               style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem' }}>
-              {submitting ? 'Submitting...' : 'Submit Mentor Application'}
+              {submitting ? 'Submitting...' : 'Submit Cohort Guide Application'}
             </button>
           </form>
         </div>

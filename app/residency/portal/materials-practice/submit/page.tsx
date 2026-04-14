@@ -125,7 +125,7 @@ export default function SubmitPracticeVideoPage() {
       <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>Submit Practice Video</h1>
       <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
         Record yourself giving a complete Montessori presentation using real materials
-        or appropriate household substitutes, then share the video for your mentor&apos;s feedback.
+        or appropriate household substitutes, then share the video for your Cohort Guide&apos;s feedback.
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -178,14 +178,14 @@ export default function SubmitPracticeVideoPage() {
         <div className="r-card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', marginBottom: '0.375rem', color: 'var(--r-navy)' }}>Self-Reflection</h2>
           <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '1rem', lineHeight: 1.5 }}>
-            Before submitting for mentor feedback, reflect on your own presentation.
-            What went well? What do you want your mentor to focus on?
+            Before submitting for Cohort Guide feedback, reflect on your own presentation.
+            What went well? What do you want your Cohort Guide to focus on?
           </p>
 
           <textarea className="r-textarea" value={selfReflection}
             onChange={e => setSelfReflection(e.target.value)}
             style={{ minHeight: '180px' }}
-            placeholder="Take a moment to watch your video back before writing this reflection. What do you notice about your technique, pacing, and presence? What felt confident? What do you want your mentor to pay attention to?" />
+            placeholder="Take a moment to watch your video back before writing this reflection. What do you notice about your technique, pacing, and presence? What felt confident? What do you want your Cohort Guide to pay attention to?" />
           <p style={{
             fontSize: '0.6875rem',
             color: reflectionWords >= 100 ? 'var(--r-success)' : 'var(--r-text-muted)',
@@ -201,7 +201,7 @@ export default function SubmitPracticeVideoPage() {
 
         <button type="submit" className="r-btn r-btn-primary" disabled={saving}
           style={{ fontSize: '0.8125rem' }}>
-          {saving ? 'Submitting...' : 'Submit for Mentor Review'}
+          {saving ? 'Submitting...' : 'Submit for Cohort Guide Review'}
         </button>
       </form>
     </div>
