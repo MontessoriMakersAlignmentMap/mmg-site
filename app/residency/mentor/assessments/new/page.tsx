@@ -283,7 +283,7 @@ export default function NewAssessmentPage() {
           recipient_id: resData.profile_id,
           type: 'rubric_completed',
           title: 'Formal Assessment Completed',
-          message: `Your mentor has completed a ${typeLabels[rubricType]} assessment. You can view the results and add a reflection from your portfolio.`,
+          message: `Your Cohort Guide has completed a ${typeLabels[rubricType]} assessment. You can view the results and add a reflection from your portfolio.`,
           link: '/residency/portal/portfolio',
         })
       }

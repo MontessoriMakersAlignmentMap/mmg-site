@@ -53,7 +53,9 @@ export default function InstructorSessionsPage() {
                       {new Date(s.scheduled_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
                     </p>
                     <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)' }}>
-                      {s.cohort?.name}{s.discussion_theme && ` \u2022 ${s.discussion_theme}`}
+                      {s.cohort?.name}
+                      {s.session_type && ` · ${s.session_type === 'curriculum_integration' ? 'Session A' : 'Session B'}`}
+                      {s.discussion_theme && ` · ${s.discussion_theme}`}
                     </p>
                   </div>
                   <span style={{

@@ -21,7 +21,7 @@ const statusLabels: Record<string, string> = {
   revision_requested: 'Revision Requested',
   ai_review: 'AI Review',
   ai_passed: 'AI Passed',
-  mentor_review: 'Mentor Review',
+  mentor_review: 'Cohort Guide Review',
 }
 
 export default function StatusBadge({ status, size = 'sm' }: StatusBadgeProps) {

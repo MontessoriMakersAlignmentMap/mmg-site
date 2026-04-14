@@ -148,7 +148,7 @@ export default function InstructorDashboard() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
                 <StatBox label="Residents" value={c.residentCount} />
                 <StatBox label="Pending AI Review" value={c.pendingAI} highlight={c.pendingAI > 0} />
-                <StatBox label="Pending Mentor Review" value={c.pendingMentor} highlight={c.pendingMentor > 0} />
+                <StatBox label="Pending Cohort Guide Review" value={c.pendingMentor} highlight={c.pendingMentor > 0} />
                 <StatBox label="Week" value={c.weekNum} />
               </div>
             </Link>

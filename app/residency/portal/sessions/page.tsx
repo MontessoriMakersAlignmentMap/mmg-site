@@ -22,7 +22,7 @@ export default function PortalSessionsPage() {
       if (resident?.cohort_id) {
         const { data } = await supabase
           .from('residency_live_sessions')
-          .select('id, scheduled_date, discussion_theme, key_themes, recording_link, status')
+          .select('id, scheduled_date, discussion_theme, key_themes, recording_link, status, session_type')
           .eq('cohort_id', resident.cohort_id)
           .eq('status', 'completed')
           .order('scheduled_date', { ascending: false })
@@ -60,6 +60,18 @@ export default function PortalSessionsPage() {
                   </a>
                 )}
               </div>
+
+              {s.session_type && (
+                <span style={{
+                  display: 'inline-block',
+                  fontSize: '0.625rem', fontWeight: 700, padding: '0.125rem 0.5rem', borderRadius: '3px',
+                  background: s.session_type === 'curriculum_integration' ? '#e3f2fd' : '#f3e5f5',
+                  color: s.session_type === 'curriculum_integration' ? '#1565c0' : '#7b1fa2',
+                  marginBottom: '0.5rem',
+                }}>
+                  {s.session_type === 'curriculum_integration' ? 'Session A — Curriculum Integration' : 'Session B — Practicum & Community'}
+                </span>
+              )}
 
               {s.discussion_theme && (
                 <p style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--r-navy)', marginBottom: '0.75rem' }}>

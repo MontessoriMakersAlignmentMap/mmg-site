@@ -276,7 +276,7 @@ export async function getAllLessons(supabase: SupabaseClient) {
   return data
 }
 
-// ─── Mentor queries ────────────────────────────────────────────────────────
+// ─── Cohort Guide queries ─────────────────────────────────────────────────
 
 export async function getMentorResidents(supabase: SupabaseClient, mentorId: string) {
   const { data, error } = await supabase

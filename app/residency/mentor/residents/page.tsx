@@ -45,7 +45,7 @@ export default function MentorResidentsPage() {
     <div>
       <h1 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>My Residents</h1>
       <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem' }}>
-        Residents assigned to you for mentorship.
+        Residents assigned to you.
       </p>
 
       {residents.length === 0 ? (

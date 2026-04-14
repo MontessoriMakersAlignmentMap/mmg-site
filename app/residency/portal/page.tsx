@@ -457,7 +457,7 @@ export default function PortalDashboard() {
       {unreadFeedback.length > 0 && (
         <div className="r-card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid var(--r-gold)', background: 'var(--r-gold-light)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-            <h2 style={{ fontSize: '1.125rem', color: 'var(--r-navy)' }}>New Mentor Feedback</h2>
+            <h2 style={{ fontSize: '1.125rem', color: 'var(--r-navy)' }}>New Cohort Guide Feedback</h2>
             <span className="r-badge" style={{ background: 'var(--r-gold)', color: 'var(--r-white)', fontSize: '0.75rem' }}>
               {unreadFeedback.length} new
             </span>
@@ -500,7 +500,7 @@ export default function PortalDashboard() {
       {/* Mentor notes */}
       {resident?.mentor_notes && (
         <div className="r-card" style={{ borderLeft: '3px solid var(--r-gold)', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Note from Your Mentor</h2>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Note from Your Cohort Guide</h2>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--r-text)' }}>
             {resident.mentor_notes}
           </p>

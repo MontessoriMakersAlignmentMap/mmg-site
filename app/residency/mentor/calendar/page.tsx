@@ -90,7 +90,7 @@ export default function MentorCalendarPage() {
       {nextLiveSession && (
         <div className="r-card" style={{ borderLeft: '4px solid #7b1fa2', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '1.125rem', color: '#7b1fa2', marginBottom: '0.5rem' }}>
-            Live Session Prep &middot; Week {nextLiveSession.week_number}
+            Session Prep &middot; Week {nextLiveSession.week_number}
           </h2>
           <p style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.75rem' }}>
             {nextLiveSession.live_session_discussion_theme}

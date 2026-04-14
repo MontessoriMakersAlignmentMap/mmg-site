@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'Montessori Makers Residency <noreply@montessorimakersgroup.org>',
       to: email,
-      subject: 'Mentor Application Received — Montessori Makers Residency',
+      subject: 'Cohort Guide Application Received — Montessori Makers Residency',
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0E1A7A; padding: 2rem; border-radius: 8px 8px 0 0; text-align: center;">
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
           <div style="padding: 2rem; border: 1px solid #e2ddd6; border-top: none; border-radius: 0 0 8px 8px;">
             <h2 style="color: #0E1A7A; font-size: 18px;">Thank you, ${first_name}!</h2>
             <p style="font-size: 15px; line-height: 1.7; color: #333;">
-              We have received your application to become a Mentor Teacher with the Montessori Makers Residency.
+              We have received your application to become a Cohort Guide with the Montessori Makers Residency.
               Our team will review your qualifications and be in touch within two weeks.
             </p>
             <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e2ddd6;" />
@@ -61,10 +61,10 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'Montessori Makers Residency <noreply@montessorimakersgroup.org>',
       to: 'hannah@montessorimakersgroup.org',
-      subject: `New Mentor Application: ${first_name} ${last_name}`,
+      subject: `New Cohort Guide Application: ${first_name} ${last_name}`,
       html: `
         <div style="font-family: system-ui, sans-serif;">
-          <h2 style="color: #0E1A7A;">New Mentor Application</h2>
+          <h2 style="color: #0E1A7A;">New Cohort Guide Application</h2>
           <p><strong>${first_name} ${last_name}</strong> (${email})</p>
           <p>Credential: ${body.credential_type || 'Not specified'}</p>
           <p>Experience: ${body.years_experience || '?'} years</p>

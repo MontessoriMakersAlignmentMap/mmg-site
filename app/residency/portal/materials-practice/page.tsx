@@ -50,7 +50,7 @@ export default function MaterialsPracticePage() {
         </Link>
       </div>
       <p style={{ color: 'var(--r-text-muted)', fontSize: '0.875rem', marginBottom: '2rem', lineHeight: 1.6 }}>
-        Record yourself giving a Montessori presentation and submit it for mentor feedback.
+        Record yourself giving a Montessori presentation and submit it for Cohort Guide feedback.
         This is an invitation to practice and refine your technique — whether you&apos;re preparing for practicum
         or building confidence with materials you haven&apos;t had the chance to work with on-site.
       </p>
@@ -60,7 +60,7 @@ export default function MaterialsPracticePage() {
           <p style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🎥</p>
           <p style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.375rem' }}>No submissions yet</p>
           <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginBottom: '1rem', lineHeight: 1.5 }}>
-            When you&apos;re ready, record yourself presenting a lesson and submit it for your mentor&apos;s feedback.
+            When you&apos;re ready, record yourself presenting a lesson and submit it for your Cohort Guide&apos;s feedback.
           </p>
           <Link href="/residency/portal/materials-practice/submit" className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem', textDecoration: 'none' }}>
             Submit Your First Video
@@ -99,7 +99,7 @@ export default function MaterialsPracticePage() {
                 {reviewed && (
                   <div style={{ marginTop: '0.75rem', padding: '1rem', background: 'var(--r-cream)', borderRadius: '8px' }}>
                     <p style={{ fontSize: '0.6875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--r-text-muted)', marginBottom: '0.75rem' }}>
-                      Mentor Feedback — {new Date(s.reviewed_at).toLocaleDateString()}
+                      Cohort Guide Feedback — {new Date(s.reviewed_at).toLocaleDateString()}
                     </p>
 
                     {readiness && (

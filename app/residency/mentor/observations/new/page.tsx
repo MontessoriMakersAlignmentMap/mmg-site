@@ -153,7 +153,7 @@ export default function NewObservationPage() {
       recipient_id: residentId,
       type: 'observation_completed',
       title: 'New observation submitted',
-      message: `Your mentor completed an observation on ${new Date(observationDate).toLocaleDateString()}.`,
+      message: `Your Cohort Guide completed an observation on ${new Date(observationDate).toLocaleDateString()}.`,
       link: '/residency/portal/portfolio',
     })
 

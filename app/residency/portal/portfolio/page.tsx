@@ -41,6 +41,8 @@ export default function PortfolioPage() {
   const [materialsSessions, setMaterialsSessions] = useState<any[]>([])
   const [remotePractice, setRemotePractice] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [readingLog, setReadingLog] = useState<any[]>([])
+  const [readingAssignments, setReadingAssignments] = useState<any[]>([])
   const [reflectionId, setReflectionId] = useState<string | null>(null)
   const [reflectionText, setReflectionText] = useState('')
   const [reflectionSaving, setReflectionSaving] = useState(false)
@@ -101,6 +103,15 @@ export default function PortfolioPage() {
         if (haResult.data) setHandbookAck(haResult.data)
         if (msResult.data) setMaterialsSessions(msResult.data)
         if (rpResult.data) setRemotePractice(rpResult.data)
+
+        // Load reading log
+        const track = (res.assigned_level as any)?.name?.toLowerCase() === 'elementary' ? 'elementary' : 'primary'
+        const [{ data: ra }, { data: rl }] = await Promise.all([
+          supabase.from('residency_reading_assignments').select('*').eq('track', track).order('month_number'),
+          supabase.from('residency_reading_log').select('*').eq('resident_id', res.id),
+        ])
+        if (ra) setReadingAssignments(ra)
+        if (rl) setReadingLog(rl)
       }
 
       setLoading(false)
@@ -484,6 +495,61 @@ export default function PortfolioPage() {
           </div>
         )}
       </div>
+
+      {/* Reading Log */}
+      {readingAssignments.length > 0 && (
+        <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Reading Log</h2>
+          <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1rem' }}>
+            <div style={{ padding: '0.75rem 1rem', background: 'var(--r-cream)', borderRadius: '8px', flex: 1 }}>
+              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)', margin: 0 }}>
+                {readingLog.filter(l => l.completed).length}/{readingAssignments.length}
+              </p>
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>Readings Completed</p>
+            </div>
+            <div style={{ padding: '0.75rem 1rem', background: 'var(--r-cream)', borderRadius: '8px', flex: 1 }}>
+              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)', margin: 0 }}>
+                {readingLog.filter(l => l.notes).length}
+              </p>
+              <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>Reflections Written</p>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {readingAssignments.map(ra => {
+              const log = readingLog.find(l => l.reading_assignment_id === ra.id)
+              return (
+                <div key={ra.id} style={{
+                  padding: '0.75rem',
+                  background: 'var(--r-cream)',
+                  borderRadius: '8px',
+                  borderLeft: log?.completed ? '3px solid var(--r-success)' : '3px solid var(--r-border)',
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <p style={{ fontSize: '0.8125rem', fontWeight: 600, margin: 0 }}>{ra.book_title}</p>
+                      <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', margin: 0 }}>
+                        {ra.author && `by ${ra.author} · `}
+                        {ra.chapters_pages && `${ra.chapters_pages} · `}
+                        Month {ra.month_number}
+                      </p>
+                    </div>
+                    {log?.completed && (
+                      <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--r-success)', background: 'var(--r-success-light)', padding: '0.125rem 0.5rem', borderRadius: '9999px' }}>
+                        ✓ Complete
+                      </span>
+                    )}
+                  </div>
+                  {log?.notes && (
+                    <p style={{ fontSize: '0.8125rem', color: 'var(--r-text)', marginTop: '0.375rem', lineHeight: 1.5 }}>
+                      {log.notes.length > 150 ? log.notes.substring(0, 150) + '...' : log.notes}
+                    </p>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Standing History */}
       {standingHistory.length > 0 && (
