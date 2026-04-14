@@ -120,7 +120,7 @@ export default function SecondBrainAdmin() {
       const res = await fetch('/api/admin/second-brain/compile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
-        body: JSON.stringify({ batchSize: 10 }),
+        body: JSON.stringify({ batchSize: 5 }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Compile failed')
@@ -215,7 +215,7 @@ export default function SecondBrainAdmin() {
               Ingest Website
             </Btn>
             <Btn onClick={compile} busy={busy === 'compile'} disabled={!!busy} primary>
-              Compile next batch (10)
+              Compile next batch (5)
             </Btn>
           </div>
 

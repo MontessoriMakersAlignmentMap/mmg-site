@@ -60,7 +60,10 @@ export async function POST(req: NextRequest) {
   }
 
   const body = (await req.json().catch(() => ({}))) as CompileBody
-  const batchSize = Math.min(Math.max(body.batchSize ?? 10, 1), 25)
+  // Smaller default (5) + parallel execution. On Vercel's default function
+  // limit (~60s on Hobby, 300s on Pro), sequential 10x was timing out. 5 in
+  // parallel finishes in ~30–45s (one Claude round-trip, not five stacked).
+  const batchSize = Math.min(Math.max(body.batchSize ?? 5, 1), 10)
 
   const supabase = createServiceClient()
 
@@ -79,10 +82,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, compiled: 0, remaining: 0, message: 'Nothing to compile.' })
   }
 
-  const stats = { compiled: 0, errors: 0 }
-  const errors: Array<{ source: string; error: string }> = []
+  type SourceRow = (typeof sources)[number]
 
-  for (const source of sources) {
+  async function compileOne(source: SourceRow): Promise<{ ok: true } | { ok: false; error: string }> {
     try {
       const content = (source.content ?? '').slice(0, MAX_SOURCE_CHARS)
       const userMsg = `Source type: ${source.source_type}
@@ -104,13 +106,10 @@ ${content}`
       const markdown = textBlock && 'text' in textBlock ? textBlock.text : ''
       if (!markdown) throw new Error('Empty compile response')
 
-      // Extract title from first heading, fall back to source title.
       const titleMatch = markdown.match(/^#\s+(.+)$/m)
       const pageTitle = titleMatch?.[1]?.trim() || source.title
-
       const slug = `summary/${source.id}`
 
-      // Upsert wiki page.
       const { data: existing } = await supabase
         .from('sb_wiki_pages')
         .select('id')
@@ -144,18 +143,30 @@ ${content}`
         notes: `Compiled "${source.title}" → ${slug}`,
       })
 
-      stats.compiled++
+      return { ok: true }
     } catch (e) {
-      stats.errors++
-      errors.push({ source: source.title, error: (e as Error).message })
       await supabase.from('sb_ingest_log').insert({
         action: 'compile',
         status: 'error',
         ref_id: source.id,
         notes: `Compile failed: ${(e as Error).message}`,
       })
+      return { ok: false, error: (e as Error).message }
     }
   }
+
+  const stats = { compiled: 0, errors: 0 }
+  const errors: Array<{ source: string; error: string }> = []
+
+  const results = await Promise.all(sources.map(compileOne))
+  results.forEach((r, i) => {
+    if (r.ok) {
+      stats.compiled++
+    } else {
+      stats.errors++
+      errors.push({ source: sources[i].title, error: r.error })
+    }
+  })
 
   const { count: remaining } = await supabase
     .from('sb_raw_sources')
