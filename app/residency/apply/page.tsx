@@ -257,33 +257,54 @@ export default function ApplyPage() {
 
               <div style={{ marginBottom: '1.25rem' }}>
                 <label className="r-label">Track of Interest *</label>
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '0.5rem' }}>
                   {[
-                    { value: 'primary', label: 'Primary (Ages 3\u20136)' },
-                    { value: 'elementary', label: 'Elementary (Ages 6\u201312)' },
-                  ].map(opt => (
-                    <label key={opt.value} style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.75rem 1.25rem',
-                      border: `2px solid ${form.track_interest === opt.value ? 'var(--r-navy)' : 'var(--r-border)'}`,
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      background: form.track_interest === opt.value ? 'rgba(14,26,122,0.04)' : 'transparent',
-                      fontSize: '0.875rem',
-                      fontWeight: form.track_interest === opt.value ? 600 : 400,
-                      flex: 1,
-                      justifyContent: 'center',
-                    }}>
-                      <input type="radio" name="track_interest" value={opt.value}
-                        checked={form.track_interest === opt.value}
-                        onChange={e => update('track_interest', e.target.value)}
-                        style={{ display: 'none' }} />
-                      {opt.label}
-                    </label>
-                  ))}
+                    {
+                      value: 'primary',
+                      label: 'Primary (Ages 3\u20136)',
+                      length: '9-month program',
+                      tuition: '$5,000',
+                      plan: '$417/mo \u00d7 12',
+                    },
+                    {
+                      value: 'elementary',
+                      label: 'Elementary (Ages 6\u201312)',
+                      length: '12-month program',
+                      tuition: '$7,000',
+                      plan: '$438/mo \u00d7 16',
+                    },
+                  ].map(opt => {
+                    const selected = form.track_interest === opt.value
+                    return (
+                      <label key={opt.value} style={{
+                        display: 'block',
+                        padding: '1rem 1.25rem',
+                        border: `2px solid ${selected ? 'var(--r-navy)' : 'var(--r-border)'}`,
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        background: selected ? 'rgba(14,26,122,0.04)' : 'transparent',
+                      }}>
+                        <input type="radio" name="track_interest" value={opt.value}
+                          checked={selected}
+                          onChange={e => update('track_interest', e.target.value)}
+                          style={{ display: 'none' }} />
+                        <p style={{ fontSize: '0.9375rem', fontWeight: selected ? 700 : 600, marginBottom: '0.25rem' }}>
+                          {opt.label}
+                        </p>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '0.5rem' }}>
+                          {opt.length}
+                        </p>
+                        <p style={{ fontSize: '0.8125rem', color: 'var(--r-navy)', fontWeight: 600 }}>
+                          {opt.tuition} pay-in-full &middot; {opt.plan}
+                        </p>
+                      </label>
+                    )
+                  })}
                 </div>
+                <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.5rem' }}>
+                  Annual materials intensive ($200&ndash;$300) billed separately. Remote practice option available at no additional cost.{' '}
+                  <Link href="/residency/pricing" style={{ color: 'var(--r-navy)', fontWeight: 600 }}>See full pricing &rarr;</Link>
+                </p>
               </div>
 
               <div>

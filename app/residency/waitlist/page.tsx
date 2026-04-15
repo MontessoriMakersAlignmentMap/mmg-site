@@ -164,9 +164,13 @@ export default function WaitlistPage() {
               <label className="r-label" htmlFor="track_interest">Track of Interest</label>
               <select id="track_interest" className="r-input" value={form.track_interest} onChange={e => update('track_interest', e.target.value)}>
                 <option value="">Not sure yet</option>
-                <option value="primary">Primary (Ages 3-6)</option>
-                <option value="elementary">Elementary (Ages 6-12)</option>
+                <option value="primary">Primary (Ages 3-6) &mdash; $5,000</option>
+                <option value="elementary">Elementary (Ages 6-12) &mdash; $7,000</option>
               </select>
+              <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginTop: '0.375rem' }}>
+                Payment plans: Primary $417/mo &times; 12 &middot; Elementary $438/mo &times; 16. Annual materials intensive billed separately ($200&ndash;$300).{' '}
+                <Link href="/residency/pricing" style={{ color: 'var(--r-navy)', fontWeight: 600 }}>See full pricing &rarr;</Link>
+              </p>
             </div>
 
             {error && (
