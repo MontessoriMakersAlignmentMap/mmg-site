@@ -233,21 +233,8 @@ export default function MMRPricingPage() {
                   href="https://mmr.montessorimakersgroup.org/apply"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    display: 'block',
-                    background: '#0e1a7a',
-                    color: '#fff',
-                    textAlign: 'center',
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    padding: '0.875rem',
-                    textDecoration: 'none',
-                    transition: 'background 0.2s',
-                    marginTop: 'auto',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#162270')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#0e1a7a')}
+                  className="block text-center text-white text-xs tracking-[0.1em] uppercase no-underline bg-[#0e1a7a] hover:bg-[#162270] transition-colors duration-200"
+                  style={{ padding: '0.875rem', marginTop: 'auto' }}
                 >
                   Apply to Primary Track
                 </a>
@@ -357,21 +344,8 @@ export default function MMRPricingPage() {
                   href="https://mmr.montessorimakersgroup.org/apply"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    display: 'block',
-                    background: '#0e1a7a',
-                    color: '#fff',
-                    textAlign: 'center',
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    padding: '0.875rem',
-                    textDecoration: 'none',
-                    transition: 'background 0.2s',
-                    marginTop: 'auto',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#162270')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#0e1a7a')}
+                  className="block text-center text-white text-xs tracking-[0.1em] uppercase no-underline bg-[#0e1a7a] hover:bg-[#162270] transition-colors duration-200"
+                  style={{ padding: '0.875rem', marginTop: 'auto' }}
                 >
                   Apply to Elementary Track
                 </a>
@@ -843,27 +817,8 @@ export default function MMRPricingPage() {
               </a>
               <Link
                 href="/residency"
-                style={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.8125rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  padding: '0.875rem 2.25rem',
-                  textDecoration: 'none',
-                  border: '1px solid rgba(255,255,255,0.25)',
-                  minHeight: '44px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  transition: 'border-color 0.2s, color 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)'
-                  e.currentTarget.style.color = '#fff'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
-                  e.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-                }}
+                className="text-white/70 hover:text-white text-[0.8125rem] tracking-[0.1em] uppercase no-underline border border-white/25 hover:border-white/60 inline-flex items-center transition-colors duration-200"
+                style={{ padding: '0.875rem 2.25rem', minHeight: '44px' }}
               >
                 Back to Residency
               </Link>
