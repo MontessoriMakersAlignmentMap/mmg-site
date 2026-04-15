@@ -213,21 +213,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#0E1A2A] pt-7 flex flex-col md:flex-row justify-between gap-4">
+        <div className="border-t border-[#0E1A2A] pt-7 flex flex-col md:flex-row justify-between gap-2">
           <p className="text-[#7A8FA3] text-xs">Montessori Makers Group &copy; 2026</p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/mmap/privacy" className="text-[#7A8FA3] text-xs hover:text-[#CBD5E1] transition-colors">
-              Privacy
-            </Link>
-            <Link href="/mmap/terms" className="text-[#7A8FA3] text-xs hover:text-[#CBD5E1] transition-colors">
-              Terms
-            </Link>
-            <Link href="/mmap/security" className="text-[#7A8FA3] text-xs hover:text-[#CBD5E1] transition-colors">
-              Security &amp; FERPA
-            </Link>
-            <Link href="/mmap/sub-processors" className="text-[#7A8FA3] text-xs hover:text-[#CBD5E1] transition-colors">
-              Sub-processors
-            </Link>
+          <div className="flex items-center gap-5">
+            <p className="text-[#7A8FA3] text-xs">Leadership. Alignment. Impact.</p>
             <Link href="/admin" className="text-[#3D4F60] text-xs hover:text-[#7A8FA3] transition-colors">
               Admin
             </Link>
