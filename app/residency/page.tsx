@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import TuitionCards from './components/TuitionCards'
 
 export default function ResidencyHome() {
   return (
@@ -125,6 +126,32 @@ export default function ResidencyHome() {
           <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--r-white)' }}>Built with Intention</h2>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.8 }}>
             This platform is not a course marketplace. It is the infrastructure for a residency program that takes Montessori teacher preparation seriously &mdash; with structured curriculum, mentorship, and accountability at every stage.
+          </p>
+        </div>
+      </section>
+
+      {/* Tuition */}
+      <section className="r-section" style={{ background: 'var(--r-bg-muted)' }}>
+        <div className="r-container">
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p style={{
+              color: 'var(--r-gold)', fontSize: '0.75rem', fontWeight: 600,
+              textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem',
+            }}>
+              Tuition &amp; Payment
+            </p>
+            <h2 style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>Program Tuition</h2>
+            <p style={{ fontSize: '0.9375rem', color: 'var(--r-text-muted)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.6 }}>
+              Two credential tracks. Pay in full or choose an interest-free monthly plan. Scholarships are available through the Equity Fellows track.
+            </p>
+          </div>
+          <TuitionCards />
+          <p style={{ textAlign: 'center', fontSize: '0.8125rem', color: 'var(--r-text-muted)', marginTop: '1.5rem' }}>
+            Need financial support?{' '}
+            <Link href="/residency/apply" style={{ color: 'var(--r-navy)', fontWeight: 600 }}>
+              Apply to the Equity Fellows track
+            </Link>
+            {' '}for additional mentorship and tuition support.
           </p>
         </div>
       </section>
