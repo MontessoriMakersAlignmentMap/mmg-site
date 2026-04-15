@@ -4,7 +4,7 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const routingCards = [
   {
-    title: "I'm a school exploring MMAP",
+    title: "I'm a school exploring the Alignment Map",
     body: "The demo request page is built for you. Request a walkthrough and we'll build the conversation around your school's systems and questions.",
     linkLabel: 'Request a Demo →',
     linkHref: '/mmap/demo',
@@ -19,7 +19,7 @@ const routingCards = [
   },
   {
     title: "I'm interested in partnership",
-    body: 'For technology partners, Montessori networks, AMI/AMS organizations, and researchers interested in MMAP for research contexts.',
+    body: 'For technology partners, Montessori networks, AMI/AMS organizations, and researchers interested in the Alignment Map for research contexts.',
     linkLabel: 'Go to partnership inquiry ↓',
     linkHref: '#contact-form',
     isAnchor: true,
@@ -49,7 +49,7 @@ const moreLinks = [
     href: '/mmap/equity',
   },
   {
-    title: 'About MMAP',
+    title: 'About the Alignment Map',
     desc: 'What we built and why',
     href: '/mmap/about',
   },
@@ -63,13 +63,13 @@ export default function MMAPContactPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
-              MMAP — Contact
+              Alignment Map — Contact
             </p>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
               Questions, partnerships, and everything else.
             </h1>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-12 max-w-2xl">
-              For schools with general questions about MMAP, organizations interested in
+              For schools with general questions about the Alignment Map, organizations interested in
               partnership, researchers studying Montessori technology, or anyone who doesn&apos;t
               fit the demo request flow.
             </p>
@@ -146,14 +146,14 @@ export default function MMAPContactPage() {
             Get in touch.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-10">
-            Use the link below to reach the MMAP team. Include your question, school name, and the
+            Use the link below to reach our team. Include your question, school name, and the
             best way to follow up.
           </p>
           <Link
             href="/contact?source=MMAP"
             className="inline-block bg-[#0e1a7a] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#162270] transition-colors font-medium mb-4"
           >
-            Contact the MMAP Team &rarr;
+            Contact Our Team &rarr;
           </Link>
           <p className="text-[#64748B] text-sm mt-4">
             We typically respond within 2 business days.
@@ -164,7 +164,7 @@ export default function MMAPContactPage() {
       {/* Secondary Links */}
       <section className="bg-white py-16 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">More About MMAP</p>
+          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">More About the Alignment Map</p>
           <div className="grid md:grid-cols-4 gap-4">
             {moreLinks.map((link) => (
               <Link

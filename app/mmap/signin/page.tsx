@@ -69,7 +69,7 @@ export default function MmapSignIn() {
             Welcome back.
           </h1>
           <p className="text-white/40 text-sm mb-10 tracking-wide">
-            Sign in to your MMAP workspace.
+            Sign in to your Alignment Map workspace.
           </p>
 
           {/* Primary CTA */}
@@ -79,7 +79,7 @@ export default function MmapSignIn() {
             rel="noopener noreferrer"
             className="block w-full bg-[#d6a758] text-white text-sm font-medium px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors mb-4"
           >
-            Sign In to MMAP &rarr;
+            Sign In to the Alignment Map &rarr;
           </a>
 
           <p className="text-white/25 text-xs tracking-wide">

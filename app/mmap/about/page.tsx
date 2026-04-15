@@ -27,7 +27,7 @@ const ecosystemCards = [
   },
   {
     title: 'MMAS',
-    desc: 'Montessori-native assessment that flows directly into MMAP classroom records.',
+    desc: 'Montessori-native assessment that flows directly into Alignment Map classroom records.',
     href: '/mmas',
   },
 ]
@@ -35,11 +35,11 @@ const ecosystemCards = [
 const privacyCards = [
   {
     title: 'Data Ownership',
-    body: 'School data belongs to the school. MMAP does not sell, share, or use school or student data for any purpose other than operating the platform for the school that owns it.',
+    body: 'School data belongs to the school. The Alignment Map does not sell, share, or use school or student data for any purpose other than operating the platform for the school that owns it.',
   },
   {
     title: 'Student Privacy',
-    body: 'MMAP is built in compliance with FERPA and applicable state student privacy laws. Student records are protected, access-controlled, and never used for third-party purposes.',
+    body: 'The Alignment Map is built in compliance with FERPA and applicable state student privacy laws. Student records are protected, access-controlled, and never used for third-party purposes.',
   },
   {
     title: 'Security Infrastructure',
@@ -59,13 +59,13 @@ export default function MMAPAboutPage() {
               <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
             </div>
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
-              About MMAP
+              About the Alignment Map
             </p>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
               Built for what Montessori schools actually need.
             </h1>
             <p className="text-[#64748B] text-lg leading-relaxed mb-12 max-w-2xl">
-              MMAP is not a generic school software platform with Montessori branding. It is a
+              The Alignment Map is not a generic school software platform with Montessori branding. It is a
               purpose-built operational environment designed around how Montessori schools work,
               what Montessori leaders carry, and what Montessori values actually require of a
               school&apos;s infrastructure.
@@ -80,7 +80,7 @@ export default function MMAPAboutPage() {
         </div>
       </section>
 
-      {/* What MMAP Is */}
+      {/* What the Alignment Map Is */}
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
@@ -89,9 +89,10 @@ export default function MMAPAboutPage() {
               One coherent system. Every level of the school.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-5">
-              MMAP stands for Montessori Makers Alignment Platform. It is a four-tier operational
-              system&mdash;Surveyor, North Star, Mapmaker, and Atlas&mdash;covering classroom practice,
-              school operations, organizational coordination, and leadership governance.
+              The Alignment Map&mdash;the Montessori Makers Alignment Map, or MMAP for short&mdash;is
+              a four-tier operational system: Surveyor, North Star, Mapmaker, and Atlas. Together they
+              cover classroom practice, school operations, organizational coordination, and leadership
+              governance.
             </p>
             <p className="text-[#374151] text-lg leading-relaxed">
               Schools start where they are and grow inside the system. There is no migration, no
@@ -127,11 +128,11 @@ export default function MMAPAboutPage() {
               reflect a set of values with real depth and real rigor. But the systems around the
               school&mdash;the software, the documentation, the data, the operational
               infrastructure&mdash;are almost always borrowed from somewhere else. Generic, translated,
-              approximated. MMAP is built to close that gap.
+              approximated. The Alignment Map is built to close that gap.
             </p>
             <div>
               <p className="text-[#374151] text-lg leading-relaxed mb-8">
-                The mission of MMAP is simple: build the operational infrastructure that Montessori
+                The mission of the Alignment Map is simple: build the operational infrastructure that Montessori
                 schools deserve. Not software that forces a Montessori school to think like a generic
                 school. Software that understands what Montessori is&mdash;and makes it easier to do
                 it, hold it, and protect it.
@@ -153,7 +154,7 @@ export default function MMAPAboutPage() {
               Built from the inside, not imposed from the outside.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-5">
-              MMAP was built by Hannah Richardson, founder of Montessori Makers Group, after more
+              The Alignment Map was built by Hannah Richardson, founder of Montessori Makers Group, after more
               than a decade of working inside Montessori schools as an organizational designer and
               leadership advisor. The pattern she kept seeing: schools with extraordinary classroom
               practice and fragile institutional systems.
@@ -165,7 +166,7 @@ export default function MMAPAboutPage() {
               needed to know.
             </p>
             <p className="text-[#374151] text-lg leading-relaxed">
-              MMAP is the response to that pattern. Not a consultant&apos;s recommendation to &ldquo;use
+              The Alignment Map is the response to that pattern. Not a consultant&apos;s recommendation to &ldquo;use
               better software&rdquo;&mdash;an actual platform built with the specific knowledge of what
               Montessori schools need and the specific experience of watching them operate.
             </p>
@@ -176,7 +177,7 @@ export default function MMAPAboutPage() {
             </p>
             <p className="text-[#94A3B8] text-sm mb-8">Founder, Montessori Makers Group</p>
             <p className="text-white italic text-base leading-relaxed mb-8">
-              &ldquo;The school deserves infrastructure that matches what it believes. I built MMAP
+              &ldquo;The school deserves infrastructure that matches what it believes. I built the Alignment Map
               because that infrastructure didn&apos;t exist.&rdquo;
             </p>
             <Link
@@ -196,15 +197,15 @@ export default function MMAPAboutPage() {
             Montessori Makers Ecosystem
           </p>
           <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6 max-w-2xl" style={serif}>
-            MMAP is the operational layer. The ecosystem is the whole.
+            The Alignment Map is the operational layer. The ecosystem is the whole.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-12 max-w-3xl">
-            Montessori Makers works across multiple dimensions of Montessori school health. MMAP
+            Montessori Makers works across multiple dimensions of Montessori school health. The Alignment Map
             holds the operational and leadership systems. Advisory helps schools design aligned
             systems when the work requires outside expertise. Institute develops the leaders who
             run them. MatchHub supports aligned staffing when growth or transition requires it.
             MMAS&mdash;the Montessori Makers Assessment System&mdash;provides Montessori-native
-            assessment data that flows directly into MMAP.
+            assessment data that flows directly into the Alignment Map.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
             {ecosystemCards.map((card) => (
@@ -243,7 +244,7 @@ export default function MMAPAboutPage() {
             ))}
           </div>
           <p className="text-[#64748B] text-sm">
-            For detailed security and privacy documentation, contact the MMAP team.
+            For detailed security and privacy documentation, contact our team.
           </p>
         </div>
       </section>

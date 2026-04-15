@@ -51,7 +51,7 @@ const tourSections = [
     bg: 'bg-[#FAF9F7]',
     eyebrow: '03 — School Operations & Coordination',
     heading: 'School Operations & Coordination',
-    body: 'Shared systems replace hallway memory. Attendance, scheduling, family communication, and daily operations run through one place — so nothing lives in one person\'s inbox or mental model.',
+    body: 'Shared systems replace hallway memory. Attendance, scheduling, family communication, field trip permissions, built-in portal signing, and daily operations run through one place — so nothing lives in one person\'s inbox or mental model.',
     videoSrc: '/videos/school-operations.mp4',
   },
   {
@@ -59,7 +59,7 @@ const tourSections = [
     bg: 'bg-white',
     eyebrow: '04 — Leadership & Governance Visibility',
     heading: 'Leadership & Governance Visibility',
-    body: 'Leadership sees patterns before they become problems. Financial dashboards, enrollment trends, board tools, and equity signals surface the information that drives values-aligned decisions — not just compliance reporting.',
+    body: 'Leadership sees patterns before they become problems. Financial dashboards with QuickBooks Online sync, enrollment trends, board tools, and equity signals surface the information that drives values-aligned decisions — not just compliance reporting.',
     videoSrc: '/videos/leadership-visibility.mp4',
   },
 ]
@@ -72,7 +72,7 @@ export default function MMAPTourPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-8">
-              MMAP Platform Tour
+              Alignment Map Platform Tour
             </p>
             <h1
               className="text-5xl md:text-6xl text-white leading-[1.03] tracking-tight mb-8"
@@ -81,7 +81,7 @@ export default function MMAPTourPage() {
               See the platform.<br className="hidden sm:block" /> On your own terms.
             </h1>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-12 max-w-2xl">
-              A self-guided tour through MMAP organized around real school use cases&mdash;not
+              A self-guided tour through the Alignment Map organized around real school use cases&mdash;not
               a feature list. See what Surveyor looks like for a guide during a work period.
               See what Atlas looks like for a head of school preparing for a board meeting.
             </p>

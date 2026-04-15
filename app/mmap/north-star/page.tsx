@@ -28,8 +28,8 @@ const features = [
     body: 'Health incident documentation, medication tracking, and safety log for each student. Connected to student profiles and accessible to authorized staff. Meets compliance requirements without a separate health management system.',
   },
   {
-    title: 'Handbooks & Signatures',
-    body: 'Distribute family and staff handbooks digitally. Collect signatures, track completion, and store signed documents within student and staff records.',
+    title: 'Portal Signing, Handbooks & Field Trips',
+    body: 'Built-in electronic signatures for handbooks, enrollment agreements, field trip permission slips, and HR acknowledgements. E-SIGN / UETA compliant with SHA-256 document hashing, server-verified audit trail, and one-click Certificate of Completion. No DocuSign account, no per-envelope fees. Field trip module included: roster, permissions, and signed slips live inside the student record.',
   },
   {
     title: 'Compliance Hub',
@@ -80,7 +80,7 @@ export default function NorthStarPage() {
               <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
             </div>
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-8">
-              MMAP · North Star · Tier 02
+              Alignment Map · North Star · Tier 02
             </p>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-8" style={serif}>
               Calm daily operations for schools that have outgrown improvised systems.
@@ -249,7 +249,7 @@ export default function NorthStarPage() {
               href="/mmap/pathway"
               className="border border-[#0e1a7a] text-[#0e1a7a] text-sm px-8 py-4 tracking-wide hover:bg-[#0e1a7a] hover:text-white transition-colors text-center"
             >
-              Explore the Full MMAP Pathway &rarr;
+              Explore the Full Pathway &rarr;
             </Link>
           </div>
         </div>

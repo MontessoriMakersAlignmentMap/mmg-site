@@ -93,7 +93,7 @@ const whatMmapContrasts = [
 const differentiationCards = [
   {
     title: 'One system, not patchwork',
-    body: 'MMAP replaces the collection of disconnected tools most Montessori schools are held together by. One login. One data model. One system that knows what the other parts are doing.',
+    body: 'The Alignment Map replaces the collection of disconnected tools most Montessori schools are held together by. One login. One data model. One system that knows what the other parts are doing.',
   },
   {
     title: 'Built for Montessori practice',
@@ -101,11 +101,11 @@ const differentiationCards = [
   },
   {
     title: 'Equity in the architecture',
-    body: 'Equity isn\u2019t an add-on or a premium tier. It runs through every layer of MMAP\u2014surfacing patterns in attendance, belonging, access, and adult culture from day one.',
+    body: 'Equity isn\u2019t an add-on or a premium tier. It runs through every layer of the Alignment Map\u2014surfacing patterns in attendance, belonging, access, and adult culture from day one.',
   },
   {
     title: 'Clarity without corporatizing',
-    body: 'MMAP gives schools the operational clarity and data infrastructure they need to run well\u2014without turning a Montessori school into a managed corporate entity.',
+    body: 'The Alignment Map gives schools the operational clarity and data infrastructure they need to run well\u2014without turning a Montessori school into a managed corporate entity.',
   },
 ]
 
@@ -818,7 +818,7 @@ export default function MMAPPage() {
             <div className="relative w-full max-w-[560px] rounded-sm overflow-hidden shadow-2xl ring-1 ring-white/10">
               <Image
                 src="/images/mmap/mmap-01-leadership-dashboard.png"
-                alt="MMAP Leadership Dashboard"
+                alt="Alignment Map Leadership Dashboard"
                 width={1200}
                 height={678}
                 className="w-full h-auto"
@@ -854,7 +854,7 @@ export default function MMAPPage() {
       <section className="bg-[#FAF9F7] py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Why MMAP Exists</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Why the Alignment Map Exists</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={serif}>
               Montessori schools don&apos;t need more tools. They need their systems to
               work together.
@@ -867,7 +867,7 @@ export default function MMAPPage() {
               forces you to translate everything, and something always gets lost.
             </p>
             <p className="text-[#374151] text-lg leading-relaxed">
-              MMAP brings mission and infrastructure into alignment. Built from the ground
+              The Alignment Map brings mission and infrastructure into alignment. Built from the ground
               up for the way Montessori schools actually operate&mdash;without corporatizing what
               makes them unique.
             </p>
@@ -1035,18 +1035,18 @@ export default function MMAPPage() {
         </svg>
       </div>
 
-      {/* What MMAP Is */}
+      {/* What the Alignment Map Is */}
       <section className="bg-[#F7F5F1] py-24 md:py-32 px-6 md:px-10" style={systemGridStyle}>
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">What MMAP Is</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">What the Alignment Map Is</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
               Not a bundle of tools. One coherent operational environment.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              MMAP is a digital prepared environment for Montessori schools. The same
+              The Alignment Map is a digital prepared environment for Montessori schools. The same
               philosophical commitment that shapes the prepared physical environment &mdash;
-              intentionality, coherence, respect for the person &mdash; shapes how MMAP is
+              intentionality, coherence, respect for the person &mdash; shapes how the Alignment Map is
               built. Every feature, every workflow, every data point is designed to reflect
               what Montessori schools actually believe. Not translated from generic school
               software. Built from the ground up.
@@ -1061,7 +1061,7 @@ export default function MMAPPage() {
                   Current reality
                 </span>
                 <span className="px-5 py-3 text-[#8A6014] text-[10px] tracking-[0.22em] uppercase border-l border-[#DDD8D0]">
-                  With MMAP
+                  With the Alignment Map
                 </span>
               </div>
               {whatMmapContrasts.map((row, i) => (
@@ -1086,12 +1086,12 @@ export default function MMAPPage() {
       <section id="pathway" className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10" style={systemGridStyle}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">The MMAP Pathway</p>
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">The Alignment Map Pathway</p>
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
               Four tiers. One coherent system.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              From the classroom to the boardroom&mdash;MMAP covers every level of the
+              From the classroom to the boardroom&mdash;The Alignment Map covers every level of the
               organization with tools that are built to work together.
             </p>
           </div>
@@ -1120,7 +1120,7 @@ export default function MMAPPage() {
             {[
               {
                 src: '/images/mmap/mmap-01-leadership-dashboard.png',
-                alt: 'MMAP Leadership Dashboard',
+                alt: 'Alignment Map Leadership Dashboard',
                 label: 'Leadership Dashboard',
                 desc: 'Real-time school snapshot — attendance, coverage alerts, observation data, and top priorities surfaced automatically for administrators.',
               },
@@ -1191,7 +1191,7 @@ export default function MMAPPage() {
               A guide records an observation in the classroom. That data doesn&apos;t disappear into a notebook — it flows upward, informing the school director, the organizational team, and ultimately the board.
             </p>
             <p className="text-[#374151] text-lg leading-relaxed">
-              MMAP is built on the same principle Montessori education is: concrete experience at the bottom, abstract understanding at the top. Each layer sees exactly what it needs — nothing more, nothing less.
+              The Alignment Map is built on the same principle Montessori education is: concrete experience at the bottom, abstract understanding at the top. Each layer sees exactly what it needs — nothing more, nothing less.
             </p>
           </div>
           <div className="flex items-center justify-center">
@@ -1209,13 +1209,13 @@ export default function MMAPPage() {
               Currently accepting pilot schools.
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-6">
-              MMAP is in active pilot with a limited cohort of Montessori schools.
+              The Alignment Map is in active pilot with a limited cohort of Montessori schools.
               Pilot participants get direct access to the product team, discounted
               access, and direct influence on the roadmap.
             </p>
             <p className="text-[#94A3B8] text-base leading-relaxed">
               This is not a beta test&mdash;it&apos;s a founding partnership. Schools that
-              join the pilot are shaping what MMAP becomes.
+              join the pilot are shaping what the Alignment Map becomes.
             </p>
           </div>
           <div className="space-y-0">
@@ -1223,10 +1223,10 @@ export default function MMAPPage() {
             {[
               'Early access to all four pathway tiers',
               'Dedicated onboarding and implementation support',
-              'Direct line to Hannah and the MMAP team',
+              'Direct line to Hannah and our team',
               'Discounted pricing locked in at pilot rate',
               'Priority feature request consideration',
-              'Seat at the table as MMAP evolves',
+              'Seat at the table as the Alignment Map evolves',
             ].map((benefit, i) => (
               <FadeIn key={i} delay={i * 0.07}>
                 <div className="flex items-start gap-4 py-3 border-b border-white/10 last:border-0">
@@ -1239,7 +1239,7 @@ export default function MMAPPage() {
         </div>
       </section>
 
-      {/* Why schools are choosing MMAP */}
+      {/* Why schools are choosing the Alignment Map */}
       <section className="bg-[#FAF9F7] py-24 md:py-28 border-t border-[#E2DDD6] px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-12">
@@ -1277,10 +1277,10 @@ export default function MMAPPage() {
               Montessori Makers Ecosystem
             </p>
             <h2 className="text-3xl md:text-4xl text-white leading-tight mb-4" style={serif}>
-              MMAP is where the systems live.
+              The Alignment Map is where the systems live.
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed">
-              Montessori Makers builds aligned schools across multiple dimensions. MMAP
+              Montessori Makers builds aligned schools across multiple dimensions. The Alignment Map
               holds the operational systems. Advisory helps design them. Institute develops
               the leaders who run them. MatchHub finds aligned staff when growth requires it.
             </p>
@@ -1302,7 +1302,7 @@ export default function MMAPPage() {
           <div className="max-w-xl">
             <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">See It in Action</p>
             <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
-              Watch how MMAP works.
+              Watch how the Alignment Map works.
             </h2>
             <p className="text-[#374151] text-base leading-relaxed">
               Short videos grouped by function. See exactly how each part of the platform works

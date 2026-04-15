@@ -58,14 +58,14 @@ export default function MMAPDemoPage() {
               href="/mmap"
               className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase hover:underline mb-8 inline-block"
             >
-              &larr; MMAP
+              &larr; Alignment Map
             </Link>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 mb-8 ml-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d6a758] flex-shrink-0" />
               <span className="text-white text-xs tracking-[0.15em] uppercase">Pilot Platform &mdash; Limited Early Access</span>
             </div>
             <h1 className="text-5xl md:text-6xl text-white leading-[1.05] mb-6" style={serif}>
-              See MMAP in Action
+              See the Alignment Map in Action
             </h1>
             <p className="text-[#94A3B8] text-lg md:text-xl leading-relaxed max-w-2xl">
               Four walkthroughs covering the full platform — from running the school
@@ -149,7 +149,7 @@ export default function MMAPDemoPage() {
               href="/mmap"
               className="text-[#64748B] text-sm tracking-wide hover:text-white transition-colors text-center"
             >
-              &larr; Back to MMAP Overview
+              &larr; Back to Alignment Map Overview
             </Link>
           </div>
         </div>

@@ -92,7 +92,7 @@ const addons = [
     rate: 2,
     minimum: 250,
     billing: 'per student / month',
-    desc: 'School finance analytics and budget alignment tools integrated within MMAP.',
+    desc: 'School finance analytics, budget alignment, invoicing, and one-way QuickBooks Online sync (invoices, payments, household customers) integrated within the Alignment Map.',
     quoteOnly: false,
     flatRate: false,
   },
@@ -122,7 +122,7 @@ const addons = [
     rate: 0.5,
     minimum: 100,
     billing: 'per student / month',
-    desc: 'SMS communication broadcasts to families through MMAP.',
+    desc: 'SMS communication broadcasts to families through the Alignment Map.',
     quoteOnly: false,
     flatRate: false,
   },
@@ -152,7 +152,7 @@ const addons = [
     rate: null as number | null,
     minimum: null as number | null,
     billing: 'quote',
-    desc: 'Custom API and Student Information System integration with MMAP.',
+    desc: 'Custom API and Student Information System integration with the Alignment Map.',
     quoteOnly: true,
     flatRate: false,
   },
@@ -232,7 +232,7 @@ export default function MmapPricingPage() {
       {!live && (
         <div className="bg-[#d6a758] px-6 py-3 text-center">
           <p className="text-white text-sm font-medium">
-            MMAP opens for new school subscriptions on May 1, 2026.{' '}
+            The Alignment Map opens for new school subscriptions on May 1, 2026.{' '}
             <a href="#interest-form" className="underline hover:no-underline">
               Submit your interest now
             </a>{' '}
@@ -246,7 +246,7 @@ export default function MmapPricingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase mb-8">
-              MMAP &middot; Pricing
+              Alignment Map &middot; Pricing
             </p>
             <h1
               className="text-5xl md:text-6xl text-white leading-[1.05] tracking-tight mb-6"
@@ -257,9 +257,9 @@ export default function MmapPricingPage() {
               Built for how schools actually work.
             </h1>
             <p className="text-[#94A3B8] text-xl leading-relaxed mb-8 max-w-2xl">
-              MMAP is licensed per enrolled student, billed monthly under an annual agreement.
+              The Alignment Map is licensed per enrolled student, billed monthly under an annual agreement.
               Every subscription begins with an onboarding call &mdash; not as a formality, but
-              because every school is set up in partnership with Hannah and the MMAP team to make
+              because every school is set up in partnership with Hannah and our team to make
               sure the platform is configured correctly from day one.
             </p>
             <CtaButton />
@@ -317,7 +317,7 @@ export default function MmapPricingPage() {
             Four tiers. One platform.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
-            Every tier runs on the same MMAP platform. The difference is depth of access,
+            Every tier runs on the same Alignment Map platform. The difference is depth of access,
             reporting, and the scope of organizational work the tools are designed to support.
           </p>
 
@@ -397,7 +397,7 @@ export default function MmapPricingPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-4"
             style={serif}
           >
-            See what MMAP would cost your school.
+            See what the Alignment Map would cost your school.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-12 max-w-2xl">
             Enter your enrolled student count and select a tier. This is a planning estimate
@@ -484,7 +484,7 @@ export default function MmapPricingPage() {
             className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-4"
             style={serif}
           >
-            Extend what MMAP does for your school.
+            Extend what the Alignment Map does for your school.
           </h2>
           <p className="text-[#374151] text-lg leading-relaxed mb-14 max-w-2xl">
             Add-ons layer onto any tier. They are licensed the same way &mdash; per student,
@@ -551,8 +551,8 @@ export default function MmapPricingPage() {
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-12">
               {live
-                ? 'Tell us about your school and Hannah or a member of the MMAP team will be in touch within two business days to schedule your onboarding call.'
-                : 'Tell us about your school and we will be in touch to schedule your onboarding call before MMAP opens on May 1, 2026.'}
+                ? 'Tell us about your school and Hannah or a member of our team will be in touch within two business days to schedule your onboarding call.'
+                : 'Tell us about your school and we will be in touch to schedule your onboarding call before the Alignment Map opens on May 1, 2026.'}
             </p>
 
             {formState === 'success' ? (
@@ -564,7 +564,7 @@ export default function MmapPricingPage() {
                   We&rsquo;ll be in touch.
                 </h3>
                 <p className="text-[#94A3B8] text-base leading-relaxed">
-                  Hannah or a member of the MMAP team will reach out within two business days to
+                  Hannah or a member of our team will reach out within two business days to
                   schedule your onboarding call.
                 </p>
               </div>
@@ -706,7 +706,7 @@ export default function MmapPricingPage() {
       {/* ── 7. BOTTOM NAV ───────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] border-t border-[#E2DDD6] py-16 px-6 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
-          <p className="text-[#374151] text-base">Want to see MMAP in action first?</p>
+          <p className="text-[#374151] text-base">Want to see the Alignment Map in action first?</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/mmap/demo"
