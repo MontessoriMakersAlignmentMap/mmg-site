@@ -345,6 +345,13 @@ const primaryItems = [
     tagline: 'Montessori hiring',
     desc: 'Philosophy-aligned matching for guides, directors, and heads of school.',
   },
+  {
+    name: 'Residency',
+    logo: 'residency' as LogoName,
+    href: '/residency',
+    tagline: 'Montessori teacher preparation',
+    desc: 'A MACTE-track credential program for educators who want rigorous, accessible Montessori preparation.',
+  },
 ]
 
 const secondaryItems = [
@@ -455,7 +462,7 @@ function Ecosystem() {
           </p>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
           {primaryItems.map((item, i) => (
             <PrimaryCard key={item.name} item={item} delay={i * 0.07} />
           ))}
@@ -476,6 +483,7 @@ function Ecosystem() {
 const pathways = [
   { question: 'My school is at a turning point', label: 'Advisory', href: '/advisory' },
   { question: 'I need to develop as a leader', label: 'Institute', href: '/institute' },
+  { question: 'I want to earn a Montessori credential', label: 'Residency', href: '/residency' },
   { question: 'I need to find the right people', label: 'MatchHub', href: '/matchhub' },
   { question: 'Our systems need to work', label: 'MMAP', href: '/mmap' },
   { question: 'I need practical tools now', label: 'Toolbox', href: '/toolbox' },
@@ -495,7 +503,7 @@ function WhereToStart() {
           </h2>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-3 mb-14">
           {pathways.map((p, i) => (
             <FadeIn key={p.label} delay={i * 0.06}>
               <motion.div

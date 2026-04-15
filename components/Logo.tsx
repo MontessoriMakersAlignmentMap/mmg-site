@@ -4,6 +4,7 @@ export type LogoName =
   | 'mmg'
   | 'advisory'
   | 'institute'
+  | 'residency'
   | 'mmap'
   | 'mmas'
   | 'matchhub'
@@ -17,6 +18,7 @@ const logoMap: Record<LogoName, string> = {
   mmg:       '/logos/mmg.png',
   advisory:  '/logos/advisory.png',
   institute: '/logos/institute.png',
+  residency: '/logos/residency.png',
   mmap:      '/logos/mmap.png',
   mmas:      '/logos/mmas.png',
   matchhub:  '/logos/matchhub.png',
@@ -30,6 +32,7 @@ const iconMap: Record<LogoName, string> = {
   mmg:       '/logos/icons/mmg-icon.png',
   advisory:  '/logos/icons/advisory-icon.png',
   institute: '/logos/icons/institute-icon.png',
+  residency: '/logos/icons/mmg-icon.png',
   mmap:      '/logos/icons/mmap-icon.png',
   mmas:      '/logos/icons/mmas-icon.png',
   matchhub:  '/logos/icons/matchhub-icon.png',
