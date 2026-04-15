@@ -11,12 +11,11 @@ export const metadata: Metadata = {
 const serif = { fontFamily: 'var(--font-heading)' }
 
 // ── Pricing data ─────────────────────────────────────────────────────────────
-// TODO: Replace placeholder amounts below before launch.
-const PRIMARY_TUITION = '$3,500'
-const PRIMARY_MONTHLY = '$292 / mo'
+const PRIMARY_TUITION = '$5,000'
+const PRIMARY_MONTHLY = '$417 / mo'
 const PRIMARY_MONTHS = '12 months'
-const ELEMENTARY_TUITION = '$4,800'
-const ELEMENTARY_MONTHLY = '$300 / mo'
+const ELEMENTARY_TUITION = '$7,000'
+const ELEMENTARY_MONTHLY = '$438 / mo'
 const ELEMENTARY_MONTHS = '16 months'
 
 export default function MMRPricingPage() {
