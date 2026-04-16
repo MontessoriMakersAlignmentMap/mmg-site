@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { getActiveSearches } from '@/lib/db/searches'
 
+export const dynamic = 'force-dynamic'
+
 const serif = { fontFamily: 'var(--font-heading)' }
 
 export default async function CurrentSearchesPage() {
