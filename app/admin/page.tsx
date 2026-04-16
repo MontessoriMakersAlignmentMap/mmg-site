@@ -868,6 +868,13 @@ export default function AdminPage() {
             Interim Leaders →
           </button>
           <button
+            onClick={() => { navigator.clipboard.writeText('https://montessorimakersgroup.org/interim-leader-profile') }}
+            className="text-xs border border-gray-200 bg-gray-50 text-gray-500 px-4 py-2 hover:bg-gray-100 hover:text-gray-700 transition-colors font-mono"
+            title="Copy intake form link"
+          >
+            📋 /interim-leader-profile
+          </button>
+          <button
             onClick={() => { window.location.href = '/admin/second-brain' }}
             className="text-xs border border-[#d6a758] bg-[#f5e8cc] text-[#0e1a7a] px-4 py-2 hover:bg-[#d6a758] hover:text-white transition-colors"
           >
