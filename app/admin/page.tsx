@@ -862,6 +862,12 @@ export default function AdminPage() {
             Placement CRM →
           </button>
           <button
+            onClick={() => { window.location.href = '/admin/interim-leaders' }}
+            className="text-xs border border-[#0e1a7a] text-[#0e1a7a] px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors"
+          >
+            Interim Leaders →
+          </button>
+          <button
             onClick={() => { window.location.href = '/admin/second-brain' }}
             className="text-xs border border-[#d6a758] bg-[#f5e8cc] text-[#0e1a7a] px-4 py-2 hover:bg-[#d6a758] hover:text-white transition-colors"
           >
