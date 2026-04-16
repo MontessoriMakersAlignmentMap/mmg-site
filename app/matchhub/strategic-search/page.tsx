@@ -526,6 +526,18 @@ export default function StrategicSearchPage() {
           </div>
         </div>
       </section>
+
+      {/* ── IP Fine Print ─────────────────────────────────────────────────────── */}
+      <section style={{ borderTop: '1px solid #E2DDD6', padding: '2.5rem 0' }}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <p style={{ color: '#94A3B8', fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.625rem' }}>
+            Intellectual Property
+          </p>
+          <p style={{ color: '#94A3B8', fontSize: '0.75rem', lineHeight: 1.8, maxWidth: '72ch' }}>
+            All original content created by Montessori Makers Group as part of a consulting or strategic search engagement, including job descriptions, role profiles, organizational language, and candidate-facing materials, remains the intellectual property of Montessori Makers Group. Clients receive full use of deliverables for the specific purpose outlined in their engagement. Reuse, adaptation, or redistribution of that content beyond the original scope requires written permission. If you would like to discuss expanded use of any materials created through our work together, we are happy to have that conversation.
+          </p>
+        </div>
+      </section>
     </>
   )
 }
