@@ -68,7 +68,7 @@ export default async function RoleDetailPage({
             {search.school_blurb && (
               <div>
                 <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-4">
-                  About the School
+                  About the Organization
                 </p>
                 <p className="text-[#374151] text-base leading-relaxed">
                   {search.school_blurb}
