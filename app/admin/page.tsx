@@ -1446,7 +1446,7 @@ export default function AdminPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingSearch(search.id); setEditSearchData({ school_name: search.school_name, school_slug: search.school_slug, school_website: search.school_website ?? '', school_logo_url: search.school_logo_url ?? '', school_blurb: search.school_blurb ?? '', active: search.active }) }} />
+                        <Btn label="Edit" color="gray" loading={false} onClick={() => { setEditingSearch(search.id); setExpandedSearch(search.id); setEditSearchData({ school_name: search.school_name, school_slug: search.school_slug, school_website: search.school_website ?? '', school_logo_url: search.school_logo_url ?? '', school_blurb: search.school_blurb ?? '', active: search.active }) }} />
                         <Btn label="Delete" color="red" loading={actingSearch[search.id] === 'deleting'} onClick={() => handleDeleteSearch(search.id)} />
                       </div>
                     </div>
@@ -1480,7 +1480,7 @@ export default function AdminPage() {
                     )}
 
                     {/* Expanded: roles */}
-                    {expandedSearch === search.id && (
+                    {(expandedSearch === search.id || editingSearch === search.id) && (
                       <div className="border-t border-gray-100 px-6 py-4">
                         <div className="flex items-center justify-between mb-3">
                           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Roles</p>
