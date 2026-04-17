@@ -42,12 +42,21 @@ export default function MatchModal({ matchResults, matchSearch, matchLoading, ma
 
   const candidateMap = Object.fromEntries(candidates.map(c => [c.id, c]))
 
+  // Credentials that qualify as "Elementary 6–12" (AMI 6-12, AMS 6-9 & 9-12)
+  const ELEMENTARY_CREDS = new Set(['AMI', 'AMS'])
+
   // Unique filter options derived from actual results
-  const credOptions   = Array.from(new Set(matchResults.map(m => m.credential).filter(Boolean))).sort() as string[]
-  const levelOptions  = Array.from(new Set(matchResults.flatMap(m => m.levels_certified ?? []))).sort()
+  const rawCreds     = Array.from(new Set(matchResults.map(m => m.credential).filter(Boolean))).sort() as string[]
+  const hasElementary = rawCreds.some(c => ELEMENTARY_CREDS.has(c))
+  const credOptions  = rawCreds
+  const levelOptions = Array.from(new Set(matchResults.flatMap(m => m.levels_certified ?? []))).sort()
 
   const visible = matchResults.filter(m => {
-    if (credFilter  && m.credential !== credFilter) return false
+    if (credFilter === 'Elementary 6–12') {
+      if (!ELEMENTARY_CREDS.has(m.credential ?? '')) return false
+    } else if (credFilter && m.credential !== credFilter) {
+      return false
+    }
     if (levelFilter && !(m.levels_certified ?? []).includes(levelFilter)) return false
     return true
   })
@@ -133,6 +142,14 @@ export default function MatchModal({ matchResults, matchSearch, matchLoading, ma
                       >
                         All
                       </button>
+                      {hasElementary && (
+                        <button
+                          onClick={() => setCredFilter(credFilter === 'Elementary 6–12' ? null : 'Elementary 6–12')}
+                          className={`text-[11px] px-2.5 py-1 border transition-colors ${credFilter === 'Elementary 6–12' ? 'bg-[#0e1a7a] text-white border-[#0e1a7a]' : 'border-[#E2DDD6] text-[#64748B] hover:border-[#0e1a7a] hover:text-[#0e1a7a]'}`}
+                        >
+                          Elementary 6–12
+                        </button>
+                      )}
                       {credOptions.map(c => (
                         <button
                           key={c}
