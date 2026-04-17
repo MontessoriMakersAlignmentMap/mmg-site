@@ -37,8 +37,20 @@ export default function MatchModal({ matchResults, matchSearch, matchLoading, ma
   const [contactedIds,  setContactedIds]  = useState<Set<string>>(new Set())
   const [contactingId,  setContactingId]  = useState<string | null>(null)
   const [viewProfileId, setViewProfileId] = useState<string | null>(null)
+  const [credFilter,    setCredFilter]    = useState<string | null>(null)
+  const [levelFilter,   setLevelFilter]   = useState<string | null>(null)
 
   const candidateMap = Object.fromEntries(candidates.map(c => [c.id, c]))
+
+  // Unique filter options derived from actual results
+  const credOptions   = Array.from(new Set(matchResults.map(m => m.credential).filter(Boolean))).sort() as string[]
+  const levelOptions  = Array.from(new Set(matchResults.flatMap(m => m.levels_certified ?? []))).sort()
+
+  const visible = matchResults.filter(m => {
+    if (credFilter  && m.credential !== credFilter) return false
+    if (levelFilter && !(m.levels_certified ?? []).includes(levelFilter)) return false
+    return true
+  })
 
   async function markContacted(candidateId: string) {
     if (!matchSearch) return
@@ -108,11 +120,62 @@ export default function MatchModal({ matchResults, matchSearch, matchLoading, ma
 
           {matchResults.length > 0 && (
             <div className="flex flex-col gap-4">
+
+              {/* Filter bar */}
+              {(credOptions.length > 1 || levelOptions.length > 1) && (
+                <div className="space-y-2">
+                  {credOptions.length > 1 && (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[10px] text-[#94A3B8] uppercase tracking-wide shrink-0">Credential</span>
+                      <button
+                        onClick={() => setCredFilter(null)}
+                        className={`text-[11px] px-2.5 py-1 border transition-colors ${!credFilter ? 'bg-[#0e1a7a] text-white border-[#0e1a7a]' : 'border-[#E2DDD6] text-[#64748B] hover:border-[#0e1a7a] hover:text-[#0e1a7a]'}`}
+                      >
+                        All
+                      </button>
+                      {credOptions.map(c => (
+                        <button
+                          key={c}
+                          onClick={() => setCredFilter(credFilter === c ? null : c)}
+                          className={`text-[11px] px-2.5 py-1 border transition-colors ${credFilter === c ? 'bg-[#0e1a7a] text-white border-[#0e1a7a]' : 'border-[#E2DDD6] text-[#64748B] hover:border-[#0e1a7a] hover:text-[#0e1a7a]'}`}
+                        >
+                          {c}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {levelOptions.length > 1 && (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[10px] text-[#94A3B8] uppercase tracking-wide shrink-0">Level</span>
+                      <button
+                        onClick={() => setLevelFilter(null)}
+                        className={`text-[11px] px-2.5 py-1 border transition-colors ${!levelFilter ? 'bg-[#d6a758] text-white border-[#d6a758]' : 'border-[#E2DDD6] text-[#64748B] hover:border-[#d6a758] hover:text-[#8A6014]'}`}
+                      >
+                        All
+                      </button>
+                      {levelOptions.map(l => (
+                        <button
+                          key={l}
+                          onClick={() => setLevelFilter(levelFilter === l ? null : l)}
+                          className={`text-[11px] px-2.5 py-1 border transition-colors ${levelFilter === l ? 'bg-[#d6a758] text-white border-[#d6a758]' : 'border-[#E2DDD6] text-[#64748B] hover:border-[#d6a758] hover:text-[#8A6014]'}`}
+                        >
+                          {l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
               <p className="text-xs text-[#64748B]">
-                {matchResults.length} candidate{matchResults.length !== 1 ? 's' : ''} matched — sorted by overall fit score
+                {visible.length} of {matchResults.length} candidate{matchResults.length !== 1 ? 's' : ''} shown — sorted by overall fit score
               </p>
 
-              {matchResults.map((m, i) => {
+              {visible.length === 0 && (
+                <p className="text-sm text-[#94A3B8] text-center py-8">No candidates match the selected filters.</p>
+              )}
+
+              {visible.map((m, i) => {
                 const fullCandidate = candidateMap[m.candidate_id]
                 const isMatchHub = fullCandidate?.source === 'MatchHub' || !!fullCandidate?.matchhub_profile_url
                 const isViewing   = viewProfileId === m.candidate_id
