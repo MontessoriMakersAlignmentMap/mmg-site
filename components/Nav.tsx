@@ -234,7 +234,7 @@ export default function Nav() {
               </svg>
             </button>
             <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[320px] overflow-hidden">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[420px] overflow-hidden">
                 <div className="p-4">
                   <div className="space-y-0.5">
                     {instituteLinks.map((link) => (
