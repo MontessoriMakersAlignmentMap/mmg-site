@@ -58,6 +58,13 @@ const matchhubSections = [
       { name: 'Current Searches', href: '/matchhub/current-searches', tagline: 'Open placements' },
     ],
   },
+  {
+    label: 'Interim Leadership',
+    links: [
+      { name: 'Interim Leadership', href: '/matchhub/interim-leadership', tagline: 'Short-term placement' },
+      { name: 'Become an Interim', href: '/interim-leader-profile', tagline: 'Submit your profile' },
+    ],
+  },
 ]
 
 const residencyLinks = [
@@ -328,19 +335,17 @@ export default function Nav() {
               </svg>
             </button>
             <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[300px] p-4">
-                <div className="space-y-4">
-                  <div>
-                    <Link
-                      href="/matchhub"
-                      className="block px-3 py-2 hover:bg-[#FAF9F7] rounded-sm transition-colors border-b border-[#E2DDD6] mb-2"
-                    >
-                      <p className="text-[#0e1a7a] text-sm font-semibold">MatchHub Overview</p>
-                      <p className="text-[#64748B] text-xs mt-0.5">The Montessori hiring platform</p>
-                    </Link>
-                  </div>
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[520px] p-4">
+                <Link
+                  href="/matchhub"
+                  className="block px-3 py-2 hover:bg-[#FAF9F7] rounded-sm transition-colors border-b border-[#E2DDD6] mb-3"
+                >
+                  <p className="text-[#0e1a7a] text-sm font-semibold">MatchHub Overview</p>
+                  <p className="text-[#64748B] text-xs mt-0.5">The Montessori hiring platform</p>
+                </Link>
+                <div className="grid grid-cols-2 gap-x-4">
                   {matchhubSections.map((section) => (
-                    <div key={section.label}>
+                    <div key={section.label} className="mb-3">
                       <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-1.5 font-medium px-3">
                         {section.label}
                       </p>
@@ -593,8 +598,8 @@ export default function Nav() {
               </Link>
               {matchhubSections.map((section) => (
                 <div key={section.label} className="mb-3">
-                  <p className="text-[9px] tracking-[0.12em] uppercase text-[#64748B] mb-1 pl-2">{section.label}</p>
-                  <div className="space-y-0.5 pl-2 border-l-2 border-[#E2DDD6]">
+                  <p className={`text-[9px] tracking-[0.12em] uppercase mb-1 pl-2 font-medium ${section.label === 'Interim Leadership' ? 'text-[#8A6014]' : 'text-[#64748B]'}`}>{section.label}</p>
+                  <div className={`space-y-0.5 pl-2 border-l-2 ${section.label === 'Interim Leadership' ? 'border-[#d6a758]' : 'border-[#E2DDD6]'}`}>
                     {section.links.map((link) => (
                       <Link
                         key={link.name}
