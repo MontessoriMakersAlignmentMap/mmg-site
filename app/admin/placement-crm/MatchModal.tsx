@@ -167,9 +167,21 @@ export default function MatchModal({ matchResults, matchSearch, matchLoading, ma
                 </div>
               )}
 
-              <p className="text-xs text-[#64748B]">
-                {visible.length} of {matchResults.length} candidate{matchResults.length !== 1 ? 's' : ''} shown — sorted by overall fit score
-              </p>
+              <div className="flex items-center gap-3">
+                <p className="text-xs text-[#64748B]">
+                  {(credFilter || levelFilter)
+                    ? `${visible.length} of ${matchResults.length} candidates shown`
+                    : `${matchResults.length} candidate${matchResults.length !== 1 ? 's' : ''} matched — sorted by overall fit score`}
+                </p>
+                {(credFilter || levelFilter) && (
+                  <button
+                    onClick={() => { setCredFilter(null); setLevelFilter(null) }}
+                    className="text-[11px] text-[#0e1a7a] underline hover:no-underline"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
 
               {visible.length === 0 && (
                 <p className="text-sm text-[#94A3B8] text-center py-8">No candidates match the selected filters.</p>
