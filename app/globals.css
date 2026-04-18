@@ -73,6 +73,19 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* ─── Equalizer animation — music player bars ────────────────────────────── */
+@keyframes eq-bar {
+  0%   { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+.eq-bar {
+  animation: eq-bar 0.7s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+.eq-bar-1 { animation-delay: 0s; }
+.eq-bar-2 { animation-delay: 0.15s; }
+.eq-bar-3 { animation-delay: 0.3s; }
+
 /* ─── Marquee animation ──────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
