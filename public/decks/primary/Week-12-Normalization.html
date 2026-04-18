@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 12 — Normalization</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Compliance vs normalization compare */
+  .compliance-flip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .compliance-flip > div {
+    padding: 40px 40px 48px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .compliance-flip .myth { background: #0c1638; color: rgba(255,255,255,0.62); }
+  .compliance-flip .real { background: #0e1a44; color: #fff; }
+  .compliance-flip h3 {
+    font-family: var(--font-sans);
+    font-size: 22px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin: 0;
+    font-weight: 600;
+  }
+  .compliance-flip .myth h3 { color: rgba(255,255,255,0.45); }
+  .compliance-flip .real h3 { color: var(--gold); }
+  .compliance-flip .big {
+    font-family: var(--font-heading);
+    font-size: 40px; line-height: 1.18;
+    margin: 0;
+  }
+  .compliance-flip .real em { color: var(--gold); font-style: italic; }
+  .compliance-flip .small {
+    font-family: var(--font-sans);
+    font-size: 22px; line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Definition unpacked */
+  .defn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .defn-grid .cell {
+    background: #13214b;
+    padding: 32px 28px 36px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 360px;
+  }
+  .defn-grid .phrase {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 30px; line-height: 1.2;
+    color: var(--gold);
+  }
+  .defn-grid .clar {
+    font-family: var(--font-sans);
+    font-size: 19px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+  .defn-grid .body {
+    font-family: var(--font-sans);
+    font-size: 22px; line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    margin-top: auto;
+  }
+  .defn-grid .body em { color: var(--gold); font-style: italic; }
+
+  .scene-water {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 45%, rgba(180,200,210,0.3), transparent 70%),
+      linear-gradient(150deg, #4a5660 0%, #2a3037 55%, #15181c 100%);
+  }
+  .scene-control {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 40%, rgba(180,170,160,0.18), transparent 70%),
+      linear-gradient(170deg, #3a3530 0%, #1f1c18 55%, #100e0c 100%);
+  }
+
+  /* The reversal */
+  .reversal {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    margin-top: 40px;
+    align-items: stretch;
+  }
+  .reversal .side {
+    padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .reversal .left {
+    background: #0c1638;
+    color: rgba(255,255,255,0.65);
+  }
+  .reversal .right {
+    background: #f3ecdc;
+    color: var(--navy);
+  }
+  .reversal .arrow {
+    background: var(--gold);
+    color: #14213d;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 56px;
+    line-height: 1;
+  }
+  .reversal h4 {
+    font-family: var(--font-sans);
+    font-size: 22px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin: 0;
+    font-weight: 600;
+  }
+  .reversal .left h4 { color: rgba(255,255,255,0.5); }
+  .reversal .right h4 { color: var(--gold); }
+  .reversal p {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.22;
+    margin: 0;
+  }
+  .reversal .right em { color: var(--gold); font-style: italic; }
+  .reversal .small {
+    font-family: var(--font-sans);
+    font-size: 21px; line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Six conditions list */
+  .conditions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 80px;
+    margin-top: 32px;
+  }
+  .conditions .item {
+    padding: 22px 0 24px;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .conditions .item:last-child,
+  .conditions .item:nth-last-child(2) {
+    border-bottom: 1px solid rgba(214,167,88,0.4);
+  }
+  .conditions .num {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    color: var(--gold);
+    font-style: italic;
+  }
+  .conditions .body {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+  }
+  .conditions .body em {
+    color: var(--gold); font-style: italic;
+  }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twelve</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 110px; line-height: 1.06; padding-bottom: 24px;">
+        Normalization is<br/>
+        <em style="font-style: italic; color: var(--gold);">not</em> compliance.
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        What it actually is. What creates it. What destroys it. And why
+        getting this right matters more than any material you will
+        ever present.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 12 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 70px; line-height: 1.16;">
+        If your only evidence is<br/>
+        that children are quiet and<br/>
+        following directions —<br/>
+        you are not looking at <span class="gold" style="font-style: italic;">normalization.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        You are looking at <em>fear.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Three months in.<br/>
+          Two kinds of <em style="font-style: italic; color: var(--gold);">order</em><br/>
+          start to look the same.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          One classroom has children moving with purpose, focused
+          noise, finishing work and resetting it. Another has the
+          surface appearance of order — quiet, compliant — and no joy.
+        </p>
+        <p class="body-read">
+          From the doorway, both look fine. From inside, one is the
+          deepest thing Montessori has to offer. The other is a
+          temporarily relaxed power struggle.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Definition,<br/>
+        <em style="font-style: italic; color: var(--gold);">unpacked.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Three precise phrases. Each one is doing real work.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 DEFINITION GRID -->
+  <section data-label="Definition unpacked" class="on-navy">
+    <div class="eyebrow-slide">The definition · word by word</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.16;">
+        A child has <em style="font-style: italic;">found his place</em> in<br/>
+        the community and can choose<br/>
+        his work freely with <em style="font-style: italic;">deep concentration.</em>
+      </h2>
+      <div class="defn-grid">
+        <div class="cell">
+          <div class="clar">— "Found his place" —</div>
+          <div class="phrase">It does not mean he is behaving.</div>
+          <div class="body">
+            It means he understands where he belongs in the social
+            fabric. He is <em>safe.</em> He is valued.
+          </div>
+        </div>
+        <div class="cell">
+          <div class="clar">— "Choose freely" —</div>
+          <div class="phrase">It does not mean he can do anything.</div>
+          <div class="body">
+            It means his work is not controlled by external reward or
+            punishment. It comes <em>from within him.</em>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="clar">— "Deep concentration" —</div>
+          <div class="phrase">It does not mean he is quiet.</div>
+          <div class="body">
+            It means he is <em>organized internally.</em> Not distracted
+            by anxiety. Not waiting for approval. This is a state of
+            being, not of behavior.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 COMPLIANCE VS NORMALIZATION -->
+  <section data-label="Compliance vs normalization" class="on-black">
+    <div class="eyebrow-slide">Two states. From the doorway, identical.</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px; width: 100%;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14; color: #fff; padding-bottom: 16px;">
+        You cannot tell from<br/>
+        the behavior alone.
+      </h2>
+      <div class="compliance-flip">
+        <div class="myth">
+          <h3>— Constraint —</h3>
+          <p class="big">A child sitting silently. Looking at the board when told.</p>
+          <p class="small">
+            You cannot see whether she is peaceful or terrified.
+            Whether she has chosen her work or is afraid of what
+            happens if she does not.
+          </p>
+          <p class="small" style="margin-top: 8px;">
+            The order is evidence of <em>power.</em> Not normalization.
+          </p>
+        </div>
+        <div class="real">
+          <h3>— Normalization —</h3>
+          <p class="big">A child <em>returning</em> to the work. Resetting it. Moving on.</p>
+          <p class="small">
+            She does not look at the adult between steps. She does not
+            need permission to be done. She does not need praise to
+            begin again tomorrow.
+          </p>
+          <p class="small" style="margin-top: 8px;">
+            <em>Self-direction is the tell.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        The reversal of<br/>
+        the <em style="font-style: italic; color: var(--gold);">adult's role.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        What normalization requires of you is not technique. It is a
+        complete reorientation of where authority lives.
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 THE REVERSAL -->
+  <section data-label="The reversal" class="on-cream">
+    <div class="eyebrow-slide">A profound reversal of the adult's role</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        The order in the classroom<br/>
+        no longer depends on you<br/>
+        <em style="font-style: italic; color: var(--gold);">maintaining it.</em>
+      </h2>
+      <div class="reversal">
+        <div class="side left">
+          <h4>— Traditional adult —</h4>
+          <p>The giver of information. The manager of behavior. The source of order.</p>
+          <p class="small">
+            Decides what is learned. Decides when. Manages the floor.
+            If she steps out, the room loses its shape.
+          </p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side right">
+          <h4>— Montessori adult —</h4>
+          <p>Observes. Prepares. Presents at the moment of <em>readiness.</em></p>
+          <p class="small">
+            Creates the conditions under which the child can organize
+            himself — and then trusts that he will. <em>This requires
+            faith.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 THE FIRST YEAR LOOKS LIKE CHAOS -->
+  <section data-label="The first year" class="on-navy">
+    <div class="eyebrow-slide">What the first year looks like</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14;">
+        It often <em style="font-style: italic;">looks like chaos</em><br/>
+        before it becomes order.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A new child arrives. He does not know what is allowed. He
+        tries everything. He is loud. He grabs. The adult who does not
+        understand normalization sees misbehavior — and reaches for
+        consequences.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        He is not being defiant. He is exploring the terms of the
+        space. <em>If you respond with control, he learns he cannot be
+        himself here.</em> If you can hold the boundary without force,
+        he will find his way to purposeful work. The chaos was the
+        beginning of the order.
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 NOTICING, NOT PRAISING -->
+  <section data-label="Noticing, not praising" class="on-cream">
+    <div class="eyebrow-slide">The most important thing the adult does</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Notice and name —<br/>
+          <em style="font-style: italic; color: var(--gold);">do not</em> praise.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child who used to run sits down with a material for five
+          minutes. Not remarkable in the traditional sense. But the
+          guide notices.
+        </p>
+        <p class="body-read">
+          <em>"I notice you are working with the color tablets. You are
+          looking carefully at the colors."</em>
+        </p>
+        <p class="body-read">
+          Not "good job." Not "I'm proud of you." Just naming. This
+          tells the child's brain: <em>this moment matters. This
+          choice matters.</em> Over time, she begins to seek it out
+          herself.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE — THE WATER POURING TURN -->
+  <section data-label="Scene · the turn" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-water" style="background: url('/decks/images/week-12-11-scene-the-turn.jpg') center/cover no-repeat;">
+        <div class="scene-label">A guide kneeling beside a four-year-old at a low table with two small pitchers and a sponge. Both of them are very still. Then he begins to pour.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the moment that turned the year</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          She did not give in.<br/>
+          She <em style="font-style: italic;">offered him a door.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A hard morning. Calling out, grabbing materials. The guide
+          could feel her own jaw clench. She did not put him in
+          timeout. She got down to his level.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          <em>"I see you are having a hard morning. Let me show you
+          the water pouring activity."</em> He worked at it for twenty
+          minutes. He came back to it that week. Months later, one of
+          the most engaged children in the room. <em>It started with
+          an adult who could regulate her own frustration.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SCENE — THE CONTROLLED ROOM -->
+  <section data-label="Scene · the controlled room" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · the room that looked fine</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          To a visitor —<br/>
+          <em style="font-style: italic;">orderly. Appropriate.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A guide maintaining order through control. Sit a certain way.
+          Be quiet. Consequences when not. The classroom looked right.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          But there was no joy. No deep work. The children were waiting
+          for her attention to work — and doing something else when
+          she looked away. <em>This is not normalization. This is
+          control that has been temporarily relaxed.</em>
+        </p>
+      </div>
+      <div class="scene scene-control" style="background: url('/decks/images/week-12-12-scene-the-controlled-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A line of children sitting upright at low tables, hands folded. The room is silent. None of them are working with anything.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Adult work,<br/>
+        <em style="font-style: italic; color: var(--gold);">not technique.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The hardest part is not the curriculum. It is managing your
+        own emotional reactivity in real time.
+      </p>
+    </div>
+  </section>
+
+  <!-- 14 SIX CONDITIONS -->
+  <section data-label="Six conditions normalization needs from you" class="on-navy">
+    <div class="eyebrow-slide">What you bring · six conditions</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.16;">
+        You have to show up<br/>
+        with this <em style="font-style: italic;">every day.</em>
+      </h2>
+      <div class="conditions">
+        <div class="item">
+          <div class="num">i.</div>
+          <div class="body">A nervous system that <em>stays regulated</em> when a child's does not.</div>
+        </div>
+        <div class="item">
+          <div class="num">ii.</div>
+          <div class="body">Boundaries that come from <em>safety</em> — not from punishment.</div>
+        </div>
+        <div class="item">
+          <div class="num">iii.</div>
+          <div class="body">The discipline to <em>name</em> right work without rewarding it.</div>
+        </div>
+        <div class="item">
+          <div class="num">iv.</div>
+          <div class="body">The willingness to tolerate <em>apparent chaos</em> while order is forming.</div>
+        </div>
+        <div class="item">
+          <div class="num">v.</div>
+          <div class="body">Honesty about when your impulse to intervene is about <em>you,</em> not the child.</div>
+        </div>
+        <div class="item">
+          <div class="num">vi.</div>
+          <div class="body">The faith that the room does not depend on you <em>maintaining</em> it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NORMALIZATION IS FRAGILE -->
+  <section data-label="Normalization is fragile" class="on-navy">
+    <div class="eyebrow-slide">It is not a state you reach</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14;">
+        Normalization is <em style="font-style: italic;">fragile.</em><br/>
+        You do not finish it.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A new child joins. The schedule changes. You get tired and use
+        your power coercively for a day. Something happens at home for
+        one of the children.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Normalization is not a state that you achieve. It is a quality
+        of life you maintain — <em>day by day, choice by choice, through
+        your own presence.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 EQUITY -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · for children who have been harmed</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        A child who has learned<br/>
+        adults are not safe will<br/>
+        <em style="font-style: italic;">escalate before she settles.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        She will test the boundaries repeatedly to see if you mean what
+        you say. She is not being defiant. <em>She is surviving.</em>
+        If you read her escalation as misbehavior, you tighten your
+        control — and prove the adult was never safe.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Normalization for her requires that you stay regulated when she
+        is not. That you set boundaries from safety, never from shame.
+        That you believe, in your cells, <em>this child is doing the
+        best she can with what she knows.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">A note on different nervous systems</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Engagement with<br/>
+          purposeful work.<br/>
+          <span class="gold" style="font-style: italic;">Not stillness.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child with ADHD, autism, or sensory processing differences
+          may never look like the textbook image of a normalized
+          child. That is not a failure of normalization.
+        </p>
+        <p class="body-read">
+          She may engage with purposeful work while fidgeting, moving,
+          stimming, standing. <em>This is normalization in a different
+          form.</em> Your job is to create an environment where her
+          kind of engagement is possible. Do not confuse the goal with
+          the appearance of being still.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 64px;">
+        Think about a moment when you felt<br/>
+        deep focus — work that mattered, that<br/>
+        you had chosen. What were the conditions?<br/>
+        What would have disrupted it? What role<br/>
+        did external <em style="font-style: italic; color: var(--gold);">control or praise</em> play?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 12 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

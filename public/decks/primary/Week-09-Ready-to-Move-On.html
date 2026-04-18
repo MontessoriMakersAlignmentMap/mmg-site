@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 9 — How to Know When a Child Is Ready</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  /* Three lenses — the observation framework */
+  .lens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 40px;
+  }
+  .lens-grid .lens {
+    background: #f3ecdc;
+    padding: 36px 32px 40px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 420px;
+  }
+  .on-navy .lens-grid .lens { background: #13214b; }
+  .lens-grid .n {
+    font-family: var(--font-heading);
+    font-size: 64px; line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .lens-grid .title-lbl {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--navy);
+    font-weight: 600;
+  }
+  .on-navy .lens-grid .title-lbl { color: rgba(255,255,255,0.85); }
+  .lens-grid .head {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.2;
+    color: var(--navy); margin: 0;
+  }
+  .on-navy .lens-grid .head { color: #fff; }
+  .lens-grid .head em { color: var(--gold); font-style: italic; }
+  .lens-grid .q {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin-top: auto;
+  }
+  .on-navy .lens-grid .q { color: rgba(255,255,255,0.75); }
+
+  /* Two columns split: interest vs readiness */
+  .split-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+    width: 100%;
+  }
+  .split-compare > div {
+    padding: 40px 40px 48px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .split-compare .a { background: #0c1638; color: rgba(255,255,255,0.62); }
+  .split-compare .b { background: #0e1a44; color: #fff; }
+  .split-compare h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin: 0;
+    font-weight: 600; color: var(--gold);
+  }
+  .split-compare .a h3 { color: rgba(255,255,255,0.45); }
+  .split-compare p.big {
+    font-family: var(--font-heading);
+    font-size: 42px; line-height: 1.2; margin: 0;
+  }
+  .split-compare p.sub {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5; margin: 0;
+  }
+  .split-compare em { color: var(--gold); font-style: italic; }
+  .split-compare .a em { color: rgba(255,255,255,0.5); }
+
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Decision matrix */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .decision-grid > div {
+    background: #f3ecdc;
+    padding: 28px 28px 32px;
+  }
+  .decision-grid .corner {
+    background: var(--navy);
+  }
+  .decision-grid .col-h {
+    font-family: var(--font-sans);
+    font-size: 22px; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--navy);
+    font-weight: 600;
+  }
+  .decision-grid .row-h {
+    font-family: var(--font-heading);
+    font-size: 28px; line-height: 1.2;
+    color: var(--gold); font-style: italic;
+  }
+  .decision-grid p {
+    font-family: var(--font-sans);
+    font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 12px 0 0;
+  }
+
+  .scene-anxious {
+    background:
+      radial-gradient(ellipse 70% 50% at 40% 30%, rgba(240,217,161,0.3), transparent 70%),
+      radial-gradient(ellipse 60% 60% at 75% 75%, rgba(100,40,30,0.4), transparent 70%),
+      linear-gradient(150deg, #7a6a55 0%, #463528 55%, #1e1510 100%);
+  }
+  .scene-not-ready {
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(220,200,170,0.28), transparent 70%),
+      linear-gradient(165deg, #4d4233 0%, #2a2419 55%, #14110a 100%);
+  }
+
+  /* Signals list */
+  .signal-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 80px;
+    margin-top: 32px;
+  }
+  .signal-list .item {
+    padding: 22px 0 24px;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .signal-list .item:last-child,
+  .signal-list .item:nth-last-child(2) {
+    border-bottom: 1px solid rgba(214,167,88,0.4);
+  }
+  .signal-list .num {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    color: var(--gold);
+    font-style: italic;
+  }
+  .signal-list .body {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+  }
+  .signal-list .body em {
+    color: var(--gold); font-style: italic;
+  }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Nine</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 116px; line-height: 1.08; padding-bottom: 24px;">
+        Ready — <em style="font-style: italic; color: var(--gold);">not old&nbsp;enough.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1260px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        How to know when a child is ready to move on. Two different
+        questions, and only one of them is answered by her birthday.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 09 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 76px; line-height: 1.16;">
+        You can teach a child<br/>
+        the sensorial materials<br/>
+        at <span class="gold" style="font-style: italic;">three years old.</span><br/>
+        You will break them.
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        The question is not whether she is <em>old enough.</em> The
+        question is whether she is <em>ready.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500;">
+        Those are two completely different things — and this week is
+        observation work at its most essential.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Read the child<br/>
+          in the <em style="font-style: italic; color: var(--gold);">present moment.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Two months into observation. Patterns are starting to surface.
+          Some children are about to finish Practical Life and transition
+          into Sensorial.
+        </p>
+        <p class="body-read">
+          This week is not about scope and sequence. It is about reading
+          a child <em>now</em> — and making a decision that honors both
+          her development and her capacity.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        What readiness<br/>
+        <em style="font-style: italic; color: var(--gold);">is not.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Stripping away three of the most common substitutes — age,
+        compliance, and interest.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 DEFINITION -->
+  <section data-label="Readiness, defined" class="on-navy">
+    <div class="eyebrow-slide">Readiness, defined</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.16;">
+        Not readiness to sit still.<br/>
+        Not readiness to <em style="font-style: italic;">follow directions.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Readiness is the neural organization, the impulse control, the
+        fine motor foundation, and the genuine curiosity to engage
+        deeply with something new.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        It shows up as <em>quiet competence</em> — not as being fastest
+        or most accurate. It shows up as a child who can make an error
+        and adjust without falling apart.
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 INTEREST vs READINESS -->
+  <section data-label="Interest is not readiness" class="on-black">
+    <div class="eyebrow-slide">The confusion I see most often</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px; width: 100%;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14; color: #fff; padding-bottom: 16px;">
+        Interest and readiness<br/>
+        are <em style="font-style: italic;">not the same thing.</em>
+      </h2>
+      <div class="split-compare">
+        <div class="a">
+          <h3>— Interest alone —</h3>
+          <p class="big">A four-year-old is desperately interested in writing.</p>
+          <p class="sub">
+            She sees older children writing. She wants in. Her interest
+            is real. Her readiness may not be.
+          </p>
+          <p class="sub" style="margin-top: 10px;">
+            Hand strength is not there. Phonetic foundation is not there.
+            You can force her hand through the motions.
+            <em>She will not be ready.</em>
+          </p>
+        </div>
+        <div class="b">
+          <h3>— Interest meeting readiness —</h3>
+          <p class="big"><em>Repeated return.</em> Focus. Self-direction.</p>
+          <p class="sub">
+            She asks for the color tablets. She returns to them for
+            weeks. Not because you suggested it. Not because it comes
+            next in the sequence.
+          </p>
+          <p class="sub" style="margin-top: 10px;">
+            She returns because something in her development is calling
+            her toward that work. <em>That is the signal.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 BOTH ERRORS -->
+  <section data-label="Too early, too late" class="on-navy">
+    <div class="eyebrow-slide">Both errors are real</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14;">
+        Moving her too early is as<br/>
+        harmful as holding her<br/>
+        back too long — <em style="font-style: italic;">for different reasons.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Too early: she cannot succeed. She begins to depend on you.
+        Moves from material to material because nothing holds her. The
+        lesson she learns: <em>I need an adult to work.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Too late: she has already integrated the learning. She makes a
+        game of the work. By month five she has checked out. The lesson:
+        <em>school is compliance and repetition, not real pursuit.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PART TWO COVER -->
+  <section data-label="Part two — three lenses" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.06; color: var(--navy); padding-bottom: 32px;">
+        Three things<br/>
+        you are <em style="font-style: italic; color: var(--gold);">watching for.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The hand. The concentration. The relationship to difficulty.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 THE THREE LENSES -->
+  <section data-label="The three lenses" class="on-cream">
+    <div class="eyebrow-slide">The three lenses</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 52px; max-width: 1500px;">
+        Together, over time —<br/>
+        they tell you if a child<br/>
+        is <span class="gold" style="font-style: italic;">ready.</span>
+      </p>
+      <div class="lens-grid">
+        <div class="lens">
+          <div class="n">01</div>
+          <div class="title-lbl">— The hand —</div>
+          <p class="head">Does she <em>place</em> — or slap and grab?</p>
+          <p class="q">
+            Can she manipulate objects with care? When she makes an error,
+            does she notice? Can she make the correction herself?
+          </p>
+        </div>
+        <div class="lens">
+          <div class="n">02</div>
+          <div class="title-lbl">— The concentration —</div>
+          <p class="head">Can she <em>return?</em> Twenty minutes without a prompt?</p>
+          <p class="q">
+            Is she able to come back to an activity? When she is done,
+            does she reset the material — or leave it in pieces?
+          </p>
+        </div>
+        <div class="lens">
+          <div class="n">03</div>
+          <div class="title-lbl">— Difficulty —</div>
+          <p class="head">Does she <em>persevere?</em></p>
+          <p class="q">
+            When you give her help, can she use it and return to work?
+            Or does she need you to repeat the help every time she hits
+            the same edge?
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 THE QUIET SIGNALS -->
+  <section data-label="Quiet signals" class="on-navy">
+    <div class="eyebrow-slide">Beyond the three lenses · the quiet signals</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.16;">
+        Six smaller signals you can<br/>
+        only see if you are <em style="font-style: italic;">looking for them.</em>
+      </h2>
+      <div class="signal-list">
+        <div class="item">
+          <div class="num">i.</div>
+          <div class="body">She <em>chooses her own work</em> without scanning the room for an adult's reaction.</div>
+        </div>
+        <div class="item">
+          <div class="num">ii.</div>
+          <div class="body">She carries the material with two hands and walks slowly — without being reminded.</div>
+        </div>
+        <div class="item">
+          <div class="num">iii.</div>
+          <div class="body">She <em>watches an older child work</em> for several minutes, then tries it herself days later.</div>
+        </div>
+        <div class="item">
+          <div class="num">iv.</div>
+          <div class="body">She accepts redirection without it costing her the rest of the morning.</div>
+        </div>
+        <div class="item">
+          <div class="num">v.</div>
+          <div class="body">She makes <em>tiny self-corrections</em> mid-work — without commentary, without seeking praise.</div>
+        </div>
+        <div class="item">
+          <div class="num">vi.</div>
+          <div class="body">When she finishes, she sits back. There is satisfaction. She does not immediately need the next thing.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE — NERVOUS SYSTEM -->
+  <section data-label="Scene · nervous system not ready" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-anxious" style="background: url('/decks/images/week-09-11-scene-nervous-system-not-ready.jpg') center/cover no-repeat;">
+        <div class="scene-label">A three-year-old at the color tablets with the guide beside her — hand steady on the work, eyes flicking up to the guide's face between each move.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · readiness the guide missed</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          Physical readiness.<br/>
+          <em style="font-style: italic;">Nervous system</em> still catching up.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          On paper, she was ready. Good hand control. She returned to
+          activities. She could concentrate.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          But she was still working through anxiety about transitions.
+          The work required abstract thinking — so she needed reassurance.
+          She became dependent on it. It took weeks to rebuild. Observe
+          the <em>whole</em> ecosystem, not just hands and focus.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SCENE — TOO LATE -->
+  <section data-label="Scene · held back too long" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · readiness the guide saw — and waited on</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          The other error.<br/>
+          <em style="font-style: italic;">She was ready in October.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Hand strength: there. Concentration: thirty minutes at a stretch.
+          She had begun watching the older children at the pink tower.
+          The guide wanted to be sure.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          By December, the child stopped watching. By January, she would
+          take the pink tower out and arrange it as a wall, a road, a fence.
+          The work had been waiting too long. <em>Her interest passed
+          before her invitation came.</em>
+        </p>
+      </div>
+      <div class="scene scene-not-ready" style="background: url('/decks/images/week-09-12-scene-held-back-too-long.jpg') center/cover no-repeat;">
+        <div class="scene-label">A four-year-old in the corner with the pink tower laid horizontally across the rug — turned into something that is not the pink tower at all. She is humming.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14;">
+        If you only look for <em style="font-style: italic;">verbal</em> markers,<br/>
+        you will miss the quiet child entirely.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        In many schools, the children moved forward quickly are already
+        advantaged. Their families talk to them, read to them, take them
+        places. Guides read cultural familiarity and verbal fluency as
+        <em>readiness.</em> They are not the same.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        A quiet child may be deeply ready — and invisible. A child whose
+        family has not done the bedtime reading routine may have
+        extraordinary hand control and focus. Watch across the whole
+        child — across time — or you will over-represent the same
+        children in advanced work every year.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">A note on different profiles</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Watch the child.<br/>
+          <span class="gold" style="font-style: italic;">Not the profile.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child with ADHD may have excellent hand control and deep
+          interest in sorting — with fragmented concentration. A child
+          who is autistic may have intense focus, and rigid thinking.
+        </p>
+        <p class="body-read">
+          A child with early trauma may have excellent behavior and be
+          checking out emotionally. <em>Compliance is not readiness.</em>
+          Give these children time. Observe closely. Readiness exists
+          for them too — and may look different.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        What you do<br/>
+        with what you <em style="font-style: italic; color: var(--gold);">see.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The decision moment. Held lightly. Made anyway.
+      </p>
+    </div>
+  </section>
+
+  <!-- 16 DECISION MATRIX -->
+  <section data-label="Decision matrix" class="on-cream">
+    <div class="eyebrow-slide">A simple frame for the decision</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        When the signals are mixed —<br/>
+        <em style="font-style: italic; color: var(--gold);">how you act on them.</em>
+      </h2>
+      <div class="decision-grid">
+        <div class="corner"></div>
+        <div><span class="col-h">— Interest present —</span></div>
+        <div><span class="col-h">— Interest absent —</span></div>
+
+        <div><span class="row-h">Readiness present</span></div>
+        <div><p><strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-size: 26px;">Invite.</strong> Offer the lesson within the week. Step back and let the work do the rest.</p></div>
+        <div><p><strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-size: 26px;">Wait — and prepare the ground.</strong> Place the next material visibly nearby. Let her notice it on her terms.</p></div>
+
+        <div><span class="row-h">Readiness absent</span></div>
+        <div><p><strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-size: 26px;">Strengthen the foundation.</strong> Stay in earlier work she can succeed at. Honor the interest by showing it is on the path.</p></div>
+        <div><p><strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-size: 26px;">Observe more.</strong> Do not move. Do not push. Look for what is calling her — somewhere else in the room.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 GUIDE TRUST -->
+  <section data-label="The temptation to move them" class="on-navy">
+    <div class="eyebrow-slide">A note on your own pressure</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14;">
+        Be honest about <em style="font-style: italic;">whose readiness</em><br/>
+        you are reading.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        The pressure to move children forward is often
+        <em>your</em> pressure — not theirs. The parents asked. The
+        director glanced at the binder. The other guide moved her child.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        These are real pressures. They are not data about the child.
+        Name them quietly to yourself, set them aside, and look again at
+        what she is actually showing you. <em>Her timeline is not your
+        performance review.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 100px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 76px;">
+        Choose one child who is showing<br/>
+        signals of readiness. What is she<br/>
+        showing you? What are you<br/>
+        <em style="font-style: italic; color: var(--gold);">still uncertain about?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 09 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

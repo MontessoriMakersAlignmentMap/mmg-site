@@ -31,6 +31,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     'status', 'unlock_date', 'lock_date', 'weekly_theme',
     'practicum_focus', 'album_prompt', 'album_submission_required',
     'live_session_week', 'live_session_discussion_theme',
+    'deck_url',
   ]
 
   const updates: Record<string, unknown> = { updated_at: new Date().toISOString() }

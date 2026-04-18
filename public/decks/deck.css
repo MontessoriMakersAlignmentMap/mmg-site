@@ -1,0 +1,538 @@
+/* ──────────────────────────────────────────────────────────────
+   Week 1 Deck — Maria Montessori & Equity
+   Built on MMG Design System tokens.
+   ────────────────────────────────────────────────────────────── */
+
+@import url('/decks/assets/colors_and_type.css');
+
+/* ── Type scale for 1920×1080 slides ─────────────────────────── */
+:root {
+  --t-display-mega: 220px;
+  --t-display-xxl:  140px;
+  --t-display-xl:   104px;
+  --t-display-lg:   84px;
+  --t-display:      68px;
+  --t-title:        56px;
+  --t-subtitle:     44px;
+  --t-body-lg:      34px;
+  --t-body:         28px;
+  --t-small:        22px;
+  --t-eyebrow-slide: 24px;
+
+  --pad-x: 120px;
+  --pad-y: 100px;
+  --pad-y-bottom: 88px;
+  --title-gap: 56px;
+  --item-gap: 32px;
+}
+
+html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+
+/* ── Slide frame ─────────────────────────────────────────────── */
+deck-stage > section {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--bg);
+  padding: var(--pad-y) var(--pad-x) var(--pad-y-bottom);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+deck-stage > section.on-navy {
+  background: var(--navy);
+  color: var(--fg-on-navy);
+}
+deck-stage > section.on-cream { background: var(--bg-cream); }
+deck-stage > section.on-black { background: var(--navy-deep); color: #fff; }
+
+/* Grain overlay for editorial richness on dark slides */
+.on-navy::after, .on-black::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 300px 300px; opacity: 0.05; mix-blend-mode: overlay;
+}
+.on-navy > *, .on-black > * { position: relative; z-index: 2; }
+
+/* ── Eyebrow ─────────────────────────────────────────────────── */
+.eyebrow-slide {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-weight: 500;
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+}
+.eyebrow-slide::before {
+  content: '';
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+}
+.on-navy .eyebrow-slide, .on-black .eyebrow-slide { color: var(--gold); }
+
+/* ── Display headings ────────────────────────────────────────── */
+.display {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--navy);
+  margin: 0;
+}
+.on-navy .display, .on-black .display { color: #fff; }
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 0;
+}
+.on-navy .title, .on-black .title { color: #fff; }
+
+/* ── Body ────────────────────────────────────────────────────── */
+.body-read {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--fg-body);
+  margin: 0;
+  max-width: 1500px;
+  text-wrap: pretty;
+}
+.on-navy .body-read, .on-black .body-read { color: rgba(255,255,255,0.88); }
+.body-read + .body-read { margin-top: 28px; }
+.body-read em { font-style: italic; color: var(--navy); }
+.on-navy .body-read em, .on-black .body-read em { color: var(--gold); }
+
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--t-body-lg);
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--fg-body);
+  margin: 0;
+  max-width: 1400px;
+  text-wrap: pretty;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--fg-body);
+  margin: 0;
+  text-wrap: pretty;
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--fg-muted);
+  margin: 0;
+}
+.on-navy .body-lg, .on-navy .body, .on-black .body-lg, .on-black .body { color: rgba(255,255,255,0.88); }
+.on-navy .small, .on-black .small { color: rgba(255,255,255,0.62); }
+
+.serif-quote {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--navy);
+}
+.on-navy .serif-quote, .on-black .serif-quote { color: #fff; }
+
+/* ── Gold accents ────────────────────────────────────────────── */
+.gold { color: var(--gold); }
+.gold-underline {
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  padding-bottom: 6px;
+}
+.rule-gold {
+  width: 80px; height: 2px; background: var(--gold);
+  margin: 0;
+}
+.rule-hair {
+  width: 100%; height: 1px;
+  background: var(--border);
+}
+.on-navy .rule-hair, .on-black .rule-hair { background: rgba(255,255,255,0.18); }
+
+/* ── Page number / slide chrome ──────────────────────────────── */
+.slide-meta {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 48px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  z-index: 3;
+}
+.on-navy .slide-meta, .on-black .slide-meta { color: rgba(255,255,255,0.5); }
+
+.slide-meta .dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold);
+}
+
+.slide-pagenum {
+  position: absolute;
+  right: var(--pad-x);
+  bottom: 48px;
+  font-family: var(--font-heading);
+  font-size: 28px;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+  z-index: 3;
+}
+.on-navy .slide-pagenum, .on-black .slide-pagenum { color: rgba(255,255,255,0.55); }
+
+/* ── Grid helpers ────────────────────────────────────────────── */
+.stack { display: flex; flex-direction: column; }
+.gap-sm { gap: 24px; }
+.gap-md { gap: 40px; }
+.gap-lg { gap: 56px; }
+.gap-xl { gap: 80px; }
+.mt-auto { margin-top: auto; }
+.mb-auto { margin-bottom: auto; }
+.center { align-items: center; justify-content: center; text-align: center; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  flex: 1;
+}
+.two-col-narrow-left {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 96px;
+  flex: 1;
+}
+
+/* ── Scene placeholder (image frame) ─────────────────────────── */
+.scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 56px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+/* diagonal hatch overlay so it reads as placeholder */
+.scene::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(135deg,
+    rgba(255,255,255,0.04) 0 2px, transparent 2px 20px);
+  pointer-events: none;
+}
+/* corner brackets */
+.scene::after {
+  content: '';
+  position: absolute;
+  inset: 32px;
+  border: 1px dashed rgba(214,167,88,0.45);
+  pointer-events: none;
+}
+
+/* A painterly gradient placeholder evoking an interior scene */
+.scene-san-lorenzo {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(240,217,161,0.4), transparent 70%),
+    radial-gradient(ellipse 60% 80% at 75% 70%, rgba(14,26,122,0.5), transparent 70%),
+    linear-gradient(135deg, #6b5a3a 0%, #3a2d1e 50%, #1a1410 100%);
+}
+.scene-ny {
+  background:
+    radial-gradient(ellipse 70% 50% at 60% 30%, rgba(255,255,255,0.15), transparent 70%),
+    linear-gradient(160deg, #d4c5a8 0%, #9b8868 45%, #524532 100%);
+}
+
+.scene-label {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.72);
+  padding: 14px 22px;
+  border: 1px solid rgba(214,167,88,0.6);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  max-width: 520px;
+  line-height: 1.5;
+  text-align: center;
+  z-index: 2;
+}
+.scene-label::before {
+  content: 'PHOTO';
+  display: block;
+  font-size: 22px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* ── Date marker (for biographical slides) ────────────────────── */
+.year-marker {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 240px;
+  line-height: 0.9;
+  color: var(--gold);
+  letter-spacing: -0.03em;
+}
+.on-navy .year-marker { color: var(--gold); }
+
+.place-marker {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+.on-navy .place-marker { color: rgba(255,255,255,0.6); }
+
+/* ── Large index numerals for section headers ─────────────────── */
+.section-idx {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* ── Quote treatment ─────────────────────────────────────────── */
+.pullquote {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 88px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  text-indent: -0.4em;
+}
+.on-navy .pullquote, .on-black .pullquote { color: #fff; }
+
+.attrib {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+.on-navy .attrib { color: var(--gold); }
+
+/* ── Complication list (for "she was not a saint") ────────────── */
+.comp-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 28px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  align-items: baseline;
+}
+.comp-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.14); }
+.comp-num {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.comp-head {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: #fff;
+}
+.comp-body {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.82);
+  margin: 0;
+}
+
+/* ── Two-scene compare ───────────────────────────────────────── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  flex: 1;
+}
+
+/* ── Cube / Logo mark ────────────────────────────────────────── */
+.cube-mark {
+  width: 44px;
+  height: 44px;
+}
+
+/* ── Utility — max width constraints ─────────────────────────── */
+.mw-narrow { max-width: 1100px; }
+.mw-wide { max-width: 1400px; }
+.mw-full { max-width: none; }
+
+/* ── Title slide ─────────────────────────────────────────────── */
+.title-slide-rule {
+  width: 120px; height: 2px; background: var(--gold); margin: 0;
+}
+
+/* ── Closing slide ───────────────────────────────────────────── */
+.closing-q {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: #fff;
+  max-width: 1500px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHOTO PLACEHOLDERS
+   ─ Styled rectangles describing where a real photo will go.
+   ─ Shown as neutral warm-toned blocks with a descriptive caption.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.photo-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(14,26,122,0.04) 0 2px,
+      transparent 2px 18px
+    ),
+    linear-gradient(160deg, #e6dfd2 0%, #cbc0ac 100%);
+  border: 1px solid rgba(14,26,122,0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 24px 28px;
+  overflow: hidden;
+  color: var(--navy);
+}
+.photo-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 28px; left: 28px;
+  width: 44px; height: 44px;
+  border: 2px solid rgba(14,26,122,0.32);
+  border-right: none; border-bottom: none;
+}
+.photo-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: 28px; right: 28px;
+  width: 44px; height: 44px;
+  border: 2px solid rgba(14,26,122,0.32);
+  border-left: none; border-top: none;
+}
+.photo-placeholder span {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(14,26,122,0.6);
+  margin-bottom: 12px;
+}
+.photo-placeholder em {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--navy);
+  max-width: 100%;
+}
+
+/* Navy / dark variant */
+.on-navy .photo-placeholder,
+.on-black .photo-placeholder {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.04) 0 2px,
+      transparent 2px 18px
+    ),
+    linear-gradient(160deg, #1a2795 0%, #0a0f4a 100%);
+  border-color: rgba(214,167,88,0.32);
+  color: rgba(255,255,255,0.88);
+}
+.on-navy .photo-placeholder::before,
+.on-navy .photo-placeholder::after,
+.on-black .photo-placeholder::before,
+.on-black .photo-placeholder::after {
+  border-color: rgba(214,167,88,0.55);
+}
+.on-navy .photo-placeholder span,
+.on-black .photo-placeholder span { color: var(--gold); }
+.on-navy .photo-placeholder em,
+.on-black .photo-placeholder em { color: rgba(255,255,255,0.88); }
+
+/* Full-bleed placeholder (fills the slide) */
+.photo-placeholder-full {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: unset;
+  border: none;
+  padding: 100px;
+  justify-content: flex-end;
+}
+
+/* Hero placeholder (half the slide) */
+deck-stage > section.slide-with-hero {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 !important;
+  gap: 0;
+}
+deck-stage > section.slide-with-hero > .hero-slot {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+deck-stage > section.slide-with-hero > .hero-slot .photo-placeholder {
+  width: 100%; height: 100%;
+  aspect-ratio: unset;
+  border: none;
+  border-right: 1px solid rgba(14,26,122,0.18);
+}
+deck-stage > section.slide-with-hero.hero-right > .hero-slot .photo-placeholder {
+  border-right: none;
+  border-left: 1px solid rgba(14,26,122,0.18);
+}
+deck-stage > section.slide-with-hero > .content-slot {
+  padding: var(--pad-y) var(--pad-x) var(--pad-y-bottom);
+  display: flex; flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}

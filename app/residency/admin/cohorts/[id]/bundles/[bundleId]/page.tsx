@@ -18,6 +18,8 @@ export default function BundleDetailPage() {
   const [loading, setLoading] = useState(true)
   const [showSessionForm, setShowSessionForm] = useState(false)
   const [sessionForm, setSessionForm] = useState({ session_date: '', attendance_count: '', key_themes: '', followup_actions: '' })
+  const [deckSaving, setDeckSaving] = useState(false)
+  const [selectedDeckFile, setSelectedDeckFile] = useState('')
 
   useEffect(() => { load() }, [bundleId])
 
@@ -117,6 +119,39 @@ export default function BundleDetailPage() {
     load()
   }
 
+  const DECK_FILES = [
+    'Week-01-Who-Was-Maria-Montessori.html',
+    'Week-02-The-Absorbent-Mind-in-Real-Life.html',
+    'Week-03-Practical-Life.html',
+    'Week-04-Prepared-Environment-as-Justice.html',
+    'Week-05-Care-of-Environment.html',
+    'Week-06-Grace-and-Courtesy-Anti-Bias.html',
+    'Week-07-Cultural-Dimensions-of-Practical-Life.html',
+    'Week-08-Fading-as-a-Practice.html',
+    'Week-09-Ready-to-Move-On.html',
+    'Week-10-Sensorial-in-the-Brain.html',
+    'Week-11-The-Mathematical-Mind.html',
+    'Week-12-Normalization.html',
+    'Week-13-Sensory-Processing.html',
+    'Week-14-The-Three-Period-Lesson.html',
+  ]
+
+  async function saveDeckUrl(url: string) {
+    setDeckSaving(true)
+    await fetch(`/api/residency/bundles/${bundleId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ deck_url: url || null }),
+    })
+    setDeckSaving(false)
+    load()
+  }
+
+  async function removeDeck() {
+    if (!confirm('Remove the slide deck from this week?')) return
+    await saveDeckUrl('')
+  }
+
   if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!bundle) return <p>Bundle not found.</p>
 
@@ -169,6 +204,54 @@ export default function BundleDetailPage() {
             Unlocks {new Date(bundle.unlock_date + 'T12:00:00').toLocaleDateString()}
           </span>
         </div>
+      </div>
+
+      {/* Slide Deck */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Slide Deck</h2>
+
+        {bundle.deck_url ? (
+          <>
+            <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', marginBottom: '0.75rem', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--r-border)' }}>
+              <iframe
+                src={bundle.deck_url}
+                title="Deck Preview"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                allow="fullscreen"
+              />
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)', flex: 1 }}>
+                {bundle.deck_url.split('/').pop()}
+              </span>
+              <button className="r-btn" style={{ fontSize: '0.75rem' }} onClick={removeDeck}>Remove</button>
+            </div>
+          </>
+        ) : (
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-end' }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', marginBottom: '0.25rem' }}>Assign Deck File</label>
+              <select
+                className="r-input"
+                value={selectedDeckFile}
+                onChange={e => setSelectedDeckFile(e.target.value)}
+              >
+                <option value="">Select a deck...</option>
+                {DECK_FILES.map(f => (
+                  <option key={f} value={`/decks/primary/${f}`}>{f.replace('.html', '').replace(/-/g, ' ')}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              className="r-btn r-btn-primary"
+              style={{ fontSize: '0.75rem', whiteSpace: 'nowrap' }}
+              disabled={!selectedDeckFile || deckSaving}
+              onClick={() => saveDeckUrl(selectedDeckFile)}
+            >
+              {deckSaving ? 'Saving...' : 'Assign Deck'}
+            </button>
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>

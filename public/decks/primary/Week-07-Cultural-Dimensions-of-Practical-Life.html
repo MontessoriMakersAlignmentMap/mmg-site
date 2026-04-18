@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 7 — The Cultural Dimensions of Practical Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  /* Shelf grid — cards for "what's usually on the shelf" */
+  .shelf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+    background: rgba(214,167,88,0.35);
+    border: 1px solid rgba(214,167,88,0.35);
+  }
+  .shelf-cell {
+    background: #f3ecdc;
+    padding: 32px 28px 36px;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 190px;
+  }
+  .on-navy .shelf-cell { background: #13214b; }
+  .shelf-cell .n {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 600;
+  }
+  .shelf-cell .label {
+    font-family: var(--font-heading);
+    font-size: 30px; line-height: 1.18;
+    color: var(--navy); margin: 0;
+  }
+  .on-navy .shelf-cell .label { color: #fff; }
+  .shelf-cell .story {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.45;
+    color: var(--fg-muted);
+    margin-top: auto;
+  }
+  .on-navy .shelf-cell .story { color: rgba(255,255,255,0.55); }
+
+  /* Two-child recognition diptych */
+  .diptych {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    flex: 1;
+    width: 100%;
+    margin-top: 36px;
+  }
+  .diptych > div {
+    padding: 48px 44px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .diptych .left { background: #f3ecdc; color: var(--navy); }
+  .diptych .right { background: #0e1a44; color: #fff; }
+  .diptych h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase; margin: 0;
+    font-weight: 600;
+  }
+  .diptych .left h3 { color: var(--gold); }
+  .diptych .right h3 { color: var(--gold); }
+  .diptych .headline {
+    font-family: var(--font-heading);
+    font-size: 44px; line-height: 1.18;
+    margin: 0;
+  }
+  .diptych .left em, .diptych .right em { color: var(--gold); font-style: italic; }
+  .diptych p.sub {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    margin: 0;
+  }
+  .diptych .right p.sub { color: rgba(255,255,255,0.82); }
+  .diptych .left p.sub { color: var(--fg-body); }
+
+  /* Tokenism vs inclusion — side by side */
+  .token-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 36px;
+  }
+  .token-compare > div { display: flex; flex-direction: column; gap: 18px; }
+  .token-compare h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase; margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .token-compare .tk h3 { color: rgba(255,255,255,0.55); }
+  .token-compare .real h3 { color: var(--gold); }
+  .token-compare p {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.3;
+    margin: 0;
+  }
+  .token-compare .tk p { color: rgba(255,255,255,0.55); }
+  .token-compare .real p { color: #fff; }
+  .token-compare em { color: var(--gold); font-style: italic; }
+  .token-compare .tk em { color: rgba(255,255,255,0.55); }
+  .token-compare .foot {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    margin-top: 10px;
+  }
+  .token-compare .tk .foot { color: rgba(255,255,255,0.4); }
+  .token-compare .real .foot { color: rgba(255,255,255,0.7); }
+
+  /* Tools → competence list */
+  .tools-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(10,24,77,0.18);
+  }
+  .tools-list .row {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 64px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(10,24,77,0.18);
+    align-items: baseline;
+  }
+  .tools-list .tool {
+    font-family: var(--font-heading);
+    font-size: 34px; color: var(--navy);
+    line-height: 1.2;
+  }
+  .tools-list .tool em { color: var(--gold); font-style: italic; }
+  .tools-list .skill {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.55;
+    color: var(--fg-body);
+  }
+
+  /* Shelf vocabulary at bottom of a slide (small icons/labels) */
+  .vocab-row {
+    display: flex; gap: 56px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .vocab-row .v {
+    display: flex; flex-direction: column; gap: 6px;
+    min-width: 180px;
+  }
+  .vocab-row .v b {
+    font-family: var(--font-sans);
+    font-size: 15px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+  }
+  .vocab-row .v span {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    color: var(--navy);
+  }
+  .on-navy .vocab-row .v span { color: #fff; }
+
+  /* Scene placeholder — warm kitchen */
+  .scene-kitchen {
+    background:
+      radial-gradient(ellipse 70% 50% at 35% 35%, rgba(240,217,161,0.38), transparent 72%),
+      radial-gradient(ellipse 60% 80% at 78% 75%, rgba(120,40,20,0.35), transparent 70%),
+      linear-gradient(140deg, #7a5d3a 0%, #4a3420 55%, #1e1510 100%);
+  }
+  .scene-laundry {
+    background:
+      radial-gradient(ellipse 65% 45% at 55% 28%, rgba(255,255,255,0.18), transparent 72%),
+      radial-gradient(ellipse 80% 50% at 30% 80%, rgba(40,80,120,0.45), transparent 70%),
+      linear-gradient(160deg, #8da7b8 0%, #5e7788 50%, #2c3e4c 100%);
+  }
+
+  /* Section dividers (numbered parts) */
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Seven</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 124px; line-height: 1.08; padding-bottom: 24px;">
+        Whose home<br/>
+        is <em style="font-style: italic; color: var(--gold);">on the shelf?</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1260px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The cultural dimensions of Practical Life — and what a child sees
+        the first time she walks over to it.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 07 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 · OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 80px; line-height: 1.14;">
+        The Practical Life shelf<br/>
+        <span class="gold" style="font-style: italic;">tells a story</span>
+        about what home means.
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        The story is usually the home of a white, educated, middle-class
+        European family. Whose grandmother's kitchen is honored as the
+        right way to do things. Whose tools are considered the normal ones.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500;">
+        If that is your home, the shelf reflects who you are. If it is
+        not — you are looking at someone else's normal and being asked to
+        master it. That is not universal. That is <em>assimilation.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 · WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          If the shelf reflects<br/>
+          only one home —<br/>
+          <span class="gold" style="font-style: italic;">only some</span><br/>
+          children feel competent.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          You are watching children choose Practical Life work. You are
+          seeing them learn real competence by doing.
+        </p>
+        <p class="body-read">
+          But if the shelf reflects one kind of home, only some children
+          will look at the materials and feel they belong. Others will
+          learn — quietly, daily — that their grandmother's way is
+          <em>less sophisticated</em> than the way the classroom teaches.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          That is the opposite of what we are trying to do.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 · SECTION — WHAT'S ON THE SHELF -->
+  <section data-label="Part one — what's on the shelf" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 136px; line-height: 1.06; color: #fff; padding-bottom: 32px;">
+        What is usually<br/>
+        <em style="font-style: italic; color: var(--gold);">on the shelf.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        Real. Useful. And telling a particular cultural story.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 · THE USUAL SHELF (grid) -->
+  <section data-label="The usual shelf" class="on-cream">
+    <div class="eyebrow-slide">The usual inventory</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 56px; max-width: 1400px;">
+        Each of these is telling a child<br/>
+        what counts as <span class="gold" style="font-style: italic;">refined.</span>
+      </p>
+      <div class="shelf-grid">
+        <div class="shelf-cell">
+          <span class="n">— 01 —</span>
+          <p class="label">Fork, knife, spoon.</p>
+          <span class="story">The European table setting as formal eating.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 02 —</span>
+          <p class="label">Wheat bread, cheese, butter.</p>
+          <span class="story">A European diet as the baseline food.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 03 —</span>
+          <p class="label">Glass dishes, cloth napkins.</p>
+          <span class="story">A particular register of dining as "polite."</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 04 —</span>
+          <p class="label">Flowers in a single vase.</p>
+          <span class="story">One household's way of bringing life inside.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 05 —</span>
+          <p class="label">Plants in individual pots.</p>
+          <span class="story">Not buckets. Not a shared patio. Not a garden row.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 06 —</span>
+          <p class="label">Pitcher &amp; basin pouring.</p>
+          <span class="story">One historical way of washing hands for a meal.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 07 —</span>
+          <p class="label">Small brushes, small cloths.</p>
+          <span class="story">Cleaning at the scale of one body, one table.</span>
+        </div>
+        <div class="shelf-cell">
+          <span class="n">— 08 —</span>
+          <p class="label">Table set for one.</p>
+          <span class="story">An individual meal as the default unit of practice.</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 · THE DIPTYCH — TWO CHILDREN -->
+  <section data-label="Two children, same shelf" class="on-black">
+    <div class="eyebrow-slide">Two children, one shelf</div>
+    <div class="stack mt-auto mb-auto" style="width: 100%; max-width: 1820px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14; color: #fff; padding-bottom: 16px;">
+        Same shelf. <em style="font-style: italic;">Two very different</em> messages.
+      </h2>
+      <div class="diptych">
+        <div class="left">
+          <h3>— The child whose home is in the story —</h3>
+          <p class="headline">She sees her mother's table, <em>honored.</em></p>
+          <p class="sub">
+            She has seen her grandmother arrange flowers exactly that way.
+            She has sat at a table set exactly like that. She has used
+            those tools.
+          </p>
+          <p class="sub" style="color: var(--navy); font-weight: 500;">
+            Quiet pride. Recognition. Settling into belonging.
+          </p>
+        </div>
+        <div class="right">
+          <h3>— The child whose home is not —</h3>
+          <p class="headline">He sees his grandmother's kitchen <em>erased.</em></p>
+          <p class="sub">
+            His family eats with their hands, or with chopsticks. The
+            kitchen is full of spices and clay pots. Plants live on the
+            patio in buckets. The table is usually covered because someone
+            is sewing there.
+          </p>
+          <p class="sub" style="color: var(--gold); font-style: italic;">
+            The shelf is saying it without saying it.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 · THE STORY BEING TOLD -->
+  <section data-label="The story being told" class="on-navy">
+    <div class="eyebrow-slide">The story being told</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.14;">
+        The fork and knife arrived<br/>
+        in most places <em style="font-style: italic;">on a ship.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        The formal table setting came from Europe. It was imposed globally
+        as a marker of being civilized. When we teach only those tools as
+        the work of refinement, we are quietly repeating an older lesson —
+        that one culture is refined and the others are primitive.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        The Practical Life materials are not neutral. They are teaching a
+        version of what it means to be a refined and civilized person.
+        That version has a history.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 · SECTION — BEYOND TOKENISM -->
+  <section data-label="Part two — beyond tokenism" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px; color: var(--gold);">— Part Two —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.06; color: var(--navy); padding-bottom: 32px;">
+        Beyond a pair<br/>
+        of <em style="font-style: italic; color: var(--gold);">chopsticks.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Tokenism versus taking a family's knowledge seriously.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 · TOKENISM VS REAL -->
+  <section data-label="Tokenism vs real" class="on-black">
+    <div class="eyebrow-slide">Two responses</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px; width: 100%;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.16; margin-bottom: 16px;">
+        A child's family cooks<br/>
+        with a <em style="font-style: italic;">clay pot and a mortar.</em>
+      </h2>
+      <div class="token-compare">
+        <div class="tk">
+          <h3>— The gesture —</h3>
+          <p>Add a single pair of chopsticks<br/>next to the fork.</p>
+          <p class="foot">
+            One set of chopsticks in a classroom full of forks is not
+            inclusion. It is tokenism. It says <em>we acknowledge you
+            exist</em> — but this is still the real curriculum.
+          </p>
+        </div>
+        <div class="real">
+          <h3>— The real move —</h3>
+          <p>Borrow the mortar. Put it on<br/>the shelf <em>as real work.</em></p>
+          <p class="foot">
+            Not as a novelty. With the same care as the fork. As a real
+            tool for real practice. The mother comes to observe — and
+            cries. Her daughter has said, for the first time, that their
+            way of cooking is worth learning.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 · THE WORK — KNOW YOUR COMMUNITY -->
+  <section data-label="The work — know your community" class="on-cream">
+    <div class="eyebrow-slide">The work</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px; line-height: 1.25;">
+          Not "what should<br/>
+          Montessori <em>look like?</em>"<br/>
+          <span class="gold" style="font-style: italic;">"What is already<br/>in this&nbsp;community?"</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Most of us didn't grow up in Montessori classrooms. We build
+          shelves based on what we remember from books, or from classrooms
+          we visited. Most of those were white spaces. So we recreate
+          white spaces. That is not malicious — it is just what we know.
+        </p>
+        <p class="body-read">
+          The work is to really know your community. Walk into homes, or
+          ask families what their kitchens and tables actually look like.
+          What they make for dinner. How they set a table. How they clean.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          Then ask yourself — <em>what on this shelf reflects that
+          knowledge? What is missing?</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 · TOOLS TO COMPETENCE -->
+  <section data-label="Tools carry competence" class="on-cream">
+    <div class="eyebrow-slide">What the tool teaches</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 56px; max-width: 1600px;">
+        When we teach only <span class="gold" style="font-style: italic;">one household's tools,</span>
+        we miss the competence<br/>children <em style="font-style: italic; color: var(--gold);">already have.</em>
+      </p>
+      <div class="tools-list">
+        <div class="row">
+          <div class="tool">Laundry in a <em>bucket or tub,</em> by hand.</div>
+          <div class="skill">Real skill. Real strength. Learned through repetition at scale.</div>
+        </div>
+        <div class="row">
+          <div class="tool">Cooking in <em>one large pot</em> for a community.</div>
+          <div class="skill">Working at scale. Timing. Coordinating with others in a shared kitchen.</div>
+        </div>
+        <div class="row">
+          <div class="tool">A <em>mortar and pestle.</em></div>
+          <div class="skill">Precision and focus. The same quality of attention as a polishing work.</div>
+        </div>
+        <div class="row">
+          <div class="tool">Walking <em>everywhere,</em> every day.</div>
+          <div class="skill">Spatial orientation, navigation, a map of the neighborhood in the body.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 · SECTION — TWO CLASSROOMS -->
+  <section data-label="Part three — two classrooms" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.06; color: #fff; padding-bottom: 32px;">
+        Two classrooms<br/>
+        that <em style="font-style: italic; color: var(--gold);">did the work.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        What changes when a family's knowledge moves onto the shelf.
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 · SCENE — EAST AFRICAN BOY, LARGE BOWL -->
+  <section data-label="Scene · the large bowl" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-kitchen" style="background: url('/decks/images/week-07-13-scene-the-large-bowl.jpg') center/cover no-repeat;">
+        <div class="scene-label">A six-year-old from a refugee family, arms around a large metal bowl, stirring dough the way he has watched his mother stir it a hundred times.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · a primary charter, East African community</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          He already knows<br/>
+          <em style="font-style: italic;">this work.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Alongside the individual table setting, the teacher has put
+          materials for preparing food at scale. A large metal bowl. Large
+          spoons. Amounts of food that match how her families actually cook.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He chooses the large bowl. His movements are confident. The
+          teacher tells the family she is learning from their son about
+          how to prepare food. The mother's knowledge is now legitimate.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 · SCENE — THE LAUNDRY TUB -->
+  <section data-label="Scene · the laundry tub" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · a first grade, working-class families</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          Her mother's hands<br/>
+          are <em style="font-style: italic;">skilled.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Some families in this classroom don't have washing machines.
+          Instead of teaching only the "proper" way to wash each dish
+          individually, the teacher has put out large tubs and scrub
+          brushes — the work the actual community does.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A five-year-old who sometimes sleeps in her family's car
+          practices at the tub. She is building competence in the work
+          her family values — and getting the message that this work is
+          worth practicing.
+        </p>
+      </div>
+      <div class="scene scene-laundry" style="background: url('/decks/images/week-07-14-scene-the-laundry-tub.jpg') center/cover no-repeat;">
+        <div class="scene-label">A five-year-old at a large tub, sleeves pushed up, hands steady in the soapy water — the same work she watches her mother do at the laundromat.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 · EQUITY PROVOCATION — HIERARCHY OF CULTURES -->
+  <section data-label="The hierarchy of cultures" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 72px; line-height: 1.14;">
+        A one-culture shelf<br/>
+        is teaching children a<br/>
+        <em style="font-style: italic;">hierarchy</em>
+        of cultures.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        For children from that background — a message of affirmation.
+        For children from other backgrounds — a message of deficit. Over
+        time they internalize it. They begin to prefer other people's
+        ways. They begin to be <em>ashamed of home.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Children start kindergarten proud of their families and come out
+        of primary asking why they can't be normal like other kids.
+        Mothers ask whether they should stop cooking their traditional
+        food. That is what a shelf can do over years.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 · THE FEAR — DILUTING MONTESSORI -->
+  <section data-label="The fear" class="on-cream">
+    <div class="eyebrow-slide">The fear I hear</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          "You are <span class="gold" style="font-style: italic;">diluting</span><br/>
+          Montessori."
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Not true. You are expanding what counts as the materials of
+          learning. A mortar and pestle teaches the same precision and
+          focus as a fork and knife. Preparing food at scale teaches the
+          same skill as setting a formal table for one.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          <em>The standard doesn't go down. The access goes up.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 · NEURODIVERGENCE NOTE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">A note on every body</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          A shelf where every<br/>
+          child can practice<br/>
+          <span class="gold" style="font-style: italic;">real work.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child with sensory sensitivities or motor differences may not
+          be able to use every material — across cultures. The work is
+          not to adapt everything for every body. It is to notice that
+          this child needs a different tool and provide it <em>without shame.</em>
+        </p>
+        <p class="body-read">
+          Adapted grips for chopsticks. Smaller-scale versions of the
+          large bowl. A seated version of the standing work. Accessibility
+          and cultural inclusion are both the same move: a shelf wide
+          enough for every child to do real work.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 · CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 100px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 80px;">
+        When a child sees your<br/>
+        Practical Life shelf for the first time —<br/>
+        will she <em style="font-style: italic; color: var(--gold);">recognize</em><br/>
+        her grandmother?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 07 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

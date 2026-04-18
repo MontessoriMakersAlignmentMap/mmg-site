@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 6 — Grace and Courtesy as Anti-Bias Curriculum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  .norm-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 48px; }
+  .norm-card {
+    border-top: 2px solid var(--gold);
+    padding: 24px 0 0;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .norm-card h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; margin: 0;
+    color: var(--navy); font-weight: 600;
+  }
+  .on-navy .norm-card h3, .on-black .norm-card h3 { color: var(--gold); }
+  .norm-card p {
+    font-family: var(--font-heading);
+    font-size: 30px; line-height: 1.3;
+    margin: 0; color: var(--navy);
+  }
+  .on-navy .norm-card p, .on-black .norm-card p { color: #fff; }
+  .norm-card em { font-style: italic; color: var(--gold); }
+  .norm-card p.and {
+    font-family: var(--font-sans);
+    font-size: 24px; color: var(--fg-muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  /* conflict script compare (slide 13) */
+  .script-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; flex: 1; }
+  .script-compare > div { display: flex; flex-direction: column; gap: 20px; }
+  .script-compare h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .script-compare .left h3 { color: rgba(255,255,255,0.55); }
+  .script-compare .right h3 { color: var(--gold); }
+  .script-compare p {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.3;
+    margin: 0; color: #fff;
+  }
+  .script-compare .left p { color: rgba(255,255,255,0.55); }
+  .script-compare em { font-style: italic; color: var(--gold); }
+  .script-compare .left em { color: rgba(255,255,255,0.55); }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Six</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 124px; line-height: 1.1; padding-bottom: 24px;">
+        <em style="font-style: italic; color: var(--gold);">Grace &amp; courtesy</em><br/>
+        as anti-bias curriculum.
+      </h1>
+      <p class="body-lg" style="max-width: 1200px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        There is no culturally neutral way to greet another human being.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 06 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 · OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 80px; line-height: 1.14;">
+        The question is not whether<br/>
+        you are teaching <span class="gold" style="font-style: italic;">culture.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        The moment you teach a child that the correct way to say hello is
+        eye contact, you have made a cultural choice. That interrupting is
+        rude — a cultural choice. That please and thank you are the markers
+        of kindness — a cultural choice.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500;">
+        The question is <em>whose</em> culture you are teaching, and whether
+        you are doing it consciously.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 · WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          The <span class="gold" style="font-style: italic;">nice stuff</span>
+          is actually<br/>
+          the heavy stuff.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Grace and Courtesy is often treated as nice: how to enter a room,
+          how to ask for a turn, how to speak softly. Many guides touch it
+          lightly and move on.
+        </p>
+        <p class="body-read">
+          But this is where you either build an anti-bias curriculum — or
+          quietly reinforce the dominant one. Where you either tell
+          children that their way of being is right, or wrong. Where you
+          either <em>expand</em> what counts as grace, or narrow it.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          You have children in your room whose home culture is being
+          judged every single day. You can stop that — or you can reinforce
+          it by teaching only one way to be right.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 · SECTION — THREE NORMS -->
+  <section data-label="Part one — three norms" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART ONE —</div>
+      <h2 class="display" style="font-size: 136px; line-height: 1.1; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Three "universal"<br/>
+        <span class="gold">rules.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        None of them are universal. All of them are taught.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 · THREE NORMS BREAKDOWN -->
+  <section data-label="Three norms" class="on-cream">
+    <div class="eyebrow-slide">What we call courtesy</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 60px; max-width: 1500px;">
+        Each of these was taught to a child somewhere as
+        <span class="gold" style="font-style: italic;">disrespect.</span>
+      </p>
+      <div class="norm-grid">
+        <div class="norm-card">
+          <h3>— Eye contact —</h3>
+          <p>Respectful attention to some.</p>
+          <p class="and">and, for others</p>
+          <p><em>Disrespect to an elder.</em></p>
+        </div>
+        <div class="norm-card">
+          <h3>— Wait your turn —</h3>
+          <p>Polite pacing to some.</p>
+          <p class="and">and, for others</p>
+          <p><em>Cold. Disengaged. Unmoved.</em></p>
+        </div>
+        <div class="norm-card">
+          <h3>— Personal space —</h3>
+          <p>A respected boundary to some.</p>
+          <p class="and">and, for others</p>
+          <p><em>Distance where closeness means love.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 · EYE CONTACT -->
+  <section data-label="Eye contact" class="on-navy">
+    <div class="eyebrow-slide">Eye contact</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 72px; line-height: 1.16;">
+        "Look at the person<br/>
+        who is <em style="font-style: italic;">speaking to you.</em>"
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        This is considered universally polite. In many cultures, direct
+        eye contact with an authority figure — or with someone older than
+        you — is considered <em>disrespectful</em>.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        A child from those cultures is being taught implicitly that the
+        way her family taught her to show respect is actually rude. That
+        is not a small thing. That is a daily message about whose culture
+        belongs in school.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 · INTERRUPTING -->
+  <section data-label="Interrupting" class="on-cream">
+    <div class="eyebrow-slide">Interrupting</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Overlap is<br/>
+          <span class="gold" style="font-style: italic;">engagement.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          We teach that interrupting is rude. Raise your hand. Wait to be
+          called on. We present this as universal courtesy.
+        </p>
+        <p class="body-read">
+          But in many cultural communities, overlapping speech is how you
+          show engagement and enthusiasm. It is how you <em>demonstrate</em>
+          that you are listening and that you care about what is being said.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          To silence a child who participates that way is to teach her
+          that her voice is a problem.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 · PERSONAL SPACE -->
+  <section data-label="Personal space" class="on-navy">
+    <div class="eyebrow-slide">Personal space</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.15;">
+        Closeness is how some<br/>
+        families <em style="font-style: italic;">show love.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Consent and boundaries matter. And — some children come from
+        cultures where physical closeness is how you show care and
+        connection. Where standing close is normal. Where arm-linking or
+        hand-holding is how friends relate to each other.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        When we teach the dominant culture's interpretation of appropriate
+        touch, we are teaching some children that the way their family
+        shows love is wrong.
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 · SECTION — THE THREE JOBS -->
+  <section data-label="Part two — the three jobs" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px; color: var(--gold);">— PART TWO —</div>
+      <h2 class="display" style="font-size: 120px; line-height: 1.1; color: var(--navy); padding-bottom: 32px;">
+        Three jobs of a<br/>
+        <span class="gold" style="font-style: italic;">Grace and Courtesy</span> lesson.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Skills. Expansion. Practice — not judgment.
+      </p>
+    </div>
+  </section>
+
+  <!-- 10 · JOB ONE — SKILLS -->
+  <section data-label="Job one — skills" class="on-cream">
+    <div class="eyebrow-slide">Job one — real skills</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="attrib" style="color: var(--navy);">01 · Skills that travel</p>
+        <p class="title" style="font-size: 60px; margin-top: 24px;">
+          How to live together,<br/>
+          <span class="gold" style="font-style: italic;">peacefully.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          How to ask for what you need. How to respond when someone has
+          done something that bothered you. How to enter a space without
+          disrupting others.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          These are real skills. They travel across cultures.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 · JOB TWO — EXPANSION -->
+  <section data-label="Job two — expansion" class="on-navy">
+    <div class="eyebrow-slide">Job two — expand, don't narrow</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 80px; line-height: 1.15;">
+        Not the one right way.<br/>
+        <em style="font-style: italic;">Many</em> ways of being respectful.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        You are not teaching the one right way to speak or to move or to
+        show respect. You are building a classroom where many ways of
+        being respectful are recognized.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        "In this classroom we have people from many cultures, so we are
+        all learning what helps us understand each other." — then build
+        those bridges together.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 · JOB THREE — PRACTICE NOT JUDGMENT -->
+  <section data-label="Job three — practice, not judgment" class="on-cream">
+    <div class="eyebrow-slide">Job three — practice, not judgment</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          She does not get<br/>
+          <span class="gold" style="font-style: italic;">told</span>
+          she is<br/>wrong.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          A child practices the movement of pushing in her chair quietly.
+          She doesn't get told she did it wrong because she pushed too
+          fast. She practices until her body learns.
+        </p>
+        <p class="body-read">
+          Same with social skills. She practices different ways of joining
+          a group. Different ways of asking for help. She discovers what
+          works through <em>experience</em>, not through being told what
+          is right.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 · THE SCRIPT COMPARE -->
+  <section data-label="Conflict scripts" class="on-black">
+    <div class="eyebrow-slide">Two scripts for the same moment</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px; width: 100%;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.15; margin-bottom: 48px;">
+        A child raises her hand<br/>
+        while another is <em style="font-style: italic;">still speaking.</em>
+      </h2>
+      <div class="script-compare">
+        <div class="left">
+          <h3>— The correction —</h3>
+          <p>"That's rude. We listen without interrupting."</p>
+          <p style="margin-top: 16px;">The message, whether intended or not: <em>your impulse is wrong. Your way of showing excitement doesn't fit here.</em></p>
+        </div>
+        <div class="right">
+          <h3>— The anti-bias move —</h3>
+          <p>"I notice you're excited to share. In this classroom, we take turns so everyone gets heard. I'll make sure you get a turn."</p>
+          <p style="margin-top: 16px;">Same skill. <em>Different message about who she is.</em> No shame.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 · SCENE — THE SOMALI BOY -->
+  <section data-label="Scene · the Somali boy" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-san-lorenzo" style="background: url('/decks/images/week-06-14-scene-the-somali-boy.jpg') center/cover no-repeat;">
+        <div class="scene-label">A five-year-old boy in mixed-age circle, hand up before the teacher finishes the question, eyes bright with excitement, already starting to talk.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · he already knows</div>
+        <h2 class="display" style="font-size: 64px; line-height: 1.16; margin-top: 8px;">
+          Same skill.<br/>
+          Two different<br/>
+          <em style="font-style: italic;">messages.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          After circle, the anti-bias teacher sits with him. Tells him she
+          loves how much he wants to share. Practices waiting with him.
+          Notices the next time he waits: "I noticed you raised your hand
+          and waited. That took strength."
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He is learning a skill that helps him be understood here — while
+          his home way of being is still valued.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 · SCENE — THE PARTNER WORK -->
+  <section data-label="Scene · the partner work" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · closeness and comfort</div>
+        <h2 class="display" style="font-size: 64px; line-height: 1.16; margin-top: 8px;">
+          No one is wrong.<br/>
+          <em style="font-style: italic;">Everyone learns.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Two children stand close, shoulders touching, working together.
+          A third child keeps stepping back.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          "People in different families stand different distances when
+          they are talking. That is normal. If someone steps back, that
+          tells us they need a little more space right now — and that is
+          okay. We both get to have what we need."
+        </p>
+      </div>
+      <div class="scene scene-ny" style="background: url('/decks/images/week-06-15-scene-the-partner-work.jpg') center/cover no-repeat;">
+        <div class="scene-label">Three first-graders working together. Two stand close, one steps back slightly — a quiet negotiation of space between bodies that grew up with different norms.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 · THE EQUITY PROVOCATION -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.15;">
+        Every correction is a<br/>
+        judgment about <em style="font-style: italic;">a culture.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        You might think you are teaching manners. Compliance. How to be a
+        good student. But culture is embedded in all of it. And if the
+        only ways you accept are dominant-culture ways, you are teaching
+        some children that they must <em>erase part of themselves</em> to
+        be successful here.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        The more unconsciously you do this, the more you sort children.
+        By third grade it has real consequences for how they see
+        themselves as learners. That is not inevitable. That is a choice.
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 · NEURODIVERGENCE NOTE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">A note on every way of being social</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Different starting point.<br/>
+          <span class="gold" style="font-style: italic;">Same work.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          Children with autism, ADHD, and other neurodivergent profiles
+          may process eye contact, social distance, and turn-taking
+          differently — without judgment or malice.
+        </p>
+        <p class="body-read">
+          A child who does not make eye contact may show attention by
+          listening carefully. A child who talks a lot might practice
+          pausing after she speaks. <em>Not because it is wrong — because
+          it helps her be understood.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 · CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 100px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 80px;">
+        If a child was corrected for how<br/>
+        her family taught her to show respect —
+        <em style="font-style: italic; color: var(--gold);">whose culture</em><br/>
+        would you be defending?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 06 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

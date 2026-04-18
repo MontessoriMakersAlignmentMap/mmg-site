@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 14 — The Three Period Lesson</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Three periods — horizontal strip with period numerals */
+  .period-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 40px;
+  }
+  .period-strip .p {
+    background: #f3ecdc;
+    padding: 40px 36px 44px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 460px;
+    position: relative;
+    overflow: hidden;
+  }
+  .period-strip .p.flagged { background: #13214b; }
+  .period-strip .num {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.6);
+    font-weight: 600;
+    position: relative; z-index: 2;
+  }
+  .period-strip .p.flagged .num { color: var(--gold); }
+  .period-strip .num em { font-style: italic; color: var(--gold); }
+  .period-strip .roman {
+    font-family: var(--font-heading);
+    font-size: 200px;
+    line-height: 0.85;
+    color: rgba(14,26,122,0.08);
+    position: absolute;
+    bottom: -24px; right: 20px;
+    font-style: italic;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .period-strip .p.flagged .roman { color: rgba(214,167,88,0.14); }
+  .period-strip .name {
+    font-family: var(--font-heading);
+    font-size: 52px; line-height: 1.08;
+    color: var(--navy); margin: 0;
+    letter-spacing: -0.01em;
+    position: relative; z-index: 2;
+  }
+  .period-strip .p.flagged .name { color: #fff; }
+  .period-strip .name em { color: var(--gold); font-style: italic; }
+  .period-strip .verb {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--navy);
+    opacity: 0.55;
+    font-weight: 600;
+    position: relative; z-index: 2;
+  }
+  .period-strip .p.flagged .verb { color: var(--gold); opacity: 1; }
+  .period-strip .line {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 28px; line-height: 1.3;
+    color: var(--navy);
+    margin-top: 12px;
+    position: relative; z-index: 2;
+  }
+  .period-strip .p.flagged .line { color: #fff; }
+  .period-strip .body {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin-top: auto;
+    position: relative; z-index: 2;
+  }
+  .period-strip .p.flagged .body { color: rgba(255,255,255,0.82); }
+  .period-strip .tag {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 14px;
+    font-weight: 600;
+    position: relative; z-index: 2;
+  }
+
+  /* Four-cell observation grid */
+  .obs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 32px;
+  }
+  .obs-grid .cell {
+    background: #f3ecdc;
+    padding: 32px 32px 32px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 320px;
+  }
+  .on-navy .obs-grid .cell { background: #13214b; }
+  .obs-grid .hdr {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.55);
+    font-weight: 600;
+  }
+  .on-navy .obs-grid .hdr { color: var(--gold); }
+  .obs-grid .big {
+    font-family: var(--font-heading);
+    font-size: 38px; line-height: 1.14;
+    color: var(--navy);
+    margin: 0;
+  }
+  .on-navy .obs-grid .big { color: #fff; }
+  .obs-grid .big em { color: var(--gold); font-style: italic; }
+  .obs-grid .reading {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .on-navy .obs-grid .reading { color: rgba(255,255,255,0.8); }
+  .obs-grid .reading em {
+    font-style: italic;
+    color: var(--navy);
+  }
+  .on-navy .obs-grid .reading em { color: var(--gold); }
+  .obs-grid .move {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    line-height: 1.35;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 14px;
+  }
+
+  /* Mistakes — numbered column */
+  .mistake-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 24px;
+  }
+  .mistake-list .row {
+    display: grid;
+    grid-template-columns: 110px 1fr 1.2fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    align-items: baseline;
+  }
+  .mistake-list .row:last-child { border-bottom: 1px solid rgba(214,167,88,0.4); }
+  .mistake-list .nm {
+    font-family: var(--font-heading);
+    font-size: 56px;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    font-style: italic;
+    line-height: 1;
+  }
+  .mistake-list .mtitle {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    line-height: 1.16;
+    color: #fff;
+    margin: 0;
+  }
+  .mistake-list .mtitle em { color: var(--gold); font-style: italic; }
+  .mistake-list .mbody {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+  }
+  .mistake-list .mbody em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* Lucas scene — classroom warmth */
+  .scene-lucas {
+    background:
+      radial-gradient(ellipse 65% 50% at 45% 45%, rgba(240,210,140,0.35), transparent 70%),
+      radial-gradient(ellipse 45% 65% at 78% 70%, rgba(180,140,70,0.25), transparent 70%),
+      linear-gradient(160deg, #6a5836 0%, #2d2616 55%, #14110a 100%);
+  }
+
+  /* Non-speaking re-cast — simple horizontal flow */
+  .recast {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.32);
+    margin-top: 36px;
+  }
+  .recast .cell {
+    background: var(--bg-cream);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 320px;
+  }
+  .recast .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(14,26,122,0.6);
+    font-weight: 600;
+  }
+  .recast .h {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+  }
+  .recast .h em { color: var(--gold); font-style: italic; }
+  .recast .b {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .recast .b em { color: var(--navy); font-style: italic; }
+  .recast .ex {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 12px;
+    line-height: 1.3;
+  }
+
+  /* Period 2 hero treatment */
+  .p2-block {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 40px;
+  }
+  .p2-block .roman-big {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 320px;
+    line-height: 0.85;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Fourteen</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 104px; line-height: 1.06; padding-bottom: 24px;">
+        The assessment you<br/>
+        have been calling<br/>
+        <em style="font-style: italic; color: var(--gold);">a lesson.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The three period lesson is not a teaching tool. It is a
+        diagnostic — and period two is where the truth lives.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 14 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 70px; line-height: 1.16;">
+        Stop using the three<br/>
+        period lesson to<br/>
+        <span class="gold" style="font-style: italic;">move children forward.</span><br/>
+        Start using it to<br/>
+        <span class="gold" style="font-style: italic;">understand</span> them.
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        It is a diagnostic. It tells you — if you are listening —
+        <em>everything</em> about a child's readiness, processing speed,
+        and relationship with language.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Weeks of<br/>
+          Sensorial later.<br/>
+          <em style="font-style: italic; color: var(--gold);">Now</em> language<br/>
+          arrives.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Some children explode into naming right away. Some touch a
+          material once and walk away. Some work with the same object
+          for weeks without asking you its name.
+        </p>
+        <p class="body-read">
+          The three period lesson is supposed to scaffold naming. What
+          it actually does is reveal <em>everything</em> — readiness,
+          pace, what the child already knows without being told.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Three periods.<br/>
+        <em style="font-style: italic; color: var(--gold);">One assessment.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Naming. Recognition. Expression. Only one of these tells you
+        whether learning actually happened.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 THE THREE PERIODS -->
+  <section data-label="The three periods" class="on-cream">
+    <div class="eyebrow-slide">The three periods · a structure</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 52px; max-width: 1500px;">
+        Period two is the <em style="font-style: italic; color: var(--gold);">assessment.</em><br/>
+        Period one and three are around it.
+      </p>
+      <div class="period-strip">
+        <div class="p">
+          <div class="roman">I</div>
+          <div class="num">— Period one —</div>
+          <p class="name">Naming.</p>
+          <div class="verb">— Input —</div>
+          <p class="line">"This is red. This is red. This is red."</p>
+          <p class="body">
+            Not a question. Not a conversation. A sensory presentation
+            of information paired with a word. The child receives and
+            stores.
+          </p>
+        </div>
+        <div class="p flagged">
+          <div class="roman">II</div>
+          <div class="num">— Period <em>two</em> —</div>
+          <p class="name">Recognition.</p>
+          <div class="verb">— Assessment —</div>
+          <p class="line">"Show me red. Can you find red?"</p>
+          <p class="body">
+            It tells you whether the learning in period one actually
+            happened. The assessment. Everything hangs here.
+          </p>
+          <div class="tag">— Where the truth lives —</div>
+        </div>
+        <div class="p">
+          <div class="roman">III</div>
+          <div class="num">— Period three —</div>
+          <p class="name">Expression.</p>
+          <div class="verb">— Output —</div>
+          <p class="line">"What is this?"</p>
+          <p class="body">
+            The child names the object without prompt. Confirmation
+            that receiving, storing, and retrieving have all occurred.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE PIVOT — PERIOD TWO -->
+  <section data-label="Period two · the pivot" class="on-navy">
+    <div class="eyebrow-slide">The pivot</div>
+    <div class="p2-block mt-auto mb-auto">
+      <div class="roman-big">II.</div>
+      <div class="stack gap-md" style="max-width: 1180px;">
+        <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+          If a child cannot do<br/>
+          period two — they are<br/>
+          <em style="font-style: italic;">not ready</em> for period three.
+        </h2>
+        <div class="rule-gold" style="margin-top: 20px;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85); margin-top: 20px;">
+          Not because they are slow. Not because they need another
+          presentation. <em>They have simply not stored the name yet.</em>
+          The neural pathway has not been built.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 8px;">
+          Most guides do period one, watch the child echo the name,
+          and jump to period three. But echoing is not learning. Period
+          two is where you find out.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        What period two<br/>
+        <em style="font-style: italic; color: var(--gold);">reveals.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        "Show me red" is the richest assessment moment in early
+        childhood education — and most guides barely notice it.
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 FOUR OBSERVATIONS -->
+  <section data-label="Four observations in period two" class="on-navy">
+    <div class="eyebrow-slide">Four children, four readings</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Watch <em style="font-style: italic;">where the eyes go</em><br/>
+        when you ask the question.
+      </h2>
+      <div class="obs-grid">
+        <div class="cell">
+          <div class="hdr">— Eyes on the objects —</div>
+          <p class="big">She chooses <em>confidently.</em></p>
+          <p class="reading">
+            Integrated the sensory information. Can <em>recognize
+            reliably.</em> Trusts her own perception.
+          </p>
+          <p class="move">Period three is safe — and may already be there.</p>
+        </div>
+        <div class="cell">
+          <div class="hdr">— Eyes on your face —</div>
+          <p class="big">She checks you <em>for rightness.</em></p>
+          <p class="reading">
+            Learned that adults are the source of truth. Not trusting
+            her own senses. <em>Important information.</em>
+          </p>
+          <p class="move">Work in the area with no presentation. Let her notice alone.</p>
+        </div>
+        <div class="cell">
+          <div class="hdr">— Hand touches many —</div>
+          <p class="big">She is <em>still processing.</em></p>
+          <p class="reading">
+            Careful, not slow. Checking. If she lands correctly — she
+            is learning the <em>right way.</em> If she never lands, she
+            is overwhelmed.
+          </p>
+          <p class="move">Stay. Do not rush the signal.</p>
+        </div>
+        <div class="cell">
+          <div class="hdr">— Chooses, then doubts —</div>
+          <p class="big">She distrusts <em>her own knowing.</em></p>
+          <p class="reading">
+            Discrimination too fine, or a history of shamed mistakes.
+            She needs her perception to be <em>the only validation.</em>
+          </p>
+          <p class="move">Repeat period two. Say nothing. Do not confirm.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 CLASSROOM — LUCAS -->
+  <section data-label="Scene · Lucas" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-lucas" style="background: url('/decks/images/week-14-09-scene-lucas.jpg') center/cover no-repeat;">
+        <div class="scene-label">A six-year-old at the color tablets with Joanna beside him. He points to red. Then touches blue, lifts his hand, touches blue again before deciding.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · what Joanna did not do</div>
+        <h2 class="display" style="font-size: 58px; line-height: 1.14; margin-top: 8px;">
+          She did not rush<br/>
+          to <em style="font-style: italic;">period three.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Lucas succeeded in period two. He was careful. He checked
+          blue twice. He was processing — storing. Joanna said "good
+          showing," nothing about right or wrong, and left the tablets
+          on the mat.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Two days later, Lucas picked up a red tablet on his own. He
+          looked at it. He said, "Red." <em>She did not respond. She
+          observed.</em> Period three arrived when he chose to offer it
+          — not when she forced it.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Four ways guides<br/>
+        <em style="font-style: italic; color: var(--gold);">ruin</em> period three.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        A moment that should be a quiet triumph — turned into a test,
+        a drill, a correction, or skipped altogether.
+      </p>
+    </div>
+  </section>
+
+  <!-- 11 FOUR MISTAKES -->
+  <section data-label="Four mistakes in period three" class="on-navy">
+    <div class="eyebrow-slide">Four mistakes · and what to do instead</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Stop doing <em style="font-style: italic;">all four</em> of these.
+      </h2>
+      <div class="mistake-list">
+        <div class="row">
+          <div class="nm">01</div>
+          <h3 class="mtitle">The premature<br/>jump to three.</h3>
+          <p class="mbody">
+            Period two was not solid. You did period three anyway. You
+            did not advance the child — you <em>forced her to guess.</em>
+          </p>
+        </div>
+        <div class="row">
+          <div class="nm">02</div>
+          <h3 class="mtitle">Over-extension<br/>after success.</h3>
+          <p class="mbody">
+            She names red. You ask again. And again. You have already
+            gotten the information. <em>One time is enough.</em> More
+            teaches performance for the adult.
+          </p>
+        </div>
+        <div class="row">
+          <div class="nm">03</div>
+          <h3 class="mtitle">Judgment creeping<br/>into the question.</h3>
+          <p class="mbody">
+            She is wrong or slow or hesitant — you correct, coach,
+            repeat. Period three is not a teaching moment anymore. It
+            is a <em>testing moment.</em> You observe. You store. You
+            change your next step.
+          </p>
+        </div>
+        <div class="row">
+          <div class="nm">04</div>
+          <h3 class="mtitle">Skipping period three<br/>when it matters most.</h3>
+          <p class="mbody">
+            Because you are nervous she will fail. But period three
+            <em>is</em> the assessment — if you never ask, you never
+            know. Do period three. Let the answer be information.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 PART FOUR COVER -->
+  <section data-label="Part four" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Four —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Children who do not<br/>
+        <em style="font-style: italic; color: var(--gold);">speak</em> the word.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The three period lesson does not disappear. It changes. Period
+        three is still there — but <em>expression</em> takes many forms.
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 NON-SPEAKING RECAST -->
+  <section data-label="Non-speaking · the three periods re-cast" class="on-cream">
+    <div class="eyebrow-slide">Re-cast · for the child whose language is elsewhere</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The structure holds.<br/>
+        <em style="font-style: italic; color: var(--gold);">Expression</em> does not<br/>
+        require speech.
+      </h2>
+      <div class="recast">
+        <div class="cell">
+          <div class="k">— Period one · still —</div>
+          <p class="h">Naming.</p>
+          <p class="b">
+            You speak the name. But you also <em>pair</em> — a written
+            word, a sign, a picture. You provide sensory and linguistic
+            input together.
+          </p>
+          <p class="ex">— Watch to see if he is receiving.</p>
+        </div>
+        <div class="cell">
+          <div class="k">— Period two · same —</div>
+          <p class="h">Recognition.</p>
+          <p class="b">
+            "Show me." He points. Hands you the object. Looks at it.
+            Nods. The assessment <em>happens.</em> You learn whether he
+            has stored the name.
+          </p>
+          <p class="ex">— Exactly the same as for any other child.</p>
+        </div>
+        <div class="cell">
+          <div class="k">— Period three · adapts —</div>
+          <p class="h">Expression.</p>
+          <p class="b">
+            You show. You wait. A gesture. A sound. A behavior three
+            days later — he brings all the red objects to you. <em>That
+            is expression.</em>
+          </p>
+          <p class="ex">— Your job is to recognize it, whatever form it takes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        Period three assesses<br/>
+        <em style="font-style: italic;">sensory discrimination</em> —<br/>
+        not pronunciation.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A child says "dat" instead of "that." A child answers in her
+        home language. A child's accent or dialect sits outside yours.
+        If you hear these as evidence the child has not learned — you
+        are not assessing color. <em>You are policing language.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Separate sensory learning from language learning, completely.
+        The child knows the color. That is what period three asks.
+        <em>Everything else is your bias.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence note" class="on-navy">
+    <div class="eyebrow-slide">A note on processing differences</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px; color: #fff;">
+          Period two tells<br/>
+          you <em style="font-style: italic; color: var(--gold);">how</em> her<br/>
+          brain works.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Some children are fast processors. Some careful. Some
+          auditory, some visual, some kinesthetic, some relational.
+          Period two reveals all of this — if you are watching.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Children with receptive-expressive language gaps will often
+          succeed in one and two, and struggle in three. <em>Not
+          because they do not know. Because retrieval is harder than
+          reception.</em> Let the assessment be accurate. Do not mistake
+          a language difference for a learning one.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 WHAT TO DO TOMORROW -->
+  <section data-label="What to do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.16; color: var(--navy);">
+        Three discipline moves<br/>
+        inside the three<br/>
+        <em style="font-style: italic; color: var(--gold);">periods.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 32px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">First —</strong>
+        do not skip period two. Ever. It is the only period that tells
+        you whether <em>learning</em> has happened.
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Second —</strong>
+        watch where her eyes go. The objects, your face, all the
+        choices at once. <em>That is the data.</em>
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Third —</strong>
+        when period three arrives — ask once. Observe. Do not correct.
+        Store what you learned. Change your next step.
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 60px;">
+        Think about a three period lesson<br/>
+        you did in the last two weeks.<br/>
+        Did period two actually reveal<br/>
+        whether the child learned —<br/>
+        or did you move forward based on<br/>
+        <em style="font-style: italic; color: var(--gold);">what you expected</em> instead<br/>
+        of what you <em style="font-style: italic; color: var(--gold);">actually saw?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 14 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">17</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

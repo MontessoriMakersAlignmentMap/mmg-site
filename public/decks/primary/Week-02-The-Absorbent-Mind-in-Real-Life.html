@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 2 — The Absorbent Mind in Real Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  .attrib { font-size: 24px !important; }
+  /* Timeline of sensitive periods (slide 09) */
+  .sp-timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+    margin-top: 56px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(14,26,122,0.22);
+    position: relative;
+  }
+  .sp-timeline::before {
+    content: '';
+    position: absolute;
+    top: -5px; left: 0; right: 0;
+    height: 9px;
+    background: repeating-linear-gradient(90deg, var(--navy) 0 2px, transparent 2px 16px);
+    opacity: 0.3;
+  }
+  .sp-col { display: flex; flex-direction: column; gap: 12px; }
+  .sp-age {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .sp-label {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .sp-body {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--fg-muted);
+    max-width: 280px;
+  }
+  /* Vs compare lists for slide 14 */
+  .abs-col { display: flex; flex-direction: column; gap: 24px; }
+  .abs-col h3 {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .abs-col p {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    line-height: 1.3;
+    margin: 0;
+    color: #fff;
+  }
+  .abs-col p + p { opacity: 0.82; }
+  .abs-col em { font-style: italic; color: var(--gold); }
+  /* Scene quote block used on scene slides */
+  .scene-quote {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    line-height: 1.25;
+    color: var(--navy);
+    font-style: italic;
+    margin: 0;
+  }
+  .scene-quote.light { color: #fff; }
+</style>
+</head>
+<body>
+
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ─────────────────────────────── 01 · TITLE ─────────────────────────── -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Two</div>
+
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 132px; line-height: 1.12; padding-bottom: 24px;">
+        The <em style="font-style: italic; color: var(--gold);">absorbent mind</em><br/>
+        in real life.
+      </h1>
+      <p class="body-lg" style="max-width: 1100px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Why the first six years are not a preparation for learning — they <em style="font-style: italic; color: var(--gold);">are</em> the learning.
+      </p>
+    </div>
+
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 02 · Primary</span>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 02 · OPENING HOOK ──────────────────────── -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 96px; line-height: 1.12;">
+        The absorbent mind is<br/>
+        <span class="gold" style="font-style: italic;">not a metaphor.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        It is not poetic language for how children learn. It is a description
+        of how the brain actually works in the first six years of life.
+      </p>
+      <p class="body-read">
+        And if you don't understand it — neurologically and practically — every
+        decision you make in your classroom will work <em>against</em> the child's
+        development instead of with it.
+      </p>
+    </div>
+
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- ─────────────────────── 03 · WHY THIS MATTERS NOW ──────────────────── -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 64px;">
+          You are preparing<br/>
+          <span class="gold" style="font-style: italic;">environments.</span>
+        </p>
+      </div>
+      <div class="stack gap-md" style="padding-top: 24px; max-width: 1100px;">
+        <p class="body-read">
+          Right now, you are arranging shelves. Choosing materials. Thinking about
+          how you'll speak in your classroom. You are also carrying observations
+          from the past week.
+        </p>
+        <p class="body-read">
+          You've probably already noticed how much children absorb just from
+          being in a space — a five-year-old picking up the way you move your
+          hands when you speak. A three-year-old echoing your tone of voice
+          before she understands a single word.
+        </p>
+        <div class="rule-gold" style="margin-top: 16px;"></div>
+        <p class="body" style="font-size: 24px; color: var(--fg-muted); margin-top: 8px;">
+          If you don't understand how absorption works, you will be designing
+          your classroom backwards.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- ────────────────────── 04 · SECTION — THE SCIENCE ──────────────────── -->
+  <section data-label="Part one — the science" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART ONE —</div>
+      <h2 class="display" style="font-size: 140px; line-height: 1.12; font-style: italic; color: #fff; padding-bottom: 40px;">
+        The science of<br/>
+        <span class="gold">absorption.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        What Montessori observed. What neuroscience later confirmed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────── 05 · WHAT THE TERM MEANS ───────────────────── -->
+  <section data-label="What the term means" class="on-cream">
+    <div class="eyebrow-slide">A definition, carefully</div>
+
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="attrib" style="color: var(--navy);">Montessori, 1949</p>
+        <p class="title" style="font-size: 64px; margin-top: 24px;">
+          A permeability<br/>
+          <span class="gold" style="font-style: italic;">that closes.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+        <p class="body" style="font-size: 24px; color: var(--fg-muted); margin-top: 16px; max-width: 460px;">
+          The openness of the young brain to its surroundings, which
+          gradually closes as the child grows.
+        </p>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          Maria Montessori used the term <em>absorbent mind</em> to describe
+          what is happening in the brain of a child from birth to around age six.
+        </p>
+        <p class="body-read">
+          She was working from observation. What neuroscience now confirms: the
+          young brain is literally constructed to absorb its environment
+          <em>without effort, without instruction, and without the conscious
+          thought</em> we associate with learning in older children.
+        </p>
+        <p class="body-read">
+          This is not a learning preference. It is how the young brain develops.
+          A kind of permeability, specific to this window, that will not exist
+          in the same way again.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- ─────────────────── 06 · THE CENTRAL IMPLICATION ───────────────────── -->
+  <section data-label="The central implication" class="on-navy">
+    <div class="eyebrow-slide">The central implication</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 88px; line-height: 1.15;">
+        The child is not learning from<br/>
+        what you <em style="font-style: italic;">tell</em> her.
+      </h2>
+      <p class="body-lg" style="font-size: 44px; color: var(--gold); font-style: italic; margin-top: 16px; max-width: 1500px;">
+        The child is learning from what she lives in, every single day.
+      </p>
+      <div class="rule-gold" style="margin-top: 48px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.82); max-width: 1500px; margin-top: 24px;">
+        Which means the quality of language in your classroom is not a
+        nice-to-have. It is foundational. Same for the quality of movement,
+        of attention, of conflict, of who is noticed and who is ignored.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.82); max-width: 1500px;">
+        You are teaching through absorption <em>whether you mean to or not.</em>
+      </p>
+    </div>
+
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- ─────────────────────── 07 · WHAT WE GET WRONG ─────────────────────── -->
+  <section data-label="What most classrooms get wrong" class="on-cream">
+    <div class="eyebrow-slide">What most classrooms get wrong</div>
+
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          It isn't<br/>the <span class="gold" style="font-style: italic;">shelves.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          The most common misreading of the absorbent mind: <em>if we put beautiful
+          materials out, the child's mind will absorb what is on them.</em>
+        </p>
+        <p class="body-read">
+          The absorbent mind is absorbing the entire environment — including
+          you. Your body. Your voice. Your attention. The way you respond when
+          something goes wrong. The pace of your day. Who you look for. Who you
+          ignore.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          A child absorbs that order matters by watching you move through an
+          ordered space. Not by being told to clean up.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          A child absorbs that mistakes are safe because she watches you fix
+          yours without shame.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- ──────────────────── 08 · SENSES AND MOVEMENT ─────────────────────── -->
+  <section data-label="Senses and movement" class="on-navy">
+    <div class="eyebrow-slide">How absorption actually works</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 80px; line-height: 1.16;">
+        A child does not learn what a sphere is<br/>
+        by being <em style="font-style: italic;">told</em> it is round.
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.82); max-width: 1500px; margin-top: 24px;">
+        She learns by holding it. Rolling it. Feeling how it moves through
+        space. Comparing it to other shapes. Using it in <em>real work.</em>
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.82); max-width: 1500px;">
+        The brain in this period is built to learn through the senses and
+        through movement — through doing real work, in real space, with real
+        objects. Not a preference. An architecture.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        When you bypass the senses, you work against the way the absorbent
+        mind develops. You try to teach a child to think in ways not yet
+        available to her brain.
+      </p>
+    </div>
+
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- ──────────────────── 09 · WINDOWS OF SENSITIVITY ───────────────────── -->
+  <section data-label="Windows of sensitivity" class="on-cream">
+    <div class="eyebrow-slide">The timing we don't talk about enough</div>
+
+    <div class="stack gap-md mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 56px; max-width: 1500px;">
+        There are <span class="gold" style="font-style: italic;">windows</span>
+        of heightened absorption. They are neurological, and they are not
+        forever.
+      </p>
+
+      <div class="sp-timeline">
+        <div class="sp-col">
+          <div class="sp-age">18–24<span style="font-size: 26px; color: var(--fg-muted);">mo</span></div>
+          <div class="sp-label">Language</div>
+          <p class="sp-body">Language explosion. Vocabulary triples. Rhythm and grammar absorbed whole.</p>
+        </div>
+        <div class="sp-col">
+          <div class="sp-age">3–3½<span style="font-size: 26px; color: var(--fg-muted);">yr</span></div>
+          <div class="sp-label">Small objects</div>
+          <p class="sp-body">Fine motor work. Hours of focus on tiny, precise things that would be impossible six months later.</p>
+        </div>
+        <div class="sp-col">
+          <div class="sp-age">~4<span style="font-size: 26px; color: var(--fg-muted);">yr</span></div>
+          <div class="sp-label">Writing</div>
+          <p class="sp-body">Absorbed into the motion of making letters before the meaning of what they say.</p>
+        </div>
+        <div class="sp-col">
+          <div class="sp-age">~5<span style="font-size: 26px; color: var(--fg-muted);">yr</span></div>
+          <div class="sp-label">Reading</div>
+          <p class="sp-body">Reading emerges — often without direct instruction — when writing has been real.</p>
+        </div>
+        <div class="sp-col">
+          <div class="sp-age">6<span style="font-size: 26px; color: var(--fg-muted);">yr+</span></div>
+          <div class="sp-label">The window closes</div>
+          <p class="sp-body">You can still teach all of this. But now you're working against the grain, not with it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- ─────────────────── 10 · SECTION — WHAT IS BEING ABSORBED ──────────── -->
+  <section data-label="Part two — what is being absorbed" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART TWO —</div>
+      <h2 class="display" style="font-size: 148px; line-height: 1.1; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Three rooms.<br/>
+        <span class="gold">Three absorptions.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        A classroom. A kitchen. A word that traveled through the air.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────── 11 · SCENE ONE — THE POURING CHILD ─────────────────── -->
+  <section data-label="Scene · the pouring child" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-san-lorenzo" style="background: url('/decks/images/week-02-11-scene-the-pouring-child.jpg') center/cover no-repeat;">
+        <div class="scene-label">A three-year-old, cross-legged on the floor, watching an older child pour water from a large pitcher into a small cup. B&amp;W observational photograph.</div>
+      </div>
+
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene one · the classroom</div>
+        <h2 class="display" style="font-size: 72px; line-height: 1.15; margin-top: 8px;">
+          She does not need anyone<br/>
+          to <em style="font-style: italic;">teach</em> her.
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.82);">
+          She is simply watching. Her brain is absorbing the angle of the
+          pitcher, the way the water moves, the sound it makes, the care with
+          which the older child does this, the <em>pleasure</em> in it.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Later that week, she will pick up the pitcher herself and pour. She
+          will not have been taught. She will have absorbed.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- ───────────────── 12 · SCENE TWO — THE KITCHEN ─────────────────────── -->
+  <section data-label="Scene · the kitchen" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene two · the home</div>
+        <h2 class="display" style="font-size: 72px; line-height: 1.15; margin-top: 8px;">
+          A two-year-old in the<br/>
+          <em style="font-style: italic;">kitchen.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.82);">
+          His mother is cooking. She is narrating — half to him, half to
+          herself. <em>I'm getting the olive oil. This is hot. We need to be
+          careful near the stove.</em>
+        </p>
+        <p class="body-read" style="color: rgba(255,255,255,0.82);">
+          He is absorbing vocabulary. Prosody. The way adults think through
+          problems. That things have purposes. That there are real consequences.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He is also absorbing whatever else is in the room — the phone, the
+          sigh, the clipped command. The mind does not sort what it was meant
+          to learn.
+        </p>
+      </div>
+
+      <div class="scene scene-ny" style="background: url('/decks/images/week-02-12-scene-the-kitchen.jpg') center/cover no-repeat;">
+        <div class="scene-label">A modest home kitchen, afternoon light. A toddler at his mother's feet while she cooks — hands busy, talking out loud. Documentary, B&amp;W.</div>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- ──────────────── 13 · SCENE THREE — CASCADE ────────────────────────── -->
+  <section data-label="Scene · cascade" class="on-cream">
+    <div class="eyebrow-slide">Scene three · one word</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 60px; max-width: 1500px;">
+        A guide, pouring water, uses a word in<br/>
+        her ordinary voice:
+        <span class="gold" style="font-style: italic;">cascade.</span>
+      </p>
+
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+
+      <p class="body-read" style="margin-top: 16px;">
+        She is not teaching vocabulary. She is just describing the water. The
+        child does not ask what it means.
+      </p>
+      <p class="body-read">
+        Three weeks later, he is watching a fountain outside and says to
+        another child: <em>"Look — it's cascading."</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500; margin-top: 8px;">
+        The word was absorbed in a moment that was not a lesson, was not
+        directed at him, and was not designed to be remembered. It was just
+        real language, used in real circumstances, in a room where he
+        happened to be.
+      </p>
+    </div>
+
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- ─────────────────── 14 · THE EQUITY PROVOCATION — SETUP ────────────── -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1820px;">
+      <h2 class="display" style="font-size: 84px; line-height: 1.14;">
+        The absorbent mind is <em style="font-style: italic;">not neutral</em><br/>
+        about <span class="gold">where you live.</span>
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+
+      <div class="two-col" style="margin-top: 48px; gap: 96px;">
+        <div class="abs-col">
+          <h3>Already-rich environment</h3>
+          <p>Constant adult talk. Museums and parks. Books everywhere. Intentional homes.</p>
+          <p>Arrives in your classroom and <em>absorbs more of the same.</em></p>
+        </div>
+        <div class="abs-col">
+          <h3>Already-under-resourced environment</h3>
+          <p>Commands and crisis responses. Little quiet. Objects not for exploring.</p>
+          <p>Arrives in your classroom and encounters a prepared environment — maybe for <em>the first time in her life.</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- ──────────────── 15 · THE EQUITY PROVOCATION — REVERSAL ────────────── -->
+  <section data-label="The reversal — more, not less" class="on-cream">
+    <div class="eyebrow-slide">The reversal</div>
+
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1780px;">
+      <p class="title" style="font-size: 64px; max-width: 1600px;">
+        Here is what Montessori training often gets <em style="font-style: italic; color: var(--navy);">exactly backwards.</em>
+      </p>
+
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+
+      <div class="two-col" style="margin-top: 24px; gap: 96px; align-items: start;">
+        <div class="stack gap-md">
+          <p class="attrib" style="color: var(--fg-muted);">What we do</p>
+          <p class="body-read">
+            We assume the child from an under-resourced home needs
+            <em>simpler</em> language. Isn't ready for the beautiful materials.
+            Needs direct instruction because her brain may not yet be
+            capable of absorption.
+          </p>
+          <p class="body-read" style="color: var(--navy); font-weight: 600;">
+            We are wrong.
+          </p>
+        </div>
+        <div class="stack gap-md">
+          <p class="attrib" style="color: var(--gold);">What she actually needs</p>
+          <p class="body-read">
+            She needs <em>more</em> of the rich, prepared environment — not less.
+            Precisely the linguistic richness, the sensorial richness, the
+            environmental design her home was not structured to provide.
+          </p>
+          <p class="body-read" style="color: var(--navy); font-weight: 600;">
+            This is what equity looks like in a Montessori classroom.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- ─────────────────── 16 · NEURODIVERGENCE AT THE CENTER ────────────── -->
+  <section data-label="Neurodivergence at the center" class="on-cream">
+    <div class="eyebrow-slide">A note before we close</div>
+
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Every child's mind<br/>
+          is <span class="gold" style="font-style: italic;">absorbing.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+        <p class="body" style="font-size: 24px; color: var(--fg-muted); margin-top: 16px; max-width: 460px;">
+          Design your room, and your presence, knowing this.
+        </p>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Children with autism are absorbing patterns intensely.
+        </p>
+        <p class="body-read">
+          Children with sensory processing differences are absorbing sensorial
+          information in different ways.
+        </p>
+        <p class="body-read">
+          Children who have experienced trauma are absorbing safety — or
+          danger — in every single interaction.
+        </p>
+        <p class="body-read">
+          Children learning English are absorbing two or three languages
+          simultaneously.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500; margin-top: 16px;">
+          The absorbent mind works the same way for all of them. What changes
+          is how deliberate you have to be about what is available to absorb.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- ─────────────────────── 17 · THE CLOSING QUESTION ─────────────────── -->
+  <section data-label="The closing question" class="on-black">
+    <div class="stack" style="margin: auto; max-width: 1720px;">
+      <div class="section-idx" style="color: var(--gold); margin-bottom: 40px;">— THE CLOSING QUESTION —</div>
+
+      <p class="closing-q" style="font-size: 72px; line-height: 1.2;">
+        When you think about the classroom you're about to prepare,
+        <em style="font-style: italic; color: var(--gold);">what is a child absorbing right now</em>
+        simply by being in that space — without any deliberate instruction?
+      </p>
+
+      <div class="rule-gold" style="margin: 72px 0 32px;"></div>
+
+      <p class="body-read" style="color: rgba(255,255,255,0.72); max-width: 1400px; font-size: 30px;">
+        What would you <em>want</em> her to absorb about who she is, what is
+        possible, and what matters?
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1400px; font-size: 30px; margin-top: 8px;">
+        And are those two things aligned?
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────── 18 · END ─────────────────────────────── -->
+  <section data-label="End" class="on-navy">
+    <div class="stack" style="margin: auto; align-items: center; text-align: center; max-width: 1400px;">
+      <img src="/decks/assets/cube-gold.svg" style="width: 88px; height: 88px; margin-bottom: 48px;" alt="" />
+      <p class="attrib" style="color: var(--gold); margin: 0 0 36px; white-space: nowrap;">End of Week Two</p>
+      <h2 class="display" style="font-size: 88px; color: #fff; line-height: 1.18; margin: 0; white-space: nowrap;">
+        Design for what
+      </h2>
+      <h2 class="display" style="font-size: 88px; color: #fff; line-height: 1.18; margin: 8px 0 0; white-space: nowrap;">
+        will be <span class="gold" style="font-style: italic;">absorbed.</span>
+      </h2>
+      <div style="width: 80px; height: 2px; background: var(--gold); margin: 64px 0 32px;"></div>
+      <p class="body" style="font-size: 26px; color: rgba(255,255,255,0.62); max-width: 820px; margin: 0;">
+        Bring what you've noticed this week — in the classroom, in your own
+        home, in yourself.
+      </p>
+    </div>
+  </section>
+
+</deck-stage>
+
+</body>
+</html>

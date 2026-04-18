@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 8 — Fading as a Practice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  /* "Is / is not" diptych */
+  .isnt-is {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 40px;
+    width: 100%;
+  }
+  .isnt-is > div {
+    padding: 44px 44px 52px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .isnt-is .neg { background: #0c1638; color: rgba(255,255,255,0.55); }
+  .isnt-is .pos { background: #0e1a44; color: #fff; }
+  .isnt-is h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin: 0;
+    font-weight: 600;
+  }
+  .isnt-is .neg h3 { color: rgba(255,255,255,0.4); }
+  .isnt-is .pos h3 { color: var(--gold); }
+  .isnt-is p.big {
+    font-family: var(--font-heading);
+    font-size: 42px; line-height: 1.18; margin: 0;
+  }
+  .isnt-is p.sub {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5; margin: 0;
+  }
+  .isnt-is .pos em { color: var(--gold); font-style: italic; }
+  .isnt-is .neg em { color: rgba(255,255,255,0.55); font-style: italic; }
+
+  /* Timeline — the pour sequence */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 48px;
+    border-top: 1px solid rgba(214,167,88,0.35);
+  }
+  .timeline .step {
+    padding: 28px 22px 30px;
+    border-right: 1px solid rgba(10,24,77,0.14);
+    display: flex; flex-direction: column; gap: 14px;
+    position: relative;
+    min-height: 360px;
+  }
+  .timeline .step:last-child { border-right: none; }
+  .on-navy .timeline { border-top-color: rgba(214,167,88,0.35); }
+  .on-navy .timeline .step { border-right-color: rgba(255,255,255,0.12); }
+  .timeline .n {
+    font-family: var(--font-heading);
+    font-size: 56px; line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .timeline .stage {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--navy);
+    font-weight: 600;
+  }
+  .on-navy .timeline .stage { color: rgba(255,255,255,0.82); }
+  .timeline .headline {
+    font-family: var(--font-heading);
+    font-size: 28px; line-height: 1.2;
+    color: var(--navy); margin: 0;
+  }
+  .on-navy .timeline .headline { color: #fff; }
+  .timeline .headline em { color: var(--gold); font-style: italic; }
+  .timeline .body {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin-top: auto;
+  }
+  .on-navy .timeline .body { color: rgba(255,255,255,0.7); }
+  .timeline .distance {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Brain-state compare */
+  .brain-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 36px;
+  }
+  .brain-compare > div { display: flex; flex-direction: column; gap: 16px; }
+  .brain-compare h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .brain-compare .bad h3 { color: rgba(255,255,255,0.5); }
+  .brain-compare .good h3 { color: var(--gold); }
+  .brain-compare p {
+    font-family: var(--font-heading);
+    font-size: 34px; line-height: 1.25;
+    margin: 0; color: #fff;
+  }
+  .brain-compare .bad p { color: rgba(255,255,255,0.58); }
+  .brain-compare .good em, .brain-compare .bad em { color: var(--gold); font-style: italic; }
+  .brain-compare .bad em { color: rgba(255,255,255,0.5); }
+  .brain-compare .foot {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    margin-top: 10px;
+  }
+  .brain-compare .bad .foot { color: rgba(255,255,255,0.4); }
+  .brain-compare .good .foot { color: rgba(255,255,255,0.75); }
+
+  /* Message list — what a child learns */
+  .msg-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 36px;
+    border-top: 1px solid rgba(10,24,77,0.18);
+  }
+  .msg-list .row {
+    display: grid;
+    grid-template-columns: 0.9fr 1.5fr;
+    gap: 64px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(10,24,77,0.18);
+    align-items: baseline;
+  }
+  .msg-list .act {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 500;
+  }
+  .msg-list .msg {
+    font-family: var(--font-heading);
+    font-size: 30px; line-height: 1.3;
+    color: var(--navy);
+  }
+  .msg-list .msg em { color: var(--gold); font-style: italic; }
+
+  /* Scene — a quiet classroom */
+  .scene-sweep {
+    background:
+      radial-gradient(ellipse 75% 55% at 40% 38%, rgba(240,217,161,0.3), transparent 72%),
+      radial-gradient(ellipse 60% 70% at 78% 78%, rgba(60,50,30,0.5), transparent 70%),
+      linear-gradient(150deg, #8d7a55 0%, #4a3d25 55%, #211a12 100%);
+  }
+  .scene-spoon {
+    background:
+      radial-gradient(ellipse 70% 50% at 55% 30%, rgba(255,235,200,0.25), transparent 70%),
+      radial-gradient(ellipse 80% 55% at 30% 85%, rgba(80,30,30,0.35), transparent 72%),
+      linear-gradient(160deg, #9b7a4f 0%, #5d4226 55%, #1e1510 100%);
+  }
+
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Distance diagram — the adult moves away */
+  .distance-diagram {
+    margin-top: 48px;
+    background: rgba(10,24,77,0.04);
+    border-top: 1px solid rgba(214,167,88,0.35);
+    border-bottom: 1px solid rgba(214,167,88,0.35);
+    padding: 36px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .on-navy .distance-diagram { background: rgba(255,255,255,0.03); }
+  .distance-diagram .frame {
+    padding: 0 32px;
+    border-right: 1px solid rgba(10,24,77,0.14);
+    display: flex; flex-direction: column; gap: 12px;
+    align-items: flex-start;
+  }
+  .on-navy .distance-diagram .frame { border-right-color: rgba(255,255,255,0.12); }
+  .distance-diagram .frame:last-child { border-right: none; }
+  .distance-diagram .moment {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 600;
+  }
+  .distance-diagram .head {
+    font-family: var(--font-heading);
+    font-size: 26px; line-height: 1.22;
+    color: var(--navy); margin: 0;
+  }
+  .on-navy .distance-diagram .head { color: #fff; }
+  .distance-diagram .head em { color: var(--gold); font-style: italic; }
+  .distance-diagram .pos-bar {
+    margin-top: 12px;
+    width: 100%; height: 6px;
+    background: rgba(10,24,77,0.08);
+    position: relative;
+  }
+  .on-navy .distance-diagram .pos-bar { background: rgba(255,255,255,0.1); }
+  .distance-diagram .adult-dot {
+    position: absolute; top: -6px;
+    width: 18px; height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .distance-diagram .child-dot {
+    position: absolute; top: -6px; left: 0;
+    width: 18px; height: 18px;
+    background: var(--navy);
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+  .on-navy .distance-diagram .child-dot { background: #fff; border-color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Eight</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 124px; line-height: 1.08; padding-bottom: 24px;">
+        The art of<br/>
+        <em style="font-style: italic; color: var(--gold);">doing less.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1200px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Fading as a practice — the most powerful teaching often looks like
+        doing nothing.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 08 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 · OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 80px; line-height: 1.14;">
+        The hardest thing<br/>
+        most guides ever learn<br/>
+        is <span class="gold" style="font-style: italic;">how to do less.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        We are trained to teach, to explain, to make sure children understand.
+        We are praised for being thorough and clear. We have been told a
+        thousand times that good teaching is <em>visible</em> — the adult
+        demonstrating, children watching.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500;">
+        So when Montessori says the goal of instruction is to make the
+        child independent of the adult, we hear it — but we don't feel it.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 · WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px; line-height: 1.2;">
+          Every time you stay close<br/>
+          when she can manage<br/>
+          <span class="gold" style="font-style: italic;">alone</span> —<br/>
+          you send a message.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          You are in your second month. Children are working. You are
+          watching a child pour water without spilling it. Sweep the
+          floor with focus. Arrange flowers with intention.
+        </p>
+        <p class="body-read">
+          And you are feeling something between pride and urge. The urge
+          to make sure it is being done correctly. To guide a little
+          more. To stay <em>present.</em> That impulse is real. It makes
+          sense.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          It is also the enemy of what we are trying to do.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 · SECTION — WHAT FADING IS -->
+  <section data-label="Part one — what fading is" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 136px; line-height: 1.06; color: #fff; padding-bottom: 32px;">
+        What fading<br/>
+        <em style="font-style: italic; color: var(--gold);">actually is.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        Intentional withdrawal as the child demonstrates competence.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 · IS / IS NOT -->
+  <section data-label="Fading is — fading is not" class="on-black">
+    <div class="eyebrow-slide">A definition, by what it isn't</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px; width: 100%;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14; color: #fff; padding-bottom: 16px;">
+        Fading is not the same<br/>
+        as <em style="font-style: italic;">unsupported learning.</em>
+      </h2>
+      <div class="isnt-is">
+        <div class="neg">
+          <h3>— Fading is not —</h3>
+          <p class="big">Abandoning the child.</p>
+          <p class="sub">She is not figuring everything out on her own from the beginning.</p>
+          <p class="big" style="margin-top: 14px;">Sudden disappearance.</p>
+          <p class="sub">It is not punitive. It is not "sink or swim."</p>
+        </div>
+        <div class="pos">
+          <h3>— Fading is —</h3>
+          <p class="big">The <em>intentional withdrawal</em> of adult support.</p>
+          <p class="sub">You demonstrated. You gave her clear expectations. Now you are fading that support so she can build the internal strength to meet them alone.</p>
+          <p class="big" style="margin-top: 14px;">Becoming <em>less obvious.</em></p>
+          <p class="sub">Not a sudden disappearance — a slow, subtle becoming-less.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 · THE POUR — FIVE STEP TIMELINE -->
+  <section data-label="The pour — five steps" class="on-cream">
+    <div class="eyebrow-slide">A walkthrough · pouring water</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 52px; max-width: 1600px;">
+        The adult becomes<br/>
+        <span class="gold" style="font-style: italic;">less present</span>
+        as the child becomes<br/>
+        more present to <em style="font-style: italic; color: var(--gold);">herself.</em>
+      </p>
+      <div class="timeline">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="stage">— Demonstrate —</div>
+          <p class="headline">Calm body. <em>No narration.</em></p>
+          <p class="body">Start position. The pour. The placement of the pitcher. Observing when the glass is full. Attention entirely on the demonstration.</p>
+          <div class="distance">Adult · at the work</div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="stage">— First practice —</div>
+          <p class="headline">Close. <em>But not helping.</em></p>
+          <p class="body">You sit with her. A small rug contains spills. Your hands stay close. You observe. You say nothing.</p>
+          <div class="distance">Adult · beside</div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="stage">— Third, fourth time —</div>
+          <p class="headline">Off the chair. <em>To the shelf.</em></p>
+          <p class="body">She is building neural pathways. Her body is learning the pour. You step back — visible but not hovering.</p>
+          <div class="distance">Adult · at the shelf</div>
+        </div>
+        <div class="step">
+          <div class="n">04</div>
+          <div class="stage">— Her hand wobbles —</div>
+          <p class="headline">You <em>resist</em> steadying it.</p>
+          <p class="body">You let her discover what her hand needs to do to stabilize. You resist putting a hand on her shoulder to calm her tension.</p>
+          <div class="distance">Adult · across the room</div>
+        </div>
+        <div class="step">
+          <div class="n">05</div>
+          <div class="stage">— One day —</div>
+          <p class="headline">She pours <em>while you're<br/>busy with another child.</em></p>
+          <p class="body">You watch peripherally. Steady. Confident. Independent. Now you've faded.</p>
+          <div class="distance">Adult · absent from her work</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 · DISTANCE DIAGRAM -->
+  <section data-label="The distance diagram" class="on-navy">
+    <div class="eyebrow-slide">Reading the distance</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1820px; width: 100%;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14;">
+        Fade slightly <em style="font-style: italic;">faster</em> than<br/>
+        the child is ready for — so she has to reach.
+      </h2>
+      <div class="distance-diagram">
+        <div class="frame">
+          <span class="moment">— Moment 1 —</span>
+          <p class="head">Demonstrating.</p>
+          <div class="pos-bar">
+            <span class="child-dot" style="left: 0;"></span>
+            <span class="adult-dot" style="left: 0;"></span>
+          </div>
+        </div>
+        <div class="frame">
+          <span class="moment">— Moment 2 —</span>
+          <p class="head">Beside her.</p>
+          <div class="pos-bar">
+            <span class="child-dot" style="left: 0;"></span>
+            <span class="adult-dot" style="left: 12%;"></span>
+          </div>
+        </div>
+        <div class="frame">
+          <span class="moment">— Moment 3 —</span>
+          <p class="head">At the shelf.</p>
+          <div class="pos-bar">
+            <span class="child-dot" style="left: 0;"></span>
+            <span class="adult-dot" style="left: 55%;"></span>
+          </div>
+        </div>
+        <div class="frame">
+          <span class="moment">— Moment 4 —</span>
+          <p class="head">Elsewhere in the room.</p>
+          <div class="pos-bar">
+            <span class="child-dot" style="left: 0;"></span>
+            <span class="adult-dot" style="left: 94%;"></span>
+          </div>
+        </div>
+      </div>
+      <p class="body-read" style="color: rgba(255,255,255,0.8); margin-top: 36px; max-width: 1400px;">
+        Different children arrive at different speeds. Some need you for
+        one repetition. Some for five. Your job is not to have a rule —
+        it is to watch for the body telling you she is ready.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 · SECTION — THE NEUROLOGY -->
+  <section data-label="Part two — the neurology" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px; color: var(--gold);">— Part Two —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.06; color: var(--navy); padding-bottom: 32px;">
+        Two different<br/>
+        <em style="font-style: italic; color: var(--gold);">brains</em>
+        at work.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        What she is actually doing, depending on where you stand.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 · BRAIN COMPARE -->
+  <section data-label="Hovering brain, fading brain" class="on-black">
+    <div class="eyebrow-slide">What her brain is doing</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px; width: 100%;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.16; margin-bottom: 16px;">
+        She is either reading<br/>
+        the work — <em style="font-style: italic;">or reading your face.</em>
+      </h2>
+      <div class="brain-compare">
+        <div class="bad">
+          <h3>— When you hover —</h3>
+          <p>She is <em>not</em> solving her own problems.<br/>She is reading your face to see if she is doing it right.</p>
+          <p class="foot">
+            She is monitoring your level of anxiety or approval. She is
+            outsourcing her thinking to you. When you finally leave — she
+            does not know what to do.
+          </p>
+        </div>
+        <div class="good">
+          <h3>— When you fade —</h3>
+          <p>Her prefrontal cortex <em>lights up.</em> She has to notice her own process.</p>
+          <p class="foot">
+            Notice where her hand went wrong. Notice what she needs to
+            adjust. Notice whether she succeeded. She becomes confident
+            because she has succeeded without proof from an adult that
+            she did okay. <em>She succeeded — and she knows it.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 · OVER-HELPING IS HARM -->
+  <section data-label="Over-helping as harm" class="on-cream">
+    <div class="eyebrow-slide">The other side of help</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 56px; max-width: 1500px;">
+        Over-helping is<br/>
+        <span class="gold" style="font-style: italic;">its own form of harm.</span>
+      </p>
+      <div class="msg-list">
+        <div class="row">
+          <div class="act">When you help a child<br/>capable of doing it alone</div>
+          <div class="msg">You tell her: <em>"You are not strong enough for this."</em></div>
+        </div>
+        <div class="row">
+          <div class="act">When you step back<br/>after a wobble</div>
+          <div class="msg">You tell her: <em>"I trust you to figure this out."</em></div>
+        </div>
+        <div class="row">
+          <div class="act">When you narrate<br/>her every move</div>
+          <div class="msg">You tell her: <em>"Check with me. My opinion is the measure."</em></div>
+        </div>
+        <div class="row">
+          <div class="act">When you fade<br/>and make yourself boring</div>
+          <div class="msg">You tell her: <em>"The work is the teacher now — not me."</em></div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; max-width: 1500px; color: var(--navy); font-weight: 500;">
+        For a child who has internalized that she is not capable, those
+        messages are poison. She needs the opposite. She needs to
+        experience herself succeeding without your help.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 · TIMING — TOO EARLY / TOO LATE -->
+  <section data-label="Timing is everything" class="on-navy">
+    <div class="eyebrow-slide">Timing is everything</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 68px; line-height: 1.14;">
+        Fade too early — frustration.<br/>
+        Fade too late — <em style="font-style: italic;">dependence.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Fade too early and she does not have the foundation. She gets
+        frustrated. She gives up. She learns she <em>can't do hard
+        things.</em> Fade too late and she becomes dependent on your
+        presence. She learns she can only succeed with an adult there.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Read her body. Movements assured. Breath calm. She stops looking
+        at you for cues. <em>That</em> is when you fade.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 · SECTION — TWO CLASSROOMS -->
+  <section data-label="Part three — two classrooms" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px; color: var(--gold);">— Part Three —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.06; color: var(--navy); padding-bottom: 32px;">
+        Two classrooms,<br/>
+        <em style="font-style: italic; color: var(--gold);">twenty minutes</em>
+        apart.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Fading done well. Fading not done at all.
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 · SCENE — THE SWEEPING TRAY (GOOD FADING) -->
+  <section data-label="Scene · the sweeping tray" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-sweep" style="background: url('/decks/images/week-08-13-scene-the-sweeping-tray.jpg') center/cover no-repeat;">
+        <div class="scene-label">A five-year-old at a small tray, sweeping dried beans into a dustpan. The guide is across the room, attention elsewhere.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · fading done well</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          No praise.<br/>
+          No check-in. <em style="font-style: italic;">No tips.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The guide demonstrates once and steps back. Moves to the shelf
+          to prepare another lesson. Some beans go in the pan. Some miss.
+          The child sweeps — twenty times. By the twentieth, her motion
+          is steadier.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The guide has not told her she did well. She knows she did well
+          because the beans went into the pan. Her body can feel the
+          difference between the first sweep and the seventh.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 · SCENE — THE INTERRUPTED SPOONING (NO FADING) -->
+  <section data-label="Scene · the interrupted spooning" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · fading not done at all</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          Thirty seconds in,<br/>
+          she <em style="font-style: italic;">arrives.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A first-grade boy is spooning beans from one bowl to another.
+          It should take three minutes. Thirty seconds in, the teacher
+          comes over. Asks if he is ready for something harder. Suggests
+          maybe pouring. Asks if he wants her to show him.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He doesn't finish the spooning. He moves to pouring without
+          foundation. He gets frustrated. She helps. Now he is dependent.
+          And he has received a message: <em>you are not patient enough
+          to learn one thing deeply. You need me to keep you entertained.</em>
+        </p>
+      </div>
+      <div class="scene scene-spoon" style="background: url('/decks/images/week-08-14-scene-the-interrupted-spooning.jpg') center/cover no-repeat;">
+        <div class="scene-label">A six-year-old at a small table, two bowls and a spoon. An adult is leaning in, demonstrating something new — his eyes flick from the spoon to her face.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 · EQUITY PROVOCATION -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 72px; line-height: 1.14;">
+        When we fade with some children<br/>
+        and hover over others — we are<br/>
+        <em style="font-style: italic;">recreating a hierarchy.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        When a Black child cannot work without your presence, you have
+        told her she is not capable. When a child from an immigrant
+        family cannot make a mistake without your intervention, you have
+        told her her work is not good enough. When a poor child cannot
+        try something difficult without your hovering, you have told her
+        she is not intelligent enough to figure it out.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        This is about access to excellence. Who we trust with real tasks.
+        Who we allow to struggle and come through the other side.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 · THE INNER WORK -->
+  <section data-label="The inner work" class="on-cream">
+    <div class="eyebrow-slide">The work under the work</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px; line-height: 1.22;">
+          What story do you tell<br/>
+          yourself when you<br/>
+          watch a child<br/>
+          <span class="gold" style="font-style: italic;">struggle?</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Do you believe struggle means she can't do it — or that
+          struggle is where learning lives? Do you believe mistakes are
+          failures — or that mistakes are <em>information?</em>
+        </p>
+        <p class="body-read">
+          Your answer shows up in how you fade. If you believe struggle
+          means something is wrong, you will stay too close to the
+          children you secretly believe will struggle most.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          The equity work is knowing your own bias — and choosing
+          differently.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 · NEURODIVERGENCE NOTE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">A note on different timelines</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Different support.<br/>
+          <span class="gold" style="font-style: italic;">Same destination.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child with ADHD may need you present longer — self-regulation
+          is harder work for her. A child with autism may need clearer
+          initial instruction. A child with a processing difference may
+          need more repetitions before you fade.
+        </p>
+        <p class="body-read">
+          None of this means they cannot become independent. The
+          timeline and the scaffold look different — and then you fade
+          when <em>this</em> child shows you she is ready.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 · CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 100px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 80px;">
+        When you walk away from a child<br/>
+        doing Practical Life work — what<br/>
+        message do you think you are sending?<br/>
+        <em style="font-style: italic; color: var(--gold);">And what message does she receive?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 08 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

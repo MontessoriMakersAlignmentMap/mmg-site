@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 3 — Why Practical Life is the Most Important Strand</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  /* Vertical numbered list for competence breakdown (slide 06) */
+  .pl-num-list { display: grid; gap: 40px; margin-top: 48px; }
+  .pl-num-row {
+    display: grid; grid-template-columns: 96px 1fr; gap: 36px;
+    padding-top: 28px; border-top: 1px solid rgba(14,26,122,0.18);
+    align-items: baseline;
+  }
+  .pl-num-row .n {
+    font-family: var(--font-heading);
+    font-size: 64px; color: var(--gold); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .pl-num-row h3 {
+    font-family: var(--font-heading);
+    font-size: 40px; line-height: 1.15;
+    margin: 0 0 12px; color: var(--navy);
+    font-weight: 400; letter-spacing: -0.005em;
+  }
+  .pl-num-row p {
+    font-family: var(--font-sans);
+    font-size: 26px; line-height: 1.55;
+    color: var(--fg-muted); margin: 0;
+    max-width: 1000px;
+  }
+  /* Right vs wrong compare for slide 11 */
+  .pl-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; flex: 1; }
+  .pl-compare > div { display: flex; flex-direction: column; gap: 20px; }
+  .pl-compare h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .pl-compare .right h3 { color: var(--gold); }
+  .pl-compare .wrong h3 { color: rgba(255,255,255,0.55); }
+  .pl-compare p {
+    font-family: var(--font-heading);
+    font-size: 34px; line-height: 1.3;
+    margin: 0; color: #fff;
+  }
+  .pl-compare .wrong p { color: rgba(255,255,255,0.58); }
+  .pl-compare em { font-style: italic; color: var(--gold); }
+  .pl-compare .wrong em { color: rgba(255,255,255,0.58); }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Three</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 124px; line-height: 1.1; padding-bottom: 24px;">
+        Why <em style="font-style: italic; color: var(--gold);">practical life</em><br/>
+        is the most important strand.
+      </h1>
+      <p class="body-lg" style="max-width: 1200px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        And what most guides get wrong about it.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 03 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 · OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 88px; line-height: 1.12;">
+        Practical Life is not a<br/>
+        <span class="gold" style="font-style: italic;">warm-up.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        It is not preparation for the academic materials. It is not
+        something cute for the first weeks before the real work begins.
+      </p>
+      <p class="body-read">
+        It is the foundation of a human being learning how to be
+        <em>competent</em>, how to contribute, how to belong in a
+        community — how to know that her own hands and mind can do
+        meaningful work in the world.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 · WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          You are already<br/>
+          <span class="gold" style="font-style: italic;">rushing past it.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Many of you are already thinking about the sensorial materials, the
+          math, the language. Where the letters go. How to introduce the
+          golden beads.
+        </p>
+        <p class="body-read">
+          If you rush past Practical Life — if you treat it as preliminary —
+          you will <em>handicap your entire classroom</em>. You will have
+          children who cannot hold a pencil with control. Who cannot sit with
+          focus. Who do not know how to ask for help, because no one has ever
+          taught them that their own hands can do anything meaningful.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          The behavioral challenges you are about to spend months trying to
+          fix could have been prevented here.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 · SECTION — NEUROLOGY -->
+  <section data-label="Part one — the neurology" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART ONE —</div>
+      <h2 class="display" style="font-size: 136px; line-height: 1.12; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Not cute.<br/>
+        <span class="gold">Neurological.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        What is actually being built when a child washes a table.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 · REAL WORK -->
+  <section data-label="Real work, real purposes" class="on-cream">
+    <div class="eyebrow-slide">A definition, carefully</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="attrib" style="color: var(--navy);">The work itself</p>
+        <p class="title" style="font-size: 60px; margin-top: 24px;">
+          Real materials.<br/>
+          <span class="gold" style="font-style: italic;">Real purposes.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+        <p class="body" style="font-size: 24px; color: var(--fg-muted); margin-top: 16px; max-width: 460px;">
+          Care of self. Care of the environment. Care of others. Movement.
+        </p>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A child washes a table. A child pours juice. A child sweeps. A child
+          hangs her coat. A child carries a tray with both hands. A child wipes
+          up a spill that she made.
+        </p>
+        <p class="body-read">
+          These are not cute activities. The motor planning required to wash a
+          table engages the entire cerebellum. The focus required to pour
+          without spilling develops the ability to <em>control impulsivity</em>.
+        </p>
+        <p class="body-read">
+          The care required to do something well — even sweeping — requires
+          attention and intention that transforms the nervous system.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 · WHAT COMPETENCE ACTUALLY IS -->
+  <section data-label="What competence actually is" class="on-cream">
+    <div class="eyebrow-slide">What competence actually is</div>
+    <div class="stack mt-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 64px; max-width: 1400px;">
+        Competence is not a feeling. It is
+        <span class="gold" style="font-style: italic;">neurological.</span>
+      </p>
+      <div class="pl-num-list">
+        <div class="pl-num-row">
+          <div class="n">01</div>
+          <div>
+            <h3>Affect — "I can change my environment."</h3>
+            <p>Not about being perfect. About knowing your actions matter. That something can be done by you. Built in the motor cortex through repeated, purposeful work.</p>
+          </div>
+        </div>
+        <div class="pl-num-row">
+          <div class="n">02</div>
+          <div>
+            <h3>Plan — "I can make my body do hard things."</h3>
+            <p>Carrying a tray without spilling isn't fine motor development. It's an internal knowing that difficulty is crossable. It's focus. It's planning. It's pride.</p>
+          </div>
+        </div>
+        <div class="pl-num-row">
+          <div class="n">03</div>
+          <div>
+            <h3>Adapt — "I can solve what is in front of me."</h3>
+            <p>A child stands on a stool to wash a high shelf. She is not dependent on an adult to make the shelf her height. She figures it out.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 · THE FOUNDATIONAL CLAIM -->
+  <section data-label="The foundational claim" class="on-navy">
+    <div class="eyebrow-slide">Not parallel — foundational</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 80px; line-height: 1.15;">
+        Practical Life is the foundation<br/>
+        for <em style="font-style: italic;">everything else</em>.
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        The control of movement a child develops in Care of Self is the same
+        neural pathway that will let her hold a pencil and form letters with
+        control.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px;">
+        The focus she develops pouring and washing is the same capacity that
+        will let her do forty-five minutes of uninterrupted math work.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        You cannot skip this. You cannot hurry it. You cannot replace it with
+        something that looks like Practical Life but is actually just play.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 · SECTION — WHOSE PRACTICAL LIFE -->
+  <section data-label="Part two — whose practical life" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART TWO —</div>
+      <h2 class="display" style="font-size: 140px; line-height: 1.1; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Whose practical life<br/>
+        <span class="gold">is on the shelf?</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        Practical Life is never neutral. It carries a culture.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 · CULTURAL VALUES -->
+  <section data-label="Cultural values on the shelf" class="on-cream">
+    <div class="eyebrow-slide">Whose way of caring</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          There is no<br/>
+          <span class="gold" style="font-style: italic;">neutral</span> shelf.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          When you put Care of Self on the shelf you are saying something
+          about what a body should do. When you put Care of Others on the
+          shelf you are saying something about what a kindness looks like.
+        </p>
+        <p class="body-read">
+          What if her grandmother braids her hair in a way you do not
+          recognize as care? What if his family eats with their hands and
+          that is not reflected in the pouring and serving materials? What
+          if her mother practices a spiritual ritual before eating that you
+          have not made space for?
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          If only one way to care is on your shelf, the children who live
+          another way receive the message that <em>their</em> way is wrong.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 · WHOSE HOME IS REPRESENTED -->
+  <section data-label="Whose home is represented" class="on-navy">
+    <div class="eyebrow-slide">Whose home is represented</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.18;">
+        Dusting silver. Polishing wood.<br/>
+        Arranging flowers. Tending a garden.
+      </h2>
+      <p class="body-lg" style="font-size: 34px; color: var(--gold); font-style: italic; margin-top: 24px; max-width: 1500px;">
+        These are not bad activities. They are someone's practical life.
+      </p>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        What about the child whose practical life is caring for herself and
+        her siblings in a one-bedroom apartment? The child whose job is to
+        watch younger children while her mother works? The child learning
+        to cook in a kitchen where food security is uncertain?
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px;">
+        If only the work of a privileged home is on the shelf, the real
+        competence those children already have becomes <em>invisible</em>.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 10b · SCENE — THE TABLE WASHER -->
+  <section data-label="Scene · the table washer" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-san-lorenzo" style="background: url('/decks/images/week-03-11-scene-the-table-washer.jpg') center/cover no-repeat;">
+        <div class="scene-label">A six-year-old wringing a cloth over a real bucket, wiping a wooden table in long overlapping strokes. Observational photograph, warm light.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the table washer</div>
+        <h2 class="display" style="font-size: 68px; line-height: 1.15; margin-top: 8px;">
+          She has mixed her water.<br/>
+          Checked the <em style="font-style: italic;">temperature.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She wrings her cloth. She wipes in overlapping strokes so no part
+          is missed. Real water. Real soap. A real cloth.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The table will actually be clean when she is done.<br/>
+          This is not pretend. This is why it matters.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10b</div>
+  </section>
+
+  <!-- 11 · DONE WELL vs DONE WRONG (two-col compare) -->
+  <section data-label="Done well vs done wrong" class="on-black">
+    <div class="eyebrow-slide">The classroom reality</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px; width: 100%;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.15; margin-bottom: 56px;">
+        You can walk into a room<br/>
+        and <em style="font-style: italic;">feel</em> the difference.
+      </h2>
+      <div class="pl-compare">
+        <div class="right">
+          <h3>Done well</h3>
+          <p>A six-year-old washes a table with <em>real</em> water, real soap, a real cloth. Overlapping strokes so no part is missed.</p>
+          <p>A queue of children waits. Washing is one of the most desirable jobs in the room.</p>
+          <p>At snack, two children pour <em>actual</em> juice from a real pitcher. When someone spills, a cloth appears. It is not a crisis.</p>
+          <p>The guide observes. She does not interrupt focus. She <em>protects</em> it.</p>
+        </div>
+        <div class="wrong">
+          <h3>Done wrong</h3>
+          <p>The activities are on the shelf. They look right. But nothing is being <em>used</em> with intention.</p>
+          <p>The adult manages behavior. Gives reminders. Does not truly observe.</p>
+          <p>Or the opposite — pitchers are plastic and spill-proof. Failure has been designed out. There is nothing to concentrate on.</p>
+          <p>No real challenge. No real consequence. No real work.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 11b · SCENE — SNACK POUR -->
+  <section data-label="Scene · the pouring pair" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · the pouring pair</div>
+        <h2 class="display" style="font-size: 68px; line-height: 1.15; margin-top: 8px;">
+          One pours for the other.<br/>
+          The other pours <em style="font-style: italic;">in return.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A real glass pitcher. Actual juice. No spill-proof lid. A conversation
+          is happening. Care is happening.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          When someone spills, a cloth is brought. The child who spilled tries
+          again — more careful, not because she was scolded, but because she
+          experienced the natural consequence.
+        </p>
+      </div>
+      <div class="scene scene-ny" style="background: url('/decks/images/week-03-13-scene-the-pouring-pair.jpg') center/cover no-repeat;">
+        <div class="scene-label">Two small children at a snack table, a glass pitcher between them, one pouring carefully while the other steadies her own cup. Afternoon light.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11b</div>
+  </section>
+
+  <!-- 12 · SECTION — THE GUIDE'S MODELING -->
+  <section data-label="Part three — what you model" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px; color: var(--gold);">— PART THREE —</div>
+      <h2 class="display" style="font-size: 128px; line-height: 1.1; color: var(--navy); padding-bottom: 32px;">
+        The child is watching<br/>
+        <span class="gold" style="font-style: italic;">you do it.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        In Practical Life, you are teaching through what you do. Not what you say.
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 · WHAT YOU MODEL -->
+  <section data-label="What you are modeling" class="on-cream">
+    <div class="eyebrow-slide">What you are modeling</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack gap-md">
+        <p class="body-read">
+          If you are always efficient and fast, children learn that <em>speed</em>
+          is what matters.
+        </p>
+        <p class="body-read">
+          If you are always graceful and perfect, children internalize that
+          <em>mistakes are shameful</em>.
+        </p>
+        <p class="body-read">
+          If you only demonstrate care for expensive materials and not for
+          used or broken ones, children learn <em>what is worth caring for</em>.
+        </p>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          If you sit down and fold a basket of clothes with the same focus
+          and dignity you bring to any other work — if you speak about it
+          the same way — children learn that <em>all work matters</em>.
+        </p>
+        <div class="rule-gold" style="margin-top: 8px;"></div>
+        <p class="body-read" style="color: var(--navy); font-style: italic;">
+          Children whose mothers and grandmothers and uncles are seen doing
+          real work with competence need to see that dignity reflected in
+          the classroom. Their families' work is not below the work of
+          Primary. It is the same work.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 · NEURODIVERGENCE NOTE -->
+  <section data-label="Neurodivergence note" class="on-navy">
+    <div class="eyebrow-slide">A note on every child</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.15;">
+        Keep the challenge.<br/>
+        Keep the <em style="font-style: italic;">meaning.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A child with sensory sensitivities may not tolerate wet hands or
+        strong smells — but there are ways to adapt Practical Life that keep
+        the challenge and the meaning. A child with fine motor differences
+        may need adapted tools. She can still develop competence and pride.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px;">
+        A child whose trauma has made her resistant to close observation
+        needs a guide who understands that stepping back — and protecting
+        focus — is sometimes the deepest care.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Children learning English are learning language through the
+        vocabulary of real work. Keep all of this in mind as you design.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 14b · THE EQUITY PROVOCATION -->
+  <section data-label="The equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 64px; max-width: 1400px;">
+        Change what is on your shelf<br/>
+        based on the <span class="gold" style="font-style: italic;">children in your room</span> —
+      </p>
+      <p class="title" style="font-size: 48px; color: var(--fg-muted); max-width: 1400px;">
+        not based on what you learned was Practical Life in your training.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="max-width: 1500px; margin-top: 24px;">
+        If many families in your community are immigrant families, the shelf
+        must honor how those families care for themselves and their homes.
+      </p>
+      <p class="body-read" style="max-width: 1500px;">
+        If families in your room experience housing instability, you do not
+        put out an activity about organizing a linen closet. You do not
+        teach that there is one right way to fold clothes when families do
+        it differently.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-weight: 500; max-width: 1500px;">
+        This is not about adding one activity per culture. That is tokenism.
+        It is about understanding that Practical Life is <em>where you teach
+        what it means to belong here</em>.
+      </p>
+    </div>
+    <div class="slide-pagenum">14b</div>
+  </section>
+
+  <!-- 15 · CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 24px;">
+        Whose practical life is on your shelf,<br/>
+        and whose is <em style="font-style: italic; color: var(--gold);">invisible</em>?
+      </p>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.78); max-width: 1400px; margin-top: 24px;">
+        What message will a child get about whether her family's way of
+        caring, her family's values, her family's work is welcome here?
+      </p>
+      <p class="body-read" style="color: #fff; max-width: 1400px;">
+        And if you cannot make the shelf culturally coherent —
+        what will you change?
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 03 · Primary</span>
+    </div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

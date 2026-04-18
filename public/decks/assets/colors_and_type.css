@@ -1,0 +1,182 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Montessori Makers Group — Foundations
+   Color + Type tokens. Import this file and use the variables.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'TheSeasons';
+  src: url('./fonts/TheSeasons-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body fallback — Montserrat (used in production via next/font) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+  /* ── Brand colors ──────────────────────────────────────────────── */
+  --navy:           #0e1a7a;   /* primary brand, CTAs, headings */
+  --navy-deep:      #000000;   /* pure black — deepest dark surface */
+  --navy-hover:     #162270;   /* darker hover state */
+  --white:          #ffffff;
+  --black:          #000000;
+  --gold:           #d6a758;   /* accent — primary gold */
+  --gold-hover:     #c09240;   /* darker gold on hover */
+  --gold-mid:       #e1be7a;   /* mid tint — cube shadow face, subtle accents */
+  --gold-soft:      #f0d9a1;   /* softest tint — cube highlight, washes */
+  /* Legacy aliases — kept for back-compat. Prefer navy for text on light bg. */
+  --gold-dark:      #e1be7a;   /* DEPRECATED — was #8A6014; now mid tint */
+  --gold-deep:      #d6a758;   /* DEPRECATED — use --gold */
+
+  /* ── Surfaces ──────────────────────────────────────────────────── */
+  --bg:             #FAF9F7;   /* off-white page bg */
+  --bg-cream:       #F2EDE6;   /* warm section bg */
+  --bg-white:       #FFFFFF;
+  --border:         #E2DDD6;   /* dividers / card borders */
+  --border-soft:    #F2EDE6;   /* lighter rule */
+  --border-strong:  #D4CEC6;
+
+  /* ── Text ──────────────────────────────────────────────────────── */
+  --fg:             #111827;   /* primary text */
+  --fg-body:        #374151;   /* paragraph body */
+  --fg-secondary:   #4B5563;   /* secondary copy */
+  --fg-muted:       #64748B;   /* slate muted */
+  --fg-soft:        #94A3B8;   /* dark-bg muted */
+  --fg-on-navy:     #FFFFFF;
+  --fg-footer:      #7A8FA3;   /* footer link */
+  --fg-footer-hover:#CBD5E1;
+  --fg-footer-label:#8899AA;
+
+  /* ── Type families ─────────────────────────────────────────────── */
+  --font-heading:   'TheSeasons', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-serif:     'Cormorant Garamond', Georgia, serif;
+  --font-sans:      'Montserrat', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* ── Type scale (px-style, scaled at use site) ─────────────────── */
+  --t-display-xl:   5.75rem;   /* 92px — hero */
+  --t-display-lg:   4.5rem;
+  --t-display:      3.5rem;
+  --t-h1:           3rem;
+  --t-h2:           2.25rem;
+  --t-h3:           1.5rem;
+  --t-h4:           1.25rem;
+  --t-body-lg:      1.125rem;
+  --t-body:         1rem;
+  --t-body-sm:      0.875rem;
+  --t-caption:      0.75rem;
+  --t-eyebrow:      0.6875rem;  /* 11px — uppercase eyebrow */
+
+  --tracking-eyebrow: 0.24em;
+  --tracking-tight:   -0.01em;
+  --tracking-button:  0.07em;
+
+  /* ── Spacing (8px base) ────────────────────────────────────────── */
+  --s-1: 0.25rem;  --s-2: 0.5rem;  --s-3: 0.75rem;  --s-4: 1rem;
+  --s-5: 1.25rem;  --s-6: 1.5rem;  --s-8: 2rem;     --s-10: 2.5rem;
+  --s-12: 3rem;    --s-16: 4rem;   --s-20: 5rem;    --s-24: 6rem;
+  --s-32: 8rem;    --s-40: 10rem;
+
+  /* ── Section padding ──────────────────────────────────────────── */
+  --section-y-sm: 5rem;
+  --section-y-md: 7rem;
+  --section-y-lg: 10rem;
+  --gutter:       1.5rem;
+  --gutter-lg:    2.5rem;
+  --max-w:        80rem;       /* 1280px content cap */
+
+  /* ── Radii — sharp by default ──────────────────────────────────── */
+  --radius-0: 0;          /* default — sharp corners */
+  --radius-sm: 2px;       /* the rare exception (image frames) */
+
+  /* ── Shadows / elevation ───────────────────────────────────────── */
+  --shadow-card:    0 12px 32px rgba(14,26,122,0.08);
+  --shadow-hover:   0 16px 40px rgba(14,26,122,0.09);
+  --shadow-image:   0 8px 40px rgba(14,26,122,0.30);
+
+  /* ── Motion ────────────────────────────────────────────────────── */
+  --ease-out:       cubic-bezier(0.22, 1, 0.36, 1);
+  --d-fast:         0.18s;
+  --d-base:         0.22s;
+  --d-slow:         0.55s;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Semantic element styles — drop into any HTML to get MMG defaults
+   ───────────────────────────────────────────────────────────────── */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;            /* TheSeasons is a display face */
+  letter-spacing: var(--tracking-tight);
+  color: var(--navy);
+  line-height: 1.05;
+}
+h1 { font-size: var(--t-display); }
+h2 { font-size: var(--t-h1); }
+h3 { font-size: var(--t-h3); line-height: 1.3; }
+h4 { font-size: var(--t-h4); line-height: 1.35; }
+
+p  { font-family: var(--font-sans); color: var(--fg-body); line-height: 1.75; }
+
+a  { color: var(--navy); transition: color var(--d-fast) ease, opacity var(--d-fast) ease; }
+a:hover { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Eyebrow utility — gold uppercase tracked label */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--navy);
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 0.75rem;
+}
+.eyebrow.on-dark { color: var(--gold); }
+.eyebrow::before {
+  content: ''; display: inline-block;
+  width: 20px; height: 1px; background: var(--gold);
+}
+
+/* Buttons ─ primary navy / accent gold / ghost */
+.btn {
+  display: inline-block; font-family: var(--font-sans);
+  font-size: 13px; letter-spacing: var(--tracking-button);
+  padding: 1rem 2.25rem;
+  border: 1px solid transparent; border-radius: 0;
+  cursor: pointer; transition: background var(--d-fast) ease, color var(--d-fast) ease, border-color var(--d-fast) ease;
+}
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-hover); color: #fff; }
+.btn-accent { background: var(--gold); color: #fff; }
+.btn-accent:hover { background: var(--gold-hover); }
+.btn-ghost-light { background: transparent; color: var(--navy); border-color: var(--navy); }
+.btn-ghost-light:hover { background: var(--navy); color: #fff; }
+.btn-ghost-dark { background: transparent; color: #fff; border-color: rgba(255,255,255,0.3); }
+.btn-ghost-dark:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); }
+
+/* Card ─ default white card with sharp corners + warm border */
+.card {
+  background: var(--bg-white); border: 1px solid var(--border);
+  padding: 2.25rem; border-radius: 0;
+  transition: border-color var(--d-fast) ease, box-shadow var(--d-fast) ease, transform var(--d-fast) var(--ease-out);
+}
+.card:hover { border-color: rgba(214,167,88,0.55); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+
+/* Grain — editorial richness on dark sections */
+.grain { position: relative; isolation: isolate; }
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px; opacity: 0.04; mix-blend-mode: overlay;
+}

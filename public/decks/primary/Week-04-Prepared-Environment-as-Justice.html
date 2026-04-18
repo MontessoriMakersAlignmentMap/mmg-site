@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 4 — The Prepared Environment as a Justice Issue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  /* Checklist with gold dashes — slide 11 */
+  .audit-list { display: grid; gap: 28px; margin-top: 40px; }
+  .audit-row {
+    display: grid; grid-template-columns: 40px 1fr; gap: 28px;
+    padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.14);
+    align-items: baseline;
+  }
+  .audit-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.14); }
+  .audit-row .mark {
+    font-family: var(--font-heading);
+    font-size: 40px; color: var(--gold); line-height: 1;
+  }
+  .audit-row h3 {
+    font-family: var(--font-heading);
+    font-size: 36px; line-height: 1.2;
+    margin: 0 0 8px; color: #fff; font-weight: 400;
+  }
+  .audit-row p {
+    font-family: var(--font-sans);
+    font-size: 26px; line-height: 1.55;
+    color: rgba(255,255,255,0.75); margin: 0;
+    max-width: 1100px;
+  }
+  /* Hero highlight — slide 14 */
+  .beauty-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 48px; }
+  .beauty-card {
+    border: 1px solid rgba(14,26,122,0.18);
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.35);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .beauty-card h3 {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.2em;
+    text-transform: uppercase; margin: 0;
+    color: var(--gold); font-weight: 600;
+  }
+  .beauty-card p {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.25;
+    margin: 0; color: var(--navy);
+  }
+  .beauty-card em { color: var(--gold); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Four</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 124px; line-height: 1.1; padding-bottom: 24px;">
+        The <em style="font-style: italic; color: var(--gold);">prepared environment</em><br/>
+        as a justice issue.
+      </h1>
+      <p class="body-lg" style="max-width: 1200px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Every object in your classroom is speaking to children. Every object.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 04 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 · OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 88px; line-height: 1.12;">
+        Every object is<br/>
+        <span class="gold" style="font-style: italic;">saying something.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px;">
+        About who belongs. About what matters. About whose world this is.
+        About whether this place was prepared for <em>this particular child</em> —
+        or whether this child is supposed to fit into a place that was
+        prepared for someone else.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 · WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Theory meets<br/>
+          <span class="gold" style="font-style: italic;">reality.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          You are at the moment of building a classroom from the ground up, or
+          inheriting one. You are deciding what goes on the shelf, what goes
+          on the walls, what height the furniture is, what books are
+          available, what the light is like.
+        </p>
+        <p class="body-read">
+          These seem like design decisions.
+          <em>They are actually justice decisions.</em>
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          Most Montessori classrooms are not prepared for every child in
+          them. They are prepared for a particular kind of child — and
+          everyone else has to adapt.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 · SECTION — THE BASICS -->
+  <section data-label="Part one — not beautiful, intentional" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART ONE —</div>
+      <h2 class="display" style="font-size: 132px; line-height: 1.1; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Not beautiful.<br/>
+        <span class="gold">Intentional.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        What Montessori meant by "prepared" — and what most guides hear instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 · WHAT SHE ACTUALLY MEANT -->
+  <section data-label="What prepared actually means" class="on-cream">
+    <div class="eyebrow-slide">A definition, carefully</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="attrib" style="color: var(--navy);">Montessori, not as decor</p>
+        <p class="title" style="font-size: 60px; margin-top: 24px;">
+          Carefully designed<br/>
+          around the<br/>
+          <span class="gold" style="font-style: italic;">children in this room.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          Not around the preferences of adults. Not around the limitations
+          of the budget. Not around the echoes of how Montessori classrooms
+          have always looked.
+        </p>
+        <p class="body-read">
+          An environment that communicates to children, through <em>every
+          available channel</em>, that they belong here and that they are
+          capable.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          "Prepared" is not an aesthetic. It is a question: for whom?
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 · THE BODY IN THE ROOM -->
+  <section data-label="The body in the room" class="on-navy">
+    <div class="eyebrow-slide">Neurological, not optional</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 84px; line-height: 1.14;">
+        A child whose feet do not<br/>
+        touch the floor is <em style="font-style: italic;">dysregulated.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        The proprioceptive feedback a child gets from having her feet on
+        the ground matters for focus, for calm, for the ability to do
+        careful work. Furniture sized for adults teaches a child something
+        very specific: <em>this space was not made for me.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        This is a justice issue. Families with money can buy child-sized
+        furniture. If you inherited adult tables, you figure it out —
+        stools, cushions, used furniture, the community. You do not
+        "live with it" because it is complicated.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 · THE WALLS -->
+  <section data-label="The walls teach" class="on-cream">
+    <div class="eyebrow-slide">The walls teach</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Bare is<br/>
+          <span class="gold" style="font-style: italic;">quiet.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          A classroom with bare walls is neurologically quieter. Children
+          with sensory sensitivities are calmer. Children with attention
+          challenges can focus longer. But bare can also say <em>no one put
+          care into making this beautiful</em>.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          The balance: what is on the walls should be meaningful, changing
+          with the work, at child eye-level.
+        </p>
+        <p class="body-read">
+          A photograph of the children working is not the same as a picture
+          from a magazine. A child-made book is not the same as a purchased
+          chart. A beautiful artwork at child height is not the same as a
+          commercial poster telling children what to do.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 · SECTION — REPRESENTATION -->
+  <section data-label="Part two — representation" class="on-navy">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="section-idx" style="margin-bottom: 56px;">— PART TWO —</div>
+      <h2 class="display" style="font-size: 140px; line-height: 1.1; font-style: italic; color: #fff; padding-bottom: 32px;">
+        Representation<br/>
+        <span class="gold">is not decoration.</span>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.78);">
+        It is the answer to: whose world is shown in this room?
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 · WHOSE WORLD -->
+  <section data-label="Whose world is shown" class="on-cream">
+    <div class="eyebrow-slide">Whose world is shown</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 56px; max-width: 1500px;">
+        Even if you are the warmest guide in the world —
+        <span class="gold" style="font-style: italic;">the walls are saying something different.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="max-width: 1500px; margin-top: 24px;">
+        In most Montessori classrooms, the pictures, the books, the
+        materials showing family structures and professions show
+        primarily white families, primarily middle-class, primarily
+        able-bodied, primarily heterosexual partnerships, primarily
+        people who look a certain way.
+      </p>
+      <p class="body-read" style="max-width: 1500px;">
+        A child who does not see her family structure, her race, a body
+        like hers, a job like the job in her family — learns that her
+        world is <em>not visible here</em>. Her world does not count.
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 · THE MATERIALS TELL A STORY -->
+  <section data-label="The materials tell a story" class="on-navy">
+    <div class="eyebrow-slide">The materials tell a story</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 76px; line-height: 1.16;">
+        Your world map.<br/>
+        Your color box.<br/>
+        Your "skin tone" markers.
+      </h2>
+      <p class="body-lg" style="font-size: 34px; color: var(--gold); font-style: italic; margin-top: 32px; max-width: 1500px;">
+        They are teaching a story about what is normal. What is beautiful. What is real.
+      </p>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        If your color box is rooted in a Eurocentric understanding of
+        color mixing; if your map names countries in a way that reflects
+        colonialism; if your "skin tone" markers are actually only pale
+        pink — these are not small details.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px;">
+        They are the <em>content</em> of the environment. They are what
+        children absorb.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 · THE AUDIT — walk the room -->
+  <section data-label="The audit" class="on-navy">
+    <div class="eyebrow-slide">Walk your own room</div>
+    <div class="stack mt-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 60px; color: #fff; max-width: 1400px;">
+        Get down on the floor.<br/>
+        See the room from a <span class="gold" style="font-style: italic;">child's eye.</span>
+      </p>
+      <div class="audit-list">
+        <div class="audit-row">
+          <div class="mark">—</div>
+          <div>
+            <h3>Whose face is on the wall?</h3>
+            <p>Photographs of the actual children in this room, or generic commercial imagery? Are the families shown in your books the families sitting in your circle?</p>
+          </div>
+        </div>
+        <div class="audit-row">
+          <div class="mark">—</div>
+          <div>
+            <h3>Whose home is in the Practical Life?</h3>
+            <p>Dusting silver, or caring for a small apartment? Folding linens, or braiding hair? What does the shelf name as real work?</p>
+          </div>
+        </div>
+        <div class="audit-row">
+          <div class="mark">—</div>
+          <div>
+            <h3>What is broken, and what do you do with it?</h3>
+            <p>The doll with a missing arm. The chipped tray. The material in the locked cabinet. Every one of these is teaching.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 · SCENE ONE — the generic beautiful room -->
+  <section data-label="Scene · the generic beautiful room" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-ny" style="background: url('/decks/images/week-04-12-scene-the-generic-beautiful-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A Montessori classroom, soft pastels, perfectly arranged shelves, new materials, walls with commercial posters. Morning light. Nothing specific about the children in it.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene one</div>
+        <h2 class="display" style="font-size: 72px; line-height: 1.15; margin-top: 8px;">
+          Beautiful in a<br/>
+          <em style="font-style: italic;">generic</em> way.
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The shelves are perfectly arranged. The colors are soft pastels.
+          The materials look like they cost a lot of money. But when you
+          look closer, the children in the photographs are mostly white.
+          The family structures are all nuclear. The skin tones in the
+          art materials are limited.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A transgender child, a child from an immigrant family, a child
+          whose parents are incarcerated — will walk in and experience it
+          as not prepared for them. The beauty is being withheld.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 · SCENE TWO — the specific beautiful room -->
+  <section data-label="Scene · the specific beautiful room" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene two</div>
+        <h2 class="display" style="font-size: 72px; line-height: 1.15; margin-top: 8px;">
+          Beautiful for<br/>
+          <em style="font-style: italic;">these</em> children.
+        </h2>
+        <div class="rule-gold" style="margin: 24px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Books by and about people of color. A Braille label beside the
+          printed one because a blind child is in this room. Snack
+          preparation materials for different ways of eating. Markers in
+          many skin tones because these children will paint themselves.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The materials show professions the children's parents actually
+          do. The photographs on the wall are of the children <em>in
+          this room</em> working.
+        </p>
+      </div>
+      <div class="scene scene-san-lorenzo" style="background: url('/decks/images/week-04-13-scene-the-specific-beautiful-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A Montessori classroom whose shelves, walls, and books specifically reflect the children in this community. Photographs of the actual children. Natural light.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 · WHOSE BEAUTY -->
+  <section data-label="Whose beauty" class="on-cream">
+    <div class="eyebrow-slide">Whose beauty</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="title" style="font-size: 60px; max-width: 1500px;">
+        Beauty is not <span class="gold" style="font-style: italic;">one thing.</span><br/>
+        It is multiple things.
+      </p>
+      <div class="beauty-grid">
+        <div class="beauty-card">
+          <h3>— Order and —</h3>
+          <p><em>warmth.</em></p>
+        </div>
+        <div class="beauty-card">
+          <h3>— Intentional and —</h3>
+          <p><em>visibly lived in.</em></p>
+        </div>
+        <div class="beauty-card">
+          <h3>— Calm and —</h3>
+          <p><em>vibrant.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 48px; max-width: 1500px;">
+        A Scandinavian-minimalist beauty can read as cold to a child from
+        a home with color and pattern. An austere order can overwhelm a
+        child whose home is chaotic. The aesthetic you choose is
+        communicating <em>whose aesthetic belongs here.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 · ACCESSIBILITY IS FOR EVERYONE -->
+  <section data-label="Accessibility is for everyone" class="on-navy">
+    <div class="eyebrow-slide">Accessibility is for everyone</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 80px; line-height: 1.14;">
+        A ramp is not<br/>
+        <em style="font-style: italic;">only</em> for the wheelchair.
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A ramp is easier for everyone — the child pushing a cart, the guide
+        moving materials, the child learning how bodies move through space.
+        Sign language is beautiful, it is communication, it is part of the
+        community. A Braille label beside the printed label means touching
+        and reading go together — that there is more than one way to know
+        something.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        If you design only for the supposed "typical" child, you end up
+        with an environment that does not actually work for anyone.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 · REPAIR AS A MESSAGE -->
+  <section data-label="Repair as a message" class="on-cream">
+    <div class="eyebrow-slide">What you keep, what you fix</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px; max-width: 640px;">
+          What you keep<br/>
+          communicates<br/>
+          <span class="gold" style="font-style: italic;">your values.</span>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          A material can be old and worn and still worth using — if it is
+          clearly being cared for, if the wear is a sign of love, if the
+          guide maintains it with intention.
+        </p>
+        <p class="body-read">
+          A material that is broken and ignored teaches that some things
+          do not matter, that some work is not worth the effort to
+          maintain.
+        </p>
+        <p class="body-read" style="color: var(--navy); font-weight: 500;">
+          When something breaks, the guide sits with the child who broke
+          it. They get the tools. They fix it together. The message: we
+          care for what is ours. We do not throw it away.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 · THE EQUITY PROVOCATION -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 80px; line-height: 1.15;">
+        An environment that is not<br/>
+        prepared for every child<br/>
+        is <em style="font-style: italic;">not a prepared environment.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 40px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        It is a prepared environment for <em>some</em> children, and a
+        place where other children have to make themselves smaller. That
+        is not a neutral choice. Every guide makes this choice every day.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        You cannot fix this by being nice. You cannot fix this by saying
+        the right things. You have to change the environment.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 · CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px;">
+        Picture one child whose face,<br/>
+        whose family, whose real life<br/>
+        is not <em style="font-style: italic; color: var(--gold);">anywhere</em> in your room.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: #fff; max-width: 1400px; margin-top: 16px;">
+        What would she absorb by being in this space, day after day — and
+        what would you change so she knows this room was prepared for
+        <em>her</em>?
+      </p>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 04 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

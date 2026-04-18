@@ -298,6 +298,26 @@ export default function PortalDashboard() {
         </div>
       )}
 
+      {/* Slide Deck */}
+      {currentBundle?.deck_url && (
+        <div className="r-card" style={{ padding: 0, overflow: 'hidden', marginBottom: '1.5rem' }}>
+          <div style={{ padding: '1rem 1.25rem 0.75rem', borderBottom: '1px solid var(--r-border)' }}>
+            <h2 style={{ fontSize: '1rem', margin: 0 }}>Slide Deck &middot; Week {currentBundle.week_number}</h2>
+          </div>
+          <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
+            <iframe
+              src={currentBundle.deck_url}
+              title={`Week ${currentBundle.week_number} Slide Deck`}
+              style={{
+                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                border: 'none',
+              }}
+              allow="fullscreen"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Reading This Week */}
       {currentReading.length > 0 && (
         <div className="r-card" style={{

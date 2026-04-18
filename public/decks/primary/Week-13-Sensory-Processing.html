@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 13 — Sensory Processing in the Sensorial Environment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/decks/deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Three profiles grid */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .profile-grid .cell {
+    background: #f3ecdc;
+    padding: 32px 28px 36px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 420px;
+  }
+  .on-navy .profile-grid .cell { background: #13214b; }
+  .profile-grid .lbl {
+    font-family: var(--font-sans);
+    font-size: 18px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.55);
+    font-weight: 600;
+  }
+  .on-navy .profile-grid .lbl { color: rgba(255,255,255,0.55); }
+  .profile-grid .name {
+    font-family: var(--font-heading);
+    font-size: 36px; line-height: 1.18;
+    color: var(--navy); margin: 0;
+  }
+  .on-navy .profile-grid .name { color: #fff; }
+  .profile-grid .name em { color: var(--gold); font-style: italic; }
+  .profile-grid .body {
+    font-family: var(--font-sans);
+    font-size: 21px; line-height: 1.5;
+    color: var(--fg-body);
+  }
+  .on-navy .profile-grid .body { color: rgba(255,255,255,0.78); }
+  .profile-grid .you-see {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    line-height: 1.3;
+  }
+
+  /* Adapt rows */
+  .adapt-rows {
+    display: grid; grid-template-columns: 1fr;
+    gap: 0; margin-top: 32px;
+  }
+  .adapt-rows .row {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    gap: 32px;
+    padding: 26px 0;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    align-items: baseline;
+  }
+  .adapt-rows .row:last-child { border-bottom: 1px solid rgba(214,167,88,0.4); }
+  .adapt-rows .mat {
+    font-family: var(--font-heading);
+    font-size: 28px; color: var(--navy);
+    line-height: 1.2;
+  }
+  .on-navy .adapt-rows .mat { color: #fff; }
+  .adapt-rows .seek, .adapt-rows .avoid {
+    font-family: var(--font-sans);
+    font-size: 21px; line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+  }
+  .adapt-rows .seek em, .adapt-rows .avoid em {
+    color: var(--gold); font-style: italic;
+  }
+  .adapt-rows .head {
+    border-top: none;
+    padding-bottom: 12px;
+  }
+  .adapt-rows .head span {
+    font-family: var(--font-sans);
+    font-size: 18px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+  }
+
+  .scene-marcus {
+    background:
+      radial-gradient(ellipse 70% 55% at 60% 40%, rgba(220,180,90,0.3), transparent 70%),
+      linear-gradient(160deg, #5a4a30 0%, #2a2316 55%, #14110a 100%);
+  }
+  .scene-sophia {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 50%, rgba(200,210,220,0.25), transparent 70%),
+      linear-gradient(170deg, #4a5260 0%, #252a32 55%, #14171c 100%);
+  }
+
+  /* Regulation flow */
+  .reg-flow {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr 80px 1fr;
+    gap: 0;
+    margin-top: 40px;
+    align-items: stretch;
+  }
+  .reg-flow .stage {
+    padding: 32px 28px;
+    background: #13214b;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .reg-flow .arrow {
+    background: var(--gold);
+    color: #14213d;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 56px;
+  }
+  .reg-flow h4 {
+    font-family: var(--font-sans);
+    font-size: 18px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold);
+    margin: 0; font-weight: 600;
+  }
+  .reg-flow .big {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.2;
+    color: #fff; margin: 0;
+  }
+  .reg-flow .big em { color: var(--gold); font-style: italic; }
+  .reg-flow .small {
+    font-family: var(--font-sans);
+    font-size: 19px; line-height: 1.5;
+    color: rgba(255,255,255,0.78);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<script src="/decks/deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirteen</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 104px; line-height: 1.06; padding-bottom: 24px;">
+        The nervous system<br/>
+        <em style="font-style: italic; color: var(--gold);">tells you first.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Sensory processing and neurodivergence in the Sensorial
+        environment — what to read, before you ever present a lesson.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 13 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 70px; line-height: 1.16;">
+        If you are not listening<br/>
+        to how a child<br/>
+        <span class="gold" style="font-style: italic;">processes sensation</span> —<br/>
+        you are designing curriculum<br/>
+        for a child who does not exist.
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        The nervous system tells you everything you need to know
+        <em>before</em> the lesson begins.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Three months in.<br/>
+          You have been<br/>
+          watching <em style="font-style: italic; color: var(--gold);">nervous systems</em><br/>
+          all along.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Some children move toward complexity. Some away. Some can
+          not stop spinning the bells. Some cover their ears at the
+          sound of them.
+        </p>
+        <p class="body-read">
+          These are not behavior problems. These are sensory
+          processing profiles — and they are the foundation of
+          everything you will understand about how this child learns.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        A spectrum.<br/>
+        <em style="font-style: italic; color: var(--gold);">Not a disorder.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Three sensory profiles. None better, none worse. All in the
+        room — and all asking different things from the same materials.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 THREE PROFILES -->
+  <section data-label="Three profiles" class="on-cream">
+    <div class="eyebrow-slide">The three profiles</div>
+    <div class="stack mt-auto" style="max-width: 1820px;">
+      <p class="title" style="font-size: 52px; max-width: 1500px;">
+        Watch the nervous system<br/>
+        in <em style="font-style: italic; color: var(--gold);">real time.</em>
+      </p>
+      <div class="profile-grid">
+        <div class="cell">
+          <div class="lbl">— Profile one —</div>
+          <p class="name">Sensory <em>seeking.</em></p>
+          <p class="body">
+            Needs more input to feel registered. Spins the bells longer,
+            harder. Dumps the color tablets. Hums while working.
+            Presses hard.
+          </p>
+          <p class="you-see">— Not disruptive. Self-regulating.</p>
+        </div>
+        <div class="cell">
+          <div class="lbl">— Profile two —</div>
+          <p class="name">Sensory <em>avoiding.</em></p>
+          <p class="body">
+            Needs less input or careful control of it. Two color tablets
+            at a time. Recoils from textures. Covers ears at the bells.
+            Chooses materials she can pace.
+          </p>
+          <p class="you-see">— Not difficult. Protecting her system.</p>
+        </div>
+        <div class="cell">
+          <div class="lbl">— Profile three —</div>
+          <p class="name">Sensory <em>discrimination.</em></p>
+          <p class="body">
+            Slower to notice subtle differences. Needs the most obvious
+            contrast first. Asks to repeat the same activity several
+            times before the distinction lands.
+          </p>
+          <p class="you-see">— Not less intelligent. Differently paced.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SAME MATERIAL, ANY PROFILE -->
+  <section data-label="Same material, any profile" class="on-navy">
+    <div class="eyebrow-slide">The principle</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14;">
+        The material is the scaffold.<br/>
+        Your <em style="font-style: italic;">adaptation is the respect.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        The same color tablets serve the seeker who wants to make
+        patterns and the avoider who wants two colors at a time and
+        the child who needs the most obvious contrast first.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        The sensorial concept stays intact. The nervous system gets
+        what it needs. <em>This is not lowering the bar — it is moving
+        the door.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        When sensory needs<br/>
+        come <em style="font-style: italic; color: var(--gold);">first.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        A dysregulated brain is not available for learning. The lesson
+        waits. This is not a failure of planning — it is professional
+        practice.
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 REGULATION FLOW -->
+  <section data-label="Regulation comes first" class="on-cream">
+    <div class="eyebrow-slide">The neuroscience · in three movements</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        Higher executive function<br/>
+        <em style="font-style: italic; color: var(--gold);">goes offline</em> when the<br/>
+        nervous system is in crisis.
+      </h2>
+      <div class="reg-flow">
+        <div class="stage">
+          <h4>— You see —</h4>
+          <p class="big"><em>Bouncy.</em> Edgy. Cannot settle.</p>
+          <p class="small">A lesson now will bounce off. The brain is not in the room.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <h4>— You offer —</h4>
+          <p class="big">Heavy work. <em>Proprioceptive input.</em></p>
+          <p class="small">Pink tower carried carefully. Bucket of water. Mortar and pestle.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <h4>— Then —</h4>
+          <p class="big">Ten minutes. <em>Available.</em></p>
+          <p class="small">Now the lesson lands. Not because she complied — because her brain came back.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 THE OPPOSITE — SHUTTING DOWN -->
+  <section data-label="The opposite intervention" class="on-navy">
+    <div class="eyebrow-slide">The opposite intervention · the shut-down child</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14;">
+        Make the environment<br/>
+        <em style="font-style: italic;">smaller.</em> Quieter. Fewer choices.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A child who is overwhelmed and shutting down needs the inverse
+        of the seeker. One material. A quiet corner. The soft fabrics,
+        the felt balls. Something completely within her control.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        You are not lowering your expectations. <em>You are removing
+        the sensory barrier so she can access learning at all.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 ADAPTATIONS TABLE -->
+  <section data-label="Adaptations · same material, different door" class="on-navy">
+    <div class="eyebrow-slide">Same material · different door</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.16;">
+        Three materials.<br/>
+        Two adaptations <em style="font-style: italic;">each.</em>
+      </h2>
+      <div class="adapt-rows">
+        <div class="row head">
+          <div></div>
+          <div><span>— For the seeker —</span></div>
+          <div><span>— For the avoider —</span></div>
+        </div>
+        <div class="row">
+          <div class="mat">Color tablets</div>
+          <div class="seek">Sort all twenty-four. Then in <em>reverse.</em> Then by family. Speed welcomed.</div>
+          <div class="avoid"><em>Two tablets,</em> side by side. Full understanding before a third arrives.</div>
+        </div>
+        <div class="row">
+          <div class="mat">The bells</div>
+          <div class="seek">Play melodies. Patterns. Vigorous ringing. <em>Spin while listening.</em></div>
+          <div class="avoid">Demonstrated <em>silently</em> — or skipped entirely for color work today.</div>
+        </div>
+        <div class="row">
+          <div class="mat">Texture board</div>
+          <div class="seek">Texture rubbings with paper and crayon. <em>Whole-body</em> exploration.</div>
+          <div class="avoid">One texture. One time. Tomorrow, two. <em>The child initiates the touch.</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE — MARCUS -->
+  <section data-label="Scene · Marcus" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-marcus" style="background: url('/decks/images/week-13-11-scene-marcus.jpg') center/cover no-repeat;">
+        <div class="scene-label">An eight-month-in child walking past the pink tower without looking. He goes straight to the bells. Rings one. Rings two at once. His whole body is moving.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the four minutes that came first</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          The bells were not<br/>
+          a distraction. <em style="font-style: italic;">They were the lesson.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          If I had interrupted with a presentation, I would have lost
+          him. Instead, I watched. He rang the bells for four minutes.
+          The pace slowed. His breath calmed.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He brought one bell to his ear and listened closely. He was
+          regulating. I moved closer. Offered the sandpaper letters.
+          He accepted immediately. <em>His nervous system needed what
+          the bells gave him before he was available for learning.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SCENE — SOPHIA -->
+  <section data-label="Scene · Sophia" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · the lesson that became smaller</div>
+        <h2 class="display" style="font-size: 60px; line-height: 1.14; margin-top: 8px;">
+          I cleared the lesson.<br/>
+          Offered <em style="font-style: italic;">two colors.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She froze when I presented twenty-four color tablets at once.
+          Her whole body went tight. The shut-down was visible.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Two colors, side by side. She relaxed. Matched perfectly.
+          Next day, four. Then six. By Friday, the full set — not
+          because she was forced, but because <em>her nervous system
+          had learned that this material was safe.</em>
+        </p>
+      </div>
+      <div class="scene scene-sophia" style="background: url('/decks/images/week-13-12-scene-sophia.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child sitting upright at a low table with two color tablets in front of her, just placed side by side. Her hands are still in her lap. Her shoulders have dropped.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Whose sensation<br/>
+        do you <em style="font-style: italic; color: var(--gold);">honor?</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The same behavior gets read differently depending on the
+        body it lives in. Your biases are already in the room.
+      </p>
+    </div>
+  </section>
+
+  <!-- 14 EQUITY -->
+  <section data-label="The equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        Sensory seeking gets called<br/>
+        <em style="font-style: italic;">"creative"</em> in one body —<br/>
+        and <em style="font-style: italic;">"disruptive"</em> in another.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A white, wealthy child who needs movement is "kinesthetic." A
+        Black or Latino child with the same nervous system is
+        "hyperactive." A child from a high-poverty home arriving
+        starved for input is "wild" instead of <em>asking for what
+        her brain needs.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        If sensorial education is going to be equitable, you have to
+        interrogate <em>whose sensory needs you honor automatically and
+        whose you dismiss.</em> Then change it.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NEURODIVERGENCE — UMBRELLA -->
+  <section data-label="Neurodivergence · the umbrella" class="on-navy">
+    <div class="eyebrow-slide">A note on the umbrella</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.14;">
+        The diagnosis is not<br/>
+        the <em style="font-style: italic;">information.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Autism, ADHD, dyspraxia, dyslexia, processing differences,
+        anxiety. Some autistic children are seekers. Some avoiders.
+        Some both at different hours of the day.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        Individual variation matters more than diagnosis. <em>The
+        nervous system in front of you is the only nervous system
+        you can actually serve.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 NON-SPEAKING -->
+  <section data-label="Non-speaking children" class="on-cream">
+    <div class="eyebrow-slide">A note on non-speaking children</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          Sensorial may be<br/>
+          <em style="font-style: italic; color: var(--gold);">more</em> essential —<br/>
+          not less accessible.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read">
+          Non-speaking children, children with motor differences,
+          children who process language slowly, children on the
+          autism spectrum — often have acute sensory processing
+          differences.
+        </p>
+        <p class="body-read">
+          The Sensorial materials offer them something that does not
+          require words. <em>Pay attention here.</em> They are doing
+          the same fundamental work — building neural pathways for
+          abstraction — through a door that is open to them.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 WHAT TO DO TOMORROW -->
+  <section data-label="What to do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.16; color: var(--navy);">
+        Two questions to hold<br/>
+        before any presentation<br/>
+        in the <em style="font-style: italic; color: var(--gold);">sensorial area.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 32px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">First —</strong>
+        is this nervous system <em>regulated</em> right now? If not, what
+        does it need from me before the lesson?
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Second —</strong>
+        which door of this material is open to <em>this</em> child today?
+        Smaller? Bigger? Slower? Louder?
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 64px;">
+        In your observations over the last<br/>
+        three months — which children's<br/>
+        sensory profiles did you notice<br/>
+        immediately, and which ones did you<br/>
+        <em style="font-style: italic; color: var(--gold);">miss until you really watched?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="/decks/assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 13 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>
