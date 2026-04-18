@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 import { supabase } from '@/lib/supabase/client'
 import { useMobileNav, MobileNavToggle, MobileOverlay } from '../components/MobileNav'
+import MusicPlayer from '../components/MusicPlayer'
 
 const navItems = [
   { href: '/residency/portal', label: 'Dashboard' },
@@ -93,6 +94,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
       <div style={{ padding: '2rem 1.5rem' }}>
         {children}
       </div>
+      <MusicPlayer />
     </div>
   )
 }

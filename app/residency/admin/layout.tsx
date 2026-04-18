@@ -24,6 +24,7 @@ const navItems: NavItem[] = [
   { href: '/residency/admin/seminars', label: 'Seminars' },
   { href: '/residency/admin/resources', label: 'Resources' },
   { href: '/residency/admin/intensives', label: 'Intensives' },
+  { href: '/residency/admin/playlist', label: 'Music Playlist' },
 
   { section: 'Progress & Assessment' },
   { href: '/residency/admin/progress', label: 'Progress' },
