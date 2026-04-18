@@ -1,0 +1,42 @@
+{
+  "focus": [
+    {
+      "title": "Chill Study Vibes",
+      "artist": "Purple Cat",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/IQuL0V7x1VNMzYF1JkDM7e5u6e0E6sVjl2FE3IFa.mp3",
+      "credit": "Purple Cat - Chill Study Vibes (CC BY 3.0)"
+    },
+    {
+      "title": "Morning Coffee",
+      "artist": "Lobo Loco",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/eVlQuNQXgGfCjSALQvGcXLvz8v0e6BI2v7NeRvlI.mp3",
+      "credit": "Lobo Loco - Morning Coffee (CC BY-NC-ND 4.0)"
+    },
+    {
+      "title": "Slow Motion",
+      "artist": "Nul Tansen",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/krWm9nqHJFGQKP5vdsRpffEG5q6Jk8TIYMmQZJAu.mp3",
+      "credit": "Nul Tansen - Slow Motion (CC BY 4.0)"
+    }
+  ],
+  "vibe": [
+    {
+      "title": "Night Owls",
+      "artist": "Broke for Free",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/OQWWxCAqXKVLt99idfMQ1TnWPL2m5snWvJxGQDKE.mp3",
+      "credit": "Broke for Free - Night Owls (CC BY 3.0)"
+    },
+    {
+      "title": "Something Elated",
+      "artist": "Broke for Free",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/6sSQ8jOCbPFtqDQWPFaUJSv7Ufz1yMlXr1cx1UO5.mp3",
+      "credit": "Broke for Free - Something Elated (CC BY 3.0)"
+    },
+    {
+      "title": "Healing",
+      "artist": "Kevin MacLeod",
+      "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/pPp0ysBkJBEGNQ0FdN2ssfxz2KX0TzRnZ1kGJzBh.mp3",
+      "credit": "Kevin MacLeod - Healing (CC BY 3.0)"
+    }
+  ]
+}
