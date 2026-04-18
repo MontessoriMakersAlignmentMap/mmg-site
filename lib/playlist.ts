@@ -1,38 +1,47 @@
 export interface Track {
   title: string
   artist: string
-  // Direct MP3 URL — replace each placeholder with the actual download link from
-  // the FMA page listed in the comment above it.
   url: string
   attribution: string
   license: string
 }
 
-// TODO: Hannah — visit each FMA link below, click Download, and copy the direct
-// .mp3 URL into the `url` field. All tracks are CC BY 4.0 (free to use with credit).
+// All tracks: Mr. Smith, "A New Roar" — CC BY 4.0 via Free Music Archive
+// Served directly from FMA's CDN. Hannah can swap any URL for a self-hosted file later.
 export const PLAYLIST: Track[] = [
   {
-    // https://freemusicarchive.org/music/mr-smith/a-new-roar/neo-soul/
     title: 'Neo Soul',
     artist: 'Mr. Smith',
-    url: 'REPLACE_WITH_DIRECT_MP3',
-    attribution: 'Neo Soul by Mr. Smith via Free Music Archive',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/JVLzvfWgAqImghTm5Boi8GREVRU6JzsGz1NraLTz.mp3',
+    attribution: 'Neo Soul by Mr. Smith (A New Roar) via Free Music Archive',
     license: 'CC BY 4.0',
   },
   {
-    // https://freemusicarchive.org/music/Soularflair
-    title: 'Soul Purpose',
-    artist: 'Soularflair',
-    url: 'REPLACE_WITH_DIRECT_MP3',
-    attribution: 'Soul Purpose by Soularflair via Free Music Archive',
-    license: 'CC BY 4.0',
-  },
-  {
-    // https://freemusicarchive.org/music/mr-smith/
-    title: 'Groove Theory',
+    title: 'Peaceful',
     artist: 'Mr. Smith',
-    url: 'REPLACE_WITH_DIRECT_MP3',
-    attribution: 'Groove Theory by Mr. Smith via Free Music Archive',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/qv8pEYOombjd3gy9bvrBADsmm30ZXPfXXXdZdAjC.mp3',
+    attribution: 'Peaceful by Mr. Smith (A New Roar) via Free Music Archive',
+    license: 'CC BY 4.0',
+  },
+  {
+    title: 'Grace',
+    artist: 'Mr. Smith',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/drJ7YKffpyTIAdyn1BFa6G7H2JGrh3KcgpbV0kCG.mp3',
+    attribution: 'Grace by Mr. Smith (A New Roar) via Free Music Archive',
+    license: 'CC BY 4.0',
+  },
+  {
+    title: 'Empathy',
+    artist: 'Mr. Smith',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/9nn4pFhxmD3pMLjVYibOY3lNJd1YackQguJtCCO0.mp3',
+    attribution: 'Empathy by Mr. Smith (A New Roar) via Free Music Archive',
+    license: 'CC BY 4.0',
+  },
+  {
+    title: 'A Moment',
+    artist: 'Mr. Smith',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/b2JukTqtqFEEcmlUbvWa8HFptqIivNga0SgRVYJG.mp3',
+    attribution: 'A Moment by Mr. Smith (A New Roar) via Free Music Archive',
     license: 'CC BY 4.0',
   },
 ]
