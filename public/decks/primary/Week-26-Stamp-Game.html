@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 26 — The Stamp Game: The First Bridge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-stamp {
+    background:
+      radial-gradient(ellipse 50% 50% at 50% 45%, rgba(210,220,240,0.24), transparent 70%),
+      linear-gradient(160deg, #2b3340 0%, #121820 100%);
+  }
+  /* Stamp game rendering — color-coded tiles */
+  .stamps { display: flex; gap: 16px; margin-top: 32px; padding: 40px; background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15); }
+  .stamp-col { display: flex; flex-direction: column; gap: 10px; align-items: center; flex: 1; }
+  .stamp-col .lbl {
+    font-family: var(--font-heading); font-style: italic; color: var(--navy);
+    font-size: 22px;
+  }
+  .tile {
+    width: 60px; height: 60px; border-radius: 4px; display: flex;
+    align-items: center; justify-content: center;
+    font-family: var(--font-sans); font-weight: 700; font-size: 22px;
+    color: #fff; border: 1px solid rgba(0,0,0,0.25);
+  }
+  .tile.green { background: #2e7a3a; }
+  .tile.blue { background: #2c5aa0; }
+  .tile.red { background: #b43a36; }
+  .tile.green-1000 { background: #2e7a3a; }
+  /* Comparison table */
+  .compare-table {
+    display: grid; grid-template-columns: 1fr 1.1fr 1.1fr; gap: 0;
+    margin-top: 32px; border-top: 1px solid rgba(20,30,60,0.18);
+    border-bottom: 1px solid rgba(20,30,60,0.18);
+  }
+  .compare-table > div {
+    padding: 26px 24px; border-right: 1px solid rgba(20,30,60,0.12);
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.45;
+    color: var(--fg-body);
+  }
+  .compare-table > div:last-child { border-right: none; }
+  .compare-table .h {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--navy); font-weight: 600;
+    border-bottom: 1px solid rgba(20,30,60,0.25);
+  }
+  .compare-table em { color: var(--navy); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Six · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 96px; line-height: 1.04; padding-bottom: 24px;">
+        The first bridge out<br/>
+        of the golden beads<br/>
+        is not a worksheet.<br/>
+        It is <em style="font-style: italic; color: var(--gold);">smaller beads —<br/>
+        in different colors.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The Stamp Game is the quiet genius of the Montessori
+        math sequence. It looks like the golden beads have
+        simply shrunk. <em>What has actually happened is that
+        the child has begun to work with symbols she can still
+        touch.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 26 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · what the stamp game actually is</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 56px; line-height: 1.18;">
+        The golden beads taught<br/>
+        her <em>quantity.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 56px; line-height: 1.18; margin-top: 28px; color: var(--gold);">
+        The Stamp Game teaches<br/>
+        her <em>quantity represented.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT IT LOOKS LIKE -->
+  <section data-label="What it looks like" class="on-cream">
+    <div class="eyebrow-slide">The material · hierarchically color-coded</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 80px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        Each tile bears a numeral.<br/>
+        <em style="font-style: italic; color: var(--gold);">The color tells her
+        which hierarchy.</em>
+      </h2>
+      <div class="stamps">
+        <div class="stamp-col">
+          <div class="tile green">1</div>
+          <div class="lbl">Unit — green</div>
+        </div>
+        <div class="stamp-col">
+          <div class="tile blue">10</div>
+          <div class="lbl">Ten — blue</div>
+        </div>
+        <div class="stamp-col">
+          <div class="tile red">100</div>
+          <div class="lbl">Hundred — red</div>
+        </div>
+        <div class="stamp-col">
+          <div class="tile green-1000">1000</div>
+          <div class="lbl">Thousand — green</div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; max-width: 1500px;">
+        The colors are not decorative. They are the same color
+        code she will meet in the bead frame, the bank game,
+        large bead frame, and eventually the checkerboard.
+        <em>By giving the hierarchy a color, Montessori gives
+        it a permanent identity.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part One —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        What the<br/>
+        material <em style="font-style: italic; color: var(--gold);">keeps.</em><br/>
+        What it <em style="font-style: italic; color: var(--gold);">lets go.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        A transition material is never a demotion and never a
+        graduation. It is a <em>precise trade</em> — keeping
+        what the child still needs, releasing what she has
+        outgrown.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 WHAT CHANGES -->
+  <section data-label="What changes, what stays" class="on-cream">
+    <div class="eyebrow-slide">The trade · kept, released, introduced</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 72px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        The stamp game is a <em style="font-style: italic; color: var(--gold);">deliberate subtraction</em><br/>
+        from the golden beads. Nothing is arbitrary.
+      </h2>
+      <div class="compare-table">
+        <div class="h">&nbsp;</div>
+        <div class="h">Golden beads</div>
+        <div class="h">Stamp game</div>
+
+        <div><em>Hierarchy</em><br/>How a ten is distinguished from a unit</div>
+        <div>By <em>size and shape</em> — a bar is longer than a bead.</div>
+        <div>By <em>color only</em> — the tile is the same size either way.</div>
+
+        <div><em>Quantity</em><br/>How much each piece represents</div>
+        <div>A ten-bar actually contains ten beads. <em>You can count them.</em></div>
+        <div>A &ldquo;10&rdquo; tile represents ten — but is not made of ten parts.</div>
+
+        <div><em>Exchange</em><br/>How carrying and borrowing work</div>
+        <div>Ten ones gathered into a bar.</div>
+        <div>Ten unit tiles traded for one ten tile. <em>Same structure. Different form.</em></div>
+
+        <div><em>What it builds</em></div>
+        <div>The concept of quantity itself.</div>
+        <div>The habit of <em>using a symbol to stand for a known quantity.</em></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SCENE -->
+  <section data-label="Scene · first transition" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-stamp">
+        <div class="scene-label">A six-year-old at a small wood table by a window. Her stamp game tray is open beside a white sheet of paper on which a long addition problem has been written. Neat columns of green, blue, red, and green tiles are laid out on the table — already in process. Her hand hovers over the unit column, about to gather ten green tiles.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the first stamp-game problem</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is <em style="font-style: italic;">not doing<br/>
+          anything new.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She recognizes this. It is addition. It is what the
+          beads did. The green tiles are the ones. The blue
+          are the tens. She gathers ten greens. <em>She
+          exchanges them for a blue.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The operation has not changed. Only the form has.
+          She now has a material small enough to live on a
+          table, portable enough to travel between problems,
+          <em>close enough to paper that she can see the
+          relationship.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 WHY NOT SKIP IT -->
+  <section data-label="Why not skip it" class="on-cream">
+    <div class="eyebrow-slide">Why not skip straight to paper</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        The stamp game is the<br/>
+        <em style="font-style: italic; color: var(--gold);">rehearsal</em> for written<br/>
+        arithmetic.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The columns on her paper will eventually look like the
+        columns of stamps. The carrying on her paper will
+        eventually look like the exchange of tiles. <em>She is
+        practicing the layout of written arithmetic with her
+        hands.</em>
+      </p>
+      <p class="body-read">
+        A child who goes straight from beads to paper often
+        loses the column logic in the transition. A child who
+        spends months with the stamp game never loses it.
+        <em>The columns are in her body before they are on her
+        worksheet.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 INDIVIDUAL PACE -->
+  <section data-label="Individual pace" class="on-cream">
+    <div class="eyebrow-slide">Pace · the stamp game is as long as it needs to be</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px;">
+          Some children<br/>
+          stay for<br/>
+          <em style="font-style: italic; color: var(--gold);">months.</em><br/>
+          Some move<br/>
+          on in weeks.
+        </p>
+        <div class="rule-gold" style="margin-top: 28px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          There is no calendar for when a child leaves the
+          stamp game. There is only the child&rsquo;s own
+          indication that she is <em>moving through the
+          problems faster than the tiles can keep up.</em>
+        </p>
+        <p class="body-read">
+          When she begins to solve problems without setting up
+          the stamps — answering from memory, using paper
+          only, <em>reaching for the tiles only to check</em>
+          — she is already on the next bridge.
+        </p>
+        <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 30px; line-height: 1.32;">
+          The bridges are not timed crossings. They are
+          places to stand.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 EQUITY -->
+  <section data-label="Equity note" class="on-navy">
+    <div class="eyebrow-slide">The equity note · a full transition, or no transition</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Every transition<br/>
+        material Montessori<br/>
+        built is a <em style="font-style: italic;">gift<br/>
+        the conventional<br/>
+        classroom does not give.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        The child asked to jump from manipulatives straight to
+        a worksheet is the child most likely to be told she is
+        bad at math. The stamp game closes that gap. <em>It is
+        scaffolding, engineered.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Do not skip it in the name of efficiency. It was
+        designed by a physician who watched children fail
+        without it.
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When a child reaches for<br/>
+        the stamp game, are you<br/>
+        watching her <em style="font-style: italic; color: var(--gold);">step forward</em><br/>
+        into abstraction — or are<br/>
+        you impatient for her to<br/>
+        be past it already?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 26 · Primary · The Stamp Game</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">10</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

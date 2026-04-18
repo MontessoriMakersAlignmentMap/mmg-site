@@ -3,13 +3,12 @@
 // updates Status to Complete with Video URL when done.
 //
 // Usage: npx tsx scripts/heygen-check-status.ts
-// Run manually every 30 minutes, or set up as a cron job.
 
 import * as fs from 'fs'
 import * as path from 'path'
 import { google } from 'googleapis'
 
-// Load .env.local
+// Load .env.local (handles quoted values)
 const envPath = path.resolve(__dirname, '../.env.local')
 if (fs.existsSync(envPath)) {
   const lines = fs.readFileSync(envPath, 'utf-8').split('\n')
@@ -19,25 +18,29 @@ if (fs.existsSync(envPath)) {
     const eq = trimmed.indexOf('=')
     if (eq === -1) continue
     const key = trimmed.slice(0, eq).trim()
-    const val = trimmed.slice(eq + 1).trim()
+    let val = trimmed.slice(eq + 1).trim()
+    if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1)
     if (!process.env[key]) process.env[key] = val
   }
 }
 
 const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY!
-const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID!
+const SPREADSHEET_ID = process.env.HEYGEN_SPREADSHEET_ID!
 
 if (!HEYGEN_API_KEY || !SPREADSHEET_ID) {
-  console.error('Missing HEYGEN_API_KEY or GOOGLE_SHEETS_SPREADSHEET_ID in .env.local')
+  console.error('Missing HEYGEN_API_KEY or HEYGEN_SPREADSHEET_ID in .env.local')
   process.exit(1)
 }
 
+// Actual column mapping (0-indexed) from the Scripts sheet:
+// A=0 Row #, B=1 Level, C=2 Strand, D=3 Seq, E=4 Lesson Title,
+// F=5 Script Text, G=6 Avatar ID, H=7 Voice ID, I=8 Aspect Ratio,
+// J=9 Status, K=10 Video ID, L=11 Video URL,
+// M=12 Platform Upload Status, N=13 Notes
 const COL = {
-  STATUS: 10,
-  VIDEO_ID: 11,
-  VIDEO_URL: 12,
-  COMPLETED_AT: 13,
-  NOTES: 15,
+  LESSON_TITLE: 4,
+  STATUS: 9,
+  VIDEO_ID: 10,
 }
 
 function getAuth() {
@@ -57,9 +60,7 @@ async function checkVideoStatus(videoId: string): Promise<{
 }> {
   const resp = await fetch(
     `https://api.heygen.com/v1/video_status.get?video_id=${videoId}`,
-    {
-      headers: { 'X-Api-Key': HEYGEN_API_KEY },
-    }
+    { headers: { 'X-Api-Key': HEYGEN_API_KEY } }
   )
 
   if (!resp.ok) {
@@ -86,67 +87,64 @@ async function main() {
   const auth = getAuth()
   const sheets = google.sheets({ version: 'v4', auth })
 
-  const sheetNames = ['Primary', 'Elementary']
+  const SHEET_NAME = 'Scripts'
+  console.log(`--- Checking ${SHEET_NAME} sheet ---\n`)
+
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: `${SHEET_NAME}!A2:N`,
+  })
+
+  const rows = response.data.values ?? []
   let totalChecked = 0
   let totalCompleted = 0
   let totalStillProcessing = 0
   let totalFailed = 0
 
-  for (const sheetName of sheetNames) {
-    console.log(`--- Checking ${sheetName} sheet ---\n`)
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i]
+    const rowNum = i + 2
+    const status = row[COL.STATUS] || ''
+    const videoId = row[COL.VIDEO_ID] || ''
 
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A2:Q`,
-    })
+    if (status !== 'Generating' || !videoId) continue
 
-    const rows = response.data.values ?? []
+    totalChecked++
+    const lessonTitle = row[COL.LESSON_TITLE] || 'Untitled'
+    process.stdout.write(`  Row ${rowNum}: ${lessonTitle} ... `)
 
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i]
-      const rowNum = i + 2
-      const status = row[COL.STATUS] || ''
-      const videoId = row[COL.VIDEO_ID] || ''
+    const result = await checkVideoStatus(videoId)
 
-      if (status !== 'Generating' || !videoId) continue
-
-      totalChecked++
-      const lessonTitle = row[5] || 'Untitled'
-      process.stdout.write(`  Row ${rowNum}: ${lessonTitle} ... `)
-
-      const result = await checkVideoStatus(videoId)
-
-      if (result.status === 'completed') {
-        const now = new Date().toISOString()
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!K${rowNum}:N${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: {
-            values: [['Complete', videoId, result.video_url || '', now]],
-          },
-        })
-        console.log(`Complete`)
-        totalCompleted++
-      } else if (result.status === 'processing') {
-        console.log(`Still processing`)
-        totalStillProcessing++
-      } else {
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!K${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: { values: [['Error']] },
-        })
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!P${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: { values: [[result.error || 'Generation failed']] },
-        })
-        console.log(`Failed: ${result.error}`)
-        totalFailed++
-      }
+    if (result.status === 'completed') {
+      // Update Status=Complete, keep Video ID, write Video URL
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!J${rowNum}:L${rowNum}`,
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [['Complete', videoId, result.video_url || '']],
+        },
+      })
+      console.log(`Complete`)
+      totalCompleted++
+    } else if (result.status === 'processing') {
+      console.log(`Still processing`)
+      totalStillProcessing++
+    } else {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!J${rowNum}`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [['Error']] },
+      })
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!N${rowNum}`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [[result.error || 'Generation failed']] },
+      })
+      console.log(`Failed: ${result.error}`)
+      totalFailed++
     }
   }
 

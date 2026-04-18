@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 28 — Fractions at Primary: The Quiet Introduction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-frac {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(230,180,180,0.22), transparent 72%),
+      linear-gradient(160deg, #3a2e2e 0%, #1a1414 100%);
+  }
+  /* Fraction circles SVG */
+  .frac-row { display: flex; gap: 28px; justify-content: center; align-items: center; margin-top: 40px; padding: 40px; background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15); }
+  .frac-item { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .frac-item .lbl {
+    font-family: var(--font-heading); font-style: italic; color: var(--navy);
+    font-size: 24px;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Eight · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Fractions arrive in<br/>
+        the Montessori classroom<br/>
+        when the child is<br/>
+        <em style="font-style: italic; color: var(--gold);">four.</em> No one<br/>
+        calls them fractions.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        A four-year-old handles a circle divided into thirds,
+        names it &ldquo;a third,&rdquo; fits it back together,
+        and returns it to the shelf. That is fractions. No
+        panic. No prerequisites. <em>A quiet introduction that
+        saves her from fear later.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 28 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · a sentence to sit with</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.18;">
+        Fractions are feared<br/>
+        because they are <em>first met<br/>
+        at age ten,</em> in symbol,<br/>
+        with rules.
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        In this room a child<br/>
+        meets them at four.<br/>
+        <em>In her hands. As
+        objects.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE MATERIAL -->
+  <section data-label="The fraction circles" class="on-cream">
+    <div class="eyebrow-slide">The material · ten metal circles on a tray</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 60px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        A whole. A half. A third. A fourth.<br/>
+        <em style="font-style: italic; color: var(--gold);">Physical objects that fit together.</em>
+      </h2>
+      <div class="frac-row">
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="60" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+          </svg>
+          <div class="lbl">1</div>
+        </div>
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 70 70 L 70 10 A 60 60 0 0 1 70 130 Z" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+            <path d="M 70 70 L 70 130 A 60 60 0 0 1 70 10 Z" fill="#c44" stroke="#7a2222" stroke-width="2" opacity="0.65"/>
+            <line x1="70" y1="10" x2="70" y2="130" stroke="#7a2222" stroke-width="2"/>
+          </svg>
+          <div class="lbl">½</div>
+        </div>
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="60" fill="#c44" stroke="#7a2222" stroke-width="2" opacity="0.65"/>
+            <path d="M 70 70 L 70 10 A 60 60 0 0 1 121.96 100 Z" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+            <line x1="70" y1="70" x2="70" y2="10" stroke="#7a2222" stroke-width="2"/>
+            <line x1="70" y1="70" x2="121.96" y2="100" stroke="#7a2222" stroke-width="2"/>
+            <line x1="70" y1="70" x2="18.04" y2="100" stroke="#7a2222" stroke-width="2"/>
+          </svg>
+          <div class="lbl">⅓</div>
+        </div>
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="60" fill="#c44" stroke="#7a2222" stroke-width="2" opacity="0.65"/>
+            <path d="M 70 70 L 70 10 A 60 60 0 0 1 130 70 Z" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+            <line x1="10" y1="70" x2="130" y2="70" stroke="#7a2222" stroke-width="2"/>
+            <line x1="70" y1="10" x2="70" y2="130" stroke="#7a2222" stroke-width="2"/>
+          </svg>
+          <div class="lbl">¼</div>
+        </div>
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="60" fill="#c44" stroke="#7a2222" stroke-width="2" opacity="0.65"/>
+            <path d="M 70 70 L 70 10 A 60 60 0 0 1 127.06 88.54 Z" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+            <g stroke="#7a2222" stroke-width="2" fill="none">
+              <line x1="70" y1="70" x2="70" y2="10"/>
+              <line x1="70" y1="70" x2="127.06" y2="88.54"/>
+              <line x1="70" y1="70" x2="105.27" y2="127.06"/>
+              <line x1="70" y1="70" x2="34.73" y2="127.06"/>
+              <line x1="70" y1="70" x2="12.94" y2="88.54"/>
+            </g>
+          </svg>
+          <div class="lbl">⅕</div>
+        </div>
+        <div class="frac-item">
+          <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="60" fill="#c44" stroke="#7a2222" stroke-width="2" opacity="0.65"/>
+            <path d="M 70 70 L 70 10 A 60 60 0 0 1 121.96 40 Z" fill="#c44" stroke="#7a2222" stroke-width="2"/>
+            <g stroke="#7a2222" stroke-width="2" fill="none">
+              <line x1="70" y1="70" x2="70" y2="10"/>
+              <line x1="70" y1="70" x2="121.96" y2="40"/>
+              <line x1="70" y1="70" x2="121.96" y2="100"/>
+              <line x1="70" y1="70" x2="70" y2="130"/>
+              <line x1="70" y1="70" x2="18.04" y2="100"/>
+              <line x1="70" y1="70" x2="18.04" y2="40"/>
+            </g>
+          </svg>
+          <div class="lbl">⅙</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 WHAT HAPPENS -->
+  <section data-label="What actually happens" class="on-cream">
+    <div class="eyebrow-slide">What happens in the child&rsquo;s first year with them</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        She handles them as<br/>
+        a <em style="font-style: italic; color: var(--gold);">shape puzzle.</em> That<br/>
+        is the whole lesson.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        She removes the pieces. She puts them back. She
+        notices two halves complete a circle. She notices
+        three thirds complete a circle. <em>She is not
+        taught this — she discovers it, because the material
+        will not close if she does otherwise.</em>
+      </p>
+      <p class="body-read">
+        When she asks &ldquo;what is this one called?&rdquo;
+        she receives the names: a third, a fourth, a fifth.
+        The words enter alongside the quantities. <em>No
+        numerator. No denominator. Not yet.</em>
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 30px; line-height: 1.3; margin-top: 12px;">
+        By age five she can say &ldquo;three-fourths&rdquo; while
+        pointing at three of the four wedges. She is not doing
+        mathematics. She is building a vocabulary for a
+        concept she will meet formally in five years.
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · snack time fractions" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-frac">
+        <div class="scene-label">Four children seated at a small round table during snack. A single green apple is in the center. A guide is demonstrating: the apple is cut in half, then each half in half again. Children are watching closely. Each child receives one piece — &ldquo;a fourth.&rdquo; The word is offered once, naturally, and not repeated.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · daily life · the apple at snack</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The first <em style="font-style: italic;">real<br/>
+          fraction</em> a child<br/>
+          meets is edible.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Long before she handles the circles, she sees an
+          apple cut into fourths. She gets &ldquo;a
+          fourth.&rdquo; She knows there are three other
+          children and each has a fourth. <em>Four fourths
+          make the apple.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is not an isolated lesson. It is the fabric of
+          daily life in the classroom. <em>Fractions are a
+          language spoken here.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT SHE AVOIDS -->
+  <section data-label="What she avoids later" class="on-cream">
+    <div class="eyebrow-slide">What she avoids meeting in fourth grade</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        She will never<br/>
+        encounter a fraction<br/>
+        as a <em style="font-style: italic; color: var(--gold);">frightening<br/>
+        new symbol.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The average American child meets the fraction ½ for
+        the first time on a worksheet, at age nine or ten,
+        written in an unfamiliar notation, with rules that
+        appear arbitrary — <em>add these across but those
+        don&rsquo;t cross, invert and multiply, find a common
+        denominator.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The Montessori child meets ½ at age four — as a <em>piece
+        of metal she can hold in one hand.</em> When the
+        symbol arrives, it is the symbol for something she has
+        known for six years.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity · the fraction cliff" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · the fraction cliff</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Fourth grade is<br/>
+        where American<br/>
+        mathematics <em style="font-style: italic;">loses<br/>
+        millions of<br/>
+        children.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Longitudinal data shows U.S. math performance falls
+        off a cliff around grade four — and the proximate
+        cause, again and again, is fractions introduced as
+        alien symbols with procedural rules. <em>Children
+        conclude, correctly, that nobody has told them what
+        these things are.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The Montessori child is immune to this cliff because
+        she has been handling fractions since preschool. The
+        remedy for a grade-four problem lives in the
+        primary-age classroom.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When a four-year-old says<br/>
+        &ldquo;a fourth&rdquo; while holding a<br/>
+        piece of apple — is she<br/>
+        <em style="font-style: italic; color: var(--gold);">too young for math,</em><br/>
+        or is she at exactly<br/>
+        the age the research<br/>
+        says she should be?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 28 · Primary · Fractions at Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">08</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

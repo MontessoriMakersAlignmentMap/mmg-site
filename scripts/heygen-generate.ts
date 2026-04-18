@@ -1,15 +1,17 @@
 // scripts/heygen-generate.ts
-// Reads rows from MMR_HeyGen_Scripts where Status=Pending and Batch=1,
+// Reads rows from MMR_HeyGen_Scripts where Status=Pending,
 // calls HeyGen API to generate videos, writes video_id back to the sheet.
 //
 // Usage: npx tsx scripts/heygen-generate.ts
-// Optional: BATCH=2 npx tsx scripts/heygen-generate.ts
+// Options:
+//   LIMIT=5 npx tsx scripts/heygen-generate.ts   — only process first N pending rows (default: 5)
+//   LIMIT=0 npx tsx scripts/heygen-generate.ts   — process ALL pending rows
 
 import * as fs from 'fs'
 import * as path from 'path'
 import { google } from 'googleapis'
 
-// Load .env.local
+// Load .env.local (handles quoted values)
 const envPath = path.resolve(__dirname, '../.env.local')
 if (fs.existsSync(envPath)) {
   const lines = fs.readFileSync(envPath, 'utf-8').split('\n')
@@ -19,41 +21,47 @@ if (fs.existsSync(envPath)) {
     const eq = trimmed.indexOf('=')
     if (eq === -1) continue
     const key = trimmed.slice(0, eq).trim()
-    const val = trimmed.slice(eq + 1).trim()
+    let val = trimmed.slice(eq + 1).trim()
+    if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1)
     if (!process.env[key]) process.env[key] = val
   }
 }
 
 const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY!
-const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID!
-const TARGET_BATCH = process.env.BATCH || '1'
+const SPREADSHEET_ID = process.env.HEYGEN_SPREADSHEET_ID!
+const LIMIT = process.env.LIMIT ? parseInt(process.env.LIMIT) : 5
 
 if (!HEYGEN_API_KEY) {
   console.error('Missing HEYGEN_API_KEY in .env.local')
   process.exit(1)
 }
 if (!SPREADSHEET_ID) {
-  console.error('Missing GOOGLE_SHEETS_SPREADSHEET_ID in .env.local')
+  console.error('Missing HEYGEN_SPREADSHEET_ID in .env.local')
   process.exit(1)
 }
 
-// Column mapping (0-indexed after reading from A:Q)
-// A=0 Row Number, B=1 Level, C=2 Strand, D=3 Sequence, E=4 Batch,
-// F=5 Lesson Title, G=6 Script Text, H=7 Avatar ID, I=8 Voice ID,
-// J=9 Aspect Ratio, K=10 Status, L=11 Video ID, M=12 Video URL,
-// N=13 Completed At, O=14 Platform Upload Status, P=15 Notes, Q=16 Retry Count
+// Actual column mapping (0-indexed) from the Scripts sheet:
+// A=0 Row #, B=1 Level, C=2 Strand, D=3 Seq, E=4 Lesson Title,
+// F=5 Script Text, G=6 Avatar ID, H=7 Voice ID, I=8 Aspect Ratio,
+// J=9 Status, K=10 Video ID, L=11 Video URL,
+// M=12 Platform Upload Status, N=13 Notes
 const COL = {
   LEVEL: 1,
   STRAND: 2,
-  BATCH: 4,
-  LESSON_TITLE: 5,
-  SCRIPT_TEXT: 6,
-  AVATAR_ID: 7,
-  VOICE_ID: 8,
-  STATUS: 10,
-  VIDEO_ID: 11,
-  NOTES: 15,
-  RETRY_COUNT: 16,
+  LESSON_TITLE: 4,
+  SCRIPT_TEXT: 5,
+  AVATAR_ID: 6,
+  VOICE_ID: 7,
+  STATUS: 9,
+  VIDEO_ID: 10,
+  NOTES: 13,
+}
+
+// Column letters for sheet updates
+const COL_LETTER = {
+  STATUS: 'J',
+  VIDEO_ID: 'K',
+  NOTES: 'N',
 }
 
 function getAuth() {
@@ -106,7 +114,6 @@ async function generateVideo(row: string[]): Promise<{ video_id?: string; error?
   })
 
   if (resp.status === 429) {
-    // Rate limited — wait 60s and retry once
     console.log('  Rate limited. Waiting 60s and retrying...')
     await sleep(60_000)
     const retry = await fetch('https://api.heygen.com/v2/video/generate', {
@@ -136,102 +143,93 @@ async function generateVideo(row: string[]): Promise<{ video_id?: string; error?
 
 async function main() {
   console.log(`\nHeyGen Video Generator`)
-  console.log(`Target batch: ${TARGET_BATCH}\n`)
+  console.log(`Limit: ${LIMIT === 0 ? 'ALL' : LIMIT} rows\n`)
 
   const auth = getAuth()
   const sheets = google.sheets({ version: 'v4', auth })
 
-  // Read all rows from both sheets
-  const sheetNames = ['Primary', 'Elementary']
+  const SHEET_NAME = 'Scripts'
+  console.log(`--- Processing ${SHEET_NAME} sheet ---\n`)
 
-  for (const sheetName of sheetNames) {
-    console.log(`\n--- Processing ${sheetName} sheet ---\n`)
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: `${SHEET_NAME}!A2:N`,
+  })
 
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A2:Q`,
-    })
+  const rows = response.data.values ?? []
+  if (rows.length === 0) {
+    console.log('  No rows found')
+    return
+  }
 
-    const rows = response.data.values ?? []
-    if (rows.length === 0) {
-      console.log(`  No rows found in ${sheetName}`)
+  let processed = 0
+  let succeeded = 0
+  let failed = 0
+
+  for (let i = 0; i < rows.length; i++) {
+    if (LIMIT > 0 && processed >= LIMIT) break
+
+    const row = rows[i]
+    const rowNum = i + 2
+    const status = row[COL.STATUS] || ''
+    const scriptText = row[COL.SCRIPT_TEXT] || ''
+    const avatarId = row[COL.AVATAR_ID] || ''
+    const voiceId = row[COL.VOICE_ID] || ''
+
+    if (status !== 'Pending') continue
+    if (!scriptText || !avatarId || !voiceId) {
+      console.log(`  Row ${rowNum}: Skipping — missing script, avatar, or voice`)
       continue
     }
 
-    let processed = 0
-    let succeeded = 0
-    let failed = 0
+    const title = row[COL.LESSON_TITLE] || 'Untitled'
+    console.log(`  Row ${rowNum}: ${title}`)
 
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i]
-      const rowNum = i + 2 // 1-indexed, skip header
-      const status = row[COL.STATUS] || ''
-      const batch = row[COL.BATCH] || ''
-      const scriptText = row[COL.SCRIPT_TEXT] || ''
-      const avatarId = row[COL.AVATAR_ID] || ''
-      const voiceId = row[COL.VOICE_ID] || ''
+    // Set status to Generating
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!${COL_LETTER.STATUS}${rowNum}`,
+      valueInputOption: 'RAW',
+      requestBody: { values: [['Generating']] },
+    })
 
-      // Filter: only Pending rows in the target batch with required fields
-      if (status !== 'Pending') continue
-      if (batch !== TARGET_BATCH) continue
-      if (!scriptText || !avatarId || !voiceId) {
-        console.log(`  Row ${rowNum}: Skipping — missing script, avatar, or voice`)
-        continue
-      }
+    const result = await generateVideo(row)
+    processed++
 
-      const title = row[COL.LESSON_TITLE] || 'Untitled'
-      console.log(`  Row ${rowNum}: ${title}`)
-
-      // Set status to Generating before the API call
+    if (result.video_id) {
       await sheets.spreadsheets.values.update({
         spreadsheetId: SPREADSHEET_ID,
-        range: `${sheetName}!K${rowNum}`,
+        range: `${SHEET_NAME}!${COL_LETTER.VIDEO_ID}${rowNum}`,
         valueInputOption: 'RAW',
-        requestBody: { values: [['Generating']] },
+        requestBody: { values: [[result.video_id]] },
       })
-
-      const result = await generateVideo(row)
-      processed++
-
-      if (result.video_id) {
-        // Write video_id and keep status as Generating
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!L${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: { values: [[result.video_id]] },
-        })
-        console.log(`    OK — video_id: ${result.video_id}`)
-        succeeded++
-      } else {
-        // Write error
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!K${rowNum}:L${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: { values: [['Error', '']] },
-        })
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: SPREADSHEET_ID,
-          range: `${sheetName}!P${rowNum}`,
-          valueInputOption: 'RAW',
-          requestBody: { values: [[result.error || 'Unknown error']] },
-        })
-        console.log(`    ERROR: ${result.error}`)
-        failed++
-      }
-
-      // 20 second delay between API calls
-      if (i < rows.length - 1) {
-        console.log(`    Waiting 20s...`)
-        await sleep(20_000)
-      }
+      console.log(`    OK — video_id: ${result.video_id}`)
+      succeeded++
+    } else {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!${COL_LETTER.STATUS}${rowNum}`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [['Error']] },
+      })
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!${COL_LETTER.NOTES}${rowNum}`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [[result.error || 'Unknown error']] },
+      })
+      console.log(`    ERROR: ${result.error}`)
+      failed++
     }
 
-    console.log(`\n  ${sheetName} done: ${processed} processed, ${succeeded} succeeded, ${failed} failed`)
+    // 20 second delay between API calls
+    if (processed < LIMIT || LIMIT === 0) {
+      console.log(`    Waiting 20s...`)
+      await sleep(20_000)
+    }
   }
 
-  console.log('\nDone.')
+  console.log(`\n  Done: ${processed} processed, ${succeeded} succeeded, ${failed} failed\n`)
 }
 
 main().catch((err) => {

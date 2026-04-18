@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 36 — Music: The Bells and the Listening Ear</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-music {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(210,180,120,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2018 0%, #120e0a 100%);
+  }
+  /* Bells diagram */
+  .bells-row {
+    display: grid; grid-template-columns: repeat(8, 1fr);
+    gap: 4px; margin-top: 32px; padding: 40px 32px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(20,30,60,0.15);
+    align-items: end;
+  }
+  .bell {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .bell-dome {
+    width: 100%; max-width: 96px; aspect-ratio: 1;
+    background: radial-gradient(ellipse at 30% 30%, #f4dfa2 0%, #c89a3a 60%, #8d6a20 100%);
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset 0 -8px 0 rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .bell-dome::after {
+    content: ''; position: absolute; bottom: -4px; left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 4px; background: #5a4010;
+    border-radius: 2px;
+  }
+  .bell-note {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy);
+  }
+  .bell-row-lbl {
+    font-family: var(--font-sans); font-size: 18px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--navy); font-weight: 600;
+    text-align: center; margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Six · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Montessori music<br/>
+        does not begin<br/>
+        with <em style="font-style: italic; color: var(--gold);">singing.</em><br/>
+        It begins with<br/>
+        <em style="font-style: italic; color: var(--gold);">listening.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Before a child sings a melody, she is asked to hear
+        one. Before she reads notation, she matches two bells
+        that ring the same tone. <em>The ear is the
+        instrument. Everything else is downstream.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 36 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 THE BELLS -->
+  <section data-label="The Montessori bells" class="on-cream">
+    <div class="eyebrow-slide">The Montessori bells · tuning the ear</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Sixteen bells. Two rows. <em style="font-style: italic; color: var(--gold);">All look
+        identical.</em>
+      </h2>
+      <div class="bells-row">
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">C</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">D</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">E</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">F</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">G</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">A</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">B</div></div>
+        <div class="bell"><div class="bell-dome"></div><div class="bell-note">C</div></div>
+      </div>
+      <div class="bell-row-lbl">One row fixed · one row scrambled</div>
+      <p class="body-read" style="margin-top: 32px; max-width: 1500px;">
+        One row sits in order: C D E F G A B C — the diatonic
+        scale. The other row is identical bells, scrambled.
+        Her task: strike a bell in the fixed row, then strike
+        bells in the scrambled row until she finds its
+        match. <em>The bells teach the child that pitch is a
+        property she can isolate, compare, and name.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE LONG PATIENCE -->
+  <section data-label="Why it works" class="on-cream">
+    <div class="eyebrow-slide">Why this works · isolating pitch</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The bells look<br/>
+        the same. <em style="font-style: italic; color: var(--gold);">On purpose.</em><br/>
+        Her eyes cannot help her.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        This is the sensorial principle applied to sound. If
+        the bells were colored by pitch, she would match by
+        sight. By making them visually identical, the material
+        forces her attention inside the ear. <em>She is
+        learning to hear.</em>
+      </p>
+      <p class="body-read">
+        This habit — attending to a single sensory channel
+        with the others switched off — is the foundation of
+        every later act of musicianship, from tuning an
+        instrument to hearing the second voice in a fugue.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 SCENE -->
+  <section data-label="Scene · striking the match" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-music">
+        <div class="scene-label">A four-year-old standing at a narrow wooden shelf where the bells are arranged. She holds a small wooden mallet in her right hand. She has just struck one of the bells in the fixed row; the tone is still hanging in the air. Her eyes are closed. Her head is tilted slightly. She is listening — not for the tone she just played, but for the one she will play next.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the held note</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Her eyes are<br/>
+          <em style="font-style: italic;">closed.</em><br/>
+          That is the lesson.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          No adult told her to close them. The material led
+          her there. Because the bells look the same, her
+          eyes are not useful, so she shut them. <em>The
+          environment asked for an inward act, and she
+          performed it.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A child who knows how to listen inside herself has
+          a skill that transfers to reading, to math, to
+          conversation. <em>It is not only a musical
+          skill.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SINGING + MOVEMENT -->
+  <section data-label="Singing and movement" class="on-cream">
+    <div class="eyebrow-slide">Alongside the bells · singing and walking on the line</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The classroom sings.<br/>
+        The classroom <em style="font-style: italic; color: var(--gold);">walks<br/>
+        on the line</em> to<br/>
+        a rhythm.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Every morning, a song. Folk songs, lullabies, songs
+        from the families in the room. The children join when
+        they are ready. No one is asked to perform solo; no
+        one is corrected for pitch. <em>They are learning
+        that the classroom has a singing voice.</em>
+      </p>
+      <p class="body-read">
+        Walking on the line — a painted ellipse on the floor
+        — becomes a rhythm exercise when the guide plays
+        music. <em>The body learns the beat before the mind
+        names it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 EQUITY -->
+  <section data-label="Equity · whose music" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose music plays here</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        The songs you sing<br/>
+        are a <em style="font-style: italic;">declaration</em><br/>
+        of whose classroom<br/>
+        this is.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        If the morning songs are always in one language,
+        always from one tradition — the children whose
+        families sing otherwise learn that their music stays
+        at home. <em>The invitation to bring family songs
+        into the classroom must be explicit, and it must be
+        repeated.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Ask families for recordings. Play them. Learn the
+        words. <em>Do this before the child asks.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When your classroom<br/>
+        is quiet — is it<br/>
+        <em style="font-style: italic; color: var(--gold);">listening</em> to something,<br/>
+        or only waiting for<br/>
+        the next thing to<br/>
+        begin?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 36 · Primary · Music</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">07</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 20 — What the Moveable Alphabet Is Really For</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Encoding vs decoding — big comparison */
+  .ed-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 36px;
+  }
+  .ed-grid .side { padding: 44px 44px; min-height: 460px; display: flex; flex-direction: column; gap: 16px; }
+  .ed-grid .enc { background: #13214b; color: #fff; }
+  .ed-grid .dec { background: #f3ecdc; border: 1px solid rgba(20,30,60,0.15); border-left: none; }
+  .ed-grid .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .ed-grid .enc .k { color: var(--gold); }
+  .ed-grid .dec .k { color: rgba(20,30,60,0.55); }
+  .ed-grid h3 {
+    font-family: var(--font-heading);
+    font-size: 52px; line-height: 1.08;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .ed-grid .enc h3 { color: #fff; }
+  .ed-grid .dec h3 { color: var(--navy); }
+  .ed-grid h3 em { color: var(--gold); font-style: italic; }
+  .ed-grid .flow {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    margin: 16px 0;
+  }
+  .ed-grid .enc .flow { color: rgba(255,255,255,0.92); }
+  .ed-grid .dec .flow { color: var(--navy); }
+  .ed-grid .flow .arrow { color: var(--gold); padding: 0 8px; }
+  .ed-grid p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    margin: 0;
+  }
+  .ed-grid .enc p { color: rgba(255,255,255,0.85); }
+  .ed-grid .dec p { color: var(--fg-body); }
+  .ed-grid .enc p em { color: var(--gold); font-style: italic; }
+  .ed-grid .dec p em { color: var(--navy); font-style: italic; }
+
+  /* Two cognitive loads */
+  .loads {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    gap: 0;
+    margin-top: 36px;
+  }
+  .loads .side {
+    padding: 40px 36px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 440px;
+  }
+  .loads .traditional {
+    background: rgba(214,167,88,0.08);
+    border: 1px solid rgba(20,30,60,0.15);
+  }
+  .loads .separated {
+    background: #13214b;
+    color: #fff;
+  }
+  .loads .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 40px;
+    color: var(--gold);
+    background: var(--bg-cream);
+  }
+  .loads .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.55);
+    font-weight: 600;
+  }
+  .loads .separated .k { color: var(--gold); }
+  .loads h3 {
+    font-family: var(--font-heading);
+    font-size: 38px; line-height: 1.12;
+    color: var(--navy);
+    margin: 0;
+  }
+  .loads .separated h3 { color: #fff; }
+  .loads h3 em { color: var(--gold); font-style: italic; }
+  .loads p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .loads .separated p { color: rgba(255,255,255,0.85); }
+  .loads p em { color: var(--navy); font-style: italic; }
+  .loads .separated p em { color: var(--gold); font-style: italic; }
+  .loads .outcome {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 12px;
+    line-height: 1.35;
+    color: var(--gold);
+  }
+  .loads .traditional .outcome { border-top-color: rgba(20,30,60,0.2); color: rgba(20,30,60,0.6); }
+
+  /* Steps of the first encounter */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .steps .step {
+    background: var(--bg-cream);
+    padding: 30px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 400px;
+  }
+  .steps .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 34px;
+    line-height: 1;
+  }
+  .steps h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+  }
+  .steps h3 em { color: var(--gold); font-style: italic; }
+  .steps p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.42;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .steps p em { color: var(--navy); font-style: italic; }
+  .steps .whisper {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 12px;
+    line-height: 1.35;
+  }
+
+  /* Scenes */
+  .scene-rosa {
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 40%, rgba(235,200,140,0.28), transparent 70%),
+      linear-gradient(165deg, #5a4a2e 0%, #2a2214 100%);
+  }
+  .scene-marcus {
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 40%, rgba(235,210,160,0.3), transparent 70%),
+      linear-gradient(160deg, #645030 0%, #2c2216 100%);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 96px; line-height: 1.04; padding-bottom: 24px;">
+        The moveable<br/>
+        alphabet is not<br/>
+        for writing<br/>
+        <em style="font-style: italic; color: var(--gold);">before reading.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        It is for <em>encoding</em> before decoding. And the
+        difference — between those two sentences — changes
+        everything about how you present it.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 20 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · a material often misread</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 62px; line-height: 1.16;">
+        Most guides use it.<br/>
+        Many misunderstand<br/>
+        <em style="font-style: italic;">what they are facilitating.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 36px;"></div>
+      <p class="serif-quote" style="font-size: 56px; line-height: 1.2; margin-top: 32px; color: var(--gold);">
+        If you treat it as a<br/>
+        head-start on writing —<br/>
+        <em style="font-style: italic;">you miss the point entirely.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 58px;">
+          You are about<br/>
+          to watch children<br/>
+          <em style="font-style: italic; color: var(--gold);">make words</em><br/>
+          before they can<br/>
+          hold a pencil.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Some of you will see this as a shortcut — a way to
+          get writing done before reading catches up. <em>It is
+          not.</em>
+        </p>
+        <p class="body-read">
+          The moveable alphabet separates <em>the cognitive act
+          of encoding</em> from the motor act of writing. It
+          reveals something profound about how language works.
+          And if you understand what is happening, you can
+          support it with precision.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 112px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Encoding and<br/>
+        decoding are<br/>
+        <em style="font-style: italic; color: var(--gold);">different</em><br/>
+        cognitive acts.
+      </h2>
+      <div class="rule-gold" style="margin: 56px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Different brain networks. Different directions of
+        travel. Related — but not the same.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 ENCODING VS DECODING -->
+  <section data-label="Encoding and decoding" class="on-cream">
+    <div class="eyebrow-slide">Two operations · opposite directions</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        The skills are <em style="font-style: italic; color: var(--gold);">related.</em><br/>
+        The skills are <em style="font-style: italic; color: var(--gold);">distinct.</em>
+      </h2>
+      <div class="ed-grid">
+        <div class="side enc">
+          <div class="k">— Encoding —</div>
+          <h3>Thought<br/>into <em>print.</em></h3>
+          <p class="flow">idea <span class="arrow">→</span> sound <span class="arrow">→</span> symbol</p>
+          <p>
+            Take an idea in your head. Find the words. Break the
+            words into sounds. Match each sound to the letter
+            that carries it. <em>Compose.</em>
+          </p>
+        </div>
+        <div class="side dec">
+          <div class="k">— Decoding —</div>
+          <h3>Print<br/>into <em>thought.</em></h3>
+          <p class="flow">symbol <span class="arrow">→</span> sound <span class="arrow">→</span> idea</p>
+          <p>
+            Take a symbol on a page. Figure out the sound it
+            represents. Blend sounds into a word. Find the idea
+            the word is carrying. <em>Comprehend.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE COGNITIVE LOAD PROBLEM -->
+  <section data-label="The cognitive load problem" class="on-cream">
+    <div class="eyebrow-slide">What traditional literacy asks the four-year-old brain to do</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        When you ask her to hold a<br/>
+        pencil <em style="font-style: italic; color: var(--gold);">and</em> segment a word —<br/>
+        you are asking for both at once.
+      </h2>
+      <div class="loads">
+        <div class="side traditional">
+          <div class="k">— Taught together —</div>
+          <h3>Fine motor <em>and</em><br/>encoding, at the<br/>same moment.</h3>
+          <p>
+            Her hand is learning to hold the pencil. Her fingers
+            are fighting for coordination. Her attention is on
+            grip. <em>Her brain's resources are going to motor
+            planning — not to sound-symbol correspondence.</em>
+          </p>
+          <div class="outcome">— The cognitive work gets crowded out. —</div>
+        </div>
+        <div class="vs">→</div>
+        <div class="side separated">
+          <div class="k">— The moveable alphabet —</div>
+          <h3>The hand is<br/><em>freed.</em> The mind<br/>is free to <em>think.</em></h3>
+          <p>
+            No grip. No tip. No pressure. She lifts a letter,
+            listens to the sound, arranges. Her brain is free
+            to focus on <em>the sound-symbol relationship —
+            which is the actual work.</em>
+          </p>
+          <div class="outcome">— Encoding becomes available. Early. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 112px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        The first<br/>
+        <em style="font-style: italic; color: var(--gold);">encounter.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The child sits with you. She has phonological awareness.
+        You bring the box. You say one word, slowly.
+        <em>Here is what happens next.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 THE FOUR STEPS -->
+  <section data-label="The first encounter · four steps" class="on-cream">
+    <div class="eyebrow-slide">The first encounter · a presentation you will give hundreds of times</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        One word. Said slowly.<br/>
+        <em style="font-style: italic; color: var(--gold);">Then</em> the child does the rest.
+      </h2>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>You say it.<br/>Together.<br/><em>Slowly.</em></h3>
+          <p>"Dddogggg." She says it with you. The sound stretches. <em>The word becomes hearable as pieces.</em></p>
+          <div class="whisper">— Stretch. Don't spell. —</div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>You ask<br/>what she<br/><em>hears first.</em></h3>
+          <p>Not what it starts with. What she <em>hears.</em> "The 'd' sound." Her ear is doing the work — not her memory.</p>
+          <div class="whisper">— Ear, then eye. —</div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>She<br/>finds the<br/><em>letter.</em></h3>
+          <p>She looks across the box. Her fingers hover. She picks up the <em>d.</em> Sound-to-symbol — made by her own hand.</p>
+          <div class="whisper">— Correspondence made visible. —</div>
+        </div>
+        <div class="step">
+          <div class="n">04</div>
+          <h3>She<br/>arranges.<br/><em>Reads.</em></h3>
+          <p>Three letters in a row. She looks at them. <em>Something shifts in her understanding of language.</em></p>
+          <div class="whisper">— "I made a word." —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 STUNNED MOMENT -->
+  <section data-label="The moment she will remember" class="on-navy">
+    <div class="eyebrow-slide">The moment</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="attrib" style="color: var(--gold); font-size: 28px;">The first time this happens</p>
+      <p class="serif-quote" style="font-size: 62px; line-height: 1.18; margin-top: 24px;">
+        The child often looks<br/>
+        <em style="font-style: italic; color: var(--gold);">stunned.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 36px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        She has just taken an idea from inside her mind, broken
+        it into sounds, found letters, and <em>made it
+        visible.</em> She has done segmenting, phoneme-grapheme
+        matching, ordering, and composition — all in one
+        quiet act.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        This is not a shortcut to reading. <em>This is a
+        foundation for understanding how language actually
+        works.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        When the mind<br/>
+        is ready and<br/>
+        <em style="font-style: italic; color: var(--gold);">the hand</em><br/>
+        is not yet.
+      </h2>
+      <div class="rule-gold" style="margin: 56px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Fine motor development and cognitive development <em>do
+        not always arrive together.</em> The moveable alphabet
+        lets the mind run ahead while the hand catches up.
+      </p>
+    </div>
+  </section>
+
+  <!-- 11 ROSA SCENE -->
+  <section data-label="Scene · Rosa" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-rosa">
+        <div class="scene-label">A girl, four years and eight months old, sitting cross-legged beside a small green mat. On the mat, three wooden letters in a row: s — u — n. Her hand is still resting on the last one. She is not looking at the guide. She is looking at the word she just made.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · late January · Rosa · 4y 8m</div>
+        <h2 class="display" style="font-size: 44px; line-height: 1.16; margin-top: 8px;">
+          Her mind is <em style="font-style: italic;">ready.</em><br/>
+          Her hand is months<br/>
+          <em style="font-style: italic;">away</em> from a pencil.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Six weeks with sandpaper letters. Last week you brought
+          the moveable alphabet. "Suuuunnnn." She found the s,
+          the u, the n. Arranged them. Came back the next day
+          and built sun again. Then asked to build <em>sit.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Paper and pencil hold no interest for her yet. That is
+          fine. <em>Her phonological awareness is strong. The
+          moveable alphabet gives her encoding while her body
+          continues to develop.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 MARCUS SCENE -->
+  <section data-label="Scene · Marcus" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · mid-January · Marcus · 5y</div>
+        <h2 class="display" style="font-size: 44px; line-height: 1.14; margin-top: 8px;">
+          He has not written<br/>
+          a single letter <em style="font-style: italic;">with a</em><br/>
+          <em style="font-style: italic;">pencil</em> — and he<br/>
+          is already<br/>
+          <em style="font-style: italic;">composing.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Four months with sandpaper letters. Strong phonological
+          awareness. Encoding intentionally since November.
+          Building words, taking them apart, building new ones.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He is beginning to ask about words he sees around the
+          room — <em>"is that how you spell door?"</em> When his
+          hand is stronger in March and pencil writing becomes
+          available, it will be almost mechanical. <em>The
+          cognitive work is already done.</em>
+        </p>
+      </div>
+      <div class="scene scene-marcus">
+        <div class="scene-label">A boy around five standing at a low table, having just laid out a long row of moveable-alphabet letters across a green mat. His expression is not surprise — it is the calm satisfaction of a child who has been doing this for weeks and is now looking around the room for his next word.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose mind we insist on locking to whose hand</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14;">
+        Fine motor development is<br/>
+        <em style="font-style: italic;">not evenly distributed</em><br/>
+        when children arrive at school.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Children with sensory integration differences may develop
+        fine motor differently. Children whose experience has
+        been limited in threading, in scissors, in tools —
+        develop it later. When we insist that children <em>must
+        write with a pencil</em> before they can be considered
+        ready to express themselves in written language, we
+        exclude from expression children whose bodies are still
+        developing.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The moveable alphabet says something different. <em>Your
+        mind is ready. Let us encode. Let us compose. Let your
+        hand catch up.</em> That is an enormous gift.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ND NOTE -->
+  <section data-label="Dysgraphia and motor planning" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · this is not remediation. This is justice.</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px; color: #fff;">
+          Dysgraphia.<br/>
+          Motor planning<br/>
+          difficulties.<br/>
+          Fine motor<br/>
+          <em style="font-style: italic; color: var(--gold);">delays.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Children who cannot yet access written composition
+          <em>through pencil</em> can access it through the
+          moveable alphabet — long before their hands are ready.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          They get to do the cognitive work of encoding without
+          waiting for motor development. <em>This is not
+          remediation.</em> This is removing a barrier that was
+          never about their minds.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 WHAT TO WATCH FOR -->
+  <section data-label="What to watch for" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14; color: var(--navy);">
+        Three things to watch for<br/>
+        at the moveable alphabet<br/>
+        <em style="font-style: italic; color: var(--gold);">this week.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 28px 40px; margin-top: 32px; align-items: baseline;">
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">First —</div>
+        <p class="body-read" style="margin: 0;">
+          does the child <em>stretch</em> the word before she
+          reaches for a letter? That tells you her ear is
+          leading.
+        </p>
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">Second —</div>
+        <p class="body-read" style="margin: 0;">
+          when she misses a sound — the middle vowel, a final
+          consonant — does she <em>hear the gap</em> once it is
+          laid out, or does she not yet?
+        </p>
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">Third —</div>
+        <p class="body-read" style="margin: 0;">
+          after one word, does she reach for a <em>new</em> word
+          on her own? That is the child telling you the door has
+          just opened.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 56px;">
+        When you watch children use<br/>
+        the moveable alphabet over<br/>
+        the next weeks — what shifts do<br/>
+        you notice in their understanding<br/>
+        of how language <em style="font-style: italic; color: var(--gold);">actually works?</em><br/>
+        What happens to their<br/>
+        relationship with written words?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 20 · Primary · The Moveable Alphabet</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">16</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

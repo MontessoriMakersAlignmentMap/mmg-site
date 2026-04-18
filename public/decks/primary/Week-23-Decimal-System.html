@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 23 — The Decimal System and the Mathematical Mind</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Golden bead hierarchy — SVG grid of one, ten, hundred, thousand */
+  .hier {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-top: 36px;
+    border-top: 1px solid rgba(20,30,60,0.18);
+  }
+  .hier .col {
+    padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 520px;
+    border-right: 1px solid rgba(20,30,60,0.12);
+  }
+  .hier .col:last-child { border-right: none; }
+  .hier .n {
+    font-family: var(--font-heading); color: var(--gold);
+    font-size: 32px; letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+  }
+  .hier .beadbox {
+    display: flex; align-items: center; justify-content: center;
+    height: 200px;
+  }
+  .hier h3 {
+    font-family: var(--font-heading); font-size: 34px; line-height: 1.1;
+    color: var(--navy); margin: 0;
+  }
+  .hier h3 em { color: var(--gold); font-style: italic; }
+  .hier p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .hier p em { color: var(--navy); font-style: italic; }
+  .hier .note {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; color: var(--gold); margin-top: auto;
+    padding-top: 14px; border-top: 1px solid rgba(214,167,88,0.4);
+  }
+
+  /* Quantity vs symbol comparison */
+  .qs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 32px; }
+  .qs-grid .side { padding: 40px 42px; display: flex; flex-direction: column; gap: 16px; min-height: 500px; }
+  .qs-grid .traditional { background: rgba(214,167,88,0.08); border: 1px solid rgba(20,30,60,0.15); }
+  .qs-grid .montessori { background: #13214b; color: #fff; border-left: none; }
+  .qs-grid .k {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase; font-weight: 600; color: rgba(20,30,60,0.55);
+  }
+  .qs-grid .montessori .k { color: var(--gold); }
+  .qs-grid h3 {
+    font-family: var(--font-heading); font-size: 42px; line-height: 1.1; margin: 0;
+    letter-spacing: -0.01em; color: var(--navy);
+  }
+  .qs-grid .montessori h3 { color: #fff; }
+  .qs-grid h3 em { color: var(--gold); font-style: italic; }
+  .qs-grid .flow {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.3; color: var(--navy);
+  }
+  .qs-grid .montessori .flow { color: rgba(255,255,255,0.92); }
+  .qs-grid .flow .arrow { color: var(--gold); padding: 0 6px; }
+  .qs-grid p { font-family: var(--font-sans); font-size: 26px; line-height: 1.5; margin: 0; color: var(--fg-body); }
+  .qs-grid .montessori p { color: rgba(255,255,255,0.88); }
+  .qs-grid p em { color: var(--navy); font-style: italic; }
+  .qs-grid .montessori p em { color: var(--gold); font-style: italic; }
+
+  /* Scene */
+  .scene-bead {
+    background:
+      radial-gradient(ellipse 50% 50% at 45% 42%, rgba(235,210,160,0.32), transparent 70%),
+      linear-gradient(160deg, #5a4a30 0%, #221a10 100%);
+  }
+
+  /* Progression arrow row on the hierarchy slide */
+  .prog-arrow {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    margin-top: 24px; padding: 0 40px;
+    font-family: var(--font-heading); font-style: italic;
+    color: var(--gold); font-size: 34px;
+    align-items: center;
+  }
+  .prog-arrow > div { text-align: center; }
+  .prog-arrow .arrow { color: rgba(214,167,88,0.7); font-size: 28px; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Three · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 96px; line-height: 1.04; padding-bottom: 24px;">
+        The golden beads<br/>
+        are not <em style="font-style: italic; color: var(--gold);">pretty<br/>
+        objects.</em> They are a<br/>
+        neurological map.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The child&rsquo;s hand knows place value <em>before her
+        mind knows the words.</em> That sequence — hand, then
+        name — is not a preference. It is the order in which
+        mathematical understanding is built.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 23 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · a sentence to sit with</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 60px; line-height: 1.16;">
+        The decimal system<br/>
+        in Montessori is<br/>
+        <em style="font-style: italic;">not</em> an introduction<br/>
+        to place-value notation.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.2; margin-top: 28px; color: var(--gold);">
+        It is an introduction to<br/>
+        the nature of <em style="font-style: italic;">quantity.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          You are about<br/>
+          to do the<br/>
+          <em style="font-style: italic; color: var(--gold);">first presentation</em><br/>
+          of the<br/>
+          decimal system.
+        </p>
+        <div class="rule-gold" style="margin-top: 28px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          It is not quick. It is not linear. It takes weeks.
+          It looks inefficient if you measure mathematics by
+          speed.
+        </p>
+        <p class="body-read">
+          If you understand what you are actually teaching —
+          <em>the mathematical mind itself</em> — then the time
+          is not lost. It is the whole point.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part One —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Quantity<br/>
+        <em style="font-style: italic; color: var(--gold);">before</em><br/>
+        symbol.
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        This is where Montessori diverges from nearly every
+        math curriculum in the world. <em>Not preference.
+        Neurological necessity.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 QUANTITY vs SYMBOL -->
+  <section data-label="Quantity before symbol" class="on-cream">
+    <div class="eyebrow-slide">Two orders of operation · the order matters</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Most of the world teaches<br/>
+        symbol first. <em style="font-style: italic; color: var(--gold);">Montessori</em>
+        teaches quantity.
+      </h2>
+      <div class="qs-grid">
+        <div class="side traditional">
+          <div class="k">— Symbol first —</div>
+          <h3>&ldquo;This is <em>three.</em> It looks like 3.&rdquo;</h3>
+          <p class="flow">symbol <span class="arrow">→</span> word <span class="arrow">→</span> (maybe) quantity</p>
+          <p>
+            The child memorizes the link between the symbol
+            and the word. <em>But has she constructed the
+            concept of three?</em>
+          </p>
+          <p>
+            Children taught this way often reverse numbers.
+            Confuse them. Memorize facts without understanding.
+            The concept was never built from the ground up.
+          </p>
+        </div>
+        <div class="side montessori">
+          <div class="k">— Quantity first —</div>
+          <h3>&ldquo;This is <em>three.</em>&rdquo; — and she is holding three beads.</h3>
+          <p class="flow">quantity <span class="arrow">→</span> word <span class="arrow">→</span> <em style="color: var(--gold);">(weeks later)</em> symbol</p>
+          <p>
+            She counts out one bead. Another. Another. She
+            understands through her body. <em>Three exists in
+            her as an actual amount — not a memorized mark.</em>
+          </p>
+          <p>
+            The symbol, when it arrives, is written notation
+            for something her hand already knows. <em>It
+            sticks. It transfers.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        One. Ten. Hundred.<br/>
+        <em style="font-style: italic; color: var(--gold);">Thousand.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        The same relationship, repeating at every level. The
+        child discovers a pattern — not a set of rules. <em>The
+        logic of our number system is the shape of the
+        material.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 07 THE HIERARCHY -->
+  <section data-label="The decimal hierarchy" class="on-cream">
+    <div class="eyebrow-slide">The hierarchy · what her hand sees</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Ten ones gathered <em style="font-style: italic; color: var(--gold);">becomes</em><br/>
+        one ten. Ten tens becomes one hundred.<br/>
+        <em style="font-style: italic; color: var(--gold);">The same relationship. Every level.</em>
+      </h2>
+      <div class="hier">
+        <div class="col">
+          <div class="n">One · 1</div>
+          <div class="beadbox">
+            <svg viewBox="0 0 60 60" width="60" height="60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="bead1" cx="38%" cy="35%" r="60%">
+                  <stop offset="0%" stop-color="#ffe9a8"/>
+                  <stop offset="55%" stop-color="#d6a758"/>
+                  <stop offset="100%" stop-color="#7a5b20"/>
+                </radialGradient>
+              </defs>
+              <circle cx="30" cy="30" r="24" fill="url(#bead1)" stroke="#4a3514" stroke-width="1"/>
+              <circle cx="22" cy="22" r="5" fill="rgba(255,255,255,0.55)"/>
+            </svg>
+          </div>
+          <h3>A <em>unit.</em></h3>
+          <p>One bead. One amount. The beginning of counting.</p>
+          <div class="note">— &ldquo;this is one&rdquo; —</div>
+        </div>
+        <div class="col">
+          <div class="n">Ten · 10</div>
+          <div class="beadbox">
+            <svg viewBox="0 0 260 60" width="260" height="60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="bead10" cx="38%" cy="35%" r="60%">
+                  <stop offset="0%" stop-color="#ffe9a8"/>
+                  <stop offset="55%" stop-color="#d6a758"/>
+                  <stop offset="100%" stop-color="#7a5b20"/>
+                </radialGradient>
+              </defs>
+              <line x1="10" y1="30" x2="250" y2="30" stroke="#7a5b20" stroke-width="2"/>
+              <g>
+                <circle cx="20" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="46" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="72" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="98" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="124" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="150" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="176" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="202" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="228" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+                <circle cx="254" cy="30" r="13" fill="url(#bead10)" stroke="#4a3514" stroke-width="0.8"/>
+              </g>
+            </svg>
+          </div>
+          <h3>Ten ones <em>in a row.</em></h3>
+          <p>The bar. Same amount as ten loose beads. Her hand feels the equivalence.</p>
+          <div class="note">— &ldquo;ten ones, gathered&rdquo; —</div>
+        </div>
+        <div class="col">
+          <div class="n">Hundred · 100</div>
+          <div class="beadbox">
+            <svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="bead100" cx="38%" cy="35%" r="60%">
+                  <stop offset="0%" stop-color="#ffe9a8"/>
+                  <stop offset="55%" stop-color="#d6a758"/>
+                  <stop offset="100%" stop-color="#7a5b20"/>
+                </radialGradient>
+              </defs>
+              <g>
+                <!-- 10 rows of 10 beads -->
+                <g id="row100"></g>
+              </g>
+              <g>
+                <!-- Manually render 10x10 grid -->
+                <g fill="url(#bead100)" stroke="#4a3514" stroke-width="0.6">
+                  <!-- generated rows -->
+                  <g transform="translate(0,0)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,17)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,34)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,51)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,68)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,85)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,102)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,119)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,136)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                  <g transform="translate(0,153)">
+                    <g transform="translate(14,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(31,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(48,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(65,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(82,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(99,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(116,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(133,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(150,14)"><circle cx="0" cy="0" r="7"/></g>
+                    <g transform="translate(167,14)"><circle cx="0" cy="0" r="7"/></g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h3>Ten bars <em>side by side.</em></h3>
+          <p>The square. Same as a hundred loose ones. <em>The same pattern, one level up.</em></p>
+          <div class="note">— &ldquo;ten tens, gathered&rdquo; —</div>
+        </div>
+        <div class="col">
+          <div class="n">Thousand · 1,000</div>
+          <div class="beadbox">
+            <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="cubeTop" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#ffe9a8"/>
+                  <stop offset="100%" stop-color="#d6a758"/>
+                </linearGradient>
+                <linearGradient id="cubeLeft" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#a87a30"/>
+                  <stop offset="100%" stop-color="#d6a758"/>
+                </linearGradient>
+                <linearGradient id="cubeRight" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#8a5e20"/>
+                  <stop offset="100%" stop-color="#5d3e14"/>
+                </linearGradient>
+              </defs>
+              <!-- Isometric cube -->
+              <g transform="translate(20,30)">
+                <!-- Top face -->
+                <polygon points="80,0 160,40 80,80 0,40" fill="url(#cubeTop)" stroke="#4a3514" stroke-width="0.8"/>
+                <!-- Left face -->
+                <polygon points="0,40 80,80 80,160 0,120" fill="url(#cubeLeft)" stroke="#4a3514" stroke-width="0.8"/>
+                <!-- Right face -->
+                <polygon points="160,40 160,120 80,160 80,80" fill="url(#cubeRight)" stroke="#4a3514" stroke-width="0.8"/>
+                <!-- Bead pattern on top face (subtle grid) -->
+                <g stroke="#7a5b20" stroke-width="0.5" opacity="0.45">
+                  <line x1="16" y1="8" x2="96" y2="48"/>
+                  <line x1="32" y1="16" x2="112" y2="56"/>
+                  <line x1="48" y1="24" x2="128" y2="64"/>
+                  <line x1="64" y1="32" x2="144" y2="72"/>
+                  <line x1="64" y1="8" x2="16" y2="32"/>
+                  <line x1="80" y1="16" x2="32" y2="40"/>
+                  <line x1="96" y1="24" x2="48" y2="48"/>
+                  <line x1="112" y1="32" x2="64" y2="56"/>
+                  <line x1="128" y1="40" x2="80" y2="64"/>
+                </g>
+                <!-- Right face lines -->
+                <g stroke="#3a260c" stroke-width="0.5" opacity="0.55">
+                  <line x1="80" y1="96" x2="160" y2="56"/>
+                  <line x1="80" y1="112" x2="160" y2="72"/>
+                  <line x1="80" y1="128" x2="160" y2="88"/>
+                  <line x1="80" y1="144" x2="160" y2="104"/>
+                </g>
+                <!-- Left face lines -->
+                <g stroke="#5d3e14" stroke-width="0.5" opacity="0.45">
+                  <line x1="0" y1="56" x2="80" y2="96"/>
+                  <line x1="0" y1="72" x2="80" y2="112"/>
+                  <line x1="0" y1="88" x2="80" y2="128"/>
+                  <line x1="0" y1="104" x2="80" y2="144"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h3>Ten squares <em>stacked.</em></h3>
+          <p>The cube. A hundred, ten times. <em>The same relationship, again.</em></p>
+          <div class="note">— &ldquo;ten hundreds, gathered&rdquo; —</div>
+        </div>
+      </div>
+      <div class="prog-arrow">
+        <div>1</div>
+        <div class="arrow">×10 →</div>
+        <div>10</div>
+        <div class="arrow">×10 →</div>
+        <div>100</div>
+        <div class="arrow">×10 →</div>
+        <div>1,000</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 THE CHILD DERIVES IT -->
+  <section data-label="The child derives the logic" class="on-cream">
+    <div class="eyebrow-slide">A five-year-old is doing extraordinarily sophisticated thinking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14; color: var(--navy);">
+        Once she grasps the<br/>
+        pattern — she can<br/>
+        <em style="font-style: italic; color: var(--gold);">predict</em> what<br/>
+        comes next.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        &ldquo;If ten tens makes a hundred — then ten hundreds
+        must make <em>something.</em>&rdquo; <em>The child
+        derives the logic herself.</em>
+      </p>
+      <p class="body-read">
+        But she does not experience it as sophisticated. She
+        experiences it as obvious. <em>Of course ten ones
+        gathered together is called a ten.</em> Her hand and
+        her mind have shown her that this is simply how
+        quantity organizes itself.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 36px; line-height: 1.3; margin-top: 20px;">
+        She is not being told the rule. She is discovering the
+        structure of our number system through repeated
+        handling of quantity.
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        The body<br/>
+        knows <em style="font-style: italic; color: var(--gold);">before</em><br/>
+        the mind can name.
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        You will watch a child do the work correctly, without
+        being able to explain it. <em>She is not confused.
+        She simply does not yet know through language what
+        her hand has known for weeks.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 10 SCENE — FIRST ENCOUNTER -->
+  <section data-label="Scene · first encounter" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-bead">
+        <div class="scene-label">A first-grader seated on a green mat on the floor. On the mat: a tray of loose golden beads, a ten-bar, and a golden-bead square. Her finger is resting on the ten-bar while her eyes flick to the loose beads beside it — comparing, measuring, checking her understanding against the material.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · first week of mathematics · six years</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Something is <em style="font-style: italic;">organizing<br/>
+          itself</em> in her mind.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The guide shows her a bar. &ldquo;Ten ones, gathered
+          together. We call this a bar. It is the same amount
+          as all these beads.&rdquo; The child looks at the
+          loose beads. She looks at the bar. She does not
+          speak. <em>Her hand is doing the work of
+          comparison.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          For the next week she returns. Gathers. Exchanges.
+          Builds. <em>Place value is not being told to her.
+          It is being discovered — through careful, repeated
+          work with material reality.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SYMBOL ARRIVES -->
+  <section data-label="Symbol arrives — three weeks later" class="on-cream">
+    <div class="eyebrow-slide">Mid-February · three weeks in · the symbol is introduced</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        The numeral <em style="font-style: italic; color: var(--gold);">1 0.</em><br/>
+        The zero makes sense.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        &ldquo;This is how we write <em>ten.</em>&rdquo; She
+        already knows what ten is — she has been gathering it
+        for weeks. She sees the numeral. She understands the
+        zero as a <em>placeholder</em> — because her hand has
+        already shown her that when she has one ten, the ones
+        column is empty.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The symbol is never mysterious. <em>It is always
+        attached to something she understands deeply.</em> Over
+        the next weeks she will move between the beads and the
+        numerals — but never away from what the beads taught
+        her first.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 PSYCHOLOGICAL IMPACT -->
+  <section data-label="The psychological impact" class="on-navy">
+    <div class="eyebrow-slide">What she is also building, underneath the math</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14;">
+        She is learning<br/>
+        that numbers are<br/>
+        <em style="font-style: italic;">not mysterious.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        She is learning that numbers are logical. They follow
+        rules she can see. They are manipulable. She is
+        learning that <em>she can understand mathematics.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        A child who built her understanding through sensorial
+        experience becomes a child who <em>trusts her own
+        mathematical thinking.</em> She does not panic when a
+        problem is hard. She thinks: &ldquo;I do not understand
+        this yet. But I can figure it out the way I figured
+        out the golden beads.&rdquo;
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who loses when we rush</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        The slowness of the<br/>
+        golden beads is<br/>
+        <em style="font-style: italic;">exactly</em> why it is<br/>
+        an equity tool.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Children with strong verbal support at home can
+        sometimes make mathematics work by memorizing the
+        symbol system. <em>Children without that support
+        cannot.</em> They need to understand. They need to
+        build the concept. They need time with the material.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The moment you rush the decimal system — compress it
+        into a unit, cover it in a week — you are choosing
+        which children have access to deep mathematical
+        understanding and which are left memorizing.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ND NOTE -->
+  <section data-label="Spatial reasoning and processing speed" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · concrete before symbolic</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px; color: #fff;">
+          Spatial<br/>
+          reasoning.<br/>
+          Processing<br/>
+          speed<br/>
+          <em style="font-style: italic; color: var(--gold);">variations.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Children with spatial-reasoning differences or
+          processing-speed variations often <em>thrive</em>
+          with the golden beads. The material is concrete.
+          The repetition is adjustable. The pace can match
+          the child.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The decimal system introduction should never be
+          accelerated to match a timeline. <em>It should be
+          matched to the child.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When you introduce the<br/>
+        decimal system to a child —<br/>
+        are you introducing a<br/>
+        <em style="font-style: italic; color: var(--gold);">symbol system she is meant<br/>
+        to memorize?</em> Or are you<br/>
+        revealing a structure her<br/>
+        hand has already known?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 23 · Primary · The Decimal System</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">15</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

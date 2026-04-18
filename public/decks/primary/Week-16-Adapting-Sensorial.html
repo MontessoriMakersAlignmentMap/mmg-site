@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 16 — Adapting Sensorial Materials for Different Learning Profiles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Five profile numbered strip */
+  .profile-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 28px;
+  }
+  .profile-list .row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1.3fr;
+    gap: 40px;
+    padding: 26px 0 26px;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    align-items: baseline;
+  }
+  .profile-list .row:last-child { border-bottom: 1px solid rgba(214,167,88,0.4); }
+  .profile-list .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 48px;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .profile-list h3 {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.14;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .profile-list h3 em { color: var(--gold); font-style: italic; }
+  .profile-list p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .profile-list p em { color: var(--navy); font-style: italic; }
+
+  /* Profile detail slide — two-column: left what you change, right what stays */
+  .adapt-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .adapt-split .col {
+    background: var(--bg-cream);
+    padding: 40px 36px 40px;
+    display: flex; flex-direction: column; gap: 18px;
+    min-height: 440px;
+  }
+  .on-navy .adapt-split .col { background: #13214b; }
+  .adapt-split .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.55);
+    font-weight: 600;
+  }
+  .on-navy .adapt-split .k { color: var(--gold); }
+  .adapt-split h3 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+  }
+  .on-navy .adapt-split h3 { color: #fff; }
+  .adapt-split h3 em { color: var(--gold); font-style: italic; }
+  .adapt-split .item {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.55;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .on-navy .adapt-split .item { color: rgba(255,255,255,0.85); }
+  .adapt-split .item em { font-style: italic; color: var(--gold); }
+  .adapt-split .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 14px;
+    line-height: 1.35;
+  }
+
+  /* Classroom panorama — five cells representing five children */
+  .panorama {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.4);
+    margin-top: 28px;
+    flex: 1;
+    min-height: 640px;
+  }
+  .panorama .child {
+    display: flex; flex-direction: column;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .panorama .child .bg {
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid rgba(214,167,88,0.4);
+  }
+  .panorama .child .cap {
+    padding: 22px 20px 26px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(214,167,88,0.4);
+    min-height: 260px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .panorama .child .name {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+  }
+  .panorama .child .name em { color: var(--gold); font-style: italic; }
+  .panorama .child .note {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.82);
+    margin: 0;
+  }
+  .panorama .child .note em { color: var(--gold); font-style: italic; }
+  .panorama .child:nth-child(1) .bg {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(210,170,100,0.3), transparent 70%),
+      linear-gradient(160deg, #5a4a2f 0%, #2a2114 100%);
+  }
+  .panorama .child:nth-child(2) .bg {
+    background:
+      radial-gradient(ellipse 55% 55% at 45% 45%, rgba(255,255,255,0.1), transparent 70%),
+      linear-gradient(170deg, #3b4250 0%, #1c222c 100%);
+  }
+  .panorama .child:nth-child(3) .bg {
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 50%, rgba(235,200,140,0.22), transparent 70%),
+      linear-gradient(165deg, #6b5332 0%, #33271b 100%);
+  }
+  .panorama .child:nth-child(4) .bg {
+    background:
+      radial-gradient(ellipse 60% 50% at 55% 40%, rgba(240,220,180,0.2), transparent 70%),
+      linear-gradient(160deg, #4a4030 0%, #221c16 100%);
+  }
+  .panorama .child:nth-child(5) .bg {
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 45%, rgba(200,170,140,0.28), transparent 70%),
+      linear-gradient(170deg, #574430 0%, #2a2014 100%);
+  }
+  .panorama .child .bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg,
+      rgba(255,255,255,0.04) 0 2px, transparent 2px 20px);
+  }
+  .panorama .child .bg::after {
+    content: attr(data-scene);
+    position: absolute;
+    bottom: 14px; left: 18px; right: 18px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+
+  /* Ask-yourself slide — two paths */
+  .path-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .path-two .p {
+    padding: 36px 36px;
+    border: 1px solid rgba(214,167,88,0.4);
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 380px;
+  }
+  .path-two .p.truly {
+    background: rgba(214,167,88,0.08);
+  }
+  .path-two .p.fear {
+    background: transparent;
+  }
+  .path-two .q {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .path-two h3 {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+  }
+  .path-two h3 em { color: var(--gold); font-style: italic; }
+  .path-two p {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.55;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .path-two p em { color: var(--navy); font-style: italic; }
+  .path-two .verdict {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 14px;
+    line-height: 1.35;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Sixteen</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 100px; line-height: 1.06; padding-bottom: 24px;">
+        Sensorial is not<br/>
+        one size.<br/>
+        <em style="font-style: italic; color: var(--gold);">It never was.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        A set of tools that can be adapted infinitely. Your job is to
+        figure out which tools work for which children — and why.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 16 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 68px; line-height: 1.16;">
+        Your job is not<br/>
+        to make the child<br/>
+        <span class="gold" style="font-style: italic;">fit the curriculum.</span><br/>
+        Your job is to make<br/>
+        the curriculum<br/>
+        <span class="gold" style="font-style: italic;">fit the child.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        Every adaptation you make is an acknowledgment that your
+        original design <em>excluded someone.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          End of the<br/>
+          Sensorial unit.<br/>
+          <em style="font-style: italic; color: var(--gold);">Now</em> it gets<br/>
+          practical.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Some children cannot see the color tablets. Some cannot
+          grip the knobbed cylinders. Some process visual information
+          differently. Some need movement. Some need shorter doses.
+        </p>
+        <p class="body-read">
+          The sensorial <em>thinking</em> is what matters —
+          discrimination, acuity, noticing difference. The pathway in
+          is yours to build. <em>This week is the concrete version.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Five profiles.<br/>
+        <em style="font-style: italic; color: var(--gold);">Five pathways.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The sensorial learning is intact in every one. The door in is
+        what changes.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 FIVE PROFILES AT A GLANCE -->
+  <section data-label="Five profiles at a glance" class="on-cream">
+    <div class="eyebrow-slide">At a glance · what we are adapting for</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The same material<br/>
+        has <em style="font-style: italic; color: var(--gold);">many</em> front doors.
+      </h2>
+      <div class="profile-list">
+        <div class="row">
+          <div class="n">01</div>
+          <h3><em>Visual</em> impairment.</h3>
+          <p>Significant loss, low vision, or color blindness. <em>Touch and proprioception</em> carry the discrimination when sight cannot.</p>
+        </div>
+        <div class="row">
+          <div class="n">02</div>
+          <h3><em>Motor</em> differences.</h3>
+          <p>Cerebral palsy, low tone, tremor, dyspraxia. <em>Separate the essential motor act from the incidental one.</em></p>
+        </div>
+        <div class="row">
+          <div class="n">03</div>
+          <h3><em>Attention</em> profiles.</h3>
+          <p>Short bursts. Movement-integrated. Novelty-seeking. <em>Dose and format change. Learning is the same.</em></p>
+        </div>
+        <div class="row">
+          <div class="n">04</div>
+          <h3><em>Tactile</em> sensitivities.</h3>
+          <p>Defensiveness and seeking — often in the same child. <em>Honor the preference. Never push touch.</em></p>
+        </div>
+        <div class="row">
+          <div class="n">05</div>
+          <h3><em>Non-speaking</em> and language-different.</h3>
+          <p>Assessment happens through action, gesture, and AAC. <em>The sensorial discrimination does not require speech.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 VISUAL -->
+  <section data-label="Profile · visual" class="on-cream">
+    <div class="eyebrow-slide">Profile one · visual impairment</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        The work was never<br/>
+        about <em style="font-style: italic; color: var(--gold);">vision.</em><br/>
+        It was about <em style="font-style: italic; color: var(--gold);">discrimination.</em>
+      </h2>
+      <div class="adapt-split">
+        <div class="col">
+          <div class="k">— What becomes essential —</div>
+          <h3>Touch and weight<br/>carry the <em>work.</em></h3>
+          <p class="item">— Baric tablets, weights, texture board become the <em>first</em> materials, not the last.</p>
+          <p class="item">— Knobbed cylinders and pink tower are explored through proprioception — the hand <em>knows</em> size.</p>
+          <p class="item">— Sensorial work extends into the room: fabrics, temperatures, weights of real objects.</p>
+          <div class="tag">— The sensory channel is different. The learning is the same. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— For low vision and color blindness —</div>
+          <h3>Increase the<br/><em>contrast.</em> Change<br/>the axis.</h3>
+          <p class="item">— Larger tablets. High-contrast grading — black-to-white instead of subtle hues.</p>
+          <p class="item">— Pair visual with tactile: she sees the form <em>and</em> feels it.</p>
+          <p class="item">— For color blindness — sort by warmth or coolness, not by hue. Baric tablets, graded weights.</p>
+          <div class="tag">— You have not lowered the standard. You have widened the access. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 MOTOR -->
+  <section data-label="Profile · motor" class="on-navy">
+    <div class="eyebrow-slide">Profile two · motor differences</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14;">
+        Is the motor act <em style="font-style: italic;">essential</em><br/>
+        to the learning — or just<br/>
+        <em style="font-style: italic;">incidental</em> to the material?
+      </h2>
+      <div class="adapt-split">
+        <div class="col">
+          <div class="k">— If the motor demand is incidental —</div>
+          <h3>Remove it.<br/>Keep the <em>learning.</em></h3>
+          <p class="item">— Pink tower teaches <em>size</em>, not stacking. Order the blocks on a mat.</p>
+          <p class="item">— Knobbed cylinders teach size in three dimensions — place them on a mat in order. Modify the knobs.</p>
+          <p class="item">— Pointing counts. "Which comes next?" is the assessment.</p>
+          <div class="tag">— Same discrimination. Zero motor barrier. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— If the motor act is the point —</div>
+          <h3>Adapt the<br/><em>demand.</em> Keep the<br/>act.</h3>
+          <p class="item">— Can't hold a pencil? <em>Finger-trace</em> the sandpaper letters.</p>
+          <p class="item">— Can't lift the brown stair? Build the same grading in foam or plastic.</p>
+          <p class="item">— Low tone may <em>need</em> the weighted work. Keep it. Modify the grip, not the material.</p>
+          <div class="tag">— The sensorial learning and the motor development both happen. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 ATTENTION -->
+  <section data-label="Profile · attention" class="on-cream">
+    <div class="eyebrow-slide">Profile three · attention and engagement</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        Stop thinking of it<br/>
+        as a <em style="font-style: italic; color: var(--gold);">lesson period.</em><br/>
+        Think of it as a skill.
+      </h2>
+      <div class="adapt-split">
+        <div class="col">
+          <div class="k">— Shorter doses —</div>
+          <h3>Three minutes.<br/>Then <em>three</em> more.</h3>
+          <p class="item">— Three minutes with color tablets, three with grading bells, three with texture. Same total. Different format.</p>
+          <p class="item">— Over a week, <em>all</em> the material has been encountered. In bursts the nervous system can hold.</p>
+          <div class="tag">— The dose changes. The learning does not. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— Movement and novelty —</div>
+          <h3>Let the work<br/>go <em>through</em> the room.</h3>
+          <p class="item">— Instead of matching colors at a mat, <em>search the classroom</em> for objects that match.</p>
+          <p class="item">— Walk the line carrying a graded block. Skip while finding the medium-sized cylinder.</p>
+          <p class="item">— The sensorial discrimination is real. You have added the movement her nervous system needed.</p>
+          <div class="tag">— Not filler. Fuel. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 TACTILE -->
+  <section data-label="Profile · tactile" class="on-navy">
+    <div class="eyebrow-slide">Profile four · tactile sensitivities</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14;">
+        Her nervous system<br/>
+        is not broken.<br/>
+        It is <em style="font-style: italic;">specific.</em>
+      </h2>
+      <div class="adapt-split">
+        <div class="col">
+          <div class="k">— Honor first —</div>
+          <h3>Do not force<br/>the touch.<br/><em>Ever.</em></h3>
+          <p class="item">— Find the materials that are tolerable. Build from there.</p>
+          <p class="item">— Swap textures — velvet or felt in place of sandpaper. <em>Gloves</em> for the brown stair.</p>
+          <p class="item">— Extend into Practical Life: pouring, sorting, cleaning — discrimination through more tolerable input.</p>
+          <div class="tag">— The challenge stays. The distress goes. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— If tolerance begins to widen —</div>
+          <h3>Let it.<br/><em>Do not</em> accelerate it.</h3>
+          <p class="item">— You touch the sandpaper. She watches. She listens. <em>Weeks pass.</em></p>
+          <p class="item">— She touches the top of one letter. Weeks later, the whole letter.</p>
+          <p class="item">— Never push. Follow the nervous system. The door opens on its schedule, not yours.</p>
+          <div class="tag">— Sensory defensiveness AND sensory seeking can live in the same child. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 NON-SPEAKING -->
+  <section data-label="Profile · non-speaking" class="on-cream">
+    <div class="eyebrow-slide">Profile five · non-speaking and language-different children</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        The full Sensorial<br/>
+        curriculum — <em style="font-style: italic; color: var(--gold);">without</em><br/>
+        a single spoken word.
+      </h2>
+      <div class="adapt-split">
+        <div class="col">
+          <div class="k">— Assessment through action —</div>
+          <h3>She points.<br/>She grades.<br/><em>She shows.</em></h3>
+          <p class="item">— The sensorial discrimination happens with or without language. A child matches colors without ever speaking "red."</p>
+          <p class="item">— Pair with visual supports — a picture of the color, a symbol. Input without required output.</p>
+          <p class="item">— AAC, if she uses it, carries naming. The channel changes. The learning does not.</p>
+          <div class="tag">— The sensorial work does not require speech. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— When the classroom language is not hers —</div>
+          <h3>Demonstrate<br/>more. <em>Instruct</em><br/>less.</h3>
+          <p class="item">— She watches you touch the textures. She watches you grade. Then she tries.</p>
+          <p class="item">— Sensorial understanding develops through <em>observation and experimentation</em> — not only through words.</p>
+          <p class="item">— Language follows demonstration. Name as she explores, without asking her to repeat.</p>
+          <div class="tag">— Observation is a curriculum. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 CLASSROOM PANORAMA -->
+  <section data-label="Classroom panorama" class="on-black">
+    <div class="eyebrow-slide">The classroom · five children, same morning, 10:30</div>
+    <h2 class="display" style="font-size: 48px; line-height: 1.14; margin-top: 16px; max-width: 1600px;">
+      None of them doing<br/>
+      Sensorial the <em style="font-style: italic;">same way.</em><br/>
+      All of them doing Sensorial<br/>
+      <em style="font-style: italic;">with integrity.</em>
+    </h2>
+    <div class="panorama">
+      <div class="child">
+        <div class="bg" data-scene="— brown stair, at a table —"></div>
+        <div class="cap">
+          <p class="name"><em>Marcus</em></p>
+          <p class="note">Cerebral palsy. He is <em>ordering</em> blocks by size on the table. Motor demand: minimal.</p>
+        </div>
+      </div>
+      <div class="child">
+        <div class="bg" data-scene="— color tablets, by touch —"></div>
+        <div class="cap">
+          <p class="name"><em>Imani</em></p>
+          <p class="note">Low vision. Exploring the tablets by <em>touch</em> — smoother, warmer, cooler.</p>
+        </div>
+      </div>
+      <div class="child">
+        <div class="bg" data-scene="— geometric forms, 4 minutes —"></div>
+        <div class="cap">
+          <p class="name"><em>Diego</em></p>
+          <p class="note">Short attention dose. <em>Three forms,</em> four minutes, intense engagement.</p>
+        </div>
+      </div>
+      <div class="child">
+        <div class="bg" data-scene="— sandpaper letters, gloved —"></div>
+        <div class="cap">
+          <p class="name"><em>Sophia</em></p>
+          <p class="note">Tactile sensitivity. Working in <em>cotton gloves</em> — at her sensory threshold.</p>
+        </div>
+      </div>
+      <div class="child">
+        <div class="bg" data-scene="— practical life, pouring —"></div>
+        <div class="cap">
+          <p class="name"><em>Amira</em></p>
+          <p class="note">Non-speaking. Sensorial discrimination through <em>Practical Life</em> — weight, flow.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 116px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        When to adapt.<br/>
+        When <em style="font-style: italic; color: var(--gold);">not</em> to skip.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Is the material truly inaccessible — or are you <em>avoiding</em>
+        presenting it because you think it will be hard?
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 THE QUESTION TO ASK -->
+  <section data-label="The question to ask" class="on-cream">
+    <div class="eyebrow-slide">The one question · before you skip anything</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        Two paths look similar.<br/>
+        One is <em style="font-style: italic; color: var(--gold);">adaptation.</em><br/>
+        The other is the adult's <em style="font-style: italic; color: var(--gold);">limit.</em>
+      </h2>
+      <div class="path-two">
+        <div class="p truly">
+          <div class="q">— The honest adaptation —</div>
+          <h3>Truly<br/><em>inaccessible</em> in this format.</h3>
+          <p>
+            You have tried. The motor demand, the sensory demand, or
+            the cognitive load genuinely bars this child from the
+            material as it stands.
+          </p>
+          <p class="verdict">— You adapt. The learning is essential; the format is not.</p>
+        </div>
+        <div class="p fear">
+          <div class="q">— The adult's fear —</div>
+          <h3>You are<br/><em>avoiding</em> presenting it.</h3>
+          <p>
+            Because it feels hard. Because you are anxious she will
+            struggle. Because you are not sure how to support her.
+            <em>This is your limit, not hers.</em>
+          </p>
+          <p class="verdict">— You adapt your preparation. Then you present.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 THE PRINCIPLE -->
+  <section data-label="The guiding principle" class="on-navy">
+    <div class="eyebrow-slide">The guiding principle</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 62px; line-height: 1.14;">
+        If the sensorial learning<br/>
+        is <em style="font-style: italic;">essential</em> — you find a<br/>
+        way to access it.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        If the <em>specific material</em> is essential — you adapt the
+        access. If the material is merely the usual pathway — you
+        find another. <em>You do not skip sensorial work because a
+        child is different.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        You ask: what is <em>this</em> child's pathway into sensorial
+        thinking? And then you build it.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        If one child cannot access<br/>
+        the standard curriculum —<br/>
+        <em style="font-style: italic;">the curriculum was designed</em><br/>
+        without her in mind.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        Every adaptation is an acknowledgment that your original
+        design <em>excluded someone.</em> That is not a failure — it
+        is an invitation. Adapt for this child. And then think about
+        how to design better, so the <em>next</em> child does not need
+        adaptation.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        That is equity work. It begins with the room as you already
+        prepared it.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 WHAT TO DO TOMORROW -->
+  <section data-label="What to do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.16; color: var(--navy);">
+        Three questions<br/>
+        for <em style="font-style: italic; color: var(--gold);">one</em> child.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 32px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">First —</strong>
+        what is this child's <em>best</em> sensorial channel? Touch,
+        weight, sound, movement, proprioception?
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Second —</strong>
+        is the motor demand of this material <em>essential</em> to the
+        learning — or just the usual way the material is presented?
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Third —</strong>
+        what is one concrete adaptation I can make today that opens
+        this material to <em>this</em> child?
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 62px;">
+        Think about one child<br/>
+        in your classroom who you think<br/>
+        might struggle with the Sensorial<br/>
+        materials. What is <em style="font-style: italic; color: var(--gold);">one adaptation</em><br/>
+        you could make today that would<br/>
+        open the material <em style="font-style: italic; color: var(--gold);">to her?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 16 · Primary · Sensorial unit close</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">17</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

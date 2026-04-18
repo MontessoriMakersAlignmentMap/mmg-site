@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Logo } from '@/components/Logo'
 import { FadeIn } from '@/components/FadeIn'
-import MusicPlayer from '@/components/MusicPlayer'
+// Music player disabled
+// import MusicPlayer from '@/components/MusicPlayer'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
@@ -267,7 +268,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <MusicPlayer />
+      {/* <MusicPlayer /> */}
     </>
   )
 }

@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 15 — Control of Error as an Equity Concept</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Power diagram — two columns showing authority flow */
+  .power-grid {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    gap: 0;
+    margin-top: 40px;
+    align-items: stretch;
+  }
+  .power-grid .side {
+    padding: 36px 36px 40px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 440px;
+    position: relative;
+  }
+  .power-grid .before {
+    background: rgba(214, 167, 88, 0.08);
+    border: 1px solid rgba(20,30,60,0.18);
+  }
+  .power-grid .after {
+    background: #13214b;
+    color: #fff;
+  }
+  .power-grid .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 48px;
+    color: var(--gold);
+    background: var(--bg-cream);
+  }
+  .power-grid .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.5);
+    font-weight: 600;
+  }
+  .power-grid .after .k { color: var(--gold); }
+  .power-grid h3 {
+    font-family: var(--font-heading);
+    font-size: 44px; line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .power-grid h3 em { color: var(--gold); font-style: italic; }
+  .power-grid .after h3 { color: #fff; }
+  .power-grid p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .power-grid .after p { color: rgba(255,255,255,0.85); }
+  .power-grid .after p em { color: var(--gold); font-style: italic; }
+  .power-grid .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 14px;
+    line-height: 1.35;
+  }
+
+  /* Language-swap table */
+  .swap-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 32px;
+  }
+  .swap-list .row {
+    display: grid;
+    grid-template-columns: 1fr 120px 1.2fr;
+    gap: 40px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    align-items: baseline;
+  }
+  .swap-list .row:last-child { border-bottom: 1px solid rgba(214,167,88,0.4); }
+  .swap-list .row.head { padding: 12px 0; border-top: none; }
+  .swap-list .head span {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+  }
+  .swap-list .head span.gold { color: var(--gold); }
+  .swap-list .stop {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.14;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    margin: 0;
+    text-decoration: line-through;
+    text-decoration-color: rgba(214,167,88,0.7);
+    text-decoration-thickness: 2px;
+  }
+  .swap-list .arrow {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 44px;
+    color: var(--gold);
+    text-align: center;
+    text-decoration: none;
+  }
+  .swap-list .say {
+    font-family: var(--font-heading);
+    font-size: 32px; line-height: 1.14;
+    color: #fff;
+    margin: 0;
+  }
+  .swap-list .say em { color: var(--gold); font-style: italic; }
+
+  /* Voice grid — 4 don'ts and 1 do */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 32px;
+  }
+  .voice-grid .cell {
+    background: var(--bg-cream);
+    padding: 28px 24px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .voice-grid .cell p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 36px;
+    color: rgba(14,26,122,0.38);
+    margin: 0;
+    text-align: center;
+    text-decoration: line-through;
+    text-decoration-color: rgba(214,167,88,0.8);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Sofia scene */
+  .scene-sofia {
+    background:
+      radial-gradient(ellipse 60% 50% at 45% 50%, rgba(235,200,140,0.3), transparent 70%),
+      radial-gradient(ellipse 40% 60% at 75% 60%, rgba(140,105,60,0.3), transparent 70%),
+      linear-gradient(160deg, #5e4a2c 0%, #2a2214 55%, #120f08 100%);
+  }
+  .scene-talking {
+    background:
+      radial-gradient(ellipse 60% 55% at 55% 45%, rgba(170,180,200,0.15), transparent 70%),
+      linear-gradient(170deg, #3a4250 0%, #20252e 55%, #12141a 100%);
+  }
+
+  /* Extension list — where control of error can move to */
+  .ext-rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 28px;
+  }
+  .ext-rows .row {
+    display: grid;
+    grid-template-columns: 280px 1fr 1fr;
+    gap: 48px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(20,30,60,0.18);
+    align-items: baseline;
+  }
+  .ext-rows .row:last-child { border-bottom: 1px solid rgba(20,30,60,0.18); }
+  .ext-rows .row.head {
+    border-top: none;
+    padding-bottom: 10px;
+  }
+  .ext-rows .row.head span {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .ext-rows .mat {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: var(--navy);
+    line-height: 1.15;
+  }
+  .ext-rows .mat em { color: var(--gold); font-style: italic; }
+  .ext-rows .was, .ext-rows .now {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+  }
+  .ext-rows .was em, .ext-rows .now em { color: var(--navy); font-style: italic; }
+  .ext-rows .now { color: var(--navy); }
+  .ext-rows .now strong {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Fifteen</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 104px; line-height: 1.06; padding-bottom: 24px;">
+        It is not about<br/>
+        shielding children<br/>
+        from <em style="font-style: italic; color: var(--gold);">failure.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Control of error dismantles the power structure where <em>you</em>
+        get to decide when a child is wrong. That is an equity issue.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 15 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 68px; line-height: 1.16;">
+        The material<br/>
+        is already telling<br/>
+        the child she is<br/>
+        <span class="gold" style="font-style: italic;">wrong.</span><br/>
+        And still, <em style="font-style: italic;">you are speaking.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        You are removing control of error from the material —
+        and putting it in <em>your mouth.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          When did<br/>
+          <em style="font-style: italic; color: var(--gold);">you</em> learn best?
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          When someone told you you were wrong — or when you
+          discovered it yourself? When you were corrected in the
+          moment — or when you noticed the mistake and fixed it?
+        </p>
+        <p class="body-read">
+          We remember the mistakes we find. We understand the reason.
+          We fix them ourselves. <em>We own the learning.</em> Children
+          are no different. They are, in fact, <em>more</em> capable of
+          this than you think.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Who gets to<br/>
+        say <em style="font-style: italic; color: var(--gold);">wrong?</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The authority to declare a child's work correct or incorrect —
+        and where that authority has quietly been living.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 POWER SHIFT -->
+  <section data-label="Power shift" class="on-cream">
+    <div class="eyebrow-slide">The shift · where the authority lives</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Two classrooms.<br/>
+        Same material. <em style="font-style: italic; color: var(--gold);">Different</em><br/>
+        power structure.
+      </h2>
+      <div class="power-grid">
+        <div class="side before">
+          <div class="k">— Where many of us were raised —</div>
+          <h3>The adult is<br/>the <em>judge.</em></h3>
+          <p>
+            You use your authority to declare rightness and wrongness.
+            The child has no choice but to accept your judgment. She
+            has no agency in the assessment.
+          </p>
+          <div class="tag">— The child is the subject. —</div>
+        </div>
+        <div class="vs">vs.</div>
+        <div class="side after">
+          <div class="k">— What Montessori asks of you —</div>
+          <h3>The material<br/>is the <em>feedback.</em></h3>
+          <p>
+            She tests her hypothesis. The material responds — fits,
+            balances, matches, or <em>does not.</em> She adjusts. She
+            tests again. She is in charge of the assessment process.
+          </p>
+          <div class="tag">— She is the scientist. You are the witness. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SOFIA SCENE -->
+  <section data-label="Scene · Sofia" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-sofia">
+        <div class="scene-label">A five-months-in child at a mat with the knobbed cylinders. She has just placed a thick cylinder into a thin hole. It does not fit. She sits. Looks at it.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · no one spoke</div>
+        <h2 class="display" style="font-size: 56px; line-height: 1.14; margin-top: 8px;">
+          The material<br/>
+          <em style="font-style: italic;">told her.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She took it out. Chose another. It fit. She smiled to
+          herself. No one told her she was wrong. No one told her she
+          was right. <em>She knew.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          When she finished, she carried the box back to the shelf.
+          She did not look at me. She did not need confirmation.
+          <em>She had learned to trust the materials — and herself.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 THE OPPOSITE — THE OVER-TALKING CLASSROOM -->
+  <section data-label="Scene · the opposite" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · the adult would not stop talking</div>
+        <h2 class="display" style="font-size: 56px; line-height: 1.14; margin-top: 8px;">
+          "Good job."<br/>
+          "You're <em style="font-style: italic;">doing it.</em>"<br/>
+          "Ooh — try that again."
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Same material. Same child's age. A different guide, a few
+          feet closer. Talking throughout.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The child learned to work for the adult's approval. She did
+          not develop independence. She did not learn to trust
+          herself. She learned that <em>whether she had succeeded
+          depended on what the adult thought.</em>
+        </p>
+      </div>
+      <div class="scene scene-talking">
+        <div class="scene-label">A guide kneeling beside a child at the knobbed cylinders, leaning in, mouth open mid-sentence. The child has paused and is looking up at the guide's face, not the material.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        When the material<br/>
+        <em style="font-style: italic; color: var(--gold);">will not</em> do it<br/>
+        for you.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Pink tower, cylinders, color tablets — built-in. Sandpaper
+        letters, drawing, early writing — <em>not.</em> This is where
+        most guides fail the equity work. This is where you correct.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 EXTENSION TABLE -->
+  <section data-label="Extending control of error" class="on-cream">
+    <div class="eyebrow-slide">Extension · where control of error can live</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        You do not correct.<br/>
+        You <em style="font-style: italic; color: var(--gold);">relocate</em> the<br/>
+        authority.
+      </h2>
+      <div class="ext-rows">
+        <div class="row head">
+          <div></div>
+          <div><span>— What you were doing —</span></div>
+          <div><span>— Where the authority moves —</span></div>
+        </div>
+        <div class="row">
+          <div class="mat"><em>Sandpaper</em> letters.</div>
+          <div class="was">"That's not quite how you trace it."</div>
+          <div class="now">
+            <strong>The sensory feedback —</strong> smooth or rough, recognizable or not.
+            <em>Her finger</em> tells her.
+          </div>
+        </div>
+        <div class="row">
+          <div class="mat">Free <em>drawing.</em></div>
+          <div class="was">"What a great dog!" (It was a horse.)</div>
+          <div class="now">
+            <strong>Her own intention —</strong> "What did I want to draw? Does it look like what I imagined?" <em>Her mind</em> is the test.
+          </div>
+        </div>
+        <div class="row">
+          <div class="mat">Early <em>writing.</em></div>
+          <div class="was">"That letter is backward."</div>
+          <div class="now">
+            <strong>"I notice it looks different when you trace it that way.</strong> <em>I wonder what would happen</em> if you tried it this other way."
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Your language<br/>
+        <em style="font-style: italic; color: var(--gold);">is</em> the correction.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        You will not realize how much evaluation is in your speech
+        until you try to take it out. Start listening to yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- 11 THE FOUR PHRASES TO STOP -->
+  <section data-label="Four phrases to stop" class="on-cream">
+    <div class="eyebrow-slide">Four phrases · all of them evaluation</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        All four remove agency<br/>
+        from the child. All four<br/>
+        position <em style="font-style: italic; color: var(--gold);">you</em> as the judge.
+      </h2>
+      <div class="voice-grid">
+        <div class="cell"><p>"Good job."</p></div>
+        <div class="cell"><p>"That's right."</p></div>
+        <div class="cell"><p>"Almost."</p></div>
+        <div class="cell"><p>"Not quite."</p></div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; font-style: italic; color: var(--navy); font-family: var(--font-heading); font-size: 32px;">
+        — The child already knows whether the tower stayed balanced.
+        She can see it. You do not have to confirm it.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SAY THIS INSTEAD -->
+  <section data-label="Say what you see" class="on-navy">
+    <div class="eyebrow-slide">Say what you see · reflective, not evaluative</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.16;">
+        Describe.<br/>
+        <em style="font-style: italic;">Do not evaluate.</em>
+      </h2>
+      <div class="swap-list">
+        <div class="row head">
+          <div><span>— Stop saying —</span></div>
+          <div></div>
+          <div><span class="gold">— Say instead —</span></div>
+        </div>
+        <div class="row">
+          <p class="stop">"Good job."</p>
+          <div class="arrow">→</div>
+          <p class="say">"You traced that letter <em>three times.</em>"</p>
+        </div>
+        <div class="row">
+          <p class="stop">"That's right."</p>
+          <div class="arrow">→</div>
+          <p class="say">"You matched <em>eight colors.</em>"</p>
+        </div>
+        <div class="row">
+          <p class="stop">"Did you do it correctly?"</p>
+          <div class="arrow">→</div>
+          <p class="say">"<em>Are you done?</em> Does it look the way you wanted it to?"</p>
+        </div>
+      </div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 32px;">
+        You are returning the assessment to the child. Slowly, she
+        stops looking at you for confirmation. She looks at her own
+        work.
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 PART FOUR COVER -->
+  <section data-label="Part four" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Four —</div>
+      <h2 class="display" style="font-size: 124px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        For the child<br/>
+        who has been <em style="font-style: italic; color: var(--gold);">hit</em><br/>
+        for mistakes.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        This is where control of error stops being pedagogy and
+        becomes the most immediate equity work you will do.
+      </p>
+    </div>
+  </section>
+
+  <!-- 14 PUNITIVE BACKGROUND -->
+  <section data-label="For children from punitive homes" class="on-navy">
+    <div class="eyebrow-slide">For children whose mistakes have been punished</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        Even gentle correction<br/>
+        still means: <em style="font-style: italic;">the adult is<br/>
+        the one who decides.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        A child arrives having been hit for mistakes. Yelled at.
+        Shamed. If you are still correcting — even kindly — you are
+        reminding her that <em>adults are still the judges.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        When the material is the feedback, something different
+        happens. She learns that mistakes bring information, not
+        punishment. That she can try and fail and try again without
+        fear. <em>Her relationship with learning begins to heal.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 THE STANDARD DOES NOT MOVE -->
+  <section data-label="The standard does not move" class="on-navy">
+    <div class="eyebrow-slide">A note on standards</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px; color: #fff;">
+          This is <em style="font-style: italic; color: var(--gold);">not</em> lowering<br/>
+          the bar.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The child still has to make the cylinders fit. Still has to
+          match the colors. Still has to form the letter correctly.
+          The standards are exactly the same.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          What moves is the <em>authority.</em> She meets the standard
+          because she sees the feedback — not because you told her
+          to. And that is the equity move.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14;">
+        Your default teaching style<br/>
+        was designed for a child <em style="font-style: italic;">like you.</em><br/>
+        Not for the children in your<br/>
+        <em style="font-style: italic; color: var(--gold);">classroom.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        If you were raised in a home where mistakes were safe, your
+        nervous system is calibrated to safety around failure. When
+        you correct a child for a mistake, you are using <em>your
+        privilege to impose your authority</em> on a nervous system
+        that has not been protected the way yours was.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        The equity move is to notice this, and to change it.
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 WHAT TO DO TOMORROW -->
+  <section data-label="What to do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.16; color: var(--navy);">
+        Three moves<br/>
+        for your mouth.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 32px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">First —</strong>
+        when a child makes an error with a material that has built-in
+        control of error: <em>say nothing.</em> Let her find it.
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Second —</strong>
+        when she looks at you for rightness: ask instead. <em>"Are you
+        done? Does it look the way you wanted it to?"</em>
+      </p>
+      <p class="body-read" style="margin-top: 12px;">
+        <strong style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-weight: 400; font-size: 28px;">Third —</strong>
+        catch yourself before "good job." Replace with what you
+        actually <em>saw.</em> "You stacked the tower and it stayed
+        balanced."
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 62px;">
+        What would change in your<br/>
+        classroom if you stopped<br/>
+        correcting children's mistakes —<br/>
+        and started trusting them to<br/>
+        <em style="font-style: italic; color: var(--gold);">notice and fix</em> their own?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 15 · Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

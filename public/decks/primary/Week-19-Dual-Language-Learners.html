@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 19 — Supporting Dual Language Learners in the Montessori Language Environment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Bilingual-brain triptych */
+  .brain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .brain-grid .card {
+    background: var(--bg-cream);
+    padding: 36px 32px 40px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 460px;
+  }
+  .brain-grid .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 30px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .brain-grid h3 {
+    font-family: var(--font-heading);
+    font-size: 36px; line-height: 1.12;
+    color: var(--navy);
+    margin: 0;
+  }
+  .brain-grid h3 em { color: var(--gold); font-style: italic; }
+  .brain-grid p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .brain-grid p em { color: var(--navy); font-style: italic; }
+  .brain-grid .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 12px;
+    line-height: 1.35;
+  }
+
+  /* Additive vs subtractive — the pivotal distinction */
+  .avs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 36px;
+  }
+  .avs .side { padding: 44px 40px; min-height: 440px; display: flex; flex-direction: column; gap: 16px; }
+  .avs .add { background: #13214b; color: #fff; }
+  .avs .sub { background: #f3ecdc; border: 1px solid rgba(20,30,60,0.15); border-left: none; }
+  .avs .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .avs .add .k { color: var(--gold); }
+  .avs .sub .k { color: rgba(20,30,60,0.55); }
+  .avs h3 {
+    font-family: var(--font-heading);
+    font-size: 44px; line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .avs .add h3 { color: #fff; }
+  .avs .sub h3 { color: var(--navy); }
+  .avs h3 em { color: var(--gold); font-style: italic; }
+  .avs p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    margin: 0;
+  }
+  .avs .add p { color: rgba(255,255,255,0.85); }
+  .avs .sub p { color: var(--fg-body); }
+  .avs .add p em { color: var(--gold); font-style: italic; }
+  .avs .sub p em { color: var(--navy); font-style: italic; }
+  .avs .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 26px;
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 12px;
+    line-height: 1.35;
+    color: var(--gold);
+  }
+
+  /* Wrong-message rows — things guides do that undermine */
+  .wrong {
+    background: #f3ecdc;
+    border-top: 4px solid var(--gold);
+    padding: 36px 40px 40px;
+    margin-top: 36px;
+  }
+  .wrong .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .wrong h3 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    line-height: 1.12;
+    color: var(--navy);
+    margin: 0 0 24px;
+  }
+  .wrong h3 em { color: var(--gold); font-style: italic; }
+  .wrong .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(20,30,60,0.15);
+    align-items: baseline;
+  }
+  .wrong .row:first-of-type { border-top: 1px solid rgba(20,30,60,0.25); }
+  .wrong .action {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 26px;
+    color: rgba(20,30,60,0.75);
+    line-height: 1.3;
+  }
+  .wrong .action .strike { text-decoration: line-through; text-decoration-color: rgba(214,167,88,0.8); text-decoration-thickness: 2px; }
+  .wrong .msg {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+  }
+  .wrong .msg em { color: var(--navy); font-style: italic; }
+  .wrong .msg strong {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* What to do — practical ladder */
+  .ladder {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .ladder .rung {
+    background: var(--bg-cream);
+    padding: 28px 26px 30px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 360px;
+  }
+  .ladder .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 34px;
+    line-height: 1;
+  }
+  .ladder h3 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    line-height: 1.14;
+    color: var(--navy);
+    margin: 0;
+  }
+  .ladder h3 em { color: var(--gold); font-style: italic; }
+  .ladder p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.42;
+    color: var(--fg-body);
+    margin: 0;
+  }
+
+  /* Scenes */
+  .scene-jing {
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 40%, rgba(235,200,140,0.26), transparent 70%),
+      linear-gradient(160deg, #5d4a2d 0%, #25200f 100%);
+  }
+  .scene-diego {
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 40%, rgba(235,200,140,0.28), transparent 70%),
+      linear-gradient(165deg, #6a5534 0%, #2c2213 100%);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Nineteen · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.06; padding-bottom: 24px;">
+        The bilingual<br/>
+        child arrives with<br/>
+        <em style="font-style: italic; color: var(--gold);">a gift.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1360px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Measurably different neural architecture. Executive
+        function ahead of monolingual peers. Two systems held
+        simultaneously — and most classrooms <em>treat it like a
+        problem to be solved.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 19 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · what the research has overturned</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="attrib" style="color: var(--gold); font-size: 28px;">For fifteen years the picture has been clear</p>
+      <p class="serif-quote" style="font-size: 68px; line-height: 1.14; margin-top: 24px;">
+        Bilingualism is not<br/>
+        cognitively <em style="font-style: italic;">taxing.</em>
+      </p>
+      <p class="serif-quote" style="font-size: 68px; line-height: 1.14; margin-top: 24px;">
+        It is cognitively<br/>
+        <em style="font-style: italic; color: var(--gold);">enhancing.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 36px;"></div>
+      <p class="body-read" style="color: var(--navy); font-weight: 500; margin-top: 20px;">
+        That older advice — "pick one language to give the child
+        a fair start" — has been <em>thoroughly debunked.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          You are<br/>
+          standing in a<br/>
+          <em style="font-style: italic; color: var(--gold);">decisive</em> place.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Language study begins now. If you have children
+          learning English as an additional language — or growing
+          up with more than one at home — you are in a position
+          to <em>build on the neural gifts they have.</em>
+        </p>
+        <p class="body-read">
+          Or — subtly, without meaning to — to send the message
+          that the home language is something to leave behind.
+          The Montessori approach can honor multilingualism
+          beautifully. <em>Or it can quietly undermine it.</em>
+          The difference is in what you believe and what you do
+          because of it.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 112px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        The bilingual<br/>
+        <em style="font-style: italic; color: var(--gold);">brain.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Three findings from fifteen years of neuroscience — and
+        the one <em>conditional</em> on which the gift depends.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 THREE FINDINGS -->
+  <section data-label="Three findings" class="on-cream">
+    <div class="eyebrow-slide">Three findings · what the research actually shows</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        Two language systems —<br/>
+        developing <em style="font-style: italic; color: var(--gold);">simultaneously,</em><br/>
+        not sequentially.
+      </h2>
+      <div class="brain-grid">
+        <div class="card">
+          <div class="n">01</div>
+          <h3>Enhanced<br/><em>executive</em><br/>function.</h3>
+          <p>
+            Cognitive flexibility. Working memory. Inhibitory
+            control. Bilingual children score higher on all three
+            — the brain trains itself by constantly managing two
+            systems and <em>choosing.</em>
+          </p>
+          <div class="tag">— Practice is the mechanism. —</div>
+        </div>
+        <div class="card">
+          <div class="n">02</div>
+          <h3>Earlier<br/><em>metalinguistic</em><br/>awareness.</h3>
+          <p>
+            They understand, sooner than monolingual peers, that
+            words are arbitrary labels, that language itself is a
+            <em>system</em> — that there are multiple ways to say
+            the same thing.
+          </p>
+          <div class="tag">— Foundational for reading. —</div>
+        </div>
+        <div class="card">
+          <div class="n">03</div>
+          <h3>Phonology,<br/>grammar,<br/>vocabulary —<br/><em>all parallel.</em></h3>
+          <p>
+            Not one language paused while the other catches up.
+            Two complete systems, both in development, both
+            building neural architecture at once.
+          </p>
+          <div class="tag">— Not a limitation. A gift. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE CAVEAT -->
+  <section data-label="The caveat that matters" class="on-cream">
+    <div class="eyebrow-slide">The caveat · additive vs subtractive</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        The advantage only emerges<br/>
+        when <em style="font-style: italic; color: var(--gold);">both</em> languages are<br/>
+        valued, used, developed.
+      </h2>
+      <div class="avs">
+        <div class="side add">
+          <div class="k">— Additive bilingualism —</div>
+          <h3>Both languages<br/><em>grow.</em></h3>
+          <p>
+            Home language is honored at home <em>and</em> at
+            school. The child develops two systems. The brain
+            gets the practice. The gift arrives.
+          </p>
+          <div class="tag">— The cognitive advantage is real here. —</div>
+        </div>
+        <div class="side sub">
+          <div class="k">— Subtractive bilingualism —</div>
+          <h3>One language<br/><em>replaces</em><br/>the other.</h3>
+          <p>
+            The family moves, everyone shifts to English "to
+            help." The home language declines. The child is
+            becoming monolingual, slowly. <em>The advantage
+            disappears.</em>
+          </p>
+          <div class="tag" style="color: rgba(20,30,60,0.6);">— Looks neurologically different. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CLASSROOM IS THE SITE -->
+  <section data-label="Your classroom is the site" class="on-navy">
+    <div class="eyebrow-slide">Where the decision gets made</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 64px; line-height: 1.12;">
+        Your classroom is one of the<br/>
+        places where the home<br/>
+        language is <em style="font-style: italic; color: var(--gold);">either</em> honored<br/>
+        and supported —<br/>
+        <em style="font-style: italic; color: var(--gold);">or it isn't.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        If the implicit message is that English is the language
+        of learning, of success, of belonging — the child's
+        brain starts to <em>abandon</em> the home language.
+        The bilingual advantage disappears. <em style="font-style: italic; color: var(--gold);">And it
+        disappeared in your room.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 112px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        What you<br/>
+        can <em style="font-style: italic; color: var(--gold);">actually</em><br/>
+        do.
+      </h2>
+      <div class="rule-gold" style="margin: 56px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        You don't have to speak every home language of every
+        child. You do have to make visible that every home
+        language <em>matters in this room.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 PRACTICAL LADDER -->
+  <section data-label="What you can do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">Even without fluency · what to do tomorrow</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        Visible. Consistent.<br/>
+        <em style="font-style: italic; color: var(--gold);">Intentional.</em>
+      </h2>
+      <div class="ladder">
+        <div class="rung">
+          <div class="n">01</div>
+          <h3>Learn <em>greetings</em><br/>in the languages<br/>of your community.</h3>
+          <p>Not every language every day. Regularly. <em>The message is: all languages are here.</em></p>
+        </div>
+        <div class="rung">
+          <div class="n">02</div>
+          <h3>Put books<br/>on the shelf in<br/><em>home languages.</em></h3>
+          <p>Even two Spanish books among eight English says something. <em>Feature them. Read them aloud.</em></p>
+        </div>
+        <div class="rung">
+          <div class="n">03</div>
+          <h3>Present sandpaper<br/>letters in <em>both</em><br/>sound systems.</h3>
+          <p>Where you share a language with the child, let her see the phonetic similarities and differences.</p>
+        </div>
+        <div class="rung">
+          <div class="n">04</div>
+          <h3>Invite families<br/>to <em>share their</em><br/>language.</h3>
+          <p>Ask for recordings of songs. Ask grandparents to come tell a story. Learn names in the right language.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 ENCODING IN HOME LANGUAGE -->
+  <section data-label="Encoding in the home language" class="on-cream">
+    <div class="eyebrow-slide">The moveable alphabet · not only in English</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px;">
+          She can encode in<br/>
+          <em style="font-style: italic; color: var(--gold);">Spanish.</em> Or <em style="font-style: italic; color: var(--gold);">Mandarin.</em><br/>
+          At the moveable<br/>
+          alphabet.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          This is not a detour from English. This is <em>deepening
+          her understanding of how language works.</em> She is
+          discovering that the phoneme-grapheme principle holds
+          in her home language. The sounds break down. The
+          system is similar and different.
+        </p>
+        <p class="body-read">
+          She is doing this in the language where her
+          <em>phonological awareness is strongest</em> — because her
+          exposure there is deepest. English follows. It does
+          not have to come first, and the first language does
+          not stop when English arrives.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 WRONG MESSAGES -->
+  <section data-label="Wrong messages we send" class="on-cream">
+    <div class="eyebrow-slide">The subtle undermining · things you may not realize you are doing</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <div class="wrong">
+        <div class="k">— What the child's brain registers —</div>
+        <h3>You can care about equity<br/>and still send the message<br/><em>"your language does not belong here."</em></h3>
+        <div class="row">
+          <div class="action">She speaks in her home language.<br/>You respond with a <span class="strike">confused look</span>, or <span class="strike">"use English, please."</span></div>
+          <div class="msg">Her brain registers that <em>home language is a problem in this room.</em> <strong>The work of abandoning it begins.</strong></div>
+        </div>
+        <div class="row">
+          <div class="action">You celebrate writing —<br/>but only the <span class="strike">English writing</span> goes on the wall.</div>
+          <div class="msg">What is visible is what matters. Her home-language composition <em>is not visible.</em> <strong>Therefore it is not school.</strong></div>
+        </div>
+        <div class="row">
+          <div class="action">Spanish books are on the shelf —<br/>but <span class="strike">never read aloud.</span></div>
+          <div class="msg">Decoration is not honoring. <em>Children read adults' attention, not shelves.</em> <strong>If you do not touch it, it does not count.</strong></div>
+        </div>
+        <div class="row">
+          <div class="action">You talk to families about reading —<br/>and only mention <span class="strike">English books.</span></div>
+          <div class="msg">The message to the family: the <em>real</em> literacy is English literacy. <strong>Home-language reading is a hobby.</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 JING SCENE -->
+  <section data-label="Scene · Jing" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-jing">
+        <div class="scene-label">A girl around four, hanging slightly back from a small group on the line during morning rhyming games. She is watching, not participating. Her eyes track the guide's mouth carefully. She understands the game. She has nothing yet to bring to it.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · Jing · a family's well-meant shift</div>
+        <h2 class="display" style="font-size: 44px; line-height: 1.16; margin-top: 8px;">
+          The parents chose<br/>
+          English at home<br/>
+          <em style="font-style: italic;">to help her.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She understands Mandarin. She no longer speaks it. Her
+          phonological awareness in English is emerging. Her
+          Mandarin — the language of grandmother — is quietly
+          receding.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          You call the family. You share what the research says.
+          They agree to speak Mandarin intentionally at home
+          again. You learn to greet Jing and her family in
+          Mandarin. A parent teaches the classroom a song.
+          <em>By spring, Jing is encoding in both.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 DIEGO SCENE -->
+  <section data-label="Scene · Diego" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · Diego · beginning to recover what was slipping</div>
+        <h2 class="display" style="font-size: 44px; line-height: 1.16; margin-top: 8px;">
+          He understands<br/>
+          Spanish. He <em style="font-style: italic;">prefers</em><br/>
+          English. He will not<br/>
+          pick up the Spanish<br/>
+          books on the shelf.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A Spanish-speaking home. Two years of English-dominant
+          preschool. <em>Early signs of language loss.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          You begin reading Spanish books aloud, regularly. You
+          present sandpaper letters in both languages — making
+          the similarities and differences visible. A
+          Spanish-speaking family member comes in to tell a
+          story. By midyear, he checks out Spanish books.
+          <em>By spring, he is asking to build Spanish words
+          with the moveable alphabet.</em>
+        </p>
+      </div>
+      <div class="scene scene-diego">
+        <div class="scene-label">A boy about four standing at the classroom library, eyes moving across a bilingual display of picture books. His hand is halfway toward a Spanish title. The posture of a child remembering something he had almost let go of.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · the honest choice</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14;">
+        Their brains are plastic<br/>
+        and powerful. They <em style="font-style: italic;">will</em><br/>
+        learn English. <em style="font-style: italic; color: var(--gold);">Quickly.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        But if that is your only goal, the home language will
+        diminish. And the child will lose something — <em>access
+        to family members who only speak the home language,
+        cultural knowledge embedded in that language, the
+        cognitive advantages of true bilingualism.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Or — you make the deliberate choice that real
+        bilingualism is part of your educational mission. That
+        you will honor it in your environment and your practice.
+        <em>That is an equity choice.</em> It matters.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 ND NOTE -->
+  <section data-label="Dual-language + ND" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · both languages, not one</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px; color: #fff;">
+          A dual-language<br/>
+          learner who is also<br/>
+          <em style="font-style: italic; color: var(--gold);">neurodivergent</em><br/>
+          needs you in both<br/>
+          languages.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A dyslexic child learning in two languages may need
+          <em>explicit phonics instruction in both.</em> A child
+          with a speech-sound disorder may face different
+          challenges in each language system — because the
+          phonologies are different.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is not more complicated. It is <em>more
+          information</em> about what each child actually needs.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 58px;">
+        In your classroom — are there<br/>
+        children whose home languages<br/>
+        <em style="font-style: italic; color: var(--gold);">you do not speak?</em><br/>
+        What would it look like to begin<br/>
+        learning some of those languages?<br/>
+        <em style="font-style: italic; color: var(--gold);">What would change if you did?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 19 · Primary · Dual Language Learners</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">16</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 39 — Partnering with Families</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-fam {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(230,200,160,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2018 0%, #140f0a 100%);
+  }
+  /* Translation table: classroom language <-> home language */
+  .xlate {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 0; margin-top: 32px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(20,30,60,0.2);
+  }
+  .xlate-row { display: contents; }
+  .xlate-row > div { padding: 24px 28px; border-bottom: 1px solid rgba(20,30,60,0.1); }
+  .xlate-row:last-child > div { border-bottom: 0; }
+  .xlate .classroom {
+    background: #fbf7ec; font-family: var(--font-heading); font-style: italic;
+    font-size: 23px; color: var(--navy); line-height: 1.4;
+  }
+  .xlate .arrow {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 22px; font-family: var(--font-heading);
+    font-style: italic; padding: 24px 16px;
+    border-left: 1px solid rgba(20,30,60,0.1);
+    border-right: 1px solid rgba(20,30,60,0.1);
+  }
+  .xlate .home {
+    font-family: var(--font-sans); font-size: 18px;
+    line-height: 1.55; color: var(--fg-body);
+  }
+  .xlate .hdr { background: #13214b; }
+  .xlate .hdr > div {
+    color: var(--gold); font-family: var(--font-sans);
+    font-size: 17px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600; padding: 16px 28px; background: transparent;
+    border-bottom: 0;
+  }
+  .xlate .hdr .arrow { padding: 16px; color: rgba(214,167,88,0.4); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Nine · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        A Montessori<br/>
+        classroom that is<br/>
+        <em style="font-style: italic; color: var(--gold);">separate</em> from the<br/>
+        child&rsquo;s home is not<br/>
+        a Montessori classroom.<br/>
+        It is a bubble.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The child is the same person at home and at school.
+        If the two places share no common language, no shared
+        rhythms, no respect — she lives across a seam. The
+        work of partnering with families is the work of
+        closing that seam.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 39 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 POWER -->
+  <section data-label="Power" class="on-cream">
+    <div class="eyebrow-slide">Start here · the power imbalance is real</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.18;">
+        You speak the school&rsquo;s<br/>
+        language. You hold its<br/>
+        decisions. You can use<br/>
+        its words.
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 50px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        A family coming in does<br/>
+        not have these things.<br/>
+        <em>The conversation is not
+        between equals by default.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 TRANSLATE -->
+  <section data-label="Translating the classroom" class="on-cream">
+    <div class="eyebrow-slide">Translate the classroom · stop using jargon in letters home</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Your language <em style="font-style: italic; color: var(--gold);">signals
+        who belongs.</em> Audit it.
+      </h2>
+      <div class="xlate">
+        <div class="xlate-row hdr">
+          <div>Classroom language</div>
+          <div class="arrow"></div>
+          <div>Family-facing translation</div>
+        </div>
+        <div class="xlate-row">
+          <div class="classroom">&ldquo;She had a normalized morning.&rdquo;</div>
+          <div class="arrow">→</div>
+          <div class="home">She was calm and focused today. She chose her work and stayed with it for a long time.</div>
+        </div>
+        <div class="xlate-row">
+          <div class="classroom">&ldquo;We presented the moveable alphabet.&rdquo;</div>
+          <div class="arrow">→</div>
+          <div class="home">She used wooden letters to spell a word from the sounds she hears. Today she spelled <em>c-a-t.</em></div>
+        </div>
+        <div class="xlate-row">
+          <div class="classroom">&ldquo;He&rsquo;s working on his sensitive period for order.&rdquo;</div>
+          <div class="arrow">→</div>
+          <div class="home">He really needs things to happen the same way every day right now. This is typical at his age, and it passes.</div>
+        </div>
+        <div class="xlate-row">
+          <div class="classroom">&ldquo;Three-period lesson on binomial.&rdquo;</div>
+          <div class="arrow">→</div>
+          <div class="home">We introduced her to a new puzzle cube today. I&rsquo;ll show it to you at pickup if you&rsquo;d like.</div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; max-width: 1500px;">
+        The vocabulary of a training program is precious to
+        those who earned it. <em>It is exclusionary to those
+        who did not.</em> Use it with colleagues. Translate it
+        for families — every single time.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 CONFERENCES -->
+  <section data-label="Conferences" class="on-cream">
+    <div class="eyebrow-slide">Parent conferences · evidence, not impressions</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Bring your<br/>
+        <em style="font-style: italic; color: var(--gold);">observation notebook.</em><br/>
+        Leave your<br/>
+        adjectives at home.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        &ldquo;He&rsquo;s such a joy&rdquo; is a compliment.
+        It is not a conference. A conference is: <em>here is
+        what he chose on Monday, and Tuesday, and Thursday;
+        here is how long he stayed with it; here is what he
+        moved on to.</em> From that, the family knows something
+        they did not know when they walked in.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        End every conference with a question, not an
+        instruction. <em>&ldquo;What does he do on Saturday
+        mornings at home?&rdquo;</em> The answer is always
+        useful.
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · pickup conversation" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-fam">
+        <div class="scene-label">A classroom doorway at 3:15pm. A father is crouched down, eye-level with his five-year-old daughter. The guide is crouched beside them, showing something on a small piece of paper — the word the daughter spelled today. The father is nodding, smiling, asking the daughter a question about it. The daughter is beaming. No one is standing over anyone.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · everyone at the same height</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The guide is<br/>
+          <em style="font-style: italic;">crouched.</em><br/>
+          That is the<br/>
+          whole lesson.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A parent conversation that happens over a child —
+          with her standing silent between two towering
+          adults discussing her — teaches the child that the
+          school-home relationship is one in which she has no
+          voice. <em>A conversation at her height teaches the
+          opposite.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Bring the paper. Bring the observation. Bring
+          yourself down to the level where she is. The
+          partnership starts there.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT FAMILIES BRING -->
+  <section data-label="What families bring" class="on-cream">
+    <div class="eyebrow-slide">What the family knows that you do not</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        You see her<br/>
+        six hours a day.<br/>
+        They see her the<br/>
+        other <em style="font-style: italic; color: var(--gold);">eighteen.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Nobody in the classroom knows the child as well as
+        the adults who raised her. Nobody knows her sleep,
+        her fears, her siblings, her joys, her griefs like
+        they do. <em>Any conversation in which the teacher
+        is the expert is a conversation that has gotten the
+        ratio wrong.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The family is the expert. You are the specialist.
+        The relationship works when both those statements are
+        true in the room.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity · whose engagement" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose engagement counts</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        When you say a family<br/>
+        is &ldquo;not engaged&rdquo; —<br/>
+        <em style="font-style: italic;">what has the school
+        offered them<br/>
+        that they could<br/>
+        actually come to?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        An 11am weekday conference excludes anyone who works
+        hourly. A muffin breakfast excludes anyone who
+        doesn&rsquo;t have morning flexibility. An
+        English-only letter home excludes anyone whose first
+        language isn&rsquo;t English. <em>Before you conclude
+        a family is absent, interrogate whether the invitation
+        met them.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Evening conferences. Translated letters. Phone calls
+        instead of emails for families who prefer them.
+        Interpreters arranged ahead of time. <em>These are
+        engagement, not accommodations.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        Of the families in<br/>
+        your room — whose<br/>
+        knowledge of their<br/>
+        child <em style="font-style: italic; color: var(--gold);">have you asked<br/>
+        for</em> this month?<br/>
+        Whose have you<br/>
+        only informed?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 39 · Primary · Partnering with Families</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">08</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

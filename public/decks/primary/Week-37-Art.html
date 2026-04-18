@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 37 — Art: The Prepared Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-art {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(230,200,170,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2420 0%, #141210 100%);
+  }
+  /* Shelf of materials - schematic */
+  .shelf {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 4px; margin-top: 32px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(20,30,60,0.15);
+    padding: 32px;
+  }
+  .shelf-cell {
+    padding: 28px 20px; min-height: 220px;
+    display: flex; flex-direction: column; gap: 12px;
+    border: 1px solid rgba(20,30,60,0.1);
+    background: #f7f1e3;
+  }
+  .shelf-cell h4 {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600; color: var(--navy);
+    margin: 0;
+  }
+  .shelf-cell .n {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--gold); margin: 0;
+  }
+  .shelf-cell p {
+    font-family: var(--font-sans); font-size: 17px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Seven · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        There is no<br/>
+        <em style="font-style: italic; color: var(--gold);">art project</em> in<br/>
+        a Montessori<br/>
+        classroom.<br/>
+        There is art.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        No template the child fills in. No craft of the week.
+        No thirty identical Thanksgiving turkeys taped to the
+        wall. Instead: <em>a shelf of real materials, offered
+        at her height, available all day.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 37 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHAT IS REJECTED -->
+  <section data-label="What is rejected" class="on-cream">
+    <div class="eyebrow-slide">What is refused · and why</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The coloring sheet.<br/>
+        The paper-plate craft.<br/>
+        The &ldquo;everyone makes<br/>
+        the same thing&rdquo; table.<br/>
+        <em style="font-style: italic; color: var(--gold);">All refused.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Not because they are wrong in the world — they are
+        fine at home — but because they teach two quiet
+        lessons the Montessori room cannot endorse:
+        <em>(1) that art is matching an adult-made model, and
+        (2) that the child&rsquo;s own line is not enough.</em>
+      </p>
+      <p class="body-read">
+        The coloring sheet says: <em>here is the outline; do
+        not exceed it.</em> The Montessori studio says: <em>here
+        is the paper; what do you see?</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE SHELF -->
+  <section data-label="The shelf" class="on-cream">
+    <div class="eyebrow-slide">The art shelf · always available, always ready</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Each technique has <em style="font-style: italic; color: var(--gold);">a tray
+        of its own,</em> fully stocked, at her height.
+      </h2>
+      <div class="shelf">
+        <div class="shelf-cell">
+          <p class="n">— one —</p>
+          <h4>Drawing</h4>
+          <p>Good paper. Sharpened colored pencils. A pencil holder. Nothing dull, nothing broken.</p>
+        </div>
+        <div class="shelf-cell">
+          <p class="n">— two —</p>
+          <h4>Painting</h4>
+          <p>Small jars of real watercolor. Good brushes. A smock hung beside the easel.</p>
+        </div>
+        <div class="shelf-cell">
+          <p class="n">— three —</p>
+          <h4>Cutting & collage</h4>
+          <p>Sharp child-sized scissors. A tray of cut-paper scraps in rich colors. A glue stick.</p>
+        </div>
+        <div class="shelf-cell">
+          <p class="n">— four —</p>
+          <h4>Clay & sculpture</h4>
+          <p>A small ball of real clay in a covered bowl. A board. A tool or two.</p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; max-width: 1500px;">
+        Each tray is self-contained. She can set it up,
+        work, and put it away — without an adult. <em>The
+        tray is the studio.</em> Because the tools are real
+        and the materials are beautiful, her work becomes
+        serious.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 ART APPRECIATION -->
+  <section data-label="Art appreciation" class="on-cream">
+    <div class="eyebrow-slide">The other half · looking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        A folder of<br/>
+        postcards. <em style="font-style: italic; color: var(--gold);">Real art,</em><br/>
+        on real paper,<br/>
+        in her hands.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The second art shelf holds folders of art postcards —
+        reproductions of paintings and sculptures from many
+        centuries, many cultures. She sorts them by color, by
+        subject, by mood. She matches them to pairs. She sits
+        with one for a long time. <em>No one quizzes her.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        What is being built here is an <em>eye</em> — an
+        internal sense of what is beautiful, what is
+        interesting, what is strange. These are instincts she
+        will have for the rest of her life, and she is
+        collecting them from the floor of the classroom at
+        four.
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · the painter" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-art">
+        <div class="scene-label">A five-year-old in an apron at a small wooden easel. On the easel, a sheet of thick watercolor paper already laid down with a wash of blue. She is mixing green in a small ceramic palette, her brush moving carefully between yellow and blue, watching the color become itself. The classroom continues quietly around her; no one has commented on what she is making. No adult is nearby.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · mixing green</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Nobody has asked<br/>
+          her <em style="font-style: italic;">what it is.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Nobody has said &ldquo;tell me about your
+          painting.&rdquo; Nobody has said &ldquo;great job.&rdquo;
+          She is not being watched. <em>She is painting.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          When she is done she will wash her brush, set her
+          painting to dry on the drying rack, return the apron
+          to its hook, and walk away. No one will clap. <em>The
+          absence of performance is the presence of
+          art.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 EQUITY -->
+  <section data-label="Equity · whose art" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose art on the wall</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Look at the art<br/>
+        reproductions on<br/>
+        your shelf. <em style="font-style: italic;">Whose<br/>
+        eye is represented?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        A shelf that is only European oil paintings teaches
+        the child one thing. A shelf that includes textiles,
+        calligraphy, carvings, ceramics, photography, and
+        paintings from many traditions teaches another.
+        <em>The canon you offer becomes her default canon.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        This is low-cost, high-impact work. Postcards from a
+        museum gift shop can transform the quiet lessons of
+        the room.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When a child in your<br/>
+        room makes something —<br/>
+        does the <em style="font-style: italic; color: var(--gold);">environment<br/>
+        respond</em> to her work,<br/>
+        or does she wait for<br/>
+        you to?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 37 · Primary · Art</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">07</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

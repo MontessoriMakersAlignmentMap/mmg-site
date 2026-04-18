@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 17 — The Science of Reading and Montessori Language Philosophy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Tension diagram — two columns with a third "synthesis" band */
+  .tension-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .tension-grid .col {
+    background: var(--bg-cream);
+    padding: 40px 36px 44px;
+    display: flex; flex-direction: column; gap: 18px;
+    min-height: 440px;
+  }
+  .tension-grid .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .tension-grid h3 {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .tension-grid h3 em { color: var(--gold); font-style: italic; }
+  .tension-grid p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .tension-grid p em { color: var(--navy); font-style: italic; }
+  .tension-grid .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 14px;
+    line-height: 1.35;
+  }
+  .tension-band {
+    background: #13214b;
+    color: #fff;
+    padding: 32px 44px;
+    margin-top: 2px;
+  }
+  .tension-band .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tension-band p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1.3;
+    color: #fff;
+    margin: 0;
+    max-width: 1600px;
+  }
+  .tension-band p em { color: var(--gold); font-style: italic; }
+
+  /* Five pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .pillars .pillar {
+    background: var(--bg-cream);
+    padding: 36px 24px 36px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 440px;
+    position: relative;
+  }
+  .pillars .num {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 44px;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .pillars h3 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+  }
+  .pillars h3 em { color: var(--gold); font-style: italic; }
+  .pillars p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.45;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .pillars p em { color: var(--navy); font-style: italic; }
+  .pillars .under {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 12px;
+    line-height: 1.35;
+  }
+
+  /* Role-flip — the adult's posture */
+  .role-flip {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    gap: 0;
+    margin-top: 36px;
+  }
+  .role-flip .side {
+    padding: 40px 36px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 420px;
+  }
+  .role-flip .misread {
+    background: rgba(214,167,88,0.08);
+    border: 1px solid rgba(20,30,60,0.15);
+  }
+  .role-flip .correct {
+    background: #13214b;
+    color: #fff;
+  }
+  .role-flip .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 40px;
+    color: var(--gold);
+    background: var(--bg-cream);
+  }
+  .role-flip .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(20,30,60,0.55);
+    font-weight: 600;
+  }
+  .role-flip .correct .k { color: var(--gold); }
+  .role-flip h3 {
+    font-family: var(--font-heading);
+    font-size: 40px; line-height: 1.12;
+    color: var(--navy);
+    margin: 0;
+  }
+  .role-flip h3 em { color: var(--gold); font-style: italic; }
+  .role-flip .correct h3 { color: #fff; }
+  .role-flip p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .role-flip .correct p { color: rgba(255,255,255,0.85); }
+  .role-flip p em { color: var(--navy); font-style: italic; }
+  .role-flip .correct p em { color: var(--gold); font-style: italic; }
+  .role-flip .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.5);
+    padding-top: 12px;
+    line-height: 1.35;
+  }
+
+  /* Marco scene */
+  .scene-marco {
+    background:
+      radial-gradient(ellipse 60% 50% at 45% 40%, rgba(235,200,140,0.28), transparent 70%),
+      linear-gradient(165deg, #5a4a2e 0%, #2a2214 100%);
+  }
+  .scene-sadie {
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 45%, rgba(235,200,140,0.3), transparent 70%),
+      linear-gradient(160deg, #6a5334 0%, #32281a 100%);
+  }
+
+  /* Divergence box */
+  .divergence {
+    background: #f3ecdc;
+    border-top: 4px solid var(--gold);
+    padding: 36px 44px 40px;
+    margin-top: 36px;
+  }
+  .divergence .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .divergence h3 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    line-height: 1.14;
+    color: var(--navy);
+    margin: 0 0 20px;
+  }
+  .divergence h3 em { color: var(--gold); font-style: italic; }
+  .divergence .row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(20,30,60,0.15);
+    align-items: baseline;
+  }
+  .divergence .row:first-of-type { border-top: 1px solid rgba(20,30,60,0.25); margin-top: 16px; }
+  .divergence .assumed {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: rgba(20,30,60,0.55);
+    text-decoration: line-through;
+    text-decoration-color: rgba(214,167,88,0.7);
+    text-decoration-thickness: 2px;
+  }
+  .divergence .reality {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--fg-body);
+  }
+  .divergence .reality em { color: var(--navy); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Seventeen · Language unit opens</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 96px; line-height: 1.06; padding-bottom: 24px;">
+        Two bodies of<br/>
+        knowledge.<br/>
+        <em style="font-style: italic; color: var(--gold);">One classroom.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The science of reading. Montessori philosophy. They do not
+        contradict — but they do not automatically align either.
+        <em>That is the work of an informed guide.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 17 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · the productive tension</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 60px; line-height: 1.15;">
+        You cannot <em style="font-style: italic;">abandon</em><br/>
+        Montessori principles<br/>
+        out of <span class="gold" style="font-style: italic;">panic.</span>
+      </p>
+      <p class="serif-quote" style="font-size: 60px; line-height: 1.15; margin-top: 56px;">
+        You cannot <em style="font-style: italic;">defend</em> them<br/>
+        out of <span class="gold" style="font-style: italic;">ideology.</span>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+      <p class="body-read" style="margin-top: 16px; color: var(--navy); font-weight: 500;">
+        You have to understand both clearly. And <em>then</em> decide.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Language<br/>
+          begins <em style="font-style: italic; color: var(--gold);">now.</em><br/>
+          The pressure<br/>
+          is intense.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Parents want reading. Schools want reading. Districts want
+          benchmarks. Montessori guides want <em>meaning and joy.</em>
+        </p>
+        <p class="body-read">
+          The science of reading tells us what actually works. Your
+          job is to understand all of it — so you can hold Montessori
+          practice <em>and</em> evidence-based decoding, and hand
+          neither one over.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 120px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Reading is<br/>
+        <em style="font-style: italic; color: var(--gold);">not</em> natural.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Your brain did not evolve to read. Reading is an invention.
+        Learning to read requires the brain to <em>rewire itself
+        intentionally</em> — and that has implications for how you
+        teach.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 TENSION DIAGRAM -->
+  <section data-label="Two knowledge systems" class="on-cream">
+    <div class="eyebrow-slide">Two knowledge systems · where they actually live</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Not contradictions.<br/>
+        <em style="font-style: italic; color: var(--gold);">Not</em> automatic allies.
+      </h2>
+      <div class="tension-grid">
+        <div class="col">
+          <div class="k">— The science of reading —</div>
+          <h3>Explicit.<br/><em>Systematic.</em><br/>Multi-sensory.</h3>
+          <p>
+            Phonological and phonemic awareness, phonics, fluency, and
+            comprehension are <em>interdependent systems.</em> They must
+            all be present, all be strong, all taught with intention.
+          </p>
+          <div class="tag">— Reading does not emerge. It is built. —</div>
+        </div>
+        <div class="col">
+          <div class="k">— Montessori philosophy —</div>
+          <h3>Prepared<br/>environment.<br/><em>Intrinsic</em> interest.</h3>
+          <p>
+            Indirect teaching. The absorbent mind. Materials that
+            invite the work rather than impose it. Children coming to
+            language <em>because it is irresistible.</em>
+          </p>
+          <div class="tag">— The classroom teaches. The adult supports. —</div>
+        </div>
+      </div>
+      <div class="tension-band">
+        <div class="k">— What the informed guide holds —</div>
+        <p>
+          The sandpaper letters <em>are</em> explicit phonics
+          instruction — <em>and</em> they are sensorial exploration.
+          Both at once. You are not choosing.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 120px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Five systems.<br/>
+        <em style="font-style: italic; color: var(--gold);">All</em> must be<br/>
+        present.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        None of these are stages you move through and leave behind.
+        They are <em>interdependent</em> — and a weakness in one
+        becomes a weakness in all.
+      </p>
+    </div>
+  </section>
+
+  <!-- 07 FIVE PILLARS -->
+  <section data-label="The five pillars" class="on-cream">
+    <div class="eyebrow-slide">The five systems · interdependent, not sequential</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        A child can have excellent<br/>
+        comprehension — and still<br/>
+        <em style="font-style: italic; color: var(--gold);">struggle.</em>
+      </h2>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num">01</div>
+          <h3><em>Phonological</em><br/>awareness.</h3>
+          <p>Words are made of sounds. Those sounds can be heard and played with.</p>
+          <div class="under">— Rhyme. Syllable. Rhythm. —</div>
+        </div>
+        <div class="pillar">
+          <div class="num">02</div>
+          <h3><em>Phonemic</em><br/>awareness.</h3>
+          <p>Individual sounds can be isolated, added, removed, and re-ordered.</p>
+          <div class="under">— The finest-grained hearing. —</div>
+        </div>
+        <div class="pillar">
+          <div class="num">03</div>
+          <h3><em>Phonics.</em></h3>
+          <p>Sounds map to letters. Letters map to sounds. The correspondence is learnable.</p>
+          <div class="under">— The bridge to print. —</div>
+        </div>
+        <div class="pillar">
+          <div class="num">04</div>
+          <h3><em>Fluency.</em></h3>
+          <p>Decoding is fast enough that attention is free for meaning, not locked on the word.</p>
+          <div class="under">— Automaticity. —</div>
+        </div>
+        <div class="pillar">
+          <div class="num">05</div>
+          <h3><em>Comprehension.</em></h3>
+          <p>Meaning is built — with vocabulary, background knowledge, and inference.</p>
+          <div class="under">— What reading is for. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 120px; line-height: 1.04; color: var(--navy); padding-bottom: 32px;">
+        Where Montessori<br/>
+        has <em style="font-style: italic; color: var(--gold);">quietly</em><br/>
+        diverged.
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The places where practice, over time, has drifted from what
+        the science is now telling us clearly.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 DIVERGENCE -->
+  <section data-label="Where Montessori diverges" class="on-cream">
+    <div class="eyebrow-slide">Where Montessori has diverged — and how to repair it</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <div class="divergence">
+        <div class="k">— Three assumptions the science asks us to revise —</div>
+        <h3>The prepared environment<br/>is <em>necessary.</em> It is not <em>sufficient.</em></h3>
+        <div class="row">
+          <div class="assumed">"The materials do the work."</div>
+          <div class="reality">
+            The materials are powerful <em>only when the guide makes the phoneme-grapheme connection explicit.</em> Your observation. Your presentation. Your follow-up.
+          </div>
+        </div>
+        <div class="row">
+          <div class="assumed">"Oral language is enough."</div>
+          <div class="reality">
+            A child can be articulate, expressive, and still lack the <em>explicit awareness</em> that words are made of sounds. That awareness has to be <em>taught.</em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="assumed">"Writing comes before reading."</div>
+          <div class="reality">
+            Encoding does come first — <em>when</em> phonemic awareness is in place. For children whose awareness is still building, encoding is not yet available.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 THE ROLE FLIP -->
+  <section data-label="Your role, reframed" class="on-cream">
+    <div class="eyebrow-slide">Your role · from ambient to intentional</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        You are not standing back<br/>
+        letting it happen.<br/>
+        <em style="font-style: italic; color: var(--gold);">You are guiding.</em>
+      </h2>
+      <div class="role-flip">
+        <div class="side misread">
+          <div class="k">— The common misreading —</div>
+          <h3>Set the materials<br/>out and <em>trust</em><br/>the environment.</h3>
+          <p>
+            Pass a child through sandpaper letters, trust repetition,
+            move on if she seems fine. Assume a rich room will do the
+            work without your attention.
+          </p>
+          <div class="tag">— This privileges children who already had it. —</div>
+        </div>
+        <div class="vs">→</div>
+        <div class="side correct">
+          <div class="k">— What the science asks of you —</div>
+          <h3>Facilitate<br/>phonemic<br/>awareness with<br/><em>precision.</em></h3>
+          <p>
+            Present with intention. Draw attention to the sound at
+            the beginning, middle, end. Watch for the <em>exact</em>
+            moment encoding becomes possible.
+          </p>
+          <div class="tag">— Montessori done with evidence-based precision. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 MARCO SCENE -->
+  <section data-label="Scene · Marco" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-marco">
+        <div class="scene-label">A four-year-old boy tracing a blue sandpaper letter with his first two fingers, mouth shaped around a sound. His movement is almost rhythmic — like a song he is teaching his own hands.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · 10:30 a.m. · January · Marco</div>
+        <h2 class="display" style="font-size: 48px; line-height: 1.14; margin-top: 8px;">
+          His hands and his ears<br/>
+          are learning<br/>
+          <em style="font-style: italic;">at the same time.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Three weeks with the sandpaper letters. Today he is picking
+          them up almost rhythmically, saying the sound, setting it
+          down.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          You sit beside him and name what you see: <em>"You heard it.
+          That sound is in cat and in cup. Your ears are learning."</em>
+          You are not testing him. You are making visible the phonemic
+          awareness he is <em>already</em> building.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SADIE SCENE -->
+  <section data-label="Scene · Sadie" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · later that morning · Sadie</div>
+        <h2 class="display" style="font-size: 48px; line-height: 1.14; margin-top: 8px;">
+          <em style="font-style: italic;">S-A-D-Y.</em><br/>
+          She has invented a<br/>
+          phonetic spelling —<br/>
+          and it is <em style="font-style: italic;">exactly right.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She cannot hold a pencil. Her fine motor has not arrived.
+          But her phonemic awareness <em>has.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Her encoding is running ahead of her awareness of
+          conventional spelling. The moveable alphabet gave her
+          access to written language <em>before</em> her hand was
+          ready. The science says this matters. Montessori has been
+          saying it for a hundred years.
+        </p>
+      </div>
+      <div class="scene scene-sadie">
+        <div class="scene-label">A child's hand arranging wooden moveable-alphabet letters on a small green mat: S, A, D, Y — confident, slightly uneven spacing.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 60px; line-height: 1.14;">
+        The children who arrive<br/>
+        with phonemic awareness<br/>
+        <em style="font-style: italic;">already in place</em> — do not<br/>
+        need you as much.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1500px; margin-top: 24px;">
+        They came from homes rich in oral language, nursery rhymes,
+        books. Children learning English as an additional language,
+        children whose home language shifts with the classroom,
+        children whose exposure has prioritized communication over
+        language play — <em>they need more from you, not less.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1500px; margin-top: 16px;">
+        When we assume the environment is sufficient and fail to make
+        the phoneme-grapheme connection explicit for the children who
+        need that explicitness, <em>we reproduce the inequality that
+        was already there.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 DYSLEXIA -->
+  <section data-label="Dyslexia and structured literacy" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · dyslexia and structured literacy</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px; color: #fff;">
+          Some children need<br/>
+          <em style="font-style: italic; color: var(--gold);">more</em> explicit<br/>
+          than a typical<br/>
+          Montessori classroom<br/>
+          provides.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Dyslexic brains often require structured literacy
+          instruction that is <em>more intensive, more repetitive, and
+          more systematic</em> than ordinary presentations.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is not a failure of Montessori. This is Montessori
+          adapted to how <em>this</em> brain works. You recognize what
+          she needs. You provide it — sometimes outside the normal
+          flow of the classroom day.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 WHAT TO DO TOMORROW -->
+  <section data-label="What to do tomorrow" class="on-cream">
+    <div class="eyebrow-slide">A way to look — starting tomorrow</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.16; color: var(--navy);">
+        Three observations<br/>
+        to begin the <em style="font-style: italic; color: var(--gold);">language year.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 28px 40px; margin-top: 32px; align-items: baseline;">
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">First —</div>
+        <p class="body-read" style="margin: 0;">
+          which children can already <em>hear</em> the first sound in
+          a word? Which cannot yet?
+        </p>
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">Second —</div>
+        <p class="body-read" style="margin: 0;">
+          when you present a sandpaper letter, are you only saying
+          the sound? Or are you making the <em>phoneme-grapheme
+          connection visible</em> in words the child already knows?
+        </p>
+        <div style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px;">Third —</div>
+        <p class="body-read" style="margin: 0;">
+          which children seem to be building awareness through the
+          ordinary flow — and which are quietly signalling that they
+          need something <em>more deliberate from you?</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 60px;">
+        In the children you have been<br/>
+        observing — which ones seem to<br/>
+        be building phonemic awareness<br/>
+        through the ordinary materials?<br/>
+        And which are asking you,<br/>
+        quietly, for something <em style="font-style: italic; color: var(--gold);">more</em><br/>
+        <em style="font-style: italic; color: var(--gold);">deliberate?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 17 · Primary · Language unit opens</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">16</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

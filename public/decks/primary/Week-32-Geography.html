@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 32 — Geography: Continents of the Child</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-geo {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(220,230,240,0.22), transparent 72%),
+      linear-gradient(160deg, #2a3848 0%, #121a22 100%);
+  }
+  /* Continent color grid */
+  .continents { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 32px; padding: 32px; background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15); }
+  .cont {
+    padding: 36px 12px; text-align: center;
+    font-family: var(--font-sans); font-size: 18px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #fff; font-weight: 600;
+    min-height: 110px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 6px;
+  }
+  .cont .name { font-size: 18px; }
+  .cont .col { font-family: var(--font-heading); font-style: italic; font-size: 16px; letter-spacing: 0.02em; text-transform: none; opacity: 0.85; }
+  .cont.na { background: #d47137; }  /* North America — orange */
+  .cont.sa { background: #cdb72a; color: #2a2400; }  /* South America — yellow */
+  .cont.eu { background: #c7c7c7; color: #333; }  /* Europe — pink/red lightened to neutral */
+  .cont.af { background: #2f8f3e; }  /* Africa — green */
+  .cont.as { background: #d4b847; color: #2a2400; }  /* Asia — yellow variant */
+  .cont.oc { background: #925dbf; }  /* Oceania — purple */
+  .cont.an { background: #a8c2d6; color: #1a2a3a; }  /* Antarctica — pale */
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Two · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Most primary classrooms<br/>
+        teach &ldquo;where we live.&rdquo;<br/>
+        Montessori teaches<br/>
+        <em style="font-style: italic; color: var(--gold);">seven continents<br/>
+        to a three-year-old.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Not because the child &ldquo;needs to know&rdquo; them.
+        Because the absorbent mind takes in vocabulary
+        effortlessly at this age, and because giving a child
+        the word <em>Africa</em> is giving her a piece of
+        the world.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 32 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 CONTINENTS -->
+  <section data-label="Seven continents, seven colors" class="on-cream">
+    <div class="eyebrow-slide">The continent map · seven shapes, seven colors</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 72px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        The globe is painted in <em style="font-style: italic; color: var(--gold);">seven colors.</em><br/>
+        The same colors will repeat for years.
+      </h2>
+      <div class="continents">
+        <div class="cont na"><span class="name">N. America</span><span class="col">orange</span></div>
+        <div class="cont sa"><span class="name">S. America</span><span class="col">pink</span></div>
+        <div class="cont eu"><span class="name">Europe</span><span class="col">red</span></div>
+        <div class="cont af"><span class="name">Africa</span><span class="col">green</span></div>
+        <div class="cont as"><span class="name">Asia</span><span class="col">yellow</span></div>
+        <div class="cont oc"><span class="name">Oceania</span><span class="col">brown</span></div>
+        <div class="cont an"><span class="name">Antarctica</span><span class="col">white</span></div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; max-width: 1500px;">
+        She meets the colors on the painted globe. She meets
+        them again on the continent puzzle map. Again on the
+        folder of animals from Africa. Again on the basket of
+        images of food from South America. <em>The colors are
+        a thread she follows through the classroom.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 TWO GLOBES -->
+  <section data-label="Two globes" class="on-cream">
+    <div class="eyebrow-slide">The two globes · land and water, then continents</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        A sandpaper globe.<br/>
+        Then a painted globe.<br/>
+        <em style="font-style: italic; color: var(--gold);">Then a map.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The first globe has only two textures — <em>sandpaper
+        land, smooth blue water.</em> She feels the difference
+        with her finger. She learns the Earth is mostly water.
+        <em>Before any name is given, she has a body-level
+        sense of land and sea.</em>
+      </p>
+      <p class="body-read">
+        The second globe is painted with the seven continents
+        in their colors. <em>Now the land becomes specific.</em>
+        The continents are introduced by name through a
+        three-period lesson. Then she meets them again as a
+        flat puzzle map — and the transition from sphere to
+        plane is itself a quiet geographical insight.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 LAND AND WATER FORMS -->
+  <section data-label="Land and water forms" class="on-cream">
+    <div class="eyebrow-slide">Land and water forms · geography as vocabulary</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        &ldquo;Island&rdquo; is a word<br/>
+        a three-year-old<br/>
+        can meet <em style="font-style: italic; color: var(--gold);">in her
+        hand</em> — a piece<br/>
+        of clay surrounded<br/>
+        by water in a tray.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The land and water form trays are some of the most
+        beloved materials in the primary classroom. <em>An
+        island. A lake. A peninsula. A gulf. A bay.</em>
+        Each is a small sculpted landscape, half in water,
+        half in land. She pours. She touches. She learns the
+        word.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--navy); font-size: 34px; line-height: 1.3; margin-top: 16px;">
+        Ten years later, she will read the word &ldquo;peninsula&rdquo;
+        in a textbook and feel the cool clay of a tray under
+        her fingertip. The word will never be abstract to her.
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · pouring an island" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-geo">
+        <div class="scene-label">A three-year-old at a small table with a wooden tray in front of her. The tray holds a sculpted landform — an island of green clay surrounded by a space ready for water. She is carefully pouring from a tiny glass pitcher of blue-tinted water into the tray, watching the water find the contour around the island. Her whole face is focused. A paper name card sits above the tray: &ldquo;island.&rdquo;</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the island tray</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is making<br/>
+          <em style="font-style: italic;">an island.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The pour is slow. She watches the water meet the
+          edge of the land. She sees the land become
+          surrounded. <em>This is the definition of an island
+          — and she is reading it with her hands.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Every verbal definition of &ldquo;island&rdquo; she
+          will ever meet is less vivid than this moment.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 CULTURE -->
+  <section data-label="Culture baskets" class="on-cream">
+    <div class="eyebrow-slide">The continent baskets · a peopled world</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        A basket of real things<br/>
+        from each continent.<br/>
+        <em style="font-style: italic; color: var(--gold);">Photographs of children.</em><br/>
+        Music. A small object.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Beside the map, a basket for each continent. Inside:
+        photographs of families, images of markets and homes
+        and landscapes, small cultural objects — a wooden
+        carving, a piece of fabric, a postcard. The child
+        handles them. She listens to a piece of music.
+        <em>The continent stops being an outline and becomes
+        a place where people live.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Be careful here. The basket is never a costume. It is
+        never a caricature. <em>It is a respectful window
+        offered to a three-year-old, chosen with the same
+        care you would choose a window into her own life.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose geography</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        A curriculum that<br/>
+        starts with &ldquo;our<br/>
+        country&rdquo; teaches<br/>
+        the child she is<br/>
+        <em style="font-style: italic;">at the center.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        A curriculum that begins with the globe — and only
+        later locates her country within it — teaches the
+        child she is <em>one part of a very large whole.</em>
+        These are not equivalent framings. They produce
+        different adults.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Be alert to the story your continent baskets tell.
+        <em>Every continent is someone&rsquo;s home. None is
+        exotic. None is primitive. All are present-tense.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When you introduce a<br/>
+        continent to a child — are<br/>
+        you handing her <em style="font-style: italic; color: var(--gold);">one of<br/>
+        the places the world<br/>
+        actually is?</em> Or are you<br/>
+        handing her a backdrop for<br/>
+        the place she already knows?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 32 · Primary · Geography</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">08</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 21 — Decodable Texts in the Montessori Classroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* decodable vs leveled */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 36px; }
+  .vs-grid .side { padding: 44px; display: flex; flex-direction: column; gap: 18px; min-height: 560px; }
+  .vs-grid .leveled { background: rgba(214,167,88,0.08); border: 1px solid rgba(20,30,60,0.15); }
+  .vs-grid .decodable { background: #13214b; color: #fff; border-left: none; }
+  .vs-grid .k {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase; font-weight: 600;
+    color: rgba(20,30,60,0.55);
+  }
+  .vs-grid .decodable .k { color: var(--gold); }
+  .vs-grid h3 {
+    font-family: var(--font-heading); font-size: 42px; line-height: 1.1; margin: 0;
+    letter-spacing: -0.01em; color: var(--navy);
+  }
+  .vs-grid .decodable h3 { color: #fff; }
+  .vs-grid h3 em { color: var(--gold); font-style: italic; }
+  .vs-grid p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; margin: 0; color: var(--fg-body); }
+  .vs-grid .decodable p { color: rgba(255,255,255,0.88); }
+  .vs-grid p em { color: var(--navy); font-style: italic; }
+  .vs-grid .decodable p em { color: var(--gold); font-style: italic; }
+  .vs-grid .strap {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; margin-top: auto; padding-top: 16px;
+    border-top: 1px solid rgba(20,30,60,0.2); color: rgba(20,30,60,0.62);
+  }
+  .vs-grid .decodable .strap { color: var(--gold); border-top-color: rgba(214,167,88,0.4); }
+
+  /* Tool table — two uses */
+  .use-grid {
+    display: grid; grid-template-columns: 260px 1fr 1fr; gap: 0;
+    margin-top: 36px; border-top: 1px solid rgba(20,30,60,0.2);
+  }
+  .use-grid > div {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(20,30,60,0.18);
+    border-right: 1px solid rgba(20,30,60,0.12);
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.5;
+  }
+  .use-grid > div:nth-child(3n) { border-right: none; }
+  .use-grid .h {
+    font-family: var(--font-sans); font-size: 24px;
+    text-transform: uppercase; letter-spacing: 0.24em;
+    font-weight: 600;
+  }
+  .use-grid .col-head {
+    background: var(--navy); color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.24em; font-weight: 600;
+    font-size: 24px; padding: 22px 24px;
+  }
+  .use-grid .row-head {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; color: var(--navy); line-height: 1.2;
+  }
+  .use-grid .cell-good { background: rgba(214,167,88,0.1); }
+  .use-grid .cell-bad { background: rgba(20,30,60,0.04); }
+  .use-grid .cell em { color: var(--navy); font-style: italic; }
+
+  /* Sofia scene */
+  .scene-sofia {
+    background:
+      radial-gradient(ellipse 55% 50% at 42% 38%, rgba(235,210,160,0.28), transparent 70%),
+      linear-gradient(165deg, #5a4930 0%, #221a10 100%);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-One · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Decodable texts are<br/>
+        a <em style="font-style: italic; color: var(--gold);">bridge.</em><br/>
+        Not a program.<br/>
+        Not a level.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Used responsively, they widen access. Used as a
+        tracking system, they break the model. The difference
+        is <em>who decides the child needs one.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 21 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · a tool, not a system</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 60px; line-height: 1.16;">
+        The question is not<br/>
+        whether decodable texts<br/>
+        <em style="font-style: italic;">have a place</em> in a<br/>
+        Montessori classroom.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.2; margin-top: 28px; color: var(--gold);">
+        The question is <em style="font-style: italic;">what</em><br/>
+        we think they are for —<br/>
+        and <em style="font-style: italic;">for whom.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 56px;">
+          It is mid-January.<br/>
+          Some children<br/>
+          are <em style="font-style: italic; color: var(--gold);">stuck</em><br/>
+          in a specific way.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Consolidated the pink words. Can segment, can blend.
+          And still — cannot yet <em>transfer</em> phonetic
+          knowledge into running text.
+        </p>
+        <p class="body-read">
+          Reading instruction elsewhere in the country is
+          having a loud conversation about decodable texts.
+          Your residents are hearing it. <em>They need a
+          Montessori-native way to think about the question.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part One —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        What they are.<br/>
+        What they<br/>
+        <em style="font-style: italic; color: var(--gold);">are not.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Decodable texts are organized by <em>phonetic progression.</em>
+        Leveled readers are organized by <em>everything at once.</em>
+        The difference matters.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 DECODABLE VS LEVELED -->
+  <section data-label="Decodable vs leveled readers" class="on-cream">
+    <div class="eyebrow-slide">Two different tools · often confused</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        One controls phonetic<br/>
+        pattern. One varies everything<br/>
+        <em style="font-style: italic; color: var(--gold);">at the same time.</em>
+      </h2>
+      <div class="vs-grid">
+        <div class="side leveled">
+          <div class="k">— Leveled readers —</div>
+          <h3>Difficulty rises on <em>many</em> dimensions at once.</h3>
+          <p>
+            Word frequency. Sentence length. Concept complexity.
+            Picture support. <em>A Level F is harder than a
+            Level C in multiple ways simultaneously.</em>
+          </p>
+          <p>
+            Mixes knowns and unknowns. The child's cognitive
+            resources split between decoding, vocabulary,
+            syntax, and meaning-making — all at once.
+          </p>
+          <div class="strap">— Decoding is one of many loads. —</div>
+        </div>
+        <div class="side decodable">
+          <div class="k">— Decodable texts —</div>
+          <h3>Only the <em>phonetic</em> work is doing the work.</h3>
+          <p>
+            A short book built on a controlled sequence of
+            phonetic patterns. Short a, then short a with
+            consonant blends, then short i — <em>the progression
+            is phonological, not conceptual.</em>
+          </p>
+          <p>
+            The story stays simple — sometimes silly — on
+            purpose. Everything else is stable. <em>The child's
+            brain gets to spend itself on sound.</em>
+          </p>
+          <div class="strap">— Isolates known from unknown. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 BRIDGE, NOT PRIMARY -->
+  <section data-label="A bridge, not a method" class="on-cream">
+    <div class="eyebrow-slide">Critical distinction · what they are not</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14; color: var(--navy);">
+        A decodable text is<br/>
+        <em style="font-style: italic; color: var(--gold);">not</em> your primary<br/>
+        reading method.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The Montessori environment still holds: reading for
+        meaning is central. Children learn to read by reading.
+        The prepared environment contains real books with real
+        stories. <em>None of that changes.</em>
+      </p>
+      <p class="body-read">
+        What decodable texts do is <em>accelerate phonetic
+        consolidation</em> for children whose processing systems
+        need more reinforcement than the pink and blue series
+        provides implicitly. Not a substitute. <em>A bridge.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Two uses. Same<br/>
+        <em style="font-style: italic; color: var(--gold);">material.</em><br/>
+        Different purpose.
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        The same stack of decodable books can be a justice
+        tool — or a gatekeeping one. The difference is in how
+        you decide a child gets one.
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 RESPONSIVE VS TRACKING -->
+  <section data-label="Responsive use vs tracking use" class="on-cream">
+    <div class="eyebrow-slide">The same text · two very different uses</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The book is neutral.<br/>
+        <em style="font-style: italic; color: var(--gold);">The decision</em> is not.
+      </h2>
+      <div class="use-grid">
+        <div></div>
+        <div class="col-head">— Responsive support —</div>
+        <div class="col-head">— Tracking system —</div>
+
+        <div class="row-head">Who gets one?</div>
+        <div class="cell cell-good">The specific child whose observation tells you her nervous system needs <em>this particular</em> phonetic practice right now.</div>
+        <div class="cell cell-bad">Every child, sorted into levels. Or: the children labeled "behind." <em>A group decision, not a child-specific one.</em></div>
+
+        <div class="row-head">Why this child?</div>
+        <div class="cell cell-good">You have watched her. The pink words are solid. The transfer to reading has a lag. <em>You responded to evidence.</em></div>
+        <div class="cell cell-bad">A scope and sequence said so. A benchmark said so. An outside program said so. <em>Not the child.</em></div>
+
+        <div class="row-head">What is tracked?</div>
+        <div class="cell cell-good">Her reading trajectory. When the consolidation happens, the bridge is put away. <em>She returns to real books.</em></div>
+        <div class="cell cell-bad">Her "level." Reported to families. Used to sort children into categories of ability — <em>which then stick.</em></div>
+
+        <div class="row-head">What children learn</div>
+        <div class="cell cell-good">Different children need different supports. <em>That is normal and honored.</em></div>
+        <div class="cell cell-bad">Some children are "advanced." Some are "behind." <em>Reading ability is a fixed trait.</em></div>
+      </div>
+    </div>
+    <div class="slide-pagenum" style="bottom: 20px;">08</div>
+  </section>
+
+  <!-- 09 THE HONEST CONVERSATION -->
+  <section data-label="The honest conversation with the child" class="on-cream">
+    <div class="eyebrow-slide">What you actually say to the child</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px;">
+          Children<br/>
+          understand<br/>
+          <em style="font-style: italic; color: var(--gold);">supports.</em><br/>
+          They use them<br/>
+          everywhere.
+        </p>
+        <div class="rule-gold" style="margin-top: 28px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 8px;">
+        <p class="attrib" style="color: var(--gold);">You might say, simply</p>
+        <p class="serif-quote" style="font-size: 36px; line-height: 1.3; color: var(--navy); margin-top: 0;">
+          "I notice you are working really hard with these
+          pink words. <em style="font-style: italic;">I want your
+          brain to have a chance to practice them in a real
+          book.</em> These books have simple stories — but
+          their words only use the sounds you have been
+          practicing. When you finish these, you will be ready
+          for the blue series like the rest."
+        </p>
+        <p class="body-read" style="margin-top: 8px;">
+          Honest. Clear. Not pretending the decodable is the
+          same as the blue series. <em>Children are not
+          confused by different tools for different jobs.</em>
+          They are confused when we pretend those tools are
+          interchangeable.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Sofia.<br/>
+        <em style="font-style: italic; color: var(--gold);">Late January.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        A six-year-old who has consolidated half the pink
+        series. She can name sounds. <em>She cannot yet read the
+        word cat on the page without going back to the sequence.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 11 SOFIA SCENE -->
+  <section data-label="Scene · Sofia" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-sofia">
+        <div class="scene-label">A six-year-old girl seated at a small table with a short, thin paperback open in front of her. The book has only a few words per page. Her finger is tracing under "The cat sat on the mat." Her mouth is shaping the sounds slowly — not reading aloud for the guide, reading aloud to herself.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · late January · Sofia · six years</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.16; margin-top: 8px;">
+          After four weeks<br/>
+          of a single<br/>
+          decodable book,<br/>
+          <em style="font-style: italic;">something shifts.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The repetition. The predictability. The fact that
+          her brain does not have to hold many variables at
+          once. <em>Her system has room to consolidate.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Then she picks up a blue book. Not perfectly — but
+          she reads it. <em>The decodable did what it was
+          supposed to do.</em> She was still doing sand letters
+          and pink words. The decodable was the thing her
+          particular nervous system needed in that moment.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 THE OTHER CHILD -->
+  <section data-label="The child who does not need one" class="on-cream">
+    <div class="eyebrow-slide">Mid-February · a different child · a harder call</div>
+    <div class="stack mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        A strong reader. Moving<br/>
+        through the blue series<br/>
+        with <em style="font-style: italic; color: var(--gold);">ease.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Someone suggests he would benefit from a structured
+        decodable sequence — a digital tool that tracks his
+        progress, assigns points, moves him through phonetic
+        patterns methodically.
+      </p>
+      <p class="body-read">
+        <em>What would you gain?</em> Efficiency. Tracking.
+        Data. The appearance of rigor.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        What would you lose? <em>The choice that defines
+        Montessori reading. The child's agency in what to read.
+        His connection to meaningful stories. His trajectory
+        toward the library of the world.</em>
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 36px; line-height: 1.3; margin-top: 20px;">
+        He is not your patient. The first child was.
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · when a bridge becomes a gate</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        In many schools, decodable<br/>
+        texts are not a bridge.<br/>
+        They are <em style="font-style: italic;">how you track children.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        You tell a family their child is reading at a "Level 2"
+        when what you actually mean is that her phonological
+        processing is developing at an expected pace but her
+        sight-word bank is small. <em>That language problem
+        belongs to the system — not the child.</em>
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px;">
+        It serves people with power. It lets you sort. It lets
+        you tell some families "advanced" and others "behind."
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px;">
+        The moment you turn decodable texts into a leveling
+        system, you have <em>broken the Montessori model.</em>
+        You have turned a support tool into a gatekeeping one.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ND NOTE -->
+  <section data-label="Dyslexia and processing speed" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · this is access work</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px; color: #fff;">
+          Dyslexia.<br/>
+          Processing<br/>
+          speed<br/>
+          <em style="font-style: italic; color: var(--gold);">differences.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Some children, particularly those with dyslexia or
+          processing-speed differences, will benefit from
+          decodable texts in ways that are <em>simply not
+          available through the pink and blue series alone.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is not a philosophical compromise. <em>This is
+          an equity tool.</em> It is providing access to a child
+          whose nervous system is doing real phonological work
+          and deserves a material that meets it.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When you offer a child a<br/>
+        decodable text — are you<br/>
+        doing it because you have<br/>
+        <em style="font-style: italic; color: var(--gold);">observed</em> that her nervous<br/>
+        system needs this particular<br/>
+        kind of practice? Or because<br/>
+        you have a program you are<br/>
+        trying to implement?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 21 · Primary · Decodable Texts</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">15</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

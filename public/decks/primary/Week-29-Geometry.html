@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 29 — Geometry in Primary: Naming the World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-geom {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(220,220,230,0.22), transparent 72%),
+      linear-gradient(160deg, #2a3040 0%, #121820 100%);
+  }
+  .shapes-row {
+    display: flex; gap: 32px; margin-top: 40px; padding: 40px;
+    background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15);
+    align-items: end; justify-content: space-around;
+  }
+  .shape-item { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .shape-item .lbl {
+    font-family: var(--font-heading); font-style: italic;
+    color: var(--navy); font-size: 24px; letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Nine · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        A three-year-old<br/>
+        who can say &ldquo;trapezoid&rdquo;<br/>
+        is not showing off.<br/>
+        <em style="font-style: italic; color: var(--gold);">She is naming
+        the world.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Geometry in Montessori is not a middle-school subject
+        pulled earlier. It is a <em>vocabulary,</em> offered
+        to the child at the age when vocabulary is most
+        welcome. The formal mathematics arrives later. The
+        names — and the objects they refer to — are hers now.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 29 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · the two wrong assumptions</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 56px; line-height: 1.18;">
+        First: that geometry<br/>
+        is hard, and must<br/>
+        wait. <em>It is not.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 56px; line-height: 1.18; margin-top: 28px; color: var(--gold);">
+        Second: that children<br/>
+        cannot learn the names.<br/>
+        <em>They learn them<br/>
+        easier than adults can.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE CABINET -->
+  <section data-label="The geometric cabinet" class="on-cream">
+    <div class="eyebrow-slide">The geometric cabinet · a drawer full of shapes</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 60px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        She handles the shape.<br/>
+        <em style="font-style: italic; color: var(--gold);">Then</em> she hears its name.
+      </h2>
+      <div class="shapes-row">
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">circle</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="60,10 110,100 10,100" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">triangle</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="96" height="96" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">square</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,25 100,25 110,95 10,95" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">trapezoid</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="60,10 108,44 90,104 30,104 12,44" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">pentagon</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="60,8 108,36 108,84 60,112 12,84 12,36" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">hexagon</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="60" rx="52" ry="34" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">ellipse</div>
+        </div>
+        <div class="shape-item">
+          <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="60,14 106,60 60,106 14,60" fill="none" stroke="#13214b" stroke-width="3"/>
+          </svg>
+          <div class="lbl">rhombus</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE ORDER -->
+  <section data-label="Shape before name" class="on-cream">
+    <div class="eyebrow-slide">Shape before name · the Montessori sequence</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        She traces the edge<br/>
+        with her finger.<br/>
+        <em style="font-style: italic; color: var(--gold);">That is the lesson.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        She takes a wooden shape inset out of its frame. She
+        traces the outline of the inset with her index and
+        middle finger. She traces the empty frame. She fits
+        the inset back. <em>She has done geometry.</em> The
+        shape now exists inside her, with the edge she felt.
+      </p>
+      <p class="body-read">
+        Later, the three-period lesson gives her the word.
+        &ldquo;This is a hexagon.&rdquo; &ldquo;Show me the
+        hexagon.&rdquo; &ldquo;What is this?&rdquo;
+        <em>The name attaches to a thing she already knows.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · naming a stop sign" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-geom">
+        <div class="scene-label">A four-year-old on a neighborhood walk, stopping at a corner. She is pointing up at a red stop sign. Her guide is crouched next to her, looking where she is looking. Her mouth is forming a word. Her mother is watching from two paces back, listening.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the stop sign</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          &ldquo;Mama — <em style="font-style: italic;">octagon.&rdquo;</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She is not performing. She is not showing off. She
+          has simply looked up and seen a shape she knows, and
+          named it. The name arrived correctly because the
+          <em>object</em> is an old friend. She traced its
+          eight sides years before she could spell her own
+          name.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is the quiet effect of the geometric cabinet.
+          <em>The world becomes a text she can read.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHY LATE -->
+  <section data-label="Why formal geometry arrives late" class="on-cream">
+    <div class="eyebrow-slide">Why formal geometry arrives later · and not yet here</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        No angle measurements.<br/>
+        No area formulas.<br/>
+        <em style="font-style: italic; color: var(--gold);">Not yet. Not
+        needed.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        The child does not measure the trapezoid&rsquo;s area.
+        She does not calculate the triangle&rsquo;s angles.
+        She does not prove congruence. <em>She simply knows,
+        in her body, that these shapes exist, what they are
+        named, and how they differ from one another.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        When formal geometry arrives in elementary, the
+        shapes are already intimates. The axioms fall onto
+        known ground. <em>The hardest part of geometry — the
+        vocabulary — is already done.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity · who owns the word" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who owns the word</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Every child can say<br/>
+        <em style="font-style: italic;">&ldquo;rhombus.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        In schools where precise academic vocabulary is a
+        class marker — handed to some children at home and
+        withheld from others — it becomes a sorting tool by
+        age eight. The Montessori three-period lesson does
+        not care where your parents went to school. <em>It
+        gives the word to every child the day the shape is
+        handled.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        A four-year-old from any home, holding an octagon,
+        learning to say its name, is being handed
+        <em>linguistic infrastructure</em> her peers elsewhere
+        will not meet until middle school.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When a child asks<br/>
+        &ldquo;what is that shape?&rdquo;<br/>
+        — are you giving her<br/>
+        <em style="font-style: italic; color: var(--gold);">the real word,</em> or a<br/>
+        kid word you think she<br/>
+        can handle?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 29 · Primary · Geometry in Primary</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">08</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

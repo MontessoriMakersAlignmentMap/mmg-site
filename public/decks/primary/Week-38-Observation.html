@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 38 — Observation: The Guide's Central Practice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-obs {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(200,200,210,0.18), transparent 72%),
+      linear-gradient(160deg, #1c2433 0%, #0a0e16 100%);
+  }
+  /* Observation notebook spread */
+  .notebook {
+    margin-top: 32px; padding: 48px;
+    background: #fbf7ec;
+    border: 1px solid rgba(20,30,60,0.2);
+    display: grid; grid-template-columns: 200px 1fr; gap: 48px;
+    font-family: var(--font-heading);
+    position: relative;
+  }
+  .notebook::before {
+    content: ''; position: absolute; top: 24px; bottom: 24px;
+    left: 224px; border-left: 1.5px dashed rgba(20,30,60,0.2);
+  }
+  .notebook-ts { font-style: italic; font-size: 26px; color: var(--navy); }
+  .notebook-ts span { display: block; font-family: var(--font-sans); font-style: normal; font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+  .notebook-line { font-size: 22px; line-height: 1.55; color: var(--fg-body); font-style: normal; font-family: var(--font-heading); }
+  .notebook-line.italic { font-style: italic; color: var(--navy); }
+  /* Two-column compare: inference vs observation */
+  .obs-vs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: rgba(214,167,88,0.35); margin-top: 24px;
+  }
+  .obs-vs > div { background: #f3ecdc; padding: 28px; }
+  .obs-vs .hdr {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .obs-vs p {
+    font-family: var(--font-heading); font-size: 24px; font-style: italic;
+    color: var(--navy); line-height: 1.38; margin: 0;
+  }
+  .obs-vs .flagged { background: #13214b; }
+  .obs-vs .flagged .hdr { color: var(--gold); }
+  .obs-vs .flagged p { color: #f3e9d2; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Eight · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        The most important<br/>
+        skill of a<br/>
+        Montessori guide<br/>
+        is not <em style="font-style: italic; color: var(--gold);">presenting
+        materials.</em><br/>
+        It is <em style="font-style: italic; color: var(--gold);">noticing
+        children.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Observation — the careful, written, non-judgmental
+        recording of what a child is doing — is the engine
+        of every decision you will make all year. Without it,
+        you are guessing. With it, you are responding to an
+        actual person.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 38 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OBSERVATION VS INFERENCE -->
+  <section data-label="Observation vs inference" class="on-cream">
+    <div class="eyebrow-slide">The first discipline · observation is not interpretation</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        What you write down<br/>
+        must be <em style="font-style: italic; color: var(--gold);">what you saw.</em>
+      </h2>
+      <div class="obs-vs">
+        <div>
+          <div class="hdr">Observation</div>
+          <p>&ldquo;Maya worked at the pink tower for 18 minutes. Built it three times. The second time, the cube order was reversed. She paused, disassembled, rebuilt correctly.&rdquo;</p>
+        </div>
+        <div class="flagged">
+          <div class="hdr">Inference (not observation)</div>
+          <p>&ldquo;Maya was frustrated with the pink tower today. She&rsquo;s being a perfectionist again. Probably tired.&rdquo;</p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; max-width: 1500px;">
+        The left column is evidence. It can be returned to,
+        compared, shared. The right column is a story you
+        told yourself about the evidence — and it will bias
+        every decision that follows. <em>The first discipline
+        of observation is telling these two apart.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT TO RECORD -->
+  <section data-label="What to record" class="on-cream">
+    <div class="eyebrow-slide">What gets recorded</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Four things.<br/>
+        <em style="font-style: italic; color: var(--gold);">Timestamp. Child.<br/>
+        Material. Duration.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <div class="notebook">
+        <div>
+          <div class="notebook-ts">9:42<span>timestamp</span></div>
+          <div class="notebook-ts" style="margin-top: 28px;">Samuel<span>child</span></div>
+          <div class="notebook-ts" style="margin-top: 28px;">Spindle box<span>material</span></div>
+          <div class="notebook-ts" style="margin-top: 28px;">14 min.<span>duration</span></div>
+        </div>
+        <div class="notebook-line">
+          S chose spindle box from shelf without prompting. Counted spindles into each compartment. Paused at 6 — recounted twice. Resolved. Continued. Completed 0–9 without error. Packed away in correct order.<br/><br/>
+          <span class="italic">Next: ready for teen boards.</span>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px;">
+        Nothing dramatic. That is the point. A short log,
+        written in the moment, repeated daily, becomes — over
+        months — <em>a record of a child becoming who she
+        is.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 HOW TO OBSERVE -->
+  <section data-label="How to observe" class="on-cream">
+    <div class="eyebrow-slide">How to observe · the stool in the corner</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Sit down. <em style="font-style: italic; color: var(--gold);">Be
+        boring.</em><br/>
+        Do not make eye<br/>
+        contact. Do not help.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        A small stool, placed in the quietest corner of the
+        room. A notebook. A pen. <em>You become a piece of
+        furniture for twenty minutes.</em> You do not intervene
+        unless a child is in danger. You do not respond to
+        eye contact beyond a small smile. The children learn
+        — quickly — that this stool means you are not
+        available. And then, they get on with their lives.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        What you witness in those twenty minutes is the
+        classroom as it actually is when you are not
+        directing it. <em>That is the classroom you are
+        preparing for. Not the one that behaves when you are
+        walking through it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · the observation stool" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-obs">
+        <div class="scene-label">A small wooden stool in the corner of a primary classroom. The guide sits on it with a bound notebook open on her lap, writing quickly with a pencil, her face calm and attentive. She is not looking at the page. She is looking across the room at a child working with the long rods. The child — absorbed, unaware of the watching — is laying rods end to end along a blue mat.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · writing without looking down</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is writing<br/>
+          <em style="font-style: italic;">without looking<br/>
+          at the page.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Because looking down would miss the next moment.
+          Her handwriting will be bad. <em>The observation
+          will be good.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          She will transcribe this evening. She will clean up
+          the notation. But the evidence was captured in
+          real time — and that is what matters. <em>You
+          cannot re-observe a morning.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 USE -->
+  <section data-label="How observations are used" class="on-cream">
+    <div class="eyebrow-slide">What observations are for</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Three uses.<br/>
+        <em style="font-style: italic; color: var(--gold);">Presentation decisions.<br/>
+        Parent conferences.<br/>
+        Catching yourself.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        <strong>Presentation decisions.</strong> Which child
+        gets which lesson next week, and why. If a child has
+        been working steadily with the spindle boxes for ten
+        days, the teen boards are next. Observation is the
+        evidence that tells you so.
+      </p>
+      <p class="body-read">
+        <strong>Parent conferences.</strong> Not &ldquo;he&rsquo;s
+        doing great&rdquo; but &ldquo;here is what he has
+        worked on for the past six weeks, in his own choice,
+        for this many minutes.&rdquo; <em>Evidence turns
+        conferences into partnerships.</em>
+      </p>
+      <p class="body-read">
+        <strong>Catching yourself.</strong> Which children
+        appear in your notes every day? Which ones almost
+        never? <em>Your observation log is a mirror of your
+        attention. And your attention is not evenly
+        distributed.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity · the unseen child" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who is unseen</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Every Friday, open<br/>
+        your notebook and<br/>
+        find <em style="font-style: italic;">who is missing.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        There will be children who do not appear in the
+        week&rsquo;s observations. Quiet children. Children
+        who disappear into the middle of the room. Children
+        who do not demand attention and so do not receive it.
+        <em>The unseen child is the equity problem.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Next Monday, put her name at the top of your notebook
+        page. Observe her first. <em>The act of naming her
+        corrects the drift of your attention.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        Whose name is<br/>
+        missing from your<br/>
+        notebook this week<br/>
+        — and <em style="font-style: italic; color: var(--gold);">what does<br/>
+        that tell you about<br/>
+        what you see?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 38 · Primary · Observation</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">08</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

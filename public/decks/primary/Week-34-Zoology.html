@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 34 — Zoology: Classification and Kinship</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-zoo {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(200,180,160,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2a1e 0%, #121210 100%);
+  }
+  /* Classification grid */
+  .classes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 32px; padding: 28px; background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15); }
+  .class-cell {
+    padding: 26px 20px; display: flex; flex-direction: column; gap: 10px; align-items: center;
+    border: 1px solid rgba(20,30,60,0.15); min-height: 200px;
+  }
+  .class-cell .icon {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--gold); letter-spacing: 0.02em;
+  }
+  .class-cell h4 {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600; color: var(--navy);
+    margin: 0;
+  }
+  .class-cell p {
+    font-family: var(--font-sans); font-size: 18px; line-height: 1.4;
+    color: var(--fg-body); margin: 0; text-align: center;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Four · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        A four-year-old<br/>
+        who can sort a<br/>
+        bat from a bird<br/>
+        is <em style="font-style: italic; color: var(--gold);">doing
+        biology,</em><br/>
+        not trivia.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Classification is the central act of biological
+        thinking. The primary child is not memorizing species
+        names. She is practicing — in small, material ways —
+        <em>the habit of noticing what is the same and what
+        is different.</em> The rest of science is built on
+        that habit.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 34 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · a reframe</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.18;">
+        &ldquo;Animals&rdquo; is a unit<br/>
+        in most curricula.
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        In Montessori, animals<br/>
+        are a thinking tool.<br/>
+        <em>Sorting them teaches
+        the child how to sort.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE FIVE CLASSES -->
+  <section data-label="The five classes of vertebrates" class="on-cream">
+    <div class="eyebrow-slide">The vertebrate classes · the first taxonomy a child meets</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Five groups, <em style="font-style: italic; color: var(--gold);">each defined by what
+        is the same about its members.</em>
+      </h2>
+      <div class="classes">
+        <div class="class-cell">
+          <div class="icon">— fish —</div>
+          <h4>Fish</h4>
+          <p>Live in water. Breathe through gills. Most have scales.</p>
+        </div>
+        <div class="class-cell">
+          <div class="icon">— amphibians —</div>
+          <h4>Amphibians</h4>
+          <p>Begin life in water. Live on land as adults. Moist skin.</p>
+        </div>
+        <div class="class-cell">
+          <div class="icon">— reptiles —</div>
+          <h4>Reptiles</h4>
+          <p>Dry scaly skin. Lay eggs on land. Cold-blooded.</p>
+        </div>
+        <div class="class-cell">
+          <div class="icon">— birds —</div>
+          <h4>Birds</h4>
+          <p>Feathers. Wings. Lay hard-shelled eggs. Warm-blooded.</p>
+        </div>
+        <div class="class-cell">
+          <div class="icon">— mammals —</div>
+          <h4>Mammals</h4>
+          <p>Hair or fur. Feed milk to their young. Warm-blooded.</p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; max-width: 1500px;">
+        Each class is introduced with a basket of animal
+        figurines, photographs, and a small definition card.
+        <em>The child sorts the figures, over and over, until
+        the boundaries of the categories have settled into
+        her mind.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 SCENE -->
+  <section data-label="Scene · sorting the figures" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-zoo">
+        <div class="scene-label">A five-year-old at a low table with a green mat spread before her. On the mat: five small ceramic bowls, each labeled with a class name card. A pile of small realistic animal figurines is beside her. She is holding a bat, paused, looking between the &ldquo;birds&rdquo; bowl and the &ldquo;mammals&rdquo; bowl. Her face is working through a real taxonomic question.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the bat problem</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          This is <em style="font-style: italic;">not<br/>
+          a trick question.</em><br/>
+          It is biology.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She remembers the definitions: birds have feathers.
+          Mammals have fur and feed milk to their young. A
+          bat has fur. <em>The bat goes in the mammal bowl.</em>
+          She is not memorizing a fact. She is using a
+          definition to make a decision.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is the first inductive reasoning a scientist
+          ever performs — applied to an animal figurine the
+          size of her thumb.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 BEYOND THE CLASSES -->
+  <section data-label="Beyond the classes" class="on-cream">
+    <div class="eyebrow-slide">What comes after the five classes</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        She will meet the<br/>
+        invertebrates in<br/>
+        elementary. She will<br/>
+        meet <em style="font-style: italic; color: var(--gold);">evolution</em><br/>
+        there, too.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Primary gives her the <em>vertebrates</em> because
+        they are the most visible and the easiest to classify.
+        Elementary will give her the invertebrates, the plant
+        kingdom in depth, and eventually the story of how the
+        groups came to be. <em>Each stage rests on the
+        sorting habit she formed in the primary room.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The child who sorted figurines into bowls at five does
+        not find cladistics confusing at eleven. <em>She has
+        been drawing these lines for six years.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 KINSHIP -->
+  <section data-label="Kinship with animals" class="on-cream">
+    <div class="eyebrow-slide">The quiet second lesson · kinship</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        She learns that she<br/>
+        is in a bowl too.<br/>
+        <em style="font-style: italic; color: var(--gold);">Mammal.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        At some point — usually without being asked — the
+        child looks up from her sorting and puts herself into
+        one of the bowls. She has fur (hair). Her mother fed
+        her milk. She is warm. <em>She is a mammal.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is not biology trivia. It is the beginning of
+        a biological identity: the child as <em>part of the
+        animal kingdom,</em> not its observer. The
+        environmental and ethical consequences of this
+        identity will take decades to unfold.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When the children in<br/>
+        your classroom sort<br/>
+        animals — are they<br/>
+        <em style="font-style: italic; color: var(--gold);">playing with
+        toys?</em> Or<br/>
+        are they practicing<br/>
+        the first move a<br/>
+        biologist ever makes?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 34 · Primary · Zoology</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">07</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

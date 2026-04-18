@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 18 — Phonological Awareness: What It Is, Why It Matters, and How Montessori Builds It</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Capabilities — what a child with PA can do */
+  .capabilities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 48px;
+    row-gap: 18px;
+    margin-top: 40px;
+  }
+  .capabilities .cap {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-top: 1px solid rgba(20,30,60,0.15);
+  }
+  .capabilities .cap:nth-child(-n+2) { border-top: 1px solid rgba(20,30,60,0.25); }
+  .capabilities .cap .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 30px;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .capabilities .cap p {
+    font-family: var(--font-sans);
+    font-size: 26px; line-height: 1.4;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .capabilities .cap p em {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .capabilities .cap p .ex {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* PA vs phonics vs reading — triptych */
+  .tri {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .tri .t {
+    background: var(--bg-cream);
+    padding: 36px 32px 40px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 460px;
+    position: relative;
+  }
+  .tri .t.first { background: #13214b; color: #fff; }
+  .tri .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .tri h3 {
+    font-family: var(--font-heading);
+    font-size: 38px; line-height: 1.1;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .tri .first h3 { color: #fff; }
+  .tri h3 em { color: var(--gold); font-style: italic; }
+  .tri p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.5;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .tri .first p { color: rgba(255,255,255,0.85); }
+  .tri p em { color: var(--navy); font-style: italic; }
+  .tri .first p em { color: var(--gold); font-style: italic; }
+  .tri .tag {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 14px;
+    line-height: 1.35;
+  }
+  .tri .first .tag { border-top-color: rgba(214,167,88,0.5); }
+
+  /* Five Montessori tools that build PA */
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: rgba(214,167,88,0.35);
+    margin-top: 36px;
+  }
+  .tools .tool {
+    background: var(--bg-cream);
+    padding: 32px 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 440px;
+  }
+  .tools .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .tools h3 {
+    font-family: var(--font-heading);
+    font-size: 28px; line-height: 1.14;
+    color: var(--navy);
+    margin: 0;
+  }
+  .tools h3 em { color: var(--gold); font-style: italic; }
+  .tools p {
+    font-family: var(--font-sans);
+    font-size: 24px; line-height: 1.42;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .tools p em { color: var(--navy); font-style: italic; }
+  .tools .builds {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    margin-top: auto;
+    border-top: 1px solid rgba(214,167,88,0.4);
+    padding-top: 12px;
+    line-height: 1.35;
+  }
+
+  /* Gaps instruction card */
+  .gaps {
+    background: #f3ecdc;
+    border-top: 4px solid var(--gold);
+    padding: 40px 44px 44px;
+    margin-top: 36px;
+  }
+  .gaps .k {
+    font-family: var(--font-sans);
+    font-size: 24px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .gaps h3 {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    line-height: 1.12;
+    color: var(--navy);
+    margin: 0 0 28px;
+  }
+  .gaps h3 em { color: var(--gold); font-style: italic; }
+  .gaps .row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(20,30,60,0.15);
+    align-items: baseline;
+  }
+  .gaps .row:first-of-type { border-top: 1px solid rgba(20,30,60,0.25); }
+  .gaps .row .n {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 30px;
+  }
+  .gaps .row p {
+    font-family: var(--font-sans);
+    font-size: 26px; line-height: 1.45;
+    color: var(--fg-body);
+    margin: 0;
+  }
+  .gaps .row p em {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--navy);
+  }
+
+  /* Scenes */
+  .scene-samuel {
+    background:
+      radial-gradient(ellipse 60% 55% at 45% 45%, rgba(235,200,140,0.26), transparent 70%),
+      linear-gradient(165deg, #4d3f2a 0%, #231b10 100%);
+  }
+  .scene-maria {
+    background:
+      radial-gradient(ellipse 55% 50% at 55% 45%, rgba(235,210,160,0.3), transparent 70%),
+      linear-gradient(160deg, #635030 0%, #2a2416 100%);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Eighteen · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 104px; line-height: 1.04; padding-bottom: 24px;">
+        Phonological<br/>
+        <em style="font-style: italic; color: var(--gold);">awareness.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1320px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        It is not about letters. It is about <em>sound.</em>
+        And if you do not know what you are actually building
+        when you present the sandpaper letters — you cannot
+        notice when it is not happening.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 18 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING HOOK -->
+  <section data-label="Opening hook" class="on-cream">
+    <div class="eyebrow-slide">Opening · what you are actually teaching</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 64px; line-height: 1.16;">
+        You will trace the letter<br/>
+        and say the sound. She will<br/>
+        <em style="font-style: italic;">repeat it back.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="serif-quote" style="font-size: 52px; line-height: 1.2; margin-top: 32px; color: var(--gold);">
+        That is not evidence<br/>
+        she is <em style="font-style: italic;">hearing the sounds</em><br/>
+        in words.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY NOW -->
+  <section data-label="Why this, why now" class="on-cream">
+    <div class="eyebrow-slide">Why this, why now</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 60px;">
+          Your entire<br/>
+          language program<br/>
+          <em style="font-style: italic; color: var(--gold);">depends</em> on this.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Many of you will present the sandpaper letters
+          beautifully. Some of you will present them as if you
+          are teaching <em>letter recognition</em> — or letter
+          formation.
+        </p>
+        <p class="body-read">
+          You are not. You are teaching that words <em>are made
+          of sounds.</em> That sounds can be heard, isolated,
+          moved, ordered. Once you understand that, your
+          observation becomes precise. You will see immediately
+          which children have the awareness — and which do not.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part One —</div>
+      <h2 class="display" style="font-size: 116px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        What PA<br/>
+        actually <em style="font-style: italic; color: var(--gold);">is.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1160px; text-align: center; font-size: 30px;">
+        The conscious understanding that language is made of
+        sounds — not letters, not meaning, <em>sounds</em> — and
+        that those sounds can be heard and played with.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 CAPABILITIES -->
+  <section data-label="What a child with PA can do" class="on-cream">
+    <div class="eyebrow-slide">What a child with PA can do · five listening capacities</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Listen for these<br/>
+        in the children in front of you.
+      </h2>
+      <div class="capabilities">
+        <div class="cap">
+          <div class="n">01</div>
+          <p>
+            She hears that <em>cat</em> and <em>cap</em> start with
+            the <em>same sound.</em>
+          </p>
+        </div>
+        <div class="cap">
+          <div class="n">02</div>
+          <p>
+            She can clap the <em>syllables</em> in her own name
+            without being taught the word.
+          </p>
+        </div>
+        <div class="cap">
+          <div class="n">03</div>
+          <p>
+            She can come up with a word that <em>rhymes</em> with
+            <span class="ex">bat</span>.
+          </p>
+        </div>
+        <div class="cap">
+          <div class="n">04</div>
+          <p>
+            She can <em>delete</em> the beginning sound from
+            <span class="ex">cat</span> — and hear what is left.
+          </p>
+        </div>
+        <div class="cap">
+          <div class="n">05</div>
+          <p>
+            She can <em>blend</em> sounds: if you say
+            <span class="ex">c · a · t</span>, she hears <em>cat.</em>
+          </p>
+        </div>
+        <div class="cap">
+          <div class="n">—</div>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-style: italic; font-size: 28px;">
+            This is the work you are actually watching for.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 PA vs PHONICS vs READING -->
+  <section data-label="PA is not phonics, not reading" class="on-cream">
+    <div class="eyebrow-slide">Three distinctions · where one ends and the next begins</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        It stands <em style="font-style: italic; color: var(--gold);">alone.</em><br/>
+        It is foundational to everything else.
+      </h2>
+      <div class="tri">
+        <div class="t first">
+          <div class="k">— First —</div>
+          <h3>Phonological<br/>awareness.</h3>
+          <p>
+            Hearing that words are made of sounds. Playing with
+            those sounds. <em>The ear alone.</em>
+          </p>
+          <div class="tag">— No print required. —</div>
+        </div>
+        <div class="t">
+          <div class="k">— Then —</div>
+          <h3>Phonics.</h3>
+          <p>
+            The connection between those sounds and the
+            <em>letters</em> that represent them. Sound maps to
+            symbol. Symbol maps to sound.
+          </p>
+          <div class="tag">— The bridge to print. —</div>
+        </div>
+        <div class="t">
+          <div class="k">— Then —</div>
+          <h3>Reading.</h3>
+          <p>
+            Decoding words on a page <em>and</em> understanding
+            them. Meaning-making at speed.
+          </p>
+          <div class="tag">— What reading is for. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PREDICTOR -->
+  <section data-label="The research is unambiguous" class="on-navy">
+    <div class="eyebrow-slide">The research is unambiguous</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 62px; line-height: 1.14;">
+        Children who have it<br/>
+        in kindergarten<br/>
+        typically become<br/>
+        <em style="font-style: italic; color: var(--gold);">successful readers.</em>
+      </h2>
+      <p class="body-lg" style="color: rgba(255,255,255,0.85); margin-top: 24px; max-width: 1440px;">
+        Children who cannot yet hear and manipulate the sounds
+        in words — typically struggle. <em style="font-style: italic; color: var(--gold);">This
+        is not about intelligence.</em> It is not about language
+        richness in every dimension. A child can be articulate
+        and expressive and still lack phonological awareness.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="attrib" style="color: var(--gold); margin-top: 24px; font-size: 26px;">
+        And — most important — <em>it responds to teaching.</em>
+        It responds to play. It responds to attention.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 112px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Montessori<br/>
+        has been<br/>
+        building it<br/>
+        <em style="font-style: italic; color: var(--gold);">all along.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 56px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1200px; text-align: center; font-size: 30px;">
+        Five materials you already use — read now as
+        phonological-awareness work, not as isolated activities.
+      </p>
+    </div>
+  </section>
+
+  <!-- 09 FIVE TOOLS -->
+  <section data-label="Five Montessori tools" class="on-cream">
+    <div class="eyebrow-slide">Five tools you already have · read as PA instruction</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        The work is not <em style="font-style: italic; color: var(--gold);">called</em><br/>
+        phonological-awareness building.<br/>
+        But it <em>is.</em>
+      </h2>
+      <div class="tools">
+        <div class="tool">
+          <div class="n">01</div>
+          <h3>Oral <em>language.</em></h3>
+          <p>Songs, chants, finger plays, rhyming games, noticing sounds in the environment.</p>
+          <div class="builds">— Training ears. —</div>
+        </div>
+        <div class="tool">
+          <div class="n">02</div>
+          <h3>The <em>bells.</em></h3>
+          <p>Discriminating pitches very close to one another. The ear learns to hear subtle difference.</p>
+          <div class="builds">— Auditory discrimination. —</div>
+        </div>
+        <div class="tool">
+          <div class="n">03</div>
+          <h3>Golden <em>beads.</em></h3>
+          <p>"One, one, one…" Rhythm. Unit. Sequence. Preparing the ear for syllable work.</p>
+          <div class="builds">— Rhythmic units. —</div>
+        </div>
+        <div class="tool">
+          <div class="n">04</div>
+          <h3>Sandpaper <em>letters.</em></h3>
+          <p>Not the letter name. The <em>sound.</em> "Sss," not "ess." Visual meets auditory in the fingers.</p>
+          <div class="builds">— Phoneme-grapheme. —</div>
+        </div>
+        <div class="tool">
+          <div class="n">05</div>
+          <h3>Moveable <em>alphabet.</em></h3>
+          <p>She hears "cat," isolates the first sound, finds the letter. <em>This is phonemic awareness made visible.</em></p>
+          <div class="builds">— Encoding. —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 56px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 116px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        When a child<br/>
+        has <em style="font-style: italic; color: var(--gold);">gaps.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 72px auto 40px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1160px; text-align: center; font-size: 30px;">
+        You will see this by January if you are watching
+        carefully — perfect letter tracing, perfect repetition,
+        and still <em>no phonological awareness underneath.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 11 GAPS INSTRUCTION -->
+  <section data-label="When a child has gaps" class="on-cream">
+    <div class="eyebrow-slide">When you notice the gap · what actually to do</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <div class="gaps">
+        <div class="k">— A sequence, not a worksheet —</div>
+        <h3>You do not move forward<br/>with more letters.<br/>You <em>stop</em> — and <em>play.</em></h3>
+        <div class="row">
+          <div class="n">01</div>
+          <p>
+            Work with <em>rhyming</em> — mat, cat, hat. Exaggerate
+            the sound. Have her move when she hears a rhyme.
+          </p>
+        </div>
+        <div class="row">
+          <div class="n">02</div>
+          <p>
+            Clap <em>syllables</em> in names, in foods, in anything
+            she loves. Make rhythm audible.
+          </p>
+        </div>
+        <div class="row">
+          <div class="n">03</div>
+          <p>
+            Play <em>sound-isolation games</em> — "What do you hear at the
+            beginning of <em style="color: var(--gold);">sun</em>?"
+          </p>
+        </div>
+        <div class="row">
+          <div class="n">04</div>
+          <p>
+            Read aloud books with <em>sound patterns.</em> Do
+            fingerplays. Make sound sequences audible and
+            manipulable — not on paper. <em>In the day.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SAMUEL SCENE -->
+  <section data-label="Scene · Samuel" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-samuel">
+        <div class="scene-label">A boy, four and a half, seated across from the guide with blue sandpaper letters between them. He has just finished repeating a sound back. His face is calm, pleased. Then the guide asks for a word that rhymes with "sun" — and the pleased expression flickers into a quiet confusion he cannot name.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · mid-January · Samuel, new in the room</div>
+        <h2 class="display" style="font-size: 44px; line-height: 1.16; margin-top: 8px;">
+          His repetition<br/>
+          is <em style="font-style: italic;">perfect.</em><br/>
+          His phonological<br/>
+          awareness of English<br/>
+          <em style="font-style: italic;">is not there yet.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          He speaks a home language that shares only some
+          phonemes with English. His brain is still sorting two
+          sound systems. He is not being difficult.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic; padding-bottom: 40px;">
+          You do not give him more letters. You give him four
+          weeks of rhyme, exaggerated sound, movement to sound.
+          <em>He begins to catch rhymes.</em> The awareness is
+          forming. Now the letters can return.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 MARIA SCENE -->
+  <section data-label="Scene · Maria" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide">Scene · early in the year · Maria</div>
+        <h2 class="display" style="font-size: 48px; line-height: 1.14; margin-top: 8px;">
+          She arrived<br/>
+          <em style="font-style: italic;">already</em> able<br/>
+          to hear the sounds.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          An English-speaking home full of books and language
+          play. She saw the sandpaper letters and immediately
+          began asking: <em>Can you make that sound? What words
+          start like that?</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          She is asking for the moveable alphabet before you
+          have offered it. She is encoding within days — because
+          the phonological awareness <em>was already there.</em>
+          She needed the room. She did not need you to build
+          the foundation.
+        </p>
+      </div>
+      <div class="scene scene-maria">
+        <div class="scene-label">A girl about four, leaning intently toward the moveable-alphabet box, one hand on a wooden "s", asking a question the viewer cannot hear — the posture of a child who is hungry for the next step and has decided exactly what it is.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY PROVOCATION -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.14;">
+        PA is <em style="font-style: italic;">not evenly</em><br/>
+        distributed when children<br/>
+        arrive at our doors.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Children who have been read to, who have heard nursery
+        rhymes, who have played language games, who speak one
+        language consistently — often arrive with solid PA.
+        Children learning English as an additional language,
+        children whose home languages do not map onto English
+        phonemes, children whose experience prioritized
+        communication over language play — <em>often need more
+        explicit, more intentional work.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        This is not a deficit. This is difference. And when we
+        move quickly to letters and assume all children arrive
+        with PA, <em>we advantage the children who already had
+        it</em> — and leave behind the children who were ready
+        to build it with us.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 ND NOTE -->
+  <section data-label="Auditory processing" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · auditory processing differences</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px; color: #fff;">
+          Not every<br/>
+          brain builds<br/>
+          PA through<br/>
+          <em style="font-style: italic; color: var(--gold);">listening</em> alone.
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Children with auditory processing differences may
+          struggle when the work depends purely on the ear.
+          They may need <em>visual supports, multisensory
+          approaches, more repetition.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is information that helps you adapt — not a
+          limitation that says they cannot learn.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 58px;">
+        As you think about the children<br/>
+        you have been observing —<br/>
+        which ones seem to <em style="font-style: italic; color: var(--gold);">already</em><br/>
+        have solid phonological<br/>
+        awareness? And which ones<br/>
+        are you noticing might need<br/>
+        <em style="font-style: italic; color: var(--gold);">more explicit</em> work in sound<br/>
+        awareness and manipulation?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 18 · Primary · Phonological Awareness</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">16</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

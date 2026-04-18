@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 27 — Memorization Work: The Charts Come Late</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-chart {
+    background:
+      radial-gradient(ellipse 50% 50% at 50% 45%, rgba(230,220,200,0.26), transparent 70%),
+      linear-gradient(160deg, #3a3228 0%, #1a1510 100%);
+  }
+  /* Order diagram */
+  .order {
+    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch;
+    gap: 0; margin-top: 40px;
+  }
+  .order .step {
+    padding: 36px 32px; border: 1px solid rgba(20,30,60,0.15);
+    background: #fff; display: flex; flex-direction: column; gap: 14px;
+    min-height: 420px;
+  }
+  .order .step.mid { background: rgba(214,167,88,0.08); }
+  .order .step.last { background: #13214b; color: #fff; border-color: #13214b; }
+  .order .step h3 { font-family: var(--font-heading); font-size: 34px; line-height: 1.14; color: var(--navy); margin: 0; }
+  .order .step.last h3 { color: #fff; }
+  .order .step h3 em { color: var(--gold); font-style: italic; }
+  .order .step p { font-family: var(--font-sans); font-size: 22px; line-height: 1.5; color: var(--fg-body); margin: 0; }
+  .order .step.last p { color: rgba(255,255,255,0.88); }
+  .order .step p em { color: var(--navy); font-style: italic; }
+  .order .step.last p em { color: var(--gold); font-style: italic; }
+  .order .k { font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 24px; }
+  .order .arr { display: flex; align-items: center; justify-content: center; padding: 0 20px; color: var(--gold); font-size: 32px; font-family: var(--font-heading); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Seven · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Times-table memorization<br/>
+        is the <em style="font-style: italic; color: var(--gold);">last</em> step of<br/>
+        the math sequence.<br/>
+        Not the first.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Most mathematics curricula begin with fact fluency and
+        hope understanding arrives later. Montessori reverses
+        the order. <em>The child memorizes what she has
+        already understood — not what she is supposed to take
+        on faith.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 27 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 THE REVERSAL -->
+  <section data-label="The reversal" class="on-cream">
+    <div class="eyebrow-slide">Opening · the order has been reversed</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.18;">
+        The child does not<br/>
+        memorize <em>in order to<br/>
+        understand.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        She memorizes <em>because<br/>
+        she already has.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE ORDER -->
+  <section data-label="The order of memorization" class="on-cream">
+    <div class="eyebrow-slide">The sequence · from quantity to automaticity</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Three phases the child passes through <em style="font-style: italic; color: var(--gold);">before</em><br/>
+        the memorization charts ever come out.
+      </h2>
+      <div class="order">
+        <div class="step">
+          <div class="k">— Phase 1 —</div>
+          <h3>Concept <em>with the beads.</em></h3>
+          <p>She has constructed the operation with quantity. She knows what 3 × 4 means because she has gathered three groups of four beads, many times.</p>
+        </div>
+        <div class="arr">→</div>
+        <div class="step mid">
+          <div class="k">— Phase 2 —</div>
+          <h3>Practice <em>with the stamp game.</em></h3>
+          <p>She has performed the same operation with symbolic quantity. She has seen 3 × 4 result in the same answer, in the same way, tens of times.</p>
+        </div>
+        <div class="arr">→</div>
+        <div class="step last">
+          <div class="k">— Phase 3 —</div>
+          <h3>Memorization <em>with the charts.</em></h3>
+          <p>Now — and only now — she meets the multiplication chart. She does not memorize strangers. <em>She memorizes old friends.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 WHAT THE CHARTS DO -->
+  <section data-label="What the charts are for" class="on-cream">
+    <div class="eyebrow-slide">The charts · what they add, what they do not add</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        The charts do not<br/>
+        <em style="font-style: italic; color: var(--gold);">teach</em> the child<br/>
+        anything new.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        They give her a place to <em>consolidate</em> what she
+        already knows. They shift the calculations from the
+        foreground of her attention to the background, so that
+        when she meets a problem, her mind is free to attend
+        to the <em>meaning</em>, not the computation.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px; line-height: 1.3; margin-top: 20px;">
+        Memorization is a reward for understanding — not a
+        substitute for it.
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · the charts arrive" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-chart">
+        <div class="scene-label">A seven-year-old on a rug with a long paper chart of the multiplication tables in front of her. Small wooden tiles with answers printed on them are stacked beside the chart. A few tiles have already been placed on the chart — 2×2, 3×3, 4×4 — the diagonal she knows best. Her hand is on the tile for 6×4, pausing, not quite placing it.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the diagonal first</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She does <em style="font-style: italic;">not<br/>
+          memorize</em> the facts<br/>
+          in rows.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She builds the chart. She starts with the diagonal
+          — the squares, the ones she knows first. Then
+          fills outward. <em>The chart reveals patterns
+          nobody had to point out to her:</em> that the table
+          is symmetric; that certain products repeat.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Children who build their own times table carry it
+          differently from children who were handed one. <em>It
+          is theirs.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 COST OF REVERSAL -->
+  <section data-label="The cost of the wrong order" class="on-cream">
+    <div class="eyebrow-slide">The cost of reversing the order</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        A child made to memorize<br/>
+        before she understood<br/>
+        loses <em style="font-style: italic; color: var(--gold);">both.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        She loses the understanding, because she was given no
+        time to build it. She often loses the memorization
+        too, because the facts are not anchored to anything.
+        <em>Ask an adult who &ldquo;was never good at math&rdquo;
+        what 7 × 8 is. Listen for the hesitation. It is from
+        second grade.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Montessori&rsquo;s sequence is not slower. <em>It is
+        the one that doesn&rsquo;t require re-teaching later.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Timed drills are a<br/>
+        <em style="font-style: italic;">sorting mechanism,</em><br/>
+        not a teaching<br/>
+        mechanism.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Timed math drills reward children with fast processing
+        speed, strong auditory memory, and supportive home
+        practice. They punish children with processing
+        differences, anxiety histories, or no one at home to
+        quiz them. <em>They do not teach math. They sort
+        children into those who can perform math under
+        pressure and those who cannot.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The Montessori memorization work has no stopwatch.
+        <em>The work is done. Or it is not yet. That is all.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 ND NOTE -->
+  <section data-label="ND note" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · memory-retrieval differences</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 50px; color: #fff;">
+          Slow<br/>
+          retrieval<br/>
+          is not<br/>
+          <em style="font-style: italic; color: var(--gold);">failed<br/>
+          memorization.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Some children&rsquo;s math facts are in them — but
+          not at the speed expected in a mainstream classroom.
+          <em>They can derive. They can reconstruct.</em> They
+          simply will not win a timed flashcard race.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A child who can derive 7 × 8 from 7 × 7 + 7 in three
+          seconds knows mathematics more deeply than a child
+          who recalls 56 in one. Do not flatten the first
+          child&rsquo;s knowing to match the second&rsquo;s
+          speed.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When you watch a child<br/>
+        memorize a math fact, are<br/>
+        you watching her <em style="font-style: italic; color: var(--gold);">cement<br/>
+        something she built,</em><br/>
+        or cover over something<br/>
+        she never understood?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 27 · Primary · Memorization Work</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">09</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 25 — The Passage to Abstraction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+
+  /* Three-stage arc: hand → paper → mind */
+  .arc {
+    display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr; gap: 0;
+    margin-top: 40px; align-items: stretch;
+  }
+  .arc .stage {
+    padding: 32px 28px; display: flex; flex-direction: column; gap: 14px;
+    min-height: 520px;
+    border: 1px solid rgba(20,30,60,0.15);
+    background: #fff;
+  }
+  .arc .stage.mid { background: rgba(214,167,88,0.08); }
+  .arc .stage.last { background: #13214b; color: #fff; border-color: #13214b; }
+  .arc .n {
+    font-family: var(--font-heading); font-style: italic;
+    color: var(--gold); font-size: 28px;
+  }
+  .arc .last .n { color: var(--gold); }
+  .arc h3 {
+    font-family: var(--font-heading); font-size: 40px; line-height: 1.08;
+    color: var(--navy); margin: 0;
+  }
+  .arc .last h3 { color: #fff; }
+  .arc h3 em { color: var(--gold); font-style: italic; }
+  .arc p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .arc .last p { color: rgba(255,255,255,0.88); }
+  .arc p em { color: var(--navy); font-style: italic; }
+  .arc .last p em { color: var(--gold); font-style: italic; }
+  .arc .sig {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; color: var(--gold); margin-top: auto;
+    padding-top: 14px; border-top: 1px solid rgba(214,167,88,0.4);
+  }
+  .arc .connector {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    color: var(--gold); font-size: 36px;
+  }
+
+  /* Readiness vs not yet checklist */
+  .ready-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 32px; }
+  .ready-grid .col { padding: 40px 44px; min-height: 500px; display: flex; flex-direction: column; gap: 20px; }
+  .ready-grid .not { background: rgba(214,167,88,0.08); border: 1px solid rgba(20,30,60,0.15); }
+  .ready-grid .yes { background: #13214b; color: #fff; }
+  .ready-grid .k { font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; color: rgba(20,30,60,0.55); }
+  .ready-grid .yes .k { color: var(--gold); }
+  .ready-grid h3 { font-family: var(--font-heading); font-size: 40px; line-height: 1.12; color: var(--navy); margin: 0; }
+  .ready-grid .yes h3 { color: #fff; }
+  .ready-grid h3 em { color: var(--gold); font-style: italic; }
+  .ready-grid ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 16px; }
+  .ready-grid li {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body); padding-left: 32px; position: relative;
+  }
+  .ready-grid .yes li { color: rgba(255,255,255,0.9); }
+  .ready-grid li em { color: var(--navy); font-style: italic; }
+  .ready-grid .yes li em { color: var(--gold); font-style: italic; }
+  .ready-grid li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 18px; height: 1px; background: var(--gold);
+  }
+
+  .scene-mat {
+    background:
+      radial-gradient(ellipse 50% 50% at 45% 42%, rgba(235,210,160,0.26), transparent 70%),
+      linear-gradient(160deg, #3a4a38 0%, #1a2218 100%);
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Five · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 96px; line-height: 1.04; padding-bottom: 24px;">
+        The beads do not<br/>
+        <em style="font-style: italic; color: var(--gold);">disappear.</em><br/>
+        They move from<br/>
+        her hand into her mind.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The passage to abstraction is the most misunderstood
+        moment in a Montessori mathematics sequence. <em>It is
+        not the day the material is taken away.</em> It is the
+        day the child no longer needs it — and she, not you,
+        is the one who tells you so.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 25 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · a misconception to retire</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.18;">
+        New teachers often<br/>
+        worry: <em>&ldquo;when do I<br/>
+        take the beads<br/>
+        away?&rdquo;</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 52px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        You do not take them<br/>
+        away. <em>The child<br/>
+        leaves them.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHY THIS IS HARD -->
+  <section data-label="Why this feels difficult" class="on-cream">
+    <div class="eyebrow-slide">Why this feels difficult · the pressure you are under</div>
+    <div class="two-col-narrow-left mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 54px;">
+          Every external<br/>
+          pressure asks<br/>
+          you to <em style="font-style: italic; color: var(--gold);">rush<br/>
+          abstraction.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 28px;"></div>
+      </div>
+      <div class="stack gap-md" style="padding-top: 16px; max-width: 1100px;">
+        <p class="body-read">
+          Standardized tests ask for the symbol. Parents want
+          to see the worksheet. Admissions want grade-level
+          equivalence. The child down the hall, or at another
+          school, is already &ldquo;writing the equations.&rdquo;
+        </p>
+        <p class="body-read">
+          Every one of those pressures asks you to accelerate
+          past the phase the child is actually in. <em>And
+          every acceleration pays a price, five years from
+          now, that no one will trace back to this week.</em>
+        </p>
+        <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 30px; line-height: 1.32;">
+          Your job is to protect the child from the adult&rsquo;s
+          panic.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 PART ONE COVER -->
+  <section data-label="Part one" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part One —</div>
+      <h2 class="display" style="font-size: 108px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Hand. Paper.<br/>
+        <em style="font-style: italic; color: var(--gold);">Mind.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        The passage is not a single step. It is an arc, and
+        the child moves through it <em>in her own time.</em>
+        She does not skip stages. She does not need to be
+        hurried.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 THE ARC -->
+  <section data-label="The three-stage arc" class="on-cream">
+    <div class="eyebrow-slide">The arc · from material reality to mental image</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The material never leaves her.<br/>
+        <em style="font-style: italic; color: var(--gold);">It changes address.</em>
+      </h2>
+      <div class="arc">
+        <div class="stage">
+          <div class="n">— Stage one —</div>
+          <h3>Material <em>only.</em></h3>
+          <p>She solves every problem with the beads in front of her. She counts, gathers, exchanges, separates. Paper is not yet involved.</p>
+          <p>This stage is long. Weeks or months. <em>Do not shorten it.</em></p>
+          <div class="sig">— quantity lives in her hand —</div>
+        </div>
+        <div class="connector">→</div>
+        <div class="stage mid">
+          <div class="n">— Stage two —</div>
+          <h3>Material <em>with</em> paper.</h3>
+          <p>She does the operation with beads. Then she records what she did on paper. The symbols are a <em>log</em> of what the beads showed her.</p>
+          <p>Eventually she begins to write before she moves — <em>predicting</em> the result before verifying it.</p>
+          <div class="sig">— notation becomes a friend —</div>
+        </div>
+        <div class="connector">→</div>
+        <div class="stage last">
+          <div class="n">— Stage three —</div>
+          <h3>Paper <em>only.</em></h3>
+          <p>She solves on paper. The beads are on the shelf. She does not look at them. If she gets stuck, <em>she goes and gets them.</em> No one stops her.</p>
+          <p>She returns to paper when she is ready. The material remains available — <em>for the rest of her schooling.</em></p>
+          <div class="sig">— the beads live behind her eyes —</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SIGNS OF READINESS -->
+  <section data-label="Signs of readiness" class="on-cream">
+    <div class="eyebrow-slide">How to read the child · what to watch for</div>
+    <div class="stack mt-auto" style="max-width: 1860px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The signs of readiness are <em style="font-style: italic; color: var(--gold);">behavioral.</em><br/>
+        You do not administer them.
+      </h2>
+      <div class="ready-grid">
+        <div class="col not">
+          <div class="k">— Not yet —</div>
+          <h3>Signals she still needs the material.</h3>
+          <ul>
+            <li>She sets up the beads and uses <em>every single one</em> — counting carefully, checking her count.</li>
+            <li>She asks for the material when given a problem on paper.</li>
+            <li>Her errors become frequent when the beads are removed.</li>
+            <li>She returns to basic setups — ten-bars, squares — <em>as if to re-anchor herself.</em></li>
+            <li>She is visibly more relaxed with the beads in her hand.</li>
+          </ul>
+        </div>
+        <div class="col yes">
+          <div class="k">— Ready —</div>
+          <h3>Signals she has <em>internalized</em> the structure.</h3>
+          <ul>
+            <li>She sets up the beads and then <em>barely uses them</em> — glancing, skipping over large portions.</li>
+            <li>She begins writing the answer before the setup is complete.</li>
+            <li>She shows boredom with the physical work — wants something harder.</li>
+            <li>She can describe the operation in words without touching anything.</li>
+            <li>She answers <em>small problems in her head</em> and reaches for the beads only when the problem is big.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PART TWO COVER -->
+  <section data-label="Part two" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Two —</div>
+      <h2 class="display" style="font-size: 92px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Two failure<br/>
+        modes. Both<br/>
+        come from<br/>
+        <em style="font-style: italic; color: var(--gold);">the adult.</em>
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        Rushing abstraction, or clinging to the material long
+        past its usefulness. Both interrupt the child&rsquo;s
+        own timeline. <em>Only one is visible to outsiders.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 08 TOO EARLY -->
+  <section data-label="Removed too early" class="on-cream">
+    <div class="eyebrow-slide">Failure mode one · removed too soon</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        She is solving it<br/>
+        on paper. <em style="font-style: italic; color: var(--gold);">It looks fine.</em><br/>
+        It is not fine.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        A child whose material has been taken away before her
+        understanding was grounded will still <em>perform the
+        operation.</em> She will memorize the procedure. She
+        will produce correct answers on familiar problems.
+      </p>
+      <p class="body-read">
+        Then, a year later, she will meet a problem that is
+        slightly different. <em>She will freeze.</em> The
+        procedure does not cover this case. She has no
+        underlying structure to fall back on. She concludes
+        she is not good at math.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px; line-height: 1.3; margin-top: 20px;">
+        This is a loss that shows up in fourth grade, not in
+        first. The teacher who rushed her will not see it.
+        You will.
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 TOO LATE -->
+  <section data-label="Kept too long" class="on-cream">
+    <div class="eyebrow-slide">Failure mode two · kept too long</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        A child who wants<br/>
+        abstraction and is<br/>
+        <em style="font-style: italic; color: var(--gold);">held</em> in the material<br/>
+        will simply stop.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        This failure is less famous but just as real. A child
+        who has internalized the concept and is being made to
+        keep laying out beads she does not need begins to
+        experience mathematics as <em>childish, tedious,
+        pointless.</em>
+      </p>
+      <p class="body-read">
+        She is not being served by the material anymore. She
+        is being <em>slowed</em> by it. Her interest
+        migrates. She avoids math work. When she meets harder
+        problems, the flame has already gone out.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 32px; line-height: 1.3; margin-top: 20px;">
+        A guide who only knows the first failure mode will
+        produce children who suffer the second.
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE -->
+  <section data-label="Scene · the moment she leaves them" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-mat">
+        <div class="scene-label">A seven-year-old kneeling at a green mat with her paper and pencil beside her. The golden-bead tray is set up — a hundred-square, two ten-bars, and a small pile of loose units arranged neatly. Her pencil is already on the paper writing numerals. Her eyes do not look at the beads. Her left hand rests flat on the mat beside them, unused.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · early March · a child leaving the material</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She has set the<br/>
+          beads out. <em style="font-style: italic;">And is not<br/>
+          looking at them.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She is not ready to put them away — she would not
+          say that if asked. But she is no longer using them.
+          Her hand is writing. The beads are a comfort, a
+          witness. <em>A tether, in case she needs to come
+          back.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          You do not comment on this. You do not praise it.
+          You do not suggest she put them away. <em>She will
+          stop setting them up when she is ready. That day
+          will come. It is not today.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 THE MATERIAL STAYS AVAILABLE -->
+  <section data-label="The material never closes" class="on-cream">
+    <div class="eyebrow-slide">One thing the child must never hear</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 56px; line-height: 1.14; color: var(--navy);">
+        &ldquo;You are too old<br/>
+        for <em style="font-style: italic; color: var(--gold);">those.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        No child, at any age in the Montessori sequence, is
+        ever too old for the material she is working with. A
+        nine-year-old who encounters a hard fraction problem
+        and walks to the shelf to retrieve the fraction
+        circles is <em>not regressing.</em>
+      </p>
+      <p class="body-read">
+        She is doing something a research mathematician does:
+        <em>returning to the concrete form of a concept to
+        verify her thinking.</em> She is showing you the
+        habit you built in her.
+      </p>
+      <p class="body-read" style="font-family: var(--font-heading); font-style: italic; color: var(--gold); font-size: 34px; line-height: 1.32; margin-top: 20px;">
+        Protect this habit. It is one of the most valuable
+        things she will carry out of your classroom.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 PART THREE COVER -->
+  <section data-label="Part three" class="on-cream">
+    <div class="stack" style="margin: auto; text-align: center; align-items: center;">
+      <div class="part-index" style="margin-bottom: 48px;">— Part Three —</div>
+      <h2 class="display" style="font-size: 104px; line-height: 1.04; color: var(--navy); padding-bottom: 24px;">
+        Individual<br/>
+        timing. <em style="font-style: italic; color: var(--gold);">Never</em><br/>
+        a cohort.
+      </h2>
+      <div class="rule-gold" style="margin: 48px auto 32px; width: 120px;"></div>
+      <p class="body-lg" style="max-width: 1280px; text-align: center; font-size: 30px;">
+        Two children of the same age, doing the same
+        operation, may be two years apart in their passage to
+        abstraction. <em>Neither is ahead. Neither is
+        behind.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 13 EQUITY -->
+  <section data-label="Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · the child who looks &ldquo;behind&rdquo;</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        The child who is<br/>
+        still using the<br/>
+        material is <em style="font-style: italic;">often<br/>
+        exactly where she<br/>
+        needs to be.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        In conventional classrooms, the child still needing
+        concrete support at age eight is flagged,
+        interventioned, pulled out, labeled. <em>In a
+        Montessori environment, she is allowed to finish.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The child whose understanding is built slowly and
+        fully becomes a stronger mathematician than the child
+        whose abstraction was forced. <em>She just took
+        longer to look finished.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ND NOTE -->
+  <section data-label="ND note · concrete support is not a deficit" class="on-navy">
+    <div class="eyebrow-slide">A neurodivergence note · the length of the runway</div>
+    <div class="two-col mt-auto mb-auto" style="align-items: start;">
+      <div class="stack">
+        <p class="title" style="font-size: 52px; color: #fff;">
+          Some children<br/>
+          need the<br/>
+          material<br/>
+          <em style="font-style: italic; color: var(--gold);">for years<br/>
+          longer.</em>
+        </p>
+        <div class="rule-gold" style="margin-top: 32px;"></div>
+      </div>
+      <div class="stack gap-md">
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Children with working-memory differences,
+          dyscalculia, or processing-speed variations may
+          still be working with concrete materials when their
+          peers have moved on. <em>This is not a deficit. It
+          is a different runway.</em>
+        </p>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          A child given the concrete pathway as long as she
+          needs it arrives at abstraction with real
+          understanding. A child denied it arrives nowhere.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Your job is not to move her. <em>It is to guarantee
+          that the ground under her does not disappear.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 CLOSING -->
+  <section data-label="Closing question" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When the child in your<br/>
+        classroom finally works a<br/>
+        problem without the beads<br/>
+        — will it be because<br/>
+        <em style="font-style: italic; color: var(--gold);">she was ready,</em> or<br/>
+        because the adults around<br/>
+        her ran out of patience?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 25 · Primary · Passage to Abstraction</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">15</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Week 30 — Time: The Hardest Abstraction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-time {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(220,200,170,0.22), transparent 72%),
+      linear-gradient(160deg, #3a3020 0%, #1a1410 100%);
+  }
+  /* Calendar ribbon visual */
+  .ribbon {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px;
+    margin-top: 32px; padding: 28px;
+    background: rgba(255,255,255,0.92); border: 1px solid rgba(20,30,60,0.15);
+  }
+  .ribbon .m {
+    padding: 18px 10px; text-align: center;
+    font-family: var(--font-sans); font-size: 18px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--navy); font-weight: 600;
+    border: 1px solid rgba(20,30,60,0.2);
+  }
+  .ribbon .m.current { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .ribbon .m.season-spring { background: rgba(120,180,120,0.14); }
+  .ribbon .m.season-summer { background: rgba(240,200,100,0.18); }
+  .ribbon .m.season-fall { background: rgba(200,120,60,0.16); }
+  .ribbon .m.season-winter { background: rgba(180,200,220,0.20); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty · Primary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Ask a four-year-old<br/>
+        when her birthday is.<br/>
+        Listen to her answer.<br/>
+        <em style="font-style: italic; color: var(--gold);">You are hearing</em><br/>
+        the hardest abstraction.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        Time is the only topic in the primary curriculum that
+        the child cannot touch, cannot count, cannot hold.
+        Every other abstraction in this sequence has a
+        material. <em>Time is the first concept the child is
+        asked to construct entirely in her mind.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 30 · Primary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY HARD -->
+  <section data-label="Why time is hard" class="on-cream">
+    <div class="eyebrow-slide">Opening · why time is uniquely difficult</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <p class="serif-quote" style="font-size: 58px; line-height: 1.18;">
+        A ten-bar is <em>ten.</em><br/>
+        You can see it. You<br/>
+        can count it.
+      </p>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="serif-quote" style="font-size: 54px; line-height: 1.22; margin-top: 28px; color: var(--gold);">
+        Yesterday is — <em>gone.</em><br/>
+        Tomorrow is — <em>not yet.</em><br/>
+        Today is <em>passing through<br/>
+        her</em> as she tries to name it.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE RIBBON -->
+  <section data-label="The year as a ribbon" class="on-cream">
+    <div class="eyebrow-slide">The year as an object · the calendar ribbon</div>
+    <div class="stack" style="max-width: 1860px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        You cannot hand the child <em>time.</em><br/>
+        You can hand her a <em style="font-style: italic; color: var(--gold);">place to stand in it.</em>
+      </h2>
+      <div class="ribbon">
+        <div class="m season-winter">Jan</div>
+        <div class="m season-winter">Feb</div>
+        <div class="m season-spring">Mar</div>
+        <div class="m season-spring current">Apr</div>
+        <div class="m season-spring">May</div>
+        <div class="m season-summer">Jun</div>
+        <div class="m season-summer">Jul</div>
+        <div class="m season-summer">Aug</div>
+        <div class="m season-fall">Sep</div>
+        <div class="m season-fall">Oct</div>
+        <div class="m season-fall">Nov</div>
+        <div class="m season-winter">Dec</div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; max-width: 1500px;">
+        A long paper ribbon. Twelve months drawn in a row.
+        The months, in order. The seasons colored in behind
+        them. A small clip — <em>&ldquo;here we are now.&rdquo;</em>
+        Every morning, the child looks. She sees what has
+        passed. She sees what is coming. <em>The year becomes
+        a length she can walk.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 SCENE -->
+  <section data-label="Scene · the day after her birthday" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-time">
+        <div class="scene-label">A small wall calendar, the kind with a fabric pocket for each day. A four-year-old is reaching up, moving a small wooden number from &ldquo;14&rdquo; to &ldquo;15&rdquo; — the morning routine. A piece of paper hangs beside the calendar with a hand-drawn sun and the date of the child&rsquo;s birthday, two weeks back.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the morning calendar change</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She moves the<br/>
+          number. <em style="font-style: italic;">Time moves<br/>
+          with her hand.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She is not being taught the date. She is doing the
+          act the date requires. <em>Something was true
+          yesterday that is not true today.</em> The small
+          wooden number is the evidence.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Small repeated gestures are how a preschooler builds
+          the sense of time. <em>Not worksheets. Not recitation.</em>
+          Daily, physical contact with a calendar that moves.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 THE CLOCK -->
+  <section data-label="The clock comes later" class="on-cream">
+    <div class="eyebrow-slide">The clock · a different concept entirely</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        Before the clock — the<br/>
+        <em style="font-style: italic; color: var(--gold);">sequence.</em> Breakfast.<br/>
+        Circle. Work. Lunch.<br/>
+        Rest. Snack. Home.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Before the child can read a clock, she can read her
+        day. <em>She knows what comes next without needing a
+        number for it.</em> The predictability of the
+        classroom is itself a time instrument — one she trusts
+        before she trusts the face of the wall clock.
+      </p>
+      <p class="body-read">
+        When the clock is introduced — toward the end of
+        primary — it is introduced as a <em>measuring tool for
+        something she already senses.</em> The hour is how
+        long from breakfast to snack. The minute is a small
+        amount of how long. <em>The numbers are added to an
+        existing experience, not imposed upon a vacancy.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 EQUITY -->
+  <section data-label="Equity note" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · time-telling as a marker</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        &ldquo;Telling time&rdquo; is<br/>
+        one of the old<br/>
+        <em style="font-style: italic;">school-readiness<br/>
+        markers</em> used to<br/>
+        sort children.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        A child who arrives in kindergarten able to read an
+        analog clock is usually a child whose home has been
+        teaching it, intentionally. A child without that home
+        practice is flagged as &ldquo;behind.&rdquo; <em>What
+        was measured was not capacity. It was household
+        custom.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        Teach time through <em>rhythm</em> before notation, and
+        no child arrives behind. The rhythm of a well-run
+        classroom is the first clock every child can read.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When the child in your<br/>
+        classroom asks &ldquo;when do<br/>
+        we eat?&rdquo; — are you<br/>
+        <em style="font-style: italic; color: var(--gold);">teaching her time</em> by<br/>
+        pointing to a clock, or<br/>
+        by answering with the<br/>
+        shape of the day?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 30 · Primary · Time</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">07</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>
