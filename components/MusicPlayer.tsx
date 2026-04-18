@@ -241,16 +241,20 @@ export default function MusicPlayer() {
         >
           {/* Main row */}
           <div className="flex items-center gap-2.5 px-4 h-16">
-            {/* Equalizer / note */}
-            <div className="flex-shrink-0 w-6 flex items-center justify-center">
-              {isPlaying ? <Equalizer /> : <MusicNoteIcon />}
-            </div>
-
-            {/* Track info */}
-            <div className="flex-1 min-w-0">
-              <p className="text-white text-[11px] font-medium leading-tight truncate">{track.title}</p>
-              <p className="text-white/45 text-[10px] leading-tight truncate">{track.artist}</p>
-            </div>
+            {/* Clickable icon + track info — tapping anywhere here plays/pauses */}
+            <button
+              onClick={togglePlay}
+              aria-label={isPlaying ? 'Pause music' : 'Play music'}
+              className="flex items-center gap-2.5 flex-1 min-w-0 text-left"
+            >
+              <span className="flex-shrink-0 w-6 flex items-center justify-center">
+                {isPlaying ? <Equalizer /> : <MusicNoteIcon />}
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-white text-[11px] font-medium leading-tight truncate">{track.title}</span>
+                <span className="block text-white/45 text-[10px] leading-tight truncate">{track.artist}</span>
+              </span>
+            </button>
 
             {/* Play / Pause */}
             <button
