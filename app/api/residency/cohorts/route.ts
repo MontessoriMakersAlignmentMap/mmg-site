@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { PRIMARY_SEQUENCE, ELEMENTARY_SEQUENCE, parseLessonCodes } from '@/lib/residency/curriculum-sequence'
+import { getDeckUrl } from '@/lib/residency/deck-mapping'
 
 export async function GET() {
   const supabase = createServiceClient()
@@ -68,17 +69,32 @@ export async function POST(req: NextRequest) {
     lessonLookup[`${l.strand_id}:${l.sort_order}`] = l.id
   }
 
-  // Generate bundles with dates
+  // Adjust start date to nearest Sunday on or after the given date
   const startDate = new Date(start_date)
+  const dayOfWeek = startDate.getUTCDay()
+  const adjustedStart = new Date(startDate)
+  if (dayOfWeek !== 0) {
+    adjustedStart.setDate(startDate.getDate() + (7 - dayOfWeek))
+  }
+  const startAdjusted = dayOfWeek !== 0
+
+  // Update cohort record with adjusted start date if needed
+  if (startAdjusted) {
+    await supabase
+      .from('residency_cohorts')
+      .update({ start_date: adjustedStart.toISOString().split('T')[0] })
+      .eq('id', cohort.id)
+  }
+
   const bundles = []
   const bundleLessons: { bundle_index: number; lesson_id: string; seq: number }[] = []
 
   for (let i = 0; i < sequence.length; i++) {
     const tmpl = sequence[i]
-    // Each bundle unlocks on Monday of its week
-    const unlockDate = new Date(startDate)
-    unlockDate.setDate(startDate.getDate() + (tmpl.week - 1) * 7)
-    // Lock date is Sunday of that week
+    // Each bundle unlocks on Sunday
+    const unlockDate = new Date(adjustedStart)
+    unlockDate.setDate(adjustedStart.getDate() + (tmpl.week - 1) * 7)
+    // Lock date is Saturday (6 days after Sunday)
     const lockDate = new Date(unlockDate)
     lockDate.setDate(unlockDate.getDate() + 6)
 
@@ -99,6 +115,7 @@ export async function POST(req: NextRequest) {
       unlock_date: unlockDate.toISOString().split('T')[0],
       lock_date: lockDate.toISOString().split('T')[0],
       status: 'scheduled',
+      deck_url: getDeckUrl(track, tmpl.week),
     })
 
     // Parse lesson codes and resolve to lesson IDs
@@ -145,5 +162,7 @@ export async function POST(req: NextRequest) {
     cohort,
     bundles_created: insertedBundles.length,
     lessons_linked: links.length,
+    start_adjusted: startAdjusted,
+    adjusted_start_date: adjustedStart.toISOString().split('T')[0],
   })
 }

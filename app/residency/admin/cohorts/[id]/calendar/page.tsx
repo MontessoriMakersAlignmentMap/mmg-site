@@ -206,7 +206,7 @@ export default function CurriculumCalendarPage() {
                     {b.live_session_week ? <span style={{ color: '#7b1fa2', fontWeight: 600 }}>Yes</span> : '—'}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)', whiteSpace: 'nowrap' }}>
-                    {new Date(b.unlock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    {new Date(b.unlock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} &ndash; {b.lock_date ? new Date(b.lock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
                   </td>
                   <td style={{ padding: '0.5rem', borderBottom: '1px solid var(--r-border)' }}>
                     <span style={{

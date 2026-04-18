@@ -38,22 +38,30 @@ export default function CohortsPage() {
   function generatePreview() {
     if (!form.start_date) return
     const start = new Date(form.start_date)
+    const dayOfWeek = start.getUTCDay()
+    const adjusted = new Date(start)
+    if (dayOfWeek !== 0) adjusted.setDate(start.getDate() + (7 - dayOfWeek))
     const totalWeeks = form.track === 'primary' ? 36 : 48
     const weeks = []
     for (let w = 0; w < totalWeeks; w++) {
-      const unlock = new Date(start)
-      unlock.setDate(start.getDate() + w * 7)
+      const unlock = new Date(adjusted)
+      unlock.setDate(adjusted.getDate() + w * 7)
+      const lock = new Date(unlock)
+      lock.setDate(unlock.getDate() + 6)
       weeks.push({
         week: w + 1,
-        unlock: unlock.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        unlock: unlock.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        lock: lock.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
       })
     }
-    const endDate = new Date(start)
-    endDate.setDate(start.getDate() + (totalWeeks - 1) * 7 + 6)
+    const endDate = new Date(adjusted)
+    endDate.setDate(adjusted.getDate() + (totalWeeks - 1) * 7 + 6)
     setPreview({
       weeks,
       endDate: endDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
       totalWeeks,
+      adjusted: dayOfWeek !== 0,
+      adjustedDate: adjusted.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     })
   }
 
@@ -71,7 +79,8 @@ export default function CohortsPage() {
         setForm({ name: '', track: 'primary', start_date: '' })
         setPreview(null)
         load()
-        alert(`Cohort created with ${result.bundles_created} bundles and ${result.lessons_linked} lesson links.`)
+        const adj = result.start_adjusted ? ` Start date adjusted to ${result.adjusted_start_date} (nearest Sunday).` : ''
+        alert(`Cohort created with ${result.bundles_created} bundles and ${result.lessons_linked} lesson links.${adj}`)
       } else {
         alert('Error: ' + result.error)
       }
@@ -122,7 +131,7 @@ export default function CohortsPage() {
               </select>
             </div>
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', marginBottom: '0.25rem' }}>Start Date (Monday)</label>
+              <label style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', marginBottom: '0.25rem' }}>Start Date (Sunday)</label>
               <input
                 className="r-input"
                 type="date"
@@ -150,14 +159,19 @@ export default function CohortsPage() {
 
           {preview && (
             <div style={{ background: 'var(--r-bg-muted)', borderRadius: '8px', padding: '1rem', maxHeight: '300px', overflowY: 'auto' }}>
+              {preview.adjusted && (
+                <p style={{ fontSize: '0.75rem', color: 'var(--r-feedback-color)', fontWeight: 600, marginBottom: '0.5rem' }}>
+                  Start date adjusted to {preview.adjustedDate} (nearest Sunday)
+                </p>
+              )}
               <p style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                {preview.totalWeeks} weeks: {form.start_date} through {preview.endDate}
+                {preview.totalWeeks} weeks (Sun&ndash;Sat) through {preview.endDate}
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '0.25rem', fontSize: '0.6875rem' }}>
                 {preview.weeks.map((w: any) => (
                   <div key={w.week} style={{ padding: '0.25rem 0.5rem', background: 'white', borderRadius: '4px' }}>
                     <strong>Week {w.week}</strong>
-                    <div style={{ color: 'var(--r-text-muted)' }}>{w.unlock}</div>
+                    <div style={{ color: 'var(--r-text-muted)' }}>{w.unlock} &ndash; {w.lock}</div>
                   </div>
                 ))}
               </div>

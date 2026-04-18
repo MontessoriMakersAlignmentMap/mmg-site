@@ -13,7 +13,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
         id, sequence_order,
         lesson:residency_lessons(id, title, slug, sort_order, strand:residency_strands(name))
       ),
-      cohort:residency_cohorts(id, name, track)
+      cohort:residency_cohorts(id, name, track),
+      reading_assignments:residency_reading_assignments(*)
     `)
     .eq('id', id)
     .single()
@@ -31,7 +32,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     'status', 'unlock_date', 'lock_date', 'weekly_theme',
     'practicum_focus', 'album_prompt', 'album_submission_required',
     'live_session_week', 'live_session_discussion_theme',
-    'deck_url',
+    'deck_url', 'observation_focus', 'next_week_theme',
   ]
 
   const updates: Record<string, unknown> = { updated_at: new Date().toISOString() }

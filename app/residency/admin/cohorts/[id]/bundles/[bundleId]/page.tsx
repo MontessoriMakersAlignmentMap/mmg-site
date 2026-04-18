@@ -20,6 +20,7 @@ export default function BundleDetailPage() {
   const [sessionForm, setSessionForm] = useState({ session_date: '', attendance_count: '', key_themes: '', followup_actions: '' })
   const [deckSaving, setDeckSaving] = useState(false)
   const [selectedDeckFile, setSelectedDeckFile] = useState('')
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => { load() }, [bundleId])
 
@@ -152,6 +153,17 @@ export default function BundleDetailPage() {
     await saveDeckUrl('')
   }
 
+  async function saveField(field: string, value: string) {
+    setSaving(true)
+    await fetch(`/api/residency/bundles/${bundleId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ [field]: value || null }),
+    })
+    setSaving(false)
+    load()
+  }
+
   if (loading) return <div className="r-loading" role="status"><span>Loading</span><span className="r-loading-dot"><span></span><span></span><span></span></span></div>
   if (!bundle) return <p>Bundle not found.</p>
 
@@ -201,7 +213,7 @@ export default function BundleDetailPage() {
             <span style={{ fontSize: '0.6875rem', background: '#f3e5f5', color: '#7b1fa2', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Live Session Week</span>
           )}
           <span style={{ fontSize: '0.6875rem', background: 'var(--r-bg-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>
-            Unlocks {new Date(bundle.unlock_date + 'T12:00:00').toLocaleDateString()}
+            {new Date(bundle.unlock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} &ndash; {new Date(bundle.lock_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
           </span>
         </div>
       </div>
@@ -252,6 +264,40 @@ export default function BundleDetailPage() {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Content Settings */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Content Settings</h2>
+        <div style={{ display: 'grid', gap: '1rem' }}>
+          <div>
+            <label style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', marginBottom: '0.25rem' }}>Observation Focus Prompt</label>
+            <textarea
+              className="r-input"
+              rows={3}
+              defaultValue={bundle.observation_focus || ''}
+              placeholder="e.g., Notice how children transition between activities this week..."
+              onBlur={e => {
+                if (e.target.value !== (bundle.observation_focus || '')) saveField('observation_focus', e.target.value)
+              }}
+            />
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginTop: '0.25rem' }}>Shown to residents as &ldquo;In your classroom this week&rdquo;</p>
+          </div>
+          <div>
+            <label style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', marginBottom: '0.25rem' }}>Next Week Theme</label>
+            <input
+              className="r-input"
+              type="text"
+              defaultValue={bundle.next_week_theme || ''}
+              placeholder="Short preview of next week's focus"
+              onBlur={e => {
+                if (e.target.value !== (bundle.next_week_theme || '')) saveField('next_week_theme', e.target.value)
+              }}
+            />
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)', marginTop: '0.25rem' }}>Shown at the bottom of this week&rsquo;s bundle page</p>
+          </div>
+        </div>
+        {saving && <p style={{ fontSize: '0.6875rem', color: 'var(--r-info)', marginTop: '0.5rem' }}>Saving...</p>}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
