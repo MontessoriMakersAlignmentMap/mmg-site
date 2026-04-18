@@ -635,6 +635,33 @@ export default function WorkshopsSpeakingPage() {
         </div>
       </section>
 
+      {/* Participant Feedback */}
+      <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-xl mb-14">
+            <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-5">What Participants Say</p>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+              From the room.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              'I really appreciated that you gave real examples — there was tangible, concrete information that we could use in our lives and not just abstractly discussing issues.',
+              'The information was clear, concise, thought provoking, and useful. It was presented in a way that was digestible and easy to utilize in my instructional practice.',
+              'Good balance of information and questions, allowing for reflection and discussion.',
+              'Hannah is a wonderful communicator.',
+              'Always enjoy our time with Hannah. She speaks to things that are relevant to us and is sensitive to our unique needs as an organization.',
+            ].map((quote, i) => (
+              <div key={i} className="bg-white border border-[#E2DDD6] p-7">
+                <span className="block text-[#d6a758] text-2xl leading-none mb-4" aria-hidden>&ldquo;</span>
+                <p className="text-[#374151] text-sm leading-relaxed">{quote}</p>
+                <p className="text-[#64748B] text-xs mt-4">PD participant</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Embedded Workshop Request Form */}
       <section id="request-workshop" className="bg-white py-24 md:py-28 px-6 md:px-10 border-t border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto">

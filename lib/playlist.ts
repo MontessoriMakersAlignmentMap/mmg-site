@@ -10,13 +10,6 @@ export interface Track {
 // Served directly from FMA's CDN. Hannah can swap any URL for a self-hosted file later.
 export const PLAYLIST: Track[] = [
   {
-    title: 'Neo Soul',
-    artist: 'Mr. Smith',
-    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/JVLzvfWgAqImghTm5Boi8GREVRU6JzsGz1NraLTz.mp3',
-    attribution: 'Neo Soul by Mr. Smith (A New Roar) via Free Music Archive',
-    license: 'CC BY 4.0',
-  },
-  {
     title: 'Peaceful',
     artist: 'Mr. Smith',
     url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/qv8pEYOombjd3gy9bvrBADsmm30ZXPfXXXdZdAjC.mp3',
@@ -42,6 +35,13 @@ export const PLAYLIST: Track[] = [
     artist: 'Mr. Smith',
     url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/b2JukTqtqFEEcmlUbvWa8HFptqIivNga0SgRVYJG.mp3',
     attribution: 'A Moment by Mr. Smith (A New Roar) via Free Music Archive',
+    license: 'CC BY 4.0',
+  },
+  {
+    title: 'Neo Soul',
+    artist: 'Mr. Smith',
+    url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/JVLzvfWgAqImghTm5Boi8GREVRU6JzsGz1NraLTz.mp3',
+    attribution: 'Neo Soul by Mr. Smith (A New Roar) via Free Music Archive',
     license: 'CC BY 4.0',
   },
 ]
