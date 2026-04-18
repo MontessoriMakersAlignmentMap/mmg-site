@@ -498,6 +498,24 @@ deck-stage > section.on-black { background: var(--navy-deep); color: #fff; }
 .on-navy .photo-placeholder em,
 .on-black .photo-placeholder em { color: rgba(255,255,255,0.88); }
 
+/* Hide placeholder chrome when real image is present */
+.photo-placeholder.has-image,
+.photo-placeholder-full.has-image {
+  border: none;
+}
+.photo-placeholder.has-image::before,
+.photo-placeholder.has-image::after,
+.photo-placeholder-full.has-image::before,
+.photo-placeholder-full.has-image::after { display: none; }
+.photo-placeholder.has-image span,
+.photo-placeholder.has-image em,
+.photo-placeholder-full.has-image span,
+.photo-placeholder-full.has-image em { display: none; }
+
+.scene.has-image::before,
+.scene.has-image::after { display: none; }
+.scene.has-image .scene-label { display: none; }
+
 /* Full-bleed placeholder (fills the slide) */
 .photo-placeholder-full {
   position: absolute;
