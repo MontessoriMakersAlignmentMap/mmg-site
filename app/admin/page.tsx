@@ -7,6 +7,8 @@ import type { TalentProfile } from '@/lib/types/talent-pool'
 import type { Partner } from '@/lib/types/partners'
 import type { CommunityOrg } from '@/lib/types/community'
 
+const toSlug = (v: string) => v.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 // ─── Course registry ──────────────────────────────────────────────────────────
 // course.id must match the course_id used in the course platform's
 // courseRegistry / products.ts. All platform URLs are derived from
@@ -1318,7 +1320,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <input placeholder="School name *" value={newSearch.school_name} onChange={e => setNewSearch(p => ({ ...p, school_name: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                   <div>
-                    <input placeholder="Page slug (e.g. sunrise-montessori) *" value={newSearch.school_slug} onChange={e => setNewSearch(p => ({ ...p, school_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                    <input placeholder="Page slug (e.g. sunrise-montessori) *" value={newSearch.school_slug} onChange={e => setNewSearch(p => ({ ...p, school_slug: toSlug(e.target.value) }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                     <p className="text-[10px] text-gray-400 mt-0.5">URL: /matchhub/current-searches/<span className="font-mono">{newSearch.school_slug || 'slug'}</span></p>
                   </div>
                   <div>
@@ -1368,13 +1370,13 @@ export default function AdminPage() {
                           value={newSearchRole.title}
                           onChange={e => {
                             const title = e.target.value
-                            const auto = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                            setNewSearchRole(p => ({ ...p, title, role_slug: p.role_slug === '' || p.role_slug === p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') ? auto : p.role_slug }))
+                            const auto = toSlug(title)
+                            setNewSearchRole(p => ({ ...p, title, role_slug: p.role_slug === '' || p.role_slug === toSlug(p.title) ? auto : p.role_slug }))
                           }}
                           className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]"
                         />
                         <div>
-                          <input placeholder="Role slug *" value={newSearchRole.role_slug} onChange={e => setNewSearchRole(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                          <input placeholder="Role slug *" value={newSearchRole.role_slug} onChange={e => setNewSearchRole(p => ({ ...p, role_slug: toSlug(e.target.value) }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                           <p className="text-[10px] text-gray-400 mt-0.5">Auto-filled from title — edit if needed</p>
                         </div>
                         <select value={newSearchRole.apply_method} onChange={e => setNewSearchRole(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] bg-white">
@@ -1471,7 +1473,7 @@ export default function AdminPage() {
                         <div className="grid grid-cols-2 gap-3">
                           <input placeholder="School name" value={editSearchData.school_name ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_name: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                           <div>
-                            <input placeholder="Page slug (e.g. sunrise-montessori)" value={editSearchData.school_slug ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                            <input placeholder="Page slug (e.g. sunrise-montessori)" value={editSearchData.school_slug ?? ''} onChange={e => setEditSearchData(p => ({ ...p, school_slug: toSlug(e.target.value) }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                             <p className="text-[10px] text-gray-400 mt-0.5">Sets the URL: /matchhub/current-searches/<span className="font-mono">{editSearchData.school_slug || 'slug'}</span></p>
                           </div>
                           <div>
@@ -1511,7 +1513,7 @@ export default function AdminPage() {
                             <div className="grid grid-cols-2 gap-2">
                               <input placeholder="Role title *" value={newRole.title} onChange={e => setNewRole(p => ({ ...p, title: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                               <div>
-                                <input placeholder="Role slug (e.g. lead-guide) *" value={newRole.role_slug} onChange={e => setNewRole(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
+                                <input placeholder="Role slug (e.g. lead-guide) *" value={newRole.role_slug} onChange={e => setNewRole(p => ({ ...p, role_slug: toSlug(e.target.value) }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]" />
                                 <p className="text-[10px] text-gray-400 mt-0.5">Appended to the search URL: .../current-searches/school/<span className="font-mono">{newRole.role_slug || 'role'}</span></p>
                               </div>
                               <select value={newRole.apply_method} onChange={e => setNewRole(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a]">
@@ -1561,7 +1563,7 @@ export default function AdminPage() {
                                     <div className="grid grid-cols-2 gap-2">
                                       <input placeholder="Role title" value={editRoleData.title ?? ''} onChange={e => setEditRoleData(p => ({ ...p, title: e.target.value }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
                                       <div>
-                                        <input placeholder="Role slug" value={editRoleData.role_slug ?? ''} onChange={e => setEditRoleData(p => ({ ...p, role_slug: e.target.value }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
+                                        <input placeholder="Role slug" value={editRoleData.role_slug ?? ''} onChange={e => setEditRoleData(p => ({ ...p, role_slug: toSlug(e.target.value) }))} className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none" />
                                         <p className="text-[10px] text-gray-400 mt-0.5">Appended to the search URL</p>
                                       </div>
                                       <select value={editRoleData.apply_method ?? 'upload'} onChange={e => setEditRoleData(p => ({ ...p, apply_method: e.target.value as 'upload' | 'link' | 'email' }))} className="border border-gray-200 px-3 py-2 text-sm focus:outline-none">
