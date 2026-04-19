@@ -11,34 +11,37 @@ export type LogoName =
   | 'toolbox'
   | 'learning'
   | 'studio'
+  | 'field-guide'
 
 export type LogoVariant = 'full' | 'icon'
 
 const logoMap: Record<LogoName, string> = {
-  mmg:       '/logos/mmg.png',
-  advisory:  '/logos/advisory.png',
-  institute: '/logos/institute.png',
-  residency: '/logos/residency.png',
-  mmap:      '/logos/mmap.png',
-  mmas:      '/logos/mmas.png',
-  matchhub:  '/logos/matchhub.png',
-  toolbox:   '/logos/toolbox.png',
-  learning:  '/logos/learning.png',
-  studio:    '/logos/studio.png',
+  mmg:           '/logos/mmg.png',
+  advisory:      '/logos/advisory.png',
+  institute:     '/logos/institute.png',
+  residency:     '/logos/residency.png',
+  mmap:          '/logos/mmap.png',
+  mmas:          '/logos/mmas.png',
+  matchhub:      '/logos/matchhub.png',
+  toolbox:       '/logos/toolbox.png',
+  learning:      '/logos/learning.png',
+  studio:        '/logos/studio.png',
+  'field-guide': '/logos/field-guide.png',
 }
 
 // Icon-only cube marks — add files to /public/logos/icons/ to activate
 const iconMap: Record<LogoName, string> = {
-  mmg:       '/logos/icons/mmg-icon.png',
-  advisory:  '/logos/icons/advisory-icon.png',
-  institute: '/logos/icons/institute-icon.png',
-  residency: '/logos/icons/mmg-icon.png',
-  mmap:      '/logos/icons/mmap-icon.png',
-  mmas:      '/logos/icons/mmas-icon.png',
-  matchhub:  '/logos/icons/matchhub-icon.png',
-  toolbox:   '/logos/icons/toolbox-icon.png',
-  learning:  '/logos/icons/learning-icon.png',
-  studio:    '/logos/icons/studio-icon.png',
+  mmg:           '/logos/icons/mmg-icon.png',
+  advisory:      '/logos/icons/advisory-icon.png',
+  institute:     '/logos/icons/institute-icon.png',
+  residency:     '/logos/icons/mmg-icon.png',
+  mmap:          '/logos/icons/mmap-icon.png',
+  mmas:          '/logos/icons/mmas-icon.png',
+  matchhub:      '/logos/icons/matchhub-icon.png',
+  toolbox:       '/logos/icons/toolbox-icon.png',
+  learning:      '/logos/icons/learning-icon.png',
+  studio:        '/logos/icons/studio-icon.png',
+  'field-guide': '/logos/icons/field-guide.png',
 }
 
 const namedSizes = { sm: 24, md: 48, lg: 80 }
