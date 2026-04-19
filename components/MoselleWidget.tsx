@@ -9,32 +9,20 @@ type Message = {
   content: string
 }
 
-const GREETING = "Welcome. I'm Moselle, your guide to the Montessori Makers ecosystem. Are you a school leader looking for support, an educator exploring opportunities, or somewhere else entirely?"
+const GREETING =
+  "Welcome. I'm your MMG Guide — here to help you find what you're looking for across the Montessori Makers ecosystem. Are you a school leader looking for support, an educator exploring opportunities, or somewhere else entirely?"
 
 // Gold 3D cube avatar
-function MoselleAvatar({ size = 40 }: { size?: number }) {
+function CubeAvatar({ size = 40 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Background circle */}
+    <svg width={size} height={size} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="40" fill="#0e1a7a" />
-      {/* Cube — isometric 3-face view */}
-      {/* Top face */}
       <polygon points="40,16 62,28 40,40 18,28" fill="#f0c96a" />
-      {/* Left face */}
       <polygon points="18,28 40,40 40,62 18,50" fill="#b8860b" />
-      {/* Right face */}
       <polygon points="62,28 62,50 40,62 40,40" fill="#d6a758" />
-      {/* Edge lines */}
       <polygon points="40,16 62,28 40,40 18,28" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
       <polygon points="18,28 40,40 40,62 18,50" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
       <polygon points="62,28 62,50 40,62 40,40" fill="none" stroke="#0e1a7a" strokeWidth="1" strokeLinejoin="round" />
-      {/* Center vertical edge */}
       <line x1="40" y1="40" x2="40" y2="62" stroke="#0e1a7a" strokeWidth="1" />
     </svg>
   )
@@ -47,10 +35,7 @@ function TypingDots() {
         <span
           key={i}
           className="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"
-          style={{
-            animation: 'moselleBounce 1.2s infinite',
-            animationDelay: `${i * 0.2}s`,
-          }}
+          style={{ animation: 'guideBounce 1.2s infinite', animationDelay: `${i * 0.2}s` }}
         />
       ))}
     </div>
@@ -65,37 +50,19 @@ export default function MoselleWidget() {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [nudge, setNudge] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Show a nudge bubble after 8 seconds if not yet opened
-  useEffect(() => {
-    if (dismissed) return
-    const t = setTimeout(() => setNudge(true), 8000)
-    return () => clearTimeout(t)
-  }, [dismissed])
-
-  // Scroll to bottom on new messages
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Focus input when opened
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 100)
   }, [open])
 
-  function handleOpen() {
-    setOpen(true)
-    setNudge(false)
-  }
-
-  function handleDismiss() {
-    setOpen(false)
-    setDismissed(true)
-    setNudge(false)
-  }
+  function handleOpen() { setOpen(true) }
+  function handleDismiss() { setOpen(false); setDismissed(true) }
 
   async function handleSend(e: React.FormEvent) {
     e.preventDefault()
@@ -118,7 +85,10 @@ export default function MoselleWidget() {
       if (!res.ok || !data.message) throw new Error('no message')
       setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
     } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Let me connect you with the team directly — montessorimakersgroup.org/contact" }])
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: 'Let me connect you with the team directly — montessorimakersgroup.org/contact' },
+      ])
     } finally {
       setLoading(false)
     }
@@ -129,58 +99,32 @@ export default function MoselleWidget() {
   return (
     <>
       <style>{`
-        @keyframes moselleBounce {
+        @keyframes guideBounce {
           0%, 60%, 100% { transform: translateY(0); }
           30% { transform: translateY(-4px); }
         }
-        @keyframes moselleFadeIn {
+        @keyframes guideFadeIn {
           from { opacity: 0; transform: translateY(8px) scale(0.97); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes moselleNudge {
-          from { opacity: 0; transform: translateX(8px); }
-          to   { opacity: 1; transform: translateX(0); }
         }
       `}</style>
 
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
 
-        {/* Nudge bubble */}
-        {nudge && !open && (
-          <div
-            className="bg-white border border-[#E2DDD6] shadow-lg px-4 py-3 max-w-[220px] text-sm text-[#374151] leading-snug cursor-pointer"
-            style={{ animation: 'moselleNudge 0.3s ease', borderRadius: 0 }}
-            onClick={handleOpen}
-          >
-            <span className="font-medium text-[#0e1a7a]">Moselle</span> can help you find what you need →
-            <button
-              onClick={e => { e.stopPropagation(); setNudge(false) }}
-              className="ml-2 text-[#94A3B8] hover:text-[#374151] text-xs"
-            >
-              ✕
-            </button>
-          </div>
-        )}
-
         {/* Chat panel */}
         {open && (
           <div
             className="bg-white border border-[#E2DDD6] shadow-2xl flex flex-col"
-            style={{
-              width: 340,
-              height: 480,
-              animation: 'moselleFadeIn 0.25s ease',
-              borderRadius: 0,
-            }}
+            style={{ width: 340, height: 480, animation: 'guideFadeIn 0.25s ease', borderRadius: 0 }}
           >
             {/* Header */}
             <div className="bg-[#0e1a7a] px-4 py-3 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0">
-                  <MoselleAvatar size={36} />
+                  <CubeAvatar size={36} />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold leading-tight" style={serif}>Moselle</p>
+                  <p className="text-white text-sm font-semibold leading-tight" style={serif}>MMG Guide</p>
                   <p className="text-[#94A3B8] text-[10px] tracking-wide">Navigation Support</p>
                 </div>
               </div>
@@ -199,15 +143,10 @@ export default function MoselleWidget() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-[#FAF9F7]">
               {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
+                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   {msg.role === 'assistant' && (
                     <div className="flex-shrink-0 mr-2 mt-1">
-                      <div>
-                        <MoselleAvatar size={24} />
-                      </div>
+                      <CubeAvatar size={24} />
                     </div>
                   )}
                   <div
@@ -218,12 +157,12 @@ export default function MoselleWidget() {
                     }`}
                     style={{ borderRadius: 0, overflowWrap: 'anywhere' }}
                   >
-                    {msg.content.split(/(montessorimakersgroup\.org\/[^\s]*)/g).map((part, i) => {
+                    {msg.content.split(/(montessorimakersgroup\.org\/[^\s]*)/g).map((part, j) => {
                       if (!part.startsWith('montessorimakersgroup.org/')) return part
                       const clean = part.replace(/[.,!?]+$/, '')
                       const trailing = part.slice(clean.length)
                       return (
-                        <span key={i}>
+                        <span key={j}>
                           <a href={`https://${clean}`} target="_blank" rel="noopener noreferrer"
                             className="underline underline-offset-2 opacity-80 hover:opacity-100 break-all">
                             {clean}
@@ -238,9 +177,7 @@ export default function MoselleWidget() {
               {loading && (
                 <div className="flex justify-start">
                   <div className="flex-shrink-0 mr-2 mt-1">
-                    <div className="rounded-full overflow-hidden border border-[#E2DDD6]">
-                      <MoselleAvatar size={24} />
-                    </div>
+                    <CubeAvatar size={24} />
                   </div>
                   <div className="bg-white border border-[#E2DDD6]">
                     <TypingDots />
@@ -273,22 +210,23 @@ export default function MoselleWidget() {
           </div>
         )}
 
-        {/* Trigger button */}
+        {/* Trigger button — gold so it stands out */}
         {!open && (
           <button
             onClick={handleOpen}
-            className="flex items-center gap-2.5 bg-[#0e1a7a] text-white pl-1.5 pr-4 py-1.5 shadow-lg hover:bg-[#162270] transition-colors group"
+            className="flex items-center gap-2.5 bg-[#d6a758] text-[#0e1a7a] pl-1.5 pr-4 py-1.5 shadow-lg hover:bg-[#c99540] transition-colors"
             style={{ borderRadius: 0 }}
           >
-            <div className="rounded-full overflow-hidden border-2 border-[#d6a758]/60 flex-shrink-0">
-              <MoselleAvatar size={32} />
+            <div className="rounded-full overflow-hidden border-2 border-[#0e1a7a]/20 flex-shrink-0">
+              <CubeAvatar size={32} />
             </div>
             <div className="text-left">
-              <p className="text-xs font-semibold leading-tight" style={serif}>Moselle</p>
-              <p className="text-[#94A3B8] text-[10px] tracking-wide leading-tight">Can I help?</p>
+              <p className="text-xs font-semibold leading-tight" style={serif}>MMG Guide</p>
+              <p className="text-[#0e1a7a]/60 text-[10px] tracking-wide leading-tight">Can I help?</p>
             </div>
           </button>
         )}
+
       </div>
     </>
   )
