@@ -66,6 +66,12 @@ const matchhubSections = [
   },
 ]
 
+const appsLinks = [
+  { name: 'Apps Overview',        href: '/apps',                  tagline: 'Both Montessori Makers apps' },
+  { name: 'Field Guide',          href: '/field-guide',           tagline: 'In-classroom practitioner tool' },
+  { name: 'Leadership Meridian',  href: '/leadership-meridian',   tagline: 'For school leaders' },
+]
+
 const residencyLinks = [
   { name: 'Residency Overview', href: '/residency', tagline: 'Montessori teacher preparation' },
   { name: 'Primary Track (3–6)', href: '/residency/pricing', tagline: '9-month credential, 224 lessons' },
@@ -92,29 +98,36 @@ const ecosystemGroups = [
     ],
   },
   {
+    label: 'Apps',
+    links: [
+      { name: 'Field Guide',         logo: 'field-guide'         as LogoName, href: '/field-guide',          tagline: 'In-classroom practitioner tool' },
+      { name: 'Leadership Meridian', logo: 'leadership-meridian' as LogoName, href: '/leadership-meridian',  tagline: 'For school leaders' },
+    ],
+  },
+  {
     label: 'Resources',
     links: [
-      { name: 'Field Guide', logo: 'field-guide' as LogoName, href: '/field-guide', tagline: 'In-classroom guide app' },
-      { name: 'Learning',    logo: 'learning'    as LogoName, href: '/learning',    tagline: 'Curriculum & materials' },
-      { name: 'Toolbox',     logo: 'toolbox'     as LogoName, href: '/toolbox',     tagline: 'Templates & frameworks' },
-      { name: 'Studio',      logo: 'studio'      as LogoName, href: '/studio',      tagline: 'Web & communication design' },
+      { name: 'Learning', logo: 'learning' as LogoName, href: '/learning', tagline: 'Curriculum & materials' },
+      { name: 'Toolbox',  logo: 'toolbox'  as LogoName, href: '/toolbox',  tagline: 'Templates & frameworks' },
+      { name: 'Studio',   logo: 'studio'   as LogoName, href: '/studio',   tagline: 'Web & communication design' },
     ],
   },
 ]
 
 const allMobileLinks = [
-  { name: 'Advisory', href: '/advisory' },
-  { name: 'Institute', href: '/institute' },
-  { name: 'MMAP', href: '/mmap' },
-  { name: 'MMAS', href: '/mmas' },
-  { name: 'MatchHub', href: '/matchhub' },
-  { name: 'Field Guide', href: '/field-guide' },
-  { name: 'Learning', href: '/learning' },
-  { name: 'Toolbox', href: '/toolbox' },
-  { name: 'Studio', href: '/studio' },
-  { name: 'Residency', href: '/residency' },
-  { name: 'Field Pulse', href: '/field-intelligence' },
-  { name: 'In Community With', href: '/in-community-with' },
+  { name: 'Advisory',            href: '/advisory' },
+  { name: 'Institute',           href: '/institute' },
+  { name: 'MMAP',                href: '/mmap' },
+  { name: 'MMAS',                href: '/mmas' },
+  { name: 'MatchHub',            href: '/matchhub' },
+  { name: 'Field Guide',         href: '/field-guide' },
+  { name: 'Leadership Meridian', href: '/leadership-meridian' },
+  { name: 'Learning',            href: '/learning' },
+  { name: 'Toolbox',             href: '/toolbox' },
+  { name: 'Studio',              href: '/studio' },
+  { name: 'Residency',           href: '/residency' },
+  { name: 'Field Pulse',         href: '/field-intelligence' },
+  { name: 'In Community With',   href: '/in-community-with' },
 ]
 
 export default function Nav() {
@@ -379,8 +392,8 @@ export default function Nav() {
               </svg>
             </button>
             <div className="absolute top-full pt-3 right-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[520px] p-6">
-                <div className="grid grid-cols-3 gap-6">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[640px] p-6">
+                <div className="grid grid-cols-4 gap-6">
                   {ecosystemGroups.map((group) => (
                     <div key={group.label}>
                       <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">
@@ -420,14 +433,39 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Field Guide — standalone link */}
-          <Link
-            href="/field-guide"
-            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/field-guide']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
-          >
-            {active(['/field-guide']) && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />}
-            Field Guide
-          </Link>
+          {/* Apps dropdown */}
+          <div className="relative group">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/field-guide', '/leadership-meridian', '/apps']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/field-guide', '/leadership-meridian', '/apps']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
+              Apps
+              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[320px] p-4">
+                <Link
+                  href="/apps"
+                  className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors border-b border-[#E2DDD6] mb-2"
+                >
+                  <p className="text-[#0e1a7a] text-sm font-semibold">Apps Overview</p>
+                  <p className="text-[#64748B] text-xs mt-0.5">Both Montessori Makers apps</p>
+                </Link>
+                <div className="space-y-0.5">
+                  {appsLinks.slice(1).map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                    >
+                      <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
+                      <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Insights dropdown */}
           <div className="relative group">

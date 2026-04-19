@@ -11,9 +11,11 @@ const workLinks = [
 ]
 
 const platformLinks = [
-  { name: 'MMAP', href: '/mmap' },
-  { name: 'MMAS', href: '/mmas' },
-  { name: 'MatchHub', href: '/matchhub' },
+  { name: 'MMAP',                href: '/mmap' },
+  { name: 'MMAS',                href: '/mmas' },
+  { name: 'MatchHub',            href: '/matchhub' },
+  { name: 'Field Guide',         href: '/field-guide' },
+  { name: 'Leadership Meridian', href: '/leadership-meridian' },
 ]
 
 const resourceLinks = [
@@ -87,10 +89,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Platforms */}
+          {/* Column 3 — Apps & Platforms */}
           <div>
             <p className="text-[#8899AA] text-[10px] tracking-[0.18em] uppercase mb-5">
-              Platforms
+              Apps &amp; Platforms
             </p>
             <ul className="space-y-2.5">
               {platformLinks.map((link) => (
@@ -184,7 +186,8 @@ export default function Footer() {
                 { name: 'Field Guide', href: '/field-guide',  gold: false },
                 { name: 'Toolbox',     href: '/toolbox',      gold: false },
                 { name: 'Learning',    href: '/learning',     gold: false },
-                { name: 'Studio',      href: '/studio',       gold: false },
+                { name: 'Studio',             href: '/studio',              gold: false },
+                { name: 'Leadership Meridian', href: '/leadership-meridian', gold: false },
               ]
             ).map((item) => (
               <Link
