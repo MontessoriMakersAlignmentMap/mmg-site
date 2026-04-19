@@ -17,20 +17,21 @@ const modes: Mode[] = [
     name: 'Support Me',
     desc: 'In-the-moment crisis and behavior support. A child in acute distress. Conflict between children. A child who has shut down. Transition struggles. Difficult parent conversations. Grounded, sequenced, regulate-first protocols you can follow right now.',
     screenshot: '/images/field-guide/support-crisis.png',
-    screenshotAlt: 'Support Me — crisis protocol open in the Field Guide app',
+    screenshotAlt: 'Support Me — crisis protocol list in the Field Guide app',
   },
   {
     id: 'L',
     name: 'Support the Learner',
     desc: 'Practical strategies for supporting neurodivergent learners and children with suspected learning differences. Sensory processing, reading challenges, writing and fine motor, math and number sense, attention and executive function. Montessori-grounded, never deficit-based.',
-    screenshot: null,
+    screenshot: '/images/field-guide/learner.png',
+    screenshotAlt: 'Support the Learner — six learning difference categories in the Field Guide app',
   },
   {
     id: 'R',
     name: 'Reflect',
     desc: "Structured professional reflection with AI coaching that pushes your thinking. End-of-day processing, a child on your mind, your environment, something you'd redo. The app responds like an experienced coach: curious, specific, and honest.",
     screenshot: '/images/field-guide/reflect.png',
-    screenshotAlt: 'Reflect mode — prompts and coaching textarea in the Field Guide app',
+    screenshotAlt: 'Reflect mode — daily prompt and coaching textarea in the Field Guide app',
   },
 ]
 
@@ -133,8 +134,8 @@ export default function FieldGuidePage() {
                     <Image
                       src={m.screenshot}
                       alt={m.screenshotAlt ?? m.name}
-                      width={397}
-                      height={844}
+                      width={500}
+                      height={900}
                       className="w-full h-auto"
                     />
                   </div>
