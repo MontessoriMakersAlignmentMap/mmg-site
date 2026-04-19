@@ -219,6 +219,7 @@ export default function AboutPage() {
               { name: 'Advisory', desc: 'Consulting, leadership support, and organizational strategy.', href: '/advisory' },
               { name: 'Institute', desc: 'Leadership formation and professional development.', href: '/institute' },
               { name: 'MatchHub', desc: 'Philosophy-aligned hiring for guides and schools.', href: '/matchhub' },
+              { name: 'Field Guide', desc: 'AI-powered lesson walkthroughs, crisis support, and reflective coaching for practitioners.', href: '/field-guide' },
               { name: 'Toolbox', desc: 'Practical downloadable tools for school operations.', href: '/toolbox' },
               { name: 'Learning', desc: 'Courses, decodable books, and the Origins Series.', href: '/learning' },
               { name: 'Alignment Map', desc: 'Strategic self-assessment and school mapping tools.', href: '/mmap' },

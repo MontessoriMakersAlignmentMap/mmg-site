@@ -16,6 +16,7 @@ const platformLinks = [
 ]
 
 const resourceLinks = [
+  { name: 'Field Guide', href: '/field-guide' },
   { name: 'Learning', href: '/learning' },
   { name: 'Toolbox', href: '/toolbox' },
   { name: 'Free Resources', href: '/resources/free' },
@@ -173,14 +174,15 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12">
             {(
               [
-                { name: 'Advisory',  href: '/advisory',  gold: true  },
-                { name: 'Institute', href: '/institute', gold: true  },
-                { name: 'MMAP',      href: '/mmap',      gold: false },
-                { name: 'MMAS',      href: '/mmas',      gold: false },
-                { name: 'MatchHub',  href: '/matchhub',  gold: true  },
-                { name: 'Toolbox',   href: '/toolbox',   gold: false },
-                { name: 'Learning',  href: '/learning',  gold: false },
-                { name: 'Studio',    href: '/studio',    gold: false },
+                { name: 'Advisory',    href: '/advisory',     gold: true  },
+                { name: 'Institute',   href: '/institute',    gold: true  },
+                { name: 'MMAP',        href: '/mmap',         gold: false },
+                { name: 'MMAS',        href: '/mmas',         gold: false },
+                { name: 'MatchHub',    href: '/matchhub',     gold: true  },
+                { name: 'Field Guide', href: '/field-guide',  gold: false },
+                { name: 'Toolbox',     href: '/toolbox',      gold: false },
+                { name: 'Learning',    href: '/learning',     gold: false },
+                { name: 'Studio',      href: '/studio',       gold: false },
               ]
             ).map((item) => (
               <Link

@@ -106,6 +106,7 @@ const allMobileLinks = [
   { name: 'MMAP', href: '/mmap' },
   { name: 'MMAS', href: '/mmas' },
   { name: 'MatchHub', href: '/matchhub' },
+  { name: 'Field Guide', href: '/field-guide' },
   { name: 'Learning', href: '/learning' },
   { name: 'Toolbox', href: '/toolbox' },
   { name: 'Studio', href: '/studio' },
@@ -403,6 +404,9 @@ export default function Nav() {
                   ))}
                 </div>
                 <div className="mt-4 pt-4 border-t border-[#F2EDE6] flex items-center justify-between">
+                  <Link href="/field-guide" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
+                    Field Guide →
+                  </Link>
                   <Link href="/field-intelligence" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Field Pulse →
                   </Link>
