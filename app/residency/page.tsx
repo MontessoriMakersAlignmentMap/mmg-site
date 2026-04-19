@@ -156,6 +156,44 @@ export default function ResidencyHome() {
         </div>
       </section>
 
+      {/* Field Guide benefit */}
+      <section className="r-section" style={{ background: 'var(--r-navy)', color: 'var(--r-white)' }}>
+        <div className="r-container" style={{ maxWidth: '760px' }}>
+          <p style={{
+            color: 'var(--r-gold)',
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            marginBottom: '0.75rem',
+          }}>
+            Included with your credential
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--r-font-heading)',
+            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+            lineHeight: 1.2,
+            marginBottom: '1.25rem',
+            color: 'var(--r-white)',
+          }}>
+            Your credential comes with a Field Guide.
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', maxWidth: '680px' }}>
+            <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
+              Every Montessori Makers Residency graduate receives a complimentary 12-month subscription to the Montessori Makers Field Guide upon completion of their practicum. That means the moment you finish your credential, you walk into your classroom with 516 lesson walkthroughs, crisis support protocols, learner support strategies, and an AI-powered reflection coach in your hand.
+            </p>
+            <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
+              Primary graduates receive Primary access. Elementary graduates receive Elementary access. No additional cost. No application. It activates when you complete your practicum — because the first year in your own classroom is when you need it most.
+            </p>
+          </div>
+          <div style={{ marginTop: '2rem' }}>
+            <Link href="/field-guide" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem', display: 'inline-block' }}>
+              See the Field Guide →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Additional Entry Points */}
       <section className="r-section">
         <div className="r-container">
