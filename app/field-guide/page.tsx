@@ -224,9 +224,10 @@ export default function FieldGuidePage() {
               <p className="text-[13px] text-[#d6a758] font-medium uppercase tracking-[0.12em] mb-2">Community Member</p>
               <h3 className="text-[#0e1a7a] text-xl font-semibold mb-4 leading-snug">For educators without a Montessori credential</h3>
               <div className="text-[36px] font-semibold text-[#111827] leading-none mb-1">
-                $16<span className="text-base font-normal text-[#64748B]">/month</span>
+                $16<span className="text-base font-normal text-[#64748B]">/month per level</span>
               </div>
-              <p className="text-sm text-[#64748B] mb-5">or $156/year (save $36)</p>
+              <p className="text-sm text-[#64748B] mb-1">or $156/year (save $36) · Primary or Elementary</p>
+              <p className="text-sm text-[#64748B] mb-5">Both levels (Primary + Elementary): $26/mo or $252/yr</p>
               <ul className="space-y-2 mb-6">
                 {communityFeatures.map((f) => (
                   <li key={f} className="text-sm text-[#374151] pl-5 relative leading-snug py-0.5">
@@ -255,9 +256,8 @@ export default function FieldGuidePage() {
               <div className="text-[36px] font-semibold text-[#111827] leading-none mb-1">
                 $24<span className="text-base font-normal text-[#64748B]">/month per level</span>
               </div>
-              <p className="text-sm text-[#64748B] mb-5">
-                or $228/year (save ~$60) · Both levels: $38/mo or $360/yr
-              </p>
+              <p className="text-sm text-[#64748B] mb-1">or $228/year (save ~$60) · Primary or Elementary</p>
+              <p className="text-sm text-[#64748B] mb-5">Both levels (Primary + Elementary): $38/mo or $360/yr</p>
               <ul className="space-y-2 mb-6">
                 {credentialedFeatures.map((f) => (
                   <li key={f} className="text-sm text-[#374151] pl-5 relative leading-snug py-0.5">
