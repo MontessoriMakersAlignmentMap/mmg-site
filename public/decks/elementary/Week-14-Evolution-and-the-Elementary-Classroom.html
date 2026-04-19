@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 14 — Evolution and the Elementary Classroom · Navigating Complexity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-darwin {
+    background:
+      radial-gradient(ellipse 65% 55% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .scene-parent {
+    background:
+      radial-gradient(ellipse 60% 50% at 60% 55%, rgba(240,217,161,0.18), transparent 70%),
+      linear-gradient(170deg, #181410 0%, #08080b 100%);
+  }
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 48px 1fr; gap: 28px;
+    margin-top: 36px; max-width: 1760px;
+    align-items: stretch;
+  }
+  .shift-grid .col {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    padding: 32px 34px;
+  }
+  .shift-grid .col.on { background: #1a1006; color: #fbf7ec; border-color: rgba(214,167,88,0.4); }
+  .shift-grid .col .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  }
+  .shift-grid .col h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .shift-grid .col.on h3 { color: #fbf7ec; }
+  .shift-grid .col p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .shift-grid .col.on p { color: rgba(255,255,255,0.82); }
+  .shift-grid .col em { font-style: italic; color: var(--navy); }
+  .shift-grid .col.on em { color: var(--gold); }
+  .shift-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 48px; color: var(--gold);
+  }
+
+  .evidence-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    margin-top: 36px; max-width: 1760px;
+  }
+  .evidence-grid .card {
+    padding: 26px 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .evidence-grid .card .num {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 10px;
+  }
+  .evidence-grid .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; color: var(--navy); margin: 0 0 10px; line-height: 1.2;
+  }
+  .evidence-grid .card p {
+    font-family: var(--font-sans); font-size: 21px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .evidence-grid .card em { font-style: italic; color: var(--navy); }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 40px 48px;
+    background: #fbf7ec;
+    margin-top: 28px;
+    max-width: 1680px;
+  }
+  .quote-block p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 32px; line-height: 1.4; color: var(--navy); margin: 0;
+  }
+  .quote-block em { color: var(--gold); }
+  .quote-block .src {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-top: 22px;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Fourteen · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 82px; line-height: 1.04; padding-bottom: 24px;">
+        A parent writes —<br/>
+        <em style="font-style: italic; color: var(--gold);">&ldquo;Do not teach<br/>
+        my child about<br/>
+        evolution.&rdquo;</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 30px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        You have two choices. Position yourself as the authority on truth — creating conflict between the child and their family. <em>Or teach evolution accurately and hold space for the child to navigate both.</em>
+      </p>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; color: var(--gold); font-style: italic; margin-top: 14px;">
+        The difference is the difference between education and indoctrination.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 14 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        You cannot teach real biology <em style="font-style: italic; color: var(--gold);">without teaching evolution.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        It is the single most powerful organizing principle in biology. It explains the diversity of life, the relationships between organisms, <em>all the adaptations that allow organisms to thrive.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        And you are teaching in a country where roughly forty percent of adults do not accept evolution — where you may be one of the first people to present this to a child <em>not framed as an attack on faith.</em>
+      </p>
+      <p class="body-read">
+        Be thoughtful. Be clear. Be respectful of families while honoring the child&rsquo;s right to scientific understanding.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT EVOLUTION IS -->
+  <section data-label="03 What evolution is" class="on-cream">
+    <div class="eyebrow-slide">What evolution actually is</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.12; color: var(--navy);">
+        Not progress. Not a ladder. Not a goal.<br/>
+        <em style="font-style: italic; color: var(--gold);">Differential survival and reproduction.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Some organisms leave more offspring than others. If those offspring inherit traits that helped their parents survive, <em>those traits become more common.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is staggeringly simple. <em>And staggeringly powerful.</em> Across millions of years, this is how life diversified into the millions of species we see today.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 FOUR KINDS OF EVIDENCE -->
+  <section data-label="04 Four kinds of evidence" class="on-cream">
+    <div class="eyebrow-slide">The evidence · overwhelming, from four directions</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A theory in the scientific sense — <em style="font-style: italic; color: var(--gold);">a framework that explains enormous evidence and makes testable predictions.</em>
+      </h2>
+      <div class="evidence-grid">
+        <div class="card">
+          <div class="num">i.</div>
+          <h3>The fossil record.</h3>
+          <p>Organisms changing over time, across layers of rock. <em>Predicted sequences, found.</em></p>
+        </div>
+        <div class="card">
+          <div class="num">ii.</div>
+          <h3>Comparative anatomy.</h3>
+          <p>A human arm, a bat wing, a whale flipper — <em>the same bones, modified.</em> Bizarre without common ancestry.</p>
+        </div>
+        <div class="card">
+          <div class="num">iii.</div>
+          <h3>Genetics.</h3>
+          <p>Organisms share DNA. Mutations create variation. <em>Variation is what selection acts on.</em></p>
+        </div>
+        <div class="card">
+          <div class="num">iv.</div>
+          <h3>Evolution in real time.</h3>
+          <p>Bacteria developing antibiotic resistance. Moths changing color. Finch beaks in drought. <em>Right now.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 DIFFERENT KINDS OF QUESTIONS -->
+  <section data-label="05 Different questions" class="on-navy">
+    <div class="eyebrow-slide">Science and religion · different questions</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        Science and religion answer <em style="font-style: italic; color: var(--gold);">different questions.</em>
+      </h2>
+      <div class="shift-grid" style="margin-top: 44px;">
+        <div class="col">
+          <div class="label">Science asks</div>
+          <h3>How do things work?</h3>
+          <p>Mechanism. Evidence. Prediction. <em>What can be measured and tested.</em></p>
+        </div>
+        <div class="shift-arrow">·</div>
+        <div class="col">
+          <div class="label">Religion asks</div>
+          <h3>Why are things here? What is my purpose? How should I live?</h3>
+          <p>Meaning. Relationship to the divine. <em>A different kind of truth.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 36px; color: var(--gold); font-style: italic; max-width: 1680px;">
+        A person can believe God created the universe and understand evolution as <em>the mechanism through which that creation happened.</em> Many people do exactly this.
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT SCIENCE CAN AND CANNOT DO -->
+  <section data-label="06 What science can and cannot do" class="on-cream">
+    <div class="eyebrow-slide">Be transparent about the limits of science</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Science can tell you <em>how.</em><br/>
+        <em style="font-style: italic; color: var(--gold);">Science cannot tell you whether a divine being is involved.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Science cannot tell you why — in some grand philosophical sense. Cannot tell you whether there is meaning to it. <em>Cannot tell you how to live.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Be honest about this. Say it to the child out loud: <em>&ldquo;Science studies how the physical world works. Science does not tell you about God or spirituality or what things mean. That is a different kind of knowing.&rdquo;</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 HOW TO SAY IT TO A CHILD -->
+  <section data-label="07 How to say it" class="on-cream">
+    <div class="eyebrow-slide">How to say it to a child</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        The story. <em style="font-style: italic; color: var(--gold);">Scientific — and humble about what it is and is not.</em>
+      </h2>
+      <div class="quote-block">
+        <p>&ldquo;For a very long time, scientists noticed that different animals had some of the same bones and some of the same ways of working. They asked — why would that be? <em>Darwin said maybe all these animals came from the same ancestor a very long time ago and changed over time.</em> And the evidence made sense with his idea. Fossils showing animals changing. All animals sharing DNA because we are all related. This is what we know from science about how life changed and diversified.</p>
+        <p style="margin-top: 16px;">Some people also believe that God was part of how this happened — <em>and that is not something science can prove or disprove.</em> Different families believe different things about that.&rdquo;</p>
+        <div class="src">A lesson the child can live with</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 BOTH CAN BE TRUE -->
+  <section data-label="08 Both can be true" class="on-navy">
+    <div class="eyebrow-slide">Create the container · both can be true</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        Never say: <em style="font-style: italic; color: var(--gold);">&ldquo;If your family does not believe in evolution, they are wrong.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Do say: <em style="color: var(--gold);">&ldquo;In science class, we study how the physical world works, and evolution is how scientists explain the diversity of life. In your family, you might understand things differently — and that is okay. Both can be true.&rdquo;</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        You do not require a child to choose between their family and their learning. <em>You create a container where both can exist.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 THE CHILD'S OBJECTION -->
+  <section data-label="09 The child's objection" class="on-cream">
+    <div class="eyebrow-slide">When the child objects</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        <em style="font-style: italic; color: var(--gold);">&ldquo;Humans did not come from monkeys.<br/>
+        We are made in God&rsquo;s image.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Do not say: <em>&ldquo;That is not true.&rdquo;</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Do say: <em>&ldquo;I hear you. That is what your family believes. In science, we have a lot of evidence that humans and other animals are related because we all share similar bones and DNA and ancestors from a long time ago. But the question of whether God made us is not something science answers. That is something your family talks about.&rdquo;</em>
+      </p>
+      <p class="body-read">
+        You are honoring the child&rsquo;s family <em>and</em> teaching science. You are modeling that <em>different ways of knowing can coexist.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE A — THE PARENT MEETING -->
+  <section data-label="10 Scene · the parent meeting" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-parent has-image" style="background: url('/decks/images/elem-week-14-scene-parent.jpg') center/cover no-repeat;">
+        <div class="scene-label">A parent has written: <em>&ldquo;Do not teach my child about evolution. We believe God created humans.&rdquo;</em> The guide sets up time to talk. She explains what she will teach — and what she will not. <em>&ldquo;I am not trying to replace one way of knowing with the other. I am giving your child information about how the scientific world works.&rdquo;</em> The parent is not happy. But agrees. The child goes home confused — and not traumatized. The parent and child have conversations. <em>The child does not have to choose.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · the difficult conversation</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.16; margin-top: 8px;">
+          The guide has given<br/>
+          the child the gift of<br/>
+          scientific understanding —<br/>
+          <em style="font-style: italic;">without positioning herself<br/>
+          as the enemy of<br/>
+          the family&rsquo;s faith.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          That is education. <em>The other thing is indoctrination.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE B — ARE WE ANIMALS -->
+  <section data-label="11 Scene · are we animals" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-darwin has-image" style="background: url('/decks/images/elem-week-14-scene-darwin.jpg') center/cover no-repeat;">
+        <div class="scene-label">A different child asks: <em>&ldquo;If we evolved from other animals, does that mean we are animals?&rdquo;</em> The guide is delighted by this question. She says — <em>&ldquo;Yes, humans are animals. We are mammals. Backbones, hair, milk for our babies. We are also different — we think in complex ways, we ask questions like you just did, we create art and meaning. We are animals, and we are also uniquely human. Both things are true.&rdquo;</em> The child nods and goes back to work.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · not defined in opposition to nature</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is developing<br/>
+          a sophisticated<br/>
+          understanding of<br/>
+          what it means to be human.<br/>
+          <em style="font-style: italic;">Not as separate from nature.<br/>
+          As part of it.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          <em>Both things are true.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 EQUITY PROVOCATION -->
+  <section data-label="12 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · evolution weaponized</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Evolution has been weaponized to justify <em style="font-style: italic; color: var(--gold);">racism, eugenics, colonialism.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Distorted ideas that some human populations are &ldquo;more evolved,&rdquo; closer to some imagined peak. <em>Bad science. Evil use.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Many children in your classroom have heard — directly or subtly — that their own community is less evolved, less civilized, less advanced. <em>The history of science in this country includes a long tradition of using scientific language to justify the domination of people of color.</em>
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        Refuse to participate. <em>Say it. Out loud. Every time.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 NO HIERARCHY -->
+  <section data-label="13 No hierarchy" class="on-cream">
+    <div class="eyebrow-slide">What you make explicit every time</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12; color: var(--navy);">
+        All humans alive today have been evolving <em style="font-style: italic; color: var(--gold);">for the same amount of time.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        We have all adapted to different environments. We have all developed the traits that helped us survive. <em>No human group is more or less evolved. No human group is genetically superior.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Not something you mention once and move on. <em>Something you make explicit whenever you teach evolution.</em>
+      </p>
+      <p class="body-read">
+        Evolution celebrates human diversity as <em>the product of different adaptations to different environments</em> — not as a hierarchy.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 NEURODIVERGENCE -->
+  <section data-label="14 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · concrete change, bounded fears</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A literal-thinking child may struggle with <em style="font-style: italic; color: var(--gold);">the abstract timescales of evolution.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Give them concrete examples of change happening now — <em>bread mold. Bacteria. Fast-generation organisms whose evolution is visible in weeks.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        A child with anxiety may worry about extinction. <em>Reassure them about what is and is not under threat right now.</em> Precisely. Not vaguely.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 PREPARATION -->
+  <section data-label="15 Preparation" class="on-cream">
+    <div class="eyebrow-slide">The guide&rsquo;s preparation</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Before the lesson. <em style="font-style: italic; color: var(--gold);">Before the objection.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Know the families.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Which children come from faith traditions that frame evolution as opposition? <em style="color:var(--navy);">Contact families before the lesson.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Rehearse the limits-of-science speech.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Until it is <em style="color:var(--navy);">easy to say in the moment</em> — not improvised under pressure.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Have the no-hierarchy language ready.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">For the moment when a child asks if some humans are more evolved. <em style="color:var(--navy);">Answer it before it is asked.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Real-time examples on hand.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Moth colour. Antibiotic resistance. Finch beaks. <em style="color:var(--navy);">Evolution that can be seen.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 A CAUTION -->
+  <section data-label="16 Caution" class="on-navy">
+    <div class="eyebrow-slide">A caution · when the school forbids it</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        You cannot teach real biology without evolution.
+        <em style="font-style: italic; color: var(--gold);">If you are prohibited from teaching it, you are being asked to teach false science.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        That is an integrity issue that goes beyond this lesson.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        In most cases, you <em>can</em> teach evolution in a way that respects families while being truthful about what science shows. <em>That is the work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 64px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Teach the child<br/>
+        to think scientifically.<br/>
+        <em style="color: var(--gold);">Not what to believe.<br/>
+        Never what<br/>
+        to believe.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · one question for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 52px;">
+        When you teach<br/>
+        evolution —<br/>
+        are you teaching<br/>
+        children to<br/>
+        <em style="font-style: italic; color: var(--gold);">think scientifically,</em><br/>
+        or are you teaching them<br/>
+        what to believe?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 14 · Elementary · Evolution and the Elementary Classroom</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

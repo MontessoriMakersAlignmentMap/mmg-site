@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 20 — Trauma-Informed History Teaching</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-classroomA {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .scene-classroomB {
+    background:
+      radial-gradient(ellipse 60% 50% at 60% 55%, rgba(240,217,161,0.2), transparent 70%),
+      linear-gradient(170deg, #181410 0%, #08080b 100%);
+  }
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 48px 1fr; gap: 28px;
+    margin-top: 36px; max-width: 1760px;
+    align-items: stretch;
+  }
+  .shift-grid .col {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    padding: 32px 34px;
+  }
+  .shift-grid .col.on { background: #1a1006; color: #fbf7ec; border-color: rgba(214,167,88,0.4); }
+  .shift-grid .col .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .shift-grid .col h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .shift-grid .col.on h3 { color: #fbf7ec; }
+  .shift-grid .col p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .shift-grid .col.on p { color: rgba(255,255,255,0.82); }
+  .shift-grid .col em { font-style: italic; color: var(--navy); }
+  .shift-grid .col.on em { color: var(--gold); }
+  .shift-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 48px; color: var(--gold);
+  }
+
+  .three-by {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .three-by .card {
+    padding: 26px 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .three-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;
+  }
+  .three-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .three-by .card em { font-style: italic; color: var(--navy); }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 36px 44px;
+    background: #fbf7ec;
+    margin-top: 24px;
+    max-width: 1680px;
+  }
+  .quote-block p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.4; color: var(--navy); margin: 0;
+  }
+  .quote-block p + p { margin-top: 14px; }
+  .quote-block em { color: var(--gold); }
+  .quote-block .src {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-top: 22px;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 76px; line-height: 1.06; padding-bottom: 24px;">
+        When you teach history<br/>
+        to children, you are often<br/>
+        teaching them<br/>
+        <em style="font-style: italic; color: var(--gold);">about harm.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        And if that harm was done to their people, their family, their ancestors, then teaching history is not an academic exercise. <em>It is something that touches their nervous system.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 20 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Elementary children are now ready to encounter historical content that might <em style="font-style: italic; color: var(--gold);">activate trauma history or intergenerational grief.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child whose family was displaced by forced removal hears the Indian Removal Act differently than a child whose family benefited from it.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        A child whose ancestors were enslaved hears the <em>economic reasons</em> for the slave trade differently than a child whose ancestors were enslavers.
+      </p>
+      <p class="body-read">
+        A child whose family survived genocide carries that knowledge in their body, <em>whether they have words for it yet or not.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE JOB -->
+  <section data-label="03 The job" class="on-navy">
+    <div class="eyebrow-slide">What this week is for</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.1;">
+        Your job is not to avoid teaching hard history. <em style="font-style: italic; color: var(--gold);">That would be dishonest.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        It would rob children of the chance to understand their own experience as part of a larger story of human resilience.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Your job is to teach hard history in a way that <em>honours children&rsquo;s complexity and protects their nervous systems from retraumatization</em> — while building their understanding of what their people have endured and overcome.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 INTERGENERATIONAL TRAUMA IS REAL -->
+  <section data-label="04 Intergenerational trauma" class="on-cream">
+    <div class="eyebrow-slide">Intergenerational trauma · not metaphorical</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Collective trauma shapes family systems and community patterns <em style="font-style: italic; color: var(--gold);">across generations.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <h3>Explicit transmission.</h3>
+          <p>Parents telling children what happened. Or not telling them. Or telling them <em>in ways that carry fear.</em></p>
+        </div>
+        <div class="card">
+          <h3>Implicit transmission.</h3>
+          <p>Nervous systems of survivors staying in hypervigilance — <em>creating homes where children absorb alertness they cannot name.</em></p>
+        </div>
+        <div class="card">
+          <h3>Social and material.</h3>
+          <p>Families in poverty or precarity because of historical dispossession. <em>Inheriting circumstances their ancestors&rsquo; trauma shaped.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 WHAT YOU ARE TOUCHING -->
+  <section data-label="05 What you are touching" class="on-navy">
+    <div class="eyebrow-slide">What you are touching when you teach</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A child may have an ancestor who was enslaved — <em style="font-style: italic; color: var(--gold);">and that ancestor&rsquo;s fear of violence may live in the child&rsquo;s nervous system.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The child may have no conscious memory of family conversations. But they may inherit a kind of grief or rage <em>they do not have language for.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        When you teach that history explicitly, you are giving the child a framework for understanding something they have already felt. <em>That can be healing. Or it can be retraumatizing — if done without care.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE SHIFT -->
+  <section data-label="06 The shift" class="on-cream">
+    <div class="eyebrow-slide">The difference lies in how you teach it</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        <em style="font-style: italic; color: var(--gold);">&ldquo;Your people were helpless&rdquo;</em> vs. <em style="font-style: italic; color: var(--gold);">&ldquo;your people resisted.&rdquo;</em>
+      </h2>
+      <div class="shift-grid">
+        <div class="col">
+          <div class="label">Retraumatizing</div>
+          <h3>History as a fact. Violence unnamed. Victims passive.</h3>
+          <p>The child whose ancestors were enslaved learns their people were helpless. <em>The narrative of victimhood without the counter-narrative of agency.</em></p>
+        </div>
+        <div class="shift-arrow">·</div>
+        <div class="col on">
+          <div class="label">Honest and healing</div>
+          <h3>Humanity centered. Resistance named. Violence acknowledged without glorification.</h3>
+          <p><em>What happened to your ancestors was real and wrong. And they survived. And their survival is part of your strength.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 THE SAME PRINCIPLE -->
+  <section data-label="07 Same principle" class="on-cream">
+    <div class="eyebrow-slide">The same principle · for any history of collective harm</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not what <em style="font-style: italic; color: var(--gold);">was done to</em> peoples. <em style="font-style: italic; color: var(--gold);">What peoples did.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Colonization — honour what Indigenous peoples did to resist, adapt, survive, maintain their cultures <em>despite everything.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Genocide — not as endpoint. <em>The communities that survived. The ways culture persisted. The ongoing fight to restore what was stolen. The descendants reclaiming what was nearly lost.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PREPARATION BEYOND CONTENT -->
+  <section data-label="08 Preparation" class="on-cream">
+    <div class="eyebrow-slide">Preparation that goes beyond the content</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Know your children. <em style="font-style: italic; color: var(--gold);">Not to label. To know what they carry.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <h3>Who has which heritage.</h3>
+          <p>Indigenous. Enslaved ancestors. Displacement. Persecution. <em>This is not surveillance. It is knowing.</em></p>
+        </div>
+        <div class="card">
+          <h3>Prep individual children or families.</h3>
+          <p>Sometimes a note home: <em>&ldquo;Next week we&rsquo;re studying this. I wanted you to know.&rdquo;</em></p>
+        </div>
+        <div class="card">
+          <h3>Listen to what families tell you.</h3>
+          <p>Sometimes nothing. That is fine. Sometimes something that gives you context <em>for how their child might respond.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 NAME THE VIOLENCE -->
+  <section data-label="09 Name the violence" class="on-navy">
+    <div class="eyebrow-slide">Name the violence · directly, not gratuitously</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Children understand the weight of wrongness. <em style="font-style: italic; color: var(--gold);">You do not need graphic description.</em>
+      </h2>
+      <div class="quote-block">
+        <p>&ldquo;Many Indigenous peoples were forced off their land against their will. <em>This was violence. It was wrong.&rdquo;</em></p>
+      </div>
+      <p class="body-read" style="margin-top: 28px; color: rgba(255,255,255,0.88); max-width: 1680px;">
+        Then move to resilience and agency. Peoples who resisted removal by hiding and maintaining communities. Peoples who adapted to new lands while maintaining their cultures. Contemporary Indigenous peoples <em>reclaiming sovereignty and rebuilding.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1680px;">
+        <em>Harm happened. Your ancestors were harmed. Look at what they did anyway. Look at who you are because of them.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 VALIDATE THE RESPONSE -->
+  <section data-label="10 Validate the response" class="on-cream">
+    <div class="eyebrow-slide">When a child has a big response</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        You do not need to do therapy. <em style="font-style: italic; color: var(--gold);">You need to hold the space with steady presence.</em>
+      </h2>
+      <div class="quote-block">
+        <p>&ldquo;I can see this is hitting you. That makes sense. <em>You can sit for a bit. You can move to a quieter space if you need to. You can talk about it later if you want to. I&rsquo;m here.&rdquo;</em></p>
+      </div>
+      <p class="body-read" style="margin-top: 28px; color: var(--navy); font-style: italic;">
+        That is enough.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 DECOMPRESSION -->
+  <section data-label="11 Decompression" class="on-cream">
+    <div class="eyebrow-slide">After difficult history · decompression</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Do not teach about genocide and then <em style="font-style: italic; color: var(--gold);">move directly to math.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <h3>Let there be time for integration.</h3>
+          <p>Art. Discussion. Quiet work. <em>A deliberate exhale.</em></p>
+        </div>
+        <div class="card">
+          <h3>Check in individually.</h3>
+          <p>With the children who were most activated. <em>&ldquo;I know that was heavy. Do you want to talk?&rdquo;</em></p>
+        </div>
+        <div class="card">
+          <h3>Co-regulate.</h3>
+          <p>Or just offer a regulated nervous system in proximity. <em>Sit with them. Let them know you&rsquo;re steady even if they&rsquo;re not.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 WHEN THE PERSONAL IS ACTIVATED -->
+  <section data-label="12 Personal history activated" class="on-navy">
+    <div class="eyebrow-slide">When the curriculum activates the child&rsquo;s personal history</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A parent in immigration detention. A family member recently evicted.
+        <em style="font-style: italic; color: var(--gold);">The lesson becomes immediate and personal.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The child might not make the connection explicitly. <em>But their body knows.</em> They might become withdrawn, or act out, or have a panic response.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Remain present. Create structure. Do not minimize with <em>&ldquo;it was a long time ago.&rdquo;</em> Do not dive deep into their situation if they do not want to talk.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        Offer choice and agency. <em>&ldquo;Do you need to step out for a bit? Do you want to sit somewhere quieter? Do you want to talk about it now or later?&rdquo;</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 SCENE A — FIRST CLASSROOM -->
+  <section data-label="13 Scene · first classroom" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-classroomA">
+        <div class="scene-label">The guide teaches that there was a slave trade. Mentions the conditions on ships briefly. Moves on to the economic reasons for slavery — supply and demand, labor, profit. A Black child sits quietly, feeling something she cannot name. She knows her family history. She has heard her grandmother talk about her people. What she learns is that <em>her people were economic units. Their transportation was a supply chain.</em> She learns this as a fact, without context for what her people were beyond that.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · retraumatized through omission</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is being<br/>
+          retraumatized<br/>
+          <em style="font-style: italic;">through omission.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          The harm is not in the words said. <em>It is in the words that were not.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 SCENE B — SECOND CLASSROOM -->
+  <section data-label="14 Scene · second classroom" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-classroomB">
+        <div class="scene-label">Millions of African peoples were forcibly taken from their homes and transported across an ocean in conditions designed to kill many of them. <em>This was violence. This was evil.</em> And then the guide teaches about the Africans who resisted. Who rebelled on slave ships. Who created communities in the places they were taken. Who maintained their cultures, their music, their spirituality, their languages — despite everything. Who organized rebellions. <em>Who became architects of their own freedom.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · the weight and the knowledge</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          She sits with<br/>
+          the weight of<br/>
+          what happened.<br/>
+          <em style="font-style: italic;">And also with<br/>
+          the knowledge<br/>
+          of what her<br/>
+          ancestors did.<br/>
+          She was not<br/>
+          a victim of<br/>
+          circumstance.<br/>
+          Her people<br/>
+          built meaning<br/>
+          anyway.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          That changes what she knows about herself.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 EQUITY PROVOCATION -->
+  <section data-label="15 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        If you teach history without addressing harm, you teach that <em style="font-style: italic; color: var(--gold);">harm does not matter.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        If you teach history in a way that centers harm without centering <em>agency and resilience</em> — you reinforce narratives of victimhood that harm the children whose ancestors experienced that violence.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The work is to name what happened honestly while making space for what your students&rsquo; ancestors did in response.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        That is harder than either erasure or victimization. <em>But that is what honesty requires.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 NEURODIVERGENCE -->
+  <section data-label="16 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · the nervous system is not misbehaving</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Stronger nervous-system responses to violence or displacement content <em style="font-style: italic; color: var(--gold);">are not a behavior problem.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        It is a nervous system responding appropriately to content that touches unresolved trauma.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Grounding techniques. Movement breaks. Co-regulation — <em>your steady presence.</em> And explicit permission to step out if they are dysregulated.
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 60px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Name what<br/>
+        happened honestly.<br/>
+        <em style="color: var(--gold);">And make space<br/>
+        for what your<br/>
+        students&rsquo; ancestors<br/>
+        did in response.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · two questions for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 50px;">
+        What history<br/>
+        were you taught<br/>
+        as a child<br/>
+        <em style="font-style: italic; color: var(--gold);">that touched<br/>
+        something in you?</em><br/>
+        <br/>
+        What would<br/>
+        have changed<br/>
+        if that history<br/>
+        had been taught<br/>
+        differently?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 20 · Elementary · Trauma-Informed History Teaching</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

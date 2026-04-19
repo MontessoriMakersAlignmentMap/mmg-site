@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 5 — Imagination as the Primary Cognitive Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-story-room {
+    background:
+      radial-gradient(ellipse 45% 50% at 50% 50%, rgba(214,167,88,0.25), transparent 70%),
+      linear-gradient(170deg, #1a140a 0%, #0a0805 100%);
+  }
+  .scene-worksheet-room {
+    background:
+      linear-gradient(170deg, #2a2a28 0%, #131312 100%);
+  }
+  .scene-book-room {
+    background:
+      radial-gradient(ellipse 50% 55% at 55% 50%, rgba(214,167,88,0.20), transparent 70%),
+      linear-gradient(170deg, #1c1a12 0%, #0a0906 100%);
+  }
+  .scene-carpet-room {
+    background:
+      radial-gradient(ellipse 55% 60% at 45% 50%, rgba(88, 110, 120, 0.22), transparent 70%),
+      linear-gradient(170deg, #0f1618 0%, #050808 100%);
+  }
+
+  /* Imagination vs fantasy diagram */
+  .im-fan {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    margin-top: 40px;
+  }
+  .im-fan > div {
+    padding: 36px; background: #fbf7ec;
+    border: 1px solid rgba(20,30,60,0.15);
+  }
+  .im-fan .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .im-fan h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 32px; color: var(--navy); margin: 0 0 22px; line-height: 1.2;
+  }
+  .im-fan p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body); margin: 0 0 12px;
+  }
+  .im-fan em { font-style: italic; color: var(--navy); }
+  .im-fan .hr { height: 1px; background: rgba(20,30,60,0.15); margin: 18px 0; }
+  .im-fan .tag {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #8a8070;
+  }
+  /* Tool list */
+  .tool-list { margin-top: 36px; max-width: 1620px; }
+  .tool-row {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 32px; padding: 24px 0;
+    border-top: 1px solid rgba(20,30,60,0.2);
+  }
+  .tool-row:last-child { border-bottom: 1px solid rgba(20,30,60,0.2); }
+  .tool-row .num {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 40px; color: var(--gold); line-height: 1;
+  }
+  .tool-row .body {
+    font-family: var(--font-sans); font-size: 26px; line-height: 1.4;
+    color: var(--fg-body);
+  }
+  .tool-row .body strong {
+    font-family: var(--font-heading); font-style: italic;
+    font-weight: normal; font-size: 30px; color: var(--navy);
+    display: block; margin-bottom: 6px;
+  }
+
+  /* Pull-quote slide */
+  .pullquote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 76px;
+    line-height: 1.08;
+    color: #fbf7ec;
+  }
+  .pullquote em { color: var(--gold); font-style: italic; }
+
+  /* Timeline diagram */
+  .abstraction-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: 36px;
+  }
+  .abstraction-card {
+    padding: 28px; background: #fbf7ec;
+    border: 1px solid rgba(20,30,60,0.15);
+    position: relative;
+  }
+  .abstraction-card .stage {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .abstraction-card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.2;
+  }
+  .abstraction-card p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .abstraction-card em { font-style: italic; color: var(--navy); }
+
+  /* Timeline of a Great Lesson */
+  .gl-timeline {
+    margin-top: 40px; position: relative;
+  }
+  .gl-track {
+    position: absolute; left: 0; right: 0; top: 40px;
+    height: 1px; background: rgba(20,30,60,0.2);
+  }
+  .gl-steps {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+    position: relative;
+  }
+  .gl-step { text-align: left; position: relative; padding-top: 60px; }
+  .gl-step::before {
+    content: ""; position: absolute; top: 33px; left: 0;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); border: 2px solid #fbf7ec;
+    box-shadow: 0 0 0 1px rgba(214,167,88,0.5);
+  }
+  .gl-step .tag {
+    font-family: var(--font-sans); font-size: 18px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin: 0 0 8px;
+  }
+  .gl-step h4 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;
+  }
+  .gl-step p {
+    font-family: var(--font-sans); font-size: 19px; line-height: 1.42;
+    color: var(--fg-body); margin: 0;
+  }
+  .gl-step em { color: var(--navy); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Five · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 88px; line-height: 1.04; padding-bottom: 24px;">
+        A child without access<br/>
+        to imagination is a<br/>
+        child whose mind is<br/>
+        <em style="font-style: italic; color: var(--gold);">partially offline.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        Imagination is not decoration on the learning. It
+        is not something that happens <em>after</em>
+        real learning. It is <em>the engine</em> of real
+        learning at the second plane.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 5 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14; color: var(--navy);">
+        You are about to tell<br/>
+        children stories about<br/>
+        the formation of the<br/>
+        earth, the evolution<br/>
+        of life, the coming of<br/>
+        human beings.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Tell them as dry facts and you will activate the
+        parts of children&rsquo;s minds that <em>memorize
+        and file away.</em> You will not activate the parts
+        that ask deep questions, make connections, generate
+        curiosity.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The Great Lessons are designed to use imagination.
+        If you do not understand imagination as a cognitive
+        tool, you will teach these lessons in a way that
+        <em>contradicts their purpose.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT THE REASONING MIND CAN AND CANNOT DO -->
+  <section data-label="What the reasoning mind needs" class="on-cream">
+    <div class="eyebrow-slide">What the second-plane mind can and cannot do</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The reasoning mind of an<br/>
+        elementary child cannot yet<br/>
+        work with pure abstraction.
+        <em style="font-style: italic; color: var(--gold);">It thinks in pictures first.</em>
+      </h2>
+      <div class="abstraction-row">
+        <div class="abstraction-card">
+          <div class="stage">Without imagination</div>
+          <h3>&ldquo;Billions of years.&rdquo;</h3>
+          <p>A phrase on a page. Three words. A child
+          repeats them but <em>cannot hold</em> them.</p>
+        </div>
+        <div class="abstraction-card">
+          <div class="stage">With imagination</div>
+          <h3>A river a child can walk along.</h3>
+          <p>Picture the earth forming. Picture life
+          appearing, gradually complicating. <em>Now</em>
+          the child has something to think with.</p>
+        </div>
+        <div class="abstraction-card">
+          <div class="stage">What comes after</div>
+          <h3>Real abstraction.</h3>
+          <p>Later, the child can work with the number line,
+          the timeline, the taxonomy. But the picture has
+          to come <em>first.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; color: var(--navy); font-style: italic;">
+        This is not a developmental weakness. It is how the
+        mind of a six-to-twelve-year-old actually <em>does
+        its work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 IMAGINATION VS FANTASY -->
+  <section data-label="Imagination vs fantasy" class="on-cream">
+    <div class="eyebrow-slide">The crucial distinction · imagination is not fantasy</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Imagination in the sense Montessori means is imagination
+        <em style="font-style: italic; color: var(--gold);">grounded in reality.</em>
+      </h2>
+      <div class="im-fan">
+        <div>
+          <div class="hdr">Fantasy</div>
+          <h3>Imagination untethered from reality.</h3>
+          <p>A child fantasizes about being a unicorn.</p>
+          <div class="hr"></div>
+          <p class="tag">Fine for play</p>
+          <p>Not a cognitive tool for learning about the real world.</p>
+        </div>
+        <div>
+          <div class="hdr">Imagination</div>
+          <h3>Imagination grounded in reality.</h3>
+          <p>The ability to hold a mental picture of something <em>real</em> you cannot currently see.</p>
+          <p>The ability to walk through a sequence of events in your mind and see how one thing leads to another.</p>
+          <p>The ability to take what you know about one situation and <em>apply it</em> to understand another.</p>
+          <div class="hr"></div>
+          <p class="tag">The cognitive tool</p>
+          <p>This is how a six-year-old thinks about billions of years. There is no other way.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 THE PULLQUOTE BREATHER -->
+  <section data-label="Pull quote · not decoration" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The claim, in one sentence</div>
+      <p class="pullquote" style="margin-top: 24px;">
+        Imagination is not<br/>
+        decoration. It is not<br/>
+        something the child<br/>
+        does <em>after</em> they<br/>
+        understand. It is<br/>
+        <em>the tool that lets<br/>
+        them understand.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT IMAGINATION DOES -->
+  <section data-label="What imagination does" class="on-cream">
+    <div class="eyebrow-slide">What imagination actually does · four functions, one mind</div>
+    <div class="stack" style="max-width: 1720px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Imagination is not separate from intellectual work.
+        <em style="font-style: italic; color: var(--gold);">It is what makes the work possible.</em>
+      </h2>
+      <div class="tool-list">
+        <div class="tool-row">
+          <div class="num">i.</div>
+          <div class="body">
+            <strong>Imagination holds the unseeable.</strong>
+            Billions of years, pre-human earth, the interior of
+            a cell. Without imagination, these are words on a
+            page. With it, they become <em>pictures a child
+            thinks with.</em>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="num">ii.</div>
+          <div class="body">
+            <strong>Imagination drives investigation.</strong>
+            A child goes to books with a question she is
+            <em>already imagining the answer to.</em> She
+            reads to confirm or refine her mental picture. She
+            conducts experiments to test what she imagines.
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="num">iii.</div>
+          <div class="body">
+            <strong>Imagination becomes moral.</strong>
+            The child walks in someone else&rsquo;s shoes. A
+            historical figure facing injustice, an indigenous
+            community facing colonization — imagination is the
+            tool through which moral understanding develops.
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="num">iv.</div>
+          <div class="body">
+            <strong>Imagination drives creation.</strong>
+            Drawings, models, stories from the perspective of
+            a person in an ancient civilization. These are
+            <em>not decoration.</em> They are thinking made
+            visible.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 GREAT LESSONS STRUCTURE IMAGINATION -->
+  <section data-label="How the Great Lessons structure imagination" class="on-cream">
+    <div class="eyebrow-slide">How the Great Lessons are built to invite imagination</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A Great Lesson is not a lecture.
+        <em style="font-style: italic; color: var(--gold);">It is a shaped invitation to picture.</em>
+      </h2>
+      <div class="gl-timeline">
+        <div class="gl-track"></div>
+        <div class="gl-steps">
+          <div class="gl-step">
+            <p class="tag">i · frame</p>
+            <h4>Gather. Lower the voice. Slow the pace.</h4>
+            <p>Signal that this is different from daily work.</p>
+          </div>
+          <div class="gl-step">
+            <p class="tag">ii · invite</p>
+            <h4>&ldquo;Picture the earth as it forms.&rdquo;</h4>
+            <p>Explicit verbal cues that imagination is <em>the work.</em></p>
+          </div>
+          <div class="gl-step">
+            <p class="tag">iii · anchor</p>
+            <h4>Globes. Timelines. Pictures. Demonstrations.</h4>
+            <p>Sensorial objects as anchors for the unseeable.</p>
+          </div>
+          <div class="gl-step">
+            <p class="tag">iv · hold</p>
+            <h4>Pause. Let the silence work.</h4>
+            <p>Do not interrupt the child&rsquo;s picturing with questions.</p>
+          </div>
+          <div class="gl-step">
+            <p class="tag">v · release</p>
+            <h4>Let investigation begin from the child.</h4>
+            <p>Books, experiments, drawings <em>follow</em> — they do not precede.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 SCENE SPLIT A — STORY ROOM -->
+  <section data-label="Scene · imagination activated" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-story-room has-image" style="background: url('/decks/images/elem-week-05-scene-story-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A guide at the front of a gathered group of elementary children. She is telling the story of the coming of animals, speaking slowly, her voice carrying scale and wonder. A timeline unfurls on the floor. A child&rsquo;s eyes are far away, picturing. The room is quiet. She has just paused. She does not fill the silence.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · imagination activated</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          She gives children<br/>
+          <em style="font-style: italic;">time to picture.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          &ldquo;Imagine the oceans filling the earth. Imagine
+          the simplest forms of life appearing. Imagine them
+          gradually becoming more complex.&rdquo; She does
+          not rush. She does not interrupt herself to ask
+          questions. After she finishes — <em>she is quiet.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A week later, a child is still thinking about this
+          lesson. Still reading. Still drawing. Still
+          imagining.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE SPLIT B — WORKSHEET ROOM -->
+  <section data-label="Scene · imagination bypassed" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-worksheet-room has-image" style="background: url('/decks/images/elem-week-05-scene-worksheet-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A guide at a whiteboard listing the main groups of animals. Bullet points. A stack of worksheets in her hand. Children sitting at tables. One is answering &ldquo;did you understand?&rdquo; and nodding. Another child&rsquo;s eyes are on the window. The timeline is tidy and contained. There is no time given for silence or picturing.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · imagination bypassed</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          Same lesson.<br/>
+          <em style="font-style: italic;">No imagining.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          &ldquo;Animals first appeared in the oceans. Then
+          they came to land. Here are the main groups.&rdquo;
+          She lists. Shows pictures. Asks comprehension
+          questions. <em>Did you understand? Can you tell me
+          back what I said?</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A week later — a worksheet. Children fill it in.
+          They have learned facts. <em>They have not
+          thought.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE C — CHILD-DRIVEN INVESTIGATION -->
+  <section data-label="Scene · investigation from imagination" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-book-room has-image" style="background: url('/decks/images/elem-week-05-scene-book-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A week after the Great Lesson. A child at a low table surrounded by books — dinosaurs, deep-sea creatures, a field guide to rocks. She is drawing picture after picture of what she imagines early life looked like. Papers spread in the sequence she is thinking in. The guide has supplied the materials and sat nearby. She does not correct the inaccuracies. She asks: <em>what are you wondering about?</em> They talk about extinctions. The guide suggests a book. The child reads it, still imagining, still creating.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene C · imagination as engine</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          The picture<br/>
+          <em style="font-style: italic;">drives</em> the<br/>
+          reading.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          She reads with a question she is <em>already
+          imagining the answer to.</em> She is not receiving
+          information. She is <em>refining a mental picture.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The book becomes a tool the imagination uses —
+          not a substitute for it.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 MORAL IMAGINATION -->
+  <section data-label="Moral imagination" class="on-cream">
+    <div class="eyebrow-slide">Imagination becomes moral at the second plane</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The child begins to<br/>
+        understand herself<br/>
+        as part of a story.<br/>
+        <em style="font-style: italic; color: var(--gold);">Imagination becomes<br/>
+        the tool of empathy.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px;">
+        <p class="body-read">
+          Reading about a historical figure who faced an
+          injustice — imagination is how the child
+          <em>feels</em> what was at stake, why that person
+          made the choices they did.
+        </p>
+        <p class="body-read">
+          Learning how colonization affected indigenous
+          peoples — imagination is how the child
+          <em>understands</em> what was lost, what was
+          violated, what resilience looked like.
+        </p>
+      </div>
+      <p class="body-read" style="color: var(--navy); font-style: italic; margin-top: 24px;">
+        Moral understanding does not arrive through a lecture
+        on ethics. It arrives because a child has imagined
+        her way into <em>another life.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 HOW GUIDES SHUT IT DOWN -->
+  <section data-label="How guides inadvertently shut it down" class="on-cream">
+    <div class="eyebrow-slide">How well-meaning guides shut imagination down</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Being too literal. Too focused on facts.
+        <em style="font-style: italic; color: var(--gold);">Too quick to correct.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Worksheets that ask children to <em>memorize</em>
+            facts about ancient Egypt rather than inviting
+            them to imagine living there.
+          </li>
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Treating imagination as <em>frivolous.</em>
+            Something children do when they should be working.
+          </li>
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Stopping the Great Lesson for comprehension
+            questions <em>before</em> the child has had time
+            to imagine it.
+          </li>
+        </ul>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Redirecting a child&rsquo;s drawing toward
+            <em>accuracy</em> — when the work of imagination
+            matters far more than accuracy here.
+          </li>
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Insisting children <em>know the facts</em> before
+            they pursue their questions — when in fact the
+            questions drive the learning.
+          </li>
+          <li class="body-read" style="padding-left: 40px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--gold); font-style: italic; font-family: var(--font-heading);">&times;</span>
+            Saying <em>&ldquo;That&rsquo;s nice. Now you need
+            to read this book and answer these questions.&rdquo;</em>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 WHAT OPENS IT -->
+  <section data-label="What opens imagination" class="on-cream">
+    <div class="eyebrow-slide">The opposite moves · what opens imagination</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Create space. Ask questions<br/>
+        that invite picturing. Honor<br/>
+        the deep work
+        <em style="font-style: italic; color: var(--gold);">even when the facts are still fuzzy.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 32px;">
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); line-height: 1.22; margin: 0 0 12px;">Ask picturing questions.</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;"><em style="color: var(--navy);">What do you see? What does it smell like? Who else is there?</em></p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); line-height: 1.22; margin: 0 0 12px;">Value the representations.</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;">A child&rsquo;s drawing of the early earth <em style="color: var(--navy);">is</em> thinking. Treat it that way.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); line-height: 1.22; margin: 0 0 12px;">Trust the fuzzy middle.</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;">A child who has imagined the scale of geological time has learned something real — even if the eras are still in the wrong order.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 CREATION AS COGNITION -->
+  <section data-label="Creation as cognition" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-carpet-room has-image" style="background: url('/decks/images/elem-week-05-scene-carpet-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child on the floor with a long sheet of butcher paper. He is building a model of a settlement adapting to geography — rivers drawn in blue, terraced fields in brown, huts in clusters. Pebbles for stones. A small paper figure labeled with a name. He has been at this for two mornings. The guide has not asked for a title page or a paragraph explanation. The model <em>is</em> the thinking.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Creation as cognition</div>
+        <h2 class="display" style="font-size: 42px; line-height: 1.14; margin-top: 8px;">
+          The drawing.<br/>
+          The model.<br/>
+          The story.<br/>
+          <em style="font-style: italic;">The thinking.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          When a child draws the early earth, she is
+          <em>thinking about geology.</em> When a child
+          builds a settlement, he is <em>thinking about how
+          humans adapt to environment.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          These are not extras. They are the way thinking
+          happens.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 EQUITY -->
+  <section data-label="Equity · imagination looks different" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · imagination is not universal</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.14;">
+        Some children have had<br/>
+        rich imaginative lives.<br/>
+        Others come from homes<br/>
+        that prize the practical<br/>
+        and the literal. <em style="font-style: italic; color: var(--gold);">This<br/>
+        is not a deficit.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Some children embrace imaginative work immediately.
+        Some need <em>time and practice</em> to trust that
+        imagination is legitimate work. Some need explicit
+        instruction in how to use imagination as a thinking
+        tool.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px;">
+        The goal is not to make all children imagine the
+        same way. It is to honor that imagination can look
+        different for different children and still be
+        <em>real thinking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">The neurodivergence note</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Imagination exists across<br/>
+        different neurodivergent minds.
+        <em style="font-style: italic; color: var(--gold);">It just shows up differently.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px;">
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Pictures.</p>
+          <p style="font-family: var(--font-sans); font-size: 21px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child who imagines in vivid visual scenes.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Movement.</p>
+          <p style="font-family: var(--font-sans); font-size: 21px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child who imagines by acting it out in her body.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Sensation.</p>
+          <p style="font-family: var(--font-sans); font-size: 21px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child who imagines through texture, weight, sound.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Logic.</p>
+          <p style="font-family: var(--font-sans); font-size: 21px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child who imagines by tracing cause to consequence.</p>
+        </div>
+      </div>
+      <p class="body-read" style="color: var(--navy); font-style: italic; margin-top: 32px;">
+        Your job is not to make all children imagine in the
+        same way. Your job is to honor and develop the
+        imaginative capacity of <em>each child&rsquo;s
+        unique mind.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 THE TEST -->
+  <section data-label="The test" class="on-cream">
+    <div class="eyebrow-slide">A test you can run this week</div>
+    <div class="stack gap-md" style="max-width: 1740px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        A week after your next Great Lesson,
+        <em style="font-style: italic; color: var(--gold);">look around the room.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px;">
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.22;">If you see worksheets completed and shelved —</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">the lesson activated <em style="color: var(--navy);">memory.</em> It did not activate imagination.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.22;">If you see drawings, books open, arguments, models being built —</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">the lesson activated the engine. Children are still <em style="color: var(--navy);">thinking</em> a week later.</p>
+        </div>
+      </div>
+      <p class="body-read" style="color: var(--navy); font-style: italic; margin-top: 32px;">
+        The evidence of imagination is <em>visible.</em>
+        It is not hidden inside children&rsquo;s heads. It
+        is on the shelves, on the carpet, on the walls.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · a single commitment</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 50px;">
+        Tell your next Great<br/>
+        Lesson and <em style="font-style: italic; color: var(--gold);">leave<br/>
+        silence at the end.</em><br/>
+        Do not fill it with<br/>
+        comprehension<br/>
+        questions. Do not<br/>
+        redirect. Watch what<br/>
+        the children&rsquo;s<br/>
+        imaginations do<br/>
+        with the space.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 5 · Elementary · Imagination as Cognitive Tool</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

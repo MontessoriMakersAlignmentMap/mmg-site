@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 19 — The Passage of Time and Children's Relationship to History</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-timeline {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+
+  /* The "walking the strip" visual - a long proportional bar */
+  .strip-proportional {
+    margin-top: 38px;
+    max-width: 1820px;
+  }
+  .strip-row {
+    display: flex; align-items: stretch; height: 76px;
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .strip-seg {
+    position: relative;
+    border-right: 1px dashed rgba(20,30,60,0.18);
+    font-family: var(--font-sans); font-size: 15px;
+    color: var(--navy);
+    padding: 10px 10px 0 10px;
+    overflow: hidden;
+  }
+  .strip-seg:last-child { border-right: none; }
+  .strip-seg .lbl {
+    display: block;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 17px; color: var(--navy); line-height: 1.1;
+  }
+  .strip-seg .yrs {
+    display: block;
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(20,30,60,0.55);
+    margin-top: 3px;
+  }
+  .strip-seg.accent { background: rgba(214,167,88,0.18); }
+  .strip-scale {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-top: 10px;
+  }
+
+  /* Clock of Eras proportional circle */
+  .clock-wrap {
+    display: flex; align-items: center; gap: 48px;
+    margin-top: 40px;
+  }
+  .clock-circle {
+    width: 540px; height: 540px; position: relative; flex-shrink: 0;
+  }
+  .clock-center {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; color: var(--navy); text-align: center;
+    pointer-events: none;
+  }
+  .clock-legend {
+    flex: 1; display: flex; flex-direction: column; gap: 14px;
+    font-family: var(--font-sans); font-size: 20px; color: var(--fg-body);
+  }
+  .clock-legend .row {
+    display: flex; align-items: baseline; gap: 16px;
+  }
+  .clock-legend .sw {
+    width: 20px; height: 20px; flex-shrink: 0; border-radius: 3px;
+  }
+  .clock-legend .name {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin-right: 6px;
+  }
+  .clock-legend em { font-style: italic; color: var(--navy); }
+
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 38px 46px;
+    background: #fbf7ec;
+    margin-top: 24px;
+    max-width: 1680px;
+  }
+  .quote-block p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 32px; line-height: 1.4; color: var(--navy); margin: 0;
+  }
+  .quote-block em { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Nineteen · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 76px; line-height: 1.06; padding-bottom: 24px;">
+        A seven-year-old<br/>
+        cannot truly imagine<br/>
+        a million years.<br/>
+        <em style="font-style: italic; color: var(--gold);">But a child in elementary<br/>
+        can begin to hold<br/>
+        the vastness of time<br/>
+        as the context<br/>
+        for human existence.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        That shift in consciousness is one of the most important developmental achievements <em>of the second plane.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 19 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Elementary children are developmentally ready for
+        <em style="font-style: italic; color: var(--gold);">historical consciousness.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        They ask <em>&ldquo;When did this happen?&rdquo;</em> and <em>&ldquo;How do we know?&rdquo;</em> They want to place events in relation to each other. They are building a sense of causation and sequence.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        But they can only do this with a framework concrete enough to hold in their minds.
+      </p>
+      <p class="body-read">
+        That is what the Clock of Eras and the Long Black Strip do. <em>They make the invisible visible. They give children something tangible to stand inside.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 BEFORE AND AFTER THE SHIFT -->
+  <section data-label="03 Before and after" class="on-cream">
+    <div class="eyebrow-slide">The developmental shift</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Before age six or seven, the child&rsquo;s past is <em style="font-style: italic; color: var(--gold);">their own memory.</em> Their own experience.
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Primary child</div>
+          <h3>Past is parents&rsquo; childhood — if that far.</h3>
+          <p>The idea of centuries, of peoples long dead, of civilizations that rose and fell, <em>is beyond their reach.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Elementary child</div>
+          <h3>Capable of concrete operational thinking.</h3>
+          <p>Can work with concepts not immediately present. Sequence. Causation. <em>People in the past were real.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        But they still cannot hold thousands of years in the abstract. <em>They need something to see, to touch, to walk.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 CLOCK OF ERAS -->
+  <section data-label="04 Clock of eras" class="on-cream">
+    <div class="eyebrow-slide">The Clock of Eras · Earth&rsquo;s four-and-a-half-billion-year story</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        They walk the vast ages of the Earth <em style="font-style: italic; color: var(--gold);">before humans existed.</em>
+      </h2>
+      <div class="clock-wrap">
+        <div class="clock-circle">
+          <!-- proportional geological eras -->
+          <svg viewBox="0 0 540 540" width="540" height="540" aria-label="Clock of Eras">
+            <!-- backdrop -->
+            <circle cx="270" cy="270" r="260" fill="#fbf7ec" stroke="#142040" stroke-width="2" />
+            <!-- wedges. Approximate % of 4.5 Gyr:
+                 Precambrian ~88.2% → 0 to 317.5°
+                 Paleozoic ~6.2% → 317.5 to 340°
+                 Mesozoic ~4.1% → 340 to 354.7°
+                 Cenozoic ~1.5% → 354.7 to 360°
+                 Humans ~0.004% → barely a hairline -->
+            <!-- use math: 360° * fraction -->
+            <!-- helper: path wedge function; we'll hand-code arcs -->
+            <!-- Precambrian 0° → 317.5° -->
+            <path d="M270,270 L270,10 A260,260 0 1,1 23.79,347.22 Z"
+                  fill="#1a2449" opacity="0.9" />
+            <!-- Paleozoic 317.5° → 340° -->
+            <path d="M270,270 L23.79,347.22 A260,260 0 0,1 181.57,514.72 Z"
+                  fill="#3b5a88" opacity="0.9" />
+            <!-- Mesozoic 340° → 354.7° -->
+            <path d="M270,270 L181.57,514.72 A260,260 0 0,1 245.71,529.12 Z"
+                  fill="#a87c4b" opacity="0.95" />
+            <!-- Cenozoic 354.7° → 360° -->
+            <path d="M270,270 L245.71,529.12 A260,260 0 0,1 270,530 Z"
+                  fill="#d6a758" opacity="1" />
+            <!-- Humans: a hairline at 360° -->
+            <line x1="270" y1="270" x2="270" y2="10" stroke="#fbf7ec" stroke-width="2" opacity="0.35" />
+            <circle cx="270" cy="10" r="5" fill="#fbf7ec" />
+            <!-- labels -->
+            <text x="270" y="150" text-anchor="middle" fill="#fbf7ec" font-family="Libre Caslon Text, Georgia, serif" font-style="italic" font-size="22">Precambrian</text>
+            <text x="270" y="178" text-anchor="middle" fill="#fbf7ec" font-family="Inter, sans-serif" font-size="14" letter-spacing="2">~88.2%</text>
+          </svg>
+          <div class="clock-center" style="top:auto; bottom: -48px; height: auto;">
+            <span style="font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);">4.5 billion years</span>
+          </div>
+        </div>
+        <div class="clock-legend">
+          <div class="row"><span class="sw" style="background:#1a2449;"></span><span><span class="name">Precambrian</span> — before multicellular life spread. <em>The vast majority.</em></span></div>
+          <div class="row"><span class="sw" style="background:#3b5a88;"></span><span><span class="name">Paleozoic</span> — fish, amphibians, first land plants, first forests.</span></div>
+          <div class="row"><span class="sw" style="background:#a87c4b;"></span><span><span class="name">Mesozoic</span> — dinosaurs rise and fall. <em>A fraction of the wheel.</em></span></div>
+          <div class="row"><span class="sw" style="background:#d6a758;"></span><span><span class="name">Cenozoic</span> — mammals and birds. The world you walk through.</span></div>
+          <div class="row"><span class="sw" style="background:#fbf7ec; border:1px solid #142040;"></span><span><span class="name">Humans</span> — a hairline at the edge. <em>Not even a wedge.</em></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 WHAT THAT DOES -->
+  <section data-label="05 What that does" class="on-navy">
+    <div class="eyebrow-slide">The developmental effect of walking it</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12;">
+        Humans are not the main character of Earth&rsquo;s history.
+        <em style="font-style: italic; color: var(--gold);">We are the newest thing.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        That sounds like it should make children feel small. <em>It does the opposite.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        It makes them feel <em>held by something larger.</em> The Earth has a story that goes back billions of years. We are part of that. <em>We are also not the whole point.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 LONG BLACK STRIP -->
+  <section data-label="06 Long Black Strip" class="on-cream">
+    <div class="eyebrow-slide">The Long Black Strip · six thousand years of human history</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 20px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        <em style="font-style: italic; color: var(--gold);">Proportion</em> becomes real when the children walk it.
+      </h2>
+      <div class="strip-proportional">
+        <div class="strip-row">
+          <!-- 6000 years, divided proportionally -->
+          <!-- Before writing (pre-3200 BCE): ~800 yrs in strip = 13.3% -->
+          <div class="strip-seg" style="flex: 13.3 1 0;">
+            <span class="lbl">Before writing</span>
+            <span class="yrs">~800 yrs</span>
+          </div>
+          <!-- Ancient Egypt 3100 BCE–30 BCE = ~3070 yrs = 51.2% -->
+          <div class="strip-seg accent" style="flex: 51.2 1 0;">
+            <span class="lbl">Ancient Egypt</span>
+            <span class="yrs">~3,070 yrs · more than half the strip</span>
+          </div>
+          <!-- Classical Greece 500–323 BCE = ~177 yrs = ~3% -->
+          <div class="strip-seg" style="flex: 3 1 0;">
+            <span class="lbl">Classical Greece</span>
+            <span class="yrs">~180 yrs</span>
+          </div>
+          <!-- Roman Empire 27 BCE–476 CE = ~500 yrs = 8.3% -->
+          <div class="strip-seg" style="flex: 8.3 1 0;">
+            <span class="lbl">Roman Empire</span>
+            <span class="yrs">~500 yrs</span>
+          </div>
+          <!-- Medieval Europe 500–1500 CE = ~1000 yrs = 16.7% -->
+          <div class="strip-seg" style="flex: 16.7 1 0;">
+            <span class="lbl">Medieval Europe</span>
+            <span class="yrs">~1,000 yrs</span>
+          </div>
+          <!-- Early modern 1500–1900 = 400 yrs = 6.7% -->
+          <div class="strip-seg" style="flex: 6.7 1 0;">
+            <span class="lbl">Early modern</span>
+            <span class="yrs">~400 yrs</span>
+          </div>
+          <!-- Last 120 yrs = 2% -->
+          <div class="strip-seg" style="flex: 2 1 0; background: #1a2449;">
+            <span class="lbl" style="color: #fbf7ec;">Last century</span>
+            <span class="yrs" style="color: rgba(255,255,255,0.6);">you are here</span>
+          </div>
+        </div>
+        <div class="strip-scale">
+          <span>4000 BCE</span>
+          <span>2000 BCE</span>
+          <span>0</span>
+          <span>1000 CE</span>
+          <span>Now</span>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        Ancient Egypt is a massive chunk. Classical Greece is a tiny sliver — <em>even though it feels dominant in the curriculum.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 EMBODIED TIME -->
+  <section data-label="07 Embodied time" class="on-navy">
+    <div class="eyebrow-slide">What the child does, walking it</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        They are no longer thinking abstractly about time.
+        <em style="font-style: italic; color: var(--gold);">They are embodying it.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Some children walk these timelines quietly, struck by the scale. Some run and then come back and walk slowly — <em>trying to integrate the size of it.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Some stand at the far end and look back, trying to take in the distance.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        The learning is not what you say about it. <em>It is what they discover by walking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 TEMPORAL HUMILITY -->
+  <section data-label="08 Temporal humility" class="on-cream">
+    <div class="eyebrow-slide">Temporal humility · the existential development</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        At this age, children understand — sometimes for the first time — <em style="font-style: italic; color: var(--gold);">that they will die. That their parents will die. That everyone dies.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Some are terrified. Some fascinated. Some oscillate.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        What they need from you is acknowledgment that this is real and true — <em>and not something to be afraid of.</em>
+      </p>
+      <p class="body-read">
+        History is where you do that work. You show children that humans lived and died and left something behind — that their work, their art, their ideas persisted. <em>That is how humans handle mortality. We make things that last longer than we do.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 HISTORICAL ACTORS -->
+  <section data-label="09 Historical actors" class="on-cream">
+    <div class="eyebrow-slide">Children as historical actors · the crucial shift</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        They are not recipients of history. <em style="font-style: italic; color: var(--gold);">They are making it.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Document their work. Portfolio the research. <em>Say: future historians will use archives. What is in the archives? The work of people like you.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        When you document a child&rsquo;s investigation, you are saying: <em>your thinking matters. It is worth keeping. It becomes part of the record.</em>
+      </p>
+      <p class="body-read">
+        Some children will carry that sense of themselves into adulthood. <em>That they contribute to human knowledge. That is not a small thing.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 CONNECTION TO PRESENT -->
+  <section data-label="10 Connection to present" class="on-cream">
+    <div class="eyebrow-slide">Connect every history lesson to now</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Every history lesson, the same question: <em style="font-style: italic; color: var(--gold);">how is this connected to now?</em>
+      </h2>
+      <div class="quote-block">
+        <p>&ldquo;When you teach the Indus Valley&rsquo;s water systems — ask: <em>how does water get to your home now?</em> Who manages it? If the Indus Valley had not developed that technology, what would humans have learned? Now that you understand it, <em>what would you do differently with water?&rdquo;</em></p>
+      </div>
+      <p class="body-read" style="margin-top: 28px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        Not moralizing. <em>Connecting history to agency. Showing children that the past is not dead. It is in their hands.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE — AT THE END OF THE STRIP -->
+  <section data-label="11 Scene · end of the strip" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-timeline has-image" style="background: url('/decks/images/elem-week-19-scene-timeline.jpg') center/cover no-repeat;">
+        <div class="scene-label">They have walked the Long Black Strip for weeks. Now at the far end — the last hundred years. A child points two hundred years back: <em>&ldquo;People lived here?&rdquo;</em> Another walks backward to where the American nation begins and realizes it is only a blink. A third stands at the current day — <em>&ldquo;We&rsquo;re so new.&rdquo;</em> Then asks: <em>&ldquo;Where are we going to be in a hundred years?&rdquo;</em> The guide has no answer. None of us does.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the question she is now asking</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is<br/>
+          asking the<br/>
+          right question.<br/>
+          <em style="font-style: italic;">She is understanding<br/>
+          that history<br/>
+          is not finished.<br/>
+          She is in it.<br/>
+          What happens next<br/>
+          depends partly<br/>
+          on what she does.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 WHAT IT DOES FOR THE OVERWHELMED CHILD -->
+  <section data-label="12 What it does" class="on-navy">
+    <div class="eyebrow-slide">What the full scope of time does</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A context so large that the child&rsquo;s own struggles become
+        <em style="font-style: italic; color: var(--gold);">both smaller and more meaningful.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        For the child facing eviction: real and hard — <em>and also, you carry the genes of ancestors who survived catastrophes probably worse than this.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        For the grandiose child: the world is bigger than you. <em>But that does not mean you do not matter.</em>
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        You are not insignificant because your moment is small. <em>You are significant because you get to decide what you do with it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="13 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        For children whose communities are currently marginalized — who are told their moment of history is less important —
+        <em style="font-style: italic; color: var(--gold);">the Clock and the Strip say something radical.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px; color: var(--navy); font-style: italic;">
+        <em>&ldquo;No. Your people have been here for thousands of years. You are part of a long human story. Your moment is small, but it is not insignificant. What you do matters precisely because it becomes part of the past that shapes the future.&rdquo;</em>
+      </p>
+      <p class="body-read">
+        Not escapism from the urgent problems of now. <em>The context that makes urgent action meaningful.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 NEURODIVERGENCE -->
+  <section data-label="14 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · walk it more than once</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Some children need to walk it <em style="font-style: italic; color: var(--gold);">three, four, five times</em> before the scale sinks in.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Some children with time-processing challenges may find vast time periods confusing rather than grounding.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Use the timelines. <em>And also use concrete markers and repetition.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 TEMPORAL GROUNDING -->
+  <section data-label="15 Temporal grounding" class="on-cream">
+    <div class="eyebrow-slide">Deep time as grounding &mdash; not as diminishment</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        You are significant <em style="font-style: italic; color: var(--gold);">because you get to decide what you do with your moment.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        For the anxious child: <em>you are also a human being shaped by billions of years of evolution, carrying the genes of ancestors who survived catastrophes worse than this.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        For the child who believes everything is about them: <em>the world is bigger than you &mdash; and that does not mean you do not matter.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 MORTALITY -->
+  <section data-label="16 Mortality" class="on-navy">
+    <div class="eyebrow-slide">Temporal humility &mdash; the existential work of the second plane</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        At this age children understand, sometimes for the first time, <em style="font-style: italic; color: var(--gold);">that they will die.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Some are terrified. Some are fascinated. Some oscillate. <em>What they need from you is acknowledgment that this is real and true &mdash; and not something to be afraid of.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        History is where you do that work. <em>Humans lived and died and left something behind. We make things that last longer than we do.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        You are not<br/>
+        insignificant<br/>
+        because your moment<br/>
+        is small.<br/>
+        <em style="color: var(--gold);">You are significant<br/>
+        because you get<br/>
+        to decide<br/>
+        what you do<br/>
+        with it.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · two questions for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        When you were<br/>
+        a child —<br/>
+        did anyone give you<br/>
+        <em style="font-style: italic; color: var(--gold);">the full scope of time?</em><br/>
+        <br/>
+        When you understood<br/>
+        for the first time<br/>
+        that you were part<br/>
+        of something<br/>
+        that extended<br/>
+        billions of years<br/>
+        into the past<br/>
+        and into a future<br/>
+        you would not see —<br/>
+        what did that<br/>
+        do to you?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 19 · Elementary · The Passage of Time and Historical Consciousness</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 35 — Research Skills and Information Literacy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-info {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .three-d {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-top: 28px; max-width: 1880px;
+  }
+  .three-d .d {
+    padding: 22px 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .three-d .d .num {
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .three-d .d h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 8px 0 10px; line-height: 1.22;
+  }
+  .three-d .d p {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .three-d .d em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Five · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 74px; line-height: 1.06; padding-bottom: 24px;">
+        Your elementary<br/>
+        students can<br/>
+        Google anything<br/>
+        in three seconds.<br/>
+        <em style="font-style: italic; color: var(--gold);">The question is not<br/>
+        whether they can<br/>
+        find information —<br/>
+        it is whether they<br/>
+        can tell truth<br/>
+        from lies.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 35 · Elementary · Month 9 · Language Deep Dive</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Information literacy is not a future skill. <em style="font-style: italic; color: var(--gold);">It is a now skill.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Children are forming ideas about how the world works <em>based on what they read and hear.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Most have no framework for evaluating it. They do not know how to ask whether a source is trustworthy. <em>Not a skill for high school — perhaps the most important literacy we teach.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THREE LAYERS OF QUESTIONS -->
+  <section data-label="03 Three layers" class="on-cream">
+    <div class="eyebrow-slide">Not rules · questions they can ask themselves</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Not cynicism. <em style="font-style: italic; color: var(--gold);">Healthy skepticism.</em>
+      </h2>
+      <div class="three-d">
+        <div class="d"><span class="num">01 · The author</span><h3>Who wrote this? What is their stake?</h3><p>Are they trying to sell us something? <em>Do they have expertise?</em></p></div>
+        <div class="d"><span class="num">02 · The source</span><h3>Library · vetted publisher · official site · personal blog?</h3><p>None mean right or wrong. <em>They tell you how much vetting the source has undergone.</em></p></div>
+        <div class="d"><span class="num">03 · The information itself</span><h3>Does this claim have evidence? What do three other sources say?</h3><p>If they disagree — <em>what are they disagreeing about?</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 MODEL OUT LOUD -->
+  <section data-label="04 Model out loud" class="on-navy">
+    <div class="eyebrow-slide">Model this thinking out loud</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        You are reading aloud. You pause. You say: <em style="font-style: italic; color: var(--gold);">&ldquo;Let me notice something here.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        <em>&ldquo;This article is published by a company that makes cell phones. It is arguing that cell phones are good for children. That seems like they might have a bias. They would benefit from people believing this.&rdquo;</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>&ldquo;Does that mean the article is wrong? Not necessarily. But I need to check what other sources say before I decide what I think.&rdquo;</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 MIS- AND DIS-INFORMATION -->
+  <section data-label="05 Misinformation" class="on-cream">
+    <div class="eyebrow-slide">Misinformation · created by people who are very smart at their job</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Emotional language — because emotions are <em style="font-style: italic; color: var(--gold);">more memorable than facts.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">The manipulation</div>
+          <h3>They exploit existing beliefs. They use images that are designed to move us. Repetition.</h3>
+          <p><em>At scale. With resources. With intention.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">The first defence · awareness</div>
+          <h3>They should not feel ashamed if they encounter something false and believe it.</h3>
+          <p><em>They should feel empowered to ask questions.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 PAUSE -->
+  <section data-label="06 Pause and check" class="on-cream">
+    <div class="eyebrow-slide">The habit of checking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        When you encounter something surprising — <em style="font-style: italic; color: var(--gold);">something that confirms what you already believe — something that makes you emotional — pause.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Where did you read this? Who wrote it? What do other sources say? <em>Not a rule. A habit of mind.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They can learn that saying <em>&ldquo;I am not sure if that is true&rdquo;</em> is smarter than believing or disbelieving without thinking.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 ALGORITHMS -->
+  <section data-label="07 Algorithms" class="on-navy">
+    <div class="eyebrow-slide">Algorithms and personalisation · even elementary can understand</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        The information they see online is chosen — <em style="font-style: italic; color: var(--gold);">not neutral.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Different people see different information. Their phone shows them more of what they have already looked at. <em>Not sinister, necessarily — but important to understand.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The information they see <em>is not a complete picture of the world. It is a picture filtered through the interests of companies — and an algorithm&rsquo;s understanding of what will keep them engaged.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 COMMUNITY KNOWLEDGE -->
+  <section data-label="08 Community knowledge" class="on-cream">
+    <div class="eyebrow-slide">The sharpest part · whose knowledge is in the &ldquo;official&rdquo; sources</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        For many children, the knowledge of their own community <em style="font-style: italic; color: var(--gold);">has been systematically excluded from &ldquo;official&rdquo; sources.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">The harm to name</div>
+          <h3>Teaching children to trust mainstream sources without context teaches them their community does not have valuable knowledge.</h3>
+          <p><em>It sets them up to devalue their own people.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">The correction</div>
+          <h3>Grandmother&rsquo;s traditional knowledge might not be in a textbook.</h3>
+          <p>That does not make it less true. <em>It makes it less published — a different thing.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE · WHY SOME GET SICKER -->
+  <section data-label="09 Scene · why some get sicker" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-info has-image" style="background: url('/decks/images/elem-week-35-scene-info.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child asks: <em>&ldquo;Why do some people get sicker from the same illness than other people?&rdquo;</em> A real question — from actual wondering. You help her find sources. You ask her what different ones say. She discovers — some sources are about the science of illness. Some are about the history of racism in medicine. Some are about how poor communities have less access to healthcare. <em>She is learning the question has multiple answers. That truth is complex. That she needs multiple sources to understand it.</em> That is information literacy.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · holding complexity</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Not afraid<br/>
+          of complexity<br/>
+          or ambiguity.<br/>
+          <em style="font-style: italic;">Able to hold<br/>
+          multiple truths<br/>
+          at once.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 EQUITY -->
+  <section data-label="10 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · said plainly</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        When we teach children to evaluate sources while privileging mainstream ones, <em style="font-style: italic; color: var(--gold);">we are teaching them to believe the powerful and question the marginalised.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        That is not information literacy. <em>That is cultural indoctrination.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        An equity-centred approach teaches children to evaluate all sources — including the official ones. <em>To recognise the power dynamics that shape what gets published.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Knowledge comes from many places. <em>A complete understanding requires multiple perspectives.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 NEURODIVERGENCE -->
+  <section data-label="11 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · access to the ideas, in many forms</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Some children need visual formats — <em style="font-style: italic; color: var(--gold);">charts, diagrams, colour-coding — to understand bias and credibility.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Some benefit from simpler language for complex concepts — <em>but they still have access to the ideas.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Some will do research better with a partner, <em>where they can talk through their thinking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 THE LIBRARY VISIT -->
+  <section data-label="12 The library visit" class="on-cream">
+    <div class="eyebrow-slide">The library visit · teach the building</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A library is a classroom. <em style="font-style: italic; color: var(--gold);">Teach her to use it.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Once a term, at least, bring the class to a real library. Not for a performance. For the skill. Show her how to ask a librarian a question — honestly, specifically.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Show her the shelves. The catalogue. The quiet. The person at the desk who is a professional in finding things out.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>A child who is at home in a library has a second home for life.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 LATERAL READING -->
+  <section data-label="13 Lateral reading" class="on-navy">
+    <div class="eyebrow-slide">Lateral reading · the fact-checker&rsquo;s habit</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Leave the page. <em style="font-style: italic; color: var(--gold);">Check from outside.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Professional fact-checkers do not stay on a website to judge it. They open other tabs. They ask — what do other people say about this source? Who runs it? Who funds it?
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Teach the motion at ten — open a second tab. It becomes automatic by fifteen.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Staying inside one page is how children — and adults — get fooled.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 INTERVIEW AS RESEARCH -->
+  <section data-label="14 Interview as research" class="on-cream">
+    <div class="eyebrow-slide">The interview · a primary source she can create</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        An interview <em style="font-style: italic; color: var(--gold);">is research too.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Teach her to call a neighbour. A grandparent. A local business owner. Prepare five questions. Record, with permission. Listen more than speak.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        What she hears will not match what the book says. That mismatch is the real curriculum.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>She has, at ten, produced knowledge — not just consumed it. Change what that does to a child.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 SOURCE LOGS -->
+  <section data-label="15 Source logs" class="on-navy">
+    <div class="eyebrow-slide">The source log · a practice, not a punishment</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Every claim <em style="font-style: italic; color: var(--gold);">carries its source home.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        From nine onward, every research note carries — author, title, date, page. A simple notebook, kept well, becomes a bibliography by the end of the project.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Don&rsquo;t teach citation styles. Teach the habit of tracking. The style comes later. The habit does not.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>This is how scholarship begins — quietly, in the margin, at nine.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 DIGITAL CONSENT -->
+  <section data-label="16 Digital consent" class="on-cream">
+    <div class="eyebrow-slide">Digital consent · the part no curriculum names</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        What she shares <em style="font-style: italic; color: var(--gold);">leaves a trail.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Teach her — before the project goes online — what a screenshot is. What a link is. What happens to a photograph when it is uploaded. Who can see it. Forever.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Teach her to ask — before posting about a friend — may I share this?
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Information literacy is two-sided — how to find, and how to release. Both, at ten.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Information<br/>
+        seeking<br/>
+        is active —<br/>
+        <em style="color: var(--gold);">not passive.</em><br/>
+        <br/>
+        Teach her to pause.<br/>
+        To ask.<br/>
+        <em style="color: var(--gold);">To seek<br/>
+        the missing voice.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · three questions for yourself</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Sit with each one.</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 44px;">
+        What did you learn<br/>
+        to trust<br/>
+        as a source of truth<br/>
+        when you were<br/>
+        growing up?<br/>
+        <br/>
+        Whose sources<br/>
+        were you taught<br/>
+        <em style="font-style: italic; color: var(--gold);">to question?</em><br/>
+        <br/>
+        What sources<br/>
+        have you had<br/>
+        to learn to trust<br/>
+        as an adult —<br/>
+        <em style="font-style: italic; color: var(--gold);">that you were not<br/>
+        taught to trust<br/>
+        as a child?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 35 · Elementary · Research Skills and Information Literacy</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 4 — The Role of the Elementary Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-primary-room {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(230,210,170,0.2), transparent 72%),
+      linear-gradient(160deg, #28241c 0%, #12100a 100%);
+  }
+  .scene-elementary-room {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(180,200,220,0.22), transparent 72%),
+      linear-gradient(160deg, #1c2838 0%, #0a1018 100%);
+  }
+  /* Primary vs Elementary guide */
+  .guide-compare {
+    display: grid; grid-template-columns: 1fr 2px 1fr;
+    margin-top: 32px; background: rgba(214,167,88,0.35);
+  }
+  .guide-compare > .col {
+    background: #fbf7ec; padding: 36px 36px 32px;
+    display: flex; flex-direction: column;
+  }
+  .guide-compare > .rule { background: rgba(214,167,88,0.5); }
+  .guide-compare .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .guide-compare h3 {
+    font-family: var(--font-heading); font-style: italic; font-size: 30px;
+    color: var(--navy); margin: 0 0 24px; line-height: 1.22;
+  }
+  .guide-compare .row {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 20px; padding: 16px 0;
+    border-top: 1px solid rgba(20,30,60,0.1);
+  }
+  .guide-compare .row:last-child { border-bottom: 1px solid rgba(20,30,60,0.1); }
+  .guide-compare .label {
+    font-family: var(--font-sans); font-size: 24px; font-weight: 600;
+    color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .guide-compare .text {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body);
+  }
+  .guide-compare .text em { font-style: italic; color: var(--navy); }
+  /* Freedom sketch */
+  .freedom {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    margin-top: 28px;
+  }
+  .freedom > div {
+    padding: 36px 36px; background: #fbf7ec;
+    border: 1px solid rgba(20,30,60,0.15);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .freedom .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .freedom .diagram {
+    width: 360px; height: 240px; position: relative; margin: 16px 0 20px;
+  }
+  .freedom h3 {
+    font-family: var(--font-heading); font-style: italic; font-size: 26px;
+    color: var(--navy); margin: 0; line-height: 1.3; text-align: center;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Four · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        If you try to be the<br/>
+        <em style="font-style: italic; color: var(--gold);">same guide</em> in<br/>
+        Elementary that you<br/>
+        were in Primary, you<br/>
+        will control children<br/>
+        at the exact moment<br/>
+        they need freedom.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        The children are different. The curriculum is
+        different. Your job is different. <em>Do not skip
+        the work of rebuilding yourself.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 4 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 THE CORE SHIFT -->
+  <section data-label="Core shift" class="on-cream">
+    <div class="eyebrow-slide">Core shift · from prepared environment to prepared guide</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        In Primary, the prepared<br/>
+        environment is the<br/>
+        teacher. In Elementary,<br/>
+        <em style="font-style: italic; color: var(--gold);">your own mind is part<br/>
+        of the environment.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The Primary child is learning <em>how to learn.</em>
+        She needs absorption, repetition, quiet, sensorial
+        experience. A guide who steps back and trusts the
+        materials is doing good work.
+      </p>
+      <p class="body-read">
+        The Elementary child is learning <em>how to think.</em>
+        She needs stimulus, not just environment. She needs
+        an adult who knows things and can model thinking with
+        her. <em>A guide who steps back and observes
+        quietly in an Elementary room is not doing the work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 02B THE GRIEF -->
+  <section data-label="The grief" class="on-cream">
+    <div class="eyebrow-slide">The honest beginning · a small grief to name</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        The quiet, observant guide<br/>
+        you became in Primary —<br/>
+        <em style="font-style: italic; color: var(--gold);">you will miss her.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The self-restraint. The stillness. The way the room
+        worked because you stopped talking. That was a real
+        achievement and it was hard-won. <em>It is allowed to
+        feel like loss when you set it down.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        But set it down you must. What she needs next is not
+        who you were last year.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 03 SIDE BY SIDE -->
+  <section data-label="Side by side" class="on-cream">
+    <div class="eyebrow-slide">Side by side · six dimensions, two planes</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Nothing from Primary is thrown away. <em style="font-style: italic; color: var(--gold);">Everything
+        is re-tuned.</em>
+      </h2>
+      <div class="guide-compare">
+        <div class="col">
+          <div class="hdr">In Primary you were…</div>
+          <h3>A preparer of the environment. Quiet, observing, minimally intervening.</h3>
+          <div class="row">
+            <div class="label">Presence</div>
+            <div class="text">Quiet. Trust materials to teach.</div>
+          </div>
+          <div class="row">
+            <div class="label">Preparation</div>
+            <div class="text">Arrange materials, set routines.</div>
+          </div>
+          <div class="row">
+            <div class="label">Freedom</div>
+            <div class="text">Choose among prepared activities.</div>
+          </div>
+          <div class="row">
+            <div class="label">Community</div>
+            <div class="text">Incidental — work is individual.</div>
+          </div>
+          <div class="row">
+            <div class="label">Authority</div>
+            <div class="text">Keeper of order, of the environment.</div>
+          </div>
+          <div class="row">
+            <div class="label">Observation</div>
+            <div class="text">Watch relationship to materials.</div>
+          </div>
+        </div>
+        <div class="rule"></div>
+        <div class="col">
+          <div class="hdr">In Elementary you are…</div>
+          <h3>An igniter. A fellow reasoner. Deeply active — responsive, not predetermined.</h3>
+          <div class="row">
+            <div class="label">Presence</div>
+            <div class="text">Engaged. <em>You are part of the stimulus.</em></div>
+          </div>
+          <div class="row">
+            <div class="label">Preparation</div>
+            <div class="text">All of that — plus <em>your own knowledge.</em></div>
+          </div>
+          <div class="row">
+            <div class="label">Freedom</div>
+            <div class="text">Pursue real questions <em>within</em> the cosmic curriculum.</div>
+          </div>
+          <div class="row">
+            <div class="label">Community</div>
+            <div class="text">Community <em>is</em> the curriculum.</div>
+          </div>
+          <div class="row">
+            <div class="label">Authority</div>
+            <div class="text">Relational — earned in how you engage minds.</div>
+          </div>
+          <div class="row">
+            <div class="label">Observation</div>
+            <div class="text">Listen. <em>What questions are they asking?</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 03B SIX MOVES OF THE ELEMENTARY GUIDE -->
+  <section data-label="Six moves" class="on-cream">
+    <div class="eyebrow-slide">Six moves of the Elementary guide · your new repertoire</div>
+    <div class="stack" style="max-width: 1800px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not a script. <em style="font-style: italic; color: var(--gold);">A set of moves you can make in any moment.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px;">
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">01 · the invitation</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;Would you like to see what I use when I am thinking about this?&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A resource offered, never imposed.</p></div>
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">02 · the wondering-aloud</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;I find myself wondering why that is.&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Model the thinking rather than deliver the answer.</p></div>
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">03 · the return</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;Yesterday you asked about ice. I brought you a book.&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Proof that her question lived in your mind overnight.</p></div>
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">04 · the pairing</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;You were asking about this — she has been reading about it.&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Hand the conversation to a peer, not to you.</p></div>
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">05 · the complication</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;That is true. And also this is true.&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Add the next fact that makes her current theory insufficient.</p></div>
+        <div style="padding: 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">06 · the step back</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Not all the time. Not in silence. <em>When the work is real and does not need you.</em></p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Observant restraint is still a move — just not the default one.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 04 FREEDOM -->
+  <section data-label="Freedom, re-understood" class="on-cream">
+    <div class="eyebrow-slide">Freedom, re-understood · freedom organized by meaning</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        A child free to pursue <em style="font-style: italic; color: var(--gold);">any</em> question
+        often becomes paralyzed. A child free <em style="font-style: italic; color: var(--gold);">within</em> a
+        cosmic curriculum becomes voracious.
+      </h2>
+      <div class="freedom">
+        <div>
+          <div class="hdr">Unstructured freedom</div>
+          <div class="diagram">
+            <svg viewBox="0 0 360 240" width="360" height="240">
+              <circle cx="60" cy="60" r="6" fill="#d6a758"/>
+              <circle cx="180" cy="30" r="6" fill="#d6a758"/>
+              <circle cx="300" cy="70" r="6" fill="#d6a758"/>
+              <circle cx="80" cy="140" r="6" fill="#d6a758"/>
+              <circle cx="220" cy="150" r="6" fill="#d6a758"/>
+              <circle cx="320" cy="180" r="6" fill="#d6a758"/>
+              <circle cx="120" cy="210" r="6" fill="#d6a758"/>
+              <circle cx="260" cy="220" r="6" fill="#d6a758"/>
+              <text x="180" y="125" text-anchor="middle" font-family="serif" font-style="italic" font-size="22" fill="#0a1442">?</text>
+              <text x="180" y="130" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#8a8070" letter-spacing="0.15em">NO CENTER</text>
+            </svg>
+          </div>
+          <h3>&ldquo;Investigate anything you want.&rdquo; Curiosity fragments; the child cannot choose.</h3>
+        </div>
+        <div>
+          <div class="hdr">Cosmic freedom</div>
+          <div class="diagram">
+            <svg viewBox="0 0 360 240" width="360" height="240">
+              <circle cx="180" cy="120" r="56" fill="none" stroke="#0a1442" stroke-width="2"/>
+              <text x="180" y="114" text-anchor="middle" font-family="serif" font-style="italic" font-size="18" fill="#0a1442">The</text>
+              <text x="180" y="134" text-anchor="middle" font-family="serif" font-style="italic" font-size="18" fill="#0a1442">Cosmos</text>
+              <line x1="180" y1="64" x2="180" y2="20" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="180" cy="18" r="6" fill="#d6a758"/>
+              <line x1="180" y1="176" x2="180" y2="220" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="180" cy="222" r="6" fill="#d6a758"/>
+              <line x1="124" y1="120" x2="60" y2="120" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="58" cy="120" r="6" fill="#d6a758"/>
+              <line x1="236" y1="120" x2="300" y2="120" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="302" cy="120" r="6" fill="#d6a758"/>
+              <line x1="140" y1="80" x2="95" y2="50" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="93" cy="48" r="6" fill="#d6a758"/>
+              <line x1="220" y1="80" x2="265" y2="50" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="267" cy="48" r="6" fill="#d6a758"/>
+              <line x1="140" y1="160" x2="95" y2="190" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="93" cy="192" r="6" fill="#d6a758"/>
+              <line x1="220" y1="160" x2="265" y2="190" stroke="#d6a758" stroke-width="2"/>
+              <circle cx="267" cy="192" r="6" fill="#d6a758"/>
+            </svg>
+          </div>
+          <h3>Every investigation stays connected to a meaningful whole. <em>The child knows where she is.</em></h3>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 04B FOUR SHAPES OF AUTHORITY -->
+  <section data-label="Four shapes of authority" class="on-cream">
+    <div class="eyebrow-slide">Authority · what holds the room when silence will not</div>
+    <div class="stack" style="max-width: 1800px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        In Elementary, authority is <em style="font-style: italic; color: var(--gold);">earned</em>, not assumed.
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Knowing things.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Children this age respect competence. They can tell when you do not know the content.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Being fair.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">The moral-reasoning child watches for this constantly. One unfair ruling costs you months.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Admitting what you don&rsquo;t know.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">&ldquo;I don&rsquo;t know — let&rsquo;s find out.&rdquo; Models the intellectual posture you want.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Holding the line when it matters.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Not on every rule. On the few non-negotiables. They will test. That is a second-plane job.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · same lesson, two guides" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-elementary-room has-image" style="background: url('/decks/images/elem-week-04-scene-elementary-room.jpg') center/cover no-repeat;">
+        <div class="scene-label">A guide sitting on the floor beside a child looking at a book on plate tectonics. The child is pointing to a diagram. The guide is asking a question with her finger on a second page. Around them: other children doing different things — one drawing rock strata, one building a model, two arguing quietly about something. The guide is not observing at a distance. She is in it.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · after the First Great Lesson</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She watches<br/>
+          <em style="font-style: italic;">where curiosity goes</em> —<br/>
+          then joins it.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          One child goes to books about earthquakes. The
+          guide sits beside her. <em>&ldquo;What are you
+          curious about?&rdquo;</em> She offers a short
+          presentation on plate tectonics. The child then
+          wants to build a model. The guide helps her find
+          materials.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          None of this is stepping back and observing. All
+          of it is <em>deeply engaged guidance</em> —
+          responding to the child&rsquo;s emerging curiosity
+          and helping it deepen.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 05B WHAT TO STOP -->
+  <section data-label="What to stop" class="on-cream">
+    <div class="eyebrow-slide">What to stop doing · Primary habits that block Elementary work</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Some moves that made you a good Primary guide
+        <em style="font-style: italic; color: var(--gold);">now get in the child&rsquo;s way.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Waiting in silence for concentration to appear.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Reflexively redirecting to &ldquo;a work.&rdquo;</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Separating children who are working well together.</li>
+        </ul>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Treating your knowledge as interference.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Declining to share an opinion when asked.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Mistaking stillness for rigor.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 05C DEEP PREPARATION -->
+  <section data-label="Deep preparation" class="on-navy">
+    <div class="eyebrow-slide">The hardest part · the deep preparation of the self</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14;">
+        You cannot ignite<br/>
+        curiosity in subjects<br/>
+        <em style="font-style: italic; color: var(--gold);">you are not curious about.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        If you do not read history for pleasure, the children
+        will know. If you do not keep a rock collection of
+        your own, your geology lessons will sound flat.
+        <em>Your own intellectual life is part of the
+        prepared environment.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The Primary guide prepared the shelf. The Elementary
+        guide prepares the shelf — and her own mind.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 05D OBSERVATION, REDEFINED -->
+  <section data-label="Observation redefined" class="on-cream">
+    <div class="eyebrow-slide">Observation, redefined · what you are watching for now</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Same practice. <em style="font-style: italic; color: var(--gold);">Different objects of attention.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; margin-top: 32px;">
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">What questions?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">What is each child asking this week? Write them down.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">With whom?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Whose tribe has she joined? Who has she turned away from?</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Reasoning how?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">When she argues, what kind of argument does she make?</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Reading what?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">The books she pulls unbidden say more than the ones assigned.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Silences where?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Which subjects does she avoid? What in her life does she not discuss?</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Moral compass pointing?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">What makes her indignant? That is where she is alive.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 06 EQUITY -->
+  <section data-label="Equity · visible curiosity" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose curiosity gets followed</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        &ldquo;Follow the child&rsquo;s<br/>
+        curiosity&rdquo; becomes<br/>
+        &ldquo;follow the <em style="font-style: italic;">visible<br/>
+        and loud</em> curiosity&rdquo;<br/>
+        without warning.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Three weeks in: some children have had multiple
+        conversations with you about their investigations,
+        received multiple resources, multiple invitations to
+        go deeper. Other children — whose curiosity is
+        equally real but <em>quieter, internal, expressed
+        differently</em> — have not had a single real
+        conversation with you about what they are thinking.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        This happens fast. It is not malice. It is what
+        happens when you follow visible curiosity without
+        <em>actively seeking</em> the children whose
+        curiosity looks different.
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 06B PROTOCOL FOR THE QUIET CHILD -->
+  <section data-label="Protocol for quiet children" class="on-navy">
+    <div class="eyebrow-slide">A working protocol · for the children whose curiosity is not loud</div>
+    <div class="stack" style="max-width: 1760px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A weekly discipline you can start on Monday.
+        <em style="font-style: italic; color: var(--gold);">It takes twenty minutes.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(214,167,88,0.3);"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Friday · reflect</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0;">List every child. Mark each one: did I have a real conversation with them about their thinking this week?</p></div>
+        <div style="padding: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(214,167,88,0.3);"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Monday · seek</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0;">Take the two names that got no mark. Before lunch, sit with each. Ask what they are thinking about.</p></div>
+      </div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 24px;">
+        Active equity is not a stance. It is a calendar item.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 06C MISTAKES YOU WILL MAKE -->
+  <section data-label="Mistakes you will make" class="on-cream">
+    <div class="eyebrow-slide">Mistakes you will make · and what to do about them</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        You will misread her. <em style="font-style: italic; color: var(--gold);">Repair is the practice.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">You will over-engage.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Rush in where silence would have worked. The fix: notice the next day, step back once.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">You will under-engage.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Default to Primary quietness when she needed a sparring partner. The fix: return tomorrow with the question.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">You will show favoritism you did not mean.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">The loud curious ones will eat your attention. The fix: the Friday review.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">You will over-explain.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Answer before she finished forming the question. The fix: count to three before speaking.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 06D SYNTHESIS -->
+  <section data-label="Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 72px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Primary asked you to<br/>
+        <em style="color: var(--gold);">step back.</em><br/>
+        Elementary asks you to<br/>
+        <em style="color: var(--gold);">step in — differently.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 06E ONE HABIT, ONE WEEK -->
+  <section data-label="One habit, one week" class="on-cream">
+    <div class="eyebrow-slide">One habit you can start this week · the notebook</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Carry a small notebook.<br/>
+        Write down <em style="font-style: italic; color: var(--gold);">every real question</em><br/>
+        a child asks you.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Not to answer them in the moment. Not to turn them
+        into lessons. To <em>notice</em> them. By Friday, the
+        notebook will show you the shape of the room&rsquo;s
+        mind — and which children&rsquo;s pages are empty.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is the practice. It never stops being the practice.
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 06F SELF-CARE -->
+  <section data-label="Self-care" class="on-navy">
+    <div class="eyebrow-slide">A word on sustainability · this is the job of a lifetime</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        The Elementary guide does<br/>
+        more visible work than the<br/>
+        Primary guide. <em style="font-style: italic; color: var(--gold);">Do not try to do it at the same pace.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Your own reading, rest, and intellectual life are not
+        indulgences. They are the raw material of your
+        teaching. A depleted guide in an Elementary room is a
+        silent guide in an Elementary room — and a silent
+        guide is not what she needs.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Protect the hours that feed you. They feed her too.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 52px;">
+        When an Elementary<br/>
+        child asks you a<br/>
+        question about what<br/>
+        they&rsquo;ve learned —<br/>
+        name <em style="font-style: italic; color: var(--gold);">three different<br/>
+        responses</em> that invite<br/>
+        her deeper instead<br/>
+        of answering.
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 4 · Elementary · Role of the Guide</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

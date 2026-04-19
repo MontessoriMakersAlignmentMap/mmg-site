@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 25 — Mathematical Reasoning Beyond Computation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-math {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card p:last-child { margin-bottom: 0; }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .three-by {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 28px; max-width: 1820px;
+  }
+  .three-by .card {
+    padding: 26px 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .three-by .card .label {
+    font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .three-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;
+  }
+  .three-by .card p {
+    font-family: var(--font-sans); font-size: 18px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .three-by .card em { font-style: italic; color: var(--navy); }
+
+  .questions-list {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 36px 40px; margin-top: 24px; max-width: 1680px;
+  }
+  .questions-list .q {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(20,30,60,0.12);
+    display: grid; grid-template-columns: 70px 1fr; gap: 24px; align-items: baseline;
+  }
+  .questions-list .q:last-child { border-bottom: none; }
+  .questions-list .q .num {
+    font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .questions-list .q .txt {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; line-height: 1.32; color: var(--navy);
+  }
+  .questions-list .q em { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Five · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 74px; line-height: 1.06; padding-bottom: 24px;">
+        A child executes<br/>
+        the checkerboard<br/>
+        flawlessly —<br/>
+        35 × 47 without<br/>
+        hesitation.<br/>
+        <em style="font-style: italic; color: var(--gold);">Then stops cold<br/>
+        when asked:<br/>
+        you have $47 and<br/>
+        earn $35 more.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        The computation is automatic. <em>The reasoning is missing.</em> This is what procedural fluency without mathematical reasoning looks like.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 25 · Elementary · Month 7</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Most of you are watching children who can perform every algorithm with precision —<em style="font-style: italic; color: var(--gold);"> but cannot transfer those skills to novel situations.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        This gap between computation and reasoning is <em>the most common misunderstanding in contemporary mathematics education.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The Montessori privilege: materials that make mathematical reasoning visible and tangible. <em>The responsibility: knowing the difference between giving a child materials and giving a child mathematical thinking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 DEFINITION · TWO COLUMNS -->
+  <section data-label="03 Fluency vs reasoning" class="on-cream">
+    <div class="eyebrow-slide">Procedural fluency is not mathematical reasoning</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Both matter. <em style="font-style: italic; color: var(--gold);">They are not the same thing.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Procedural fluency</div>
+          <h3>Execute a series of steps correctly, in a prescribed sequence.</h3>
+          <p>Perform the algorithm on the checkerboard. Follow the rules. Manipulate the beads. Arrive at the correct answer.</p>
+          <p style="margin-top: 14px;"><em>Competence within a defined system.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Mathematical reasoning</div>
+          <h3>Understand why. See the principles. Transfer to new contexts.</h3>
+          <p>Recognise the structure inside a problem. Connect it to something already understood. <em>Decide how to approach it.</em></p>
+          <p style="margin-top: 14px;"><em>Procedural fluency is doing. Mathematical reasoning is understanding.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE TRAGEDY -->
+  <section data-label="04 Over-proceduralised" class="on-navy">
+    <div class="eyebrow-slide">The tragedy of the over-proceduralised Montessori classroom</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        A child performs the nine-board exercise with stunning speed. Asked <em style="font-style: italic; color: var(--gold);">why you multiply ten by ten to get the area of a square</em> — they cannot answer.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        No one had ever asked them to think about it. <em>The materials had done the explaining. The child had done the executing.</em> Reasoning had never been required.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The beauty of the materials used for speed <em>rather than for depth.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 MATERIALS ARE MODELS -->
+  <section data-label="05 Materials are models" class="on-cream">
+    <div class="eyebrow-slide">The misunderstanding · materials are not scaffolds</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.1; color: var(--navy);">
+        They are not obstacles to get through. <em style="font-style: italic; color: var(--gold);">They are mathematical models.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The checkerboard is <em>not</em> a scaffold to abstract multiplication. It <em>is</em> a concrete embodiment of the multiplication algorithm itself.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        When a child multiplies 34 × 27, they are literally breaking thirty-four into thirty and four, twenty-seven into twenty and seven, and building the product from parts. <em>This is not different from what we later call algebra.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>It is the concrete reality of which algebra is the abstract representation.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 ASK DIFFERENT QUESTIONS -->
+  <section data-label="06 Ask different questions" class="on-cream">
+    <div class="eyebrow-slide">The pedagogical shift · ask different questions</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Your questions matter more than your explanations.
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <div class="label">Instead of</div>
+          <h3>&ldquo;What is the answer?&rdquo;</h3>
+          <p>A test of recall.</p>
+        </div>
+        <div class="card" style="background: rgba(214,167,88,0.14); border-color: rgba(214,167,88,0.5);">
+          <div class="label">Ask</div>
+          <h3>&ldquo;Why does that work?&rdquo;</h3>
+          <p>A door to thinking.</p>
+        </div>
+        <div class="card" style="background: rgba(214,167,88,0.14); border-color: rgba(214,167,88,0.5);">
+          <div class="label">Ask</div>
+          <h3>&ldquo;Could you use a different material? Would you get the same answer?&rdquo;</h3>
+          <p><em>Now the structure becomes visible.</em></p>
+        </div>
+      </div>
+      <div class="three-by" style="margin-top: 20px;">
+        <div class="card">
+          <div class="label">Instead of moving on</div>
+          <h3>Linger. Let genuine questions emerge.</h3>
+          <p>Child finishes the multiplication board quickly? <em>Ask them to find all the ways to make 24.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Instead of moving on</div>
+          <h3>Predict. Then test.</h3>
+          <p><em>What happens if you multiply by numbers ending in five?</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Instead of moving on</div>
+          <h3>Organise what you have found.</h3>
+          <p><em>Into a pattern. A table. A picture.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 THE TRANSFER PROBLEM -->
+  <section data-label="07 Transfer problem" class="on-navy">
+    <div class="eyebrow-slide">Why computation without reasoning fails to transfer</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        It is not laziness. It is not lack of practice.
+        <em style="font-style: italic; color: var(--gold);">The knowledge is bound to the context where it was learned.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The child knows how to do the checkerboard. <em>They do not know that the checkerboard has anything to do with cookies left after eating, or money after spending, or wood after cutting.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The knowledge exists in isolation. <em>It has no bridges to other contexts.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 PROBLEM-SOLVING ENVIRONMENT -->
+  <section data-label="08 Problem-solving environment" class="on-cream">
+    <div class="eyebrow-slide">Where bridges are built · real contexts</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A problem-solving environment is not a worksheet with word problems. <em style="font-style: italic; color: var(--gold);">It is a real context that demands reasoning.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <div class="label">A store</div>
+          <h3>Selling materials they have made.</h3>
+          <p>Calculating money and change. <em>The answer matters — it is their money.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">A recipe</div>
+          <h3>Double it. Or cut it in half.</h3>
+          <p>Multiplication and fractions inside something you can eat.</p>
+        </div>
+        <div class="card">
+          <div class="label">A space</div>
+          <h3>Measure and compare the rooms.</h3>
+          <p>Area and perimeter as lived dimensions. <em>Not diagrams on a page.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE — THE THIRD-GRADER -->
+  <section data-label="09 Scene · 52 minus 38" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-math has-image" style="background: url('/decks/images/elem-week-25-scene-math.jpg') center/cover no-repeat;">
+        <div class="scene-label">A third-grader does the subtraction snake beautifully. Freezes when asked to find 52 − 38 without the material. <em>&ldquo;What would you do if you only had the beads?&rdquo;</em> She picks up golden beads. Makes 52. Removes to leave 38. Sees 14 remaining. <em>&ldquo;Why did you get the same answer both ways?&rdquo;</em> She stops. She had never asked herself. The algorithm and the beads had been separate skills in her mind — with no connection. When she finally connects them — when she sees that the algorithm is a faster way of doing what the beads show directly — something shifts. <em>She is no longer executing a procedure. She is thinking.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the bridge</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Subtraction is<br/>
+          really removing<br/>
+          or comparing<br/>
+          quantities.<br/>
+          <br/>
+          The algorithm<br/>
+          <em style="font-style: italic;">is a tool<br/>
+          to speed up<br/>
+          what she already<br/>
+          understands.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE — THE SEEDS -->
+  <section data-label="10 Scene · the seeds" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-math has-image" style="background: url('/decks/images/elem-week-25-scene-math.jpg') center/cover no-repeat;">
+        <div class="scene-label">Late afternoon. A guide sets up a scenario. Eight containers. Each container holds five seeds. <em>&ldquo;How many seeds altogether?&rdquo;</em> A child goes to the multiplication board. Builds it. Eight times five is forty. The guide asks — <em>&ldquo;Are we collecting seeds eight times? Or five times?&rdquo;</em> The child stops. The words in the problem suddenly matter. She has been told the structure through language — now she must read it in the problem. The guide asks — <em>&ldquo;Would you get the same answer the other way?&rdquo;</em> Five containers. Eight seeds in each. Still forty. <em>The properties of multiplication are becoming real to her. Not abstract. Visible. Verifiable.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · reasoning becomes real</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Multiplication<br/>
+          as repeated groups.<br/>
+          <em style="font-style: italic;">The answer does<br/>
+          not depend on<br/>
+          which way you<br/>
+          count the groups.</em><br/>
+          <br/>
+          She did not<br/>
+          memorise this.<br/>
+          She saw it.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 YOUR ROLE SHIFTS -->
+  <section data-label="11 Your role" class="on-cream">
+    <div class="eyebrow-slide">Your role shifts fundamentally</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.1; color: var(--navy);">
+        No longer primarily a presenter of materials. <em style="font-style: italic; color: var(--gold);">A facilitator of thinking. A questioner.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        After a child finds an answer: <em>&ldquo;You found 1,288. Is that reasonable? Approximately how big should the answer be? How do you know?&rdquo;</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Not to test. Not to be difficult. <em>To teach the child to think mathematically — rather than just to do mathematics.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 EQUITY PROVOCATION -->
+  <section data-label="12 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · who gets to reason</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Children in privileged schools get instruction that emphasises reasoning. Children in resource-scarce schools get instruction that emphasises <em style="font-style: italic; color: var(--gold);">computation, memorisation, speed.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The implicit message: <em>some children are capable of real thinking — other children are taught to follow procedures.</em> This happens even in schools with Montessori materials.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        If you use your beautiful materials primarily to build speed without reasoning — <em>you are participating in this inequity.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The children who benefit most from slowing down, questioning deeply, staying with concrete materials longer — <em>are the children who are already behind.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 NEURODIVERGENCE -->
+  <section data-label="13 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · reasoning can outpace fluency</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Many neurodivergent children develop strong reasoning <em style="font-style: italic; color: var(--gold);">even as procedural fluency takes longer.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Children with dyscalculia or attention-related differences often reason beautifully with more time in concrete materials and more opportunities to connect mathematics to real situations.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Problem-based learning often suits these children <em>better than isolated procedure work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ESTIMATION -->
+  <section data-label="14 Estimation" class="on-cream">
+    <div class="eyebrow-slide">Estimation · the cousin of reasoning we underuse</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        &ldquo;Is this answer reasonable?&rdquo; <em style="font-style: italic; color: var(--gold);">is a mathematical question.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child who computes 48 × 52 and gets 250 is not only wrong. They are not yet asking whether their answer is in the right neighbourhood.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Estimation is the voice in the head that says — &ldquo;that cannot be right.&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Teach them to predict before they compute. Teach them to check after. The computation is the sandwich filling. The reasoning is the bread.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 WHEN NOT TO PRESENT -->
+  <section data-label="15 When not to present" class="on-navy">
+    <div class="eyebrow-slide">The silent decision · when to not give a lesson</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Sometimes the reasoning happens <em style="font-style: italic; color: var(--gold);">in the space you did not fill.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A child is stuck. You have three choices — present the next lesson, ask a question, or say nothing and walk away.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The third choice is a teaching choice too. Often the best one.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Not every struggle needs an intervention. Some struggles need to be left to do their work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 THE LONG ARC -->
+  <section data-label="16 The long arc" class="on-cream">
+    <div class="eyebrow-slide">The long arc · what reasoning now makes possible later</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        The children who reason at eight <em style="font-style: italic; color: var(--gold);">do not hit a wall at fourteen.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Age 8 · 9</div>
+          <h3 style="color: var(--navy);">They use the checkerboard to find a pattern they notice, not just to complete a sum.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Age 10 · 11</div>
+          <h3 style="color: var(--navy);">They explain &mdash; with words &mdash; why the pattern must hold. They are proving.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Age 13 · 14</div>
+          <h3 style="color: var(--navy);">Algebra arrives as a language for what they have been doing. Letters for numbers do not surprise them.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">The other path</div>
+          <h3 style="color: var(--navy);">Children who only computed often meet algebra as a foreign grammar. They stall.</h3>
+          <p><em style="color: var(--gold);">Your work now is the difference.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 58px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        The materials<br/>
+        can do<br/>
+        the explaining.<br/>
+        <em style="color: var(--gold);">But the thinking<br/>
+        has to be<br/>
+        required.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · the audit for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Walk your classroom with this question</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 46px;">
+        What percentage<br/>
+        of the mathematics<br/>
+        work you observe<br/>
+        <em style="font-style: italic; color: var(--gold);">requires a decision,<br/>
+        uses reasoning,<br/>
+        or connects<br/>
+        mathematics to<br/>
+        something real —</em><br/>
+        <br/>
+        versus work that<br/>
+        requires children<br/>
+        to execute<br/>
+        a procedure<br/>
+        correctly and quickly?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 25 · Elementary · Mathematical Reasoning Beyond Computation</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

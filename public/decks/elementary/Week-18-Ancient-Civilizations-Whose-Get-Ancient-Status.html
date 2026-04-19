@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 18 — Ancient Civilizations and Whose Civilizations Get Ancient Status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-canonical {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .scene-global {
+    background:
+      radial-gradient(ellipse 60% 50% at 60% 55%, rgba(240,217,161,0.2), transparent 70%),
+      linear-gradient(170deg, #181410 0%, #08080b 100%);
+  }
+
+  /* The four canonical civilizations vs. paired equivalents */
+  .pair-grid {
+    display: grid; grid-template-columns: 1fr 56px 1fr; gap: 24px;
+    max-width: 1760px; margin-top: 32px;
+  }
+  .pair-head {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .pair-col { display: flex; flex-direction: column; gap: 12px; }
+  .pair-card {
+    padding: 18px 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .pair-card.on { background: #1a1006; border-color: rgba(214,167,88,0.35); }
+  .pair-card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; line-height: 1.2; margin: 0 0 6px; color: var(--navy);
+  }
+  .pair-card.on h3 { color: #fbf7ec; }
+  .pair-card p {
+    font-family: var(--font-sans); font-size: 19px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .pair-card.on p { color: rgba(255,255,255,0.82); }
+  .pair-card em { font-style: italic; color: var(--navy); }
+  .pair-card.on em { color: var(--gold); }
+  .pair-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 40px; color: var(--gold);
+  }
+
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card p:last-child { margin-bottom: 0; }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 38px 46px;
+    background: #fbf7ec;
+    margin-top: 24px;
+    max-width: 1680px;
+  }
+  .quote-block p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.4; color: var(--navy); margin: 0;
+  }
+  .quote-block em { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Eighteen · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 76px; line-height: 1.06; padding-bottom: 24px;">
+        Almost every<br/>
+        elementary curriculum<br/>
+        teaches the same four —<br/>
+        <em style="font-style: italic; color: var(--gold);">Egypt, Greece, Rome,<br/>
+        sometimes Mesopotamia.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        That these four dominate while equally complex, equally ancient civilizations are relegated to sidebars is <em>not a historical accident.</em>
+      </p>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; color: var(--gold); font-style: italic; margin-top: 14px;">
+        It is a choice. <em>And you get to make a different choice.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 18 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Which civilizations you teach as primary — and which you skip — <em style="font-style: italic; color: var(--gold);">sends children direct messages about which peoples matter to history.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        When African civilizations appear as if they arose later or less sophisticatedly, Black children absorb a message about <em>the timeline of their people&rsquo;s importance.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        When Asian civilizations appear as <em>exotic</em> rather than foundational, children from Asian families learn their heritage is interesting but peripheral.
+      </p>
+      <p class="body-read">
+        When Indigenous American civilizations appear only as footnotes to European arrival, Indigenous children learn that their ancestors&rsquo; entire world <em>does not count as real history.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE KEY INSIGHT -->
+  <section data-label="03 The key insight" class="on-navy">
+    <div class="eyebrow-slide">The insight that changes everything</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.12;">
+        Absence of documentation
+        <em style="font-style: italic; color: var(--gold);">is not evidence of absence of sophistication.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        It is evidence of <em>history&rsquo;s power dynamics.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        European scholars studied European civilizations intensively <em>because they were European.</em> Colonial powers studied the &ldquo;classical&rdquo; Mediterranean because they positioned themselves as inheritors of those traditions. Meanwhile African, Asian, and American civilizations were studied less — or actively destroyed.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        Artifacts removed. Texts lost or dismissed. Oral traditions recorded by people who did not understand them.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 WHY THE IMBALANCE -->
+  <section data-label="04 Why the imbalance" class="on-cream">
+    <div class="eyebrow-slide">Why the evidence is uneven</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        More documentation ≠ <em style="font-style: italic; color: var(--gold);">more sophistication.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Why more Rome than Kush</div>
+          <h3>Rome&rsquo;s empire lasted longer. And European scholars later wrote about it.</h3>
+          <p>Not because Rome was more advanced. <em>Because Rome&rsquo;s chroniclers survived.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Why more Greece than Indus Valley</div>
+          <h3>The Indus Valley was buried by environmental change — and then by the indifference of colonial historians.</h3>
+          <p>Not because Greece was more sophisticated. <em>Because the Indus Valley&rsquo;s excavation came late.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 THE PAIRINGS -->
+  <section data-label="05 The pairings" class="on-cream">
+    <div class="eyebrow-slide">The pairings · who you teach alongside each canonical four</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        Teach the canon. <em style="font-style: italic; color: var(--gold);">Teach equals alongside.</em>
+      </h2>
+      <div class="pair-grid" style="margin-top: 24px;">
+        <div class="pair-col">
+          <div class="pair-head">The canon</div>
+          <div class="pair-card">
+            <h3>Egypt</h3>
+            <p>African civilization. Writing, architecture, governance, mathematics. <em>Taught thoroughly.</em></p>
+          </div>
+          <div class="pair-card">
+            <h3>Mesopotamia</h3>
+            <p>Cuneiform. Code of law. Cities. <em>The standard Bronze Age headline.</em></p>
+          </div>
+          <div class="pair-card">
+            <h3>Greece</h3>
+            <p>Classical philosophy, theater, democracy. <em>The age of Pericles.</em></p>
+          </div>
+          <div class="pair-card">
+            <h3>Rome</h3>
+            <p>Military might. Engineering. Administration. <em>The empire most remembered.</em></p>
+          </div>
+        </div>
+        <div class="pair-arrow">·</div>
+        <div class="pair-col">
+          <div class="pair-head" style="color: var(--gold);">The equals</div>
+          <div class="pair-card on">
+            <h3>Kingdom of Kush</h3>
+            <p>Contemporaneous African power. Own writing system. Monumental architecture. <em>Over a thousand years.</em></p>
+          </div>
+          <div class="pair-card on">
+            <h3>Indus Valley · Shang &amp; Zhou</h3>
+            <p>Geographically as extensive as Egypt and Mesopotamia combined. <em>Writing emerged independently.</em></p>
+          </div>
+          <div class="pair-card on">
+            <h3>Nok · Zapotec</h3>
+            <p>Sophisticated sculptural bronze in West Africa. Complex urban centers and writing in Mesoamerica. <em>Same moment in time.</em></p>
+          </div>
+          <div class="pair-card on">
+            <h3>Maurya · Aksum</h3>
+            <p>Expansive empires with sophisticated administration. <em>Equal powers of the era.</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT THIS DOES -->
+  <section data-label="06 What this does" class="on-navy">
+    <div class="eyebrow-slide">What the pairing does · it does not diminish. It contextualizes.</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12;">
+        These civilizations were important and complex and worthy of deep study.
+        <em style="font-style: italic; color: var(--gold);">And they existed in a world full of other important, complex civilizations.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Teach written language not as a European invention but as something that emerged in <em>multiple places in response to similar needs.</em> Egypt. Mesopotamia. The Indus Valley. Early China. All independently.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This is more accurate. <em>And it is more interesting.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 THE WORD CIVILIZED -->
+  <section data-label="07 The word civilized" class="on-cream">
+    <div class="eyebrow-slide">The word &ldquo;civilized&rdquo; · loaded, always</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Historically used to mean <em style="font-style: italic; color: var(--gold);">European.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Peoples without written language, with different forms of government, without permanent urban centers were called &ldquo;uncivilized.&rdquo; <em>Which meant: less worthy. Less intelligent. Less human.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        But civilization is just a way of living together in complex societies. <em>Many ways of living together are equally valid.</em>
+      </p>
+      <p class="body-read">
+        Indigenous peoples of the Pacific Northwest created complex societies without written language. Sophisticated systems of kinship, governance, art, trade, environmental management. <em>Civilized by any meaningful definition.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        That European historians did not recognize it tells you about the historians. <em>Not about the peoples.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 DIFFERENT IS NOT LESS-THAN -->
+  <section data-label="08 Different is not less-than" class="on-navy">
+    <div class="eyebrow-slide">The principle</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.1;">
+        Some peoples organized themselves differently.
+        <em style="font-style: italic; color: var(--gold);">Different is not less-than.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A child whose ancestors did not build monumental architecture but instead created oral traditions, artistic traditions, knowledge systems that did not require writing —
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>should be able to look at human history and see their own people&rsquo;s way of being recognized as legitimate, sophisticated, worthy.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE A — CANONICAL -->
+  <section data-label="09 Scene · canonical" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-canonical has-image" style="background: url('/decks/images/elem-week-18-scene-canonical.jpg') center/cover no-repeat;">
+        <div class="scene-label">The guide teaches the &ldquo;great civilizations&rdquo; — Egypt, Greece, Rome, maybe Mesopotamia. Timelines showing these as the major civilizations that shaped history. A student of Chinese descent asks — <em>&ldquo;What about China?&rdquo;</em> The guide mentions the dynasties briefly and moves on. A student of Indigenous descent asks about their ancestors. <em>&ldquo;We&rsquo;ll get to that later.&rdquo;</em> They do not.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · the canonical telling</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          The student of<br/>
+          Chinese descent<br/>
+          learns that their<br/>
+          civilization is<br/>
+          <em style="font-style: italic;">interesting but<br/>
+          not a &ldquo;great&rdquo; one.</em><br/>
+          <br/>
+          The Indigenous<br/>
+          student learns<br/>
+          they are not<br/>
+          in the story.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE B — GLOBAL -->
+  <section data-label="10 Scene · global" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-global has-image" style="background: url('/decks/images/elem-week-18-scene-global.jpg') center/cover no-repeat;">
+        <div class="scene-label">Same evidence. Same sources. The guide teaches ancient Egypt and simultaneously teaches Kush — contemporaneous African powers. The Bronze Age with Indus Valley and Shang Dynasty on equal footing with Mesopotamia and Greece. What civilizations were doing <em>at the same moment across the globe.</em> The Mediterranean was significant. <em>It was not singular.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · the global telling</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The history<br/>
+          has not changed.<br/>
+          The evidence<br/>
+          is the same.<br/>
+          <em style="font-style: italic;">What changed<br/>
+          is perspective.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A student of Chinese descent hears: <em>your civilization&rsquo;s history is as foundational as Rome&rsquo;s.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 EQUITY PROVOCATION -->
+  <section data-label="11 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        If your ancient civilizations curriculum only goes deep on Mediterranean and European societies — <em style="font-style: italic; color: var(--gold);">you are not being objective.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        You are replicating a European-centric worldview and teaching it to children as if it is truth. <em>That curriculum was created by people whose own ancestors were European, for classrooms that were largely European or colonized by Europeans.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Your classroom is different. <em>Your responsibility is different.</em>
+      </p>
+      <p class="body-read">
+        Do the work. Find resources. Present these civilizations as primary sources of human knowledge — <em>not as exotic sidebars to the &ldquo;real&rdquo; history of Europe.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 NEURODIVERGENCE -->
+  <section data-label="12 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · do not teach all of ancient history in one arc</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        One era. <em style="font-style: italic; color: var(--gold);">Multiple civilizations at the same time.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Some children need concrete, visual timelines to hold multiple civilizations and time periods simultaneously. <em>Give them those timelines.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Break it into digestible sections. <em>Era, then the civilizations of that era.</em> Not &ldquo;all of ancient history&rdquo; as one sweep.
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 INTERCONNECTED WORLD -->
+  <section data-label="13 Interconnected world" class="on-cream">
+    <div class="eyebrow-slide">The world was interconnected long before Europeans &ldquo;discovered&rdquo; anything</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Teach the great trading networks <em style="font-style: italic; color: var(--gold);">that connected these civilizations to each other.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Silk routes. Indian Ocean trade. Trans-Saharan caravans. <em>Goods, ideas, technologies moving between the Mediterranean, Africa, Asia, long before the modern era.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Children see that human beings arrive at similar solutions to similar problems <em>across the globe.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 CIVILIZATION WITHOUT WRITING -->
+  <section data-label="14 Civilization without writing" class="on-navy">
+    <div class="eyebrow-slide">Civilization without writing &mdash; the Pacific Northwest</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Complex societies without a written language. <em style="font-style: italic; color: var(--gold);">Sophisticated kinship, governance, art, trade, environmental management.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Civilized <em>by any meaningful definition.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        That European historians did not recognize it <em>tells you about the historians, not about the peoples.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 WHAT CHILDREN LEARN ABOUT THEMSELVES -->
+  <section data-label="15 What they learn about themselves" class="on-cream">
+    <div class="eyebrow-slide">What children learn about their own worth</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A child whose ancestors were African learns one thing if the curriculum says <em style="font-style: italic; color: var(--gold);">&ldquo;African civilizations arose around the same time as Mediterranean ones.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        They learn a different thing <em>if the curriculum is silent except for Egypt, then mentions African peoples only when talking about colonization.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        A child whose ancestors were Asian learns one thing if ancient China&rsquo;s writing and dynasties are taught as primary sources. <em>Another thing entirely if Asia appears mainly as a place that Europe later encountered.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This is the part that matters most.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CIVILIZATION IS PLURAL -->
+  <section data-label="16 Civilization is plural" class="on-navy">
+    <div class="eyebrow-slide">Teach children that civilization is plural</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.12;">
+        Civilization in its various forms <em style="font-style: italic; color: var(--gold);">emerged in many places at many times.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A child whose ancestors did not build monumental architecture but instead created oral traditions, artistic traditions, knowledge systems that did not require writing &mdash;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        should be able to look at human history <em>and see their own people&rsquo;s way of being recognized as legitimate, sophisticated, worthy.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        The history<br/>
+        has not changed.<br/>
+        <em style="color: var(--gold);">What changes<br/>
+        is whose civilization<br/>
+        we call<br/>
+        &ldquo;ancient&rdquo;<br/>
+        and whose we call<br/>
+        &ldquo;a sidebar.&rdquo;</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · three questions for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        Which civilizations<br/>
+        were you taught<br/>
+        <em style="font-style: italic; color: var(--gold);">were ancient?</em><br/>
+        <br/>
+        Which ones<br/>
+        were you<br/>
+        not taught about?<br/>
+        <br/>
+        What would you<br/>
+        have believed<br/>
+        about the world<br/>
+        if you had been<br/>
+        taught differently?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 18 · Elementary · Ancient Civilizations and Whose Get Ancient Status</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

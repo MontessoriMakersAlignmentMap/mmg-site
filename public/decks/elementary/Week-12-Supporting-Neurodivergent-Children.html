@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 12 — Supporting Neurodivergent Children in the Elementary Environment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-adhd {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a1408 0%, #07060a 100%);
+  }
+  .scene-autism {
+    background:
+      radial-gradient(ellipse 65% 55% at 60% 50%, rgba(240,217,161,0.18), transparent 70%),
+      linear-gradient(170deg, #1c180f 0%, #08080b 100%);
+  }
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 40px 1fr; gap: 28px;
+    margin-top: 36px; max-width: 1760px;
+    align-items: stretch;
+  }
+  .shift-grid .col {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    padding: 32px 34px;
+  }
+  .shift-grid .col.on { background: #1a1006; color: #fbf7ec; border-color: rgba(214,167,88,0.4); }
+  .shift-grid .col .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  }
+  .shift-grid .col h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .shift-grid .col.on h3 { color: #fbf7ec; }
+  .shift-grid .col p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .shift-grid .col.on p { color: rgba(255,255,255,0.82); }
+  .shift-grid .col em { font-style: italic; color: var(--navy); }
+  .shift-grid .col.on em { color: var(--gold); }
+  .shift-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 48px; color: var(--gold);
+  }
+
+  .pres-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .pres-grid .card {
+    padding: 32px 34px;
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .pres-grid .card .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .pres-grid .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .pres-grid .card p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 12px;
+  }
+  .pres-grid .card p:last-child { margin-bottom: 0; }
+  .pres-grid .card em { font-style: italic; color: var(--navy); }
+
+  .struct-list { display: flex; flex-direction: column; margin-top: 32px; max-width: 1760px; }
+  .struct-list .row {
+    display: grid; grid-template-columns: 80px 1fr; gap: 28px;
+    padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.18);
+    align-items: baseline;
+  }
+  .struct-list .row:last-child { border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .struct-list .num {
+    font-family: var(--font-heading); font-style: italic; font-size: 38px;
+    color: var(--gold); line-height: 1;
+  }
+  .struct-list .body {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.5;
+    color: rgba(255,255,255,0.88); margin: 0;
+  }
+  .struct-list .body em { font-style: italic; color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twelve · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 82px; line-height: 1.04; padding-bottom: 24px;">
+        The child who thrived<br/>
+        in Primary has become<br/>
+        scattered, overwhelming,<br/>
+        <em style="font-style: italic; color: var(--gold);">impossible to focus.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 30px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        It is not that the environment is wrong. <em>It is that the plane has shifted</em> — and neurodivergence that went unnoticed at age six is now visible because the demands have changed.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 12 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        In Primary the environment <em style="font-style: italic; color: var(--gold);">contained the regulation.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Spacing always the same. Sensory input regulated. The day&rsquo;s rhythm predictable. <em>The environment itself held the child.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Elementary is more complex. More freedom means more decision points. More social interaction means more unpredictability. <em>The same child who looked like a perfect match may now be struggling.</em>
+      </p>
+      <p class="body-read">
+        Your job: understand why — and build an environment that does not read that struggle as failure.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT NEURODIVERGENT MEANS -->
+  <section data-label="03 What neurodivergent means" class="on-cream">
+    <div class="eyebrow-slide">Let us be clear about what we are talking about</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not disorders that need fixing.<br/>
+        <em style="font-style: italic; color: var(--gold);">Differences in how a brain processes the world.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px;">
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 10px;">ADHD · Autism</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;">Attention. Executive function. Sensory integration. Social processing.</p>
+        </div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 10px;">Dyslexia · Dyscalculia</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;">Language processing. Numerical reasoning. <em style="color:var(--navy);">Often with extraordinary compensating strengths.</em></p>
+        </div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 10px;">Sensory · Anxiety</p>
+          <p style="font-family: var(--font-sans); font-size: 22px; line-height: 1.45; color: var(--fg-body); margin: 0;">Nervous systems that are more reactive, more attuned, <em style="color:var(--navy);">easier to overwhelm.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        Some differences create challenges in environments built for a narrow range of neurotypes.
+        <em>Some bring gifts that are absolutely valuable.</em> Your job is to shape the environment so both can be true at once.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 ADHD — WHAT CHANGED -->
+  <section data-label="04 ADHD · what changed" class="on-cream">
+    <div class="eyebrow-slide">The ADHD child · what the transition exposes</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        In Primary, movement was built in. <em style="font-style: italic; color: var(--gold);">In Elementary, it has to be engineered.</em>
+      </h2>
+      <div class="shift-grid">
+        <div class="col">
+          <div class="label">Primary</div>
+          <h3>Work periods 30–60 min. Highly structured. The child arrives and the activity tells them what to do.</h3>
+          <p>The ADHD brain has rails. Movement is built into practical life and sensorial. <em>No shame for needing to move.</em></p>
+        </div>
+        <div class="shift-arrow">→</div>
+        <div class="col on">
+          <div class="label">Elementary</div>
+          <h3>Two-hour work period. Choose, initiate, carry through, decide when finished.</h3>
+          <p>If the brain struggles with initiation, planning, or task persistence — <em>this freedom becomes paralyzing rather than empowering.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 STRUCTURE THAT LOOKS LIKE FREEDOM -->
+  <section data-label="05 Structure that looks like freedom" class="on-navy">
+    <div class="eyebrow-slide">Structures that look like freedom</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        The environment must provide rails.<br/>
+        <em style="font-style: italic; color: var(--gold);">The rails and the freedom are not contradictory.</em>
+      </h2>
+      <div class="struct-list">
+        <div class="row"><div class="num">i.</div><p class="body">A <em>launch list</em> — visual menu of options the child can reference without asking.</p></div>
+        <div class="row"><div class="num">ii.</div><p class="body">A <em>timer</em> — so the child can see how long they intend to work, and when to re-choose.</p></div>
+        <div class="row"><div class="num">iii.</div><p class="body">Scheduled movement breaks <em>built into</em> the day — not requested, not negotiated.</p></div>
+        <div class="row"><div class="num">iv.</div><p class="body">A <em>body-doubling space</em> — work alongside another child or the guide. Another regulated nervous system in the room.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE AUTISTIC CHILD -->
+  <section data-label="06 The autistic child" class="on-cream">
+    <div class="eyebrow-slide">The autistic child · when the ground gives way</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        In Primary, she memorized the day. Learned the safe spaces. <em style="font-style: italic; color: var(--gold);">Figured out the unspoken rules.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        In Elementary, every coping strategy becomes less reliable. Schedule shifts with others&rsquo; plans. Work groups form in new places. Social dynamics thicken.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        She may experience this as <em>a sudden loss of the ground she thought she had found.</em> This does not mean elementary Montessori is wrong for her. It means the adult needs to build specific scaffolds.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 AUTISTIC SCAFFOLDS -->
+  <section data-label="07 Autistic scaffolds" class="on-cream">
+    <div class="eyebrow-slide">Scaffolds the autistic child may need</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Need for lower social demand is <em style="font-style: italic; color: var(--gold);">not a deficit</em> to be overcome by forced exposure.
+      </h2>
+      <div class="pres-grid">
+        <div class="card">
+          <div class="label">Space</div>
+          <h3>A quiet workspace that is <em>reliably</em> quiet — not just quieter.</h3>
+          <p>The autistic nervous system registers variance. &ldquo;Quieter than usual&rdquo; is not quiet enough.</p>
+        </div>
+        <div class="card">
+          <div class="label">Social rules</div>
+          <h3>Explicit teaching of group-work expectations.</h3>
+          <p>Not assumed. Not absorbed through modeling. <em>Named, written, referenced.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Debriefing</div>
+          <h3>Time with the guide to unpack social interactions that confused her.</h3>
+          <p>Not therapy. Not correction. <em>Translation.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Solo research</div>
+          <h3>Permission to do a research project alone.</h3>
+          <p>A legitimate choice, <em>not a failure to collaborate.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 SENSORY DIFFERENCES -->
+  <section data-label="08 Sensory differences" class="on-cream">
+    <div class="eyebrow-slide">Sensory · seeking and avoiding</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        These are not exceptions. <em style="font-style: italic; color: var(--gold);">This is how you prepare an environment for different bodies.</em>
+      </h2>
+      <div class="shift-grid">
+        <div class="col">
+          <div class="label">Sensory seeking</div>
+          <h3>Primary&rsquo;s tactile world was enough. Elementary can feel dangerously under-stimulating.</h3>
+          <p>Heavy-material setup jobs. Outdoor exploration. Tactile notetaking. <em>A legitimate sensory menu.</em></p>
+        </div>
+        <div class="shift-arrow">·</div>
+        <div class="col">
+          <div class="label">Sensory avoiding</div>
+          <h3>Open space and social proximity in group work become intolerable.</h3>
+          <p>A smaller workspace. Noise-canceling headphones during work period. <em>Permission to retreat without justifying it.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 ANXIETY IN ELEMENTARY -->
+  <section data-label="09 Anxiety in elementary" class="on-navy">
+    <div class="eyebrow-slide">Anxiety · what it looks like in this plane</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        An anxious child may become hyperactive or oppositional — <em style="font-style: italic; color: var(--gold);">and the adult mistakes it for misbehavior.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        She may freeze at the start of work — afraid of making a mistake. Avoid challenges because she feels she will fail. <em>Her nervous system is running faster than the lesson.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        A pilot presentation to the guide alone before presenting to the class. A <em>safe word.</em> Large projects broken into small steps. Explicit reassurance that mistakes are <em>data, not failures.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 THE REAL QUESTION -->
+  <section data-label="10 The real question" class="on-cream">
+    <div class="eyebrow-slide">The question guides ask</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12; color: var(--navy);">
+        Is elementary Montessori <em style="font-style: italic; color: var(--gold);">appropriate for this child?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The answer depends on one question: <em>Is the child adjusting to the environment, or is the environment adjusting to the child?</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Montessori is supposed to be the latter. <em>That is the entire philosophy.</em> But in practice, many guides implement it rigidly — one vision of what the work period should look like, one way children function.
+      </p>
+      <p class="body-read">
+        An equity-centered guide knows the prepared environment is <em>not a fixed thing.</em> It is a living system that transforms based on who is in the room.
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE A — ADHD CHILD -->
+  <section data-label="11 Scene · the ADHD child" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-adhd has-image" style="background: url('/decks/images/elem-week-12-scene-adhd.jpg') center/cover no-repeat;">
+        <div class="scene-label">A nine-year-old appears to have regressed. Engaged in Primary, now wandering from shelf to shelf, starting and abandoning. The guide is about to suggest the family consider other options. Instead, one afternoon she sits with the child at the start of work period. Together they make a list. Little pictures next to each option. <em>&ldquo;What is one thing you want to start with?&rdquo;</em> She sets a timer for thirty minutes. That day the child works for an hour.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · the child was never not ready</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The movement<br/>
+          between activities<br/>
+          is now <em style="font-style: italic;">purposeful<br/>
+          rather than chaotic.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Over weeks he starts making his own lists. Asking for timers. Navigating the two-hour period alone.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          He needed elementary to be <em>structured differently.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SCENE B — AUTISTIC CHILD -->
+  <section data-label="12 Scene · the autistic child" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-autism has-image" style="background: url('/decks/images/elem-week-12-scene-autism.jpg') center/cover no-repeat;">
+        <div class="scene-label">During a big lesson on the water cycle, an autistic child stands up and leaves. The guide feels rejected. A few days later the child returns with a drawing and questions about dew point. He had gone home and researched what confused him. He did not leave from disinterest — <em>his brain needed to process alone.</em> The guide changes the protocol. Before big lessons, a heads-up. A preview session fifteen minutes before. An explicit permission to step away.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · the child was not rejecting the lesson</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          He still doesn&rsquo;t love<br/>
+          group lessons.<br/>
+          <em style="font-style: italic;">But there is a structure<br/>
+          that honors how<br/>
+          his brain works.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Including without <em>forcing inclusion.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 EQUITY PROVOCATION -->
+  <section data-label="13 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who gets pathologized</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A Black boy with ADHD is more likely to be seen as a behavior problem <em style="font-style: italic; color: var(--gold);">than a white boy with ADHD.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A Latinx girl who does not make eye contact is more likely to be seen as disrespectful. An autistic white girl who does not make eye contact is more likely to be seen as shy.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Your job is not just to support these children in learning.<br/>
+        <em>Your job is to protect them from having their neurodivergence weaponized against them.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 CHALLENGING VS DANGEROUS -->
+  <section data-label="14 Challenging vs dangerous" class="on-cream">
+    <div class="eyebrow-slide">A distinction you must hold</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12; color: var(--navy);">
+        Challenging is not the same as <em style="font-style: italic; color: var(--gold);">dangerous.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        An ADHD child who cannot sit still is not dangerous. An autistic child who does not understand social convention is not dangerous. <em>These are neurodivergent presentations. They deserve accommodation.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They do not deserve punishment. They do not deserve the narrative that this child is a problem and will cause problems.
+      </p>
+      <p class="body-read">
+        That narrative — especially applied to children of color — <em>gets written into the educational record.</em> It shapes a future.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 GUIDE NEURODIVERGENCE -->
+  <section data-label="15 Your own neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · your own brain shapes the guidance</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        If you are neurodivergent —<br/>
+        you have insights a neurotypical adult <em style="font-style: italic; color: var(--gold);">cannot access.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        That is valuable. Use it with humility — your experience is not <em>all</em> neurodivergent experience.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        If you are neurotypical, you are guessing at an experience you do not have. <em>Be humble about that.</em> Listen to neurodivergent adults. Read neurodivergent writing. Do not assume you know what will help.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        Ask the children.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 PREPARED ENVIRONMENT MOVES -->
+  <section data-label="16 What the environment becomes" class="on-cream">
+    <div class="eyebrow-slide">What the prepared environment becomes</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The prepared environment is <em style="font-style: italic; color: var(--gold);">not a fixed thing.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Visual menus, launch lists, timers.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">External structure that makes internal structure possible. <em style="color:var(--navy);">Not training wheels — scaffolding.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">A reliably quiet space.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Not &ldquo;usually&rdquo; quiet. <em style="color:var(--navy);">Always</em> quiet. The difference matters to the nervous system.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Movement, sensory menu, retreat options.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Not permissions asked. <em style="color:var(--navy);">Permissions designed in.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Explicit language for social norms.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Named, written, referenced. <em style="color:var(--navy);">What the neurotypical class absorbs, the autistic child deserves spelled out.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 64px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        The prepared environment<br/>
+        is not a room.<br/>
+        <em style="color: var(--gold);">It is a system that<br/>
+        transforms around<br/>
+        the child in front of you.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · one question for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 52px;">
+        What structures<br/>
+        could you build in<br/>
+        that would look like<br/>
+        <em style="font-style: italic; color: var(--gold);">freedom</em> to a<br/>
+        neurotypical child<br/>
+        and feel like the right<br/>
+        amount of scaffolding<br/>
+        to a neurodivergent one?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 12 · Elementary · Supporting Neurodivergent Children</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

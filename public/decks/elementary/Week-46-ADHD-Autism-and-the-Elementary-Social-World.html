@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 46 — ADHD, Autism, and the Elementary Social World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 32px; max-width: 1820px; }
+  .two-col .col { padding: 28px 30px; }
+  .two-col .col.dark { background: #12182a; border-left: 3px solid var(--gold); }
+  .two-col .col.cream { background: #fbf7ec; border-left: 3px solid var(--navy); }
+  .two-col .col h3 { font-family: var(--font-heading); font-style: italic; font-size: 30px; line-height: 1.2; margin: 0 0 14px; }
+  .two-col .col.dark h3 { color: #fbf7ec; }
+  .two-col .col.cream h3 { color: var(--navy); }
+  .two-col .col p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; margin: 0 0 10px; }
+  .two-col .col.dark p { color: rgba(255,255,255,0.88); }
+  .two-col .col.cream p { color: var(--fg-body); }
+  .two-col .col em { font-style: italic; color: var(--gold); }
+  .two-col .col.cream em { color: var(--navy); }
+  .two-col .col .label { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 14px; color: var(--gold); }
+
+  .profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; max-width: 1820px; }
+  .profile { background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18); padding: 30px 30px 34px; min-height: 340px; }
+  .profile .tag { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .profile h3 { font-family: var(--font-heading); font-style: italic; font-size: 28px; line-height: 1.22; margin: 0 0 12px; color: var(--navy); }
+  .profile p { font-family: var(--font-sans); font-size: 22px; line-height: 1.5; color: var(--fg-body); margin: 0 0 8px; }
+  .profile em { font-style: italic; color: var(--navy); }
+
+  .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 36px; max-width: 1820px; }
+  .role { background: #12182a; padding: 32px 34px; border-left: 3px solid var(--gold); }
+  .role .tag { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .role h3 { font-family: var(--font-heading); font-style: italic; font-size: 32px; line-height: 1.2; color: #fbf7ec; margin: 0 0 14px; }
+  .role p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0 0 10px; }
+  .role em { color: var(--gold); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Forty-Six · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 160px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 60px; line-height: 1.08; padding-bottom: 18px;">
+        In Primary, a neurodivergent child&rsquo;s difference <em style="font-style: italic; color: var(--gold);">may not be obvious.</em><br/>
+        In Elementary &mdash; where work is collaborative and the social world is complex &mdash;<br/>
+        <em style="font-style: italic; color: var(--gold);">that difference becomes visible.</em><br/>
+        And sometimes it becomes <em style="font-style: italic; color: var(--gold);">a problem.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 46 · Elementary · Month 11 · Behaviour, Community, Capstone</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The elementary classroom is built on collaboration. <em style="font-style: italic; color: var(--gold);">Groups. Community meetings. Self-management. Complex social dynamics.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Every one of those things can be exhausting, confusing, or overwhelming for a neurodivergent child. <em>These are not behaviour problems.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They are genuine difficulties. <em>If we do not understand them, we will fail these children.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 EXPLICIT VS IMPLICIT -->
+  <section data-label="03 Explicit vs implicit" class="on-navy">
+    <div class="eyebrow-slide">The move from explicit rules to implicit ones</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        The social world of Elementary runs on implicit rules. <em style="font-style: italic; color: var(--gold);">A child who understands the explicit ones may still be baffled.</em>
+      </h2>
+      <div class="two-col">
+        <div class="col cream">
+          <div class="label">Explicit</div>
+          <h3>Take turns. Share materials. Raise your hand.</h3>
+          <p><em>These are the rules she already knows.</em></p>
+        </div>
+        <div class="col dark">
+          <div class="label">Implicit</div>
+          <h3>Care about your friend&rsquo;s feelings. Show interest in what she cares about. Notice when a joke isn&rsquo;t a joke.</h3>
+          <p>Nobody will teach these. <em>But they are the ones being graded.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 HOW IT LOOKS -->
+  <section data-label="04 How it looks" class="on-cream">
+    <div class="eyebrow-slide">How neurodivergence gets read as character</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        What the group sees is not what is happening. <em style="font-style: italic; color: var(--gold);">She is not rude. She is not mean. She is not obtuse.</em>
+      </h2>
+      <div class="profiles">
+        <div class="profile">
+          <div class="tag">Autism</div>
+          <h3>Takes turns perfectly &mdash; and her friends think she does not care about them.</h3>
+          <p><em>She followed the explicit rule. She did not know the implicit one.</em></p>
+        </div>
+        <div class="profile">
+          <div class="tag">ADHD</div>
+          <h3>Interrupts. Speaks before thinking. Seems selfish.</h3>
+          <p>She was not trying to be mean. <em>But she gets marked as unkind &mdash; and the mark sticks.</em></p>
+        </div>
+        <div class="profile">
+          <div class="tag">Either</div>
+          <h3>Misses sarcasm, tone, anger. Takes jokes literally.</h3>
+          <p><em>Marked as obtuse. She genuinely did not understand what was happening socially.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 BOTH TRUE -->
+  <section data-label="05 Enriching and exhausting" class="on-navy">
+    <div class="eyebrow-slide">Collaboration for the neurodivergent child</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        The best thing and the most exhausting thing &mdash; <em style="font-style: italic; color: var(--gold);">at the same time.</em>
+      </h2>
+      <div class="two-col">
+        <div class="col dark">
+          <div class="label">Enriching</div>
+          <h3>The energy of collaboration is what her brain needs. She may be more regulated in a group than alone.</h3>
+          <p><em>The social stimulation is medicine.</em></p>
+        </div>
+        <div class="col cream">
+          <div class="label">Exhausting</div>
+          <h3>Reading cues, managing impulses, staying focused while people move and talk.</h3>
+          <p>She may come home and be unable to manage anything else. <em>The day depleted her.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT TO DO · ADHD -->
+  <section data-label="06 Supports · ADHD" class="on-cream">
+    <div class="eyebrow-slide">Specific strategies · ADHD in group work</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        You modify the environment to meet her. <em style="font-style: italic; color: var(--gold);">You do not ask her to become someone she is not.</em>
+      </h2>
+      <div class="profiles" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="profile" style="min-height: 280px;">
+          <div class="tag">Chunking</div>
+          <h3>Shorter segments of group work.</h3>
+          <p><em>Reset more often.</em></p>
+        </div>
+        <div class="profile" style="min-height: 280px;">
+          <div class="tag">Role</div>
+          <h3>A specific job that holds her engaged.</h3>
+          <p><em>Timekeeper. Brainstormer. Scribe.</em></p>
+        </div>
+        <div class="profile" style="min-height: 280px;">
+          <div class="tag">Movement</div>
+          <h3>Stand. Fidget. Step out and return.</h3>
+          <p><em>Movement is regulation.</em></p>
+        </div>
+        <div class="profile" style="min-height: 280px;">
+          <div class="tag">Signal</div>
+          <h3>A nonverbal cue between the two of you.</h3>
+          <p><em>A tool for her impulse &mdash; not a public reprimand.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 WHAT TO DO · AUTISM -->
+  <section data-label="07 Supports · autism" class="on-navy">
+    <div class="eyebrow-slide">Specific strategies · autism in group work</div>
+    <div class="role-grid">
+      <div class="role">
+        <div class="tag">Teach the implicit</div>
+        <h3>Say it out loud. Make the unwritten rules written.</h3>
+        <p>Explicit teaching of implicit social logic. <em>This is not dumbing down &mdash; it is showing respect.</em></p>
+      </div>
+      <div class="role">
+        <div class="tag">Visual support</div>
+        <h3>A structure card. A script. A role checklist.</h3>
+        <p>Something she can see and return to <em>when the social noise overwhelms.</em></p>
+      </div>
+      <div class="role">
+        <div class="tag">Social partner</div>
+        <h3>Pair her with a peer who naturally explains social things.</h3>
+        <p><em>Not a caretaker &mdash; a translator.</em></p>
+      </div>
+      <div class="role">
+        <div class="tag">Graduated time</div>
+        <h3>A time-limited break from group work &mdash; while you build the skill.</h3>
+        <p><em>The break is a bridge, not an exit.</em></p>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 MODIFYING THE COMMUNITY MEETING -->
+  <section data-label="08 Modifying the community meeting" class="on-cream">
+    <div class="eyebrow-slide">Modifying community meeting &mdash; without excluding</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A child who cannot speak in large groups speaks to the guide privately. <em style="font-style: italic; color: var(--gold);">The guide conveys what she said.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Overwhelmed by the space? <em>Sit somewhere else. Take a break. Rejoin.</em>
+      </p>
+      <p class="body-read">
+        Needs movement? <em>A fidget. Permission to stand.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The goal is never to exclude. <em>The goal is to find the way she can authentically participate.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 BUILD ON STRENGTHS -->
+  <section data-label="09 Build on strengths" class="on-navy">
+    <div class="eyebrow-slide">Build on strengths &mdash; deliberately</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Her neurodivergence is not something to overcome to participate. <em style="font-style: italic; color: var(--gold);">Structure the collaboration so it is what makes the collaboration richer.</em>
+      </h2>
+      <div class="two-col">
+        <div class="col dark">
+          <div class="label">Autism</div>
+          <h3>Extraordinary attention to detail. Careful. Makes sure everyone is heard.</h3>
+          <p>Let her be <em>the scribe. The documentarian. The person who notices what the group missed.</em></p>
+        </div>
+        <div class="col cream">
+          <div class="label">ADHD</div>
+          <h3>Creative. Associative. Generates what others cannot.</h3>
+          <p>Let her be <em>the brainstormer. The one who sees around the problem.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 SCENE · TIMEKEEPER -->
+  <section data-label="10 Scene · timekeeper" class="on-black">
+    <div class="eyebrow-slide" style="color: var(--gold);">Scene · a role that turns a trait into a gift</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.2;">
+        A child with ADHD has good ideas. <em style="font-style: italic; color: var(--gold);">He interrupts. He gets distracted. He misses when others are talking.</em><br/>
+        You give him a role. <em style="font-style: italic; color: var(--gold);">He is the timekeeper.</em> He tracks how long the group has worked. He signals the transitions.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 18px;">
+        You tap your nose when he is about to interrupt. He pauses. He waits. <em style="color: var(--gold);">He does not feel ashamed. He has a tool.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SCENE · AUTISM IN COMMUNITY MEETING -->
+  <section data-label="11 Scene · community meeting" class="on-black">
+    <div class="eyebrow-slide" style="color: var(--gold);">Scene · a role that holds her inside the meeting</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.2;">
+        Community meeting overwhelms her. <em style="font-style: italic; color: var(--gold);">The unwritten rules confuse her. She does not know when to talk and when to listen.</em><br/>
+        You give her a visual of the meeting&rsquo;s structure. You give her a role.<br/>
+        <em style="font-style: italic; color: var(--gold);">She is the person who makes sure everyone has had a chance to speak.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 18px;">
+        Her script: <em style="color: var(--gold);">&ldquo;Has anyone else not spoken yet?&rdquo;</em> Her autism does not disappear. <em style="color: var(--gold);">She now has tools. She can participate. She is being held by the structure.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 EQUITY -->
+  <section data-label="12 Equity" class="on-cream">
+    <div class="eyebrow-slide">Equity provocation · neurodivergence read through bias</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A Black neurodivergent child is marked aggressive. <em style="font-style: italic; color: var(--gold);">A low-income neurodivergent child is marked difficult.</em> Neurodivergence is always read through the lens of bias.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        You have to be willing to see <em>the neurodivergence underneath the bias.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Resist the narrative that the child is bad. <em>See the child as a child whose brain works differently.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 NEURODIVERGENCE NOTE (TO THE GUIDE) -->
+  <section data-label="13 Neurodivergence note" class="on-navy">
+    <div class="eyebrow-slide">A note for neurodivergent guides</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        If you are neurodivergent, <em style="font-style: italic; color: var(--gold);">you already understand some of what these children are experiencing.</em> Your experience is valuable.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        And it is specific to you. <em>Do not assume your accommodations will work for another neurodivergent child.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Ask. Learn. <em>Individualise.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 THE FRIENDSHIP SCAFFOLD -->
+  <section data-label="14 Friendship scaffold" class="on-cream">
+    <div class="eyebrow-slide">Friendship scaffold · elementary social work is explicit</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Some children <em style="font-style: italic; color: var(--gold);">need the social curriculum taught.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        &ldquo;When someone says hello, you say hello back.&rdquo; &ldquo;When someone is talking about their weekend, you can ask — what did you do?&rdquo; Not manners. Not compliance. Scripts. For children who do not read them automatically.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Explicit. Rehearsed. Without shame. The same way we teach long division.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The autistic child who is taught social scripts kindly — has a tool for life. The autistic child left to infer — is abandoned in plain sight.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 MOVEMENT -->
+  <section data-label="15 Movement as accommodation" class="on-navy">
+    <div class="eyebrow-slide">Movement · the accommodation most easily given</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Let her stand. <em style="font-style: italic; color: var(--gold);">Let her walk.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The ADHD child in particular — but most children — do not concentrate better sitting still. They concentrate better while moving. A wobble stool. A walking path. A standing desk. A five-minute lap of the garden, returning to the lesson refreshed.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Movement is not a behaviour to manage. It is a cognition to respect.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Every Montessori classroom is already built for this. Lean into it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 LANGUAGE SHIFT -->
+  <section data-label="16 Language shift" class="on-cream">
+    <div class="eyebrow-slide">Language shift · what we say, and stop saying</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Three phrases to retire. <em style="font-style: italic; color: var(--gold);">And what to say instead.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Retire</div>
+          <h3 style="color: var(--navy);">&ldquo;Why can&rsquo;t you just sit still?&rdquo; &ldquo;Use your words.&rdquo; &ldquo;Look at me when I&rsquo;m talking.&rdquo;</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Try instead</div>
+          <h3 style="color: var(--navy);">&ldquo;Do you need to move?&rdquo; &ldquo;Take your time — I&rsquo;ll wait.&rdquo; &ldquo;I&rsquo;m listening even if you&rsquo;re not looking.&rdquo;</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Why it matters</div>
+          <h3 style="color: var(--navy);">Each old phrase asks the neurodivergent child to perform neurotypical. Each new phrase asks a real question.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">The quiet gift</div>
+          <h3 style="color: var(--navy);">Neurotypical children benefit too. These phrases work for everyone.</h3>
+          <p style="color: var(--gold); font-style: italic;"><em>The accommodation for one child becomes the culture of the room.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 56px; line-height: 1.12; color: #fbf7ec; margin-top: 24px;">
+        What looks<br/>
+        like<br/>
+        a behaviour<br/>
+        problem<br/>
+        <em style="color: var(--gold);">is often<br/>
+        a mismatch<br/>
+        between<br/>
+        a brain<br/>
+        and an<br/>
+        environment<br/>
+        that refuses<br/>
+        to change.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing question</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 100px;">
+      <p class="attrib" style="color: var(--gold);">For yourself, first.</p>
+      <p class="closing-q" style="margin-top: 18px; font-size: 40px; line-height: 1.2;">
+        What is something you are neurodivergent about, <em style="font-style: italic; color: var(--gold);">even if you have never named it that way?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 20px; font-size: 40px; line-height: 1.2;">
+        How has that difference <em style="font-style: italic; color: var(--gold);">been treated as a problem?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 20px; font-size: 40px; line-height: 1.2;">
+        How could it <em style="font-style: italic; color: var(--gold);">have been supported instead?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 46 · Elementary · ADHD, Autism, and the Elementary Social World</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

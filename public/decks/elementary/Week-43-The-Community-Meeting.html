@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 43 — The Community Meeting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 36px; max-width: 1820px; }
+  .step { background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18); padding: 30px 30px 34px; position: relative; min-height: 340px; }
+  .step .num { font-family: var(--font-heading); font-style: italic; font-size: 68px; line-height: 1; color: var(--gold); margin-bottom: 6px; }
+  .step .tag { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; }
+  .step h3 { font-family: var(--font-heading); font-style: italic; font-size: 26px; line-height: 1.2; margin: 0 0 12px; color: var(--navy); }
+  .step p { font-family: var(--font-sans); font-size: 22px; line-height: 1.5; color: var(--fg-body); margin: 0; }
+  .step em { font-style: italic; color: var(--navy); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 32px; max-width: 1820px; }
+  .two-col .col { padding: 28px 30px; }
+  .two-col .col.dark { background: #12182a; border-left: 3px solid var(--gold); }
+  .two-col .col.cream { background: #fbf7ec; border-left: 3px solid var(--navy); }
+  .two-col .col h3 { font-family: var(--font-heading); font-style: italic; font-size: 30px; line-height: 1.2; margin: 0 0 14px; }
+  .two-col .col.dark h3 { color: #fbf7ec; }
+  .two-col .col.cream h3 { color: var(--navy); }
+  .two-col .col p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; margin: 0 0 10px; }
+  .two-col .col.dark p { color: rgba(255,255,255,0.88); }
+  .two-col .col.cream p { color: var(--fg-body); }
+  .two-col .col em { font-style: italic; color: var(--gold); }
+  .two-col .col.cream em { color: var(--navy); }
+  .two-col .col .label { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 14px; }
+  .two-col .col.dark .label { color: var(--gold); }
+  .two-col .col.cream .label { color: var(--gold); }
+
+  .transcript { display: grid; grid-template-columns: 190px 1fr; gap: 22px 32px; margin-top: 32px; max-width: 1680px; }
+  .transcript .who { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); padding-top: 6px; }
+  .transcript .line { font-family: var(--font-heading); font-style: italic; font-size: 30px; line-height: 1.3; color: #fbf7ec; border-left: 2px solid rgba(214,167,88,0.45); padding-left: 22px; }
+  .transcript .line em { color: var(--gold); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Forty-Three · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 160px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 60px; line-height: 1.08; padding-bottom: 18px;">
+        The community meeting<br/>
+        is not a teacher explaining why children were wrong.<br/>
+        <em style="font-style: italic; color: var(--gold);">It is what happens when you actually believe</em><br/>
+        children are capable of justice<br/>
+        <em style="font-style: italic; color: var(--gold);">and should practice it.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 43 · Elementary · Month 11 · Behaviour, Community, Capstone</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        In most schools, justice happens top-down. <em style="font-style: italic; color: var(--gold);">An adult sees. An adult judges. An adult decides. Children learn their role is compliance, not participation.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        In a Montessori elementary classroom, <em>justice should happen in the community.</em> Children talking to each other. Understanding each other. Repairing damage. Moving forward together.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is not a behaviour strategy. <em>This is practice for democratic citizenship.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT IT IS / ISN'T -->
+  <section data-label="03 What it is · what it isn't" class="on-cream">
+    <div class="eyebrow-slide">What a community meeting actually is</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Not a punishment. Not a shaming. <em style="font-style: italic; color: var(--gold);">A town hall. A community process. The child equivalent of collective problem-solving.</em>
+      </h2>
+      <div class="two-col">
+        <div class="col dark">
+          <div class="label">It is not</div>
+          <h3>Theatre. Performance. A meeting where children talk but nothing changes.</h3>
+          <p>Not an adult explaining what was wrong. <em>Not a manipulated path to a predetermined conclusion.</em></p>
+        </div>
+        <div class="col cream">
+          <div class="label">It is</div>
+          <h3>Naming what happened. Understanding the impact. Deciding how to repair it and move forward.</h3>
+          <p>Called for harm. Called for broken norms. <em>Sometimes called for something beautiful the community wants to celebrate.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE CONDITION -->
+  <section data-label="04 The condition" class="on-navy">
+    <div class="eyebrow-slide">The condition that makes it real</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.1;">
+        It only works <em style="font-style: italic; color: var(--gold);">if children believe they will actually be heard.</em> That their voices will actually matter. That adults will not steer toward a predetermined conclusion.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        If it is performance, <em>it teaches children that their participation is meaningless.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        If it is real &mdash; <em>if what they say actually shapes what happens next &mdash; it is powerful.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 FACILITATE, DO NOT DIRECT -->
+  <section data-label="05 Facilitate, not direct" class="on-cream">
+    <div class="eyebrow-slide">The guide&rsquo;s role</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        The guide facilitates. <em style="font-style: italic; color: var(--gold);">The guide does not decide what happens next. The community does.</em>
+      </h2>
+      <div class="two-col">
+        <div class="col cream">
+          <div class="label">Guide does</div>
+          <h3>Name the issue. Ask questions. Keep focus on understanding, not blame.</h3>
+          <p>Make sure the harmed are heard. <em>Protect anyone from disproportionate shaming.</em></p>
+        </div>
+        <div class="col dark">
+          <div class="label">Guide does not</div>
+          <h3>Pronounce verdicts. Impose outcomes. Steer toward &ldquo;the right answer.&rdquo;</h3>
+          <p>Does not hold the power. <em>The community holds the power.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THE FOUR MOVEMENTS -->
+  <section data-label="06 Four movements" class="on-navy">
+    <div class="eyebrow-slide">The structure · four movements</div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div class="tag">Name</div>
+        <h3>What happened &mdash; without judgement.</h3>
+        <p>Not <em>she did something wrong.</em> This is what happened; this is affecting our community. <em>Invite perspectives. Goal is understanding, not agreement.</em></p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div class="tag">Impact</div>
+        <h3>Who is harmed. How.</h3>
+        <p>The community develops empathy. <em>Hearing it from the person harmed lands differently than being told by an adult.</em></p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div class="tag">Repair</div>
+        <h3>What would actually help.</h3>
+        <p>Not an imposed consequence &mdash; a conversation. <em>What does the harmed need? What can the person who caused harm offer?</em></p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div class="tag">Return</div>
+        <h3>Integrate back into the community.</h3>
+        <p>The person who caused harm is still part of this. <em>The person harmed knows the community still cares about her safety.</em></p>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE · THE EXCLUDED CHILD -->
+  <section data-label="07 Scene · the excluded child" class="on-black">
+    <div class="eyebrow-slide" style="color: var(--gold);">Scene · the meeting opens</div>
+    <div class="transcript" style="margin-top: 60px;">
+      <div class="who">Guide</div>
+      <div class="line">This is what has been happening. A group of you has been excluding one of us. <em>She has asked for this meeting.</em></div>
+      <div class="who">Child A</div>
+      <div class="line">We thought she wasn&rsquo;t fun. <em>We didn&rsquo;t think she could play our game.</em></div>
+      <div class="who">Child B</div>
+      <div class="line">We were being funny.</div>
+      <div class="who">Child C</div>
+      <div class="line">She was unkind to me once. <em>So I decided to be unkind back.</em></div>
+    </div>
+    <div class="rule-gold" style="margin-top: 48px;"></div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 SCENE · IMPACT -->
+  <section data-label="08 Scene · impact" class="on-black">
+    <div class="eyebrow-slide" style="color: var(--gold);">Scene · impact</div>
+    <div class="transcript" style="margin-top: 60px;">
+      <div class="who">Guide</div>
+      <div class="line">I want to ask her what her experience has been.</div>
+      <div class="who">Excluded child</div>
+      <div class="line">I feel like <em>I&rsquo;m invisible.</em> I try to play. Nobody lets me. <em>I don&rsquo;t understand what I did that was so bad.</em> I feel like nobody likes me.</div>
+      <div class="who">Guide</div>
+      <div class="line">I want you to imagine what that feels like. <em>Really imagine it.</em></div>
+    </div>
+    <div class="rule-gold" style="margin-top: 48px;"></div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE · REPAIR -->
+  <section data-label="09 Scene · repair" class="on-black">
+    <div class="eyebrow-slide" style="color: var(--gold);">Scene · repair</div>
+    <div class="transcript" style="margin-top: 60px;">
+      <div class="who">Child</div>
+      <div class="line">We could try playing together at recess.</div>
+      <div class="who">Child</div>
+      <div class="line">We could invite her to our game tomorrow.</div>
+      <div class="who">Child</div>
+      <div class="line">I&rsquo;m sorry.</div>
+      <div class="who">Excluded child</div>
+      <div class="line">I accept your apology. <em>I would like to play with you.</em></div>
+    </div>
+    <div class="rule-gold" style="margin-top: 48px;"></div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 WHAT THE GUIDE KNOWS -->
+  <section data-label="10 What the guide knows" class="on-navy">
+    <div class="eyebrow-slide">After the meeting</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        The guide does not know if this will stick. <em style="font-style: italic; color: var(--gold);">She probably knows it will not completely stick.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        There will be moments when the exclusion happens again.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        But something has shifted. <em>The children have named it. Thought about impact. Decided to try something different. And practiced being a community that repairs harm.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 WHEN MEETINGS SURFACE BIAS -->
+  <section data-label="11 When meetings surface bias" class="on-cream">
+    <div class="eyebrow-slide">When the problem is not the individual &mdash; it is the community</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A child has been excluded &mdash; and the exclusion is rooted in race, class, gender, or disability. <em style="font-style: italic; color: var(--gold);">The out-group has a demographic pattern. You cannot pretend it is not there.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Name it. <em>The community has been excluding based on identity.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        If you don&rsquo;t, <em>you have just taught children that bias is fine as long as everyone agrees to it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 HOLDING THE DEFENCE -->
+  <section data-label="12 Holding the defence" class="on-navy">
+    <div class="eyebrow-slide">When children defend the bias</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        They will give you reasons. <em style="font-style: italic; color: var(--gold);">The reasons will make sense to them. They will be wrong. And they will feel right.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Hold them in that discomfort. <em>Having reasons for bias does not make it not bias.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Help them see the person they have excluded <em>as a full human, not a category.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 DEMOCRATIC SKILLS -->
+  <section data-label="13 Democratic skills" class="on-cream">
+    <div class="eyebrow-slide">What is actually being taught</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Every community meeting is a rehearsal for how democracy works <em style="font-style: italic; color: var(--gold);">&mdash; and how it does not.</em>
+      </h2>
+      <div class="steps" style="grid-template-columns: repeat(4, 1fr); margin-top: 36px;">
+        <div class="step"><div class="num">·</div><div class="tag">Listening</div><h3>What genuine listening sounds like.</h3><p><em>Not just waiting to speak.</em></p></div>
+        <div class="step"><div class="num">·</div><div class="tag">Disagreeing</div><h3>How to disagree without dismissing.</h3><p><em>The other person still belongs.</em></p></div>
+        <div class="step"><div class="num">·</div><div class="tag">Solving together</div><h3>How to hold a shared problem.</h3><p><em>No one solves alone.</em></p></div>
+        <div class="step"><div class="num">·</div><div class="tag">Responsibility</div><h3>Voice matters. So does the cost of using it well.</h3><p><em>The community is yours.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY · THE TOOL CUTS BOTH WAYS -->
+  <section data-label="14 Equity · tool of power" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Community meetings are a tool of power. <em style="font-style: italic; color: var(--gold);">A way to protect children from marginalised communities from the bias baked into top-down discipline.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        But only if they are actually democratic. <em>If adults manipulate them toward predetermined conclusions, they are just a different kind of exclusion.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        You have to actually be willing to be surprised. <em>You have to actually let children have power.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NEURODIVERGENCE -->
+  <section data-label="15 Neurodivergence" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · participation, not performance</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Community meetings can be challenging for neurodivergent children. <em style="font-style: italic; color: var(--gold);">Selective mutism. Sensory load. Time demands.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Offer alternative ways to participate. <em>A written note read aloud. A one-on-one beforehand. A designated moment of quiet. Permission to leave and return.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The goal is not to exclude them from the process. <em>It is to find ways for them to genuinely participate.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 THE CIRCLE ITSELF -->
+  <section data-label="16 The circle itself" class="on-cream">
+    <div class="eyebrow-slide">The circle itself · geometry as pedagogy</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Sit in a circle. <em style="font-style: italic; color: var(--gold);">Not a grid.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A grid teaches hierarchy. One face at the front. Many faces looking the same way. A circle teaches something else — every face is seen, every face is equidistant from the middle, no one is at the back.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Move the furniture. Every time. That small labour of setting up is part of the practice.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The shape of the room is already teaching, before anyone speaks.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 56px; line-height: 1.12; color: #fbf7ec; margin-top: 24px;">
+        You cannot<br/>
+        teach children<br/>
+        democratic<br/>
+        citizenship<br/>
+        <em style="color: var(--gold);">and also<br/>
+        decide<br/>
+        the outcome<br/>
+        before<br/>
+        the meeting<br/>
+        begins.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing question</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 110px;">
+      <p class="attrib" style="color: var(--gold);">For your own formation.</p>
+      <p class="closing-q" style="margin-top: 18px; font-size: 40px; line-height: 1.2;">
+        Have you ever been in a genuine democratic process <em style="font-style: italic; color: var(--gold);">where your voice actually mattered?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 22px; font-size: 40px; line-height: 1.2;">
+        What did that experience teach you <em style="font-style: italic; color: var(--gold);">about what is possible?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 43 · Elementary · The Community Meeting</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

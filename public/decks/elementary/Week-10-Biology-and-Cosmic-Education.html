@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 10 — Biology and Cosmic Education</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-deeptime {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(175deg, #1a1206 0%, #06040a 100%);
+  }
+  .scene-evolve {
+    background:
+      radial-gradient(ellipse 70% 50% at 55% 50%, rgba(240,217,161,0.18), transparent 70%),
+      linear-gradient(170deg, #201812 0%, #0c0a08 100%);
+  }
+  .timeline {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 0;
+    margin-top: 40px; max-width: 1760px;
+    border-top: 1px solid rgba(20,30,60,0.2);
+    border-bottom: 1px solid rgba(20,30,60,0.2);
+  }
+  .timeline .era {
+    padding: 24px 20px;
+    border-right: 1px solid rgba(20,30,60,0.12);
+  }
+  .timeline .era:last-child { border-right: none; }
+  .timeline .era.highlight { background: rgba(214,167,88,0.12); }
+  .timeline .mya {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; color: var(--gold); line-height: 1;
+    margin-bottom: 12px;
+  }
+  .timeline .what {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.35;
+    color: var(--fg-body);
+  }
+  .timeline em { font-style: italic; color: var(--navy); }
+
+  .impressions {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+    margin-top: 28px; max-width: 1760px;
+  }
+  .impressions .imp {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 28px;
+  }
+  .impressions .imp .roman {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 10px;
+  }
+  .impressions .imp p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .impressions .imp em { font-style: italic; color: var(--navy); }
+
+  .scale-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .scale-cards .card {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 32px;
+  }
+  .scale-cards .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.2;
+  }
+  .scale-cards .card p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .scale-cards .card em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Ten · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 88px; line-height: 1.04; padding-bottom: 24px;">
+        An eight-year-old<br/>
+        holding deep time<br/>
+        <em style="font-style: italic; color: var(--gold);">in her hands.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 30px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        Biology is not a separate subject. It is the
+        <em>Second Great Lesson</em> continuing what the First
+        Lesson began — the story of how matter organized itself
+        into life.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 10 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY THIS MATTERS NOW -->
+  <section data-label="Why this matters now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Without cosmic framing,<br/>
+        biology becomes facts<br/>
+        about animals and plants.
+        <em style="font-style: italic; color: var(--gold);">With it — an invitation.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Life emerged in <em>specific conditions</em>, at specific
+        moments in the earth's history, in relationship to
+        everything else that was happening in the universe.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Biology is the study of that emergence and interdependence — and the child's invitation to find her place in the story.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 TIMELINE OF LIFE -->
+  <section data-label="Timeline of Life" class="on-cream">
+    <div class="eyebrow-slide">The Timeline of Life · an impression, not a quiz</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 28px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The exact dates rarely matter.
+        <em style="font-style: italic; color: var(--gold);">The impression always does.</em>
+      </h2>
+      <div class="timeline">
+        <div class="era"><div class="mya">4,600 mya</div><div class="what">Earth forms.<br/><em>No life at all.</em></div></div>
+        <div class="era"><div class="mya">3,500 mya</div><div class="what">First life. Tiny. Invisible.</div></div>
+        <div class="era highlight"><div class="mya">500 mya</div><div class="what">Fish.</div></div>
+        <div class="era"><div class="mya">370 mya</div><div class="what">Amphibians. <em>Life walks.</em></div></div>
+        <div class="era"><div class="mya">310 mya</div><div class="what">Reptiles.</div></div>
+        <div class="era"><div class="mya">130 mya</div><div class="what">Flowers. Among the <em>youngest.</em></div></div>
+        <div class="era highlight"><div class="mya">0.3 mya</div><div class="what">Humans.<br/><em>The last second.</em></div></div>
+      </div>
+      <p class="body-read" style="margin-top: 32px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        The child is not memorizing. She is <em>internalizing</em>
+        that for most of the earth's history, there was no life
+        at all — and that she appeared in the final moments.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE IMPRESSIONS -->
+  <section data-label="The impressions" class="on-cream">
+    <div class="eyebrow-slide">What the child absorbs · feelings, not facts</div>
+    <div class="stack" style="max-width: 1800px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A child who sits with this<br/>
+        develops a <em style="font-style: italic; color: var(--gold);">different relationship</em><br/>
+        to herself and the living world.
+      </h2>
+      <div class="impressions">
+        <div class="imp"><div class="roman">i.</div><p>She is <em>not the center</em> of life on earth.</p></div>
+        <div class="imp"><div class="roman">ii.</div><p>She is part of an <em>ancient story</em> she did not begin.</p></div>
+        <div class="imp"><div class="roman">iii.</div><p>She is <em>connected to every organism</em> that ever lived.</p></div>
+        <div class="imp"><div class="roman">iv.</div><p>This is <em>humbling</em> — and where real ecological consciousness begins.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 CLASSIFICATION AS THINKING -->
+  <section data-label="Classification as thinking" class="on-cream">
+    <div class="eyebrow-slide">Classification · not a list, a thinking tool</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Residents ask —<br/>
+        if I love birds, why<br/>
+        am I learning phylum<br/>
+        before <em style="font-style: italic; color: var(--gold);">hawks?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Because classification is <em>how the human mind organizes
+        complexity.</em> The child who has learned to sort has a
+        mental structure for any living thing she encounters.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        She moves from <em>&ldquo;What is this?&rdquo;</em> to <em>&ldquo;How do I organize what I know?&rdquo;</em> — the preparation for independent research.
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 ONE ORGANISM, MANY CLASSIFICATIONS -->
+  <section data-label="One organism, many systems" class="on-cream">
+    <div class="eyebrow-slide">One organism · many classification systems</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Each system <em style="font-style: italic; color: var(--gold);">reveals something different.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 36px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">By where it lives.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Habitat. Biome. Depth.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">By what it eats.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Carnivore, herbivore, decomposer.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">By how it reproduces.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Live birth, eggs, spores.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">By evolutionary history.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Ancestry. Who shares what.</p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 36px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        This is abstract thinking at the second plane — <em>systems
+        exist because humans need them to think.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE A — HOW DO FISH BECOME BIRDS -->
+  <section data-label="Scene · how do fish become birds" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-deeptime has-image" style="background: url('/decks/images/elem-week-10-scene-deeptime.jpg') center/cover no-repeat;">
+        <div class="scene-label">Three children ask <em>&ldquo;how do fish become birds?&rdquo;</em> No textbook. The guide brings the Timeline. They compare a fish fin and a bird wing — almost the same bones. She tells them about <em>archaeopteryx.</em> Then a question: <em>&ldquo;Can you make a story of how a creature might change if the world around it changed?&rdquo;</em> Three days of drawings, cut paper, arguing about gills and lungs. One child: <em>&ldquo;Wait. These bones are almost the same. Did it matter they were the same if they had to do different things?&rdquo;</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · doing what Darwin did</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Not learning the<br/>
+          theory of evolution<br/>
+          from a textbook —<br/>
+          <em style="font-style: italic;">constructing</em> it.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Observing. Wondering. Trying to <em>construct an explanation</em>
+          for the physical evidence.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          This is the question that leads to adaptation.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 SCENE B — THEY DID WHAT I DID -->
+  <section data-label="Scene · they did what I did" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-evolve has-image" style="background: url('/decks/images/elem-week-10-scene-evolve.jpg') center/cover no-repeat;">
+        <div class="scene-label">A different group, weeks later. Six insects caught and documented from the schoolyard. Chart on the floor. <em>Do we sort by size? By where they live? By number of legs?</em> One child notices — some insects have six legs, some have more, some have fewer. <em>&ldquo;Maybe that is how you tell what kind they are.&rdquo;</em> The guide brings a field guide. Entomologists classify insects by number of legs and presence of wings. The child is stunned. <em>&ldquo;They did what I did.&rdquo;</em> The guide smiles. <em>&ldquo;You did what scientists do. They built a classification system the same way.&rdquo;</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · discovering how systems come to be</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is not following<br/>
+          someone else&rsquo;s system.<br/>
+          <em style="font-style: italic;">She is discovering<br/>
+          how systems are made.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          She goes back to her work with <em>complete confidence.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCALES OF LIFE -->
+  <section data-label="Scales of life" class="on-cream">
+    <div class="eyebrow-slide">Scales of life · beyond human perception</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Life operates <em style="font-style: italic; color: var(--gold);">at multiple scales</em> the eye cannot hold at once.
+      </h2>
+      <div class="scale-cards">
+        <div class="card">
+          <h3>Too small to see.</h3>
+          <p>A single <em>bacterium</em> is alive. A drop of pond water is a city. The child meets the microscope.</p>
+        </div>
+        <div class="card">
+          <h3>The child's scale.</h3>
+          <p>The familiar — a bird, a tree, a tidepool. What the hand can touch, what the eye can hold.</p>
+        </div>
+        <div class="card">
+          <h3>Too vast to see whole.</h3>
+          <p>A <em>forest</em> is alive. A coral reef is alive. Life distributed across space and time.</p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 36px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        Some children feel dizzy at this expansion. That is
+        normal. <em>The mind is making room for a truer picture.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 MADE OF STARS -->
+  <section data-label="Made of stars" class="on-navy">
+    <div class="eyebrow-slide">The cosmic loop · biology returns to the First Lesson</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.12;">
+        Every carbon atom<br/>
+        in your body was made<br/>
+        <em style="font-style: italic; color: var(--gold);">inside a star.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The calcium in your bones was made in stellar
+        explosions. You are made of stardust, and you share
+        ancestry with every organism that has ever lived.
+        <em>This is not metaphor. It is literal.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The child is not an observer outside nature.
+        <em>She is nature, observing itself.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 EQUITY — WHICH CHILD -->
+  <section data-label="Equity · which child hears this" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · which child hears this, and how</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Cosmic education inverts the dominance story.
+        <em style="font-style: italic; color: var(--gold);">That inversion is not neutral across communities.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A child from a community already marginalized by
+        environmental racism — already drinking poisoned water,
+        already living in the consequences of being treated
+        as dispensable — may hear <em>&ldquo;you are just part of nature
+        like everything else&rdquo;</em> as another way of saying<br/>
+        <em>your suffering is natural, inevitable.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Know the communities you serve. Know <em>which children
+        are already being told</em> they are closer to nature in the ways racism has always used that language.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 COSMIC EDUCATION AS RESISTANCE -->
+  <section data-label="Cosmic education as resistance" class="on-cream">
+    <div class="eyebrow-slide">What cosmic education must also include</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not only wonder and interconnection.
+        <em style="font-style: italic; color: var(--gold);">The truth of what humans have decided.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 36px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">The truth.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Some humans have decided <em style="color:var(--navy);">other humans and the natural world do not matter enough to protect.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">The anger.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">The child's <em style="color:var(--navy);">right to be angry</em> at that injustice. Honored. Not managed.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">The resistance.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Caring for the living world is <em style="color:var(--navy);">an act of resistance</em> to the systems that profit from its destruction.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · deep time, literal thinking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        A child with anxiety may experience deep time as destabilizing rather than expansive.
+        <em style="font-style: italic; color: var(--gold);">A literal-thinking child may ask precise questions about extinction.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        These are not disruptions to the curriculum. <em>They are
+        windows</em> into how this child needs the curriculum shaped.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Use clear language about what is factual and what is
+        interpretive. Hold space for the dizziness.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 WHAT THE GUIDE PREPARES -->
+  <section data-label="What the guide prepares" class="on-cream">
+    <div class="eyebrow-slide">The guide's preparation · before the lesson</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The impression is made <em style="font-style: italic; color: var(--gold);">through the guide's own wonder.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Sit with the Timeline alone first.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Before presenting to children, let it move you. <em style="color:var(--navy);">A rehearsed awe is a dead awe.</em></p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Know your communities.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Which children live inside environmental injustice <em style="color:var(--navy);">right now.</em> Shape the story accordingly.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Keep classification open.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Let children <em style="color:var(--navy);">build their own systems</em> before you hand them the scientists'.</p>
+        </div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);">
+          <p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Prepare the microscope.</p>
+          <p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">A working one. Real slides. The invisible scale must <em style="color:var(--navy);">actually be visible</em> at least once.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 A WORD ON FACTS -->
+  <section data-label="A word on facts" class="on-cream">
+    <div class="eyebrow-slide">A caution · the impression is not approximation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Impressionistic does not mean <em style="font-style: italic; color: var(--gold);">vague.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        When a child asks a precise question, give a precise
+        answer — or say, clearly, <em>&ldquo;We do not know yet,&rdquo;</em> or
+        <em>&ldquo;Scientists disagree.&rdquo;</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The child's confidence in your honesty is more
+        important than any single fact. <em>She will forgive a
+        &ldquo;let us look it up.&rdquo; She will not forgive fabrication.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 SYNTHESIS -->
+  <section data-label="Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 68px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Biology, told cosmically,<br/>
+        gives the child<br/>
+        <em style="color: var(--gold);">a place to stand —<br/>
+        inside the story,<br/>
+        not above it.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 A CAUTION -->
+  <section data-label="Caution" class="on-navy">
+    <div class="eyebrow-slide">A caution · the wrong kind of wonder</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Wonder that refuses to look at harm <em style="font-style: italic; color: var(--gold);">is not wonder.</em> It is sentimentality.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A biology curriculum that celebrates <em>interconnection</em><br/>
+        but cannot name <em>which interconnections have been broken, by whom, and for what profit</em> — trains the child to be
+        moved but not to act.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Awe and accountability must arrive together.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · one question for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 52px;">
+        When you present<br/>
+        the Timeline of Life,<br/>
+        <em style="font-style: italic; color: var(--gold);">what story</em> are you<br/>
+        hoping the children<br/>
+        tell themselves<br/>
+        about who they are<br/>
+        in relation to<br/>
+        all of that time?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 10 · Elementary · Biology and Cosmic Education</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

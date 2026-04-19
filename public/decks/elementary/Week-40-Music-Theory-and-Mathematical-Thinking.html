@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 40 — Music Theory and Mathematical Thinking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-rhythm {
+    background:
+      radial-gradient(ellipse 55% 45% at 42% 46%, rgba(214,167,88,0.22), transparent 72%),
+      linear-gradient(165deg, #1a180f 0%, #07060a 100%);
+  }
+  .scene-meter {
+    background:
+      radial-gradient(ellipse 60% 55% at 55% 48%, rgba(92,129,156,0.28), transparent 70%),
+      linear-gradient(170deg, #0e1624 0%, #05080e 100%);
+  }
+  .two-by { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; max-width: 1760px; }
+  .two-by .card { padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18); }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label { font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .two-by .card h3 { font-family: var(--font-heading); font-style: italic; font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy); }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: var(--fg-body); margin: 0 0 10px; }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+  .three { grid-template-columns: repeat(3, 1fr) !important; }
+  .equation-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 36px;
+    font-family: var(--font-heading); font-style: italic;
+  }
+  .equation-row .eqn {
+    background: rgba(214,167,88,0.08); border: 1px solid rgba(214,167,88,0.35);
+    padding: 24px 20px; color: #fbf7ec; text-align: center;
+  }
+  .equation-row .eqn .top { font-size: 40px; line-height: 1.1; color: var(--gold); }
+  .equation-row .eqn .bot { font-size: 24px; color: rgba(255,255,255,0.75); margin-top: 10px; font-family: var(--font-sans); font-style: normal; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Forty · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 160px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 62px; line-height: 1.08; padding-bottom: 18px;">
+        A child understands<br/>
+        half a beat plus half a beat makes a whole beat —<br/>
+        <em style="font-style: italic; color: var(--gold);">before she can add<br/>
+        one-half plus one-half on a worksheet.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 40 · Elementary · Month 10 · Art and Language Integration</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Music is abstract and concrete at the same time. <em style="font-style: italic; color: var(--gold);">She feels it in her body. She sees it on the staff. She understands it intellectually &mdash; all three at once.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Elementary mathematics is becoming abstract and symbolic &mdash; fractions and equations on paper. <em>And we are still teaching most children to understand fractions by moving blocks or drawing pictures.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The connection between music theory and mathematics is not decorative. <em>It is essential.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 ONE THESIS -->
+  <section data-label="03 One language" class="on-navy">
+    <div class="eyebrow-slide">The thesis, said plainly</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.1;">
+        Music theory and mathematics are not separate languages. <em style="font-style: italic; color: var(--gold);">They are the same language &mdash; and music might be the most embodied way she learns it.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The notation is just a way to represent <em>what she already understands.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 RHYTHM = FRACTIONS -->
+  <section data-label="04 Rhythm is fractions" class="on-black">
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <div class="eyebrow-slide" style="color: var(--gold);">Rhythm is fractions &mdash; before she writes a single one</div>
+      <h2 class="display" style="font-size: 46px; line-height: 1.1; color: #fbf7ec; margin-top: 16px;">
+        A whole note is a whole unit. <em style="font-style: italic; color: var(--gold);">Two half notes fit into the same amount of time.</em>
+      </h2>
+      <div class="equation-row">
+        <div class="eqn"><div class="top">𝅝</div><div class="bot">whole · 1</div></div>
+        <div class="eqn"><div class="top">𝅗𝅥 𝅗𝅥</div><div class="bot">two halves · ½ + ½</div></div>
+        <div class="eqn"><div class="top">♩ ♩ ♩ ♩</div><div class="bot">four quarters · ¼ × 4</div></div>
+        <div class="eqn"><div class="top">𝅗𝅥·</div><div class="bot">dotted half · 1½ of a half</div></div>
+      </div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); margin-top: 36px;">
+        She has felt the time a whole note takes. <em>She has learned ratio through her body. The notation comes later &mdash; as representation, not revelation.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 METER = GROUPING -->
+  <section data-label="05 Meter is grouping" class="on-cream">
+    <div class="eyebrow-slide">Meter is multiplication · different groupings, different feels</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Four groups of four is different from three groups of four. <em style="font-style: italic; color: var(--gold);">The relationship matters.</em>
+      </h2>
+      <div class="two-by three">
+        <div class="card">
+          <div class="label">4/4</div>
+          <h3>Four beats to the bar. March. The steady grid most of our music sits on.</h3>
+          <p><em>Groups of four.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">3/4</div>
+          <h3>Three beats to the bar. Waltz. A different body weight on the first beat.</h3>
+          <p><em>Groups of three.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">6/8</div>
+          <h3>Six eighths, felt as two groups of three. Compound meter &mdash; two levels of grouping at once.</h3>
+          <p><em>Nested multiplication.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 NOT TRANSLATION -->
+  <section data-label="06 Not translation" class="on-cream">
+    <div class="eyebrow-slide">The beauty of the Montessori approach</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        She does not translate what she learned about fractions into music. <em style="font-style: italic; color: var(--gold);">The music is where she learned fractions.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Music theory is not &ldquo;a way to make math fun.&rdquo; <em>It is a concrete context for abstract mathematical reasoning &mdash; one that happens through ears, body, and voice before it ever lands on paper.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 PITCH = PROPORTION -->
+  <section data-label="07 Pitch is proportion" class="on-navy">
+    <div class="eyebrow-slide">Scales and intervals teach proportional thinking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Move a major scale up by one step. <em style="font-style: italic; color: var(--gold);">It is still a major scale &mdash; because the relationships between intervals stay the same.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The actual pitches matter less than the relationships between them. <em>This is the same understanding that underlies congruent shapes &mdash; or equivalent fractions.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The values change. <em>The proportional relationships do not.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 INTERVALS AS NUMBER -->
+  <section data-label="08 Intervals are number" class="on-cream">
+    <div class="eyebrow-slide">Intervals are number relationships &mdash; heard, not calculated</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        She does not do the math to understand the relationships. <em style="font-style: italic; color: var(--gold);">She understands them through her ear and her voice.</em>
+      </h2>
+      <div class="two-by three">
+        <div class="card">
+          <div class="label">Octave</div>
+          <h3>A doubling of frequency. The same note, one size up.</h3>
+          <p><em>Ratio 2 : 1.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Perfect fifth</div>
+          <h3>The interval between the first and fifth of a scale. The strong consonance.</h3>
+          <p><em>Ratio 3 : 2 &mdash; or 1.5.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Perfect fourth</div>
+          <h3>Between the first and fourth. The settled answer to the fifth.</h3>
+          <p><em>Ratio 4 : 3.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 BELLS -->
+  <section data-label="09 The Montessori bells" class="on-cream">
+    <div class="eyebrow-slide">The material does the concrete work</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        When she uses the bells to explore intervals, <em style="font-style: italic; color: var(--gold);">she is manipulating the proportional relationships with her hands.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        She can feel the relationship between a fifth and a third. <em>She can rearrange the bells and hear how the relationships change.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The same concrete, manipulative-based learning we use for fractions or geometry. <em>Happening through music.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 CHORDS = ALGEBRA -->
+  <section data-label="10 Chords are algebra" class="on-navy">
+    <div class="eyebrow-slide">Harmonic progression is algebraic thinking</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A chord is a combination of pitches that can be symbolised. <em style="font-style: italic; color: var(--gold);">A I&ndash;IV&ndash;V&ndash;I progression is a pattern that can be recognised and repeated.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        When she names that pattern in one key and finds it again in another &mdash; <em>she is thinking algebraically.</em> Variables stand for pitches. The structure stays.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Notation is downstream of the thinking. <em>The thinking is the point.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 COMPOSITION -->
+  <section data-label="11 Composition" class="on-cream">
+    <div class="eyebrow-slide">Composition · where every layer comes together</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        She organises pitches into patterns over time. <em style="font-style: italic; color: var(--gold);">Rhythm. Melody. Harmony &mdash; brought together to make something new.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        She is not learning music theory as isolated facts. <em>She is learning it as a way of thinking about relationships, patterns, proportions.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        That it happens through music <em>is not incidental. It is the entire point.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 INTEGRATION -->
+  <section data-label="12 Integration" class="on-cream">
+    <div class="eyebrow-slide">Not &ldquo;music in math class.&rdquo; One curriculum, two modalities.</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        The same concepts through different modalities &mdash; <em style="font-style: italic; color: var(--gold);">each deepening the others.</em>
+      </h2>
+      <div class="two-by three">
+        <div class="card">
+          <div class="label">Fractions</div>
+          <h3>Come back to rhythm. Write the note values alongside the fractions on the board.</h3>
+          <p><em>Same equation, two modalities.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Measurement &amp; time</div>
+          <h3>Return to tempo and duration. BPM is a rate. A bar is a unit.</h3>
+          <p><em>Music as the stopwatch.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Geometry</div>
+          <h3>The proportions of instruments. The geometry of acoustic spaces. Pitch arranged on a staff.</h3>
+          <p><em>Space and sound, mapped.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 SCENE · WHOLE NOTE TASK -->
+  <section data-label="13 Scene · whole-note task" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-rhythm has-image" style="background: url('/decks/images/elem-week-40-scene-rhythm.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">The task: show how many quarter notes fit into a whole note. <em>Some children draw the notes on a staff. Some move the bells to show the relationships. Some write the equation.</em> Four quarters equals one whole. One-quarter plus one-quarter plus one-quarter plus one-quarter equals one. 4/4 equals 1. <em>They are all answering the same question. All of the answers are valid.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · one question, three modalities</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The staff.<br/>
+          The bells.<br/>
+          <em style="font-style: italic;">The equation.</em><br/>
+          <br/>
+          All three answer<br/>
+          the same maths.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 SCENE · METER ON THE DRUM -->
+  <section data-label="14 Scene · meter on the drum" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · draw what you feel</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Waltz meter<br/>
+          feels different<br/>
+          than march meter.<br/>
+          <em style="font-style: italic;">The proportions<br/>
+          are different.</em><br/>
+          <br/>
+          Now draw it.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+      <div class="scene scene-meter has-image" style="background: url('/decks/images/elem-week-40-scene-meter.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">The guide beats a rhythm on the drum. Children listen and move. <em>They feel the pulse.</em> She changes the meter; they feel the shift. Then the guide asks them to draw what they feel. <em>Some children draw stick figures in different positions. Some draw circles and lines for the pattern. Some write 3/4 versus 2/4 and work out the proportions.</em> The same mathematics &mdash; through the embodied experience of rhythm.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 EQUITY -->
+  <section data-label="15 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who gets to be a mathematician</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Mathematical reasoning is not the province of children who are naturally inclined toward abstraction. <em style="font-style: italic; color: var(--gold);">Some children understand proportion through their bodies before they understand it in symbols.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Teach mathematics only through symbols and worksheets, <em>and you teach those children they are not mathematicians.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Teach it through music, through movement, through concrete materials &mdash; <em>and they suddenly have access. The understanding is as real, as deep, as valuable as any achieved through notation.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 NEURODIVERGENCE -->
+  <section data-label="16 Neurodivergence" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · not outliers &mdash; central</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Many neurodivergent children have profound musical and mathematical abilities. <em style="font-style: italic; color: var(--gold);">In a music-and-maths integrated curriculum, they are not outliers.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        ADHD children often respond brilliantly to rhythm and pattern. <em>Autistic children often have perfect pitch, or extraordinary mathematical reasoning.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They are seeing their gifts <em>celebrated as central to the curriculum.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 58px; line-height: 1.1; color: #fbf7ec; margin-top: 24px;">
+        Music is not<br/>
+        a way to make<br/>
+        maths<br/>
+        interesting.<br/>
+        <em style="color: var(--gold);">Music is the<br/>
+        concrete context<br/>
+        for the abstract<br/>
+        reasoning &mdash;<br/>
+        the place she<br/>
+        understands it<br/>
+        first.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · two questions for yourself</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Answer the first before you plan the second.</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 40px; line-height: 1.2;">
+        What mathematical concept<br/>
+        have you understood in your body<br/>
+        <em style="font-style: italic; color: var(--gold);">before you understood it as a symbol?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 28px; font-size: 40px; line-height: 1.2;">
+        How can you create that same kind<br/>
+        of embodied understanding<br/>
+        <em style="font-style: italic; color: var(--gold);">for the children in your elementary classroom?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 40 · Elementary · Music Theory and Mathematical Thinking</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>
