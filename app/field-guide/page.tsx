@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const modes = [
+type Mode = { id: string; name: string; desc: string; screenshot: string | null; screenshotAlt?: string }
+
+const modes: Mode[] = [
   {
     id: 'G',
     name: 'Guide Me',
