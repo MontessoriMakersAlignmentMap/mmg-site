@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 48 — Your Elementary Philosophy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .beliefs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; max-width: 1820px; }
+  .belief { padding: 30px 32px; min-height: 360px; background: #fbf7ec; border-top: 3px solid var(--gold); }
+  .belief .tag { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .belief h3 { font-family: var(--font-heading); font-style: italic; font-size: 28px; line-height: 1.22; color: var(--navy); margin: 0 0 14px; }
+  .belief p { font-family: var(--font-sans); font-size: 22px; line-height: 1.5; color: var(--fg-body); margin: 0 0 10px; }
+  .belief em { font-style: italic; color: var(--navy); }
+
+  .ifthen { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 36px; max-width: 1820px; }
+  .ifthen .col { padding: 30px 32px; }
+  .ifthen .col.left { background: #fbf7ec; border-left: 3px solid var(--navy); }
+  .ifthen .col.right { background: #12182a; border-left: 3px solid var(--gold); }
+  .ifthen .col .tag { font-family: var(--font-sans); font-size: 22px; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 14px; color: var(--gold); }
+  .ifthen .col h3 { font-family: var(--font-heading); font-style: italic; font-size: 28px; line-height: 1.22; margin: 0 0 12px; }
+  .ifthen .col.left h3 { color: var(--navy); }
+  .ifthen .col.right h3 { color: #fbf7ec; }
+  .ifthen .col p { font-family: var(--font-sans); font-size: 22px; line-height: 1.5; margin: 0 0 8px; }
+  .ifthen .col.left p { color: var(--fg-body); }
+  .ifthen .col.right p { color: rgba(255,255,255,0.88); }
+  .ifthen .col em { font-style: italic; }
+  .ifthen .col.left em { color: var(--navy); }
+  .ifthen .col.right em { color: var(--gold); }
+
+  .creed { padding: 40px 48px; background: #12182a; border-left: 4px solid var(--gold); max-width: 1640px; margin-top: 32px; }
+  .creed h3 { font-family: var(--font-heading); font-style: italic; font-size: 34px; line-height: 1.24; color: #fbf7ec; margin: 0 0 16px; }
+  .creed p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0 0 12px; }
+  .creed em { color: var(--gold); font-style: italic; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Forty-Eight · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 160px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 60px; line-height: 1.08; padding-bottom: 18px;">
+        You cannot teach in a way that is different from what you believe.<br/>
+        <em style="font-style: italic; color: var(--gold);">You can pretend for a while.</em><br/>
+        But eventually <em style="font-style: italic; color: var(--gold);">who you are comes through.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 48 · Elementary · Month 12 · Behaviour, Community, Capstone</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        You are at the end of the academic phase. <em style="font-style: italic; color: var(--gold);">In a few months, theory meets a real classroom, real families, real community.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        If you have not gotten clear about what you believe, <em>you will make decisions based on what feels comfortable, what you learned growing up, or what the system asks of you.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        And you will teach in a way that is <em>not aligned with what you actually care about.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 PHILOSOPHY IS NOT -->
+  <section data-label="03 Philosophy is not" class="on-navy">
+    <div class="eyebrow-slide">What a philosophy actually is</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.1;">
+        A philosophy is not a statement you write for an interview. <em style="font-style: italic; color: var(--gold);">It is what you actually believe about how the world works and what your role is.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        What you believe about children. About learning. <em>About justice. About your role.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        You will teach from what you actually believe. <em>Not from what you say you believe.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THREE QUESTIONS -->
+  <section data-label="04 Three questions" class="on-cream">
+    <div class="eyebrow-slide">Three questions that will drive every decision</div>
+    <div class="beliefs">
+      <div class="belief">
+        <div class="tag">01 · Children</div>
+        <h3>Are they capable? Trustworthy? Good?</h3>
+        <p>Do you believe wealthy children are naturally smarter? That poor children are damaged? That neurodivergent children are broken? <em>That children of colour are more aggressive?</em></p>
+        <p><em>These beliefs are absorbed from the culture. If you do not interrogate them, they will drive your teaching.</em></p>
+      </div>
+      <div class="belief">
+        <div class="tag">02 · Learning</div>
+        <h3>Through instruction, or discovery? One way, or many?</h3>
+        <p>Is learning something that happens <em>to</em> children &mdash; or something children <em>do</em>?</p>
+        <p><em>Your answer will shape how you structure your classroom.</em></p>
+      </div>
+      <div class="belief">
+        <div class="tag">03 · Justice</div>
+        <h3>Treat everyone the same &mdash; or meet each person where they are?</h3>
+        <p>Do you believe systems are just? <em>Or built on inequality?</em></p>
+        <p><em>Your answer will shape how you respond to inequality in your classroom.</em></p>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 ARE CHILDREN CAPABLE? -->
+  <section data-label="05 Are children capable?" class="on-navy">
+    <div class="eyebrow-slide">Interrogating belief one · capacity</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Do you believe all children are capable learners? <em style="font-style: italic; color: var(--gold);">Or that some are naturally smart and some are not?</em>
+      </h2>
+      <div class="ifthen">
+        <div class="col left">
+          <div class="tag">If intelligence is fixed</div>
+          <h3>You will give up on children who struggle. You will stop pushing children who are succeeding &mdash; they are &ldquo;already smart.&rdquo;</h3>
+          <p><em>A sort happens, silently, all year.</em></p>
+        </div>
+        <div class="col right">
+          <div class="tag">If intelligence is developed</div>
+          <h3>You will push all children. You will believe all can learn if they are supported.</h3>
+          <p><em>Every child is in formation. None are finished.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 ARE CHILDREN GOOD? -->
+  <section data-label="06 Are children good?" class="on-cream">
+    <div class="eyebrow-slide">Interrogating belief two · goodness</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Is behaviour a child trying to communicate something, <em style="font-style: italic; color: var(--gold);">or a moral failing?</em>
+      </h2>
+      <div class="ifthen">
+        <div class="col left">
+          <div class="tag">If behaviour is communication</div>
+          <h3>You respond with curiosity and support.</h3>
+          <p><em>Something is not working. Let&rsquo;s find it.</em></p>
+        </div>
+        <div class="col right">
+          <div class="tag">If behaviour is a moral failing</div>
+          <h3>You respond with punishment.</h3>
+          <p><em>And children will know &mdash; immediately &mdash; which one you believe.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 COLORBLIND VS EQUITY -->
+  <section data-label="07 Colorblind vs equity" class="on-navy">
+    <div class="eyebrow-slide">Interrogating belief three · difference</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Are children from marginalised communities <em style="font-style: italic; color: var(--gold);">&ldquo;just like&rdquo;</em> children from privileged communities?
+      </h2>
+      <div class="ifthen">
+        <div class="col left">
+          <div class="tag">Colourblind teaching</div>
+          <h3>Pretends difference does not exist.</h3>
+          <p><em>Refuses to see what the child is actually carrying.</em></p>
+        </div>
+        <div class="col right">
+          <div class="tag">Equity-centred teaching</div>
+          <h3>Understands that different experiences, traumas, and needs are real.</h3>
+          <p><em>You cannot teach in an equity-centred way if you do not believe the differences exist.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 MONTESSORI + EQUITY · FOLLOW THE CHILD -->
+  <section data-label="08 Follow the child" class="on-cream">
+    <div class="eyebrow-slide">Integrating Montessori with equity · &ldquo;follow the child&rdquo;</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Following the child means following her <em style="font-style: italic; color: var(--gold);">into her full humanity.</em> Her context. Her culture. Her community. Her identity.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Not following her while pretending <em>that her identity does not matter.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Her behaviour makes sense <em>given her experiences.</em> Her learning is shaped <em>by her culture, her community, her people.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 MONTESSORI + EQUITY · THE CHILD IS GOOD -->
+  <section data-label="09 The child is good" class="on-navy">
+    <div class="eyebrow-slide">&ldquo;The child is good and capable&rdquo; &mdash; and the world tells her otherwise</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        The child is growing up in a world that tells her <em style="font-style: italic; color: var(--gold);">&mdash; through a thousand messages &mdash;</em> that she is not good, not capable, that her people are not good, not capable.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        If you believe the child is good and capable, <em>you have to actively work against the messages that say she is not.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Centre her culture in the curriculum. Centre her history. <em>Be intentional about the systems working against her.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 MONTESSORI + EQUITY · FREEDOM WITHOUT JUSTICE -->
+  <section data-label="10 Freedom without justice" class="on-cream">
+    <div class="eyebrow-slide">Freedom is not enough</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.1; color: var(--navy);">
+        Freedom without justice <em style="font-style: italic; color: var(--gold);">is just a different kind of oppression.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        If you emphasise freedom without addressing the systems that constrain some children&rsquo;s freedom, <em>you are teaching a lie.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        You are teaching that all children have the same freedom <em>when some children have been historically denied it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SAME MOMENT, THREE BELIEFS -->
+  <section data-label="11 Same moment, three beliefs" class="on-navy">
+    <div class="eyebrow-slide">Classroom reality · the child making errors in her math</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        The moment is the same. <em style="font-style: italic; color: var(--gold);">Three beliefs &mdash; three teachers &mdash; three different classrooms.</em>
+      </h2>
+      <div class="beliefs">
+        <div class="belief" style="background: #12182a; border-top: 3px solid var(--gold);">
+          <div class="tag">If you believe</div>
+          <h3 style="color: #fbf7ec;">Children learn by being shown the right way.</h3>
+          <p style="color: rgba(255,255,255,0.88);"><em style="color: var(--gold);">You intervene. You correct her. You tell her the way.</em></p>
+        </div>
+        <div class="belief" style="background: #12182a; border-top: 3px solid var(--gold);">
+          <div class="tag">If you believe</div>
+          <h3 style="color: #fbf7ec;">Children learn by figuring things out.</h3>
+          <p style="color: rgba(255,255,255,0.88);"><em style="color: var(--gold);">You leave her alone.</em></p>
+        </div>
+        <div class="belief" style="background: #12182a; border-top: 3px solid var(--gold);">
+          <div class="tag">If you believe</div>
+          <h3 style="color: #fbf7ec;">Children learn through guided exploration.</h3>
+          <p style="color: rgba(255,255,255,0.88);"><em style="color: var(--gold);">You sit with her. You ask a question that helps her notice.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 THE DYSREGULATED CHILD -->
+  <section data-label="12 The dysregulated child" class="on-cream">
+    <div class="eyebrow-slide">Same child. Two teachers. Two classrooms.</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A child is yelling. She might hit. <em style="font-style: italic; color: var(--gold);">What you do flows from what you believe about the child.</em>
+      </h2>
+      <div class="ifthen">
+        <div class="col left">
+          <div class="tag">If the child is being bad</div>
+          <h3>You punish. You remove. You wait for her to come back compliant.</h3>
+          <p><em>The belief becomes the child&rsquo;s experience of herself.</em></p>
+        </div>
+        <div class="col right">
+          <div class="tag">If her nervous system is overwhelmed</div>
+          <h3>You help her regulate. You sit. You stay.</h3>
+          <p><em>The belief becomes the child&rsquo;s experience of herself.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 WHOSE HISTORY -->
+  <section data-label="13 Whose history" class="on-navy">
+    <div class="eyebrow-slide">What history will you teach?</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        What you do flows from what you believe <em style="font-style: italic; color: var(--gold);">about whose history matters &mdash; whose story gets to be told &mdash; what children need to know about the world and about themselves.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Dead white men. All cultures, flattened. <em>Or centering the communities who have been marginalised.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This choice is also a philosophy. <em>You are making it whether you know it or not.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY -->
+  <section data-label="14 Equity" class="on-cream">
+    <div class="eyebrow-slide">Equity provocation · your philosophy is not neutral</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Teaching Montessori without an explicit equity and justice framework <em style="font-style: italic; color: var(--gold);">is a choice to let the dominant culture shape your teaching.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        You do not get to opt out. <em>You only get to choose whether you are conscious about it or not.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NEURODIVERGENCE -->
+  <section data-label="15 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · the belief shapes every decision</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Do neurodivergent children need to become neurotypical? <em style="font-style: italic; color: var(--gold);">Or are their brains different, valuable, and in need of support?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        This belief will shape <em>every decision you make with a neurodivergent child.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 ARTICULATE IT -->
+  <section data-label="16 Articulate it" class="on-cream">
+    <div class="eyebrow-slide">What you should be able to articulate</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Say it in plain language. <em style="font-style: italic; color: var(--gold);">To families. To other teachers. To yourself when you are doubting.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        What you believe about children &mdash; and why. <em>What you believe about learning &mdash; and why. What you believe your role is. How Montessori shapes you. How equity and justice shape you.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Your philosophy will change. <em>You need to have something to start with.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 58px; line-height: 1.1; color: #fbf7ec; margin-top: 24px;">
+        The beliefs<br/>
+        you have<br/>
+        not<br/>
+        examined<br/>
+        <em style="color: var(--gold);">are the<br/>
+        ones<br/>
+        that will<br/>
+        teach<br/>
+        for you.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing question</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 110px;">
+      <p class="attrib" style="color: var(--gold);">For your own formation.</p>
+      <p class="closing-q" style="margin-top: 18px; font-size: 40px; line-height: 1.2;">
+        What do you believe about children <em style="font-style: italic; color: var(--gold);">that is most different from how you were treated as a child?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 22px; font-size: 40px; line-height: 1.2;">
+        What would it take <em style="font-style: italic; color: var(--gold);">for you to actually teach that belief &mdash; especially when it is hard?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 48 · Elementary · Your Elementary Philosophy</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

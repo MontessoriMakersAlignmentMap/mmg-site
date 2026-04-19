@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 37 — Art History as Whose History</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-art {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .threads {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-top: 28px; max-width: 1880px;
+  }
+  .threads .t {
+    padding: 22px 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .threads .t .num {
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .threads .t h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 8px 0 10px; line-height: 1.24;
+  }
+  .threads .t p {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .threads .t em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Seven · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 74px; line-height: 1.06; padding-bottom: 24px;">
+        If you learned<br/>
+        art history<br/>
+        in school,<br/>
+        you learned<br/>
+        about dead<br/>
+        European men.<br/>
+        <em style="font-style: italic; color: var(--gold);">And if you are<br/>
+        not European —<br/>
+        you learned that<br/>
+        as if it were<br/>
+        your history too.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 37 · Elementary · Month 10 · Art and Language Integration</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        To expand what they understand as art. <em style="font-style: italic; color: var(--gold);">To expand whose traditions they learn from.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The world is full of artistic traditions. <em>Some have been centred and some have been erased.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is not about making everyone feel good. <em>It is about telling the truth.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE STORY THAT WAS TOLD -->
+  <section data-label="03 The story that was told" class="on-cream">
+    <div class="eyebrow-slide">The honest reckoning</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Western European art is extraordinary. <em style="font-style: italic; color: var(--gold);">But it is a story. A perspective. Not the whole truth.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">What the standard story privileges</div>
+          <h3>Paint on canvas. Marble. Perspective. Individual genius. Things you put in a gallery.</h3>
+          <p>Religious figures from Christianity, wealthy patrons, classical themes. <em>Art as the expression of individual vision.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">What that centring has done</div>
+          <h3>Sent the message that this is the story that matters.</h3>
+          <p>Erased the traditions of Africa, Asia, the Americas, the Middle East, the Pacific. <em>Erased what many of your students&rsquo; ancestors created.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 NOT ACCIDENTAL -->
+  <section data-label="04 Not accidental" class="on-navy">
+    <div class="eyebrow-slide">The centring is not accidental</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        It is the result of colonialism. <em style="font-style: italic; color: var(--gold);">Of who had access to publishing, to museums, to institutional validation.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The art of colonised peoples was often destroyed, looted, taken to European museums, <em>labelled as primitive, treated as artefact rather than art.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This is not neutral. This is history. <em>This is an ongoing reality.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 WHAT AN EQUITY-CENTRED CURRICULUM LOOKS LIKE -->
+  <section data-label="05 What it looks like" class="on-cream">
+    <div class="eyebrow-slide">What an equity-centred art curriculum looks like</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        Each tradition studied <em style="font-style: italic; color: var(--gold);">on its own terms.</em>
+      </h2>
+      <div class="threads">
+        <div class="t"><span class="num">01 · Techniques</span><h3>The geometric abstraction in Islamic pattern-making. Chinese landscape perspective. Japanese printmaking symbolism.</h3><p>West African textile colour theory. Brazilian street art composition. <em>Each sophisticated. Each different.</em></p></div>
+        <div class="t"><span class="num">02 · Materials</span><h3>Textiles. Ceramics. Metalwork. Woodcarving. Basketweaving. Beadwork.</h3><p>Often dismissed as craft — <em>not neutral. A way of valuing some traditions and devaluing others.</em></p></div>
+        <div class="t"><span class="num">03 · Living artists</span><h3>Alongside history · bring in artists from your students&rsquo; own communities.</h3><p>These traditions are not dead. <em>They are alive. They are evolving. Children can be part of them.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SCENE · NAVAJO WEAVING -->
+  <section data-label="06 Scene · Navajo weaving" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-art has-image" style="background: url('/decks/images/elem-week-37-scene-art.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child in your classroom is Navajo. Her parents have noticed she is not confident at school. Does not think of herself as smart. Not engaged. One day — you are teaching Indigenous American art. Navajo weaving. The complexity of the patterns. The mathematical thinking involved. How the designs carry meaning. <em>The child is watching. You see something shift in her face.</em> At break she comes to you: <em>&ldquo;My grandmother does that.&rdquo;</em> You say: <em>&ldquo;I know. She is an artist. She is creating work that connects to a tradition that goes back hundreds of years. That is significant.&rdquo;</em> Something has changed. <em>She sees her family as connected to something important. That changes how she sees herself.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the shift in her face</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          My<br/>
+          grandmother<br/>
+          does that.<br/>
+          <em style="font-style: italic;">She is<br/>
+          an artist.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 WHOSE INHERITANCE -->
+  <section data-label="07 Whose inheritance" class="on-cream">
+    <div class="eyebrow-slide">Presenting history to children whose ancestors are not in the standard curriculum</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        You are correcting something. <em style="font-style: italic; color: var(--gold);">Restoring something that was erased.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        African American quilting patterns. The aesthetics of the Great Migration. Radical Black art movements of the 1970s. <em>This is her inheritance.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Indigenous traditions that span millennia — <em>not as history that ended when colonisers arrived, but as art being created by Indigenous artists today.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>&ldquo;Your people made beautiful things. Your ancestors were artists. Your tradition is sophisticated and valuable.&rdquo;</em> That is not flattery. <em>That is truth.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CULTURAL PRIDE -->
+  <section data-label="08 Cultural pride" class="on-cream">
+    <div class="eyebrow-slide">Cultural pride · foundational, not separate</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Not thinking your culture is better than everyone else&rsquo;s. <em style="font-style: italic; color: var(--gold);">Understanding that your culture has value.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">What has been eroded</div>
+          <h3>Her language is not correct. Her food is weird. Her family structures are not normal. Her art is craft, not art.</h3>
+          <p><em>Messages received everywhere else.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">What art history rebuilds</div>
+          <h3>&ldquo;Look what your people made. Look at the sophistication. Look at the vision.&rdquo;</h3>
+          <p>Stronger cultural identity — <em>better mental health, better academic outcomes, better belief that she has value.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 EQUITY · THE THEFT -->
+  <section data-label="09 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · said directly</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Many of the art treasures in European and American museums <em style="font-style: italic; color: var(--gold);">are stolen.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Taken from colonised peoples. Displayed as if the collectors were neutral observers. Presented as history — as if the people who made them are no longer making art. <em>Studied as if their current communities do not exist or do not have authority over their own art.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        An equity-centred approach does not accept the idea that stolen art displayed in a museum is now human heritage. <em>It is still stolen. It belongs to the people it was stolen from.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 NEURODIVERGENCE -->
+  <section data-label="10 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · many entrances to the same ideas</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Some children will understand through images — <em style="font-style: italic; color: var(--gold);">through making art themselves in the style of different cultures — through smaller chunks, not all at once.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 24px;">
+        Many entrances. <em>Same ideas. Same seriousness.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SLOW LOOKING -->
+  <section data-label="11 Slow looking" class="on-cream">
+    <div class="eyebrow-slide">Slow looking · ten minutes on one image</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Most adults spend <em style="font-style: italic; color: var(--gold);">seventeen seconds</em> on a museum painting.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Seat the children in front of one image. Ten minutes. Silent first. Then — what do you see. What do you see that you didn&rsquo;t see before. What does it make you wonder.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Visual Thinking Strategies — a protocol that treats a nine-year-old as a serious looker.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The skill that lets a child see an image fully — is the skill that lets a citizen see through a manipulated one.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 WHO IS IN THE ROOM -->
+  <section data-label="12 Who is in the room" class="on-navy">
+    <div class="eyebrow-slide">Who is in the room · the painting asks</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Who is shown? Who paid for it? <em style="font-style: italic; color: var(--gold);">Who is not in the picture?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A grand portrait. Ask — who served the tea in this room? Who cleaned the floor? Who sewed the dress? Where are they?
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The painting does not lie. It simply does not include. Teach the child to see the frame — and the edge beyond it.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>At nine, she begins to read absence. The same skill she will use reading news.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 THE MISSING CANON -->
+  <section data-label="13 The missing canon" class="on-cream">
+    <div class="eyebrow-slide">The canon was curated · not handed down</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Great artists <em style="font-style: italic; color: var(--gold);">you were never shown.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Artemisia Gentileschi</div>
+          <h3 style="color: var(--navy);">Baroque, seventeenth century. Her paintings hang in the Uffizi — and were attributed to her father for three hundred years.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Hilma af Klint</div>
+          <h3 style="color: var(--navy);">Painted the first abstract canvases — years before Kandinsky. Hidden by her request for forty years. The story of modernism would not be the story you learned.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Augusta Savage</div>
+          <h3 style="color: var(--navy);">Sculptor of the Harlem Renaissance. Much of her work destroyed. She taught Jacob Lawrence. She should be a household name.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">The Bengal school</div>
+          <h3 style="color: var(--navy);">Abanindranath Tagore. A modernism built from Indian materials, not imported. Most Western curricula never reach it.</h3>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 LOCAL MAKERS -->
+  <section data-label="14 Local makers" class="on-navy">
+    <div class="eyebrow-slide">Local makers · the artists within walking distance</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        There is a potter in your town. <em style="font-style: italic; color: var(--gold);">Invite her.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A quilter. A sign painter. A muralist. A mosaicist. A blacksmith. A screen printer. They are within a few miles of every school.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Art history does not only live in Paris and Florence. It lives where the children live. Insist on this. Plan for it.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>A child who meets a living artist understands that art is a practice — not a museum.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 CURATION IS CHOICE -->
+  <section data-label="15 Curation is choice" class="on-cream">
+    <div class="eyebrow-slide">Curation is a choice · the child should know this</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A museum <em style="font-style: italic; color: var(--gold);">is someone&rsquo;s argument.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Who chose these objects? Who labelled them? What rooms are larger? What cultures are &ldquo;primitive&rdquo; and what cultures are &ldquo;classical&rdquo; — and who decided?
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        These are not complaints. They are the most serious questions in art history.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The child who asks &ldquo;why is this big and that small?&rdquo; — is already a curator.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 CHILD AS CURATOR -->
+  <section data-label="16 Child as curator" class="on-navy">
+    <div class="eyebrow-slide">The child as curator · the year&rsquo;s exhibit</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Give her a wall. <em style="font-style: italic; color: var(--gold);">Let her argue.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Twelve images. She chooses. She writes the labels. She decides the order. She stands and walks visitors through. She answers — why this, and not that.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        She has just done, at ten, what a curator does at thirty — made meaning by arrangement.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>The wall is small. The act is large.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Her ancestors<br/>
+        were not<br/>
+        just surviving.<br/>
+        <em style="color: var(--gold);">They were<br/>
+        creating<br/>
+        beauty.<br/>
+        Expressing vision.<br/>
+        Making<br/>
+        meaning.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · four questions for yourself</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Before you can teach this — you must answer it.</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 42px;">
+        What art history<br/>
+        were you taught?<br/>
+        <br/>
+        Whose traditions<br/>
+        did you learn<br/>
+        to see as beautiful?<br/>
+        <br/>
+        Whose did you<br/>
+        <em style="font-style: italic; color: var(--gold);">learn to dismiss?</em><br/>
+        <br/>
+        What art traditions<br/>
+        are you learning<br/>
+        to value as an adult<br/>
+        <em style="font-style: italic; color: var(--gold);">that you were not<br/>
+        taught as a child?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 37 · Elementary · Art History as Whose History</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

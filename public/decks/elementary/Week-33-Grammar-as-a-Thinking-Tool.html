@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 33 — Grammar as a Thinking Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-grammar {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .symbol-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 32px; max-width: 1820px;
+  }
+  .sym {
+    padding: 26px 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+  }
+  .sym svg { display: block; }
+  .sym .label {
+    font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .sym h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 0; line-height: 1.24;
+  }
+  .sym p {
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .sym em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Three · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 80px; line-height: 1.06; padding-bottom: 24px;">
+        Grammar instruction<br/>
+        in most classrooms<br/>
+        turns children off<br/>
+        language —<br/>
+        <em style="font-style: italic; color: var(--gold);">when it should<br/>
+        turn them on.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 33 · Elementary · Month 9 · Language Deep Dive</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Grammar is not separate from real language use. <em style="font-style: italic; color: var(--gold);">It is the map that explains why language does what it does.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Taught as a thinking tool — not a list of rules — children develop <em>metalinguistic awareness.</em> They begin to see language as a system they can play with, bend, understand.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        That is the opposite of the fear-based grammar instruction <em>most adults remember from school.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE INVERSION -->
+  <section data-label="03 Inversion" class="on-cream">
+    <div class="eyebrow-slide">Why Montessori grammar looks different</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        We do not start with definitions. <em style="font-style: italic; color: var(--gold);">We put symbols in her hands.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Conventional</div>
+          <h3>Hand a child a sentence. Ask her to identify the parts of speech.</h3>
+          <p>Definition first. <em>She learns to label — not to see.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Montessori</div>
+          <h3>Build the sentence. Remove the adjective. Rearrange. What changed?</h3>
+          <p>She is not learning that adjectives describe nouns. <em>She is discovering the principle herself.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 SYMBOLS -->
+  <section data-label="04 Symbols teach" class="on-cream">
+    <div class="eyebrow-slide">The symbol is not arbitrary — it teaches</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 40px; line-height: 1.14; color: var(--navy);">
+        Colour, shape, size — <em style="font-style: italic; color: var(--gold);">all of it carries meaning.</em>
+      </h2>
+      <div class="symbol-row">
+        <div class="sym">
+          <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+            <circle cx="40" cy="40" r="32" fill="#8b1e1e" />
+          </svg>
+          <div>
+            <div class="label">Noun · red sphere</div>
+            <h3>Large and solid.</h3>
+            <p><em>The foundation.</em></p>
+          </div>
+        </div>
+        <div class="sym">
+          <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+            <polygon points="40,10 72,66 8,66" fill="#e67c3c" />
+          </svg>
+          <div>
+            <div class="label">Verb · orange triangle</div>
+            <h3>Pointed upward.</h3>
+            <p><em>The action. The energy.</em></p>
+          </div>
+        </div>
+        <div class="sym">
+          <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+            <polygon points="40,24 62,60 18,60" fill="#4f2a7a" />
+          </svg>
+          <div>
+            <div class="label">Adjective · purple small triangle</div>
+            <h3>Smaller. Same shape as the noun&rsquo;s companion.</h3>
+            <p><em>Belongs to the noun. Describes it.</em></p>
+          </div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        The child does not need to be told any of this. <em>The symbol teaches.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE · THE FAST RED FOX -->
+  <section data-label="05 Scene · the fox" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-grammar has-image" style="background: url('/decks/images/elem-week-33-scene-grammar.jpg') center/cover no-repeat;">
+        <div class="scene-label">Mid-afternoon. A work rug. Grammar symbols spread out. Sentence card: <em>&ldquo;The fast red fox jumped over the fence.&rdquo;</em> Red sphere for fox. Purple triangles for fast and red. Orange triangle for jumped. She adds an adverb symbol. Over. Around where? The fence. She studies what she has built. Removes the adjectives. Reads aloud — <em>&ldquo;The fox jumped over the fence.&rdquo;</em> Notes the difference. Replaces them. Removes the adverb. Studies again. <em>She is not following instructions. She is exploring.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · building and unbuilding</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She is<br/>
+          developing<br/>
+          a feel —<br/>
+          <em style="font-style: italic;">for what happens<br/>
+          when words<br/>
+          change.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 WHAT UNDERSTANDING SOUNDS LIKE -->
+  <section data-label="06 What understanding sounds like" class="on-cream">
+    <div class="eyebrow-slide">What you will recognise when she understands</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        She steps out of writing <em style="font-style: italic; color: var(--gold);">and into analysing her own writing.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">At her own desk</div>
+          <h3>&ldquo;Wait — I need more describing words here.&rdquo;</h3>
+          <p>&ldquo;This is confusing because I don&rsquo;t have an action.&rdquo; <em>She has internalised the structure.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">In peer discussion</div>
+          <h3>&ldquo;I loved how you used three adjectives in a row — it made me see exactly what you meant.&rdquo;</h3>
+          <p>Not reciting rules. <em>Discussing the effect of grammatical choices on meaning.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 CULTURALLY RESPONSIVE -->
+  <section data-label="07 Culturally responsive grammar" class="on-navy">
+    <div class="eyebrow-slide">The sharp part · grammar as culturally responsive instruction</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Much of traditional grammar instruction is really instruction in <em style="font-style: italic; color: var(--gold);">Standard American English.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Children from other linguistic communities have been shamed for their dialects — labelled as not knowing grammar. <em>When what they actually know is a different, fully valid grammar system.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        All children arrive at school <em>speaking a language with a complete grammatical system.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 CODE SWITCHING -->
+  <section data-label="08 Code-switching with agency" class="on-cream">
+    <div class="eyebrow-slide">Code-switching with agency — not shame</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        We do not shame the home language <em style="font-style: italic; color: var(--gold);">while we teach the academic one.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">What we honour</div>
+          <h3>Her home dialect has its own internally consistent grammar.</h3>
+          <p><em>Fully valid. Rule-governed.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">What we make explicit</div>
+          <h3>Standard American English is a different system that carries power in certain contexts.</h3>
+          <p>Two systems. Both real. <em>She can move between them because she understands both.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; color: var(--navy); font-style: italic;">
+        That child has agency over her own language. <em>Her way of speaking is not wrong. It is one system — and she is capable of learning others.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 CONCRETE SCAFFOLD -->
+  <section data-label="09 Concrete before abstract" class="on-cream">
+    <div class="eyebrow-slide">Physical manipulation deepens abstraction</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A child cannot understand that a noun is a person, place, or thing <em style="font-style: italic; color: var(--gold);">as an abstract concept.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        But she can hold the red sphere. Arrange it. See it always represent the foundation. <em>Discover the principle herself.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Months later — when you ask her to define a noun — she has felt it, moved it, lived it. <em>The definition is the last step, not the first.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The concrete symbol is a scaffold. <em>It is not forever. But it is necessary.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 EQUITY -->
+  <section data-label="10 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · grammar has been a tool of oppression</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Grammar pedagogy participates in harm when it is used to <em style="font-style: italic; color: var(--gold);">correct rather than teach — to establish dominance rather than build understanding.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        An equity-centred approach does not ignore Standard American English. <em>It teaches the grammar of academic and professional contexts — in a way that honours what children bring.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Make the relationship between language and power explicit. <em>Give children agency and choice — not shame.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 NEURODIVERGENCE -->
+  <section data-label="11 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · concrete, longer, bigger</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Some children will need more time with the concrete symbols. <em style="font-style: italic; color: var(--gold);">Some will need to move their own bodies — act out verbs, statue nouns.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 24px;">
+        The principle remains: <em>concrete before abstract, exploration before definition, discovery before drill.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 THE GRAMMAR FARM -->
+  <section data-label="12 The grammar farm" class="on-cream">
+    <div class="eyebrow-slide">The grammar farm · a living metaphor, not a decoration</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The farm is not the point. <em style="font-style: italic; color: var(--gold);">The sentences are.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The little farm, the symbols, the games — are a doorway. Used well, a child builds two dozen sentences in an hour and starts noticing how they work.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Used poorly, the child arranges plastic animals and learns nothing about language.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Watch for drift. The sentence is always the work. The farm is just the invitation.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 FUNCTION OVER FORM -->
+  <section data-label="13 Function over form" class="on-navy">
+    <div class="eyebrow-slide">Function over form · the harder teaching</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A word is not a noun. <em style="font-style: italic; color: var(--gold);">It plays a noun.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        &ldquo;Running is hard.&rdquo; Running is a noun. &ldquo;She was running.&rdquo; Running is a verb. Same word. Different job.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Teach children to ask — &ldquo;what is this word doing in this sentence?&rdquo; Not &ldquo;what kind of word is it?&rdquo;
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Form is a label. Function is thinking. Hold the higher bar.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 THE RED BALL -->
+  <section data-label="14 The verb is action" class="on-cream">
+    <div class="eyebrow-slide">The verb is action · and the sentence does what it says</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        &ldquo;Bring me the red ball.&rdquo; <em style="font-style: italic; color: var(--gold);">Now.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The child runs. They bring the red ball. You change the sentence. &ldquo;Bring me the <em>blue</em> ball.&rdquo; The adjective matters suddenly. They run again.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They have just experienced, in their legs, that the adjective is not optional.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Grammar, taught at the body. Nothing on paper lands like this.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 REAL-WORLD ANALYSIS -->
+  <section data-label="15 Real-world analysis" class="on-navy">
+    <div class="eyebrow-slide">Sentence analysis · in the wild</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Bring them <em style="font-style: italic; color: var(--gold);">sentences from real life.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A line from a novel. A newspaper headline. A sentence from their own writing. An advertisement. A song lyric.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Analyse together. Watch the child discover that the sentence on the back of the cereal box is engineered to do something to them.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Grammar becomes a form of self-defence. As it should be.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 ACROSS LANGUAGES -->
+  <section data-label="16 Across languages" class="on-cream">
+    <div class="eyebrow-slide">Across languages · the gift of multilingual children</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A child who speaks two languages <em style="font-style: italic; color: var(--gold);">is your best grammar teacher.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        &ldquo;In Spanish the adjective comes after the noun.&rdquo; &ldquo;In Mandarin there is no plural.&rdquo; &ldquo;In Arabic the verb often starts the sentence.&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Suddenly English is not the rule of the universe. It is one way, among many, to carry a meaning.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Invite those sentences into the room. Compare openly. The bilingual child is no longer tolerated — they are needed.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Language<br/>
+        is made.<br/>
+        It follows<br/>
+        patterns.<br/>
+        <em style="color: var(--gold);">Those patterns<br/>
+        can be analysed,<br/>
+        understood,<br/>
+        even broken —<br/>
+        with intention.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · the question for yourself</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Before she can hold it — you must hold it.</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        What is your<br/>
+        relationship<br/>
+        to grammar?<br/>
+        <em style="font-style: italic; color: var(--gold);">What were you<br/>
+        taught?<br/>
+        What are you<br/>
+        unlearning?</em><br/>
+        <br/>
+        What does it feel like<br/>
+        to think of grammar<br/>
+        not as a list of rules —<br/>
+        <em style="font-style: italic; color: var(--gold);">but as a way<br/>
+        to understand<br/>
+        how language works?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 33 · Elementary · Grammar as a Thinking Tool</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

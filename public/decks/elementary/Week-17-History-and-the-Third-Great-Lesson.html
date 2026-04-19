@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 17 — History and the Third Great Lesson · Telling the Story with Honesty and Care</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-classroomA {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .scene-classroomB {
+    background:
+      radial-gradient(ellipse 60% 50% at 60% 55%, rgba(240,217,161,0.2), transparent 70%),
+      linear-gradient(170deg, #181410 0%, #08080b 100%);
+  }
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 48px 1fr; gap: 28px;
+    margin-top: 36px; max-width: 1760px;
+    align-items: stretch;
+  }
+  .shift-grid .col {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    padding: 32px 34px;
+  }
+  .shift-grid .col.on { background: #1a1006; color: #fbf7ec; border-color: rgba(214,167,88,0.4); }
+  .shift-grid .col .label {
+    font-family: var(--font-sans); font-size: 18px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .shift-grid .col h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .shift-grid .col.on h3 { color: #fbf7ec; }
+  .shift-grid .col p {
+    font-family: var(--font-sans); font-size: 22px; line-height: 1.5;
+    color: var(--fg-body); margin: 0;
+  }
+  .shift-grid .col.on p { color: rgba(255,255,255,0.82); }
+  .shift-grid .col em { font-style: italic; color: var(--navy); }
+  .shift-grid .col.on em { color: var(--gold); }
+  .shift-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 48px; color: var(--gold);
+  }
+  .innov-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .innov-grid .card {
+    padding: 24px 24px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .innov-grid .card .place {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .innov-grid .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 24px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;
+  }
+  .innov-grid .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 38px 46px;
+    background: #fbf7ec;
+    margin-top: 24px;
+    max-width: 1680px;
+  }
+  .quote-block p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 32px; line-height: 1.4; color: var(--navy); margin: 0;
+  }
+  .quote-block p + p { margin-top: 14px; }
+  .quote-block em { color: var(--gold); }
+  .quote-block .src {
+    font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-top: 22px;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Seventeen · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 74px; line-height: 1.06; padding-bottom: 24px;">
+        The story of<br/>
+        human beings —<br/>
+        told to children<br/>
+        <em style="font-style: italic; color: var(--gold);">actively building<br/>
+        their understanding<br/>
+        of who they are<br/>
+        and what<br/>
+        they&rsquo;re capable of.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        Everything you choose to include, and <em>everything you leave out,</em> becomes part of how they see themselves in human history.
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 17 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        The transition from biological life to human history <em style="font-style: italic; color: var(--gold);">is not neutral.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The way you frame human origins. The contributions you highlight. The names and cultures you call <em>&ldquo;important.&rdquo;</em> All of this directly shapes children&rsquo;s sense of their own worth and possibility.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        For children whose communities have been historically rendered invisible in curriculum — <em>the absence itself is a message.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT THE LESSON IS -->
+  <section data-label="03 What the lesson is" class="on-cream">
+    <div class="eyebrow-slide">The Third Great Lesson · what Montessori intended</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.12; color: var(--navy);">
+        Not a lesson about facts or timelines. <em style="font-style: italic; color: var(--gold);">A lesson about what makes human beings human.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The capacity to ask questions about our own existence. The ability to use hands and minds in combination to solve problems. <em>The capacity to imagine and create what does not yet exist.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Humans became human through doing. Through making. <em>Through responding to their environment with intention and creativity.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 WHAT YOU'RE ACTUALLY SAYING -->
+  <section data-label="04 What you're actually saying" class="on-navy">
+    <div class="eyebrow-slide">What you are actually telling children</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        You are not just telling a story about the past. <em style="font-style: italic; color: var(--gold);">You are telling children something about themselves.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        <em>You have the capacity to look at a problem and solve it. You have the capacity to create culture. You have the capacity to contribute something new to the world.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This is developmental work that happens through narrative. <em>The lesson anchors the entire history curriculum that follows.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 THE DANGER -->
+  <section data-label="05 The danger" class="on-cream">
+    <div class="eyebrow-slide">The danger in the traditional telling</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Told one way, this lesson <em style="font-style: italic; color: var(--gold);">replicates the evolutionary racism that has haunted Western curriculum for over a century.</em>
+      </h2>
+      <div class="shift-grid">
+        <div class="col">
+          <div class="label">The traditional telling</div>
+          <h3>Human ingenuity as primarily mechanical and European.</h3>
+          <p>Leaves out the astronomical knowledge of the Inca. The metallurgy of West African kingdoms. The water management of Indigenous Australians. <em>The mathematics embedded in Mesoamerican textiles.</em> Progress as a European story.</p>
+        </div>
+        <div class="shift-arrow">·</div>
+        <div class="col on">
+          <div class="label">The honest telling</div>
+          <h3>Human adaptation across all continents.</h3>
+          <p>Humans have always been innovators, problem-solvers, makers — <em>in every geography where they have lived.</em> The problems differ. The process is the same.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 INNOVATION EVERYWHERE -->
+  <section data-label="06 Innovation everywhere" class="on-cream">
+    <div class="eyebrow-slide">Your job · help children see human genius everywhere</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Same process. <em style="font-style: italic; color: var(--gold);">Different problems.</em>
+      </h2>
+      <div class="innov-grid">
+        <div class="card">
+          <div class="place">Mesoamerica</div>
+          <h3>Mathematics in textile design.</h3>
+          <p>Sophisticated numerical systems embedded <em>in what they wore.</em></p>
+        </div>
+        <div class="card">
+          <div class="place">West African kingdoms</div>
+          <h3>Metallurgy.</h3>
+          <p>Iron, bronze, gold — processed and shaped <em>with skill rivalling anywhere on earth.</em></p>
+        </div>
+        <div class="card">
+          <div class="place">Indus Valley</div>
+          <h3>Urban planning and water systems.</h3>
+          <p>Standardized bricks. Grid cities. <em>Contemporaneous with anything in the Mediterranean.</em></p>
+        </div>
+        <div class="card">
+          <div class="place">The Inca</div>
+          <h3>Astronomy and agriculture at altitude.</h3>
+          <p>Terraced farming systems. Star alignment. <em>Civilization adapted to the highest habitable latitudes.</em></p>
+        </div>
+        <div class="card">
+          <div class="place">Indigenous Australia</div>
+          <h3>Fire and water management.</h3>
+          <p>Ecosystems shaped over tens of thousands of years <em>with deliberate, sustained intelligence.</em></p>
+        </div>
+        <div class="card">
+          <div class="place">Kingdom of Kush · Shang Dynasty</div>
+          <h3>Writing systems. Architecture.</h3>
+          <p>Complex civilizations with evidence <em>as old and as important as any other.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 NO SUCH THING AS PRIMITIVE -->
+  <section data-label="07 No such thing as primitive" class="on-navy">
+    <div class="eyebrow-slide">Prehistory, without evolutionary racism</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        There is no such thing as a <em style="font-style: italic; color: var(--gold);">&ldquo;primitive&rdquo;</em> human.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The child is ready to understand that humans have different tools, different ways of organizing society, different technologies, different knowledge systems. <em>They are not ready for a framework that treats difference as deficiency.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Not less advanced. <em>Differently advanced, suited to different contexts.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 WHAT COUNTS AS TECHNOLOGY -->
+  <section data-label="08 What counts as technology" class="on-cream">
+    <div class="eyebrow-slide">What counts as technology · if you are honest</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        <em style="font-style: italic; color: var(--gold);">Brilliantly suited to the environment.</em>
+      </h2>
+      <div class="innov-grid">
+        <div class="card">
+          <h3>A water-catching system in a desert.</h3>
+          <p>Engineering, <em>precisely fitted to aridity.</em></p>
+        </div>
+        <div class="card">
+          <h3>An oral tradition transmitting knowledge across generations.</h3>
+          <p><em>Technology.</em> Lossless, portable, distributed memory.</p>
+        </div>
+        <div class="card">
+          <h3>Knowing which plants are medicine and which are poison.</h3>
+          <p><em>Pharmacology.</em> With centuries of clinical data behind it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 WHO IS IN THE ROOM -->
+  <section data-label="09 Who is in the room" class="on-navy">
+    <div class="eyebrow-slide">What you say to the children listening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Some of them carry the history of people whose innovations were erased by colonization.
+        <em style="font-style: italic; color: var(--gold);">Whose knowledge systems were called &ldquo;unscientific.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        When you tell the Third Great Lesson with accuracy and care, you are saying to those children:
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Your ancestors solved problems. Your people created. Your heritage is part of the human story of ingenuity.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 TELLING HARD HISTORY -->
+  <section data-label="10 Telling hard history" class="on-cream">
+    <div class="eyebrow-slide">Telling hard history · presence and honesty</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Some children have ancestors who were enslaved, colonized, forced from their lands. <em style="font-style: italic; color: var(--gold);">That history lives in their bodies sometimes.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Your job is not to avoid this. <em>It is to tell the truth with enough care that children can learn from it without being retraumatized by it.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Name what happened. <em>Colonization. The transatlantic slave trade. The dispossession of Indigenous lands.</em> Not abstract events. <em>The reason some children&rsquo;s families have resources and others do not.</em>
+      </p>
+      <p class="body-read">
+        Tell this truth in the context of human agency, resistance, and resilience. <em>Not as passive victims. As people who survived with intelligence and refused to be entirely erased.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 KNOW YOUR STUDENTS -->
+  <section data-label="11 Know your students" class="on-cream">
+    <div class="eyebrow-slide">Before the lesson · know who is listening</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Know which children carry which histories.<br/>
+        <em style="font-style: italic; color: var(--gold);">Not to treat them differently. To know what they might need from you.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Some children will need to hear that their people&rsquo;s knowledge matters.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Some will need permission to ask questions about <em>why certain things aren&rsquo;t in the book.</em>
+      </p>
+      <p class="body-read">
+        Some will need you to be steady and truthful when they make connections between what happened in history — <em>and what is happening now.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 SCENE A — FIRST CLASSROOM -->
+  <section data-label="12 Scene · first classroom" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-classroomA">
+        <div class="scene-label">The guide frames human progress as a timeline from &ldquo;primitive&rdquo; to &ldquo;civilized.&rdquo; Civilizations are primarily Mediterranean and European. Other parts of the world appear as an aside: <em>&ldquo;And people in Africa and Asia had their own developments.&rdquo;</em> The children absorb the implicit hierarchy. A Black child hears: <em>your continent&rsquo;s history is secondary.</em> A child of Indian descent hears: <em>your culture is background to the real story.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene A · the telling that shrinks the child</div>
+        <h2 class="display" style="font-size: 38px; line-height: 1.14; margin-top: 8px;">
+          The implicit hierarchy<br/>
+          was not named.<br/>
+          <em style="font-style: italic;">It did not need to be.<br/>
+          The child absorbed it<br/>
+          from what was<br/>
+          centered —<br/>
+          and what was<br/>
+          aside.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 SCENE B — SECOND CLASSROOM -->
+  <section data-label="13 Scene · second classroom" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-classroomB">
+        <div class="scene-label">Human innovation happening <em>everywhere, always.</em> Yes, the Mediterranean developed written systems and architecture we have evidence about. And so did the Indus Valley. And so did the Shang Dynasty. And so did the Kingdom of Kush. Indigenous peoples managed forests with sophisticated ecology that scientists are only now learning to appreciate. Timelines that are truly global. A Black child hears: <em>your ancestors were solving problems, creating systems, building knowledge.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene B · the telling that expands the child</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The difference<br/>
+          in what children<br/>
+          learn about themselves<br/>
+          <em style="font-style: italic;">is profound.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Same city. <em>Two different lessons about who they are.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 EQUITY PROVOCATION -->
+  <section data-label="14 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Every time you simplify the story into a European timeline, you are making a choice to <em style="font-style: italic; color: var(--gold);">diminish children&rsquo;s sense of their own inheritance.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        That might feel safer. It is certainly the version of history most of us were taught. <em>But it is not Montessori, and it is not honest.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        A child should be able to look back on human history and see people like them doing important things. If your curriculum does not allow that — <em>it is because you have not done the work to find it and honour it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 NEURODIVERGENCE -->
+  <section data-label="15 Neurodivergence" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · scaffold the scope, warn for the weight</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        So much time. <em style="font-style: italic; color: var(--gold);">So many ideas.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Scaffold carefully. <em>Visual timelines. Tactile materials. Concrete objects.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Some children with trauma histories may need a heads-up before you introduce material about conflict or suffering. <em>Give it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 HISTORY AS STORY -->
+  <section data-label="16 History as story" class="on-navy">
+    <div class="eyebrow-slide">History is not a textbook. It is a story told by someone.</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.12;">
+        Montessori gave the Third Great Lesson as an impressionistic story. <em style="font-style: italic; color: var(--gold);">Not a list of dates. A narrative, meant to move the child.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Which means you cannot pretend you are delivering neutral facts. <em>A story has a teller. A story has choices about what to include and what to leave out.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The question is not whether you are telling a story. <em>The question is whose story you are telling &mdash; and whose you are leaving out.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        You are not telling<br/>
+        a story about<br/>
+        the past.<br/>
+        <em style="color: var(--gold);">You are telling<br/>
+        the child<br/>
+        what is possible<br/>
+        for her —<br/>
+        and for whose<br/>
+        descendants.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · two questions for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        How would your life<br/>
+        have been different<br/>
+        if, as a child,<br/>
+        you had learned that<br/>
+        <em style="font-style: italic; color: var(--gold);">your ancestors&rsquo;<br/>
+        people<br/>
+        were innovators?</em><br/>
+        <br/>
+        How would the children<br/>
+        in your classroom<br/>
+        be different if they<br/>
+        learned that now?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 17 · Elementary · History and the Third Great Lesson</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

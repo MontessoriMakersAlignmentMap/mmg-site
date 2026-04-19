@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 32 — The Research Project</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-research {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .arc {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+    margin-top: 28px; max-width: 1880px;
+  }
+  .arc .step {
+    padding: 20px 18px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .arc .step .num {
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .arc .step h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 20px; color: var(--navy); margin: 6px 0 8px; line-height: 1.22;
+  }
+  .arc .step p {
+    font-family: var(--font-sans); font-size: 15px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .arc .step em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-Two · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 78px; line-height: 1.06; padding-bottom: 24px;">
+        A research project<br/>
+        is not a report<br/>
+        you assign<br/>
+        and children execute.<br/>
+        <em style="font-style: italic; color: var(--gold);">It is an intellectual<br/>
+        inquiry.<br/>
+        The guide is not<br/>
+        the expert.<br/>
+        The child is.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 32 · Elementary · Month 8</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A culminating experience that draws together everything she has learned about <em style="font-style: italic; color: var(--gold);">thinking, reasoning, investigating, and communicating.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Not busy work. <em>Mathematics as thinking. Science as thinking.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The research project becomes the centrepiece of the portfolio — documentation of intellectual development. <em>And it shows your role: creating conditions, asking questions, supporting thinking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THE ARC -->
+  <section data-label="03 The arc" class="on-cream">
+    <div class="eyebrow-slide">The arc of a research project</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        From a genuine question <em style="font-style: italic; color: var(--gold);">to convincing herself of what is true.</em>
+      </h2>
+      <div class="arc">
+        <div class="step"><span class="num">01 · Question</span><h3>Not assigned — hers.</h3><p><em>What exactly do you want to know? Why does it matter to you?</em></p></div>
+        <div class="step"><span class="num">02 · Design</span><h3>How will she collect data?</h3><p>Measurement. Sampling. <em>Data collection as a mathematical problem.</em></p></div>
+        <div class="step"><span class="num">03 · Evidence</span><h3>Observation is not proof.</h3><p>Control variables. Repeat. <em>Is the evidence strong enough?</em></p></div>
+        <div class="step"><span class="num">04 · Analysis</span><h3>Organise. Graph. Find the pattern.</h3><p><em>Statistics in service of a real question.</em></p></div>
+        <div class="step"><span class="num">05 · Teach</span><h3>She presents — she argues.</h3><p><em>This is what I found. This is why I think I am right.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 CONDITIONS -->
+  <section data-label="04 Conditions for questions" class="on-cream">
+    <div class="eyebrow-slide">Questions emerge from conditions — not assignments</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A child will not persevere for weeks <em style="font-style: italic; color: var(--gold);">on a question that does not interest her.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Your work first</div>
+          <h3>Create conditions where children develop questions.</h3>
+          <p>Read together. Notice things. Wonder out loud. Visit places. <em>Talk about what confuses you.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Your work then</div>
+          <h3>Listen. Help her articulate what she is wondering about.</h3>
+          <p><em>What do you already know? What would it take to find out?</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 SCENE · THE SEEDS -->
+  <section data-label="05 Scene · the seeds" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-research has-image" style="background: url('/decks/images/elem-week-32-scene-research.jpg') center/cover no-repeat;">
+        <div class="scene-label">A boy fascinated by seeds. One day: <em>&ldquo;Does temperature affect how fast seeds sprout?&rdquo;</em> Four identical containers — warm, room, cold, ice. Data sheet. Weeks of observation. He discovers warmer water leads to faster sprouting — <em>but not in a straight line.</em> The warmest water is too hot. Sprouting slows at extremes. He graphs it. A curve, not a line. You ask: <em>&ldquo;Why does the line go up and then come down?&rdquo;</em> — <em>&ldquo;Maybe the seeds get cooked if it is too hot.&rdquo;</em> — <em>&ldquo;What experiment would test that?&rdquo;</em> He did not follow a procedure. <em>He let the evidence lead him.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · evidence that surprised him</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          He discovered<br/>
+          something<br/>
+          unexpected —<br/>
+          <em style="font-style: italic;">and it made him<br/>
+          wonder more.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 DOCUMENTATION -->
+  <section data-label="06 Documentation" class="on-cream">
+    <div class="eyebrow-slide">Documentation · the messy, real story of how she thought</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not a final neat product. <em style="font-style: italic; color: var(--gold);">A portfolio of thinking over time.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Photographs at different stages. Notes on what she wondered, changed, was surprised by. Data sheets. Drafts. <em>You write down what she says when she talks about her work.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        When she looks back at notes from six weeks ago — <em>she sees her own growth. She sees how her thinking has deepened.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE · PRICES -->
+  <section data-label="07 Scene · prices" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-research has-image" style="background: url('/decks/images/elem-week-32-scene-research.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child notices: sometimes the prices at the corner store near her house seem high compared to the supermarket. She wants to know whether it is true. Ten items. Two stores. Comparison chart. Some items more expensive at the corner store — some less. <em>She calculates how much more her family would spend per month if they bought everything at the corner.</em> The number surprises her. She learns about markup, about profit, about why small stores charge more. She considers whether it is fair that her neighbourhood has more expensive stores. <em>This is a research question that emerges from lived experience.</em> You honour it. You help her find what she needs. <em>You show her that her questions matter.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · questions from lived experience</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          A legitimate<br/>
+          research<br/>
+          question —<br/>
+          <em style="font-style: italic;">because it comes<br/>
+          from her life.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 EQUITY -->
+  <section data-label="08 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · whose questions get honoured</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Research projects reveal and amplify inequities <em style="font-style: italic; color: var(--gold);">if we are not careful about how we structure them.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child with family resources has support — rides to the library, help gathering materials, someone to talk through findings. <em>A child without these resources may struggle — not because she is less capable, but because the structural support is not there.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        You provide what families cannot. Books, articles, materials in school. <em>Time to discuss her thinking.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        And be intentional about whose questions get honoured. <em>Whether grandmother&rsquo;s remedies work for colds — is a legitimate research question.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 NEURODIVERGENCE -->
+  <section data-label="09 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · where different minds shine</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Some children are more powerful researchers <em style="font-style: italic; color: var(--gold);">than traditional students.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        ADHD: struggles with routine — hyperfocuses on a question she cares about. Autism: pursues a special interest with extraordinary depth. Dyslexia: communicates findings more clearly through visual representation or oral presentation.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Support each child in designing research <em>that matches her strengths and the way her mind works.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 FINDING A QUESTION -->
+  <section data-label="10 Finding a question" class="on-cream">
+    <div class="eyebrow-slide">Stage one · finding a question worth a year</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not a topic. <em style="font-style: italic; color: var(--gold);">A question.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        &ldquo;Volcanoes&rdquo; is a topic. &ldquo;Why do some volcanoes explode while others ooze?&rdquo; is a question. The first exhausts itself in a week. The second can carry a child through the year.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Your work at this stage — refuse the first topic. Refuse the second. Keep asking &ldquo;but what do you actually want to find out?&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>A good question has heat in it — something the child cannot walk away from.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 SOURCES -->
+  <section data-label="11 Primary vs secondary" class="on-navy">
+    <div class="eyebrow-slide">Sources · primary and secondary, named and known</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Teach the difference. <em style="font-style: italic; color: var(--gold);">At nine.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">Primary</div>
+          <h3 style="color: #fbf7ec;">A letter from the time. A fossil. A photograph. An interview. A seed planted and measured.</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">Secondary</div>
+          <h3 style="color: #fbf7ec;">A book written later. An encyclopaedia. A documentary. Someone else&rsquo;s synthesis.</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">Why it matters</div>
+          <h3 style="color: #fbf7ec;">Primary sources give them the thrill of direct contact. Secondary teaches them how others have thought.</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(214,167,88,0.5);">
+          <div class="label">Do both</div>
+          <h3 style="color: #fbf7ec;">Insist on at least one primary source. Insist on more than one secondary.</h3>
+          <p style="color: var(--gold); font-style: italic;"><em>This is what research literacy looks like at ten.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 NOTE TAKING -->
+  <section data-label="12 Note taking" class="on-cream">
+    <div class="eyebrow-slide">Note-taking · the practice they will carry forever</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not copying. <em style="font-style: italic; color: var(--gold);">Converting.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Read a page. Close the book. Say it in your own words. Only then write. That sequence — read, close, speak, write — is the habit you are teaching.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Every note also carries a source. Page number. Author. Date. No exceptions. At nine.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The adult who cannot research responsibly is the child who was never taught to cite.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 FIRST DRAFT FAILURE -->
+  <section data-label="13 First draft failure" class="on-navy">
+    <div class="eyebrow-slide">The first draft · will probably be bad. That is the plan.</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Revision is the research. <em style="font-style: italic; color: var(--gold);">Not the clean-up.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The first draft reveals what they do not yet understand. The second forces them to find out. The third is the work they will show.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        If you skip the second, you have not taught research. You have supervised transcription.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Protect the time to revise. More than any other stage.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 THE CLASSROOM AUDIENCE -->
+  <section data-label="14 Classroom audience" class="on-cream">
+    <div class="eyebrow-slide">Mid-stage · show it to the room</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Other children <em style="font-style: italic; color: var(--gold);">are better editors than you.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        At the halfway point, the child stands and speaks for ten minutes about what they have found. Other children ask questions. Real ones.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        &ldquo;How do you know?&rdquo; &ldquo;What does that word mean?&rdquo; &ldquo;Why does that part matter?&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Every hole in the research shows. Cheap, merciful, exact. The child walks back to work with a list.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 PUBLIC EXHIBITION -->
+  <section data-label="15 Public exhibition" class="on-navy">
+    <div class="eyebrow-slide">The final stage · make it public</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A research project ends <em style="font-style: italic; color: var(--gold);">with an audience beyond the teacher.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Parents invited. Younger children invited. The school cook invited. A ten-minute talk. A small booklet. A display with real artefacts.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Authentic audience changes the work. The stakes stop being grades. The stakes become &ldquo;can I be understood by a stranger?&rdquo;
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>That question is scholarship, at nine.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 YOUR SHIFTING ROLE -->
+  <section data-label="16 Your shifting role" class="on-cream">
+    <div class="eyebrow-slide">Your role · shifts through the weeks</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Four roles. <em style="font-style: italic; color: var(--gold);">In order.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Week 1 · Midwife</div>
+          <h3 style="color: var(--navy);">Help the question be born. Ask. Refuse easy topics. Listen for heat.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Week 2 · 3 · Librarian</div>
+          <h3 style="color: var(--navy);">Point to sources. Model note-taking. Show one interview technique. Step back.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Week 4 · 5 · Editor</div>
+          <h3 style="color: var(--navy);">Read drafts with rigour. Ask where the evidence is. Refuse laziness. Kindly.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">Week 6 · Host</div>
+          <h3 style="color: var(--navy);">Set the room. Invite the audience. Let them stand. Do not speak for them.</h3>
+          <p><em style="color: var(--gold);">You are in each role fully — and then you move on.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Research is<br/>
+        the child<br/>
+        convincing<br/>
+        herself<br/>
+        of what is true —<br/>
+        <em style="color: var(--gold);">and then<br/>
+        teaching us.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · the question for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Listen back — what did you hear?</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        What is a question<br/>
+        one of your<br/>
+        children has asked<br/>
+        recently<br/>
+        <em style="font-style: italic; color: var(--gold);">that could become<br/>
+        a research project?</em><br/>
+        <br/>
+        And what would<br/>
+        it take<br/>
+        to honour<br/>
+        that question<br/>
+        <em style="font-style: italic; color: var(--gold);">seriously?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 32 · Elementary · The Research Project</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

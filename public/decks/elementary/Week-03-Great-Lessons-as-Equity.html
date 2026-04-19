@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 3 — The Great Lessons as Equity Curriculum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-hunter {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(200,160,100,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2118 0%, #140e08 100%);
+  }
+  .scene-writing {
+    background:
+      radial-gradient(ellipse 55% 55% at 50% 45%, rgba(230,210,160,0.2), transparent 72%),
+      linear-gradient(160deg, #1e2530 0%, #0b0f14 100%);
+  }
+  /* Two tellings — traditional vs expanded */
+  .tell {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(214,167,88,0.35); margin-top: 32px;
+  }
+  .tell > div { background: #fbf7ec; padding: 36px 34px; }
+  .tell .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .tell h3 {
+    font-family: var(--font-heading); font-style: italic; font-size: 30px;
+    color: var(--navy); margin: 0 0 20px; line-height: 1.2;
+  }
+  .tell p {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 16px;
+  }
+  .tell p:last-child { margin-bottom: 0; }
+  .tell .message {
+    margin-top: 20px; padding: 18px 20px;
+    background: rgba(214,167,88,0.16); border-left: 3px solid var(--gold);
+    font-family: var(--font-heading); font-style: italic; font-size: 24px;
+    color: var(--navy); line-height: 1.4;
+  }
+  .tell .flagged { background: #13214b; }
+  .tell .flagged h3 { color: #f3e9d2; }
+  .tell .flagged p { color: rgba(255,255,255,0.86); }
+  .tell .flagged .message {
+    background: rgba(0,0,0,0.32); border-left-color: var(--gold);
+    color: #f3e9d2;
+  }
+  /* Three-panel bias audit */
+  .bias {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 28px;
+  }
+  .bias > div {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 28px 26px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .bias .lesson {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .bias .claim {
+    font-family: var(--font-heading); font-style: italic; font-size: 26px;
+    color: var(--navy); line-height: 1.3;
+  }
+  .bias .critique {
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.5;
+    color: var(--fg-body); margin-top: 6px;
+  }
+  .bias .critique strong {
+    display: block; margin-bottom: 6px;
+    font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #8a6f3a; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Three · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        Montessori gave<br/>
+        children the universe<br/>
+        as their curriculum.<br/>
+        But <em style="font-style: italic; color: var(--gold);">not the full<br/>
+        universe</em> — the one<br/>
+        Europe knew.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        We have inherited a cosmic story that is incomplete.
+        <em>Our work is to make it whole.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 3 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 THE FRAMEWORK -->
+  <section data-label="The framework" class="on-cream">
+    <div class="eyebrow-slide">The Great Lessons as designed · a framework with a bias</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The Great Lessons are<br/>
+        built on a single,<br/>
+        consequential premise:<br/>
+        <em style="font-style: italic; color: var(--gold);">that human progress<br/>
+        is linear and measurable.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Hunter-gatherer &rarr; agricultural &rarr; civilized.
+        Each stage an advance on the last. Each stage
+        measured by the standards — and achievements — of
+        Europe. <em>This makes the lessons sequential,
+        coherent, compelling for children to follow.</em> It
+        also makes them incomplete in specific, repairable
+        ways.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 02B WHAT WAS POSSIBLE IN 1907 -->
+  <section data-label="What was possible in 1907" class="on-cream">
+    <div class="eyebrow-slide">Context · the intellectual world Montessori inherited</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Montessori was writing in<br/>
+        a European scholarly world<br/>
+        that placed its own<br/>
+        civilization at the<br/>
+        <em style="font-style: italic; color: var(--gold);">apex of human development.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        She pulled from the science, anthropology, and history
+        that surrounded her. Much of it was shot through with
+        assumptions about race, progress, and civilization that
+        we now recognize as false. <em>She cannot be faulted
+        for working with the tools of her time.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        But we can be faulted for continuing to work with those
+        tools now — when better ones are available.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 03 THE THREE LESSONS, AUDITED -->
+  <section data-label="Three lessons, audited" class="on-cream">
+    <div class="eyebrow-slide">What each lesson quietly teaches · a bias audit</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The surface content is history. <em style="font-style: italic; color: var(--gold);">The structural
+        content is a value system.</em>
+      </h2>
+      <div class="bias">
+        <div>
+          <div class="lesson">Coming of Humans</div>
+          <p class="claim">Early humans as primitive — lacking sophistication, awaiting agriculture.</p>
+          <div class="critique"><strong>What it erases</strong>Hunter-gatherer cultures that sustained themselves for millennia. Sophisticated ecological knowledge. Rich spiritual and artistic traditions. The choice to stay.</div>
+        </div>
+        <div>
+          <div class="lesson">Coming of Agriculture</div>
+          <p class="claim">Agriculture as liberation — the moment humans took control of the food supply.</p>
+          <div class="critique"><strong>What it erases</strong>The contingency. The trade-offs. The resource scarcity, hierarchy, and warfare it also enabled. That it emerged in many places for many reasons.</div>
+        </div>
+        <div>
+          <div class="lesson">Coming of Writing</div>
+          <p class="claim">Writing as the beginning of civilization — the moment knowledge could accumulate.</p>
+          <div class="critique"><strong>What it erases</strong>Quipu. Oral traditions preserving legal codes, history, and spiritual teaching with precision. Every other way humans have recorded what mattered.</div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 26px; max-width: 1540px;">
+        Present these lessons as designed and you teach
+        children that <em>some ways of being human are
+        advanced, some primitive; some histories matter,
+        some do not.</em> The cosmic gift becomes a cosmic
+        message about whose place is valued.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 TWO TELLINGS -->
+  <section data-label="Two tellings" class="on-cream">
+    <div class="eyebrow-slide">Same lesson, two tellings · the Coming of Humans</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The story is the same story. <em style="font-style: italic; color: var(--gold);">What
+        lands on the child is not.</em>
+      </h2>
+      <div class="tell">
+        <div class="flagged">
+          <div class="hdr">Traditional telling</div>
+          <h3>Early humans as hunter-gatherers — primitive, not yet having discovered agriculture.</h3>
+          <p>The guide shifts tone at agriculture. Now humans are &ldquo;advanced enough to control the food supply.&rdquo; Now civilization becomes possible.</p>
+          <div class="message">
+            What a child whose ancestors maintained hunting
+            and gathering cultures hears: <em>your people
+            were primitive. They did not achieve
+            advancement.</em>
+          </div>
+        </div>
+        <div>
+          <div class="hdr">Expanded telling</div>
+          <h3>Early humans as explorers — developing knowledge of the places they lived, tools and stories suited to their contexts.</h3>
+          <p>Agriculture told not as the one right choice but as <em>one strategy among many.</em> The sophistication of cultures that maintained other ways for millennia is named.</p>
+          <div class="message">
+            What that same child hears: <em>your people
+            developed strategies for living that worked. Your
+            ancestors&rsquo; knowledge was sophisticated and
+            real. Your ways are part of the human story.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 04B THREE DIAGNOSTIC QUESTIONS -->
+  <section data-label="Three diagnostic questions" class="on-cream">
+    <div class="eyebrow-slide">Three questions to ask before you tell any Great Lesson</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        A diagnostic. <em style="font-style: italic; color: var(--gold);">Before you open your mouth.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 32px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;">01 · who is centered</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;">Whose civilization does this story present as the reference point?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">If &ldquo;advanced&rdquo; means &ldquo;like Europe,&rdquo; you have a problem to name.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;">02 · who is erased</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;">Whose ancestors go unmentioned in the telling?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Silence is a message. Children hear it even when adults do not.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;">03 · who must translate</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;">Which children must do extra work to find themselves in this story?</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">That extra work is not neutral. It teaches them where they belong.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 05 SCENE -->
+  <section data-label="Scene · the writing lesson" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-writing has-image" style="background: url('/decks/images/elem-week-03-scene-writing.jpg') center/cover no-repeat;">
+        <div class="scene-label">A long, low table in an elementary classroom. Laid out on it: a Sumerian clay tablet with cuneiform, an ancient Chinese oracle bone, a photograph of an Incan quipu with its knotted strings, a photograph of an Aboriginal songline painting, and a Cherokee syllabary chart. Eight children crouched around the table, each pointing at a different artifact. The guide is crouched with them, not above them.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the expanded lesson on writing</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          <em style="font-style: italic;">Quipu.</em> Songlines.<br/>
+          Cuneiform. Oracle<br/>
+          bones. The Cherokee<br/>
+          syllabary.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Humans found many ways to preserve and transmit
+          knowledge. Writing was <em>one</em> way — developed
+          in certain places, for certain purposes. Not the
+          only way. Not the inevitable way.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          The child whose ancestors&rsquo; knowledge was kept
+          in story and memory does not need to adopt someone
+          else&rsquo;s definition of civilization to find her
+          people in the cosmic story.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 05B LANGUAGE MOVES -->
+  <section data-label="Language moves" class="on-cream">
+    <div class="eyebrow-slide">Small edits, large consequences · language moves for the expanded telling</div>
+    <div class="stack" style="max-width: 1800px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The story changes at the level of
+        <em style="font-style: italic; color: var(--gold);">single sentences.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #13214b; color: #f3e9d2;"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Traditional</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; margin: 0; line-height: 1.28;">&ldquo;Then humans learned to farm, and civilization began.&rdquo;</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.2);"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Expanded</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0; line-height: 1.28;">&ldquo;In some places, humans began to farm. In other places, they chose to keep moving with the land.&rdquo;</p></div>
+        <div style="padding: 28px; background: #13214b; color: #f3e9d2;"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Traditional</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; margin: 0; line-height: 1.28;">&ldquo;With writing, humans could finally record what mattered.&rdquo;</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.2);"><div style="font-family: var(--font-sans); font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">Expanded</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0; line-height: 1.28;">&ldquo;Humans have always found ways to remember. Some carved, some knotted, some sang, some wrote.&rdquo;</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 05C THE CHILD IN THE ROOM -->
+  <section data-label="The child in the room" class="on-navy">
+    <div class="eyebrow-slide">Who this is for · every child in the room</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14;">
+        The expanded telling is<br/>
+        <em style="font-style: italic; color: var(--gold);">not only</em> for the child<br/>
+        whose ancestors were erased.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Every child in the room is being formed by the story
+        they hear. The child whose family&rsquo;s way is
+        centered learns that hers is the standard. The child
+        whose family&rsquo;s way is erased learns that hers
+        is absent.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Neither of these is the child you are trying to raise.
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 05D WHAT YOU ARE NOT DOING -->
+  <section data-label="What you are not doing" class="on-cream">
+    <div class="eyebrow-slide">A caution · what the expanded telling is not</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        This is not a slogan.
+        <em style="font-style: italic; color: var(--gold);">It is not a unit on diversity.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>You are not replacing the Great Lessons with a different curriculum.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>You are not adding a &ldquo;multicultural week&rdquo; to compensate.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>You are not performing awareness.</li>
+        </ul>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">✓</span>You <em>are</em> telling the same cosmic story — more accurately.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">✓</span>You <em>are</em> making room for the children you actually have.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">✓</span>You <em>are</em> honoring what is true.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 05E PREPARATION -->
+  <section data-label="Preparation" class="on-cream">
+    <div class="eyebrow-slide">Preparing to tell · what you do before the children arrive</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        The expanded telling<br/>
+        is a <em style="font-style: italic; color: var(--gold);">research practice.</em><br/>
+        Not a performance.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Before you tell the Coming of Humans, you spend a
+        week reading Indigenous scholars on hunter-gatherer
+        cultures. Before you tell the Coming of Writing, you
+        study quipu and songlines the way you would study
+        cuneiform. <em>You do not extemporize your way into
+        expansion.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The children will feel the difference between a guide
+        who knows the expanded story and one who is gesturing
+        at it.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 06 EQUITY PROVOCATION -->
+  <section data-label="Equity · this is love" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · this is not betrayal, this is love</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        You are not discovering<br/>
+        hidden equity in<br/>
+        Montessori. <em style="font-style: italic;">You are<br/>
+        doing the work of<br/>
+        equity.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        You are taking a framework that is powerful but
+        incomplete and making it whole. This is not betrayal.
+        <em>This is love.</em> It is taking the best of what
+        Montessori offers and extending it in directions she
+        was not able to extend it.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        The fundamental Montessori principle is that the
+        child matters. A cosmic story that erases her
+        ancestors cannot serve the child in front of you.
+        <em>Honoring the principle requires repairing the
+        story.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 06B FAMILIES AND COLLEAGUES -->
+  <section data-label="Families and colleagues" class="on-navy">
+    <div class="eyebrow-slide">Hard conversations · what to say when asked</div>
+    <div class="stack" style="max-width: 1760px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Someone — a parent, a colleague, a board member — will ask:
+        <em style="font-style: italic; color: var(--gold);">&ldquo;Isn&rsquo;t this just politics in the classroom?&rdquo;</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(214,167,88,0.3);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: #f3e9d2; margin: 0 0 12px; line-height: 1.28;">You can say:</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0;">&ldquo;The original telling was also political — it just matched the politics of the room it was designed for. We are matching ours to the children we actually teach.&rdquo;</p></div>
+        <div style="padding: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(214,167,88,0.3);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: #f3e9d2; margin: 0 0 12px; line-height: 1.28;">You can also say:</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0;">&ldquo;Accuracy is not politics. We now know more about human history than Montessori did. We are teaching what we know.&rdquo;</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 06C WHAT CHILDREN NOTICE -->
+  <section data-label="What children notice" class="on-cream">
+    <div class="eyebrow-slide">What children notice in the expanded telling</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        They catch it. <em style="font-style: italic; color: var(--gold);">Every time.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; margin-top: 32px;">
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;My grandma&rsquo;s people did that.&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Said quietly, to no one, the first time a child finds her family in the story.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;Why didn&rsquo;t they just farm?&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">The moral-reasoning engine kicks in. This is what you wanted.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">&ldquo;Who decided they were primitive?&rdquo;</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A second-plane child interrogating a premise. She can do this. She will.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 06D ONE-LINE SYNTHESIS -->
+  <section data-label="Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 72px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Tell the cosmic story<br/>
+        so <em style="color: var(--gold);">every child</em> in the<br/>
+        room can find her<br/>
+        ancestors in it.
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 06E FOUR PRACTICES -->
+  <section data-label="Four practices" class="on-cream">
+    <div class="eyebrow-slide">Four practices to build this week</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Concrete, doable, by Friday. <em style="font-style: italic; color: var(--gold);">Pick one.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">01 · audit one lesson</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Take one Great Lesson script you use. Mark every sentence that assumes a European reference point.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">02 · name five writings</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">List five non-alphabetic systems of recording. Find an image of each. Put them in the classroom.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">03 · map the children</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Quietly list where each child&rsquo;s family is from. Ask: does my current telling show up for them?</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">04 · read one scholar</div><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">One Indigenous or scholar-of-color historian, on one topic you teach. Before next week.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 06F NEURODIVERGENCE -->
+  <section data-label="Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">A note on neurodivergence and the expanded telling</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        The child who processes<br/>
+        differently is also the child<br/>
+        who hears <em style="font-style: italic; color: var(--gold);">every implication</em><br/>
+        in the story.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Autistic children often detect contradictions and value-loaded
+        language more precisely than their peers. An inconsistent cosmic
+        story — one that claims universality but centers one people —
+        registers for them as <em>wrong</em>, not just incomplete.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Accuracy is an accessibility feature.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 52px;">
+        When you imagine<br/>
+        teaching the Great<br/>
+        Lessons to a room of<br/>
+        children with diverse<br/>
+        family origins —<br/>
+        <em style="font-style: italic; color: var(--gold);">which lesson worries<br/>
+        you most</em> to tell<br/>
+        traditionally?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 3 · Elementary · Great Lessons as Equity</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

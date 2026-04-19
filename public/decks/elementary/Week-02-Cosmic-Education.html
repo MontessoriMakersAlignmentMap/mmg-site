@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 2 — Cosmic Education</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-gl {
+    background:
+      radial-gradient(ellipse 50% 50% at 50% 45%, rgba(230,200,140,0.24), transparent 72%),
+      linear-gradient(160deg, #241a30 0%, #0e0a18 100%);
+  }
+  .scene-worksheet {
+    background:
+      linear-gradient(160deg, #e6dfd2 0%, #9a8f78 100%);
+  }
+  /* Fragmented vs whole diagram */
+  .frag-whole {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    margin-top: 28px;
+  }
+  .frag-whole > div {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 32px;
+  }
+  .frag-whole .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .frag-whole h3 {
+    font-family: var(--font-heading); font-style: italic; font-size: 30px;
+    color: var(--navy); margin: 0 0 16px; line-height: 1.22;
+  }
+  .fragments {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-top: 8px;
+  }
+  .fragments .cell {
+    aspect-ratio: 2 / 1;
+    background: #e6dfd2;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans); font-size: 24px; font-weight: 600;
+    color: var(--navy); text-align: center; padding: 8px;
+    line-height: 1.2;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .whole {
+    aspect-ratio: 3 / 1.18;
+    background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 34px; letter-spacing: 0.02em;
+    position: relative;
+  }
+  .whole::before, .whole::after {
+    content: ''; position: absolute;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+  }
+  .whole::before { top: 12px; left: 14px; }
+  .whole::after { bottom: 12px; right: 14px; }
+  .whole .sparks {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(214,167,88,0.35) 2px, transparent 3px),
+      radial-gradient(circle at 70% 60%, rgba(214,167,88,0.3) 2px, transparent 3px),
+      radial-gradient(circle at 40% 80%, rgba(214,167,88,0.3) 2px, transparent 3px),
+      radial-gradient(circle at 85% 25%, rgba(214,167,88,0.3) 2px, transparent 3px),
+      radial-gradient(circle at 55% 45%, rgba(214,167,88,0.25) 2px, transparent 3px);
+    pointer-events: none;
+  }
+  /* Seed → growth diagram */
+  .seed-growth {
+    display: grid; grid-template-columns: 1fr 80px 1fr 80px 1fr;
+    gap: 0 20px; align-items: center;
+    margin-top: 32px; background: #fbf7ec;
+    border: 1px solid rgba(20,30,60,0.12); padding: 36px 32px;
+  }
+  .seed-growth .step {
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center;
+  }
+  .seed-growth .step .desc { margin-top: 4px; }
+  .seed-growth .arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-style: italic; font-size: 36px;
+    color: var(--gold);
+  }
+  .seed-growth .glyph {
+    width: 56px; height: 56px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .seed-growth .glyph svg { width: 100%; height: 100%; }
+  .seed-growth .label {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .seed-growth .desc {
+    font-family: var(--font-heading); font-style: italic; font-size: 26px;
+    color: var(--navy); line-height: 1.3; max-width: 260px;
+  }
+  /* Guide role comparison */
+  .role {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(214,167,88,0.35); margin-top: 24px;
+  }
+  .role > div { background: #fbf7ec; padding: 32px; }
+  .role h4 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 26px; color: var(--navy); margin: 0 0 16px; line-height: 1.22;
+  }
+  .role ul {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-sans); font-size: 24px;
+    line-height: 1.55; color: var(--fg-body);
+  }
+  .role li {
+    padding: 8px 0 8px 22px; position: relative;
+    border-bottom: 1px solid rgba(20,30,60,0.08);
+  }
+  .role li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+  .role li:last-child { border-bottom: 0; }
+  .role .was { background: #13214b; }
+  .role .was h4 { color: #f3e9d2; }
+  .role .was ul { color: rgba(255,255,255,0.8); }
+  .role .was li { border-bottom-color: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Two · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 90px; line-height: 1.04; padding-bottom: 24px;">
+        Maria Montessori<br/>
+        asked one question:<br/>
+        <em style="font-style: italic; color: var(--gold);">Why should we<br/>
+        limit their world?</em><br/>
+        That question made<br/>
+        Cosmic Education.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        A curriculum unlike any other offered to children.
+        Based on a radical belief that <em>a child&rsquo;s
+        mind is large enough for the cosmos.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 2 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 FRAGMENT VS WHOLE -->
+  <section data-label="Fragments vs whole" class="on-cream">
+    <div class="eyebrow-slide">Core insight · we do not learn in fragments</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        Traditional curriculum asks the child to <em style="font-style: italic; color: var(--gold);">assemble
+        the whole from pieces.</em> Cosmic Education gives her the whole first.
+      </h2>
+      <div class="frag-whole">
+        <div>
+          <div class="hdr">Traditional curriculum</div>
+          <h3>Fragments delivered in a predetermined sequence. Synthesis is the child&rsquo;s problem.</h3>
+          <div class="fragments">
+            <div class="cell">History</div>
+            <div class="cell">Geography</div>
+            <div class="cell">Science</div>
+            <div class="cell">Language</div>
+            <div class="cell">Math</div>
+            <div class="cell">Art</div>
+          </div>
+        </div>
+        <div>
+          <div class="hdr">Cosmic Education</div>
+          <h3>The whole first. The child then goes deeper <em>inside</em> it.</h3>
+          <div class="whole">
+            <div class="sparks"></div>
+            <span style="position: relative;">The Universe</span>
+          </div>
+          <p class="body-read" style="margin-top: 18px; font-size: 24px; line-height: 1.45;">
+            The guide does the work of synthesis <em>first.</em>
+            Every specific investigation the child pursues
+            stays in relation to the cosmic story.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 02B FIRST-PLANE COMPARISON -->
+  <section data-label="Not the first-plane answer" class="on-cream">
+    <div class="eyebrow-slide">Why the first-plane answer will not work here</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        In the first plane we gave<br/>
+        the child the <em style="font-style: italic; color: var(--gold);">pink tower</em> —<br/>
+        one concept, one control of error,<br/>
+        one isolated quality at a time.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        That approach was right for that mind. The second-plane
+        mind has a different hunger. <em>Offer her one concept
+        in isolation and she will wander off.</em> Offer her the
+        universe and ask her where she wants to begin — and she
+        will work for weeks.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Cosmic Education is what Montessori principles look like at a different age.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 03 THE GIFT -->
+  <section data-label="The gift" class="on-cream">
+    <div class="eyebrow-slide">The gift · orientation, not facts</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The Great Lessons<br/>
+        are not comprehensive<br/>
+        histories. They are<br/>
+        <em style="font-style: italic; color: var(--gold);">impressionistic.<br/>
+        They are meant to awe.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child who hears the First Great Lesson does not
+        receive a geology curriculum. She receives <em>wonder.</em>
+        Then she asks questions. Then she investigates. Then
+        she reads. Then she conducts experiments. Then she
+        argues and models and writes.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The Great Lesson is the seed. Everything that follows
+        grows from it. Your job is to plant and then tend
+        what grows.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 03B FIVE GREAT LESSONS -->
+  <section data-label="The five Great Lessons" class="on-cream">
+    <div class="eyebrow-slide">The five Great Lessons · the shape of the cosmic year</div>
+    <div class="stack" style="max-width: 1800px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Five stories. <em style="font-style: italic; color: var(--gold);">Told in order. Told again every year.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 32px;">
+        <div style="padding: 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">i</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Coming of the Universe</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.4; color: var(--fg-body); margin: 0;">Everything, told impressionistically.</p></div>
+        <div style="padding: 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">ii</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Coming of Life</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.4; color: var(--fg-body); margin: 0;">The unfurling timeline of living things.</p></div>
+        <div style="padding: 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">iii</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Coming of Humans</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.4; color: var(--fg-body); margin: 0;">Our species appears. The hand, the mind, the heart.</p></div>
+        <div style="padding: 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">iv</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Coming of Writing</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.4; color: var(--fg-body); margin: 0;">How humans kept and transmitted what mattered.</p></div>
+        <div style="padding: 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">v</div><p style="font-family: var(--font-heading); font-style: italic; font-size: 26px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Coming of Numbers</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.4; color: var(--fg-body); margin: 0;">The human invention of counting and measuring.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 04 SEED --><!--BREAK-->
+  <section data-label="Seed to growth" class="on-cream">
+    <div class="eyebrow-slide">Anatomy of a Great Lesson · one seed, ten directions</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Fifteen minutes of story. <em style="font-style: italic; color: var(--gold);">Weeks
+        of investigation.</em>
+      </h2>
+      <div class="seed-growth">
+        <div class="step">
+          <div class="glyph">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#d6a758" stroke-width="2">
+              <ellipse cx="24" cy="30" rx="8" ry="11"/>
+              <path d="M24 19 L24 8" stroke-linecap="round"/>
+              <path d="M24 12 Q18 10 16 14" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="label">Seed</div>
+          <div class="desc">The guide tells the story — impressionistically.</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="step">
+          <div class="glyph">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#d6a758" stroke-width="2">
+              <circle cx="16" cy="16" r="3"/><circle cx="32" cy="14" r="3"/>
+              <circle cx="24" cy="28" r="3"/><circle cx="36" cy="32" r="3"/>
+              <circle cx="12" cy="34" r="3"/>
+              <path d="M16 16 L24 28 M32 14 L24 28 M24 28 L36 32 M24 28 L12 34" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="label">Questions</div>
+          <div class="desc">Children&rsquo;s own questions emerge.</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="step">
+          <div class="glyph">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#d6a758" stroke-width="2">
+              <path d="M12 10 L36 10 L36 38 L12 38 Z"/>
+              <path d="M16 16 L32 16 M16 22 L32 22 M16 28 L28 28"/>
+            </svg>
+          </div>
+          <div class="label">Pursuit</div>
+          <div class="desc">Reading, experiments, reports, models, arguments.</div>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; max-width: 1500px;">
+        The guide does not ask children to repeat back facts
+        after the story. <em>She tells it as if it matters
+        — and then waits for what the children do with
+        it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 04B HOW TO TELL -->
+  <section data-label="How to tell" class="on-cream">
+    <div class="eyebrow-slide">Craft · how to tell a Great Lesson</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        This is <em style="font-style: italic; color: var(--gold);">theatre for children.</em> Treat it as such.
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Speak slowly. Leave silences.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">The pause after &ldquo;and the stars exploded&rdquo; is where the child&rsquo;s mind does the work.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Use objects. Not slides.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">A balloon, a candle, a black cloth. The impressionistic chart. Not screens.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Do not quiz. Do not define.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Let strange words stay strange. Let children ask, or look them up themselves.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Tell it as if it is real.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Because it is. If you perform awe, the awe will not land.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 05 GUIDE ROLE -->
+  <section data-label="Role of the guide" class="on-cream">
+    <div class="eyebrow-slide">What this asks of the guide · a radical shift</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        You are not a keeper of<br/>
+        information. You are<br/>
+        a <em style="font-style: italic; color: var(--gold);">curator of experiences,<br/>
+        a reader of children,</em><br/>
+        a planter of seeds.
+      </h2>
+      <div class="role">
+        <div class="was">
+          <h4>What you are <em>not</em></h4>
+          <ul>
+            <li>An instructor breaking down concepts</li>
+            <li>A deliverer of facts on a schedule</li>
+            <li>An author of worksheets and quizzes</li>
+            <li>A gatekeeper to knowledge</li>
+            <li>The center of attention</li>
+          </ul>
+        </div>
+        <div>
+          <h4>What you <em>are</em></h4>
+          <ul>
+            <li>A storyteller of the cosmos</li>
+            <li>A reader of what children do <em>after</em> the story</li>
+            <li>A deepener of connections children are already making</li>
+            <li>A provider of resources, not scripts</li>
+            <li>Deeply active — but responsive, not predetermined</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 05B WHAT FOLLOWS -->
+  <section data-label="What follows" class="on-cream">
+    <div class="eyebrow-slide">What follows a Great Lesson · the weeks after the story</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The story ended Tuesday. <em style="font-style: italic; color: var(--gold);">Here is what Wednesday, Thursday, Friday look like.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; margin-top: 32px;">
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Follow-up charts</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Left out on shelves. Children approach on their own time.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Key lessons</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Small, specific, given to children whose questions lead there.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Research materials</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Books, specimens, maps, artifacts. The shelf responds to the story.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Child-led projects</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Reports, models, plays, debates. Chosen and shaped by the children.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Going Out</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A question big enough to leave the building for.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Retelling</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child tells the story back — to a younger child, to a parent, to herself.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 06 CLASSROOM SCENE -->
+  <section data-label="Scene · after the lesson" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-gl has-image" style="background: url('/decks/images/elem-week-02-scene-gl.jpg') center/cover no-repeat;">
+        <div class="scene-label">A classroom ten minutes after the Great Lesson on the Coming of Humans has ended. One child is reading the human timeline on the wall alone. Two children are bent over a world map, tracing with fingers where different human species lived. A third is drawing an early human with a fire beside it. A fourth is asking the guide a question while she kneels beside him, listening. No one has been assigned anything. All of them are working.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · Cosmic Education at work</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The lesson lasted<br/>
+          fifteen minutes.<br/>
+          <em style="font-style: italic;">The work will last<br/>
+          for weeks.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          No child was asked to demonstrate comprehension.
+          No child was given a worksheet. The guide told the
+          story as if it mattered — as if it were real and
+          vast and miraculous — and the children took it
+          from there.
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          In the other classroom down the hall — worksheet,
+          quiz, assigned reading — the same children would
+          be doing school. Here, they are learning.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 06B COMMON FAILURES -->
+  <section data-label="Common failures" class="on-cream">
+    <div class="eyebrow-slide">Where Cosmic Education usually goes wrong</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Four failures. <em style="font-style: italic; color: var(--gold);">All from the same fear.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Turning the story into a unit.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Objectives, worksheet, quiz. Cosmic Education dies instantly.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Assigning the follow-up.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">&ldquo;Everyone write a report&rdquo; converts wonder into compliance.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Explaining too much.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">Defining every word, answering every question immediately. The mystery evaporates.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">Fearing the silence afterward.</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.45; color: var(--fg-body); margin: 0;">The guide who fills the room with prompts never lets a question form on its own.</p></div>
+      </div>
+      <p class="body-read" style="margin-top: 26px; color: var(--navy); font-style: italic;">
+        The fear, in every case: that nothing will happen if you do not make it happen.
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 06C TRUST -->
+  <section data-label="Trust the hunger" class="on-navy">
+    <div class="eyebrow-slide">The single skill the cosmic guide must develop</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 58px; line-height: 1.1;">
+        Trust the hunger. <em style="font-style: italic; color: var(--gold);">It is already there.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The second-plane child is biologically hungry for vastness.
+        She is looking for a story large enough to hold her reason,
+        her imagination, her moral sense, her social hunger.
+        <em>You are not manufacturing this hunger. You are feeding it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 07 EQUITY -->
+  <section data-label="Equity · whose cosmos" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · whose cosmic story</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        Cosmic Education is<br/>
+        presented in many<br/>
+        Montessori schools as<br/>
+        <em style="font-style: italic;">universal, timeless,<br/>
+        value-neutral.</em><br/>
+        It is none of those.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        Every choice about <em>which story you tell first,
+        which civilizations you center, which achievements
+        you highlight, which challenges you name</em> — is
+        a political choice. Montessori designed Cosmic
+        Education within her own time and her own
+        limitations. The Great Lessons as she imagined them
+        center European history. They frame progress in a
+        particular way.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        This program does not ask you to abandon Cosmic
+        Education. The approach is sound. <em>It asks you
+        to expand the story</em> — so the cosmic gift
+        Montessori meant to give <em>all</em> children is
+        actually given to all.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 07B OBSERVATION -->
+  <section data-label="What to observe" class="on-cream">
+    <div class="eyebrow-slide">What to observe · six signs the seed has taken root</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Evidence of a Great Lesson at work. <em style="font-style: italic; color: var(--gold);">Learn to see it.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; margin-top: 32px;">
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Unsolicited questions</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Asked days later, while washing hands, while pouring water.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Drawings of time and scale</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Timelines, strata, planets — attempts to <em>see</em> the story.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Books pulled unprompted</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A child reading well above her supposed level.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Arguments in the room</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">About which planet, which species, which timeline is correct.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Retellings to siblings</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Reported at pickup. The story traveled home.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A quiet child</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Holding a book alone, reading what would not otherwise have been chosen.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 07C FREEDOM AND STRUCTURE -->
+  <section data-label="Freedom and structure" class="on-cream">
+    <div class="eyebrow-slide">A common misunderstanding · this is not unschooling</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 50px; line-height: 1.14; color: var(--navy);">
+        Cosmic Education is <em style="font-style: italic; color: var(--gold);">more</em> prepared, not less.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        The guide knows the stories cold. The shelf is deeply curated.
+        The follow-up charts and specimens and books are already waiting.
+        The children&rsquo;s freedom is possible <em>because</em> the environment is rigorous.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Freedom without preparation is chaos. Preparation without
+        freedom is school. Montessori is neither.
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 07D SYNTHESIS -->
+  <section data-label="Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 72px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Give her the universe.<br/>
+        <em style="color: var(--gold);">Then get out of the way.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 07E INVISIBLE PREPARATION -->
+  <section data-label="Invisible preparation" class="on-navy">
+    <div class="eyebrow-slide">The invisible work · what a cosmic guide does when no one is watching</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        Hours of reading. Curating the shelf.
+        <em style="font-style: italic; color: var(--gold);">Rehearsing the story aloud, alone, at night.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The cosmic guide&rsquo;s visible work in the classroom is fifteen
+        minutes. The invisible work behind it is weeks. That ratio is not
+        a bug — it is the nature of the job.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        If you are not doing the invisible work, the visible work will not hold.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 08 NEURODIVERGENCE + CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · the gift may need giving many times</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 60px;">
+      <p class="body-read" style="color: rgba(255,255,255,0.85);">
+        Some children hear the Great Lesson and immediately
+        have questions. Others need time to process. Some
+        need smaller pieces, or repetition, or visual
+        support, or movement before they are ready to pursue
+        a question. <em>All of this is fine.</em> The purpose
+        of a Great Lesson is to open curiosity — not to
+        deliver comprehension on a schedule.
+      </p>
+      <div class="rule-gold" style="margin: 32px 0;"></div>
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 12px; font-size: 52px;">
+        If you are supposed to<br/>
+        plant a seed and let it<br/>
+        grow — <em style="font-style: italic; color: var(--gold);">what
+        exactly are<br/>
+        you watching for</em> to<br/>
+        know it has taken root?
+      </p>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 2 · Elementary · Cosmic Education</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

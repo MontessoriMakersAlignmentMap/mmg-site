@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 29 — Assessment in Elementary Mathematics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-assess {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .lens-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 28px; max-width: 1820px;
+  }
+  .lens-grid .lens {
+    padding: 22px 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .lens-grid .lens .num {
+    font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .lens-grid .lens h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 8px 0 10px; line-height: 1.22;
+  }
+  .lens-grid .lens p {
+    font-family: var(--font-sans); font-size: 17px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .lens-grid .lens em { font-style: italic; color: var(--navy); }
+
+  .qs {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+    padding: 28px 36px; margin-top: 24px; max-width: 1680px;
+  }
+  .qs .q {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(20,30,60,0.12);
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 23px; line-height: 1.32; color: var(--navy);
+  }
+  .qs .q:last-child { border-bottom: none; }
+  .qs .q em { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Nine · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 78px; line-height: 1.06; padding-bottom: 24px;">
+        Assessment<br/>
+        is not something<br/>
+        that happens<br/>
+        to children<br/>
+        on a day in April.<br/>
+        <em style="font-style: italic; color: var(--gold);">It happens<br/>
+        continuously —<br/>
+        because mathematical<br/>
+        understanding lives<br/>
+        in the hands and<br/>
+        the mind at once.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 29 · Elementary · Month 8</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        You can now see beyond whether a child follows steps — <em style="font-style: italic; color: var(--gold);">into the actual mathematical thinking happening underneath.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        This is when assessment becomes precise. <em>This is also when you have enough data to say something meaningful to families.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Which means you need to know exactly <em>what to look for — and exactly how to record it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 NOT MEASUREMENT -->
+  <section data-label="03 Not measurement" class="on-cream">
+    <div class="eyebrow-slide">Assessment is not measurement</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Not a number or a letter or a percentage. <em style="font-style: italic; color: var(--gold);">A deep and continuous looking.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">What it is not</div>
+          <h3>A test. A score. A day.</h3>
+          <p>Judgement delivered from outside the child&rsquo;s work.</p>
+        </div>
+        <div class="card dark">
+          <div class="label">What it is</div>
+          <h3>A practice of looking — at the same child — week after week.</h3>
+          <p>Watching understanding develop <em>through hands and mind simultaneously.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 SEVEN LENSES -->
+  <section data-label="04 Seven lenses" class="on-cream">
+    <div class="eyebrow-slide">Seven things you are watching at once</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        All of these are mathematical assessment.
+      </h2>
+      <div class="lens-grid">
+        <div class="lens"><span class="num">01 · Concept</span><h3>Does she understand the concept embedded in the material itself?</h3><p>The material holds the idea. <em>Has the idea landed?</em></p></div>
+        <div class="lens"><span class="num">02 · Fluency</span><h3>Is manipulation becoming more efficient and independent?</h3><p><em>Not faster. More certain.</em></p></div>
+        <div class="lens"><span class="num">03 · Application</span><h3>Can she apply it to new situations that have not been taught?</h3><p><em>Transfer is the test.</em></p></div>
+        <div class="lens"><span class="num">04 · Symbolisation</span><h3>Can she move it onto paper?</h3><p>From material to mark. <em>Both still alive in her mind.</em></p></div>
+        <div class="lens"><span class="num">05 · Affect</span><h3>Does it feel possible or impossible?</h3><p>Willing to struggle? <em>Or shutting down when it is hard?</em></p></div>
+        <div class="lens"><span class="num">06 · Social</span><h3>Can she work alone, ask for help, collaborate without losing her own thinking?</h3><p><em>Explain her thinking to others.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 WHAT TO OBSERVE -->
+  <section data-label="05 What to observe" class="on-navy">
+    <div class="eyebrow-slide">What to actually observe during work period</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Watch <em style="font-style: italic; color: var(--gold);">the movement. The pace. What happens after. What happens when you ask.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Organising beads by hierarchy before counting — <em>she understands place value.</em> Checking her own work, self-correcting — <em>she has internalised the logic.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Ask: if we took away three units, what would we have? If she counts from one again, versus she immediately says ninety-seven — <em>that is the difference between concrete and conceptual understanding.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 THINKING QUESTIONS -->
+  <section data-label="06 Thinking questions" class="on-cream">
+    <div class="eyebrow-slide">Thinking questions · not test questions</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 16px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Many children can do the work but have never been asked to explain it. <em style="font-style: italic; color: var(--gold);">The quality of the explanation tells you more than the accuracy of the answer.</em>
+      </h2>
+      <div class="qs">
+        <div class="q"><em>&ldquo;Tell me how you organised this work.&rdquo;</em></div>
+        <div class="q"><em>&ldquo;What would happen if we doubled this number?&rdquo;</em></div>
+        <div class="q"><em>&ldquo;Can you show me the same amount using the unit beads instead?&rdquo;</em></div>
+        <div class="q"><em>&ldquo;Why did you choose the golden beads for this problem?&rdquo;</em></div>
+        <div class="q"><em>&ldquo;Can you explain this to someone who has never seen the materials?&rdquo;</em></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE · THIRTEEN BEADS -->
+  <section data-label="07 Scene · thirteen" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-assess has-image" style="background: url('/decks/images/elem-week-29-scene-assess.jpg') center/cover no-repeat;">
+        <div class="scene-label">Tuesday morning. She is arranging the teen beads. Thirteen in one row. She tries to push them into a smaller space. <em>&ldquo;Can they all fit in here?&rdquo;</em> She tries two rows. Counts. <em>&ldquo;That doesn&rsquo;t work.&rdquo;</em> She tries columns. Eight and five. Counts again. Confused. <em>&ldquo;I thought I had thirteen but I have thirteen and thirteen.&rdquo;</em> Moves one unit. Nine and four. <em>&ldquo;That doesn&rsquo;t work either.&rdquo;</em> You say: <em>&ldquo;What are you noticing about the thirteen?&rdquo;</em> <em>&ldquo;They don&rsquo;t want to stay in columns.&rdquo;</em> You have just watched her discover that thirteen is prime. You did not tell her. <em>You noted it.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · assessment in real time</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          You did not<br/>
+          interrupt.<br/>
+          You asked one<br/>
+          question.<br/>
+          <em style="font-style: italic;">She was building<br/>
+          her own theory.</em><br/>
+          <br/>
+          Your notebook<br/>
+          holds this —<br/>
+          <em style="font-style: italic;">not a score.<br/>
+          A moment.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 RECORD IT -->
+  <section data-label="08 Record it" class="on-cream">
+    <div class="eyebrow-slide">Recording · you cannot remember everything</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Anecdotal notes work beautifully. <em style="font-style: italic; color: var(--gold);">A small notebook. In the moment — or immediately after.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">A weak note</div>
+          <h3>&ldquo;Emma worked with the multiplication board.&rdquo;</h3>
+          <p>Context only. <em>No thinking captured.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">A strong note</div>
+          <h3>&ldquo;Emma organised by products before beginning — she was looking for patterns.&rdquo;</h3>
+          <p><em>&ldquo;Self-corrected twice. Said: I keep making six and seven together, but they should be different.&rdquo;</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; color: var(--navy); font-style: italic; max-width: 1680px;">
+        What the child did. What material they chose. What was remarkable about the approach. What they said. <em>Memory degrades quickly — especially the small details that actually matter.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 PORTFOLIO LANGUAGE -->
+  <section data-label="09 Portfolio language" class="on-cream">
+    <div class="eyebrow-slide">Portfolio entries · claim plus evidence</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Classroom notes are for you. <em style="font-style: italic; color: var(--gold);">Portfolio entries are for the family — and the child later.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Claim without evidence</div>
+          <h3>&ldquo;Samir demonstrates conceptual understanding of multiplication.&rdquo;</h3>
+          <p><em>Means nothing to a parent.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Claim with evidence</div>
+          <h3>&ldquo;Samir organised products by size before checking them. He said: I wanted to see how they go up.&rdquo;</h3>
+          <p>He is looking for patterns — <em>not treating the table as a list to memorise.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; color: var(--navy); font-style: italic;">
+        Write in language a parent will understand. <em>Not &ldquo;facility with the linear and unit aspects of the binomial&rdquo; — &ldquo;she quickly understood how all the pieces fit together to make the same whole cube.&rdquo;</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 FAMILIES -->
+  <section data-label="10 Families" class="on-navy">
+    <div class="eyebrow-slide">Communicating with families · bring specifics, ask questions</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Ask the family what <em style="font-style: italic; color: var(--gold);">they notice at home.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Organising toys by size. Playing with recipes. Asking how many days until a birthday. <em>A child who does any of these is doing mathematics.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        When families see mathematics in everyday life — <em>they support mathematical thinking at home. That matters profoundly.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 EQUITY -->
+  <section data-label="11 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · look everywhere, or miss whole children</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        If you only assess when children are sitting with materials, <em style="font-style: italic; color: var(--gold);">you will miss entire groups of children.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Assessment happens in conversation. In the engineering area. While children draw, build, teach each other, read aloud from a geometry book.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Children who rarely sit with manipulative materials often understand mathematics profoundly — <em>they are thinking through pictures, movement, building, talking.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        If your observation does not include all the ways <em>children in your particular room think mathematically — your assessment is not equity-centred.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 NEURODIVERGENCE -->
+  <section data-label="12 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · different shape, same mathematics</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        A child with ADHD may not sit with the golden beads for thirty minutes. <em style="font-style: italic; color: var(--gold);">They may work with the multiplication board for two minutes in absolute focus — then transfer instantly to a new problem.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 24px;">
+        This is not less mathematical understanding. <em>It is different mathematical understanding.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 THE RUNNING RECORD -->
+  <section data-label="13 The running record" class="on-cream">
+    <div class="eyebrow-slide">The running record · small notes, long arc</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Assessment begins in the pen <em style="font-style: italic; color: var(--gold);">you carry in your pocket.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A sentence a day about each child — what they chose, what they avoided, what they mastered. Not for filing. For your own eyes.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        At the end of a month, you can read the river of a child. What the test cannot show.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The small habit, kept, becomes the assessment that matters.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 CONFERENCE WITH CHILD -->
+  <section data-label="14 Conference · child" class="on-navy">
+    <div class="eyebrow-slide">The conference with the child · assessment as mirror</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Sit down. <em style="font-style: italic; color: var(--gold);">Show them what you have seen.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        &ldquo;I have noticed you choose the bead frame every day this week. I have noticed you stopped at the long division. What do you think is happening?&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Children, even at nine, can describe their own learning — if someone asks.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>The conference is an assessment. It is also an act of respect. Both matter.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 CONFERENCE WITH PARENT -->
+  <section data-label="15 Conference · parent" class="on-cream">
+    <div class="eyebrow-slide">The conference with the parent · what to show, what to not</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A parent wants to know <em style="font-style: italic; color: var(--gold);">if their child is all right.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Not the curriculum checklist. Not the percentile. Show them a photograph of the child&rsquo;s work. Show them a sentence the child wrote about what was hard.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Then — tell them one thing the child does with integrity. One thing the child is growing into.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Specific. Particular. Unmistakably about that child. That is the assessment a parent can receive.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 THE STANDARDISED TEST -->
+  <section data-label="16 Standardised tests" class="on-navy">
+    <div class="eyebrow-slide">Standardised tests · the conversation you cannot refuse</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        The tests will come. <em style="font-style: italic; color: var(--gold);">They are not the enemy — and not the measure.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Prepare children honestly. Tell them what the test is. Tell them it measures a narrow slice. Tell them you already know what they can do.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Do not moralise at them about the test. Do not pretend it does not matter.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Let them walk in calm. That is the only test-prep that actually helps.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 60px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Mathematical<br/>
+        understanding<br/>
+        lives in the hands<br/>
+        and the mind<br/>
+        at once.<br/>
+        <em style="color: var(--gold);">Your job is<br/>
+        to see both.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · the audit for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Walk your list of children</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        In your classroom<br/>
+        right now —<br/>
+        who are the children<br/>
+        <em style="font-style: italic; color: var(--gold);">whose mathematical<br/>
+        thinking you know<br/>
+        least well?</em><br/>
+        <br/>
+        And what would<br/>
+        it take<br/>
+        to observe them<br/>
+        more deeply?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 29 · Elementary · Assessment in Elementary Mathematics</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

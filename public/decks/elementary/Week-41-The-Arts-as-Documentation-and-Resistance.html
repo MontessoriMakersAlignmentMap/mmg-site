@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 41 — The Arts as Documentation and Resistance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-quilt {
+    background:
+      radial-gradient(ellipse 55% 50% at 42% 46%, rgba(214,167,88,0.22), transparent 72%),
+      linear-gradient(160deg, #231712 0%, #0a0706 100%);
+  }
+  .scene-mural {
+    background:
+      radial-gradient(ellipse 60% 55% at 52% 46%, rgba(201,95,62,0.28), transparent 72%),
+      linear-gradient(165deg, #1f140c 0%, #090604 100%);
+  }
+  .two-by { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; max-width: 1760px; }
+  .two-by.three { grid-template-columns: repeat(3, 1fr); }
+  .two-by .card { padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18); }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label { font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .two-by .card h3 { font-family: var(--font-heading); font-style: italic; font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy); }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p { font-family: var(--font-sans); font-size: 24px; line-height: 1.5; color: var(--fg-body); margin: 0 0 10px; }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Forty-One · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 160px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 58px; line-height: 1.08; padding-bottom: 18px;">
+        When you were not allowed to read or write,<br/>
+        <em style="font-style: italic; color: var(--gold);">you wrote your story in cloth.</em><br/>
+        When the state tried to make you disappear,<br/>
+        <em style="font-style: italic; color: var(--gold);">you made yourself visible through art.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 41 · Elementary · Month 11 · Behaviour, Community, Capstone</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        We teach art and music as if they are separate from history and power. <em style="font-style: italic; color: var(--gold);">Painting because it is a nice skill. Singing because it is pleasurable.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        We do not tell her the art she is making is dangerous, that it is powerful, <em>that it is the way human beings have always documented what they know when documentation has been forbidden.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        In a just elementary curriculum, art and music are not decoration. <em>They are tools for knowing &mdash; and for power.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 THESIS -->
+  <section data-label="03 Thesis" class="on-navy">
+    <div class="eyebrow-slide">The thesis, said plainly</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 52px; line-height: 1.1;">
+        The arts have never been decoration. <em style="font-style: italic; color: var(--gold);">They have been the way people who were silenced found their voice.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Documentation. <em>Resistance.</em> Communication. <em>Power.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 WHEN WRITING WAS FORBIDDEN -->
+  <section data-label="04 When writing was forbidden" class="on-cream">
+    <div class="eyebrow-slide">There are many histories that were never written down</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Not because they did not happen. <em style="font-style: italic; color: var(--gold);">Because the people who lived them were not allowed to read or write.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Not allowed to own documents. Not allowed access to the technologies of power. <em>And yet they documented their knowledge.</em> Through fibre arts. Through quilts and cloth. Through music and oral tradition.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        The art was the archive. <em>Because the archive was closed.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 THREE FORMS OF DOCUMENTATION -->
+  <section data-label="05 Three forms of documentation" class="on-cream">
+    <div class="eyebrow-slide">Three traditions · three ways of writing without writing</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Beautiful to an outsider. <em style="font-style: italic; color: var(--gold);">Readable &mdash; by the people it was made for.</em>
+      </h2>
+      <div class="two-by three">
+        <div class="card">
+          <div class="label">Quilts</div>
+          <h3>Quilts made by enslaved African Americans sometimes contained maps &mdash; routes to freedom sewn into the pattern.</h3>
+          <p><em>Decoration to the overseer. Directions to those who knew.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Spirituals</div>
+          <h3>Documented theology, resistance, hope. Some lyrics encoded information about escape routes.</h3>
+          <p><em>Sung, remembered, taught to children. The music carried what writing could not.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Indigenous textiles</div>
+          <h3>Across the Americas. Documented knowledge of place, materials, relationship to land &mdash; readable by the community.</h3>
+          <p><em>Confiscated. Put in museums. Still stolen property. Still documentation.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SCENE · THE QUILT -->
+  <section data-label="06 Scene · the quilt" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-quilt has-image" style="background: url('/decks/images/elem-week-41-scene-quilt.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">A quilt on the table. From a distance it is a pattern &mdash; diamonds, stars, a wagon wheel. <em>The children lean in. Someone points: the wagon wheel means prepare to leave. The star means follow it north.</em> A child who has always been told her grandmother&rsquo;s crafts are &ldquo;just hobbies&rdquo; looks up. <em>This is not a hobby. This is an archive. This is a map.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the map was in the stitching</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She leans in.<br/>
+          She reads<br/>
+          the pattern.<br/>
+          <em style="font-style: italic;">She realises<br/>
+          grandmothers<br/>
+          have always<br/>
+          been<br/>
+          archivists.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 ART AS RESISTANCE -->
+  <section data-label="07 Art as resistance" class="on-navy">
+    <div class="eyebrow-slide">Why it was banned · what it was doing</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        When you see a government try to ban a music, <em style="font-style: italic; color: var(--gold);">you are watching that government admit the music has power.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Art and music allowed people to assert their existence, their humanity, their right to take up space. <em>To create beauty in contexts where beauty was meant to be denied them.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        To build community &mdash; <em>across people facing the same oppression.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 THREE MOVEMENTS -->
+  <section data-label="08 Three movements" class="on-cream">
+    <div class="eyebrow-slide">Three movements · three acts of refusal</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Not genres. <em style="font-style: italic; color: var(--gold);">Responses to specific histories &mdash; by specific people &mdash; under specific conditions.</em>
+      </h2>
+      <div class="two-by three">
+        <div class="card">
+          <div class="label">The Blues</div>
+          <h3>Created by formerly enslaved African Americans in the American South. Survival and resistance.</h3>
+          <p><em>Many white Americans tried to ban it &mdash; because they understood it was dangerous.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Mexican Muralism</div>
+          <h3>Rivera and others, during and after the Revolution. Enormous public murals, impossible to ignore.</h3>
+          <p><em>Not for the wealthy&rsquo;s walls. Part of the built environment. Part of what you met as you walked.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Hip-Hop</div>
+          <h3>South Bronx, 1970s&ndash;80s. Young Black and Latinx people whose communities were being destroyed.</h3>
+          <p><em>Sampling, breaking, lyricism &mdash; making something new from the materials at hand.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 SCENE · MURAL -->
+  <section data-label="09 Scene · the mural" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · art you cannot walk past</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          A mural<br/>
+          cannot be<br/>
+          hung<br/>
+          in a mansion.<br/>
+          <em style="font-style: italic;">It is where<br/>
+          the people are.<br/>
+          It is for<br/>
+          the people.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+      <div class="scene scene-mural has-image" style="background: url('/decks/images/elem-week-41-scene-mural.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">The guide pulls up images of Rivera&rsquo;s murals. Indigenous history as the centre &mdash; not the margin. <em>Then a mural in the children&rsquo;s own city, two blocks from school: Black lives, resistance, a wall of names.</em> A child asks: who paid for this? The guide says: the community did &mdash; the art does not belong to money. <em>It belongs to the block.</em></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 ART AS COMMUNICATION -->
+  <section data-label="10 Art as communication" class="on-cream">
+    <div class="eyebrow-slide">A communication system &mdash; across borders, distances, danger</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The griots were not only documenting history. <em style="font-style: italic; color: var(--gold);">They were the communication system of their communities.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Civil Rights protest songs carried information &mdash; where to gather, how to stay safe, what the movement was. <em>They made it possible for people with different backgrounds and languages to be together.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Today: Palestinian visual art. Afghan music under the ban. Ukrainian song during the invasion. <em>We exist. We have culture. We have humanity.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 TEACHING AS POWER -->
+  <section data-label="11 Teaching arts as power" class="on-navy">
+    <div class="eyebrow-slide">When we teach art, teach it as power</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Not decoration or leisure. <em style="font-style: italic; color: var(--gold);">Tools for knowing, for resistance, for documenting, for communication.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Teach artists from cultures that have been historically oppressed. <em>Teach the history of what those artists did with their art.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Ask every child: <em>what story do you want to tell &mdash; and what do you want your art to do?</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 FOUR GENUINE PROMPTS -->
+  <section data-label="12 Four genuine prompts" class="on-cream">
+    <div class="eyebrow-slide">Not &ldquo;make something pretty.&rdquo; Real problems to solve through art.</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Four kinds of prompt &mdash; four kinds of power. <em style="font-style: italic; color: var(--gold);">All available to an elementary child.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">Document</div>
+          <h3>Preserve something important in your community that might otherwise be lost.</h3>
+          <p><em>Recipe. Language. Instrument. Story told by one grandmother.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Resist</div>
+          <h3>Create art that names something unfair &mdash; at school, in your city, in the world.</h3>
+          <p><em>A mural. A song. An installation that makes the ignored impossible to ignore.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">Build community</div>
+          <h3>Make something that can only exist because many hands made it together.</h3>
+          <p><em>Collective portrait. Patchwork. Ensemble piece.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Communicate</div>
+          <h3>Say something that cannot be said in words &mdash; to a specific audience.</h3>
+          <p><em>To your younger brother. To the school board. To children in a different country.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 SCENE · DOCUMENTATION PROJECT -->
+  <section data-label="13 Scene · documentation project" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-quilt has-image" style="background: url('/decks/images/elem-week-41-scene-quilt.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">What knowledge does your family have that is important to preserve? <em>One group documents recipes from a grandmother&rsquo;s kitchen and the stories that go with them.</em> Another documents music traditions from their community. Another, the languages they speak at home and the stories in those languages. <em>Written recipes with illustrations. Audio of grandparents telling stories. Video of cooking. Children learning to play instruments from their culture.</em> The documentation is the art. The stories are valuable. <em>It is their job to preserve them.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the archive is at home</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          What your<br/>
+          grandmother<br/>
+          knows<br/>
+          <em style="font-style: italic;">is knowledge.</em><br/>
+          <br/>
+          Your job<br/>
+          is to preserve it.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 SCENE · ART AS RESISTANCE -->
+  <section data-label="14 Scene · resistance in the hallway" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 24px 0 0;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · what do you want to change</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The guide<br/>
+          asks:<br/>
+          what is unfair?<br/>
+          <em style="font-style: italic;">What do you<br/>
+          want<br/>
+          to change?</em><br/>
+          <br/>
+          Then &mdash;<br/>
+          make something.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+      <div class="scene scene-mural has-image" style="background: url('/decks/images/elem-week-41-scene-mural.jpg') center/cover no-repeat;">
+        <div class="scene-label" style="font-size: 24px; line-height: 1.5;">A large collaborative painting on paper, posted in the school. A protest song the children perform at assembly. <em>An installation in the hallway that makes people notice something they usually ignore.</em> The children are experiencing art as power &mdash; <em>as a way to change their world.</em></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 EQUITY -->
+  <section data-label="15 Equity provocation" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · who gets to be an artist</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Teach art as decoration and leisure &mdash; <em style="font-style: italic; color: var(--gold);">and children from poor communities learn that art is a luxury. Something other people get to do.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Teach art as power, documentation, and resistance &mdash; <em>and every child becomes an artist.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Every child has a story worth documenting. <em>A voice worth amplifying. A form of resistance worth honouring.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 NEURODIVERGENCE -->
+  <section data-label="16 Neurodivergence" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · where the voice actually lives</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Art and music are often where neurodivergent children <em style="font-style: italic; color: var(--gold);">express themselves and find power.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child with autism may be unable to speak in traditional ways &mdash; <em>and create profound visual art.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        A child with ADHD may struggle with sitting still &mdash; <em>and find flow in movement and music.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 58px; line-height: 1.1; color: #fbf7ec; margin-top: 24px;">
+        The arts have<br/>
+        never been<br/>
+        decoration.<br/>
+        <em style="color: var(--gold);">They are how<br/>
+        people write<br/>
+        down<br/>
+        what writing<br/>
+        was never<br/>
+        allowed<br/>
+        to hold.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · two questions for yourself</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Sit with the first before you plan the second.</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 40px; line-height: 1.2;">
+        What art or music in your own life<br/>
+        has been a form of resistance,<br/>
+        documentation, or communication<br/>
+        <em style="font-style: italic; color: var(--gold);">for you?</em>
+      </p>
+      <p class="closing-q" style="margin-top: 28px; font-size: 40px; line-height: 1.2;">
+        How can you create space for children<br/>
+        to experience that same power<br/>
+        <em style="font-style: italic; color: var(--gold);">in your classroom?</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 41 · Elementary · The Arts as Documentation and Resistance</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 1 — The Second Plane Child</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .part-index {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.36em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .scene-second-plane {
+    background:
+      radial-gradient(ellipse 55% 55% at 40% 40%, rgba(230,210,170,0.22), transparent 72%),
+      linear-gradient(160deg, #2a3040 0%, #14171e 100%);
+  }
+  .scene-friendship {
+    background:
+      radial-gradient(ellipse 55% 55% at 60% 45%, rgba(200,180,220,0.22), transparent 72%),
+      linear-gradient(160deg, #2a2538 0%, #14111c 100%);
+  }
+  /* Two-plane comparison (same design as Primary week 40) */
+  .planes {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(214,167,88,0.35);
+    margin-top: 32px;
+  }
+  .planes > div {
+    background: #fbf7ec; padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .planes .hdr {
+    font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+  }
+  .planes h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 32px; color: var(--navy); margin: 0; line-height: 1.2;
+  }
+  .planes ul {
+    margin: 12px 0 0 0; padding: 0; list-style: none;
+    font-family: var(--font-sans); font-size: 24px; line-height: 1.55;
+    color: var(--fg-body);
+  }
+  .planes li {
+    padding: 8px 0 8px 24px; position: relative;
+    border-bottom: 1px solid rgba(20,30,60,0.08);
+  }
+  .planes li::before {
+    content: '—'; position: absolute; left: 0; color: var(--gold);
+  }
+  .planes li:last-child { border-bottom: 0; }
+  /* Misread vs. See comparison */
+  .misread {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: rgba(214,167,88,0.35); margin-top: 28px;
+  }
+  .misread > div { background: #fbf7ec; padding: 28px 32px; }
+  .misread .hdr {
+    font-family: var(--font-sans); font-size: 19px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .misread p {
+    font-family: var(--font-heading); font-size: 26px; font-style: italic;
+    color: var(--navy); line-height: 1.38; margin: 0;
+  }
+  .misread .flagged { background: #13214b; }
+  .misread .flagged .hdr { color: var(--gold); }
+  .misread .flagged p { color: #f3e9d2; }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week One · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1680px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 92px; line-height: 1.04; padding-bottom: 24px;">
+        At six, something<br/>
+        shifts. The child<br/>
+        who arrived as a<br/>
+        <em style="font-style: italic; color: var(--gold);">scientist of<br/>
+        small things</em> leaves<br/>
+        as a reasoner.
+      </h1>
+      <p class="body-lg" style="max-width: 1380px; font-size: 30px; color: rgba(255,255,255,0.78); margin-top: 16px;">
+        A questioner. A social being desperate to understand
+        not just how things work, but <em>why.</em> This
+        transition is not gradual. It is real. <em>If you
+        miss it, you will teach the wrong child.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 1 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 OPENING -->
+  <section data-label="Opening" class="on-cream">
+    <div class="eyebrow-slide">Opening · why this matters before anything else</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        You are about to step<br/>
+        into classrooms where<br/>
+        children are thinking<br/>
+        about <em style="font-style: italic; color: var(--gold);">the cosmos.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        They are asking how humans came to be. How societies
+        organize themselves. Where they belong in the universe.
+        <em>These questions do not appear out of nowhere.</em>
+        They are the natural flowering of a mind that has
+        moved from absorbent learning to reasoning, from
+        sensorial exploration to moral imagination.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        If you do not understand the architecture of that
+        shift, you will mistake intellectual hunger for
+        distraction. You will respond to their social
+        explosion with management instead of invitation. You
+        will stand in the way of the very development you
+        are meant to guide.
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 TWO MINDS -->
+  <section data-label="Two minds" class="on-cream">
+    <div class="eyebrow-slide">The core shift · two minds, one body</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 48px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The absorbent mind<br/>
+        fades gradually. <em style="font-style: italic; color: var(--gold);">The
+        reasoning mind emerges urgently.</em>
+      </h2>
+      <div class="planes">
+        <div>
+          <div class="hdr">First plane · 0–6</div>
+          <h3>The absorbent mind</h3>
+          <ul>
+            <li>Takes in the environment as a whole</li>
+            <li>Learns without effort, without reasoning</li>
+            <li>Guided by sensorial exploration</li>
+            <li>Works alone, near others</li>
+            <li>Needs a contained, prepared workspace</li>
+            <li>&ldquo;How does this work?&rdquo;</li>
+          </ul>
+        </div>
+        <div>
+          <div class="hdr">Second plane · 6–12</div>
+          <h3>The reasoning mind</h3>
+          <ul>
+            <li>Thinks about <em>why</em> things are as they are</li>
+            <li>Perceives patterns, systems, relationships</li>
+            <li>Guided by imagination and moral sense</li>
+            <li>Works in community; tribes form</li>
+            <li>Needs an environment that opens outward</li>
+            <li>&ldquo;Why is this so?&rdquo;</li>
+          </ul>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; max-width: 1500px;">
+        Nothing from Primary is wasted. The language, the
+        order, the concentration, the respect for community
+        — all of it becomes the <em>material</em> the
+        reasoning mind now works with. The transition is not
+        a fresh start. It is a continuation in a new key.
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 03B CHARACTERISTICS -->
+  <section data-label="Six characteristics" class="on-cream">
+    <div class="eyebrow-slide">Six observable characteristics of the second plane</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        What you will see in an Elementary room —
+        <em style="font-style: italic; color: var(--gold);">if you know what to look for.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px;">
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">i · reasoning</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">&ldquo;Why?&rdquo;</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Not &ldquo;how does this work&rdquo; — but <em style="color: var(--navy);">why is it so?</em></p></div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">ii · imagination</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">Deep time. Distant places.</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Held by <em style="color: var(--navy);">pictures in the mind</em>, not sensorial contact.</p></div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">iii · moral sense</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">Is this fair?</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">A hunger for <em style="color: var(--navy);">justice</em> that organizes her thinking.</p></div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">iv · social hunger</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">Tribes form.</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">The child who worked alone now wants to <em style="color: var(--navy);">work beside.</em></p></div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">v · hero worship</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">Real figures, real lives.</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Not fairies. <em style="color: var(--navy);">Scientists, explorers, activists.</em></p></div>
+        <div style="padding: 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><div style="font-family: var(--font-sans); font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;">vi · physical ease</div><h3 style="font-family: var(--font-heading); font-style: italic; font-size: 30px; color: var(--navy); margin: 0 0 8px;">A hardy body.</h3><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Less fragile than the first plane. The <em style="color: var(--navy);">steady years.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 04 THE MORAL SENSE -->
+  <section data-label="The moral sense emerges" class="on-cream">
+    <div class="eyebrow-slide">The moral sense · no longer unconscious</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The first-plane child<br/>
+        has a conscience.<br/>
+        The second-plane<br/>
+        child becomes<br/>
+        <em style="font-style: italic; color: var(--gold);">conscious of hers.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        She notices injustice. She cares about fairness in a
+        way that organizes her thinking. She forms strong
+        friendships and strong enmities. She has opinions
+        about rules — and whether those rules are <em>just.</em>
+      </p>
+      <div class="misread">
+        <div class="flagged">
+          <div class="hdr">The misread</div>
+          <p>&ldquo;She is arguing. She is disrupting. She is attention-seeking.&rdquo;</p>
+        </div>
+        <div>
+          <div class="hdr">What is actually happening</div>
+          <p>A child noticing that one group is left out of a game, that a name is missing from the curriculum, that a rule doesn&rsquo;t apply evenly — this is the moral sense at work.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 05 THE SOCIAL EXPLOSION -->
+  <section data-label="The social explosion" class="on-cream">
+    <div class="eyebrow-slide">The social explosion · community is curriculum</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The child who was<br/>
+        content to work alone<br/>
+        at four <em style="font-style: italic; color: var(--gold);">desperately
+        wants<br/>
+        to work with others</em> at
+        seven.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Alliances. Hierarchies. Friendships. Rivalries.
+        Unwritten rules. The child is now beginning to
+        understand social codes — the way groups work —
+        and that understanding is a <em>developmental
+        requirement,</em> not a distraction from one.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Excluding a child from group work. Punishing her for
+        seeking connection. Treating her friendships as
+        obstacles to concentration. <em>These are
+        fundamental misreadings of what her mind needs to
+        do.</em> Community is not optional. It is where the
+        second-plane child does her most important work.
+      </p>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 05B WHAT THE BODY IS DOING -->
+  <section data-label="The body calms" class="on-cream">
+    <div class="eyebrow-slide">The body calms · the mind extends</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14; color: var(--navy);">
+        The second plane child is<br/>
+        <em style="font-style: italic; color: var(--gold);">physically hardy.</em><br/>
+        Less fragile. Less easily ill.<br/>
+        Her energy is available for<br/>
+        the work of the mind.
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        These are sometimes called the <em>steady years.</em>
+        The fevers and tumbles of early childhood ease. The
+        dramatic swings of adolescence have not yet arrived.
+        What you have between them is <em>six clear years</em>
+        of intellectual flowering.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is the window. There is no other like it in
+        human development. Waste it, and you do not get it back.
+      </p>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 06 SCENE A -->
+  <section data-label="Scene · the child transfixed" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-second-plane has-image" style="background: url('/decks/images/elem-week-01-scene-second-plane.jpg') center/cover no-repeat;">
+        <div class="scene-label">Twenty children seated in a circle on a low rug. A guide at the center is telling the First Great Lesson — the story of the formation of the universe. The room is dim. Six-year-old girl in the front row is leaning forward so far her hands are on the floor in front of her. Her mouth is slightly open. Her eyes are fixed on the guide. Her hand is already lifting.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the first morning</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She has never heard<br/>
+          anything <em style="font-style: italic;">like this.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          How did the earth form? How long did it take? Where
+          do we fit in? Her hand is up with questions she did
+          not know she had. <em>Two weeks in, she is arguing
+          with another child about whether their rock
+          classification makes sense.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          She is extending her Primary mind into reasoning.
+          She is using what she absorbed as a <em>foundation
+          for thinking.</em> This is the second-plane child at
+          work.
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 07 SCENE B -->
+  <section data-label="Scene · the child in friendship" class="on-black">
+    <div class="compare-grid">
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide">Scene · the boy who was watching</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          In Primary he was<br/>
+          compliant, <em style="font-style: italic;">not<br/>
+          absorbed.</em> In<br/>
+          Elementary he is<br/>
+          transformed.
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: rgba(255,255,255,0.85);">
+          Suddenly he cares deeply about his place in the
+          group. He forms an intense friendship with another
+          boy. He would rather sit beside him than work alone,
+          <em>even on work he enjoys.</em>
+        </p>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          A teacher who sees only distraction will move him,
+          separate him, tell him to focus. A teacher who sees
+          the second plane will understand that he is doing
+          his most important developmental work right now —
+          <em>and use his social intensity as fuel for
+          deeper learning.</em>
+        </p>
+      </div>
+      <div class="scene scene-friendship has-image" style="background: url('/decks/images/elem-week-01-scene-friendship.jpg') center/cover no-repeat;">
+        <div class="scene-label">Two seven-year-old boys at a classroom table, heads bent together over a single piece of lined paper. One is writing; the other is pointing at a line, whispering something. Both are laughing silently. A classroom beyond them is full of quiet work. The two boys are entirely absorbed in each other and in the shared page between them. The teacher, visible in the middle ground, is not interrupting.</div>
+      </div>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 07B WHAT THE GUIDE MUST DO DIFFERENTLY -->
+  <section data-label="The guide pivots" class="on-cream">
+    <div class="eyebrow-slide">What the guide must do differently · four pivots</div>
+    <div class="stack" style="max-width: 1780px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        The Primary habits will not serve her here.
+        <em style="font-style: italic; color: var(--gold);">Everything recalibrates.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px;">
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">From demonstrating materials to <em>telling stories.</em></p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">The Great Lessons replace the three-period lesson as the main pedagogical act.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">From isolating concentration to <em>welcoming collaboration.</em></p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Tables instead of individual mats. Three children arguing over one project.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">From keeping children in the room to <em>taking them out of it.</em></p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Going Out as method, not field trip. The world is the material now.</p></div>
+        <div style="padding: 28px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);"><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 10px; line-height: 1.22;">From correcting errors gently to <em>letting argument happen.</em></p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">Two children disagreeing about a taxonomy <em style="color: var(--navy);">is</em> the lesson.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 07C WHAT YOU STOP DOING -->
+  <section data-label="What you stop doing" class="on-cream">
+    <div class="eyebrow-slide">What you must stop doing · Primary moves that harm the Elementary child</div>
+    <div class="stack gap-md" style="max-width: 1760px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Some moves that served the<br/>
+        first-plane child will now
+        <em style="font-style: italic; color: var(--gold);">shut the second-plane child down.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Separating friends who want to work together.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Treating questions about fairness as <em>disruption.</em></li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Demanding sensorial material when the child is ready for abstraction.</li>
+        </ul>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px;">
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Insisting on silence where <em>argument</em> would be better.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Correcting a drawing for accuracy when <em>imagination</em> was the work.</li>
+          <li class="body-read" style="padding-left: 40px; position: relative;"><span style="position: absolute; left: 0; color: var(--gold); font-family: var(--font-heading); font-style: italic;">&times;</span>Confusing her <em>social explosion</em> with distraction.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 08 EQUITY -->
+  <section data-label="Equity · what you are choosing against" class="on-navy">
+    <div class="eyebrow-slide">The equity provocation · what most schools choose</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14;">
+        The developmental<br/>
+        change at six is<br/>
+        universal. <em style="font-style: italic;">What
+        schools<br/>
+        do with it is not.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.85); max-width: 1540px; margin-top: 24px;">
+        In most schools, the second-plane child&rsquo;s
+        reasoning is treated as a problem to control. Her
+        moral questioning is labeled arguing. Her social
+        explosion is pathologized as inability to focus.
+        <em>The exact moment her mind is ready to reason,
+        she is told to be quiet. The exact moment she
+        becomes conscious of justice, she is taught to obey
+        without questioning.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic; max-width: 1540px; margin-top: 16px;">
+        This is not inevitable. It is a choice. Some schools
+        make it. Some don&rsquo;t. <em>You are not choosing
+        a different teaching method. You are choosing to
+        honor a development that most children never get to
+        fully experience.</em> That is not neutral. That is
+        radical.
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 08B WHAT HONORING IT LOOKS LIKE -->
+  <section data-label="What honoring it looks like" class="on-navy">
+    <div class="eyebrow-slide">What honoring the second plane actually looks like</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 48px; line-height: 1.14;">
+        Not a method. A set of<br/>
+        <em style="font-style: italic; color: var(--gold);">daily yeses.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px;">
+        <p class="body-read" style="color: rgba(255,255,255,0.88);">Yes, you can work together. Yes, that question about fairness is the real question. Yes, the argument <em>is</em> the lesson.</p>
+        <p class="body-read" style="color: rgba(255,255,255,0.88);">Yes, you may leave the room to investigate. Yes, your drawing of the early earth is thinking. Yes, we will change the rule because you have shown us it is unjust.</p>
+      </div>
+      <p class="body-read" style="color: var(--gold); font-style: italic; margin-top: 24px;">
+        This is what it looks like when a child&rsquo;s
+        development is <em>welcomed</em> rather than managed.
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 09 NEURODIVERGENCE -->
+  <section data-label="Neurodivergence note" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · the framework still holds</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 54px; line-height: 1.14; color: var(--navy);">
+        The second plane is<br/>
+        not a template that<br/>
+        <em style="font-style: italic; color: var(--gold);">fits some children<br/>
+        and not others.</em><br/>
+        It is a reality all<br/>
+        children live inside.
+      </h2>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+      <p class="body-read" style="margin-top: 28px;">
+        Some children arrive at Elementary with minds that
+        never fully absorbed the sensorial sequences Primary
+        was designed to support. Others were doing intensive
+        absorbing work the whole time, but no one noticed
+        because they were quiet and compliant. <em>All of
+        these children are second-plane children.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        They have reasoning minds. They have moral sense.
+        They have social needs. They may show these
+        differently. They may need different scaffolds. But
+        the framework remains the same.
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 09B WHAT TO LOOK FOR IN OBSERVATION -->
+  <section data-label="What to look for" class="on-cream">
+    <div class="eyebrow-slide">When you observe · six signs the second plane is alive in the room</div>
+    <div class="stack" style="max-width: 1760px; margin-top: 40px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Evidence is visible.
+        <em style="font-style: italic; color: var(--gold);">Train your eye.</em>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; margin-top: 32px;">
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">Children arguing</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">about whether a worm belongs in <em style="color: var(--navy);">this</em> category or <em style="color: var(--navy);">that</em> one.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A child at a book</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">who is <em style="color: var(--navy);">refining a picture</em> already in her mind.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A drawing-in-progress</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">of something <em style="color: var(--navy);">no one could have seen</em> &mdash; early earth, ancient city.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A child raising</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">a question of <em style="color: var(--navy);">fairness</em> about the way a rule works.</p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A tribe of three</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">huddled over one paper on the floor, <em style="color: var(--navy);">thinking together.</em></p></div>
+        <div><p style="font-family: var(--font-heading); font-style: italic; font-size: 28px; color: var(--navy); margin: 0 0 8px; line-height: 1.22;">A child coming back</p><p style="font-family: var(--font-sans); font-size: 24px; line-height: 1.42; color: var(--fg-body); margin: 0;">from Going Out with <em style="color: var(--navy);">a new question</em>, not a completed assignment.</p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 09C ONE-LINE SYNTHESIS -->
+  <section data-label="Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 72px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        The child&rsquo;s mind has<br/>
+        <em style="color: var(--gold);">changed keys.</em><br/>
+        Your job is to hear<br/>
+        the new music &mdash; and<br/>
+        <em style="color: var(--gold);">play in it.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 09D THE CAUTION -->
+  <section data-label="The caution" class="on-navy">
+    <div class="eyebrow-slide">A caution · the child who does not look second-plane</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 56px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        The quiet child. The child<br/>
+        who never argues. The child<br/>
+        who complies.
+        <em style="font-style: italic; color: var(--gold);">She is second-plane too.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Not every child externalises the social explosion,
+        the moral reasoning, the questioning. Some children
+        do all of that <em>internally</em> &mdash; or were
+        taught young that expressing it is unsafe.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The development is happening. Your job is to
+        <em>make room</em> for it to become visible.
+      </p>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 10 CLOSING -->
+  <section data-label="Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 54px;">
+        When you walk into an<br/>
+        Elementary classroom<br/>
+        for the first time to<br/>
+        observe — <em style="font-style: italic; color: var(--gold);">what will<br/>
+        you look for</em> to see<br/>
+        the second-plane<br/>
+        child at work?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 1 · Elementary · The Second Plane Child</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

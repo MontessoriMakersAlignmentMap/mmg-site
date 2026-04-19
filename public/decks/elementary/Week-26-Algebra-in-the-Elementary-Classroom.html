@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 26 — Algebra in the Elementary Classroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-algebra {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card p:last-child { margin-bottom: 0; }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .three-by {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 28px; max-width: 1820px;
+  }
+  .three-by .card {
+    padding: 26px 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .three-by .card .label {
+    font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .three-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;
+  }
+  .three-by .card p {
+    font-family: var(--font-sans); font-size: 18px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .three-by .card em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Six · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 76px; line-height: 1.06; padding-bottom: 24px;">
+        A child asks —<br/>
+        <em style="font-style: italic; color: var(--gold);">&ldquo;What if I do not<br/>
+        know how many<br/>
+        tens there are —<br/>
+        but I know the total,<br/>
+        and I know the units?&rdquo;</em><br/>
+        <br/>
+        That child is<br/>
+        doing algebra.
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        She has not written a letter. She has not seen a variable. <em>But she is thinking about unknowns, relationships, and structures that hold even when the numbers change.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 26 · Elementary · Month 7</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        The conventional answer: algebra belongs in middle school. <em style="font-style: italic; color: var(--gold);">This answer is mathematically wrong and pedagogically damaging.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Algebra is not a formal system of notation. <em>Algebra is a way of thinking about relationships and structures.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        In a Montessori classroom, this thinking develops naturally through the materials <em>— if we know what to look for.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 WHAT ALGEBRAIC THINKING IS -->
+  <section data-label="03 What it is" class="on-cream">
+    <div class="eyebrow-slide">Three forms of algebraic thinking in elementary</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Seeing structure. <em style="font-style: italic; color: var(--gold);">Relationships that hold regardless of the specific numbers.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <div class="label">01 · Pattern → generalisation</div>
+          <h3>&ldquo;Whenever you multiply by ten, it works this way.&rdquo;</h3>
+          <p>A claim that goes beyond the specific cases tested. <em>True for all cases, not just seen ones.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">02 · Working with unknowns</div>
+          <h3>&ldquo;I know the total. I know one part. I can find the other.&rdquo;</h3>
+          <p>Logical deduction based on relationships. <em>This is what algebra is.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">03 · Functional relationships</div>
+          <h3>&ldquo;When the length changes, the area changes predictably.&rdquo;</h3>
+          <p>They might not use the word <em>function</em>. <em>They are discovering it anyway.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 MATERIALS CONTAIN ALGEBRA -->
+  <section data-label="04 Materials contain algebra" class="on-cream">
+    <div class="eyebrow-slide">The materials already contain algebraic structures</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Most guides never name this. <em style="font-style: italic; color: var(--gold);">Slow down and ask — and children begin to see what is already in their hands.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <div class="label">Checkerboard</div>
+          <h3>A number can be decomposed into tens and units in infinite ways — total unchanged.</h3>
+          <p><em>The concrete reality of which algebra is the abstract representation.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Flat bead frame</div>
+          <h3>You can reorganise quantities while keeping the total the same.</h3>
+          <p><em>A principle that holds in every addition problem they will ever do.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">Bead bars</div>
+          <h3>&ldquo;What would the seventh bar look like?&rdquo;</h3>
+          <p>Seven beads. <em>The number of beads equals the position of the bar. Always.</em></p>
+        </div>
+      </div>
+      <div class="two-by" style="margin-top: 20px;">
+        <div class="card">
+          <div class="label">Constructive triangles</div>
+          <h3>Two right triangles this way, always a rectangle.</h3>
+          <p>Thinking algebraically about <em>structure and constraint.</em></p>
+        </div>
+        <div class="card" style="background: rgba(214,167,88,0.12); border-color: rgba(214,167,88,0.5);">
+          <div class="label">The principle</div>
+          <h3>The materials already contain algebra.</h3>
+          <p><em>The child just needs the question that makes the structure visible.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 CONCRETE TO ABSTRACT -->
+  <section data-label="05 Concrete to abstract" class="on-navy">
+    <div class="eyebrow-slide">The journey does not skip the concrete</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Extend it. Deepen it. <em style="font-style: italic; color: var(--gold);">Then gradually remove the physical support — while keeping the thinking intact.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Slow down. Draw attention to the patterns inside their concrete work. <em>Ask them to predict without building.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The material gradually disappears from necessity <em>without disappearing from memory.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SCENE · THE SEVENTEEN BEADS -->
+  <section data-label="06 Scene · seventeen beads" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-algebra has-image" style="background: url('/decks/images/elem-week-26-scene-algebra.jpg') center/cover no-repeat;">
+        <div class="scene-label">A child has lived inside the golden beads for months. <em>&ldquo;I am thinking of a number. It has some tens and some units. When I put all the beads together to show it, I have seventeen beads total. What could the number be?&rdquo;</em> She tries one ten and six units — only sixteen. One ten and seven units — seventeen. She has worked with an unknown. She was given a constraint. She tested possibilities against the constraint. <em>This is algebraic thinking with concrete support.</em> Weeks later: same question, no beads. She can visualise them. The support is available in her mind.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · an unknown, in her hands</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Given a constraint.<br/>
+          Tested possibilities<br/>
+          against it.<br/>
+          <em style="font-style: italic;">That is algebra.</em><br/>
+          <br/>
+          The letter comes<br/>
+          later.<br/>
+          <em style="font-style: italic;">The thinking is<br/>
+          already here.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE · THE DOUBLED UNITS -->
+  <section data-label="07 Scene · doubled units" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-algebra has-image" style="background: url('/decks/images/elem-week-26-scene-algebra.jpg') center/cover no-repeat;">
+        <div class="scene-label">Second year elementary. Multiplication board. Guide sits beside her. <em>&ldquo;What would happen if you kept your tens row the same, but doubled every number in your units row? Would the products change?&rdquo;</em> The guide is not asking her to follow a procedure. She is asking her to reason about structure. The child thinks. <em>&ldquo;If the units row is doubled, the products would be doubled.&rdquo;</em> — <em>&ldquo;Why?&rdquo;</em> — <em>&ldquo;Because every product uses the units row number. If that is twice as big, the product is twice as big.&rdquo;</em> The guide writes it down: <em>if we double the units, the product doubles.</em> The child sees her thinking written down.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · structure made visible</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She has stated<br/>
+          something true<br/>
+          <em style="font-style: italic;">for any numbers —<br/>
+          not just the ones<br/>
+          on her board.</em><br/>
+          <br/>
+          Algebra is not<br/>
+          a future skill.<br/>
+          <em style="font-style: italic;">It is what she is<br/>
+          already doing.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 LANGUAGE BEFORE NOTATION -->
+  <section data-label="08 Language before notation" class="on-cream">
+    <div class="eyebrow-slide">Build thinking first · notation later</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Introduce letters late in elementary — <em style="font-style: italic; color: var(--gold);">if at all.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">When notation arrives well</div>
+          <h3>From the child&rsquo;s own language and need.</h3>
+          <p>&ldquo;I cannot count them all.&rdquo; &mdash; &ldquo;What if we used a letter to stand for the length we do not know?&rdquo; <em>Translating thinking that is already there.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">When notation arrives badly</div>
+          <h3>A new procedure to follow. Rules about manipulating letters.</h3>
+          <p>Empty of meaning. <em>The letter becomes a game piece — instead of a representation of something real.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 28px; color: var(--navy); font-style: italic;">
+        Children who develop strong algebraic thinking through materials first, then learn notation, <em>learn the notation faster and understand it more deeply.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 EQUITY PROVOCATION -->
+  <section data-label="09 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · who gets to think algebraically</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Algebraic thinking has been reserved for honours tracks. <em style="font-style: italic; color: var(--gold);">It is presented as something only certain minds can do. This is false.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Children from families with mathematical literacy are invited to think algebraically from babyhood. <em>&ldquo;Eight apples per pie — we&rsquo;re making three.&rdquo;</em> That is algebra.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Children without this background do not have the informal experiences. <em>If we delay algebra until it is formal and disconnected — some children never develop the capacity.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        All children deserve to think algebraically. <em>Build this thinking early — through materials — with guides who know what to listen for.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 NEURODIVERGENCE -->
+  <section data-label="10 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · some children see the patterns first</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Children with pattern-recognition strengths, who think visually and spatially, <em style="font-style: italic; color: var(--gold);">often excel at algebraic thinking once they see the patterns in concrete materials.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The move from concrete algebra to formal algebraic notation can be difficult for them. <em>The underlying thinking comes naturally.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Do not mistake their struggle with notation <em>for an inability to reason.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 THE EQUAL SIGN -->
+  <section data-label="11 The equal sign" class="on-cream">
+    <div class="eyebrow-slide">The equal sign · the most misunderstood symbol</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Most children think = means <em style="font-style: italic; color: var(--gold);">&ldquo;the answer goes here.&rdquo;</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Ask them to solve &nbsp;8 + 4 = __ + 5&nbsp; and watch the confusion. Many will write 12. Some will write 17. Very few read the sign as balance.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This misreading closes the door to algebra later. Every equation they meet will feel like a directive, not a relationship.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Fix it early. Say the word &ldquo;balance.&rdquo; Use a scale. Put the answer on the left sometimes. Let = mean what it means.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 FUNCTIONAL THINKING -->
+  <section data-label="12 Functional thinking" class="on-navy">
+    <div class="eyebrow-slide">Functional thinking · what happens to one thing when another moves</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14;">
+        Before letters — <em style="font-style: italic; color: var(--gold);">relationships.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">In the classroom</div>
+          <h3 style="color: #fbf7ec;">&ldquo;If I add one more child, how many crackers do we need?&rdquo;</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">In the botany corner</div>
+          <h3 style="color: #fbf7ec;">&ldquo;Each week the bean grows two centimetres. Where will it be in four weeks?&rdquo;</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">In the story</div>
+          <h3 style="color: #fbf7ec;">&ldquo;The ship carried twice as many as the next one down. How many on the sixth?&rdquo;</h3>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(214,167,88,0.5);">
+          <div class="label">The shift</div>
+          <h3 style="color: #fbf7ec;">They stop asking &ldquo;what is the answer?&rdquo; and start asking &ldquo;what is the rule?&rdquo;</h3>
+          <p style="color: var(--gold); font-style: italic;"><em>That is algebra.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 UNKNOWN VS VARYING -->
+  <section data-label="13 Unknown vs varying" class="on-cream">
+    <div class="eyebrow-slide">Two faces of the letter · unknown, and varying</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        x is not one thing. <em style="font-style: italic; color: var(--gold);">It is two.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Sometimes x is a number we do not yet know — the unknown. &ldquo;x + 4 = 11.&rdquo; There is one answer.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Sometimes x is a number that can be anything — the variable. &ldquo;The perimeter of a square is 4x.&rdquo; Any x works.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Children who conflate these two meanings stall in middle school. Name the difference now, in plain words.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 NAMING THE MOVE -->
+  <section data-label="14 Naming the move" class="on-navy">
+    <div class="eyebrow-slide">Naming the move · so they know they are doing it</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        When a child notices, <em style="font-style: italic; color: var(--gold);">say the word.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        &ldquo;You just generalised.&rdquo; &ldquo;That is a conjecture.&rdquo; &ldquo;You found a rule.&rdquo; &ldquo;You proved it.&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Small vocabulary. Huge effect. The child now has a name for a kind of thinking they did.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Later, when someone tells them algebra is hard, their body will remember — I have been doing this since I was eight.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 A SCENE — THE CONJECTURE -->
+  <section data-label="15 Scene · the conjecture" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-algebra has-image" style="background: url('/decks/images/elem-week-26-scene-algebra.jpg') center/cover no-repeat;">
+        <div class="scene-label">Two children at the peg board. One lines up odd numbers — 1, 3, 5, 7. The other says, &ldquo;when you add two odds, you always get an even.&rdquo; The first pauses. &ldquo;Always?&rdquo; They check. 3 + 5 = 8. 7 + 9 = 16. &ldquo;Always.&rdquo; <em>But why?</em> They arrange the pegs in pairs. Two odds, each with one left over. The two leftovers meet. A pair. The child looks up. They have just understood a proof. You were ten feet away. You did not say anything.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · what proving looks like at nine</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          Conjecture.<br/>
+          Check.<br/>
+          <em style="font-style: italic;">Then the why.<br/>
+          <br/>
+          That sequence<br/>
+          is the heart<br/>
+          of mathematical<br/>
+          thinking —<br/>
+          at any age.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          And you did not interrupt it. <em>That is the hardest part.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 YOUR OWN ALGEBRA STORY -->
+  <section data-label="16 Your algebra story" class="on-cream">
+    <div class="eyebrow-slide">Your own algebra history · in the room with you</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Many of you were told, at thirteen, <em style="font-style: italic; color: var(--gold);">that you were not a math person.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Algebra was the year the ground gave way. You memorised steps without seeing structure. You passed, or you did not.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        That belief is still in your body. It leaks into the room when a child asks a question you cannot immediately answer.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Work on this outside the classroom. Go back. Sit with a friend and the bead bars. Heal it. The children cannot afford to inherit it from you.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 58px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        The letters are not<br/>
+        the algebra.<br/>
+        <em style="color: var(--gold);">The seeing of<br/>
+        structure is.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · a listening question for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Listen for this</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 46px;">
+        When you watch<br/>
+        a child discover<br/>
+        a pattern, or notice<br/>
+        something that works<br/>
+        the same way<br/>
+        across problems —<br/>
+        <br/>
+        do you name<br/>
+        that discovery<br/>
+        as <em style="font-style: italic; color: var(--gold);">mathematical<br/>
+        thinking —<br/>
+        as algebraic<br/>
+        reasoning?</em><br/>
+        <br/>
+        Or do you move<br/>
+        the child to the<br/>
+        next activity?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 26 · Elementary · Algebra in the Elementary Classroom</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

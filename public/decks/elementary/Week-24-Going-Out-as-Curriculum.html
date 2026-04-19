@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 24 — Going Out as Curriculum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-street {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 45%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .phase-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; margin-top: 32px; max-width: 1820px;
+  }
+  .phase-grid .col {
+    background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+    padding: 28px 28px;
+    display: flex; flex-direction: column;
+  }
+  .phase-grid .col.accent { background: #1a1006; border-color: rgba(214,167,88,0.4); }
+  .phase-grid .col .label {
+    font-family: var(--font-sans); font-size: 15px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .phase-grid .col h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; color: var(--navy); margin: 0 0 14px; line-height: 1.18;
+  }
+  .phase-grid .col.accent h3 { color: #fbf7ec; }
+  .phase-grid .col ul {
+    font-family: var(--font-sans); font-size: 19px; line-height: 1.5;
+    color: var(--fg-body); margin: 0; padding: 0; list-style: none;
+  }
+  .phase-grid .col.accent ul { color: rgba(255,255,255,0.85); }
+  .phase-grid .col li {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(20,30,60,0.1);
+  }
+  .phase-grid .col.accent li { border-color: rgba(255,255,255,0.12); }
+  .phase-grid .col li:last-child { border-bottom: none; }
+  .phase-grid .col em { font-style: italic; color: var(--navy); }
+  .phase-grid .col.accent em { color: var(--gold); }
+
+  .three-by {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 28px; max-width: 1820px;
+  }
+  .three-by .card {
+    padding: 26px 26px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .three-by .card .label {
+    font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .three-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 0 0 12px; line-height: 1.22;
+  }
+  .three-by .card p {
+    font-family: var(--font-sans); font-size: 18px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .three-by .card em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Twenty-Four · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 78px; line-height: 1.06; padding-bottom: 24px;">
+        Going Out is<br/>
+        not a field trip.<br/>
+        <em style="font-style: italic; color: var(--gold);">It is the moment<br/>
+        the classroom opens<br/>
+        to the real world —<br/>
+        and children become<br/>
+        researchers.</em>
+      </h1>
+      <p class="body-lg" style="max-width: 1440px; font-size: 28px; line-height: 1.55; color: rgba(255,255,255,0.78); margin-top: 32px;">
+        Gathering evidence. Answering their own questions. <em>About how the world actually works.</em>
+      </p>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 24 · Elementary</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        The second plane is the age of <em style="font-style: italic; color: var(--gold);">community consciousness.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Around six or seven, children become aware of the wider world beyond family and classroom. <em>How society works. How communities function. What roles different people have.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Going Out is how you feed this interest. <em>How you move curriculum from the classroom into the real world.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 NOT A FIELD TRIP -->
+  <section data-label="03 Not a field trip" class="on-navy">
+    <div class="eyebrow-slide">The distinction · not a field trip</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        A field trip is teacher-led. <em style="font-style: italic; color: var(--gold);">Going Out is student-led — with the guide supporting before and after.</em>
+      </h2>
+      <div class="three-by" style="margin-top: 40px;">
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">Field trip</div>
+          <h3 style="color: #fbf7ec;">Teacher drives. Whole class. One agenda.</h3>
+          <p style="color: rgba(255,255,255,0.82);">Transportation and observation. <em style="color: var(--gold);">A break from curriculum.</em></p>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14);">
+          <div class="label">Going Out</div>
+          <h3 style="color: #fbf7ec;">Children drive. Small groups. A research question.</h3>
+          <p style="color: rgba(255,255,255,0.82);">Real investigation. <em style="color: var(--gold);">Extension of curriculum.</em></p>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(214,167,88,0.4);">
+          <div class="label">The principle</div>
+          <h3 style="color: #fbf7ec;">Deliberate research. Not arbitrary tourism.</h3>
+          <p style="color: rgba(255,255,255,0.82);">The destination connects to what is being studied. <em style="color: var(--gold);">Every outing has a question.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE THREE PHASES -->
+  <section data-label="04 Three phases" class="on-cream">
+    <div class="eyebrow-slide">Where the guide works · before, during, after</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        The guide&rsquo;s job is preparation and follow-up — <em style="font-style: italic; color: var(--gold);">not management during.</em>
+      </h2>
+      <div class="phase-grid">
+        <div class="col">
+          <div class="label">01 · Before</div>
+          <h3>Prepare everything.</h3>
+          <ul>
+            <li>Choose a destination that connects to the study</li>
+            <li>Set the research question</li>
+            <li>Practice interviewing, sketching, observing</li>
+            <li>Teach the scenarios — what if I get lost?</li>
+            <li>Reach out to the business or site. Get permission.</li>
+            <li><em>Equip children with tools and trust.</em></li>
+          </ul>
+        </div>
+        <div class="col accent">
+          <div class="label">02 · During</div>
+          <h3>You are not with them.</h3>
+          <ul>
+            <li>Stay at school · or</li>
+            <li>Neutral check-in spot nearby · or</li>
+            <li>Parallel Going Out at the same site</li>
+            <li><em>The children are leading the research.</em></li>
+            <li><em>You are supporting from the background.</em></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="label">03 · After</div>
+          <h3>Now the guide&rsquo;s work becomes intense.</h3>
+          <ul>
+            <li>&ldquo;What did you find out?&rdquo;</li>
+            <li>&ldquo;What surprised you?&rdquo;</li>
+            <li>&ldquo;How does this connect to what we have been studying?&rdquo;</li>
+            <li>&ldquo;What do you want to know more about?&rdquo;</li>
+            <li><em>Help them move from raw observation to understanding.</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 PREPARING FOR INDEPENDENCE -->
+  <section data-label="05 Preparing for independence" class="on-cream">
+    <div class="eyebrow-slide">Preparing children for independent community research</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Four things they need before you release them.
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <div class="label">01 · Know the neighborhood</div>
+          <h3>Major streets. Landmarks. How to cross safely.</h3>
+          <p>Built across the year. <em>Not in a single Going Out.</em></p>
+        </div>
+        <div class="card">
+          <div class="label">02 · Know the question</div>
+          <h3>Not &ldquo;go look at things.&rdquo;</h3>
+          <p><em>How is the library organised? What animals live in the park? What do people do to help the community?</em></p>
+        </div>
+        <div class="card">
+          <div class="label">03 · Prepare for the specific</div>
+          <h3>Practice the thing they will do.</h3>
+          <p>How to ask and listen. How to move near an animal. <em>What details matter in the sketch.</em></p>
+        </div>
+      </div>
+      <div class="three-by" style="margin-top: 20px; grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <div class="label">04 · A way to record</div>
+          <h3>Notebook. Map. Checklist. Camera.</h3>
+          <p>The tool depends on the research. <em>What matters is that findings can be captured.</em></p>
+        </div>
+        <div class="card" style="background: rgba(214,167,88,0.12); border-color: rgba(214,167,88,0.5);">
+          <div class="label">The scary part</div>
+          <h3>You are releasing children into the world.</h3>
+          <p>You have prepared them. Equipped them. Given them a meaningful question. <em>And you trust them.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 SCENE — OPENING A DOOR -->
+  <section data-label="06 Scene · opening a door" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-street has-image" style="background: url('/decks/images/elem-week-24-scene-street.jpg') center/cover no-repeat;">
+        <div class="scene-label">The class studies community helpers. Teacher-led Going Out to the local fire station. Firefighters talk. Children see the trucks. They ask questions. Back at school: <em>&ldquo;how do firefighters help the community?&rdquo;</em> Then — children choose next steps. One wants to sketch the truck and plans a follow-up Going Out. Another wants to interview a firefighter&rsquo;s family member about what it is like to have a parent in that job. A third decides to research fire safety and walks the school checking exits. <em>The initial Going Out opened a door. The children are now leading their own research.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the door opens</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          One Going Out<br/>
+          becomes<br/>
+          <em style="font-style: italic;">three investigations.</em><br/>
+          <br/>
+          The classroom<br/>
+          is no longer<br/>
+          the container.<br/>
+          <em style="font-style: italic;">The neighborhood<br/>
+          is.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE — THE STREAM -->
+  <section data-label="07 Scene · following the stream" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-street has-image" style="background: url('/decks/images/elem-week-24-scene-street.jpg') center/cover no-repeat;">
+        <div class="scene-label">A class studying water. Guide takes them to a nearby stream. <em>Is the water moving? What lives here? Clean or dirty?</em> They sketch. Collect samples for the microscope back at school. Back in classroom: <em>where does this water go? Where does it come from?</em> A small group becomes fascinated and wants to follow the stream upstream. The guide gives permission for a carefully planned independent Going Out. They trace the stream. Find a spring. Come back amazed.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · the spring</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          They find<br/>
+          a spring.<br/>
+          <em style="font-style: italic;">Their understanding<br/>
+          of their<br/>
+          neighbourhood&rsquo;s<br/>
+          water system<br/>
+          is completely<br/>
+          transformed.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 AFTER — DOCUMENTATION -->
+  <section data-label="08 Documentation" class="on-cream">
+    <div class="eyebrow-slide">After · help them translate experience into knowledge</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14; color: var(--navy);">
+        Children come back with <em style="font-style: italic; color: var(--gold);">information, observations, questions.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Facilitate the processing. Presentations. Books. Posters. Writing. <em>Translation of experience into something that can be shared.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        This is how a Going Out becomes <em>part of what the classroom knows.</em> Otherwise it dissipates.
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 EQUITY PROVOCATION -->
+  <section data-label="09 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · Going Out is not equal</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        A child in an affluent neighborhood has more options than a child in a neighborhood <em style="font-style: italic; color: var(--gold);">without those resources.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        A child whose family knows shopkeepers is more comfortable approaching adults than a child whose family is marginalised by the community they live in. A child whose home language is English will interview more easily than a child learning English.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Create Going Outs that honour <em>the neighborhood the children actually live in — not the one you wish they lived in.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Teach children to move through their neighborhood <em>with pride, not shame.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 RELATIONSHIP WORK -->
+  <section data-label="10 Relationships" class="on-navy">
+    <div class="eyebrow-slide">This requires work beyond the classroom</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Build relationships between your school and your community.
+        <em style="font-style: italic; color: var(--gold);">So community members see the children as valued researchers — not as problems.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        The baker. The librarian. The mechanic. The city worker. <em>You are building a network of adults who will welcome children with questions.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        That is not incidental to the work. <em>That is the work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 NEURODIVERGENCE -->
+  <section data-label="11 Neurodivergence" class="on-cream">
+    <div class="eyebrow-slide">Neurodivergence note · some children will soar, some will shrink</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        All of this is data <em style="font-style: italic; color: var(--gold);">about how that child learns best.</em>
+      </h2>
+      <div class="three-by">
+        <div class="card">
+          <h3>The anxious child.</h3>
+          <p>Shorter. More structured. With a trusted peer. <em>Start small.</em></p>
+        </div>
+        <div class="card">
+          <h3>The child who needs predictability.</h3>
+          <p>Clear start and end points. Advance warning of transitions. <em>A script in their pocket.</em></p>
+        </div>
+        <div class="card">
+          <h3>The one who soars.</h3>
+          <p>Some children will thrive in the chaos and freedom of Going Out <em>in ways they never do in the classroom.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 LOGISTICS -->
+  <section data-label="12 Logistics" class="on-cream">
+    <div class="eyebrow-slide">The unglamorous layer · logistics that make the work possible</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Independence rests on <em style="font-style: italic; color: var(--gold);">infrastructure you have built.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Permission</div>
+          <h3 style="color: var(--navy);">Blanket family consent at the start of the year, not a signed slip every Tuesday.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Communication</div>
+          <h3 style="color: var(--navy);">A shared phone, a notebook at the front desk, a known time of return.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Money</div>
+          <h3 style="color: var(--navy);">A small fund they can draw from — bus fare, an admission, a photocopy at the library.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">Rehearsal</div>
+          <h3 style="color: var(--navy);">They have practiced the phone call, the request, the transaction — before the real one.</h3>
+          <p><em style="color: var(--gold);">Freedom rides on preparation. Not on luck.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 WHEN IT FAILS -->
+  <section data-label="13 When it fails" class="on-navy">
+    <div class="eyebrow-slide">When a Going Out does not work · what that means</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        A Going Out that fails <em style="font-style: italic; color: var(--gold);">is still a Going Out.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        They got lost. They missed the curator. They argued the whole way there. They came back without the answer.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        The work is in what they do with that — not in protecting them from it.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>&ldquo;What will you try differently next time?&rdquo; is the only question that matters.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 THE GUIDE'S FEAR -->
+  <section data-label="14 The guide&rsquo;s fear" class="on-cream">
+    <div class="eyebrow-slide">Your fear · is the obstacle, not the safeguard</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Most Going Outs do not happen <em style="font-style: italic; color: var(--gold);">because the guide was afraid.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Afraid something would go wrong. Afraid a parent would complain. Afraid the child was not ready — when really, you were not.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Name the fear. Say it aloud to a colleague. Do not let it quietly become policy.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>Your anxiety is not the same as a child&rsquo;s unreadiness.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 SCENE — THE RETURN -->
+  <section data-label="15 Scene · the return" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-street has-image" style="background: url('/decks/images/elem-week-24-scene-street.jpg') center/cover no-repeat;">
+        <div class="scene-label">Late afternoon. The door opens. Three children come back flushed, talking over each other. One is holding a folded timetable, another a leaflet from the museum, the third has a small bag of something they bought. They spread it all on a table. The other children drift over. A conversation begins that you did not plan. <em>This is the lesson.</em> Not the paper they will write tomorrow. This.</div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · after</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          The lesson<br/>
+          is not the trip.<br/>
+          <em style="font-style: italic;">The lesson is<br/>
+          the return —<br/>
+          <br/>
+          what the group<br/>
+          learns<br/>
+          from the three<br/>
+          who went.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+        <p class="body-read" style="color: var(--gold); font-style: italic;">
+          Going Out feeds the whole classroom. <em>Never only the ones who went.</em>
+        </p>
+      </div>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 ACCESS AND FUNDING -->
+  <section data-label="16 Access and funding" class="on-navy">
+    <div class="eyebrow-slide">Who pays · so that every child can go</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        If a child cannot go because of five dollars, <em style="font-style: italic; color: var(--gold);">the school has failed them.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Transport. Admissions. A sandwich because they forgot one. These are not extras. These are the curriculum.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Build a Going Out fund. Make it invisible to the child. Never let them feel the shape of the absence.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>A child noticing they could not afford to go — learns something you do not want them to learn.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 60px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Prepare. Equip.<br/>
+        Give them a<br/>
+        meaningful question.<br/>
+        <em style="color: var(--gold);">Then trust them<br/>
+        with the world.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · three questions for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Take this into the week</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        What were you<br/>
+        allowed to explore<br/>
+        <em style="font-style: italic; color: var(--gold);">in your neighborhood<br/>
+        as a child?</em><br/>
+        <br/>
+        What did you<br/>
+        learn about<br/>
+        the world because<br/>
+        you were trusted<br/>
+        to move through it?<br/>
+        <br/>
+        What would you<br/>
+        have learned<br/>
+        differently if<br/>
+        you had been<br/>
+        kept in a classroom?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 24 · Elementary · Going Out as Curriculum</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

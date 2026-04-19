@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elementary Week 31 — Solid Geometry and Three-Dimensional Thinking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="deck.css?v=4" />
+<style>
+  .scene-solid {
+    background:
+      radial-gradient(ellipse 55% 50% at 38% 42%, rgba(214,167,88,0.22), transparent 70%),
+      linear-gradient(165deg, #1a140a 0%, #07060a 100%);
+  }
+  .two-by {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    margin-top: 32px; max-width: 1760px;
+  }
+  .two-by .card {
+    padding: 30px 32px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.18);
+  }
+  .two-by .card.dark { background: #12182a; border-color: rgba(214,167,88,0.35); }
+  .two-by .card .label {
+    font-family: var(--font-sans); font-size: 16px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .two-by .card h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 28px; line-height: 1.2; margin: 0 0 14px; color: var(--navy);
+  }
+  .two-by .card.dark h3 { color: #fbf7ec; }
+  .two-by .card p {
+    font-family: var(--font-sans); font-size: 20px; line-height: 1.5;
+    color: var(--fg-body); margin: 0 0 10px;
+  }
+  .two-by .card.dark p { color: rgba(255,255,255,0.85); }
+  .two-by .card em { font-style: italic; color: var(--navy); }
+  .two-by .card.dark em { color: var(--gold); }
+
+  .grid3 {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 28px; max-width: 1820px;
+  }
+  .grid3 .it {
+    padding: 22px 22px; background: #fbf7ec; border: 1px solid rgba(20,30,60,0.15);
+  }
+  .grid3 .it .num {
+    font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .grid3 .it h3 {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 22px; color: var(--navy); margin: 8px 0 10px; line-height: 1.22;
+  }
+  .grid3 .it p {
+    font-family: var(--font-sans); font-size: 17px; line-height: 1.45;
+    color: var(--fg-body); margin: 0;
+  }
+  .grid3 .it em { font-style: italic; color: var(--navy); }
+</style>
+</head>
+<body>
+<script src="deck-stage.js"></script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 TITLE -->
+  <section data-label="01 Title" class="on-navy">
+    <div class="eyebrow-slide">Residency · Week Thirty-One · Elementary</div>
+    <div class="stack gap-lg mt-auto" style="max-width: 1720px; margin-bottom: 180px;">
+      <div class="title-slide-rule"></div>
+      <h1 class="display" style="font-size: 78px; line-height: 1.06; padding-bottom: 24px;">
+        She turns<br/>
+        a cube frame<br/>
+        in her hands,<br/>
+        closes her eyes —<br/>
+        and can still see<br/>
+        how it rotates<br/>
+        through space.<br/>
+        <em style="font-style: italic; color: var(--gold);">That is<br/>
+        spatial reasoning.<br/>
+        That is the work of<br/>
+        solid geometry.</em>
+      </h1>
+    </div>
+    <div class="slide-meta">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Montessori Makers Residency</span>
+      <span class="dot"></span>
+      <span>Week 31 · Elementary · Month 8</span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section data-label="02 Why now" class="on-cream">
+    <div class="eyebrow-slide">Why this matters right now</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Solid geometry is not just an extension of plane geometry. <em style="font-style: italic; color: var(--gold);">It requires different thinking.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Volume is not a bigger version of area. Three-dimensional space involves coordinate systems and perspective <em>that engage spatial reasoning in new ways.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        A child with strong spatial reasoning in elementary is better positioned for mathematics, science, and engineering. <em>Spatial reasoning is also equity work — certain groups have been encouraged to think spatially, and others have not.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">02</div>
+  </section>
+
+  <!-- 03 BUILD THE FORMULA -->
+  <section data-label="03 Building the formula" class="on-cream">
+    <div class="eyebrow-slide">Volume is not abstract · she builds it</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        A rectangular prism — three, four, five — <em style="font-style: italic; color: var(--gold);">holds sixty unit cubes.</em>
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">The experience</div>
+          <h3>She fills the prism with unit cubes. Counts. Sixty.</h3>
+          <p>Then builds a different one. Different count. <em>A pattern emerges.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">The generalisation</div>
+          <h3>Three times four times five.</h3>
+          <p>The formula is not a rule to memorise. <em>It is a generalisation of something she has experienced.</em></p>
+        </div>
+      </div>
+      <p class="body-read" style="margin-top: 24px; color: var(--navy); font-style: italic;">
+        The child builds the concept <em>before encountering the abstraction.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">03</div>
+  </section>
+
+  <!-- 04 THE MATERIALS -->
+  <section data-label="04 Materials" class="on-cream">
+    <div class="eyebrow-slide">Classification emerges from structure — not arbitrary rules</div>
+    <div class="stack" style="max-width: 1880px; margin-top: 14px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        She holds a cube frame. <em style="font-style: italic; color: var(--gold);">Feels the structure.</em>
+      </h2>
+      <div class="grid3">
+        <div class="it"><span class="num">01 · Count</span><h3>Twelve edges. Eight vertices. Six faces.</h3><p><em>Felt before named.</em></p></div>
+        <div class="it"><span class="num">02 · Compare</span><h3>Are all the edges the same length? All faces the same shape?</h3><p>Cube — yes. <em>Rectangular prism — no.</em></p></div>
+        <div class="it"><span class="num">03 · Classify</span><h3>Some polyhedra have triangular faces. Some rectangular. Some mixed.</h3><p>The categories <em>emerge from manipulation, not from a textbook.</em></p></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">04</div>
+  </section>
+
+  <!-- 05 TRANSFER -->
+  <section data-label="05 Transfer" class="on-navy">
+    <div class="eyebrow-slide">Transfer of understanding · 2D to 3D</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        A face of a three-dimensional shape <em style="font-style: italic; color: var(--gold);">is a two-dimensional shape.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        If she knows the area of a square — <em>she can find the surface area of a cube.</em> Area of each face, added together.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        She does not need to be told the formula. <em>She derives it from what she already knows. This is the marker of deep conceptual knowledge.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">05</div>
+  </section>
+
+  <!-- 06 NETS -->
+  <section data-label="06 Nets" class="on-cream">
+    <div class="eyebrow-slide">Nets · the bridge between flat and solid</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 32px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Unfold a cube. <em style="font-style: italic; color: var(--gold);">You have a net.</em> Fold the net. You have a cube.
+      </h2>
+      <div class="two-by">
+        <div class="card">
+          <div class="label">What she is doing</div>
+          <h3>Folding and unfolding patterns — discovering which work and which do not.</h3>
+          <p>Not all patterns fold into valid nets. <em>Some sides will not align.</em></p>
+        </div>
+        <div class="card dark">
+          <div class="label">What she is developing</div>
+          <h3>The spatial thinking that matters later for coordinate systems.</h3>
+          <p><em>She understands that space has structure.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">06</div>
+  </section>
+
+  <!-- 07 SCENE · PREDICTING SIXTY -->
+  <section data-label="07 Scene · predicting sixty" class="on-black">
+    <div class="compare-grid">
+      <div class="scene scene-solid has-image" style="background: url('/decks/images/elem-week-31-scene-solid.jpg') center/cover no-repeat;">
+        <div class="scene-label">She has built a rectangular prism — two, three, four. Twenty-four unit cubes. You ask: <em>&ldquo;How many cubes fit in a prism three, four, five?&rdquo;</em> She closes her eyes. Visualising. You can see her thinking. Eyes open. <em>&ldquo;Sixty?&rdquo;</em> — <em>&ldquo;How did you figure that out?&rdquo;</em> — <em>&ldquo;I can see it in my head. If I make it one more on this side, it gets bigger.&rdquo;</em> She builds it to check. Sixty cubes. She calculated three times four times five. <em>She understands the formula because she has built the relationship — and because she can see three-dimensional space in her mind.</em></div>
+      </div>
+      <div class="stack gap-md" style="padding: 8px 0 0 24px;">
+        <div class="eyebrow-slide" style="color: var(--gold);">Scene · she did not need to be taught</div>
+        <h2 class="display" style="font-size: 40px; line-height: 1.14; margin-top: 8px;">
+          She discovered.<br/>
+          She applied.<br/>
+          She verified.<br/>
+          <em style="font-style: italic;">That is<br/>
+          mathematical<br/>
+          thinking.</em>
+        </h2>
+        <div class="rule-gold" style="margin: 20px 0;"></div>
+      </div>
+    </div>
+    <div class="slide-pagenum">07</div>
+  </section>
+
+  <!-- 08 SPATIAL REASONING -->
+  <section data-label="08 Spatial reasoning" class="on-cream">
+    <div class="eyebrow-slide">Spatial reasoning · as important as computation, perhaps more</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Can she visualise a shape from a different angle? <em style="font-style: italic; color: var(--gold);">Predict what would happen if she rotated it? Understand how pieces fit into a whole?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Fundamental to mathematics, science, architecture, engineering, the visual arts. <em>Often under-developed in schools — because we prioritise symbolic computation over spatial thinking.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        In Montessori it develops through materials, through manipulation, through exploration. <em>A child with strong Sensorial foundations extends naturally into sophisticated spatial thinking.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">08</div>
+  </section>
+
+  <!-- 09 EQUITY -->
+  <section data-label="09 Equity provocation" class="on-cream">
+    <div class="eyebrow-slide">The equity provocation · spatial reasoning is taught or withheld</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Girls develop strong spatial reasoning <em style="font-style: italic; color: var(--gold);">when they are given materials and opportunities.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        They are often discouraged from spatial play from childhood — given dolls instead of blocks, told that building is &ldquo;not for them.&rdquo; <em>By elementary, some have internalised that they are not spatially minded.</em>
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        A girl who stops developing spatial skills loses access to entire fields. <em>The same is true for children from cultures where certain kinds of play have not been available or valued.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Name it when you see it: <em>&ldquo;You are thinking about how those pieces fit together in three dimensions. That is geometric thinking.&rdquo;</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">09</div>
+  </section>
+
+  <!-- 10 NEURODIVERGENCE -->
+  <section data-label="10 Neurodivergence" class="on-navy">
+    <div class="eyebrow-slide">Neurodivergence note · geometry as first language</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 46px; line-height: 1.14;">
+        Some children have vivid spatial reasoning <em style="font-style: italic; color: var(--gold);">but struggle with language or symbolic representation.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Three-dimensional materials let them demonstrate their thinking <em>without written work or verbal explanation.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        A child who hyperfocuses on geometric structure is developing deep mathematical understanding. <em>Protect their access to this work.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">10</div>
+  </section>
+
+  <!-- 11 THE PLATONIC SOLIDS -->
+  <section data-label="11 Platonic solids" class="on-cream">
+    <div class="eyebrow-slide">The Platonic solids · five objects, a cosmos of thinking</div>
+    <div class="stack" style="max-width: 1820px; margin-top: 24px;">
+      <h2 class="display" style="font-size: 42px; line-height: 1.14; color: var(--navy);">
+        Every one a proof <em style="font-style: italic; color: var(--gold);">about the nature of space.</em>
+      </h2>
+      <div class="two-by" style="margin-top: 24px;">
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Tetrahedron</div>
+          <h3 style="color: var(--navy);">Four triangles. The smallest closed shape. Let them hold it. Let them notice it has no rest.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Cube &amp; octahedron</div>
+          <h3 style="color: var(--navy);">Duals. Stand one inside the other. Faces become vertices. A kind of quiet magic.</h3>
+        </div>
+        <div class="card">
+          <div class="label" style="color: var(--gold);">Dodecahedron</div>
+          <h3 style="color: var(--navy);">Twelve pentagons. The shape that seems to say the universe is allowed to be beautiful.</h3>
+        </div>
+        <div class="card" style="border-color: rgba(214,167,88,0.5);">
+          <div class="label" style="color: var(--gold);">Icosahedron</div>
+          <h3 style="color: var(--navy);">Twenty triangles. Only five such shapes exist. Ever. <em>Ask them — why only five?</em></h3>
+          <p><em style="color: var(--gold);">That question is the beginning of a life in geometry.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-pagenum">11</div>
+  </section>
+
+  <!-- 12 NETS -->
+  <section data-label="12 Nets and unfolding" class="on-navy">
+    <div class="eyebrow-slide">Nets · unfolding a solid into a plane</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        To unfold a shape <em style="font-style: italic; color: var(--gold);">is to see its bones.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        A cube has eleven distinct nets. A tetrahedron has two. Let a child find them. Let them argue about whether two are really the same.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        This is topology walking in a child&rsquo;s fingers.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Keep paper and scissors nearby. Keep your comment to yourself.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">12</div>
+  </section>
+
+  <!-- 13 VOLUME BY FILLING -->
+  <section data-label="13 Volume by filling" class="on-cream">
+    <div class="eyebrow-slide">Volume · felt by filling, before it is calculated</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        The formula comes last. <em style="font-style: italic; color: var(--gold);">The sand comes first.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Pour sand from a cube-shaped box into a pyramid of the same base and height. Three pours. Exactly. Let the child discover the ratio — not memorise it.
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Fill a cylinder with water. Pour it into a cone. Three times. <em>Space is telling them something.</em>
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>When the formula arrives at eleven, they will say — of course. They already knew.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">13</div>
+  </section>
+
+  <!-- 14 ROTATION -->
+  <section data-label="14 Mental rotation" class="on-navy">
+    <div class="eyebrow-slide">Mental rotation · the invisible skill</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Turning a shape in the mind <em style="font-style: italic; color: var(--gold);">is a muscle.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Research shows this skill is practicable — not innate. Children who build with blocks, who draw from observation, who fold and unfold — get stronger at it.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        Children who are not given the chance — often arrive at calculus unable to visualise.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>The block corner is not childish. It is the gym for a future mathematician.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">14</div>
+  </section>
+
+  <!-- 15 ARCHITECTURE OF THE ROOM -->
+  <section data-label="15 Architecture of the room" class="on-cream">
+    <div class="eyebrow-slide">The architecture of the classroom · teaches geometry too</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14; color: var(--navy);">
+        Children read <em style="font-style: italic; color: var(--gold);">the space they move through.</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="margin-top: 24px;">
+        Where are the corners? What is the height of the ceiling? How does light fall? Can they see outside? Can they measure what they see?
+      </p>
+      <p class="body-read" style="color: var(--navy); font-style: italic;">
+        Give them tape measures. Give them the task of drawing the room to scale.
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        <em>The classroom is your largest three-dimensional material. Use it.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">15</div>
+  </section>
+
+  <!-- 16 YOUR OWN SPATIAL STORY -->
+  <section data-label="16 Your spatial story" class="on-navy">
+    <div class="eyebrow-slide">Your own spatial history · becomes the room&rsquo;s ceiling</div>
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1720px;">
+      <h2 class="display" style="font-size: 44px; line-height: 1.14;">
+        Were you allowed to build? <em style="font-style: italic; color: var(--gold);">Were you allowed to take things apart?</em>
+      </h2>
+      <div class="rule-gold" style="margin-top: 28px;"></div>
+      <p class="body-read" style="color: rgba(255,255,255,0.88); margin-top: 24px;">
+        Many adults arrive in the classroom shy of solid geometry. They say — &ldquo;I am not good at visualising.&rdquo;
+      </p>
+      <p class="body-read" style="color: var(--gold); font-style: italic;">
+        That sentence, said once, will cap the child&rsquo;s horizon.
+      </p>
+      <p class="body-read" style="color: rgba(255,255,255,0.88);">
+        <em>Do your own building this year. Fold a dodecahedron yourself before you offer it. The hand re-teaches the hand.</em>
+      </p>
+    </div>
+    <div class="slide-pagenum">16</div>
+  </section>
+
+  <!-- 17 SYNTHESIS -->
+  <section data-label="17 Synthesis" class="on-black">
+    <div class="stack gap-md mt-auto mb-auto" style="max-width: 1680px; text-align: left;">
+      <div class="eyebrow-slide" style="color: var(--gold);">The week, in one line</div>
+      <p style="font-family: var(--font-heading); font-style: italic; font-size: 62px; line-height: 1.08; color: #fbf7ec; margin-top: 24px;">
+        Space has<br/>
+        structure.<br/>
+        <em style="color: var(--gold);">She finds it<br/>
+        with her hands<br/>
+        first —<br/>
+        then with her mind.</em>
+      </p>
+      <div class="rule-gold" style="margin-top: 24px;"></div>
+    </div>
+    <div class="slide-pagenum">17</div>
+  </section>
+
+  <!-- 18 CLOSING -->
+  <section data-label="18 Closing" class="on-navy">
+    <div class="eyebrow-slide">Closing · the invitation for the week</div>
+    <div class="stack gap-md" style="max-width: 1720px; margin-top: 80px;">
+      <p class="attrib" style="color: var(--gold);">Look at your environment</p>
+      <p class="closing-q" style="margin-top: 16px; font-size: 48px;">
+        What is one thing<br/>
+        you could add<br/>
+        to your elementary<br/>
+        environment<br/>
+        <em style="font-style: italic; color: var(--gold);">to invite deeper<br/>
+        spatial reasoning</em><br/>
+        <br/>
+        in children who<br/>
+        have not yet<br/>
+        developed it<br/>
+        through traditional play?
+      </p>
+      <div class="rule-gold" style="margin-top: 32px;"></div>
+    </div>
+    <div class="slide-meta" style="bottom: 32px;">
+      <img src="../../assets/cube-gold.svg" class="cube-mark" alt="" />
+      <span>Week 31 · Elementary · Solid Geometry and Three-Dimensional Thinking</span>
+    </div>
+    <div class="slide-pagenum" style="bottom: 32px;">18</div>
+  </section>
+
+</deck-stage>
+</body>
+</html>
