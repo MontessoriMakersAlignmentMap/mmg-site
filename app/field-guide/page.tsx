@@ -103,18 +103,16 @@ export default function FieldGuidePage() {
             </a>
           </div>
         </div>
-        {/* Hero screenshot — overhangs into next section */}
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="rounded-t-2xl overflow-hidden shadow-[0_-8px_60px_rgba(0,0,0,0.4)] border border-white/10 border-b-0">
-            <Image
-              src="/images/field-guide/guide-strands.png"
-              alt="Guide Me — strand grid showing curriculum areas and lesson counts"
-              width={1200}
-              height={750}
-              className="w-full h-auto block"
-              priority
-            />
-          </div>
+        {/* Hero screenshot — phone centered below CTA */}
+        <div className="relative z-10 max-w-[300px] mx-auto drop-shadow-2xl">
+          <Image
+            src="/images/field-guide/guide-strands.png"
+            alt="Guide Me — strand grid showing curriculum areas and lesson counts"
+            width={440}
+            height={900}
+            className="w-full h-auto block rounded-t-3xl"
+            priority
+          />
         </div>
       </section>
 
@@ -146,8 +144,8 @@ export default function FieldGuidePage() {
                     <Image
                       src={m.screenshot}
                       alt={m.screenshotAlt ?? m.name}
-                      width={600}
-                      height={380}
+                      width={440}
+                      height={900}
                       className="w-full h-auto"
                     />
                   </div>
@@ -208,13 +206,12 @@ export default function FieldGuidePage() {
               ))}
             </div>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.1)] border border-[#E2DDD6]">
+          <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.1)] border border-[#E2DDD6] relative h-[540px]">
             <Image
               src="/images/field-guide/lesson-list.png"
               alt="Practical Life — 47 lessons in the Field Guide scope and sequence"
-              width={700}
-              height={900}
-              className="w-full h-auto block"
+              fill
+              className="object-cover object-top"
             />
           </div>
         </div>
@@ -332,13 +329,12 @@ export default function FieldGuidePage() {
               Learn about MMAP →
             </Link>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.1)] border border-[#E2DDD6]">
+          <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.1)] border border-[#E2DDD6] relative h-[540px]">
             <Image
               src="/images/field-guide/mmap-connected.png"
               alt="Field Guide connected to MMAP — school activity log and stats"
-              width={700}
-              height={500}
-              className="w-full h-auto block"
+              fill
+              className="object-cover object-top"
             />
           </div>
         </div>
