@@ -180,7 +180,7 @@ export default function ResidencyHome() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', maxWidth: '680px' }}>
             <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
-              Every Montessori Makers Residency graduate receives a complimentary 12-month subscription to the Montessori Makers Field Guide upon completion of their practicum. That means the moment you finish your credential, you walk into your classroom with 516 lesson walkthroughs, crisis support protocols, learner support strategies, and an AI-powered reflection coach in your hand.
+              Every Montessori Makers Residency graduate receives a complimentary 12-month subscription to the Montessori Makers Field Guide upon completion of their practicum. That means the moment you finish your credential, you walk into your classroom with 516 lesson walkthroughs, crisis support protocols, learner support strategies, and an embedded reflection coach in your hand.
             </p>
             <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
               Primary graduates receive Primary access. Elementary graduates receive Elementary access. No additional cost. No application. It activates when you complete your practicum — because the first year in your own classroom is when you need it most.

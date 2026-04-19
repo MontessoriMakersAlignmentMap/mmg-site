@@ -49,7 +49,7 @@ const credentialedFeatures = [
   'Everything in Community, plus:',
   'Full lesson walkthroughs with presentation steps',
   'Key language for every lesson',
-  'AI-powered lesson search and recommendations',
+  'embedded lesson search and recommendations',
   'Complete scope and sequence with prerequisites',
   'MMAP integration for lesson logging',
 ]
@@ -86,7 +86,7 @@ export default function FieldGuidePage() {
             {' '}for Montessori practitioners.
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-[560px] mx-auto mb-10 font-light">
-            Lesson walkthroughs. Crisis support. Learner strategies. Reflective coaching. AI-powered, Montessori-grounded, and built from 25 years inside real classrooms.
+            Lesson walkthroughs. Crisis support. Learner strategies. Reflective coaching. embedded, Montessori-grounded, and built from 25 years inside real classrooms.
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <a
