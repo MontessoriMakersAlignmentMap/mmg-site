@@ -30,7 +30,7 @@ const modes: Mode[] = [
   {
     id: 'R',
     name: 'Reflect',
-    desc: "Structured professional reflection with AI coaching that pushes your thinking. End-of-day processing, a child on your mind, your environment, something you'd redo. The app responds like an experienced coach: curious, specific, and honest.",
+    desc: "Structured professional reflection with embedded coaching that pushes your thinking. End-of-day processing, a child on your mind, your environment, something you'd redo. The app responds like an experienced coach: curious, specific, and honest.",
     screenshot: '/images/field-guide/reflect.png',
     screenshotAlt: 'Reflect mode — daily prompt and coaching textarea in the Field Guide app',
   },
@@ -39,7 +39,7 @@ const modes: Mode[] = [
 const communityFeatures = [
   'Full access to Support Me',
   'Full access to Support the Learner',
-  'Full access to Reflect with AI coaching',
+  'Full access to Reflect with embedded coaching',
   'Guide Me: materials, setup, and what to watch for',
   'Scope and sequence navigation',
   'Pathway to the Montessori Makers Residency',
