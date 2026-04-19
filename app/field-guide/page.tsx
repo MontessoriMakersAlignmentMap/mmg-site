@@ -133,8 +133,8 @@ export default function FieldGuidePage() {
                     <Image
                       src={m.screenshot}
                       alt={m.screenshotAlt ?? m.name}
-                      width={440}
-                      height={900}
+                      width={397}
+                      height={844}
                       className="w-full h-auto"
                     />
                   </div>
