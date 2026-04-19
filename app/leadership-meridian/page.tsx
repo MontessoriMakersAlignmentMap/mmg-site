@@ -1,30 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { CSSProperties } from 'react'
 
 const serif: CSSProperties = { fontFamily: 'var(--font-heading)' }
-
-const modes = [
-  {
-    id: 'N',
-    name: 'Navigate',
-    desc: 'In-the-moment leadership support. A staff member is upset. You need to deliver hard feedback. A parent is escalating. Someone needs to be let go. The board is overstepping. Grounded protocols with exact language for the first 30 seconds of every hard conversation.',
-  },
-  {
-    id: 'B',
-    name: 'Build',
-    desc: 'Proactive systems design. Salary scales, onboarding sequences, meeting rhythms, hiring processes, communication structures, PD calendars, retention strategies, succession plans. The app walks you through building each one for your specific school.',
-  },
-  {
-    id: 'C',
-    name: 'Culture',
-    desc: 'Adult culture health and development. Weekly pulse checks that surface patterns before they become crises. Difficult dynamics assessment. Recognition frameworks. Team health inventories. Culture repair plans for when things have broken down.',
-  },
-  {
-    id: 'Co',
-    name: 'Coach',
-    desc: 'Your own reflective practice. The thinking partner available at 6am in the parking lot or 9pm replaying a conversation. Embedded coaching that pushes on avoidance, names patterns, and asks the questions nobody else will ask you.',
-  },
-]
 
 const features = [
   'Navigate: 10+ leadership situation protocols with exact language',
@@ -36,21 +14,21 @@ const features = [
 ]
 
 const ecosystemLinks = [
-  { name: 'Advisory',   href: '/advisory' },
-  { name: 'Institute',  href: '/institute' },
-  { name: 'MMAP',       href: '/mmap' },
-  { name: 'MatchHub',   href: '/matchhub' },
-  { name: 'Residency',  href: '/residency' },
-  { name: 'Field Guide', href: '/field-guide' },
-  { name: 'Toolbox',    href: '/toolbox' },
-  { name: 'Learning',   href: '/learning' },
+  { name: 'Advisory',           href: '/advisory' },
+  { name: 'Institute',          href: '/institute' },
+  { name: 'MMAP',               href: '/mmap' },
+  { name: 'MatchHub',           href: '/matchhub' },
+  { name: 'Residency',          href: '/residency' },
+  { name: 'Field Guide',        href: '/field-guide' },
+  { name: 'Toolbox',            href: '/toolbox' },
+  { name: 'Learning',           href: '/learning' },
 ]
 
 export default function LeadershipMeridianPage() {
   return (
     <main>
       {/* HERO */}
-      <section className="bg-[#0a1260] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10 relative overflow-hidden text-center">
+      <section className="bg-[#0a1260] pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10 relative overflow-hidden text-center">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -74,7 +52,7 @@ export default function LeadershipMeridianPage() {
             culture you&apos;re trying to build while holding everything together. Leadership
             Meridian is the strategic partner you don&apos;t have.
           </p>
-          <div className="flex gap-4 flex-wrap justify-center">
+          <div className="flex gap-4 flex-wrap justify-center mb-16">
             <a
               href="https://montessorimakersmeridian.com"
               target="_blank"
@@ -89,6 +67,16 @@ export default function LeadershipMeridianPage() {
             >
               See how it works
             </a>
+          </div>
+          {/* Welcome screenshot */}
+          <div className="flex justify-center">
+            <Image
+              src="/images/leadership-meridian/01-welcome.png"
+              alt="Leadership Meridian welcome screen"
+              width={390}
+              height={844}
+              className="w-[200px] md:w-[240px] h-auto rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.5)]"
+            />
           </div>
         </div>
       </section>
@@ -105,24 +93,115 @@ export default function LeadershipMeridianPage() {
           >
             Navigate the hard parts. Build what&apos;s missing.
           </h2>
-          <p className="text-[17px] text-white/75 leading-[1.7] max-w-[640px] mb-12">
+          <p className="text-[17px] text-white/75 leading-[1.7] max-w-[640px] mb-20">
             Leadership Meridian meets you in the moment you&apos;re in. Before a hard conversation.
             In the middle of a systems problem. When the culture needs attention. When you need to
             think out loud and nobody&apos;s there to listen.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {modes.map((m) => (
-              <div
-                key={m.id}
-                className="bg-[#1a2a8a] border border-white/10 rounded-xl p-8 hover:border-[#d6a758] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all"
-              >
-                <div className="w-11 h-11 rounded-lg bg-[#d6a758]/15 flex items-center justify-center mb-5 text-[#d6a758] font-semibold text-lg shrink-0">
-                  {m.id}
-                </div>
-                <h3 className="text-white text-lg font-semibold mb-2.5">{m.name}</h3>
-                <p className="text-[15px] text-white/70 leading-[1.65]">{m.desc}</p>
+
+          {/* NAVIGATE */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-24">
+            <div>
+              <div className="w-11 h-11 rounded-lg bg-[#d6a758]/15 flex items-center justify-center mb-6 text-[#d6a758] font-semibold text-lg">
+                N
               </div>
-            ))}
+              <h3 className="text-white text-2xl font-semibold mb-4" style={serif}>Navigate</h3>
+              <p className="text-[17px] text-white/75 leading-[1.8]">
+                In-the-moment leadership support. A staff member is upset. You need to deliver hard
+                feedback. A parent is escalating. Someone needs to be let go. The board is
+                overstepping. Grounded protocols with exact language for the first 30 seconds of
+                every hard conversation.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-end gap-4">
+              <Image
+                src="/images/leadership-meridian/02-navigate.png"
+                alt="Navigate mode — what are you facing?"
+                width={390}
+                height={844}
+                className="w-[180px] md:w-[210px] h-auto rounded-2xl shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
+              />
+              <Image
+                src="/images/leadership-meridian/03-navigate-protocol.png"
+                alt="Navigate protocol — step-by-step guidance"
+                width={390}
+                height={844}
+                className="w-[180px] md:w-[210px] h-auto rounded-2xl shadow-[0_20px_48px_rgba(0,0,0,0.45)] hidden sm:block"
+              />
+            </div>
+          </div>
+
+          {/* BUILD */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-24">
+            <div className="flex justify-center md:justify-start order-2 md:order-1">
+              <Image
+                src="/images/leadership-meridian/04-build.png"
+                alt="Build mode — what are you building?"
+                width={390}
+                height={844}
+                className="w-[180px] md:w-[210px] h-auto rounded-2xl shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <div className="w-11 h-11 rounded-lg bg-[#d6a758]/15 flex items-center justify-center mb-6 text-[#d6a758] font-semibold text-lg">
+                B
+              </div>
+              <h3 className="text-white text-2xl font-semibold mb-4" style={serif}>Build</h3>
+              <p className="text-[17px] text-white/75 leading-[1.8]">
+                Proactive systems design. Salary scales, onboarding sequences, meeting rhythms,
+                hiring processes, communication structures, PD calendars, retention strategies,
+                succession plans. The app walks you through building each one for your specific
+                school.
+              </p>
+            </div>
+          </div>
+
+          {/* CULTURE */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-24">
+            <div>
+              <div className="w-11 h-11 rounded-lg bg-[#d6a758]/15 flex items-center justify-center mb-6 text-[#d6a758] font-semibold text-lg">
+                C
+              </div>
+              <h3 className="text-white text-2xl font-semibold mb-4" style={serif}>Culture</h3>
+              <p className="text-[17px] text-white/75 leading-[1.8]">
+                Adult culture health and development. Weekly pulse checks that surface patterns
+                before they become crises. Difficult dynamics assessment. Recognition frameworks.
+                Team health inventories. Culture repair plans for when things have broken down.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <Image
+                src="/images/leadership-meridian/05-culture.png"
+                alt="Culture mode — how is your culture?"
+                width={390}
+                height={844}
+                className="w-[180px] md:w-[210px] h-auto rounded-2xl shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
+              />
+            </div>
+          </div>
+
+          {/* COACH */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div className="flex justify-center md:justify-start order-2 md:order-1">
+              <Image
+                src="/images/leadership-meridian/06-coach.png"
+                alt="Coach mode — where is your thinking?"
+                width={390}
+                height={844}
+                className="w-[180px] md:w-[210px] h-auto rounded-2xl shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <div className="w-11 h-11 rounded-lg bg-[#d6a758]/15 flex items-center justify-center mb-6 text-[#d6a758] font-semibold text-lg">
+                Co
+              </div>
+              <h3 className="text-white text-2xl font-semibold mb-4" style={serif}>Coach</h3>
+              <p className="text-[17px] text-white/75 leading-[1.8]">
+                Your own reflective practice. The thinking partner available at 6am in the parking
+                lot or 9pm replaying a conversation. Embedded coaching that pushes on avoidance,
+                names patterns, and asks the questions nobody else will ask you.
+              </p>
+            </div>
           </div>
         </div>
       </section>
