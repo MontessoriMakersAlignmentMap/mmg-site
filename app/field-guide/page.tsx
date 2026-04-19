@@ -307,26 +307,65 @@ export default function FieldGuidePage() {
 
       {/* ECOSYSTEM — MMAP connection */}
       <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase font-medium mb-3">Connected to MMAP</p>
-            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
+            <h2 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
               Your practice, tracked and visible.
             </h2>
-            <p className="text-[17px] text-[#374151] leading-[1.8] mb-6">
-              Credentialed guides can connect the Field Guide to MMAP — Montessori Makers Alignment Map — so lessons logged in the app flow directly into the school&apos;s operational record. Leadership sees what&apos;s being delivered. Guides see what&apos;s next.
-            </p>
+            <div className="space-y-4 text-[17px] text-[#374151] leading-[1.8] mb-8">
+              <p>
+                At any MMAP school, the Field Guide connects automatically through your school email. Sign in with Google — the same account you use for MMAP — and the sync activates on its own. No pairing code, no separate setup step. If you&apos;re in MMAP as faculty, you&apos;re connected. If your school isn&apos;t on MMAP, everything works on-device.
+              </p>
+              <p>
+                MMAP gives the Field Guide your guide profile and school context, your classroom roster so every child you log for has a real name attached, and a live per-child summary: how many presentations by strand, support moments by situation, and observations by category.
+              </p>
+              <p>
+                The Field Guide sends everything back. Lesson presentations, behavior support moments, learner observations, and reflections you choose to share with your mentor all flow through a single sync to the school&apos;s MMAP record. Events queue locally when you&apos;re offline and batch when you reconnect.
+              </p>
+            </div>
             <Link href="/mmap" className="text-[#0e1a7a] text-sm font-medium underline hover:opacity-70 transition-opacity">
               Learn about MMAP →
             </Link>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(14,26,122,0.1)] border border-[#E2DDD6] relative h-[540px]">
-            <Image
-              src="/images/field-guide/mmap-connected.png"
-              alt="Field Guide connected to MMAP — school activity log and stats"
-              fill
-              className="object-cover object-top"
-            />
+          <div className="space-y-3">
+            <div>
+              <p className="text-[#8A6014] text-[10px] tracking-[0.18em] uppercase mb-3">MMAP → Field Guide</p>
+              <div className="border border-[#E2DDD6] overflow-hidden">
+                {[
+                  { label: 'Guide profile', desc: 'Name, role, school, and assigned mentor' },
+                  { label: 'Classroom roster', desc: 'First name + last initial; switches between classrooms' },
+                  { label: 'Per-child rollup', desc: 'Presentations by strand, moments, observations, recent reflections' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4 px-5 py-4 bg-white border-b border-[#E2DDD6] last:border-0">
+                    <span className="text-[#d6a758] font-medium flex-shrink-0 mt-0.5 text-sm">→</span>
+                    <div>
+                      <p className="text-[#0e1a7a] text-sm font-medium leading-snug">{item.label}</p>
+                      <p className="text-[#64748B] text-sm leading-snug mt-0.5">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-[#8A6014] text-[10px] tracking-[0.18em] uppercase mb-3">Field Guide → MMAP</p>
+              <div className="border border-[#E2DDD6] overflow-hidden">
+                {[
+                  { label: 'Lesson presentations', desc: 'Strand, lesson, child, timestamp' },
+                  { label: 'Behavior support moments', desc: 'Situation type and protocol steps followed' },
+                  { label: 'Learner observations', desc: 'Category, strategy used, child name' },
+                  { label: 'Reflections', desc: 'Private by default; guide controls what reaches their mentor' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4 px-5 py-4 bg-white border-b border-[#E2DDD6] last:border-0">
+                    <span className="text-[#d6a758] font-medium flex-shrink-0 mt-0.5 text-sm">←</span>
+                    <div>
+                      <p className="text-[#0e1a7a] text-sm font-medium leading-snug">{item.label}</p>
+                      <p className="text-[#64748B] text-sm leading-snug mt-0.5">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
