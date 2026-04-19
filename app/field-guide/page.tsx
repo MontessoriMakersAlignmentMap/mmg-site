@@ -66,7 +66,7 @@ export default function FieldGuidePage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[#0e1a7a] pt-32 pb-0 md:pt-40 px-6 md:px-10 relative overflow-hidden text-center">
+      <section className="bg-[#0e1a7a] pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10 relative overflow-hidden text-center">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -74,7 +74,7 @@ export default function FieldGuidePage() {
               'radial-gradient(ellipse at 30% 50%, rgba(214,167,88,0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.03) 0%, transparent 50%)',
           }}
         />
-        <div className="max-w-3xl mx-auto relative z-10 pb-16 md:pb-20">
+        <div className="max-w-3xl mx-auto relative z-10">
           <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#d6a758] border border-[#d6a758]/30 px-4 py-1.5 rounded-full mb-8 font-medium">
             Part of the Montessori Makers ecosystem
           </span>
@@ -102,17 +102,6 @@ export default function FieldGuidePage() {
               See how it works
             </a>
           </div>
-        </div>
-        {/* Hero screenshot — phone centered below CTA */}
-        <div className="relative z-10 max-w-[300px] mx-auto drop-shadow-2xl">
-          <Image
-            src="/images/field-guide/guide-strands.png"
-            alt="Guide Me — strand grid showing curriculum areas and lesson counts"
-            width={440}
-            height={900}
-            className="w-full h-auto block rounded-t-3xl"
-            priority
-          />
         </div>
       </section>
 
