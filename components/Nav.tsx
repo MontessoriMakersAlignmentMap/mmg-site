@@ -80,6 +80,7 @@ const ecosystemGroups = [
     links: [
       { name: 'Advisory',  logo: 'advisory'  as LogoName, href: '/advisory',  tagline: 'Consulting & alignment' },
       { name: 'Institute', logo: 'institute' as LogoName, href: '/institute', tagline: 'Leadership formation' },
+      { name: 'Residency', logo: 'residency' as LogoName, href: '/residency', tagline: 'Montessori teacher preparation' },
     ],
   },
   {

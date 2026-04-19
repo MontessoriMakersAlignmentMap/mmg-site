@@ -4,6 +4,7 @@ import { CubeIcon } from '@/components/CubeIcon'
 const workLinks = [
   { name: 'Advisory', href: '/advisory' },
   { name: 'Institute', href: '/institute' },
+  { name: 'Residency', href: '/residency' },
   { name: 'Strategic Search', href: '/matchhub/strategic-search' },
   { name: 'Speaking', href: '/speaking' },
   { name: 'Studio', href: '/studio' },
@@ -176,6 +177,7 @@ export default function Footer() {
               [
                 { name: 'Advisory',    href: '/advisory',     gold: true  },
                 { name: 'Institute',   href: '/institute',    gold: true  },
+                { name: 'Residency',   href: '/residency',    gold: true  },
                 { name: 'MMAP',        href: '/mmap',         gold: false },
                 { name: 'MMAS',        href: '/mmas',         gold: false },
                 { name: 'MatchHub',    href: '/matchhub',     gold: true  },
