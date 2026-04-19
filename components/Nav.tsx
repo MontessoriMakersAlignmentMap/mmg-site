@@ -404,9 +404,6 @@ export default function Nav() {
                   ))}
                 </div>
                 <div className="mt-4 pt-4 border-t border-[#F2EDE6] flex items-center justify-between">
-                  <Link href="/field-guide" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
-                    Field Guide →
-                  </Link>
                   <Link href="/field-intelligence" className="text-[#64748B] text-xs hover:text-[#0e1a7a] transition-colors">
                     Field Pulse →
                   </Link>
@@ -420,6 +417,15 @@ export default function Nav() {
               </div>
             </div>
           </div>
+
+          {/* Field Guide — standalone link */}
+          <Link
+            href="/field-guide"
+            className={`relative text-sm tracking-wide transition-colors pb-1 ${active(['/field-guide']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}
+          >
+            {active(['/field-guide']) && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#d6a758]" />}
+            Field Guide
+          </Link>
 
           {/* Insights dropdown */}
           <div className="relative group">
