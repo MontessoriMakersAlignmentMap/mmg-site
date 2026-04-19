@@ -10,7 +10,8 @@ const modes: Mode[] = [
     id: 'G',
     name: 'Guide Me',
     desc: 'On-demand lesson walkthroughs organized by curriculum area. Materials, setup, presentation steps, what to watch for, and key language. Scope and sequence navigation shows what comes before and after every lesson. 516 lessons across Primary and Elementary.',
-    screenshot: null,
+    screenshot: '/images/field-guide/guide-strands.png',
+    screenshotAlt: 'Guide Me — curriculum strand grid in the Field Guide app',
   },
   {
     id: 'S',
