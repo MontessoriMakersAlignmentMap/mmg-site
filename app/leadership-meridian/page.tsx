@@ -54,7 +54,7 @@ export default function LeadershipMeridianPage() {
           </p>
           <div className="flex gap-4 flex-wrap justify-center mb-16">
             <a
-              href="https://montessorimakersmeridian.com"
+              href="https://montessorimakersleadershipmeridian.com"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#d6a758] text-[#0e1a7a] px-8 py-3.5 text-[15px] font-medium rounded-md hover:opacity-90 hover:-translate-y-px transition-all"
@@ -323,7 +323,7 @@ export default function LeadershipMeridianPage() {
                 ))}
               </ul>
               <a
-                href="https://montessorimakersmeridian.com"
+                href="https://montessorimakersleadershipmeridian.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center bg-[#d6a758] text-[#0e1a7a] text-sm font-medium px-8 py-3.5 rounded-md hover:opacity-90 transition-opacity"
