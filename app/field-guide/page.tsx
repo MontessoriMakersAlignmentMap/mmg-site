@@ -90,7 +90,7 @@ export default function FieldGuidePage() {
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <a
-              href="https://montessorimarkersfieldguide.com"
+              href="https://montessorimakersfieldguide.com"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#d6a758] text-[#0e1a7a] text-sm px-8 py-3.5 rounded-md font-medium hover:opacity-90 hover:-translate-y-px transition-all"
@@ -237,7 +237,7 @@ export default function FieldGuidePage() {
                 ))}
               </ul>
               <a
-                href="https://montessorimarkersfieldguide.com"
+                href="https://montessorimakersfieldguide.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center text-[#0e1a7a] text-sm font-medium px-8 py-3.5 border border-[#E2DDD6] rounded-md hover:border-[#0e1a7a] transition-colors"
@@ -267,7 +267,7 @@ export default function FieldGuidePage() {
                 ))}
               </ul>
               <a
-                href="https://montessorimarkersfieldguide.com"
+                href="https://montessorimakersfieldguide.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center bg-[#d6a758] text-[#0e1a7a] text-sm font-medium px-8 py-3.5 rounded-md hover:opacity-90 transition-opacity"
