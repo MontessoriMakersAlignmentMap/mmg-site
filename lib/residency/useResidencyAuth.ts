@@ -36,6 +36,7 @@ export function useResidencyAuth(requiredRoles?: string[]) {
         if (prof.role === 'instructor') router.replace('/residency/instructor')
         else if (prof.role === 'mentor') router.replace('/residency/mentor')
         else if (prof.role === 'school_partner') router.replace('/residency/school')
+        else if (prof.role === 'site_mentor') router.replace('/residency/site-mentor')
         else router.replace('/residency/portal')
         return
       }

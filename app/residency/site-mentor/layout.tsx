@@ -7,23 +7,17 @@ import { supabase } from '@/lib/supabase/client'
 import { useMobileNav, MobileNavToggle, MobileOverlay } from '../components/MobileNav'
 
 const navItems = [
-  { href: '/residency/mentor', label: 'Dashboard' },
-  { href: '/residency/mentor/calendar', label: 'Curriculum Calendar' },
-  { href: '/residency/mentor/residents', label: 'My Residents' },
-  { href: '/residency/mentor/submissions', label: 'Submissions' },
-  { href: '/residency/mentor/assessments', label: 'Assessments' },
-  { href: '/residency/mentor/observations', label: 'Observations' },
-  { href: '/residency/mentor/virtual-observations', label: 'Virtual Observations' },
-  { href: '/residency/mentor/materials-practice', label: 'Materials Practice' },
-  { href: '/residency/mentor/evaluations', label: 'Evaluations' },
-  { href: '/residency/mentor/capstones', label: 'Capstone Reviews' },
-  { href: '/residency/mentor/onboarding', label: 'Onboarding' },
+  { href: '/residency/site-mentor', label: 'Dashboard' },
+  { href: '/residency/site-mentor/observations', label: 'Observations' },
+  { href: '/residency/site-mentor/checkins', label: 'Check-Ins' },
+  { href: '/residency/site-mentor/evaluation', label: 'Final Evaluation' },
+  { href: '/residency/site-mentor/onboarding', label: 'Onboarding' },
 ]
 
-export default function MentorLayout({ children }: { children: React.ReactNode }) {
+export default function SiteMentorLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
-  const { profile, loading } = useResidencyAuth(['mentor', 'admin'])
+  const { profile, loading } = useResidencyAuth(['site_mentor', 'admin'])
   const { open, setOpen, toggle } = useMobileNav()
 
   async function handleSignOut() {
@@ -51,7 +45,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             color: 'var(--r-text-muted)',
             marginBottom: '0.25rem',
           }}>
-            Cohort Guide
+            Site Mentor
           </p>
           {profile && (
             <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--r-navy)' }}>
@@ -64,7 +58,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === item.href || (item.href !== '/residency/mentor' && pathname.startsWith(item.href)) ? 'active' : ''}
+              className={pathname === item.href || (item.href !== '/residency/site-mentor' && pathname.startsWith(item.href)) ? 'active' : ''}
             >
               {item.label}
             </Link>
