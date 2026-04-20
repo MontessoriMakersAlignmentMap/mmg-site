@@ -21,8 +21,8 @@ export const TRACK_TUITION: Record<TrackKey, TrackTuition> = {
     lessons: 224,
     strands: 7,
     payInFull: 5000,
-    monthly: 417,
-    monthlyTermMonths: 12,
+    monthly: 556,
+    monthlyTermMonths: 9,
   },
   elementary: {
     key: 'elementary',
@@ -32,7 +32,7 @@ export const TRACK_TUITION: Record<TrackKey, TrackTuition> = {
     lessons: 325,
     strands: 11,
     payInFull: 7000,
-    monthly: 438,
-    monthlyTermMonths: 16,
+    monthly: 583,
+    monthlyTermMonths: 12,
   },
 }
