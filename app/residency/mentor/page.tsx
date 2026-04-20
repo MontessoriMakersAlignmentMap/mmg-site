@@ -9,6 +9,7 @@ export default function MentorDashboard() {
   const [profile, setProfile] = useState<any>(null)
   const [residents, setResidents] = useState<any[]>([])
   const [pendingCount, setPendingCount] = useState(0)
+  const [virtualPendingCount, setVirtualPendingCount] = useState(0)
   const [loading, setLoading] = useState(true)
 
   // Session prep data
@@ -67,6 +68,17 @@ export default function MentorDashboard() {
       // Total pending
       const totalPending = enriched.reduce((sum: number, r: any) => sum + r.pending_submissions, 0)
       setPendingCount(totalPending)
+
+      // Virtual observations pending review
+      const residentIds = enriched.map((r: any) => r.id)
+      if (residentIds.length > 0) {
+        const { count } = await supabase
+          .from('residency_virtual_observations')
+          .select('id', { count: 'exact', head: true })
+          .in('resident_id', residentIds)
+          .eq('review_status', 'pending_review')
+        setVirtualPendingCount(count ?? 0)
+      }
 
       // Load session prep data
       await loadSessionPrep(enriched, user.id)
@@ -172,6 +184,16 @@ export default function MentorDashboard() {
           <p style={{ fontSize: '2.5rem', fontWeight: 700, color: pendingCount > 0 ? 'var(--r-gold)' : 'var(--r-navy)' }}>{pendingCount}</p>
           <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>
             {pendingCount > 0 ? 'Reviews Waiting' : 'Pending Reviews'}
+          </p>
+        </Link>
+        <Link href="/residency/mentor/virtual-observations" className="r-card" style={{
+          textAlign: 'center', padding: '1.5rem', textDecoration: 'none', color: 'inherit',
+          borderColor: virtualPendingCount > 0 ? 'var(--r-gold)' : undefined,
+          background: virtualPendingCount > 0 ? 'var(--r-gold-light)' : undefined,
+        }}>
+          <p style={{ fontSize: '2.5rem', fontWeight: 700, color: virtualPendingCount > 0 ? 'var(--r-gold)' : 'var(--r-navy)' }}>{virtualPendingCount}</p>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--r-text-muted)' }}>
+            {virtualPendingCount > 0 ? 'Virtual Obs. to Review' : 'Virtual Observations'}
           </p>
         </Link>
       </div>

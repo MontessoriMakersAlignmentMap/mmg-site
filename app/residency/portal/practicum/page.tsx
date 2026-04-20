@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import { useResidencyAuth } from '@/lib/residency/useResidencyAuth'
 
@@ -17,12 +18,24 @@ interface PracticumLog {
   verified_at: string | null
 }
 
+interface VirtualObservation {
+  id: string
+  observation_date: string
+  recording_duration_minutes: number
+  review_status: string
+  overall_readiness: string | null
+  resident_reflection: string | null
+  reflection_submitted_at: string | null
+  submitted_at: string
+}
+
 const TEACHING_TARGET = 540
 const OBSERVATION_TARGET = 90
 
 export default function PracticumPage() {
   const { profile } = useResidencyAuth(['resident'])
   const [logs, setLogs] = useState<PracticumLog[]>([])
+  const [virtualObs, setVirtualObs] = useState<VirtualObservation[]>([])
   const [residentId, setResidentId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
@@ -49,14 +62,23 @@ export default function PracticumPage() {
       if (!resident) { setLoading(false); return }
       setResidentId(resident.id)
 
-      const { data } = await supabase
-        .from('residency_practicum_logs')
-        .select('*')
-        .eq('resident_id', resident.id)
-        .is('deleted_at', null)
-        .order('log_date', { ascending: false })
+      const [{ data }, { data: vObs }] = await Promise.all([
+        supabase
+          .from('residency_practicum_logs')
+          .select('*')
+          .eq('resident_id', resident.id)
+          .is('deleted_at', null)
+          .order('log_date', { ascending: false }),
+        supabase
+          .from('residency_virtual_observations')
+          .select('id, observation_date, recording_duration_minutes, review_status, overall_readiness, resident_reflection, reflection_submitted_at, submitted_at')
+          .eq('resident_id', resident.id)
+          .is('deleted_at', null)
+          .order('submitted_at', { ascending: false }),
+      ])
 
       if (data) setLogs(data)
+      if (vObs) setVirtualObs(vObs)
       setLoading(false)
     }
     load()
@@ -116,9 +138,14 @@ export default function PracticumPage() {
             Track your daily teaching and observation hours toward MACTE requirements.
           </p>
         </div>
-        <button onClick={() => setShowForm(!showForm)} className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem' }}>
-          {showForm ? 'Cancel' : 'Log Hours'}
-        </button>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <Link href="/residency/portal/practicum/virtual-observation" className="r-btn r-btn-secondary" style={{ fontSize: '0.8125rem', textDecoration: 'none' }}>
+            Submit Virtual Observation
+          </Link>
+          <button onClick={() => setShowForm(!showForm)} className="r-btn r-btn-primary" style={{ fontSize: '0.8125rem' }}>
+            {showForm ? 'Cancel' : 'Log Hours'}
+          </button>
+        </div>
       </div>
 
       {/* Progress bars */}
@@ -233,6 +260,90 @@ export default function PracticumPage() {
             {saving ? 'Saving...' : 'Save Log Entry'}
           </button>
         </form>
+      )}
+
+      {/* Observation Breakdown */}
+      <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+          <h2 style={{ fontSize: '1.125rem' }}>Formal Observations</h2>
+          <Link href="/residency/portal/practicum/exception-request" style={{
+            fontSize: '0.6875rem', color: 'var(--r-text-muted)', textDecoration: 'none',
+          }}>
+            Request all-virtual exception →
+          </Link>
+        </div>
+        <p style={{ fontSize: '0.75rem', color: 'var(--r-text-muted)', marginBottom: '1rem', lineHeight: 1.4 }}>
+          MACTE requires at least one in-person observation per year unless an exception is approved.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ padding: '0.75rem', background: 'var(--r-cream)', borderRadius: '8px', textAlign: 'center' }}>
+            <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)' }}>{virtualObs.length}</p>
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>Virtual</p>
+          </div>
+          <div style={{ padding: '0.75rem', background: 'var(--r-cream)', borderRadius: '8px', textAlign: 'center' }}>
+            <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--r-navy)' }}>—</p>
+            <p style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>In-Person</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Virtual Observations Tracker */}
+      {virtualObs.length > 0 && (
+        <div className="r-card" style={{ marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Virtual Observations</h2>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', fontSize: '0.75rem' }}>
+            <span style={{ padding: '0.25rem 0.625rem', background: 'var(--r-cream)', borderRadius: '4px' }}>
+              {virtualObs.length} virtual
+            </span>
+            <span style={{ padding: '0.25rem 0.625rem', background: 'var(--r-cream)', borderRadius: '4px' }}>
+              {virtualObs.filter(v => v.review_status === 'feedback_submitted' && v.resident_reflection).length} complete
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+            {virtualObs.map(v => {
+              const needsReflection = v.review_status === 'feedback_submitted' && !v.resident_reflection
+              return (
+                <Link key={v.id} href={`/residency/portal/practicum/virtual-observation/${v.id}`} style={{
+                  textDecoration: 'none',
+                  padding: '0.625rem 0.875rem',
+                  background: needsReflection ? 'var(--r-gold-light)' : 'var(--r-cream)',
+                  borderRadius: '6px',
+                  border: needsReflection ? '1px solid var(--r-gold)' : '1px solid transparent',
+                  display: 'block',
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontWeight: 500, fontSize: '0.875rem', color: 'var(--r-navy)' }}>
+                      {new Date(v.observation_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </span>
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.6875rem', color: 'var(--r-text-muted)' }}>
+                        {v.recording_duration_minutes} min
+                      </span>
+                      {needsReflection ? (
+                        <span style={{ fontSize: '0.625rem', padding: '0.125rem 0.5rem', background: 'var(--r-gold)', color: 'white', borderRadius: '9999px', fontWeight: 600 }}>
+                          Reflection Required
+                        </span>
+                      ) : (
+                        <span style={{
+                          fontSize: '0.625rem',
+                          padding: '0.125rem 0.5rem',
+                          borderRadius: '9999px',
+                          fontWeight: 600,
+                          background: v.review_status === 'feedback_submitted' ? 'var(--r-success-light)' : 'var(--r-border)',
+                          color: v.review_status === 'feedback_submitted' ? 'var(--r-success)' : 'var(--r-text-muted)',
+                        }}>
+                          {v.review_status === 'pending_review' ? 'Pending Review' :
+                           v.review_status === 'in_progress' ? 'In Progress' :
+                           v.resident_reflection ? 'Complete' : 'Feedback Ready'}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
       )}
 
       {/* Log history */}
