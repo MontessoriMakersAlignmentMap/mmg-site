@@ -35,9 +35,30 @@ const differentiators = [
   },
 ]
 
+// CSS custom properties used by residency.css classes (r-card, r-btn-gold, etc.)
+// must be defined on an ancestor element. The `.residency-root` wrapper is only
+// added by layout.tsx for portal routes — the marketing page gets a bare fragment.
+// Defining the vars on this div scopes them correctly without affecting global layout.
+const residencyVars = {
+  '--r-navy': '#0e1a7a',
+  '--r-navy-light': '#1a2a9a',
+  '--r-gold': '#d6a758',
+  '--r-gold-light': '#f5e8cc',
+  '--r-cream': '#faf8f4',
+  '--r-white': '#ffffff',
+  '--r-text': '#1a1a2e',
+  '--r-text-muted': '#5a5a7a',
+  '--r-border': '#e2ddd6',
+  '--r-bg-muted': '#f3f4f6',
+  '--r-navy-shadow': 'rgba(14,26,122,0.06)',
+  '--r-navy-tint': 'rgba(14,26,122,0.08)',
+  '--r-navy-ring': 'rgba(14,26,122,0.08)',
+  '--r-font-heading': "'TheSeasons', Georgia, 'Times New Roman', serif",
+} as React.CSSProperties
+
 export default function ResidencyHome() {
   return (
-    <>
+    <div style={residencyVars}>
       {/* HERO */}
       <section style={{
         background: 'var(--r-navy)',
@@ -425,6 +446,6 @@ export default function ResidencyHome() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
