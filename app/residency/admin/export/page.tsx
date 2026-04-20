@@ -48,6 +48,8 @@ export default function ExportPage() {
       { data: plans },
       { data: materialsSessions },
       { data: remotePractice },
+      { data: virtualObservations },
+      { data: practicumExceptions },
     ] = await Promise.all([
       supabase.from('residency_practicum_logs').select('*').eq('resident_id', residentId).is('deleted_at', null).order('log_date'),
       supabase.from('residency_rubric_submissions').select('*, mentor:residency_profiles!residency_rubric_submissions_mentor_id_fkey(first_name, last_name)').eq('resident_id', residentId).is('deleted_at', null).order('submitted_at'),
@@ -60,6 +62,8 @@ export default function ExportPage() {
       supabase.from('residency_support_plans').select('*, checkins:residency_support_checkins(*)').eq('resident_id', residentId).order('created_at'),
       supabase.from('residency_observation_logs').select('*').eq('resident_id', residentId).eq('materials_session_completed', true).order('observation_date'),
       supabase.from('residency_remote_materials_practice').select('*').eq('resident_id', residentId).order('submitted_at'),
+      supabase.from('residency_virtual_observations').select('*').eq('resident_id', residentId).is('deleted_at', null).order('observation_date'),
+      supabase.from('residency_practicum_exceptions').select('*').eq('resident_id', residentId).order('created_at', { ascending: false }).limit(1),
     ])
 
     const totalTeaching = logs?.reduce((s: number, l: any) => s + Number(l.hours_teaching), 0) ?? 0
@@ -113,7 +117,22 @@ export default function ExportPage() {
       html += `<p>No rubric assessments recorded.</p>`
     }
 
-    html += `<h2>3. Classroom Observations</h2><p>${observations?.length ?? 0} formal observations completed.</p>`
+    html += `<h2>3. Classroom Observations</h2><p>${observations?.length ?? 0} formal in-person observations completed.</p>`
+
+    // Virtual Observations
+    html += `<h2>3b. Virtual Observations</h2>`
+    const completedVirtual = virtualObservations?.filter((v: any) => v.review_status === 'feedback_submitted') ?? []
+    const hasException = practicumExceptions?.find((e: any) => e.status === 'approved')
+    html += `<p>${virtualObservations?.length ?? 0} virtual observations submitted. ${completedVirtual.length} reviewed and complete.`
+    if (hasException) html += ` <span class="badge badge-blue">All-virtual exception approved</span>`
+    html += `</p>`
+    if (completedVirtual.length > 0) {
+      html += `<table><tr><th>Date</th><th>Duration</th><th>Focus</th><th>Readiness</th><th>Reflection</th></tr>`
+      completedVirtual.forEach((v: any) => {
+        html += `<tr><td>${new Date(v.observation_date).toLocaleDateString()}</td><td>${v.recording_duration_minutes} min</td><td>${escape((v.observation_focus ?? '—').replace(/_/g, ' '))}</td><td>${escape((v.overall_readiness ?? '—').replace(/_/g, ' '))}</td><td>${v.resident_reflection ? 'Yes' : 'No'}</td></tr>`
+      })
+      html += `</table>`
+    }
 
     // Portfolio
     html += `<h2>4. Portfolio Artifacts</h2>`
