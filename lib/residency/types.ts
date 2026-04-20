@@ -1,6 +1,6 @@
 // ─── Residency Platform Types ──────────────────────────────────────────────
 
-export type ResidencyRole = 'resident' | 'mentor' | 'instructor' | 'admin' | 'school_partner'
+export type ResidencyRole = 'resident' | 'mentor' | 'instructor' | 'admin' | 'school_partner' | 'site_mentor'
 export type LessonStatus = 'draft' | 'published' | 'archived'
 export type AssignmentStatus = 'assigned' | 'in_progress' | 'submitted' | 'reviewed' | 'completed'
 export type AlbumEntryStatus = 'draft' | 'submitted' | 'reviewed' | 'approved' | 'revision_requested'
