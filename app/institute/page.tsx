@@ -45,7 +45,7 @@ const programs = [
   },
   {
     tier: '05',
-    name: 'Leadership Residency',
+    name: 'Leadership Meridian Direct',
     href: '/institute/residency',
     format: '1:1, sustained, application-based',
     description:

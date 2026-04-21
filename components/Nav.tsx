@@ -22,7 +22,7 @@ const instituteLinks = [
   { name: 'Leadership Intensive', href: '/institute/intensive', tagline: 'Multi-day cohort immersion' },
   { name: 'Leadership Studio', href: '/institute/studio', tagline: 'Monthly peer cohort' },
   { name: 'Leadership Alignment Retreat', href: '/institute/retreat', tagline: 'For leadership teams' },
-  { name: 'Leadership Residency', href: '/institute/residency', tagline: '1:1, application-based' },
+  { name: 'Leadership Meridian Direct', href: '/institute/residency', tagline: '1:1, application-based' },
   { name: 'Course Catalog', href: '/institute/catalog', tagline: 'Dates, pricing & registration' },
 ]
 
