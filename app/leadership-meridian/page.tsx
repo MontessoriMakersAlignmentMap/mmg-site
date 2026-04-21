@@ -9,10 +9,6 @@ const features = [
   'Build: guided systems design for salary, hiring, onboarding, PD, and more',
   'Culture: pulse checks, team health, recognition, and repair plans',
   'Coach: embedded reflective practice that pushes your thinking',
-  'Voice reflection — talk instead of type',
-  'Commitment tracker with overdue flagging',
-  '60-second grounding ritual before hard conversations',
-  'Pattern noticing — the app names what you keep avoiding',
   'Voice reflection: talk through your thinking out loud',
   'Commitment tracker: named next actions flagged when overdue',
   '60-second grounding ritual before hard conversations',
@@ -72,6 +68,9 @@ export default function LeadershipMeridianPage() {
           <div className="inline-block text-[11px] tracking-[2px] uppercase text-[#d6a758] border border-[#d6a758]/30 px-4 py-1.5 rounded-full mb-8 font-medium">
             Part of the Montessori Makers ecosystem
           </div>
+          <p className="text-[11px] text-white/40 uppercase tracking-[0.18em] mb-6 font-medium">
+            AI-powered leadership companion — grounded in Montessori context
+          </p>
           <h1
             className="text-white leading-[1.15] mb-6 tracking-[-0.5px]"
             style={{ ...serif, fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 500 }}
