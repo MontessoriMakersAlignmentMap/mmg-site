@@ -48,7 +48,7 @@ const whoItIsFor = [
 const applicationConsiders = [
   'The nature and complexity of your current leadership situation',
   'Your readiness to engage in rigorous, structured self-examination',
-  'The organizational context and what the residency would need to hold',
+  'The organizational context and what this engagement would need to hold',
   'Fit with Hannah&rsquo;s current capacity and available cohort',
 ]
 
@@ -107,7 +107,7 @@ export default function ResidencyPage() {
           situation: form.situation,
           goals: form.goals,
           schoolSize: form.schoolSize,
-          service: 'Leadership Residency',
+          service: 'Leadership Meridian Direct',
           source: 'residency page — application',
           hp,
         }),
@@ -130,7 +130,7 @@ export default function ResidencyPage() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase mb-8">
-              Leadership Residency
+              Leadership Meridian Direct
             </p>
             <h1
               className="text-5xl md:text-6xl text-white leading-[1.05] mb-8"
@@ -152,7 +152,7 @@ export default function ResidencyPage() {
                 href="#apply"
                 className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
               >
-                Apply for Residency
+                Apply for Leadership Meridian Direct
               </a>
               <Link
                 href="/institute/catalog"
@@ -176,7 +176,7 @@ export default function ResidencyPage() {
           </div>
           <div className="space-y-6 pt-2">
             <p className="text-[#374151] text-lg leading-relaxed">
-              The Leadership Residency is a one-to-one, 6–9 month engagement with Hannah Richardson
+              Leadership Meridian Direct is a one-to-one, 6–9 month engagement with Hannah Richardson
               directly. It is built around a single leader, their specific situation, and the real
               organizational challenges they are navigating in real time.
             </p>
@@ -242,7 +242,7 @@ export default function ResidencyPage() {
               For leaders at a genuine inflection point.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed">
-              The Residency is not for every leader at every stage. It is for leaders who are
+              Leadership Meridian Direct is not for every leader at every stage. It is for leaders who are
               in it — navigating something real, under real stakes, with real consequences.
             </p>
           </div>
@@ -269,7 +269,7 @@ export default function ResidencyPage() {
               Limited availability. Application-based.
             </h2>
             <p className="text-[#374151] text-base leading-relaxed mb-4">
-              Hannah works with a small number of residency clients at any given time. The Residency
+              Hannah works with a small number of clients at any given time. Leadership Meridian Direct
               is not a product — it is a commitment. Applications are reviewed on a rolling basis.
             </p>
             <p className="text-[#374151] text-base leading-relaxed">
@@ -315,8 +315,8 @@ export default function ResidencyPage() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">
               <p className="text-[#374151] text-lg leading-relaxed">
-                The Residency is not a product you purchase. It is an engagement you apply for.
-                Hannah works with a small number of residency leaders at any given time &mdash;
+                Leadership Meridian Direct is not a product you purchase. It is an engagement you apply for.
+                Hannah works with a small number of leaders at any given time &mdash;
                 and each engagement is built around that leader&rsquo;s specific situation.
               </p>
               <p className="text-[#374151] text-base leading-relaxed">
@@ -361,10 +361,10 @@ export default function ResidencyPage() {
                 className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-6"
                 style={serif}
               >
-                Apply for Residency
+                Apply for Leadership Meridian Direct
               </h2>
               <p className="text-[#374151] text-base leading-relaxed mb-8">
-                This application is reviewed personally. If the Residency seems like the right
+                This application is reviewed personally. If Leadership Meridian Direct seems like the right
                 fit, the next step will be a conversation.
               </p>
               <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-6">
@@ -506,7 +506,7 @@ export default function ResidencyPage() {
                   {/* Why seeking Residency now */}
                   <div>
                     <label className={labelLongClass}>
-                      Why are you seeking Residency support now?
+                      Why are you seeking Leadership Meridian Direct now?
                     </label>
                     <textarea
                       name="situation"
@@ -575,8 +575,8 @@ export default function ResidencyPage() {
               The weight of real leadership deserves a real thinking partner.
             </p>
             <p className="text-[#374151] text-base leading-relaxed mb-3">
-              If you are navigating something significant — and you are doing it mostly alone — the
-              Residency was built for that.
+              If you are navigating something significant — and you are doing it mostly alone —
+              Leadership Meridian Direct was built for that.
             </p>
             <p className="text-[#64748B] text-sm leading-relaxed">
               Applications are reviewed personally. Availability is extremely limited.
@@ -587,7 +587,7 @@ export default function ResidencyPage() {
               href="#apply"
               className="bg-[#0e1a7a] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#162270] transition-colors text-center whitespace-nowrap font-medium"
             >
-              Apply for Residency
+              Apply for Leadership Meridian Direct
             </a>
             <Link
               href="/institute/register"
