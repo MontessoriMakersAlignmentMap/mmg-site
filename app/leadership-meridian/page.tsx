@@ -5,12 +5,44 @@ import type { CSSProperties } from 'react'
 const serif: CSSProperties = { fontFamily: 'var(--font-heading)' }
 
 const features = [
-  'Navigate: 10+ leadership situation protocols with exact language',
+  'Navigate: 10+ protocols with exact language for hard conversations',
   'Build: guided systems design for salary, hiring, onboarding, PD, and more',
-  'Culture: pulse checks, team health, recognition, repair plans',
+  'Culture: pulse checks, team health, recognition, and repair plans',
   'Coach: embedded reflective practice that pushes your thinking',
+  'Voice reflection — talk instead of type',
+  'Commitment tracker with overdue flagging',
+  '60-second grounding ritual before hard conversations',
+  'Pattern noticing — the app names what you keep avoiding',
+  'Voice reflection: talk through your thinking out loud',
+  'Commitment tracker: named next actions flagged when overdue',
+  '60-second grounding ritual before hard conversations',
+  'Pattern noticing: the app names what you keep avoiding',
+  "Peer signal: anonymous awareness you're not alone",
   'MMAP integration for leadership documentation',
   'Unlimited interactions',
+]
+
+const mobileFeatures = [
+  {
+    name: 'Voice reflection',
+    desc: 'Talk your reflection instead of typing. Drive-time, walk-time, parking-lot-before-a-hard-day coaching. The app listens, responds, and pushes back.',
+  },
+  {
+    name: 'Commitment tracker',
+    desc: 'Name what you\'ll do at the end of every protocol. The app tracks it and flags overdue commitments in red. Accountability built in.',
+  },
+  {
+    name: '60-second grounding ritual',
+    desc: 'One tap before a hard conversation. Box breathing plus a single framing question. Closes the gap between "I have to walk in there" and being ready.',
+  },
+  {
+    name: 'Pattern noticing',
+    desc: 'When you\'ve mentioned the same issue four times without acting, the app names it. Closes the avoidance loop. Quietly, without judgment.',
+  },
+  {
+    name: 'Peer signal',
+    desc: 'Anonymous awareness that other Montessori leaders are working on what you\'re working on. No feed, no community to manage — just the loneliness-breaker.',
+  },
 ]
 
 const ecosystemLinks = [
@@ -47,10 +79,13 @@ export default function LeadershipMeridianPage() {
             The hardest part of leading a school isn&apos;t the{' '}
             <em className="text-[#d6a758] italic">pedagogy.</em>
           </h1>
-          <p className="text-lg text-white/75 leading-[1.7] max-w-[580px] mx-auto mb-10 font-light">
+          <p className="text-lg text-white/75 leading-[1.7] max-w-[580px] mx-auto mb-4 font-light">
             It&apos;s the people. The conversations. The systems that don&apos;t exist yet. The
             culture you&apos;re trying to build while holding everything together. Leadership
             Meridian is the strategic partner you don&apos;t have.
+          </p>
+          <p className="text-[15px] text-[#d6a758]/80 leading-[1.7] max-w-[500px] mx-auto mb-10 italic">
+            For the conversation you&apos;re about to have, the system you need to build, and the weight you carry alone.
           </p>
           <div className="flex gap-4 flex-wrap justify-center mb-16">
             <a
@@ -202,6 +237,31 @@ export default function LeadershipMeridianPage() {
                 names patterns, and asks the questions nobody else will ask you.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MOBILE-NATIVE FEATURES */}
+      <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase font-medium mb-3">Also built in</p>
+          <h2
+            className="text-[#0e1a7a] leading-tight mb-4"
+            style={{ ...serif, fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 500 }}
+          >
+            Built for where leadership actually happens.
+          </h2>
+          <p className="text-[17px] text-[#374151] leading-relaxed max-w-[640px] mb-12">
+            Leadership is isolating. Most heads of school have no coach, no peer group, and no safe
+            place to process the weight of the role. These features were built for that.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {mobileFeatures.map((f) => (
+              <div key={f.name} className="bg-white border border-[#E2DDD6] rounded-xl p-7">
+                <h3 className="text-[#0e1a7a] text-base font-semibold mb-2">{f.name}</h3>
+                <p className="text-[#374151] text-[15px] leading-[1.65]">{f.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
