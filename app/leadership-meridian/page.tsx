@@ -69,7 +69,7 @@ export default function LeadershipMeridianPage() {
             Part of the Montessori Makers ecosystem
           </div>
           <p className="text-[11px] text-white/40 uppercase tracking-[0.18em] mb-6 font-medium">
-            AI-powered leadership companion — grounded in Montessori context
+            Embedded leadership companion — grounded in Montessori context
           </p>
           <h1
             className="text-white leading-[1.15] mb-6 tracking-[-0.5px]"
