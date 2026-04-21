@@ -36,20 +36,46 @@ const modes: Mode[] = [
   },
 ]
 
+const additionalFeatures = [
+  {
+    name: 'Observation capture',
+    desc: 'Tap the eye button anywhere in the app to capture an observation in the moment. Tag the child, pick the developmental area(s), jot what you saw. Saves locally, syncs to MMAP if your school uses it.',
+  },
+  {
+    name: 'Child view',
+    desc: 'Tap a child to see their full arc: every presentation you\'ve given, observations you\'ve captured, moments you\'ve worked through. Prep for tomorrow morning in 15 seconds.',
+  },
+  {
+    name: 'What\'s next for this child',
+    desc: 'Based on what you\'ve already presented, Field Guide suggests the next lessons in each strand. Sunday-night lesson planning in one screen.',
+  },
+  {
+    name: 'Parent message helper',
+    desc: 'Draft the hard messages and the good ones. Pick a purpose (positive, concern, hard moment, check-in, ask for partnership), jot a few sentences of context, get a warm, Montessori-voiced draft you can edit and copy.',
+  },
+  {
+    name: 'Feedback built in',
+    desc: 'Tell us what\'s working, what\'s broken, what you wish it did. Right from the app.',
+  },
+]
+
 const communityFeatures = [
   'Full access to Support Me',
   'Full access to Support the Learner',
   'Full access to Reflect with embedded coaching',
+  'Observation capture with MMAP sync',
+  'Child view: full arc per child',
+  'Parent message helper',
   'Guide Me: materials, setup, and what to watch for',
   'Scope and sequence navigation',
-  'Pathway to the Montessori Makers Residency',
 ]
 
 const credentialedFeatures = [
   'Everything in Community, plus:',
   'Full lesson walkthroughs with presentation steps',
   'Key language for every lesson',
-  'embedded lesson search and recommendations',
+  'What\'s next: lesson recommendations per child',
+  'Embedded lesson search',
   'Complete scope and sequence with prerequisites',
   'MMAP integration for lesson logging',
 ]
@@ -86,7 +112,7 @@ export default function FieldGuidePage() {
             {' '}for Montessori practitioners.
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-[560px] mx-auto mb-10 font-light">
-            Lesson walkthroughs. Crisis support. Learner strategies. Reflective coaching. Embedded, Montessori-grounded, and built from 25 years inside real classrooms.
+            Lesson walkthroughs. Crisis support. Learner strategies. Embedded coaching. Observation capture. Built from 25 years inside real classrooms.
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <a
@@ -141,6 +167,27 @@ export default function FieldGuidePage() {
                     />
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ALSO IN THE APP */}
+      <section className="bg-white py-20 md:py-24 px-6 md:px-10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase font-medium mb-3">Also in the app</p>
+          <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight mb-4" style={serif}>
+            More than four modes.
+          </h2>
+          <p className="text-[17px] text-[#374151] leading-relaxed max-w-[640px] mb-12">
+            The Field Guide is built around what actually happens in a Montessori classroom — including the parts that happen between lessons.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {additionalFeatures.map((f) => (
+              <div key={f.name} className="bg-[#FAF9F7] border border-[#E2DDD6] rounded-xl p-7">
+                <h3 className="text-[#0e1a7a] text-base font-semibold mb-2">{f.name}</h3>
+                <p className="text-[#374151] text-[15px] leading-[1.65]">{f.desc}</p>
               </div>
             ))}
           </div>
