@@ -68,6 +68,27 @@ export default function MatchHubDashboardPage() {
               </Link>
             </div>
 
+            {/* Match Engine */}
+            <div className="bg-[#0e1a7a] border border-[#0e1a7a] p-10 flex flex-col gap-6 md:col-span-2">
+              <div className="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-lg font-semibold" style={serif}>⚡</span>
+              </div>
+              <div>
+                <h2 className="text-white font-semibold text-2xl mb-3" style={serif}>
+                  Candidate Match Engine
+                </h2>
+                <p className="text-[#94A3B8] text-sm leading-relaxed">
+                  See which candidates in the CRM match your active searches — ranked by credential, level, role type, and experience. Draft personalized outreach emails in one click.
+                </p>
+              </div>
+              <Link
+                href="/matchhub/match"
+                className="bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center mt-auto w-fit"
+              >
+                Open Match Engine &rarr;
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>
