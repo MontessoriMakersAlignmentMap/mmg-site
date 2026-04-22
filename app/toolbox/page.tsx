@@ -432,61 +432,54 @@ export default function ToolboxPage() {
                   {cat.items.map((p) => (
                     <div
                       key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
+                      className="bg-white border border-[#E2DDD6] flex overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      <div className="p-8 flex flex-col flex-1">
-                        <div className="flex items-start gap-5 mb-5">
-                          <div className="relative w-28 h-40 flex-shrink-0 overflow-hidden shadow-md">
-                            <Image
-                              src={p.image}
-                              alt={p.name}
-                              fill
-                              className="object-cover object-top"
-                              sizes="112px"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4
-                              className="text-[#0e1a7a] text-xl font-semibold leading-snug"
-                              style={serif}
-                            >
-                              {p.name}
-                            </h4>
-                          </div>
-                        </div>
+                      <div className="relative w-36 flex-shrink-0 min-h-[260px]">
+                        <Image
+                          src={p.image}
+                          alt={p.name}
+                          fill
+                          className="object-cover object-top"
+                          sizes="144px"
+                        />
+                      </div>
+                      <div className="p-6 flex flex-col flex-1 min-w-0">
+                        <h4
+                          className="text-[#0e1a7a] text-lg font-semibold leading-snug mb-3"
+                          style={serif}
+                        >
+                          {p.name}
+                        </h4>
 
                         <p className="text-[#374151] text-sm leading-relaxed mb-4 flex-1">
                           {p.desc}
                         </p>
 
                         <p className="text-[#64748B] text-[11px] mb-1">For: {p.audience}</p>
-                        <p className="text-[#64748B] text-xs mb-5">{p.docs}</p>
+                        <p className="text-[#64748B] text-xs mb-4">{p.docs}</p>
 
-                        <div className="flex items-center justify-between pt-5 border-t border-[#E2DDD6]">
+                        <div className="flex items-center justify-between pt-4 border-t border-[#E2DDD6]">
                           <p
-                            className="text-[#0e1a7a] text-2xl font-semibold tracking-tight"
+                            className="text-[#0e1a7a] text-xl font-semibold tracking-tight"
                             style={serif}
                           >
                             {p.price}
                           </p>
-                          <div className="flex flex-col items-end gap-1">
-                            <div className="flex items-center gap-3">
-                              <Link
-                                href={`/toolbox/${p.slug}`}
-                                className="border border-[#0e1a7a] text-[#0e1a7a] text-[11px] px-4 py-2 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors font-medium"
-                              >
-                                Learn More
-                              </Link>
-                              <a
-                                href={p.stripeHref}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-[#d6a758] text-white text-[11px] px-4 py-2 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
-                              >
-                                Buy Now
-                              </a>
-                            </div>
-                            <p className="text-[#94A3B8] text-[9px]">Digital toolkit. Immediate download after purchase.</p>
+                          <div className="flex items-center gap-2">
+                            <Link
+                              href={`/toolbox/${p.slug}`}
+                              className="border border-[#0e1a7a] text-[#0e1a7a] text-[11px] px-3 py-2 tracking-[0.07em] hover:bg-[#0e1a7a] hover:text-white transition-colors font-medium"
+                            >
+                              Learn More
+                            </Link>
+                            <a
+                              href={p.stripeHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-[#d6a758] text-white text-[11px] px-3 py-2 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium"
+                            >
+                              Buy Now
+                            </a>
                           </div>
                         </div>
                       </div>
