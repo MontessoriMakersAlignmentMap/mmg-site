@@ -828,7 +828,7 @@ export default function MMAPPage() {
     <>
       {/* Hero */}
       <section className="grain bg-[#0e1a7a] pt-28 pb-20 md:pt-32 md:pb-24 px-6 md:px-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           {/* Text */}
           <div>
             <FadeIn>
