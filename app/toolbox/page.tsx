@@ -434,6 +434,10 @@ export default function ToolboxPage() {
                       className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
                       <div className="h-1 bg-[#d6a758]" />
+                      <div className="overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.image} alt={p.name} className="w-full h-44 object-cover object-top" />
+                      </div>
                       <div className="p-6 flex flex-col flex-1">
                         <h4
                           className="text-[#0e1a7a] text-base font-semibold leading-snug mb-2"

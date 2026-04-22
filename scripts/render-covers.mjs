@@ -31,14 +31,14 @@ const browser = await chromium.launch({
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
 })
 const page = await browser.newPage()
-await page.setViewportSize({ width: 1414, height: 2000 })
+await page.setViewportSize({ width: 600, height: 800 })
 
 for (const { html, out } of covers) {
   const src = `file://${SRC}/${html}`
   const dest = path.join(DEST, out)
   console.log(`Rendering ${html} → ${out}`)
   await page.goto(src, { waitUntil: 'networkidle' })
-  await page.screenshot({ path: dest, clip: { x: 0, y: 0, width: 1414, height: 2000 }, fullPage: false })
+  await page.screenshot({ path: dest, clip: { x: 0, y: 0, width: 600, height: 800 }, fullPage: false })
   console.log(`  ✓ saved`)
 }
 
