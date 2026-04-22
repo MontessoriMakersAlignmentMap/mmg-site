@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Logo } from '@/components/Logo'
 
 const serif = { fontFamily: 'var(--font-heading)' }
@@ -434,15 +433,10 @@ export default function ToolboxPage() {
                       key={p.slug}
                       className="bg-white border border-[#E2DDD6] flex overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      <div className="relative w-36 flex-shrink-0 overflow-hidden bg-[#F2EDE6] min-h-[220px] md:min-h-0">
-                        <Image
-                          src={p.image}
-                          alt={p.name}
-                          fill
-                          className="object-cover object-top"
-                          sizes="144px"
-                        />
-                      </div>
+                      <div
+                        className="w-36 flex-shrink-0 self-stretch min-h-[220px]"
+                        style={{ backgroundImage: `url('${p.image}')`, backgroundSize: 'cover', backgroundPosition: 'top' }}
+                      />
                       <div className="p-6 flex flex-col flex-1 min-w-0">
                         <h4
                           className="text-[#0e1a7a] text-lg font-semibold leading-snug mb-3"
