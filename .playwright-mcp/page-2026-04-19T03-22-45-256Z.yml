@@ -1,0 +1,38 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e786]:
+    - generic [ref=e787]: MMAP
+    - heading "Connect to your school." [level=1] [ref=e788]
+    - paragraph [ref=e789]: Sign in with your school email to sync your logs, reflections, and observations with MMAP.
+    - generic [ref=e790]:
+      - button "G SIGN IN WITH GOOGLE" [ref=e791] [cursor=pointer]:
+        - generic [ref=e792]: G
+        - text: SIGN IN WITH GOOGLE
+      - generic [ref=e795]: OR
+      - generic [ref=e797]:
+        - textbox "you@school.org" [ref=e798]
+        - button "EMAIL ME A SIGN-IN LINK" [disabled] [ref=e799]
+      - button "Continue without connecting" [ref=e800] [cursor=pointer]
+      - generic [ref=e801]: Your school not on MMAP? That's fine — Field Guide works on this device. You can always sign in later from the MMAP tab.
+  - generic [ref=e163]:
+    - button "Guide" [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [active] [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

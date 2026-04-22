@@ -1,0 +1,92 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e376]:
+    - generic [ref=e377]:
+      - generic [ref=e378]: Guide Me
+      - heading "Walk the shelf" [level=1] [ref=e379]
+      - paragraph [ref=e380]: The full MMG Residency curriculum. Pick a strand. Find a lesson. Everything you need to present, in two minutes.
+    - generic [ref=e381]:
+      - button "Theory 37 lessons" [ref=e382] [cursor=pointer]:
+        - img [ref=e384]
+        - generic [ref=e386]:
+          - generic [ref=e387]: Theory
+          - generic [ref=e388]: 37 lessons
+      - button "Practical Life 47 lessons" [ref=e389] [cursor=pointer]:
+        - img [ref=e391]
+        - generic [ref=e396]:
+          - generic [ref=e397]: Practical Life
+          - generic [ref=e398]: 47 lessons
+      - button "Sensorial 39 lessons" [ref=e399] [cursor=pointer]:
+        - img [ref=e401]
+        - generic [ref=e403]:
+          - generic [ref=e404]: Sensorial
+          - generic [ref=e405]: 39 lessons
+      - button "Language 47 lessons" [ref=e406] [cursor=pointer]:
+        - img [ref=e408]
+        - generic [ref=e410]:
+          - generic [ref=e411]: Language
+          - generic [ref=e412]: 47 lessons
+      - button "Mathematics 47 lessons" [ref=e413] [cursor=pointer]:
+        - img [ref=e415]
+        - generic [ref=e419]:
+          - generic [ref=e420]: Mathematics
+          - generic [ref=e421]: 47 lessons
+      - button "Behavior 10 lessons" [ref=e422] [cursor=pointer]:
+        - img [ref=e424]
+        - generic [ref=e426]:
+          - generic [ref=e427]: Behavior
+          - generic [ref=e428]: 10 lessons
+      - button "Elementary Bridge 5 lessons" [ref=e429] [cursor=pointer]:
+        - img [ref=e431]
+        - generic [ref=e433]:
+          - generic [ref=e434]: Elementary Bridge
+          - generic [ref=e435]: 5 lessons
+    - generic [ref=e436]:
+      - generic [ref=e437]: Or ask — example questions
+      - generic [ref=e438]: Tap a real question guides have asked. Full AI response below.
+      - generic [ref=e439]:
+        - button "“She counts to 20 but can’t match numerals to quantities. What do I present next?”" [ref=e440] [cursor=pointer]:
+          - img [ref=e442]
+          - generic [ref=e444]: “She counts to 20 but can’t match numerals to quantities. What do I present next?”
+          - img [ref=e445]
+        - button "“I have a child who keeps choosing the same practical life work every day and won’t try anything else.”" [ref=e447] [cursor=pointer]:
+          - img [ref=e449]
+          - generic [ref=e451]: “I have a child who keeps choosing the same practical life work every day and won’t try anything else.”
+          - img [ref=e452]
+        - button "“When do I introduce the moveable alphabet?”" [ref=e454] [cursor=pointer]:
+          - img [ref=e456]
+          - generic [ref=e458]: “When do I introduce the moveable alphabet?”
+          - img [ref=e459]
+        - button "“A child finished all the cylinder blocks. What’s next in sensorial?”" [ref=e461] [cursor=pointer]:
+          - img [ref=e463]
+          - generic [ref=e465]: “A child finished all the cylinder blocks. What’s next in sensorial?”
+          - img [ref=e466]
+        - button "“My elementary students are bored during the Great Lessons. They’ve heard them before.”" [ref=e468] [cursor=pointer]:
+          - img [ref=e470]
+          - generic [ref=e472]: “My elementary students are bored during the Great Lessons. They’ve heard them before.”
+          - img [ref=e473]
+  - generic [ref=e158]:
+    - img [ref=e160]
+    - textbox "Or ask anything about your classroom…" [ref=e475]
+  - generic [ref=e163]:
+    - button "Guide" [active] [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

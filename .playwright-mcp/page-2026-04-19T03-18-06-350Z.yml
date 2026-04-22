@@ -1,0 +1,94 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e187]:
+    - generic [ref=e188]:
+      - generic [ref=e189]: Support Me
+      - heading "What's happening right now?" [level=1] [ref=e190]
+      - paragraph [ref=e191]: Start with yourself. Then the child. These protocols assume you have five seconds or five minutes — both are enough.
+    - generic [ref=e192]:
+      - button "A child is in crisis Throwing, hitting, screaming, eloping, or in acute distress." [ref=e193] [cursor=pointer]:
+        - generic [ref=e195]:
+          - generic [ref=e196]: A child is in crisis
+          - generic [ref=e197]: Throwing, hitting, screaming, eloping, or in acute distress.
+        - img [ref=e198]
+      - button "Conflict between children Physical or verbal dispute needing de-escalation." [ref=e200] [cursor=pointer]:
+        - generic [ref=e202]:
+          - generic [ref=e203]: Conflict between children
+          - generic [ref=e204]: Physical or verbal dispute needing de-escalation.
+        - img [ref=e205]
+      - button "A child has shut down Withdrawn, refusing to engage, crying quietly." [ref=e207] [cursor=pointer]:
+        - generic [ref=e209]:
+          - generic [ref=e210]: A child has shut down
+          - generic [ref=e211]: Withdrawn, refusing to engage, crying quietly.
+        - img [ref=e212]
+      - button "Transition struggle Difficulty arriving, separating, or shifting activities." [ref=e214] [cursor=pointer]:
+        - generic [ref=e216]:
+          - generic [ref=e217]: Transition struggle
+          - generic [ref=e218]: Difficulty arriving, separating, or shifting activities.
+        - img [ref=e219]
+      - button "Sensory overwhelm A child is overstimulated by noise, light, touch, or activity level." [ref=e221] [cursor=pointer]:
+        - generic [ref=e223]:
+          - generic [ref=e224]: Sensory overwhelm
+          - generic [ref=e225]: A child is overstimulated by noise, light, touch, or activity level.
+        - img [ref=e226]
+      - button "Biting or physical aggression (young children) Developmentally common in 2.5–3.5 — requires a grounded response, never punishment." [ref=e228] [cursor=pointer]:
+        - generic [ref=e230]:
+          - generic [ref=e231]: Biting or physical aggression (young children)
+          - generic [ref=e232]: Developmentally common in 2.5–3.5 — requires a grounded response, never punishment.
+        - img [ref=e233]
+      - button "Toileting accident Dignity first. How the adult responds teaches the child what bodies mean." [ref=e235] [cursor=pointer]:
+        - generic [ref=e237]:
+          - generic [ref=e238]: Toileting accident
+          - generic [ref=e239]: Dignity first. How the adult responds teaches the child what bodies mean.
+        - img [ref=e240]
+      - button "Recurring behavior pattern Something keeps happening — needs thoughtful analysis, not reaction." [ref=e242] [cursor=pointer]:
+        - generic [ref=e244]:
+          - generic [ref=e245]: Recurring behavior pattern
+          - generic [ref=e246]: Something keeps happening — needs thoughtful analysis, not reaction.
+        - img [ref=e247]
+      - button "Difficult parent conversation A family is upset, confused, or challenging a decision." [ref=e249] [cursor=pointer]:
+        - generic [ref=e251]:
+          - generic [ref=e252]: Difficult parent conversation
+          - generic [ref=e253]: A family is upset, confused, or challenging a decision.
+        - img [ref=e254]
+    - generic [ref=e256]:
+      - generic [ref=e257]: Or describe it — examples
+      - generic [ref=e258]: Real situations guides have described. Tap for the full response.
+      - generic [ref=e259]:
+        - button "“He kept it together all morning and fell apart at 11:30. What am I missing?”" [ref=e260] [cursor=pointer]:
+          - img [ref=e262]
+          - generic [ref=e264]: “He kept it together all morning and fell apart at 11:30. What am I missing?”
+          - img [ref=e265]
+        - button "“She hit another child again. Third time this week. What do I do?”" [ref=e267] [cursor=pointer]:
+          - img [ref=e269]
+          - generic [ref=e271]: “She hit another child again. Third time this week. What do I do?”
+          - img [ref=e272]
+        - button "“A parent asked me why her daughter isn’t reading yet. She’s 4.5. I didn’t know what to say.”" [ref=e274] [cursor=pointer]:
+          - img [ref=e276]
+          - generic [ref=e278]: “A parent asked me why her daughter isn’t reading yet. She’s 4.5. I didn’t know what to say.”
+          - img [ref=e279]
+  - generic [ref=e158]:
+    - img [ref=e160]
+    - textbox "Describe what’s happening…" [ref=e281]
+  - generic [ref=e163]:
+    - button "Guide" [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [active] [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

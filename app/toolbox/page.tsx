@@ -94,6 +94,56 @@ const categories: { label: string; items: Product[] }[] = [
         audience: 'Heads of school, directors, and HR leads',
         stripeHref: 'https://buy.stripe.com/bJedRb4DS8X61grc3T2cg0L',
       },
+      {
+        name: 'Compensation Framework Toolkit',
+        slug: 'compensation-framework-toolkit',
+        image: '/images/toolbox/performance-concerns-separation-toolkit.png',
+        price: '$395',
+        docs: '8 documents + Excel workbook',
+        desc: 'A principled compensation system — pay philosophy, salary banding, annual review cycle, and equity audit. Includes an Excel workbook for maintaining salary bands. For schools where compensation decisions need to be defensible.',
+        audience: 'Heads of school, HR leads, and business managers',
+        stripeHref: 'https://buy.stripe.com/28EaEZ5HW1uE8ITd7X2cg1h',
+      },
+      {
+        name: 'Enrollment Systems Toolkit',
+        slug: 'enrollment-systems-toolkit',
+        image: '/images/toolbox/hiring-selection-toolkit.png',
+        price: '$425',
+        docs: '8 documents',
+        desc: 'End-to-end enrollment infrastructure — inquiry management, tour protocol, admissions decisions, waitlist management, and re-enrollment. Built for the operational complexity schools actually face.',
+        audience: 'Heads of school, admissions directors, and enrollment teams',
+        stripeHref: 'https://buy.stripe.com/fZu6oJb2g7T26AL9VL2cg1i',
+      },
+      {
+        name: 'New Leader Onboarding Toolkit',
+        slug: 'new-leader-onboarding-toolkit',
+        image: '/images/toolbox/leadership-transition-succession-toolkit.png',
+        price: '$375',
+        docs: '7 documents',
+        desc: 'A structured first 90 days for incoming heads of school and directors — the relationships to build, the decisions that can\'t wait, and the institutional knowledge to absorb before acting.',
+        audience: 'Incoming heads of school, new directors, and boards supporting transitions',
+        stripeHref: 'https://buy.stripe.com/cNi8wR8U8ehqcZ9aZP2cg1j',
+      },
+      {
+        name: 'Staff Retention Toolkit',
+        slug: 'staff-retention-toolkit',
+        image: '/images/toolbox/adult-culture-framework.png',
+        price: '$325',
+        docs: '7 documents',
+        desc: 'Stay interviews, working conditions assessment, exit analysis, and retention-centered culture practices. For schools that want to keep the people they worked hard to find.',
+        audience: 'Heads of school, HR leads, and directors responsible for staff experience',
+        stripeHref: 'https://buy.stripe.com/bJefZjc6k4GQ1gr4Br2cg1k',
+      },
+      {
+        name: 'Annual Cycle Planning Toolkit',
+        slug: 'annual-cycle-planning-toolkit',
+        image: '/images/toolbox/montessori-leadership-operations-playbook.png',
+        price: '$225',
+        docs: '6 documents',
+        desc: 'A full-year operational planning system — month-by-month leadership calendar, board calendar, enrollment rhythm map, and staff cycle planning. So the school year is mapped, not improvised.',
+        audience: 'Heads of school and leadership teams',
+        stripeHref: 'https://buy.stripe.com/14A6oJ9Yc7T22kv7ND2cg1l',
+      },
     ],
   },
   {
@@ -128,6 +178,16 @@ const categories: { label: string; items: Product[] }[] = [
         desc: 'A comprehensive, editable family handbook built specifically for Montessori schools. Reflects your philosophy and community — not a generic school district template adapted to fit.',
         audience: 'Heads of school, directors, and enrollment teams',
         stripeHref: 'https://buy.stripe.com/6oU4gB1rG1uEbV51pf2cg0H',
+      },
+      {
+        name: 'Financial Literacy for Montessori Leaders',
+        slug: 'financial-literacy-toolkit',
+        image: '/images/toolbox/board-onboarding-alignment-toolkit.png',
+        price: '$275',
+        docs: '7 guides',
+        desc: 'A deep, actionable guide to school finance for leaders who didn\'t come from finance — budget construction, financial statements, cash flow, reserve strategy, and board finance conversations.',
+        audience: 'Heads of school, new directors, and board finance committee members',
+        stripeHref: 'https://buy.stripe.com/cNi9AVfiwa1a0cn3xn2cg1m',
       },
     ],
   },
@@ -316,7 +376,7 @@ export default function ToolboxPage() {
                 className="text-[#0e1a7a] text-5xl font-semibold mb-4 tracking-tight"
                 style={serif}
               >
-                10 tools
+                16 tools
               </p>
               <div className="w-8 h-0.5 bg-[#d6a758] mb-4" />
               <p className="text-[#374151] text-base leading-relaxed">

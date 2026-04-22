@@ -1,0 +1,18 @@
+- generic [ref=e5]:
+  - generic [ref=e7]:
+    - generic [ref=e8]: Start here
+    - heading "Which level are you guiding?" [level=1] [ref=e33]
+    - paragraph [ref=e10]: You can switch any time. This just sets what shows up first.
+    - generic [ref=e34]:
+      - button "Primary Ages 3–6" [ref=e35] [cursor=pointer]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: Primary
+          - generic [ref=e38]: Ages 3–6
+        - img [ref=e40]
+      - button "Elementary Ages 6–12" [ref=e42] [cursor=pointer]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Elementary
+          - generic [ref=e45]: Ages 6–12
+  - generic [ref=e16]:
+    - button "BACK" [ref=e19] [cursor=pointer]
+    - button "ENTER THE APP" [ref=e47] [cursor=pointer]

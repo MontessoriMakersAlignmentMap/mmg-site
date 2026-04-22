@@ -1,0 +1,237 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e477]:
+    - button "ALL STRANDS" [ref=e478] [cursor=pointer]:
+      - img [ref=e479]
+      - text: ALL STRANDS
+    - generic [ref=e481]:
+      - img [ref=e483]
+      - generic [ref=e488]:
+        - heading "Practical Life" [level=1] [ref=e489]
+        - paragraph [ref=e490]: 47 lessons · from the MMG Residency curriculum
+    - generic [ref=e491]:
+      - generic [ref=e492]:
+        - generic [ref=e493]: Preliminary Exercises · 33
+        - generic [ref=e494]:
+          - button "01 Dry Pouring" [ref=e495] [cursor=pointer]:
+            - generic [ref=e496]: "01"
+            - generic [ref=e498]: Dry Pouring
+            - img [ref=e499]
+          - button "02 How to Carry a Tray" [ref=e501] [cursor=pointer]:
+            - generic [ref=e502]: "02"
+            - generic [ref=e504]: How to Carry a Tray
+            - img [ref=e505]
+          - button "03 How to Carry a Chair" [ref=e507] [cursor=pointer]:
+            - generic [ref=e508]: "03"
+            - generic [ref=e510]: How to Carry a Chair
+            - img [ref=e511]
+          - button "04 How to Move a Table" [ref=e513] [cursor=pointer]:
+            - generic [ref=e514]: "04"
+            - generic [ref=e516]: How to Move a Table
+            - img [ref=e517]
+          - button "05 How to Unroll and Roll a Rug" [ref=e519] [cursor=pointer]:
+            - generic [ref=e520]: "05"
+            - generic [ref=e522]: How to Unroll and Roll a Rug
+            - img [ref=e523]
+          - button "06 Opening and Closing Containers" [ref=e525] [cursor=pointer]:
+            - generic [ref=e526]: "06"
+            - generic [ref=e528]: Opening and Closing Containers
+            - img [ref=e529]
+          - button "07 Spooning" [ref=e531] [cursor=pointer]:
+            - generic [ref=e532]: "07"
+            - generic [ref=e534]: Spooning
+            - img [ref=e535]
+          - button "08 How to Fill a Pitcher with Water" [ref=e537] [cursor=pointer]:
+            - generic [ref=e538]: "08"
+            - generic [ref=e540]: How to Fill a Pitcher with Water
+            - img [ref=e541]
+          - button "09 Pouring Water" [ref=e543] [cursor=pointer]:
+            - generic [ref=e544]: "09"
+            - generic [ref=e546]: Pouring Water
+            - img [ref=e547]
+          - button "10 How to Use a Sponge" [ref=e549] [cursor=pointer]:
+            - generic [ref=e550]: "10"
+            - generic [ref=e552]: How to Use a Sponge
+            - img [ref=e553]
+          - button "11 How to Empty a Bucket" [ref=e555] [cursor=pointer]:
+            - generic [ref=e556]: "11"
+            - generic [ref=e558]: How to Empty a Bucket
+            - img [ref=e559]
+          - button "12 Twisting" [ref=e561] [cursor=pointer]:
+            - generic [ref=e562]: "12"
+            - generic [ref=e564]: Twisting
+            - img [ref=e565]
+          - button "13 Folding Cloths" [ref=e567] [cursor=pointer]:
+            - generic [ref=e568]: "13"
+            - generic [ref=e570]: Folding Cloths
+            - img [ref=e571]
+          - button "14 Snaps Dressing Frame" [ref=e573] [cursor=pointer]:
+            - generic [ref=e574]: "14"
+            - generic [ref=e576]: Snaps Dressing Frame
+            - img [ref=e577]
+          - button "15 Zipper Dressing Frame" [ref=e579] [cursor=pointer]:
+            - generic [ref=e580]: "15"
+            - generic [ref=e582]: Zipper Dressing Frame
+            - img [ref=e583]
+          - button "16 Buttons Dressing Frame" [ref=e585] [cursor=pointer]:
+            - generic [ref=e586]: "16"
+            - generic [ref=e588]: Buttons Dressing Frame
+            - img [ref=e589]
+          - button "17 Buckles Dressing Frame" [ref=e591] [cursor=pointer]:
+            - generic [ref=e592]: "17"
+            - generic [ref=e594]: Buckles Dressing Frame
+            - img [ref=e595]
+          - button "18 Velcro Dressing Frame" [ref=e597] [cursor=pointer]:
+            - generic [ref=e598]: "18"
+            - generic [ref=e600]: Velcro Dressing Frame
+            - img [ref=e601]
+          - button "19 Shoe Lacing and Bow Tying Dressing Frame" [ref=e603] [cursor=pointer]:
+            - generic [ref=e604]: "19"
+            - generic [ref=e606]: Shoe Lacing and Bow Tying Dressing Frame
+            - img [ref=e607]
+          - button "20 Hand Washing" [ref=e609] [cursor=pointer]:
+            - generic [ref=e610]: "20"
+            - generic [ref=e612]: Hand Washing
+            - img [ref=e613]
+          - button "21 Caring for Shoes and Sneakers" [ref=e615] [cursor=pointer]:
+            - generic [ref=e616]: "21"
+            - generic [ref=e618]: Caring for Shoes and Sneakers
+            - img [ref=e619]
+          - 'button "22 Food Preparation: Slicing" [ref=e621] [cursor=pointer]':
+            - generic [ref=e622]: "22"
+            - generic [ref=e624]: "Food Preparation: Slicing"
+            - img [ref=e625]
+          - 'button "23 Food Preparation: Spreading" [ref=e627] [cursor=pointer]':
+            - generic [ref=e628]: "23"
+            - generic [ref=e630]: "Food Preparation: Spreading"
+            - img [ref=e631]
+          - button "28 Watering a Plant" [ref=e633] [cursor=pointer]:
+            - generic [ref=e634]: "28"
+            - generic [ref=e636]: Watering a Plant
+            - img [ref=e637]
+          - button "29 Care of Plants" [ref=e639] [cursor=pointer]:
+            - generic [ref=e640]: "29"
+            - generic [ref=e642]: Care of Plants
+            - img [ref=e643]
+          - button "30 Sweeping the Floor" [ref=e645] [cursor=pointer]:
+            - generic [ref=e646]: "30"
+            - generic [ref=e648]: Sweeping the Floor
+            - img [ref=e649]
+          - button "31 Dusting and Wiping Surfaces" [ref=e651] [cursor=pointer]:
+            - generic [ref=e652]: "31"
+            - generic [ref=e654]: Dusting and Wiping Surfaces
+            - img [ref=e655]
+          - button "32 Washing a Table" [ref=e657] [cursor=pointer]:
+            - generic [ref=e658]: "32"
+            - generic [ref=e660]: Washing a Table
+            - img [ref=e661]
+          - button "33 Washing Windows and Mirrors" [ref=e663] [cursor=pointer]:
+            - generic [ref=e664]: "33"
+            - generic [ref=e666]: Washing Windows and Mirrors
+            - img [ref=e667]
+          - button "34 Flower Arranging" [ref=e669] [cursor=pointer]:
+            - generic [ref=e670]: "34"
+            - generic [ref=e672]: Flower Arranging
+            - img [ref=e673]
+          - button "35 Washing Cloths" [ref=e675] [cursor=pointer]:
+            - generic [ref=e676]: "35"
+            - generic [ref=e678]: Washing Cloths
+            - img [ref=e679]
+          - button "36 Composting" [ref=e681] [cursor=pointer]:
+            - generic [ref=e682]: "36"
+            - generic [ref=e684]: Composting
+            - img [ref=e685]
+          - button "37 Caring for Shared Objects" [ref=e687] [cursor=pointer]:
+            - generic [ref=e688]: "37"
+            - generic [ref=e690]: Caring for Shared Objects
+            - img [ref=e691]
+      - generic [ref=e693]:
+        - generic [ref=e694]: Care of Self · 4
+        - generic [ref=e695]:
+          - 'button "24 Food Preparation: Baking" [ref=e696] [cursor=pointer]':
+            - generic [ref=e697]: "24"
+            - generic [ref=e699]: "Food Preparation: Baking"
+            - img [ref=e700]
+          - button "25 Stitching on Burlap" [ref=e702] [cursor=pointer]:
+            - generic [ref=e703]: "25"
+            - generic [ref=e705]: Stitching on Burlap
+            - img [ref=e706]
+          - button "26 Sewing on a Button" [ref=e708] [cursor=pointer]:
+            - generic [ref=e709]: "26"
+            - generic [ref=e711]: Sewing on a Button
+            - img [ref=e712]
+          - button "27 Braiding" [ref=e714] [cursor=pointer]:
+            - generic [ref=e715]: "27"
+            - generic [ref=e717]: Braiding
+            - img [ref=e718]
+      - generic [ref=e720]:
+        - generic [ref=e721]: Social Relations · 8
+        - generic [ref=e722]:
+          - button "38 Greeting Upon Arrival" [ref=e723] [cursor=pointer]:
+            - generic [ref=e724]: "38"
+            - generic [ref=e726]: Greeting Upon Arrival
+            - img [ref=e727]
+          - button "39 Polite Interruption" [ref=e729] [cursor=pointer]:
+            - generic [ref=e730]: "39"
+            - generic [ref=e732]: Polite Interruption
+            - img [ref=e733]
+          - button "40 Navigating Shared Space" [ref=e735] [cursor=pointer]:
+            - generic [ref=e736]: "40"
+            - generic [ref=e738]: Navigating Shared Space
+            - img [ref=e739]
+          - button "41 Observing Someone at Work" [ref=e741] [cursor=pointer]:
+            - generic [ref=e742]: "41"
+            - generic [ref=e744]: Observing Someone at Work
+            - img [ref=e745]
+          - button "42 Offering Comfort" [ref=e747] [cursor=pointer]:
+            - generic [ref=e748]: "42"
+            - generic [ref=e750]: Offering Comfort
+            - img [ref=e751]
+          - button "43 Coughing and Sneezing" [ref=e753] [cursor=pointer]:
+            - generic [ref=e754]: "43"
+            - generic [ref=e756]: Coughing and Sneezing
+            - img [ref=e757]
+          - button "44 Disagreeing Respectfully" [ref=e759] [cursor=pointer]:
+            - generic [ref=e760]: "44"
+            - generic [ref=e762]: Disagreeing Respectfully
+            - img [ref=e763]
+          - button "45 How to Include Someone" [ref=e765] [cursor=pointer]:
+            - generic [ref=e766]: "45"
+            - generic [ref=e768]: How to Include Someone
+            - img [ref=e769]
+      - generic [ref=e771]:
+        - generic [ref=e772]: Control of Movement · 2
+        - generic [ref=e773]:
+          - button "46 Walking on the Line" [ref=e774] [cursor=pointer]:
+            - generic [ref=e775]: "46"
+            - generic [ref=e777]: Walking on the Line
+            - img [ref=e778]
+          - button "47 The Silence Game" [ref=e780] [cursor=pointer]:
+            - generic [ref=e781]: "47"
+            - generic [ref=e783]: The Silence Game
+            - img [ref=e784]
+  - generic [ref=e158]:
+    - img [ref=e160]
+    - textbox "Or ask anything about your classroom…" [ref=e475]
+  - generic [ref=e163]:
+    - button "Guide" [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

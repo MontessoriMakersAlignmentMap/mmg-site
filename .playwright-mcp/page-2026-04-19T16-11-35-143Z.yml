@@ -1,0 +1,69 @@
+- generic [ref=e5]:
+  - generic [ref=e8]:
+    - generic [ref=e9]: Montessori Makers Leadership Meridian
+    - generic [ref=e10]: by MMG
+  - generic [ref=e159]:
+    - generic [ref=e160]:
+      - button "SITUATIONS" [ref=e161] [cursor=pointer]:
+        - img [ref=e162]
+        - text: SITUATIONS
+      - generic [ref=e164]: Navigate · 6-step protocol
+      - heading "A staff member is upset with you" [level=1] [ref=e165]
+      - paragraph [ref=e166]: They came to you emotional, frustrated, or angry. You need to listen without being defensive and lead the conversation somewhere productive.
+    - generic [ref=e167]:
+      - generic [ref=e168] [cursor=pointer]:
+        - generic [ref=e169]:
+          - generic [ref=e171]: "1"
+          - generic [ref=e172]: Ground yourself
+          - generic [ref=e173]: 10 seconds
+        - generic [ref=e174]: "Before you respond: exhale. Drop your shoulders. Unclench your jaw. Their emotion is not an attack — it is information. Your nervous system needs to register that before you open your mouth."
+      - generic [ref=e175] [cursor=pointer]:
+        - generic [ref=e176]:
+          - generic [ref=e178]: "2"
+          - generic [ref=e179]: Clarify what’s actually happening
+          - generic [ref=e180]: 3–5 minutes
+        - generic [ref=e181]: "Separate the emotion from the content. What are they actually saying underneath the frustration? Listen for the unmet need: recognition, autonomy, fairness, being heard. Name it back to them: \"It sounds like you felt left out of that decision.\" Don’t paraphrase away the heat — name it."
+      - generic [ref=e182] [cursor=pointer]:
+        - generic [ref=e183]:
+          - generic [ref=e185]: "3"
+          - generic [ref=e186]: Identify your options
+          - generic [ref=e187]: 1 minute
+        - generic [ref=e188]: You have more than two choices. You can validate their experience without agreeing with their conclusion. You can acknowledge a mistake without undermining your authority. You can hold a boundary while demonstrating respect. Find the third path.
+      - generic [ref=e189] [cursor=pointer]:
+        - generic [ref=e190]:
+          - generic [ref=e192]: "4"
+          - generic [ref=e193]: Prepare your language
+          - generic [ref=e194]: —
+        - generic [ref=e195]: "\"I hear you, and I want to understand this better.\" \"You’re right that I should have communicated that differently.\" \"I’m not going to change the decision, but I want you to understand why I made it.\" Lead with what’s true."
+      - generic [ref=e196] [cursor=pointer]:
+        - generic [ref=e197]:
+          - generic [ref=e199]: "5"
+          - generic [ref=e200]: Anticipate their response
+          - generic [ref=e201]: —
+        - generic [ref=e202]: "If they escalate: \"I can see this is important to you. I’d like to continue this conversation, and I want us both to be in a place where we can hear each other. Can we set a time tomorrow?\" If they de-escalate: stay present. Don’t rush to close."
+      - generic [ref=e203] [cursor=pointer]:
+        - generic [ref=e204]:
+          - generic [ref=e206]: "6"
+          - generic [ref=e207]: Document and follow up
+          - generic [ref=e208]: Same day
+        - generic [ref=e209]: Write down what was said, what you committed to, and what needs to happen next. Follow up within 48 hours. Silence after a hard conversation reads as dismissal.
+      - button "LOG TO MMAP" [ref=e210] [cursor=pointer]
+  - generic [ref=e127]:
+    - img [ref=e129]
+    - textbox "Describe what you’re facing…" [ref=e131]
+  - generic [ref=e132]:
+    - button "Navigate" [ref=e133] [cursor=pointer]:
+      - img [ref=e134]
+      - generic [ref=e137]: Navigate
+    - button "Build" [ref=e139] [cursor=pointer]:
+      - img [ref=e140]
+      - generic [ref=e142]: Build
+    - button "Culture" [ref=e143] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e149]: Culture
+    - button "Coach" [ref=e150] [cursor=pointer]:
+      - img [ref=e151]
+      - generic [ref=e153]: Coach
+    - button "My MMAP" [ref=e154] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: My MMAP

@@ -1,0 +1,16 @@
+- generic [ref=e5]:
+  - generic [ref=e7]:
+    - generic [ref=e8]: Your account
+    - heading "Sign in to sync with your school, or keep it local." [level=1] [ref=e20]
+    - paragraph [ref=e10]: If your school uses MMAP, sign in and your roster, logs, and reflections will sync automatically. If not, you can use the Field Guide on this device alone.
+    - generic [ref=e21]:
+      - button "G SIGN IN WITH GOOGLE" [ref=e22] [cursor=pointer]:
+        - generic [ref=e23]: G
+        - text: SIGN IN WITH GOOGLE
+      - generic [ref=e26]: OR
+      - generic [ref=e28]:
+        - textbox "you@school.org" [ref=e29]
+        - button "EMAIL ME A SIGN-IN LINK" [disabled] [ref=e30]
+      - button "Continue without connecting" [ref=e31] [cursor=pointer]
+      - generic [ref=e32]: Your school not on MMAP? That's fine — Field Guide works on this device. You can always sign in later from the MMAP tab.
+  - button "BACK" [ref=e19] [cursor=pointer]

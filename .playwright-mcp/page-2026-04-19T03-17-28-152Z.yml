@@ -1,0 +1,8 @@
+- generic [ref=e5]:
+  - generic [ref=e7]:
+    - generic [ref=e8]: Four modes
+    - heading "Guide. Support. Learner. Reflect." [level=1] [ref=e18]
+    - paragraph [ref=e10]: Lesson walkthroughs at the shelf. A protocol when a child is in crisis. A page for the child who is asking for more than the room is offering. A coach at the end of the day.
+  - generic [ref=e16]:
+    - button "BACK" [ref=e19] [cursor=pointer]
+    - button "CONTINUE" [active] [ref=e17] [cursor=pointer]

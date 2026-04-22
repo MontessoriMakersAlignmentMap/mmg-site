@@ -1,0 +1,48 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e353]:
+    - generic [ref=e354]:
+      - generic [ref=e355]: Reflect
+      - heading "Where is your thinking today?" [level=1] [ref=e356]
+      - paragraph [ref=e357]: Pick a prompt. Write a few sentences. Get a coaching question back.
+    - generic [ref=e358]:
+      - button "End of day" [ref=e359] [cursor=pointer]
+      - button "A child on my mind" [ref=e360] [cursor=pointer]
+      - button "My environment" [ref=e361] [cursor=pointer]
+      - button "Something I’d redo" [ref=e362] [cursor=pointer]
+      - button "A win today" [ref=e363] [cursor=pointer]
+    - generic [ref=e364]:
+      - generic [ref=e365]: Today's prompt
+      - generic [ref=e366]: What moment stood out to you today?
+      - textbox "Write freely. A few sentences is enough." [ref=e367]
+      - generic [ref=e368]:
+        - generic [ref=e369]: Private to you. Saves automatically.
+        - button "SUBMIT" [ref=e370] [cursor=pointer]
+    - generic [ref=e371]:
+      - generic [ref=e373]: Patterns & insights
+      - generic [ref=e374]: Patterns appear here after a few reflections. Keep going — the threads show up faster than you'd think.
+  - generic [ref=e158]:
+    - img [ref=e160]
+    - textbox "Ask the coach…" [ref=e351]
+  - generic [ref=e163]:
+    - button "Guide" [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [active] [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

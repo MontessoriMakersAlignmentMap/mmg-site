@@ -1,0 +1,70 @@
+- generic [ref=e48]:
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: Montessori Makers Field Guide
+      - generic [ref=e53]: by MMG
+    - generic [ref=e54]:
+      - button "Primary" [ref=e55] [cursor=pointer]
+      - button "Elem" [ref=e56] [cursor=pointer]
+  - generic [ref=e283]:
+    - generic [ref=e284]:
+      - generic [ref=e285]: Support the Learner
+      - heading "The child in front of you." [level=1] [ref=e286]
+      - paragraph [ref=e287]: Six places where children often ask for more than the room is offering. Observe first. Act small. Know when to bring in help.
+    - generic [ref=e288]:
+      - button "Sensory processing Sensory-seeking, sensory-avoidant, or dysregulated by the environment." [ref=e289] [cursor=pointer]:
+        - img [ref=e291]
+        - generic [ref=e294]:
+          - generic [ref=e295]: Sensory processing
+          - generic [ref=e296]: Sensory-seeking, sensory-avoidant, or dysregulated by the environment.
+        - img [ref=e297]
+      - button "Reading & language differences Decoding, phonemic awareness, or fluency beyond typical pacing." [ref=e299] [cursor=pointer]:
+        - img [ref=e301]
+        - generic [ref=e304]:
+          - generic [ref=e305]: Reading & language differences
+          - generic [ref=e306]: Decoding, phonemic awareness, or fluency beyond typical pacing.
+        - img [ref=e307]
+      - button "Writing & fine motor differences The physical act of writing is a significant barrier." [ref=e309] [cursor=pointer]:
+        - img [ref=e311]
+        - generic [ref=e314]:
+          - generic [ref=e315]: Writing & fine motor differences
+          - generic [ref=e316]: The physical act of writing is a significant barrier.
+        - img [ref=e317]
+      - button "Math & number sense Quantity, number relationships, or reasoning despite adequate exposure." [ref=e319] [cursor=pointer]:
+        - img [ref=e321]
+        - generic [ref=e324]:
+          - generic [ref=e325]: Math & number sense
+          - generic [ref=e326]: Quantity, number relationships, or reasoning despite adequate exposure.
+        - img [ref=e327]
+      - button "Attention & executive function Sustained work, transitions, task initiation, or self-regulation during the cycle." [ref=e329] [cursor=pointer]:
+        - img [ref=e331]
+        - generic [ref=e334]:
+          - generic [ref=e335]: Attention & executive function
+          - generic [ref=e336]: Sustained work, transitions, task initiation, or self-regulation during the cycle.
+        - img [ref=e337]
+      - button "Social‑emotional patterns Social interactions, emotional regulation, or behavioral patterns outside developmental expectations." [ref=e339] [cursor=pointer]:
+        - img [ref=e341]
+        - generic [ref=e344]:
+          - generic [ref=e345]: Social‑emotional patterns
+          - generic [ref=e346]: Social interactions, emotional regulation, or behavioral patterns outside developmental expectations.
+        - img [ref=e347]
+    - generic [ref=e350]: Every child is in front of us for a reason. These pages won’t tell you who a child is — they’ll help you watch more clearly and act more gently.
+  - generic [ref=e158]:
+    - img [ref=e160]
+    - textbox "Ask the coach…" [ref=e351]
+  - generic [ref=e163]:
+    - button "Guide" [ref=e164] [cursor=pointer]:
+      - img [ref=e165]
+      - generic [ref=e167]: Guide
+    - button "Support" [ref=e169] [cursor=pointer]:
+      - img [ref=e170]
+      - generic [ref=e172]: Support
+    - button "Learner" [active] [ref=e173] [cursor=pointer]:
+      - img [ref=e174]
+      - generic [ref=e177]: Learner
+    - button "Reflect" [ref=e178] [cursor=pointer]:
+      - img [ref=e179]
+      - generic [ref=e181]: Reflect
+    - button "MMAP" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+      - generic [ref=e186]: MMAP

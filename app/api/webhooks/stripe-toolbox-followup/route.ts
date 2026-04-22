@@ -26,6 +26,12 @@ const TOOLBOX_PRODUCTS = [
   'Board Onboarding and Alignment Toolkit',
   'Montessori Staff Handbook Toolkit',
   'Montessori Family Handbook',
+  'Compensation Framework Toolkit',
+  'Enrollment Systems Toolkit',
+  'New Leader Onboarding Toolkit',
+  'Staff Retention Toolkit',
+  'Annual Cycle Planning Toolkit',
+  'Financial Literacy for Montessori Leaders',
 ]
 
 export async function POST(req: NextRequest) {

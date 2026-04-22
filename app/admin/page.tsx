@@ -870,7 +870,7 @@ export default function AdminPage() {
             Interim Leaders →
           </button>
           <button
-            onClick={() => { window.open('/interim-leader-profile', '_blank') }}
+            onClick={() => { window.location.href = '/interim-leader-profile' }}
             className="text-xs border border-gray-200 bg-gray-50 text-gray-500 px-4 py-2 hover:bg-gray-100 hover:text-gray-700 transition-colors font-mono"
             title="Open intake form"
           >
