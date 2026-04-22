@@ -431,15 +431,10 @@ export default function ToolboxPage() {
                   {cat.items.map((p) => (
                     <div
                       key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex flex-row overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
+                      className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      {/* Left: cover image */}
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <div className="w-36 flex-shrink-0 self-stretch overflow-hidden">
-                        <img src={p.image.replace('.png', '-card.png')} alt="" className="w-full h-full object-cover" />
-                      </div>
-                      {/* Right: content */}
-                      <div className="flex flex-col flex-1 border-l-4 border-[#d6a758] p-5">
+                      <div className="h-1 bg-[#d6a758]" />
+                      <div className="flex flex-col flex-1 p-6">
                         <h4
                           className="text-[#0e1a7a] text-base font-semibold leading-snug mb-2"
                           style={serif}
