@@ -1195,14 +1195,25 @@ export default function MMAPPage() {
               </div>
             ))}
           </div>
-          <div className="mt-10 overflow-hidden rounded-sm ring-1 ring-white/10 shadow-2xl">
-            <Image
-              src="/images/mmap/mmap-08-leaders-desk.png"
-              alt="Leader's Desk — command center for heads of school"
-              width={1200}
-              height={678}
-              className="w-full h-auto"
-            />
+          <div className="mt-10 grid md:grid-cols-2 gap-4">
+            <div className="overflow-hidden rounded-sm ring-1 ring-white/10 shadow-2xl">
+              <Image
+                src="/images/mmap/mmap-08-leaders-desk.png"
+                alt="Leader's Desk dashboard — decisions, risk flags, monthly rhythm"
+                width={1200}
+                height={678}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="overflow-hidden rounded-sm ring-1 ring-white/10 shadow-2xl">
+              <Image
+                src="/images/mmap/mmap-17-email-draft.png"
+                alt="Embedded email drafting — draft in progress for staff departure"
+                width={1200}
+                height={678}
+                className="w-full h-auto"
+              />
+            </div>
           </div>
           <p className="text-[#64748B] text-sm mt-8">
             Leader&rsquo;s Desk is included with all Atlas subscriptions.{' '}
