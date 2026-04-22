@@ -886,7 +886,7 @@ export default function MMAPPage() {
           <div className="hidden md:flex items-center justify-center">
             <div className="relative w-full max-w-[560px] rounded-sm overflow-hidden shadow-2xl ring-1 ring-white/10">
               <Image
-                src="/images/mmap/mmap-01-leadership-dashboard.png"
+                src="/images/mmap/mmap-16-leadership-dashboard.png"
                 alt="Alignment Map Leadership Dashboard"
                 width={1200}
                 height={678}
@@ -1269,10 +1269,10 @@ export default function MMAPPage() {
                 desc: 'Forty-eight Montessori education modules organized by developmental level — from Nido through high school — drip-released as children progress.',
               },
               {
-                src: '/images/mmap/mmap-03-board-dashboard.png',
-                alt: 'Board Dashboard',
-                label: 'Board Dashboard',
-                desc: 'Mission-level oversight for governance — equity indicators, financial sustainability, strategic plan progress, and exportable board reports.',
+                src: '/images/mmap/mmap-17-email-draft.png',
+                alt: 'Embedded Email Drafting',
+                label: 'Embedded Email Drafting',
+                desc: 'Drafts for the hard messages — staff departures, parent escalations, termination letters, board updates. Four tones. Ready to copy and send.',
               },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.07}>
