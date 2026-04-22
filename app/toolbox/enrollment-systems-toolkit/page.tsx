@@ -40,11 +40,24 @@ export default function EnrollmentSystemsToolkitPage() {
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(14,26,122,0.10)]">
-            <Image src="/images/toolbox/hiring-selection-toolkit.png"
+            <Image src="/images/toolbox/enrollment-systems-toolkit.png"
               alt="Enrollment Systems Toolkit — Montessori Makers Toolbox"
               fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 40vw" />
           </div>
           <div>
+            {/* ── METADATA PANEL ──── */}
+            <div className="bg-[#F2EDE6] border-l-4 border-[#d6a758] px-6 py-5 mb-10">
+              <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase mb-3">What&rsquo;s Inside</p>
+              <p className="text-[#0e1a7a] text-sm font-semibold mb-3">8 documents &middot; Editable DOCX</p>
+              <ul className="space-y-1.5">
+                {['Enrollment Process Map', 'Inquiry Management Protocol', 'Tour Protocol & Guide', 'Admissions Decision Framework', 'Waitlist Management System', 'Re-enrollment Process Guide', 'Family Communication Templates (8)', 'Enrollment Metrics Dashboard'].map((c) => (
+                  <li key={c} className="flex items-start gap-2 text-[#374151] text-sm leading-snug">
+                    <span className="text-[#d6a758] font-bold mt-0.5 flex-shrink-0">✓</span>
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-6">The Problem This Solves</p>
             <h2 className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-10" style={serif}>
               Enrollment is one of the highest-stakes operational systems in a school. Almost none have it properly built.

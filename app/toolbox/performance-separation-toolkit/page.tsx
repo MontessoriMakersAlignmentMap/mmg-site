@@ -61,6 +61,19 @@ export default function PerformanceSeparationToolkitPage() {
           </div>
           {/* Right: problem text */}
           <div>
+            {/* ── METADATA PANEL ──── */}
+            <div className="bg-[#F2EDE6] border-l-4 border-[#d6a758] px-6 py-5 mb-10">
+              <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase mb-3">What&rsquo;s Inside</p>
+              <p className="text-[#0e1a7a] text-sm font-semibold mb-3">112 pages &middot; Editable DOCX</p>
+              <ul className="space-y-1.5">
+                {['Performance Concern Framework', 'Progressive Discipline Templates (7)', 'Performance Improvement Plan Template', 'Difficult Conversation Guide', 'Separation Process Guide', 'Separation Communication Templates (5)', 'Documentation Standards Guide', 'Legal Compliance Checklist'].map((c) => (
+                  <li key={c} className="flex items-start gap-2 text-[#374151] text-sm leading-snug">
+                    <span className="text-[#d6a758] font-bold mt-0.5 flex-shrink-0">✓</span>
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-6">
               The Problem This Solves
             </p>
