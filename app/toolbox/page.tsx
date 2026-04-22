@@ -431,13 +431,13 @@ export default function ToolboxPage() {
                   {cat.items.map((p) => (
                     <div
                       key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
+                      className="relative bg-white border border-[#E2DDD6] overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200 min-h-[260px]"
                     >
                       <div
-                        className="w-36 flex-shrink-0 self-stretch min-h-[220px]"
+                        className="absolute inset-y-0 left-0 w-48"
                         style={{ backgroundImage: `url('${p.image}')`, backgroundSize: 'cover', backgroundPosition: 'top' }}
                       />
-                      <div className="p-6 flex flex-col flex-1 min-w-0">
+                      <div className="ml-48 p-6 flex flex-col min-h-[260px]">
                         <h4
                           className="text-[#0e1a7a] text-lg font-semibold leading-snug mb-3"
                           style={serif}
