@@ -91,6 +91,7 @@ const tiers: Array<{
       { text: 'Annual Rhythm Calendar — 28 seeded admin tasks mapped by month', isNew: true },
       { text: 'Document Generator — PIP, termination, references, board resolutions, policy updates', isNew: true },
       { text: 'Meeting Prep Workspace — agendas, objections, post-meeting outcomes', isNew: true },
+      { text: 'Risk & Legal Flags — central registry with severity, counsel contact, consultation tracking', isNew: true },
     ],
   },
 ]

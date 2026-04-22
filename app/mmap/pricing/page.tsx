@@ -92,6 +92,8 @@ const tiers = [
       'Decision Triage Log with legal flag detection (New)',
       'Annual Rhythm Calendar — 28 seeded tasks by month (New)',
       'Document Generator — PIP, termination, references & more (New)',
+      'Meeting Prep Workspace — agendas, objections, post-meeting outcomes (New)',
+      'Risk & Legal Flags — central registry, severity, counsel tracking (New)',
     ],
     implementation: true,
     highlight: false,
