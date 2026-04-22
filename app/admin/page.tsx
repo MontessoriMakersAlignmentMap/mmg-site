@@ -877,6 +877,12 @@ export default function AdminPage() {
             📋 /interim-leader-profile
           </button>
           <button
+            onClick={() => { window.location.href = '/matchhub/match' }}
+            className="text-xs border border-emerald-600 bg-emerald-50 text-emerald-700 px-4 py-2 hover:bg-emerald-600 hover:text-white transition-colors"
+          >
+            Match Engine →
+          </button>
+          <button
             onClick={() => { window.location.href = '/admin/second-brain' }}
             className="text-xs border border-[#d6a758] bg-[#f5e8cc] text-[#0e1a7a] px-4 py-2 hover:bg-[#d6a758] hover:text-white transition-colors"
           >
