@@ -138,6 +138,7 @@ const differentiationCards = [
 
 const ecosystemCards = [
   { title: 'Field Guide', desc: 'In-classroom app for guides — syncs directly with MMAP', href: '/field-guide' },
+  { title: 'Leadership Meridian', desc: 'The companion app for heads of school — reflection, coaching, and decision support', href: '/leadership-meridian' },
   { title: 'Advisory', desc: 'System design & leadership support', href: '/advisory' },
   { title: 'Institute', desc: 'Leadership development', href: '/institute' },
   { title: 'MatchHub', desc: 'Philosophy-aligned hiring', href: '/matchhub' },
@@ -1480,12 +1481,10 @@ export default function MMAPPage() {
               The Alignment Map is where the systems live.
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed">
-              Montessori Makers builds aligned schools across multiple dimensions. The Alignment Map
-              holds the operational systems. Advisory helps design them. Institute develops
-              the leaders who run them. MatchHub finds aligned staff when growth requires it.
+              Montessori Makers builds aligned schools across every dimension. The Alignment Map holds the operational systems. Leadership Meridian supports the head who runs them. Advisory helps design them. Institute develops leadership capacity. MatchHub finds aligned staff when growth requires it.
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
             {ecosystemCards.map((card) => (
               <Link key={card.href} href={card.href} className="border border-white/15 p-5 hover:border-white/30 transition-colors">
                 <p className="text-white text-sm font-semibold">{card.title}</p>
