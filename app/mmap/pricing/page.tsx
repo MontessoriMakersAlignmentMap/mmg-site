@@ -48,7 +48,7 @@ const tiers = [
       'Family Portal — messages, calendar, documents, billing',
       'Admissions pipeline — application through deposit',
       'Before & after care, compliance & FERPA, intervention tracking',
-      'Re-enrollment campaigns, meal program, field trips, SMS broadcasts',
+      'Re-enrollment campaigns, meal program, field trips',
       'Family Learning Modules — 48 modules, Nido → high school (New)',
       'Parent Message Templates — school-curated library (New)',
     ],
@@ -148,16 +148,6 @@ const addons = [
     minimum: null as number | null,
     billing: 'quote',
     desc: 'Advanced equity-focused assessment analytics and disaggregated reporting.',
-    quoteOnly: true,
-    flatRate: false,
-  },
-  {
-    name: 'API / SIS Integration',
-    key: 'custom_integration',
-    rate: null as number | null,
-    minimum: null as number | null,
-    billing: 'quote',
-    desc: 'Custom API and Student Information System integration with the Alignment Map.',
     quoteOnly: true,
     flatRate: false,
   },
@@ -496,7 +486,7 @@ export default function MmapPricingPage() {
             monthly.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-5 mb-8">
             {addons.map((addon) => (
               <div key={addon.key} className="border border-[#E2DDD6] p-7">
                 <div className="flex items-start justify-between gap-4 mb-3">
@@ -538,6 +528,14 @@ export default function MmapPricingPage() {
               </div>
             ))}
           </div>
+
+          <p className="text-[#64748B] text-sm leading-relaxed">
+            Need API access or external SIS integration?{' '}
+            <a href="#interest-form" className="text-[#0e1a7a] font-medium hover:underline">
+              Contact us about enterprise integrations
+            </a>
+            .
+          </p>
         </div>
       </section>
 
