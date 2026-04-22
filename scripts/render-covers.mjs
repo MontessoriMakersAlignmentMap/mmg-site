@@ -36,9 +36,13 @@ await page.setViewportSize({ width: 600, height: 800 })
 for (const { html, out } of covers) {
   const src = `file://${SRC}/${html}`
   const dest = path.join(DEST, out)
+  const destCard = path.join(DEST, out.replace('.png', '-card.png'))
   console.log(`Rendering ${html} → ${out}`)
   await page.goto(src, { waitUntil: 'networkidle' })
+  // Full cover (600×800) — used on product detail pages
   await page.screenshot({ path: dest, clip: { x: 0, y: 0, width: 600, height: 800 }, fullPage: false })
+  // Card thumbnail (600×260) — top background-photo area only, no title text
+  await page.screenshot({ path: destCard, clip: { x: 0, y: 0, width: 600, height: 260 }, fullPage: false })
   console.log(`  ✓ saved`)
 }
 

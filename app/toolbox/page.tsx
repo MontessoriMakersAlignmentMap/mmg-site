@@ -436,7 +436,7 @@ export default function ToolboxPage() {
                       {/* Left: cover image */}
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <div className="w-36 flex-shrink-0 self-stretch overflow-hidden">
-                        <img src={p.image} alt={p.name} className="w-full h-full object-cover object-top" />
+                        <img src={p.image.replace('.png', '-card.png')} alt="" className="w-full h-full object-cover" />
                       </div>
                       {/* Right: content */}
                       <div className="flex flex-col flex-1 border-l-4 border-[#d6a758] p-5">
