@@ -431,15 +431,8 @@ export default function ToolboxPage() {
                   {cat.items.map((p) => (
                     <div
                       key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex flex-col overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
+                      className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="w-full h-52 object-cover object-top"
-                        loading="lazy"
-                      />
                       <div className="h-1 bg-[#d6a758]" />
                       <div className="p-6 flex flex-col flex-1">
                         <h4
