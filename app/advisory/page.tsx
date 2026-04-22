@@ -9,6 +9,15 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const pathways = [
   {
+    name: 'Systems Intensives',
+    href: '/advisory/systems-intensives',
+    tagline: 'Focused, single-system engagements',
+    engagement: '3 sessions · 4–6 weeks',
+    description:
+      'Project-based engagements scoped to one organizational system — compensation, enrollment, onboarding, retention, annual planning, or financial literacy. Three sessions, one deliverable, real infrastructure.',
+    for: 'Schools that need a specific system built, not a long-term consulting relationship.',
+  },
+  {
     name: 'Montessori Mapping',
     href: '/advisory/mapping',
     tagline: 'Whole-school alignment',

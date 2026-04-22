@@ -9,6 +9,7 @@ import { Logo, type LogoName } from '@/components/Logo'
 
 const advisoryLinks = [
   { name: 'Advisory Overview', href: '/advisory', tagline: 'The full system' },
+  { name: 'Systems Intensives', href: '/advisory/systems-intensives', tagline: 'Focused, single-system engagements' },
   { name: 'Montessori Mapping', href: '/advisory/mapping', tagline: 'Diagnostic & planning' },
   { name: 'Leadership Coaching', href: '/advisory/coaching', tagline: '1:1 support for leaders' },
   { name: 'Strategic Partnerships', href: '/advisory/partnership', tagline: 'Retained advisory' },
