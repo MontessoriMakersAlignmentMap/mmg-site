@@ -426,12 +426,16 @@ export default function InterimLeadersAdminPage() {
               </thead>
               <tbody>
                 {profiles.map((p, i) => (
-                  <tr key={p.id} className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${i % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
+                  <tr
+                    key={p.id}
+                    onClick={() => setSelected(p)}
+                    className={`border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition-colors ${i % 2 === 0 ? '' : 'bg-gray-50/50'}`}
+                  >
                     <td className="px-4 py-3 font-medium text-gray-900">{p.full_name ?? '—'}</td>
                     <td className="px-4 py-3 text-gray-600">{p.email ?? '—'}</td>
                     <td className="px-4 py-3 text-gray-600">{p.location ?? '—'}</td>
                     <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{fmt(p.submitted_at)}</td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3" onClick={e => e.stopPropagation()}>
                       <select
                         value={p.status}
                         disabled={savingStatus === p.id}
