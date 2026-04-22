@@ -436,7 +436,7 @@ export default function ToolboxPage() {
                       <div className="h-1 bg-[#d6a758]" />
                       <div className="overflow-hidden">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={p.image} alt={p.name} className="w-full h-44 object-cover object-top" />
+                        <img src={p.image} alt={p.name} className="w-full h-44 object-cover object-center" />
                       </div>
                       <div className="p-6 flex flex-col flex-1">
                         <h4
