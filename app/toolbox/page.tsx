@@ -434,7 +434,7 @@ export default function ToolboxPage() {
                       key={p.slug}
                       className="bg-white border border-[#E2DDD6] flex overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      <div className="relative w-36 flex-shrink-0 min-h-[260px]">
+                      <div className="relative w-36 flex-shrink-0 overflow-hidden bg-[#F2EDE6] min-h-[220px] md:min-h-0">
                         <Image
                           src={p.image}
                           alt={p.name}
