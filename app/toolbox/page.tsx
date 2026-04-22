@@ -427,25 +427,26 @@ export default function ToolboxPage() {
                   <div className="flex-1 h-px bg-[#E2DDD6]" />
                 </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
                   {cat.items.map((p) => (
                     <div
                       key={p.slug}
-                      className="bg-white border border-[#E2DDD6] flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
+                      className="bg-white border border-[#E2DDD6] flex flex-row overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(14,26,122,0.12)] transition-all duration-200"
                     >
-                      <div className="h-1 bg-[#d6a758]" />
-                      <div className="overflow-hidden">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={p.image} alt={p.name} className="w-full h-44 object-cover object-center" />
+                      {/* Left: cover image */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <div className="w-36 flex-shrink-0 self-stretch overflow-hidden">
+                        <img src={p.image} alt={p.name} className="w-full h-full object-cover object-center" />
                       </div>
-                      <div className="p-6 flex flex-col flex-1">
+                      {/* Right: content */}
+                      <div className="flex flex-col flex-1 border-l-4 border-[#d6a758] p-5">
                         <h4
                           className="text-[#0e1a7a] text-base font-semibold leading-snug mb-2"
                           style={serif}
                         >
                           {p.name}
                         </h4>
-                        <p className="text-[#374151] text-sm leading-relaxed mb-4 flex-1">
+                        <p className="text-[#374151] text-sm leading-relaxed mb-3 flex-1">
                           {p.desc}
                         </p>
                         <p className="text-[#64748B] text-[11px] mb-1">For: {p.audience}</p>
