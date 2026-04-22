@@ -10,19 +10,28 @@ import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const tiers = [
+type TierFeature = { text: string; isNew?: boolean }
+
+const tiers: Array<{
+  id: string; name: string; scope: string; color: string;
+  description: string; features: TierFeature[];
+}> = [
   {
     id: 'surveyor',
     name: 'Surveyor',
     scope: 'Classroom level',
     color: '#d6a758',
-    description:
-      'Classroom visibility and guide workflow. Track lessons, observations, and each child\u2019s progress without retrofitting generic tools.',
+    description: 'Classroom visibility and guide workflow. Track lessons, observations, and each child\'s progress without retrofitting generic tools.',
     features: [
-      'Lesson tracking and planning',
-      'Observation records',
-      'Classroom material inventory',
-      'Individual child progress visibility',
+      { text: 'Lesson tracking — per-student presentation log across the album' },
+      { text: 'Montessori album — full curriculum library with scope & sequence' },
+      { text: 'Observations with work-sample photo attachments' },
+      { text: 'Student progress maps, mastery tracking, presentation counts' },
+      { text: 'Classroom management — rosters, levels, guide assignment' },
+      { text: 'Standards alignment & CCSS mapping' },
+      { text: 'Classroom Guide View — whole-roster at a glance with overdue-presentation flags', isNew: true },
+      { text: 'Substitute Plans Generator — one-button packet per child', isNew: true },
+      { text: 'Transition Library — 15 seeded songs, finger plays & grounding activities', isNew: true },
     ],
   },
   {
@@ -30,13 +39,18 @@ const tiers = [
     name: 'North Star',
     scope: 'School level',
     color: '#2D6A4F',
-    description:
-      'The operational layer that keeps the school running. Student records, attendance, family communication, and daily systems.',
+    description: 'The operational layer that keeps the school running. Student records, attendance, family communication, and daily systems.',
     features: [
-      'Student records and profiles',
-      'Attendance and daily operations',
-      'Family communication',
-      'School-wide scheduling',
+      { text: 'Everything in Surveyor' },
+      { text: 'Full Student Information System (SIS) — records, enrollment, demographics' },
+      { text: 'Daily attendance — staff & student, absences, patterns' },
+      { text: 'Family Portal — messages, calendar, photos, documents, billing' },
+      { text: 'Admissions pipeline — application through deposit' },
+      { text: 'Re-enrollment campaigns with parent-facing forms' },
+      { text: 'Meal program, field trips, compliance & FERPA' },
+      { text: 'Before & after care, intervention tracking, SMS broadcasts' },
+      { text: 'Family Learning Modules — 48 Montessori education modules, Nido → high school', isNew: true },
+      { text: 'Parent Message Templates — school-curated library guides pull from', isNew: true },
     ],
   },
   {
@@ -44,13 +58,18 @@ const tiers = [
     name: 'Mapmaker',
     scope: 'Organization level',
     color: '#1D4ED8',
-    description:
-      'Organizational coordination. Admissions, staffing, adult culture, and the systems that make a school function as an institution.',
+    description: 'Organizational coordination. Admissions, staffing, adult culture, and the systems that make a school function as an institution.',
     features: [
-      'Admissions and enrollment',
-      'Staffing and HR systems',
-      'Adult culture and performance',
-      'Cross-team communication',
+      { text: 'Everything in North Star' },
+      { text: 'Full Admissions CRM — pipeline, tours, offers, placement builder' },
+      { text: 'HR Hub — hiring, onboarding, appraisals, coaching, PTO' },
+      { text: 'Adult culture tools — role clarity, culture hub, upward feedback' },
+      { text: 'Equity dashboards — demographics, ABAR pathways, pulse surveys' },
+      { text: 'Progress reports & conference tools' },
+      { text: 'Full Adolescent Program suite (council, seminars, occupations, trips)' },
+      { text: 'SSO, Google Classroom sync' },
+      { text: 'Conference Prep Packet — lessons, photos, work samples per child', isNew: true },
+      { text: 'Child Arc — multi-year longitudinal view across classrooms', isNew: true },
     ],
   },
   {
@@ -58,13 +77,19 @@ const tiers = [
     name: 'Atlas',
     scope: 'Leadership level',
     color: '#7C3AED',
-    description:
-      'Leadership and governance. Financial visibility, board tools, strategic planning, and the insight that enables values-aligned decisions at scale.',
+    description: 'Leadership and governance. Financial visibility, board tools, strategic planning, and the insight that enables values-aligned decisions at scale.',
     features: [
-      'Financial dashboards and planning',
-      'Governance and board tools',
-      'Strategic planning workflows',
-      'Leadership insight and reporting',
+      { text: 'Everything in Mapmaker' },
+      { text: 'Board dashboard, snapshots & governance reports' },
+      { text: 'Strategic Planning Hub — multi-year goals & progress' },
+      { text: 'Financial equity analysis & mission-linked budgeting' },
+      { text: 'Executive insights, advanced analytics, data archiving' },
+      { text: 'Leader\'s Desk Dashboard — open decisions, risks, monthly rhythm', isNew: true },
+      { text: 'Embedded email drafting — 4 tones, for hard messages', isNew: true },
+      { text: 'Decision Triage Log with automatic legal flag detection', isNew: true },
+      { text: 'Annual Rhythm Calendar — 28 seeded admin tasks mapped by month', isNew: true },
+      { text: 'Document Generator — PIP, termination, references, board resolutions, policy updates', isNew: true },
+      { text: 'Meeting Prep Workspace — agendas, objections, post-meeting outcomes', isNew: true },
     ],
   },
 ]
@@ -115,6 +140,37 @@ const ecosystemCards = [
   { title: 'Institute', desc: 'Leadership development', href: '/institute' },
   { title: 'MatchHub', desc: 'Philosophy-aligned hiring', href: '/matchhub' },
   { title: 'MMAS', desc: 'Montessori-native assessment', href: '/mmas' },
+]
+
+const leadersDesk = [
+  {
+    name: 'Leader\'s Desk Dashboard',
+    desc: 'Umbrella landing page: top open decisions, critical risk flags, this month\'s rhythm, next meeting, and recent drafts — all in one glance.',
+  },
+  {
+    name: 'Embedded email drafting',
+    desc: 'Drafts for the hard messages: parent escalation, termination letters, board updates, staff departure, reference requests. Four tones — warm, firm, formal-legal, empathetic.',
+  },
+  {
+    name: 'Decision Triage Log',
+    desc: 'Record what\'s on your plate with urgency × importance × owner. Automatic legal flag detection for termination, discrimination, custody, injury, and litigation keywords.',
+  },
+  {
+    name: 'Annual Rhythm Calendar',
+    desc: '28 seeded Montessori admin tasks mapped to the right month — re-enrollment, hiring, evaluations, budget — with per-school progress tracking.',
+  },
+  {
+    name: 'Risk & Legal Flags',
+    desc: 'Central registry of situations that need counsel: severity level, legal contact, and consultation tracking so nothing slips.',
+  },
+  {
+    name: 'Document Generator',
+    desc: 'Seven template-driven documents: PIP, termination letter, reference letter, board resolution, policy update, parent welcome, staff departure announcement.',
+  },
+  {
+    name: 'Meeting Prep Workspace',
+    desc: 'Agendas, talking points, anticipated objections with your responses, and post-meeting outcomes — for board, leadership, staff, 1-on-1, and parent meetings.',
+  },
 ]
 
 function TopographicIllustration() {
@@ -707,9 +763,19 @@ function TierExplorer() {
             {/* Features */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
               {tier.features.map((f) => (
-                <div key={f} className="flex items-start gap-3">
+                <div key={f.text} className="flex items-start gap-3">
                   <span className="flex-shrink-0 mt-[5px] w-[5px] h-[5px] rounded-full" style={{ background: tier.color }} />
-                  <span className="text-sm text-[#374151] leading-snug">{f}</span>
+                  <span className="text-sm text-[#374151] leading-snug">
+                    {f.text}
+                    {f.isNew && (
+                      <span
+                        className="ml-1.5 text-[9px] font-semibold tracking-[0.08em] uppercase px-1.5 py-0.5 rounded"
+                        style={{ background: `${tier.color}18`, color: tier.color }}
+                      >
+                        New
+                      </span>
+                    )}
+                  </span>
                 </div>
               ))}
             </div>
@@ -1103,6 +1169,36 @@ export default function MMAPPage() {
       </section>
 
       <DemoCTA />
+
+      {/* Leader's Desk */}
+      <section className="bg-[#070e3d] py-24 md:py-32 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <p className="text-[#d6a758] text-xs tracking-[0.2em] uppercase">Atlas</p>
+              <span className="text-[9px] font-semibold tracking-[0.08em] uppercase px-1.5 py-0.5 rounded bg-[#7C3AED]/20 text-[#a78bfa]">New</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl text-white leading-tight mb-6" style={serif}>
+              Leader&rsquo;s Desk.
+            </h2>
+            <p className="text-[#94A3B8] text-lg leading-relaxed">
+              The command center heads of school actually need. Seven tools built around the hardest, most recurring work of the role — from drafting difficult messages to tracking what needs legal attention.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {leadersDesk.map((item) => (
+              <div key={item.name} className="bg-white/[0.04] border border-white/10 p-7 hover:border-white/20 transition-colors">
+                <h3 className="text-white font-semibold text-base mb-2" style={serif}>{item.name}</h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[#64748B] text-sm mt-8">
+            Leader&rsquo;s Desk is included with all Atlas subscriptions.{' '}
+            <a href="/mmap/pricing" className="text-[#d6a758] hover:underline">See Atlas pricing →</a>
+          </p>
+        </div>
+      </section>
 
       {/* Platform Screenshots */}
       <section className="bg-[#F7F5F1] py-24 md:py-32 px-6 md:px-10 border-t border-[#E2DDD6]">
