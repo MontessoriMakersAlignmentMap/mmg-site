@@ -1195,6 +1195,15 @@ export default function MMAPPage() {
               </div>
             ))}
           </div>
+          <div className="mt-10 overflow-hidden rounded-sm ring-1 ring-white/10 shadow-2xl">
+            <Image
+              src="/images/mmap/mmap-08-leaders-desk.png"
+              alt="Leader's Desk — command center for heads of school"
+              width={1200}
+              height={678}
+              className="w-full h-auto"
+            />
+          </div>
           <p className="text-[#64748B] text-sm mt-8">
             Leader&rsquo;s Desk is included with all Atlas subscriptions.{' '}
             <a href="/mmap/pricing" className="text-[#d6a758] hover:underline">See Atlas pricing →</a>
@@ -1218,40 +1227,52 @@ export default function MMAPPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                src: '/images/mmap/mmap-01-leadership-dashboard.png',
-                alt: 'Alignment Map Leadership Dashboard',
-                label: 'Leadership Dashboard',
-                desc: 'Real-time school snapshot — attendance, coverage alerts, observation data, and top priorities surfaced automatically for administrators.',
+                src: '/images/mmap/mmap-09-lesson-board.png',
+                alt: 'Classroom Lesson Board',
+                label: 'Classroom Lesson Board',
+                desc: 'Color-coded roster shows every guide exactly where each child is — presentations given, curriculum areas covered, and which children are overdue for a lesson.',
               },
               {
-                src: '/images/mmap/mmap-06-enrollment-hub.png',
+                src: '/images/mmap/mmap-10-enrollment-hub.png',
                 alt: 'Enrollment Season Hub',
                 label: 'Enrollment Season Hub',
-                desc: 'The entire admissions-to-billing workflow in one command center — from first inquiry through signed agreements and reconciled tuition.',
+                desc: 'The entire admissions-to-billing workflow as a sequential command center — from first inquiry and tours through signed agreements and reconciled tuition.',
               },
               {
-                src: '/images/mmap/mmap-07-equity-hub.png',
-                alt: 'Equity & Belonging Hub',
-                label: 'Equity & Belonging Hub',
-                desc: 'Student demographics, equity dashboards, community health, ABAR pathways, and pulse surveys — built in from day one, not bolted on.',
+                src: '/images/mmap/mmap-11-student-equity.png',
+                alt: 'Student Equity Analytics',
+                label: 'Student Equity Analytics',
+                desc: 'Surface lesson-access disparities by race, gender, classroom, or household income — so equity work is grounded in data, not instinct.',
+              },
+              {
+                src: '/images/mmap/mmap-12-staff-workspace.png',
+                alt: 'Work Cycle Visibility',
+                label: 'Work Cycle Visibility',
+                desc: 'Observation coverage at a glance — who has been seen today and who hasn\'t. Built for the three-hour work cycle, not a generic task manager.',
+              },
+              {
+                src: '/images/mmap/mmap-13-annual-rhythm.png',
+                alt: 'Annual Rhythm Calendar',
+                label: 'Annual Rhythm Calendar',
+                desc: 'Twenty-eight seeded Montessori admin tasks mapped to the right month — re-enrollment in spring, hiring in summer, evaluations in fall, budget in winter.',
+              },
+              {
+                src: '/images/mmap/mmap-14-child-arc.png',
+                alt: 'Child Arc — Multi-Year View',
+                label: 'Child Arc',
+                desc: 'Multi-year longitudinal view of a child\'s Montessori journey — lessons, photos, and work samples across every classroom from enrollment to graduation.',
+              },
+              {
+                src: '/images/mmap/mmap-15-family-learning.png',
+                alt: 'Family Learning Hub',
+                label: 'Family Learning Hub',
+                desc: 'Forty-eight Montessori education modules organized by developmental level — from Nido through high school — drip-released as children progress.',
               },
               {
                 src: '/images/mmap/mmap-03-board-dashboard.png',
                 alt: 'Board Dashboard',
                 label: 'Board Dashboard',
                 desc: 'Mission-level oversight for governance — equity indicators, financial sustainability, strategic plan progress, and exportable board reports.',
-              },
-              {
-                src: '/images/mmap/mmap-05-lesson-tracking.png',
-                alt: 'Lesson Tracking',
-                label: 'Lesson Tracking & Planning',
-                desc: 'Log lessons, track mastery progression, and plan upcoming presentations — built around the three-hour work cycle, not a generic gradebook.',
-              },
-              {
-                src: '/images/mmap/mmap-02-staff-dashboard.png',
-                alt: 'Faculty & Staff Workspace',
-                label: 'Faculty & Staff Workspace',
-                desc: 'Each role sees exactly what they need — guides have their own workspace with observations, appraisals, goals, messages, and portfolios in one place.',
               },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.07}>
