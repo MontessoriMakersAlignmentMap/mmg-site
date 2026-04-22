@@ -97,7 +97,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'Compensation Framework Toolkit',
         slug: 'compensation-framework-toolkit',
-        image: '/images/toolbox/performance-concerns-separation-toolkit.png',
+        image: '/images/toolbox/compensation-framework-toolkit.png',
         price: '$395',
         docs: '8 documents + Excel workbook',
         desc: 'A principled compensation system — pay philosophy, salary banding, annual review cycle, and equity audit. Includes an Excel workbook for maintaining salary bands. For schools where compensation decisions need to be defensible.',
@@ -107,7 +107,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'Enrollment Systems Toolkit',
         slug: 'enrollment-systems-toolkit',
-        image: '/images/toolbox/hiring-selection-toolkit.png',
+        image: '/images/toolbox/enrollment-systems-toolkit.png',
         price: '$425',
         docs: '8 documents',
         desc: 'End-to-end enrollment infrastructure — inquiry management, tour protocol, admissions decisions, waitlist management, and re-enrollment. Built for the operational complexity schools actually face.',
@@ -117,7 +117,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'New Leader Onboarding Toolkit',
         slug: 'new-leader-onboarding-toolkit',
-        image: '/images/toolbox/leadership-transition-succession-toolkit.png',
+        image: '/images/toolbox/new-leader-onboarding-toolkit.png',
         price: '$375',
         docs: '7 documents',
         desc: 'A structured first 90 days for incoming heads of school and directors — the relationships to build, the decisions that can\'t wait, and the institutional knowledge to absorb before acting.',
@@ -127,7 +127,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'Staff Retention Toolkit',
         slug: 'staff-retention-toolkit',
-        image: '/images/toolbox/adult-culture-framework.png',
+        image: '/images/toolbox/staff-retention-toolkit.png',
         price: '$325',
         docs: '7 documents',
         desc: 'Stay interviews, working conditions assessment, exit analysis, and retention-centered culture practices. For schools that want to keep the people they worked hard to find.',
@@ -137,7 +137,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'Annual Cycle Planning Toolkit',
         slug: 'annual-cycle-planning-toolkit',
-        image: '/images/toolbox/montessori-leadership-operations-playbook.png',
+        image: '/images/toolbox/annual-cycle-planning-toolkit.png',
         price: '$225',
         docs: '6 documents',
         desc: 'A full-year operational planning system — month-by-month leadership calendar, board calendar, enrollment rhythm map, and staff cycle planning. So the school year is mapped, not improvised.',
@@ -182,7 +182,7 @@ const categories: { label: string; items: Product[] }[] = [
       {
         name: 'Financial Literacy for Montessori Leaders',
         slug: 'financial-literacy-toolkit',
-        image: '/images/toolbox/board-onboarding-alignment-toolkit.png',
+        image: '/images/toolbox/financial-literacy-toolkit.png',
         price: '$275',
         docs: '7 guides',
         desc: 'A deep, actionable guide to school finance for leaders who didn\'t come from finance — budget construction, financial statements, cash flow, reserve strategy, and board finance conversations.',
@@ -436,6 +436,15 @@ export default function ToolboxPage() {
                     >
                       <div className="p-8 flex flex-col flex-1">
                         <div className="flex items-start gap-5 mb-5">
+                          <div className="relative w-28 h-40 flex-shrink-0 overflow-hidden shadow-md">
+                            <Image
+                              src={p.image}
+                              alt={p.name}
+                              fill
+                              className="object-cover object-top"
+                              sizes="112px"
+                            />
+                          </div>
                           <div className="flex-1 min-w-0">
                             <h4
                               className="text-[#0e1a7a] text-xl font-semibold leading-snug"
@@ -443,15 +452,6 @@ export default function ToolboxPage() {
                             >
                               {p.name}
                             </h4>
-                          </div>
-                          <div className="relative w-16 h-20 flex-shrink-0 overflow-hidden shadow-sm">
-                            <Image
-                              src={p.image}
-                              alt={p.name}
-                              fill
-                              className="object-cover object-top"
-                              sizes="64px"
-                            />
                           </div>
                         </div>
 

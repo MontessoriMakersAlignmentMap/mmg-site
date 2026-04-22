@@ -58,7 +58,7 @@ const products = [
     name: 'Compensation Framework Toolkit',
     category: 'Leadership Tools',
     slug: 'compensation-framework-toolkit',
-    image: '/images/toolbox/performance-concerns-separation-toolkit.png',
+    image: '/images/toolbox/compensation-framework-toolkit.png',
     price: '$395',
     docs: '8 documents + Excel workbook',
     desc: 'A principled compensation system for Montessori schools — pay philosophy, salary banding, annual review cycle, and equity audit. Includes an Excel workbook for maintaining salary bands.',
@@ -68,7 +68,7 @@ const products = [
     name: 'Enrollment Systems Toolkit',
     category: 'Leadership Tools',
     slug: 'enrollment-systems-toolkit',
-    image: '/images/toolbox/hiring-selection-toolkit.png',
+    image: '/images/toolbox/enrollment-systems-toolkit.png',
     price: '$425',
     docs: '8 documents',
     desc: 'End-to-end enrollment infrastructure — inquiry management, tour protocol, admissions decisions, waitlist management, and re-enrollment. Built for the operational complexity schools actually face.',
@@ -78,7 +78,7 @@ const products = [
     name: 'New Leader Onboarding Toolkit',
     category: 'Leadership Tools',
     slug: 'new-leader-onboarding-toolkit',
-    image: '/images/toolbox/leadership-transition-succession-toolkit.png',
+    image: '/images/toolbox/new-leader-onboarding-toolkit.png',
     price: '$375',
     docs: '7 documents',
     desc: 'A structured first 90 days for incoming heads of school and directors — the relationships to build, the decisions that can\'t wait, and the institutional knowledge to absorb before acting.',
@@ -88,7 +88,7 @@ const products = [
     name: 'Staff Retention Toolkit',
     category: 'Leadership Tools',
     slug: 'staff-retention-toolkit',
-    image: '/images/toolbox/adult-culture-framework.png',
+    image: '/images/toolbox/staff-retention-toolkit.png',
     price: '$325',
     docs: '7 documents',
     desc: 'Stay interviews, working conditions assessment, exit analysis, and retention-centered culture practices. For schools that want to keep the people they worked hard to find.',
@@ -98,7 +98,7 @@ const products = [
     name: 'Annual Cycle Planning Toolkit',
     category: 'Leadership Tools',
     slug: 'annual-cycle-planning-toolkit',
-    image: '/images/toolbox/montessori-leadership-operations-playbook.png',
+    image: '/images/toolbox/annual-cycle-planning-toolkit.png',
     price: '$225',
     docs: '6 documents',
     desc: 'A full-year operational planning system — month-by-month leadership calendar, board calendar, enrollment rhythm map, staff cycle planning, and budget timeline. So the school year is mapped, not improvised.',
@@ -148,7 +148,7 @@ const products = [
     name: 'Financial Literacy for Montessori Leaders',
     category: 'Governance & Stewardship',
     slug: 'financial-literacy-toolkit',
-    image: '/images/toolbox/board-onboarding-alignment-toolkit.png',
+    image: '/images/toolbox/financial-literacy-toolkit.png',
     price: '$275',
     docs: '7 guides',
     desc: 'A deep, actionable guide to school finance for leaders who didn\'t come from finance — budget construction, reading financial statements, cash flow management, reserve strategy, and board finance conversations.',
@@ -325,13 +325,13 @@ export default function StorePage() {
                       >
                         <div className="p-6 flex flex-col flex-1">
                           <div className="flex items-start gap-4 mb-4">
-                            <div className="relative w-12 h-16 flex-shrink-0 overflow-hidden shadow-sm bg-[#F2EDE6]">
+                            <div className="relative w-20 h-[113px] flex-shrink-0 overflow-hidden shadow-md bg-[#F2EDE6]">
                               <Image
                                 src={p.image}
                                 alt={p.name}
                                 fill
                                 className="object-cover object-top"
-                                sizes="48px"
+                                sizes="80px"
                               />
                             </div>
                             <div className="flex-1 min-w-0">
