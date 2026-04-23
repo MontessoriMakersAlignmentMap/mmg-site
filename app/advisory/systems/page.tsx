@@ -10,7 +10,7 @@ const offerings = [
     name: 'Systems Intensives',
     href: '/advisory/systems-intensives',
     tagline: 'Scoped, single-system project work',
-    engagement: '3 sessions · 4–6 weeks · Starting at $2,000',
+    engagement: '3 sessions · 4–6 weeks',
     description:
       'Focused engagements scoped to one organizational system — compensation, enrollment, new leader onboarding, staff retention, annual cycle planning, or financial literacy. Three working sessions, one customized deliverable, completed in four to six weeks.',
     for: 'Schools that need a specific piece of infrastructure built and are ready to make decisions.',
