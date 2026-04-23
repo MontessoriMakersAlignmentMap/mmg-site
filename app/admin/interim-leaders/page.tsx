@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -127,6 +127,14 @@ export default function InterimLeadersAdminPage() {
   const [selected, setSelected] = useState<ILProfile | null>(null)
   const [savingStatus, setSavingStatus] = useState<string | null>(null)
 
+  // Manual add
+  const [showAdd, setShowAdd] = useState(false)
+  const [addForm, setAddForm] = useState({ full_name: '', email: '', phone: '', location: '', current_position: '', credentials: '', notes: '' })
+  const [addResume, setAddResume] = useState<File | null>(null)
+  const addResumeRef = useRef<HTMLInputElement>(null)
+  const [adding, setAdding] = useState(false)
+  const [addError, setAddError] = useState<string | null>(null)
+
   // Restore session
   useEffect(() => {
     const saved = localStorage.getItem('adminPw')
@@ -186,6 +194,33 @@ export default function InterimLeadersAdminPage() {
     setAdminPw(pwInput)
     setAuth(true)
     setProfiles(data.profiles ?? [])
+  }
+
+  async function handleManualAdd(e: React.FormEvent) {
+    e.preventDefault()
+    setAddError(null)
+    if (!addResume) { setAddError('Resume file is required.'); return }
+    setAdding(true)
+    try {
+      const fd = new FormData()
+      fd.append('resume', addResume)
+      for (const [k, v] of Object.entries(addForm)) {
+        if (k === 'notes') fd.append('open_field', v)
+        else fd.append(k, v)
+      }
+      const res = await fetch('/api/interim-leader-profile', { method: 'POST', body: fd })
+      const data = await res.json()
+      if (!res.ok) { setAddError(data.error ?? 'Submission failed.'); return }
+      setAddForm({ full_name: '', email: '', phone: '', location: '', current_position: '', credentials: '', notes: '' })
+      setAddResume(null)
+      if (addResumeRef.current) addResumeRef.current.value = ''
+      setShowAdd(false)
+      await loadProfiles()
+    } catch {
+      setAddError('Network error. Please try again.')
+    } finally {
+      setAdding(false)
+    }
   }
 
   async function handleStatusChange(id: string, status: string) {
@@ -395,10 +430,68 @@ export default function InterimLeadersAdminPage() {
             <h1 className="text-2xl font-semibold text-gray-900">Interim Leader Profiles</h1>
           </div>
           <div className="flex items-center gap-4">
+            <button onClick={() => { setShowAdd(v => !v); setAddError(null) }}
+              className={`text-xs px-4 py-2 border transition-colors font-medium ${showAdd ? 'border-[#0e1a7a] bg-[#0e1a7a] text-white' : 'border-[#0e1a7a] text-[#0e1a7a] hover:bg-[#0e1a7a] hover:text-white'}`}>
+              {showAdd ? '✕ Cancel' : '+ Add Manually'}
+            </button>
             <button onClick={() => loadProfiles()} className="text-xs text-gray-400 hover:text-gray-600">↻ Refresh</button>
             <button onClick={() => { localStorage.removeItem('adminPw'); setAuth(false) }} className="text-xs text-gray-400 hover:text-gray-600">Sign out</button>
           </div>
         </div>
+
+        {/* Manual add form */}
+        {showAdd && (
+          <form onSubmit={handleManualAdd} className="bg-white border border-[#d6a758] p-6 mb-6">
+            <p className="text-[10px] font-bold text-[#8A6014] uppercase tracking-[0.15em] mb-4">Add Profile Manually</p>
+            {addError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 mb-4">{addError}</div>
+            )}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              {([
+                ['full_name',        'Full name *',          'text',  'Jane Smith'],
+                ['email',            'Email *',              'email', 'jane@example.com'],
+                ['phone',            'Phone',                'tel',   '(555) 000-0000'],
+                ['location',         'Location',             'text',  'Chicago, IL'],
+                ['current_position', 'Current / recent role','text',  'Head of School, Sunrise Montessori'],
+                ['credentials',      'Credentials',          'text',  'AMI 3–6'],
+              ] as [string, string, string, string][]).map(([key, label, type, placeholder]) => (
+                <div key={key}>
+                  <label className="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">{label}</label>
+                  <input type={type} required={label.includes('*')} placeholder={placeholder}
+                    value={addForm[key as keyof typeof addForm]}
+                    onChange={e => setAddForm(p => ({ ...p, [key]: e.target.value }))}
+                    className="w-full border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] transition-colors" />
+                </div>
+              ))}
+            </div>
+            <div className="mb-4">
+              <label className="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Notes (optional)</label>
+              <textarea rows={2} value={addForm.notes} onChange={e => setAddForm(p => ({ ...p, notes: e.target.value }))}
+                placeholder="Context about this person, how they came to you, anything useful..."
+                className="w-full border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:border-[#0e1a7a] transition-colors resize-none" />
+            </div>
+            <div className="mb-5">
+              <label className="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Resume * <span className="normal-case font-normal text-gray-400">(PDF or Word)</span></label>
+              {addResume ? (
+                <div className="flex items-center gap-3 px-3 py-2 bg-[#f5e8cc] border border-[#d6a758] text-sm">
+                  <span className="text-[#8A6014] font-medium truncate flex-1">{addResume.name}</span>
+                  <button type="button" onClick={() => { setAddResume(null); if (addResumeRef.current) addResumeRef.current.value = '' }}
+                    className="text-xs text-[#8A6014] hover:text-red-600 flex-shrink-0">Remove</button>
+                </div>
+              ) : (
+                <label className="flex items-center gap-2 px-3 py-2 border border-dashed border-[#d6a758] bg-white cursor-pointer hover:bg-[#fdf8f0] transition-colors text-sm text-gray-500">
+                  <input ref={addResumeRef} type="file" accept=".pdf,.doc,.docx" className="hidden"
+                    onChange={e => setAddResume(e.target.files?.[0] ?? null)} />
+                  Click to upload resume
+                </label>
+              )}
+            </div>
+            <button type="submit" disabled={adding}
+              className="bg-[#0e1a7a] text-white text-sm px-8 py-2.5 hover:bg-[#162270] transition-colors font-medium disabled:opacity-50">
+              {adding ? 'Uploading…' : 'Add to profiles →'}
+            </button>
+          </form>
+        )}
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 mb-6 flex justify-between">
