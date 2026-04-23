@@ -30,6 +30,7 @@ const mmapLinks = [
   { name: 'MMAP Overview', href: '/mmap', tagline: 'The school operating system' },
   { name: 'Platform Tour', href: '/mmap/tour', tagline: 'See how it works' },
   { name: 'Watch a Demo', href: '/mmap/demo', tagline: 'Full walkthrough videos' },
+  { name: 'Pricing', href: '/mmap/pricing', tagline: 'Per-student, per-month' },
   { name: 'Sign In', href: '/mmap/signin', tagline: 'Access the platform' },
 ]
 
