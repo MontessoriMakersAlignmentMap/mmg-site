@@ -3,11 +3,24 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { sendEmail } from '@/lib/email'
 
 const RESUME_MAX_BYTES = 10 * 1024 * 1024 // 10 MB
-const ALLOWED_RESUME_TYPES = new Set([
+
+// Browsers (especially on Windows) often send docx as application/octet-stream
+// or application/zip. Accept by extension as a fallback.
+const ALLOWED_RESUME_MIME = new Set([
   'application/pdf',
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/octet-stream',
+  'application/zip',
+  'application/x-zip-compressed',
 ])
+const ALLOWED_RESUME_EXT = new Set(['.pdf', '.doc', '.docx'])
+
+function isAllowedResume(file: File): boolean {
+  const ext = '.' + (file.name.split('.').pop() ?? '').toLowerCase()
+  return ALLOWED_RESUME_MIME.has(file.type) && ALLOWED_RESUME_EXT.has(ext)
+    || ALLOWED_RESUME_EXT.has(ext)
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,8 +31,8 @@ export async function POST(req: NextRequest) {
     if (!resume || resume.size === 0) {
       return NextResponse.json({ error: 'A resume is required.' }, { status: 400 })
     }
-    if (!ALLOWED_RESUME_TYPES.has(resume.type)) {
-      return NextResponse.json({ error: 'Resume must be a PDF or Word document.' }, { status: 400 })
+    if (!isAllowedResume(resume)) {
+      return NextResponse.json({ error: 'Resume must be a PDF or Word document (.pdf, .doc, or .docx).' }, { status: 400 })
     }
     if (resume.size > RESUME_MAX_BYTES) {
       return NextResponse.json({ error: 'Resume must be under 10 MB.' }, { status: 400 })
@@ -29,9 +42,8 @@ export async function POST(req: NextRequest) {
     const id = crypto.randomUUID()
 
     // ── Upload resume ────────────────────────────────────────────────────────────
-    const ext =
-      resume.type === 'application/pdf' ? 'pdf' :
-      resume.name.toLowerCase().endsWith('.doc') ? 'doc' : 'docx'
+    const rawExt = resume.name.split('.').pop()?.toLowerCase() ?? ''
+    const ext = ['pdf', 'doc', 'docx'].includes(rawExt) ? rawExt : 'pdf'
     const resumeKey = `${id}.${ext}`
 
     const { error: uploadErr } = await supabase.storage
