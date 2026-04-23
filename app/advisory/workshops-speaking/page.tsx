@@ -379,6 +379,27 @@ export default function WorkshopsSpeakingPage() {
         </div>
       </section>
 
+      {/* Fall 2026 booking urgency */}
+      <section className="bg-[#d6a758] py-6 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-10">
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/70 inline-block" />
+            <p className="text-white text-[11px] tracking-[0.18em] uppercase font-medium">Now Booking · Fall 2026</p>
+          </div>
+          <p className="text-white/90 text-sm leading-relaxed flex-1">
+            Now booking keynotes, workshops, and leadership retreats for fall 2026. Dates are filling. If you are planning your August or September professional development, this is the time to reach out.
+          </p>
+          <a
+            href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-[#0e1a7a] text-[11px] tracking-[0.12em] uppercase font-semibold px-6 py-3 hover:bg-white/90 transition-colors whitespace-nowrap flex-shrink-0"
+          >
+            Reach Out →
+          </a>
+        </div>
+      </section>
+
       {/* Topics */}
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -955,7 +976,7 @@ export default function WorkshopsSpeakingPage() {
             </a>
           </div>
           <p className="text-[#94A3B8] text-sm leading-relaxed max-w-xl">
-            Workshops and keynotes are typically scheduled 4–8 weeks in advance. Major conferences: 3–6 months.
+            Fall 2026 dates are now open. Schools and conferences planning August onward should reach out now.
           </p>
         </div>
       </section>

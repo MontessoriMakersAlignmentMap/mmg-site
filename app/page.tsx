@@ -712,6 +712,34 @@ function TrustTicker() {
   )
 }
 
+// ─── Fall Booking ──────────────────────────────────────────────────────────────
+
+function FallBooking() {
+  return (
+    <section className="bg-[#0e1a7a] border-t border-white/10 py-16 md:py-20 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
+        <div className="flex-1">
+          <p className="text-[#d6a758] text-[11px] tracking-[0.2em] uppercase mb-4">Now Booking · Fall 2026</p>
+          <h2 className="text-2xl md:text-3xl text-white leading-snug mb-3" style={serif}>
+            Fall professional development dates are open.
+          </h2>
+          <p className="text-[#94A3B8] text-base leading-relaxed max-w-xl">
+            Schools and conferences planning keynotes, workshops, or leadership retreats for August and beyond — reach out now. Dates are filling.
+          </p>
+        </div>
+        <div className="flex-shrink-0">
+          <a
+            href="/advisory/workshops-speaking"
+            className="inline-block bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors font-medium"
+          >
+            Book a Speaking Engagement →
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -747,6 +775,7 @@ export default function Home() {
       <Founder />
       <Testimonials />
       <Press />
+      <FallBooking />
       <NewsletterSignup />
     </>
   )
