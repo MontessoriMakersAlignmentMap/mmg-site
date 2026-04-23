@@ -888,6 +888,12 @@ export default function AdminPage() {
           >
             Second Brain →
           </button>
+          <button
+            onClick={() => { window.location.href = '/admin/mmap' }}
+            className="text-xs border-2 border-[#0e1a7a] bg-[#0e1a7a] text-white px-4 py-2 hover:bg-[#162270] transition-colors font-semibold"
+          >
+            MMAP Enrollment →
+          </button>
         </div>
 
         {/* Tabs */}
