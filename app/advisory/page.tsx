@@ -9,13 +9,13 @@ const serif = { fontFamily: 'var(--font-heading)' }
 
 const pathways = [
   {
-    name: 'Systems Intensives',
-    href: '/advisory/systems-intensives',
-    tagline: 'Focused, single-system engagements',
-    engagement: '3 sessions · 4–6 weeks',
+    name: 'Systems Work',
+    href: '/advisory/systems',
+    tagline: 'Scoped, project-based engagements',
+    engagement: 'Project-based · weeks, not months',
     description:
-      'Project-based engagements scoped to one organizational system — compensation, enrollment, onboarding, retention, annual planning, or financial literacy. Three sessions, one deliverable, real infrastructure.',
-    for: 'Schools that need a specific system built, not a long-term consulting relationship.',
+      'Focused engagements built around a single organizational system — compensation, enrollment, board governance, family engagement, communication, founding infrastructure, and more. Scoped, deliverable-driven, and done.',
+    for: 'Schools that need a specific piece of infrastructure built and are ready to make decisions.',
   },
   {
     name: 'Montessori Mapping',
@@ -61,42 +61,6 @@ const pathways = [
     description:
       'Support before, during, and after leadership change. The structural and cultural work that determines whether a transition holds.',
     for: 'Schools in active succession, or planning ahead for leadership change.',
-  },
-  {
-    name: 'Board Development',
-    href: '/advisory/board-development',
-    tagline: 'Governance & board-head dynamics',
-    engagement: 'Single session to retained',
-    description:
-      'Board role clarity, governance structure, board-head relationship architecture, and strategic planning facilitation. For boards that need to function as true partners to leadership.',
-    for: 'Schools where board governance is underdeveloped, strained, or in transition.',
-  },
-  {
-    name: 'Family Engagement',
-    href: '/advisory/family-engagement',
-    tagline: 'Family communication systems',
-    engagement: 'Project-based',
-    description:
-      'Building the communication infrastructure that helps families understand Montessori, reduces parent-driven friction, and gives guides and directors clear systems to work from.',
-    for: 'Schools where family misunderstanding, attrition, or communication breakdown is recurring.',
-  },
-  {
-    name: 'Strong Systems',
-    href: '/advisory/strong-systems',
-    tagline: 'Founding & startup infrastructure',
-    engagement: 'Project-based to retained',
-    description:
-      'Organizational design, governance formation, hiring infrastructure, operational systems, and year-one planning for schools that are building from scratch — or catching up on what they skipped.',
-    for: 'Founding teams, charter applicants, and schools in years one through five.',
-  },
-  {
-    name: 'Communication Strategy',
-    href: '/advisory/communication-strategy',
-    tagline: 'Systems-level communication design',
-    engagement: 'Project-based',
-    description:
-      'Building the communication infrastructure that reduces conflict, builds trust, and stops the same problems from cycling through the organization year after year.',
-    for: 'Schools experiencing communication breakdowns, high turnover, or trust erosion.',
   },
 ]
 
