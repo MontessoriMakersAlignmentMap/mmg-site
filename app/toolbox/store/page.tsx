@@ -135,6 +135,16 @@ const products = [
     stripeHref: 'https://buy.stripe.com/14AaEZ3zO7T2f7hec12cg0G',
   },
   {
+    name: 'Year-Long PD Planning Template',
+    category: 'Frameworks',
+    slug: 'year-long-planner',
+    image: '/images/toolbox/year-long-planner.png',
+    price: '$197',
+    docs: 'Editable Excel workbook · 5 tabs',
+    desc: 'A full-year professional development planning workbook with suggested weekly topics, differentiated tracks for guides and assistants, and a Beginning of Year tab for in-service planning. Editable in Excel or Google Sheets.',
+    stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
+  },
+  {
     name: 'Conflict & Feedback Protocol',
     category: 'Frameworks',
     slug: 'conflict-feedback-protocol',
