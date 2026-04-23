@@ -14,6 +14,9 @@ const advisoryLinks = [
   { name: 'Leadership Coaching', href: '/advisory/coaching', tagline: '1:1 support for leaders' },
   { name: 'Strategic Partnerships', href: '/advisory/partnership', tagline: 'Retained advisory' },
   { name: 'Leadership Transition', href: '/advisory/leadership-transition-support', tagline: 'Succession support' },
+  { name: 'Board Development', href: '/advisory/board-development', tagline: 'Governance & board-head dynamics' },
+  { name: 'Family Engagement', href: '/advisory/family-engagement', tagline: 'Family communication systems' },
+  { name: 'Strong Systems', href: '/advisory/strong-systems', tagline: 'Founding & startup infrastructure' },
   { name: 'Communication Strategy', href: '/advisory/communication-strategy', tagline: 'Systems-level design' },
 ]
 

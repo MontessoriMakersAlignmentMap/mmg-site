@@ -63,6 +63,33 @@ const pathways = [
     for: 'Schools in active succession, or planning ahead for leadership change.',
   },
   {
+    name: 'Board Development',
+    href: '/advisory/board-development',
+    tagline: 'Governance & board-head dynamics',
+    engagement: 'Single session to retained',
+    description:
+      'Board role clarity, governance structure, board-head relationship architecture, and strategic planning facilitation. For boards that need to function as true partners to leadership.',
+    for: 'Schools where board governance is underdeveloped, strained, or in transition.',
+  },
+  {
+    name: 'Family Engagement',
+    href: '/advisory/family-engagement',
+    tagline: 'Family communication systems',
+    engagement: 'Project-based',
+    description:
+      'Building the communication infrastructure that helps families understand Montessori, reduces parent-driven friction, and gives guides and directors clear systems to work from.',
+    for: 'Schools where family misunderstanding, attrition, or communication breakdown is recurring.',
+  },
+  {
+    name: 'Strong Systems',
+    href: '/advisory/strong-systems',
+    tagline: 'Founding & startup infrastructure',
+    engagement: 'Project-based to retained',
+    description:
+      'Organizational design, governance formation, hiring infrastructure, operational systems, and year-one planning for schools that are building from scratch — or catching up on what they skipped.',
+    for: 'Founding teams, charter applicants, and schools in years one through five.',
+  },
+  {
     name: 'Communication Strategy',
     href: '/advisory/communication-strategy',
     tagline: 'Systems-level communication design',
