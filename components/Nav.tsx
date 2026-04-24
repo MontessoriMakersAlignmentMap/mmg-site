@@ -68,9 +68,10 @@ const matchhubSections = [
 ]
 
 const appsLinks = [
-  { name: 'Apps Overview',        href: '/apps',                  tagline: 'Both Montessori Makers apps' },
+  { name: 'Apps Overview',        href: '/apps',                  tagline: 'All Montessori Makers apps' },
   { name: 'Field Guide',          href: '/field-guide',           tagline: 'In-classroom practitioner tool' },
   { name: 'Leadership Meridian',  href: '/leadership-meridian',   tagline: 'For school leaders' },
+  { name: 'Family Companion',     href: '/family-companion',      tagline: 'For Montessori parents' },
 ]
 
 const residencyLinks = [
@@ -103,6 +104,7 @@ const ecosystemGroups = [
     links: [
       { name: 'Field Guide',         logo: 'field-guide'         as LogoName, href: '/field-guide',          tagline: 'In-classroom practitioner tool' },
       { name: 'Leadership Meridian', logo: 'leadership-meridian' as LogoName, href: '/leadership-meridian',  tagline: 'For school leaders' },
+      { name: 'Family Companion',    logo: 'field-guide'         as LogoName, href: '/family-companion',     tagline: 'For Montessori parents' },
     ],
   },
   {
@@ -123,6 +125,7 @@ const allMobileLinks = [
   { name: 'MatchHub',            href: '/matchhub' },
   { name: 'Field Guide',         href: '/field-guide' },
   { name: 'Leadership Meridian', href: '/leadership-meridian' },
+  { name: 'Family Companion',    href: '/family-companion' },
   { name: 'Learning',            href: '/learning' },
   { name: 'Toolbox',             href: '/toolbox' },
   { name: 'Studio',              href: '/studio' },
@@ -436,8 +439,8 @@ export default function Nav() {
 
           {/* Apps dropdown */}
           <div className="relative group">
-            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/field-guide', '/leadership-meridian', '/apps']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
-              {active(['/field-guide', '/leadership-meridian', '/apps']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/field-guide', '/leadership-meridian', '/family-companion', '/apps']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/field-guide', '/leadership-meridian', '/family-companion', '/apps']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
               Apps
               <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -450,7 +453,7 @@ export default function Nav() {
                   className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors border-b border-[#E2DDD6] mb-2"
                 >
                   <p className="text-[#0e1a7a] text-sm font-semibold">Apps Overview</p>
-                  <p className="text-[#64748B] text-xs mt-0.5">Both Montessori Makers apps</p>
+                  <p className="text-[#64748B] text-xs mt-0.5">All Montessori Makers apps</p>
                 </Link>
                 <div className="space-y-0.5">
                   {appsLinks.slice(1).map((link) => (

@@ -16,6 +16,7 @@ const platformLinks = [
   { name: 'MatchHub',            href: '/matchhub' },
   { name: 'Field Guide',         href: '/field-guide' },
   { name: 'Leadership Meridian', href: '/leadership-meridian' },
+  { name: 'Family Companion',    href: '/family-companion' },
 ]
 
 const resourceLinks = [
@@ -188,6 +189,7 @@ export default function Footer() {
                 { name: 'Learning',    href: '/learning',     gold: false },
                 { name: 'Studio',             href: '/studio',              gold: false },
                 { name: 'Leadership Meridian', href: '/leadership-meridian', gold: false },
+                { name: 'Family Companion',    href: '/family-companion',    gold: false },
               ]
             ).map((item) => (
               <Link
