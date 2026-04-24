@@ -170,8 +170,8 @@ function TierBadge({ tier }: { tier: MatchResult['tier'] }) {
 const tierBorder: Record<MatchResult['tier'], string> = {
   strong:  'border-2 border-emerald-400',
   good:    'border-2 border-blue-400',
-  partial: 'border-2 border-amber-300',
-  weak:    'border-2 border-amber-200',
+  partial: 'border-2 border-amber-300/25',
+  weak:    'border-2 border-amber-300/25',
 }
 
 // ── Profile modal ─────────────────────────────────────────────────────────────
