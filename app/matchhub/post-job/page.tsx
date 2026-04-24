@@ -71,7 +71,7 @@ function PostJobForm() {
     const { id, error: err } = await submitJob(payload)
 
     if (err || !id) {
-      setError(`Submission failed: ${err ?? 'no ID returned'}`)
+      setError('Something went wrong. Please try again or email us at hello@montessorimakersgroup.org.')
       setSubmitting(false)
       return
     }
