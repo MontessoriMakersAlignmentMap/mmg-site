@@ -789,7 +789,7 @@ export default function MatchClient({
         </div>
       )}
 
-      {current && <SearchPanel initialSearch={current} candidates={candidates} />}
+      {current && <SearchPanel key={current.id} initialSearch={current} candidates={candidates} />}
     </div>
   )
 }
