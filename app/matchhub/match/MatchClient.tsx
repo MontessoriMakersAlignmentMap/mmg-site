@@ -599,9 +599,11 @@ function CandidateCard({
 
 function CriteriaEditor({
   search,
+  onLiveChange,
   onSaved,
 }: {
   search: CRMSearch
+  onLiveChange: (updated: CRMSearch) => void
   onSaved: (updated: CRMSearch) => void
 }) {
   const [open, setOpen] = useState(!search.levels_required && !search.role_type_required)
@@ -616,6 +618,18 @@ function CriteriaEditor({
     location_flexible: search.location_flexible,
     languages_required: search.languages_required || '',
   })
+
+  function updateForm(patch: Partial<typeof form>) {
+    setForm((f) => {
+      const next = { ...f, ...patch }
+      onLiveChange({
+        ...search,
+        ...next,
+        years_experience_min: next.years_experience_min ? parseInt(next.years_experience_min) : null,
+      })
+      return next
+    })
+  }
 
   async function save() {
     setSaving(true)
@@ -652,44 +666,44 @@ function CriteriaEditor({
         <div className="mt-4 border border-[#E2DDD6] bg-[#FAF9F7] p-6 grid sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Level required</label>
-            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.levels_required} onChange={(e) => setForm((f) => ({ ...f, levels_required: e.target.value }))}>
+            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.levels_required} onChange={(e) => updateForm({ levels_required: e.target.value })}>
               <option value="">Any</option>
               {LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Role type</label>
-            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.role_type_required} onChange={(e) => setForm((f) => ({ ...f, role_type_required: e.target.value }))}>
+            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.role_type_required} onChange={(e) => updateForm({ role_type_required: e.target.value })}>
               <option value="">Any</option>
               {ROLE_TYPES.map((r) => <option key={r} value={r}>{r}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Credential</label>
-            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.credential_required} onChange={(e) => setForm((f) => ({ ...f, credential_required: e.target.value }))}>
+            <select className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.credential_required} onChange={(e) => updateForm({ credential_required: e.target.value })}>
               <option value="">Not required</option>
               {CREDS.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Min years experience</label>
-            <input type="number" min="0" className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.years_experience_min} onChange={(e) => setForm((f) => ({ ...f, years_experience_min: e.target.value }))} placeholder="0" />
+            <input type="number" min="0" className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.years_experience_min} onChange={(e) => updateForm({ years_experience_min: e.target.value })} placeholder="0" />
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Location city</label>
-            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.location_city} onChange={(e) => setForm((f) => ({ ...f, location_city: e.target.value }))} placeholder="e.g. Chicago" />
+            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.location_city} onChange={(e) => updateForm({ location_city: e.target.value })} placeholder="e.g. Chicago" />
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Location state</label>
-            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.location_state} onChange={(e) => setForm((f) => ({ ...f, location_state: e.target.value }))} placeholder="e.g. IL" />
+            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.location_state} onChange={(e) => updateForm({ location_state: e.target.value })} placeholder="e.g. IL" />
           </div>
           <div>
             <label className="block text-[#64748B] text-xs tracking-[0.15em] uppercase mb-2">Languages required</label>
-            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.languages_required} onChange={(e) => setForm((f) => ({ ...f, languages_required: e.target.value }))} placeholder="e.g. Spanish" />
+            <input className="w-full border border-[#E2DDD6] bg-white px-3 py-2 text-sm text-[#374151] focus:outline-none" value={form.languages_required} onChange={(e) => updateForm({ languages_required: e.target.value })} placeholder="e.g. Spanish" />
           </div>
           <div className="flex items-end">
             <label className="flex items-center gap-2 cursor-pointer text-sm text-[#374151]">
-              <input type="checkbox" checked={form.location_flexible} onChange={(e) => setForm((f) => ({ ...f, location_flexible: e.target.checked }))} className="accent-[#0e1a7a]" />
+              <input type="checkbox" checked={form.location_flexible} onChange={(e) => updateForm({ location_flexible: e.target.checked })} className="accent-[#0e1a7a]" />
               Location flexible / remote ok
             </label>
           </div>
@@ -715,9 +729,11 @@ function SearchPanel({
   candidates: CRMCandidate[]
 }) {
   const [search, setSearch] = useState(initialSearch)
+  // liveSearch tracks form state in real-time; search is the last-persisted version
+  const [liveSearch, setLiveSearch] = useState(initialSearch)
   const [filter, setFilter] = useState<'all' | 'strong' | 'good'>('all')
 
-  const matches = buildMatches(candidates, search)
+  const matches = buildMatches(candidates, liveSearch)
   const filtered = filter === 'all' ? matches : matches.filter((m) => m.tier === filter || (filter === 'good' && (m.tier === 'good' || m.tier === 'strong')))
   const strongCount = matches.filter((m) => m.tier === 'strong').length
   const goodCount = matches.filter((m) => m.tier === 'good').length
@@ -748,7 +764,11 @@ function SearchPanel({
       </div>
 
       <div className="p-8">
-        <CriteriaEditor search={search} onSaved={setSearch} />
+        <CriteriaEditor
+          search={search}
+          onLiveChange={setLiveSearch}
+          onSaved={(updated) => { setSearch(updated); setLiveSearch(updated) }}
+        />
 
         <div className="flex gap-2 mb-5">
           {(['all', 'good', 'strong'] as const).map((f) => (
