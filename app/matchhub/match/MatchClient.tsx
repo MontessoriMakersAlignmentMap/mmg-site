@@ -165,6 +165,139 @@ function TierBadge({ tier }: { tier: MatchResult['tier'] }) {
   )
 }
 
+// ── Tier border styles ────────────────────────────────────────────────────────
+
+const tierBorder: Record<MatchResult['tier'], string> = {
+  strong:  'border-2 border-emerald-400',
+  good:    'border-2 border-blue-400',
+  partial: 'border-2 border-amber-300',
+  weak:    'border-2 border-amber-200',
+}
+
+// ── Profile modal ─────────────────────────────────────────────────────────────
+
+function ProfileModal({
+  result,
+  onClose,
+}: {
+  result: MatchResult
+  onClose: () => void
+}) {
+  const c = result.candidate
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40" onClick={onClose}>
+      <div
+        className="bg-white w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className={`px-8 py-5 border-b-4 flex items-start justify-between gap-4 ${
+          result.tier === 'strong' ? 'border-emerald-400' :
+          result.tier === 'good'   ? 'border-blue-400'    :
+                                     'border-amber-300'
+        }`}>
+          <div>
+            <h3 className="text-[#0e1a7a] font-semibold text-xl" style={serif}>{c.full_name}</h3>
+            <p className="text-[#64748B] text-sm mt-1">
+              {[
+                c.location_city && c.location_state ? `${c.location_city}, ${c.location_state}` : c.location_state || null,
+                c.credential && c.credential !== 'None' ? c.credential : null,
+                c.years_experience != null ? `${c.years_experience} yrs experience` : null,
+              ].filter(Boolean).join(' · ')}
+            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-[#0e1a7a] text-xs font-semibold">{result.score}pts</span>
+              <TierBadge tier={result.tier} />
+              {c.actively_looking && (
+                <span className="text-emerald-700 text-xs">✓ Actively looking</span>
+              )}
+            </div>
+          </div>
+          <button onClick={onClose} className="text-[#94A3B8] hover:text-[#374151] text-xl leading-none flex-shrink-0">✕</button>
+        </div>
+
+        <div className="px-8 py-6 space-y-6">
+          {/* Levels + roles */}
+          {((c.levels_certified?.length ?? 0) > 0 || (c.open_to_role_types?.length ?? 0) > 0) && (
+            <div>
+              <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Levels &amp; Role Types</p>
+              <div className="flex flex-wrap gap-1.5">
+                {(c.levels_certified || []).map((l) => (
+                  <span key={l} className="text-xs bg-[#F2EDE6] text-[#374151] px-2.5 py-1 rounded">{l}</span>
+                ))}
+                {(c.open_to_role_types || []).map((r) => (
+                  <span key={r} className="text-xs bg-[#EEF2FF] text-[#3730A3] px-2.5 py-1 rounded">{r}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Match reasons + gaps */}
+          {(result.reasons.length > 0 || result.gaps.length > 0) && (
+            <div className="grid grid-cols-2 gap-4">
+              {result.reasons.length > 0 && (
+                <div>
+                  <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Match</p>
+                  <div className="space-y-1 text-emerald-700 text-xs">
+                    {result.reasons.map((r) => <div key={r} className="flex items-center gap-1"><span>✓</span><span>{r}</span></div>)}
+                  </div>
+                </div>
+              )}
+              {result.gaps.length > 0 && (
+                <div>
+                  <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Gaps</p>
+                  <div className="space-y-1 text-amber-700 text-xs">
+                    {result.gaps.map((g) => <div key={g} className="flex items-center gap-1"><span>—</span><span>{g}</span></div>)}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Languages */}
+          {(c.languages?.length ?? 0) > 0 && (
+            <div>
+              <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Languages</p>
+              <p className="text-[#374151] text-sm">{c.languages!.join(', ')}</p>
+            </div>
+          )}
+
+          {/* Contact */}
+          {(c.email || c.phone) && (
+            <div>
+              <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Contact</p>
+              <div className="space-y-1 text-sm">
+                {c.email && <p className="text-[#374151]">{c.email}</p>}
+                {c.phone && <p className="text-[#374151]">{c.phone}</p>}
+              </div>
+            </div>
+          )}
+
+          {/* Notes */}
+          {c.notes && (
+            <div>
+              <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Notes</p>
+              <p className="text-[#374151] text-sm leading-relaxed whitespace-pre-wrap">{c.notes}</p>
+            </div>
+          )}
+
+          {/* External links */}
+          <div className="flex gap-4 pt-2 border-t border-[#E2DDD6]">
+            {c.linkedin_url && (
+              <a href={c.linkedin_url} target="_blank" rel="noopener noreferrer"
+                className="text-[#0e1a7a] text-sm font-medium hover:underline">LinkedIn →</a>
+            )}
+            {c.resume_url && (
+              <a href={c.resume_url} target="_blank" rel="noopener noreferrer"
+                className="text-[#0e1a7a] text-sm font-medium hover:underline">Resume →</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Email draft modal ─────────────────────────────────────────────────────────
 
 function EmailDraftModal({
@@ -328,11 +461,12 @@ function CandidateCard({
   rank: number
 }) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
   const c = result.candidate
 
   return (
     <>
-      <div className={`border p-5 ${result.tier === 'weak' ? 'opacity-50' : ''} border-[#E2DDD6] bg-white hover:border-[#0e1a7a]/30 transition-colors`}>
+      <div className={`p-5 bg-white transition-colors ${tierBorder[result.tier]}`}>
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-3">
             <span className="text-[#94A3B8] text-xs w-5 flex-shrink-0">#{rank}</span>
@@ -393,6 +527,12 @@ function CandidateCard({
 
         <div className="flex items-center gap-3">
           <button
+            onClick={() => setProfileOpen(true)}
+            className="text-[#374151] text-xs font-medium border border-[#E2DDD6] px-4 py-2 hover:border-[#0e1a7a] hover:text-[#0e1a7a] transition-colors"
+          >
+            View Profile
+          </button>
+          <button
             onClick={() => setModalOpen(true)}
             className="text-[#0e1a7a] text-xs font-medium border border-[#0e1a7a]/30 px-4 py-2 hover:bg-[#0e1a7a] hover:text-white transition-colors"
           >
@@ -421,6 +561,12 @@ function CandidateCard({
         </div>
       </div>
 
+      {profileOpen && (
+        <ProfileModal
+          result={result}
+          onClose={() => setProfileOpen(false)}
+        />
+      )}
       {modalOpen && (
         <EmailDraftModal
           candidate={c}
