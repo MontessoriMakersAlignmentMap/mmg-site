@@ -107,24 +107,11 @@ export default function FamilyCompanionPage() {
           </div>
 
           {/* Two-phone composite */}
-          <div className="hidden md:flex items-end justify-center flex-shrink-0 relative" style={{ width: 380, height: 520 }}>
-            {/* Back phone — home screen, offset right + up */}
+          <div className="hidden md:flex items-end flex-shrink-0">
+            {/* Front phone — onboarding */}
             <div
-              className="absolute rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10"
-              style={{ width: 210, right: 0, bottom: 20, zIndex: 1 }}
-            >
-              <Image
-                src="/images/family-companion/01-home.png"
-                alt="Family Companion home screen"
-                width={420}
-                height={840}
-                className="w-full h-auto"
-              />
-            </div>
-            {/* Front phone — onboarding, offset left + down */}
-            <div
-              className="absolute rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/15"
-              style={{ width: 230, left: 0, bottom: 0, zIndex: 2 }}
+              className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/20 flex-shrink-0 relative z-10"
+              style={{ width: 230 }}
             >
               <Image
                 src="/images/family-companion/07-onboarding.png"
@@ -133,6 +120,19 @@ export default function FamilyCompanionPage() {
                 height={920}
                 className="w-full h-auto"
                 priority
+              />
+            </div>
+            {/* Back phone — home screen, lifted + tucked behind */}
+            <div
+              className="rounded-[2rem] overflow-hidden shadow-xl border border-white/10 flex-shrink-0 relative z-0 mb-10"
+              style={{ width: 185, marginLeft: -36, opacity: 0.82 }}
+            >
+              <Image
+                src="/images/family-companion/01-home.png"
+                alt="Family Companion home screen"
+                width={370}
+                height={740}
+                className="w-full h-auto"
               />
             </div>
           </div>
