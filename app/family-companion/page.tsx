@@ -95,7 +95,9 @@ export default function FamilyCompanionPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="/contact"
+                href="https://montessorimakersfamilycompanion.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
               >
                 Open Family Companion &rarr;
@@ -335,7 +337,9 @@ export default function FamilyCompanionPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="/contact"
+                href="https://montessorimakersfamilycompanion.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
               >
                 Open Family Companion &rarr;
@@ -397,7 +401,9 @@ export default function FamilyCompanionPage() {
           </div>
           <div className="flex flex-col gap-3 flex-shrink-0">
             <a
-              href="/contact"
+              href="https://montessorimakersfamilycompanion.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#0e1a7a] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#162270] transition-colors text-center font-medium"
             >
               Open Family Companion &rarr;
