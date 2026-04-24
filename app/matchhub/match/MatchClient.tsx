@@ -187,7 +187,7 @@ function ProfileModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40" onClick={onClose}>
       <div
-        className="bg-white w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="bg-white w-full max-w-2xl max-h-[92vh] overflow-y-auto shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -278,6 +278,23 @@ function ProfileModal({
             <div>
               <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase mb-2">Notes</p>
               <p className="text-[#374151] text-sm leading-relaxed whitespace-pre-wrap">{c.notes}</p>
+            </div>
+          )}
+
+          {/* Resume embed */}
+          {c.resume_url && (
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-[#64748B] text-[10px] tracking-[0.18em] uppercase">Resume</p>
+                <a href={c.resume_url} target="_blank" rel="noopener noreferrer"
+                  className="text-[#0e1a7a] text-xs font-medium hover:underline">Open in new tab →</a>
+              </div>
+              <iframe
+                src={c.resume_url}
+                className="w-full border border-[#E2DDD6] rounded"
+                style={{ height: 420 }}
+                title={`${c.full_name} resume`}
+              />
             </div>
           )}
 
