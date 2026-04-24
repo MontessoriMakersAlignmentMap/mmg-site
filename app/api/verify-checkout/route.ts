@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
     }
 
         // Notify admin — fire and forget
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://montessorimakersgroup.org'
     const addOnLines = [
       addOns.featured ? '★ FEATURED PLACEMENT purchased — promote to top of listings' : '',
       addOns.social   ? '📣 SOCIAL BOOST purchased — needs social media promotion'       : '',

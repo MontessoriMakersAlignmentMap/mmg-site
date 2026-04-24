@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'jobId is required' }, { status: 400 })
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://montessorimakersgroup.org'
 
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
