@@ -3,14 +3,17 @@ import { createServerClient, createServiceClient } from '@/lib/supabase/server'
 import type { Job, JobInsert } from '@/lib/types/matchhub'
 
 // ─── Public: insert new job ───────────────────────────────────────────────────
+// Generate ID client-side so we don't need a SELECT after the INSERT.
+// A post-INSERT SELECT is blocked by the RLS policy (only approved jobs are
+// readable by anon), so .single() would return zero rows and throw even though
+// the insert itself succeeded.
 
 export async function submitJob(data: JobInsert): Promise<{ id: string | null; error: string | null }> {
-  const { data: rows, error } = await supabase
+  const id = crypto.randomUUID()
+  const { error } = await supabase
     .from('jobs')
-    .insert({ ...data, status: 'pending', payment_status: 'unpaid' })
-    .select('id')
-    .single()
-  return { id: rows?.id ?? null, error: error?.message ?? null }
+    .insert({ id, ...data, status: 'pending', payment_status: 'unpaid' })
+  return { id: error ? null : id, error: error?.message ?? null }
 }
 
 // ─── Server: update payment status after Stripe verification ─────────────────
