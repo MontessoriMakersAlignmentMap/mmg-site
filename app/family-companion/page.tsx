@@ -77,9 +77,10 @@ export default function FamilyCompanionPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="bg-[#0e1a7a] pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
-          <div className="max-w-2xl flex-1">
+      <section className="bg-[#0e1a7a] pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center gap-14 md:gap-20">
+          {/* Copy */}
+          <div className="max-w-xl flex-1">
             <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-6">
               Family Companion
             </p>
@@ -105,29 +106,34 @@ export default function FamilyCompanionPage() {
             </p>
           </div>
 
-          {/* Hero screenshot */}
-          <div className="hidden md:block flex-shrink-0">
-            <div className="relative">
-              <div className="w-[220px] rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl">
-                <Image
-                  src="/images/family-companion/07-onboarding.png"
-                  alt="Family Companion welcome screen"
-                  width={440}
-                  height={880}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-              {/* Floating second phone */}
-              <div className="absolute -right-16 top-10 w-[180px] rounded-[1.75rem] overflow-hidden border-4 border-white/8 shadow-xl opacity-70">
-                <Image
-                  src="/images/family-companion/01-home.png"
-                  alt="Family Companion home screen"
-                  width={360}
-                  height={720}
-                  className="w-full h-auto"
-                />
-              </div>
+          {/* Two-phone composite */}
+          <div className="hidden md:flex items-end justify-center flex-shrink-0 relative" style={{ width: 380, height: 520 }}>
+            {/* Back phone — home screen, offset right + up */}
+            <div
+              className="absolute rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10"
+              style={{ width: 210, right: 0, bottom: 20, zIndex: 1 }}
+            >
+              <Image
+                src="/images/family-companion/01-home.png"
+                alt="Family Companion home screen"
+                width={420}
+                height={840}
+                className="w-full h-auto"
+              />
+            </div>
+            {/* Front phone — onboarding, offset left + down */}
+            <div
+              className="absolute rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/15"
+              style={{ width: 230, left: 0, bottom: 0, zIndex: 2 }}
+            >
+              <Image
+                src="/images/family-companion/07-onboarding.png"
+                alt="Family Companion welcome screen"
+                width={460}
+                height={920}
+                className="w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </div>
