@@ -218,7 +218,7 @@ const STUDIO_QUOTES = [
     role: 'Montessori Head of School',
   },
   {
-    quote: 'The identity they built for us doesn\'t look like any other Montessori school. It looks like us. That was the whole point.',
+    quote: "The identity they built for us doesn't look like any other Montessori school. It looks like us. That was the whole point.",
     name: 'The Peace Rebellion',
     role: 'Education justice organization',
   },
@@ -416,10 +416,10 @@ export default function StudioPage() {
               </p>
               <div className="space-y-3 mb-8">
                 {[
-                  'Identity-first design — built from your narrative, not a template',
-                  'Custom information architecture — families find what they\'re looking for',
-                  'Copy written by Studio — based on what you actually believe',
-                  'Modern, fast, mobile-first — not Wix or Squarespace',
+                  "Identity-first design — built from your narrative, not a template",
+                  "Custom information architecture — families find what they're looking for",
+                  "Copy written by Studio — based on what you actually believe",
+                  "Modern, fast, mobile-first — not Wix or Squarespace",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <span className="text-[#8A6014] flex-shrink-0 mt-0.5">→</span>
@@ -628,7 +628,7 @@ export default function StudioPage() {
               <div className="space-y-4">
                 {[
                   'You describe your work differently every time someone asks.',
-                  'People encounter you online and don\'t feel what they\'d find if they walked through your door.',
+                  "People encounter you online and don't feel what they'd find if they walked through your door.",
                   'You have strong outcomes but struggle to communicate them clearly.',
                   'Visual and messaging decisions get made by committee, slowly, and inconsistently.',
                   'Your audience asks questions your materials should already answer.',
@@ -909,12 +909,12 @@ export default function StudioPage() {
               </p>
               <div className="space-y-0">
                 {[
-                  'You\'re doing Montessori work the broader world doesn\'t yet understand',
-                  'Your mission is clear to you but not to the communities and audiences you\u2019re trying to reach',
-                  'You\'re ready to invest in getting communication right — not just adequate',
-                  'You want a collaborative process, not a vendor relationship',
-                  'You can articulate what\'s not working, even if you can\'t yet say why',
-                  'You\'re a leader with ideas that deserve a bigger audience',
+                  "You're doing Montessori work the broader world doesn't yet understand",
+                  "Your mission is clear to you but not to the communities and audiences you're trying to reach",
+                  "You're ready to invest in getting communication right — not just adequate",
+                  "You want a collaborative process, not a vendor relationship",
+                  "You can articulate what's not working, even if you can't yet say why",
+                  "You're a leader with ideas that deserve a bigger audience",
                 ].map((item, i) => (
                   <div
                     key={i}
