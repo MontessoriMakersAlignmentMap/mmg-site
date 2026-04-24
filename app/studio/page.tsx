@@ -417,7 +417,7 @@ export default function StudioPage() {
               <div className="space-y-3 mb-8">
                 {[
                   'Identity-first design — built from your narrative, not a template',
-                  'Custom information architecture — families find what they're looking for',
+                  'Custom information architecture — families find what they\'re looking for',
                   'Copy written by Studio — based on what you actually believe',
                   'Modern, fast, mobile-first — not Wix or Squarespace',
                 ].map((item) => (
@@ -490,7 +490,7 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── VISUAL BREAK ──────────────────────────────────────────────────── */
+      {/* ── VISUAL BREAK ──────────────────────────────────────────────────── */}
       <div className="relative w-full h-72 md:h-[440px] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1600&q=80"

@@ -83,6 +83,7 @@ const appsLinks = [
   { name: 'Family Companion',     href: '/family-companion',      tagline: 'For Montessori parents' },
 ]
 
+
 const residencyLinks = [
   { name: 'Residency Overview', href: '/residency', tagline: 'Montessori teacher preparation' },
   { name: 'Primary Track (3–6)', href: '/residency/pricing', tagline: '9-month credential, 224 lessons' },
@@ -396,44 +397,6 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Studio dropdown */}
-          <div className="relative group">
-            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/studio']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
-              {active(['/studio']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
-              Studio
-              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[360px] overflow-hidden">
-                <div className="p-4">
-                  <div className="space-y-0.5">
-                    {studioLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
-                      >
-                        <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
-                        <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mt-3 pt-3 border-t border-[#F2EDE6]">
-                    <a
-                      href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center bg-[#0e1a7a] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#162270] transition-colors font-medium"
-                    >
-                      Book a Consultation
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Ecosystem mega dropdown */}
           <div className="relative group">
@@ -515,6 +478,70 @@ export default function Nav() {
                     </Link>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+
+
+          {/* Studio dropdown */}
+          <div className="relative group">
+            <button className={`relative flex items-center gap-1 text-sm tracking-wide transition-colors pb-1 ${active(['/studio']) ? 'text-[#0e1a7a]' : 'text-[#64748B] hover:text-[#0e1a7a]'}`}>
+              {active(['/studio']) && <span className="absolute bottom-0 left-0 right-3 h-[2px] bg-[#d6a758]" />}
+              Studio
+              <svg className="w-3 h-3 mt-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute top-full pt-3 left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white border border-[#E2DDD6] shadow-xl w-[380px] overflow-hidden">
+                <div className="p-4">
+                  <div className="space-y-0.5">
+                    {studioLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="block px-3 py-2.5 hover:bg-[#FAF9F7] rounded-sm transition-colors"
+                      >
+                        <p className="text-[#0e1a7a] text-sm font-medium">{link.name}</p>
+                        <p className="text-[#64748B] text-xs mt-0.5">{link.tagline}</p>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-[#F2EDE6]">
+                    <a
+                      href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-center bg-[#0e1a7a] text-white text-xs px-4 py-2.5 tracking-wide hover:bg-[#162270] transition-colors font-medium"
+                    >
+                      Book a Studio Consultation
+                    </a>
+                  </div>
+                </div>
+                {/* Featured: live site example */}
+                <a
+                  href="https://www.thepeacerebellion.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-stretch border-t border-[#E2DDD6] hover:bg-[#FAF9F7] transition-colors"
+                >
+                  <div
+                    className="flex-shrink-0 flex items-center justify-center bg-[#0e1a7a]"
+                    style={{ width: 64 }}
+                  >
+                    <span style={{ color: '#d6a758', fontSize: 10, letterSpacing: '0.12em', fontWeight: 700 }}>LIVE</span>
+                  </div>
+                  <div className="flex-1 px-4 py-3">
+                    <p className="text-[#d6a758] text-[10px] tracking-[0.15em] uppercase font-semibold mb-0.5">Studio Work</p>
+                    <p className="text-[#0e1a7a] text-sm font-semibold leading-snug">The Peace Rebellion</p>
+                    <p className="text-[#64748B] text-xs mt-0.5 leading-relaxed">See a Studio-built website live</p>
+                  </div>
+                  <div className="flex items-center pr-4 text-[#d6a758]">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -718,8 +745,15 @@ export default function Nav() {
 
             <div className="py-3">
               <p className="text-[10px] tracking-[0.15em] uppercase text-[#64748B] mb-3 font-medium">Studio</p>
+              <Link
+                href="/studio"
+                className="block py-2 text-[#0e1a7a] text-sm font-semibold hover:underline pl-2 mb-1"
+                onClick={() => setMobileOpen(false)}
+              >
+                Studio Overview →
+              </Link>
               <div className="space-y-0.5 pl-2 border-l-2 border-[#d6a758]">
-                {studioLinks.map((link) => (
+                {studioLinks.slice(1).map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
