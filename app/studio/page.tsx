@@ -343,7 +343,7 @@ export default function StudioPage() {
                 transition={{ duration: 0.55, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
                 className="text-[#94A3B8] text-lg leading-relaxed mb-3 max-w-xl"
               >
-                We design how Montessori is understood &mdash; not just how it&rsquo;s presented.
+                We build Montessori school websites &mdash; and design how Montessori organizations are understood.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -351,8 +351,8 @@ export default function StudioPage() {
                 transition={{ duration: 0.5, delay: 0.34 }}
                 className="text-[#7A8FA3] text-base leading-relaxed mb-12 max-w-lg"
               >
-                For Montessori schools, organizations, and leaders doing serious work that isn&rsquo;t yet visible at the scale it deserves.
-                Studio closes the gap between what you stand for and how it lands.
+                Websites built from your identity, not borrowed from a template. Messaging that actually translates what you stand for.
+                For schools and organizations whose work deserves to land the way it was meant to.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -361,10 +361,10 @@ export default function StudioPage() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link
-                  href="/studio/services#clarity-audit"
+                  href="/studio/services#website-design-build"
                   className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
                 >
-                  Start with a Clarity Audit
+                  Website Design &amp; Build
                 </Link>
                 <a
                   href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
@@ -390,7 +390,107 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── VISUAL BREAK ──────────────────────────────────────────────────── */}
+
+      {/* ── WEBSITE DESIGN & BUILD — LEAD FEATURE ────────────────────────── */}
+      <section className="bg-white py-16 md:py-20 px-6 md:px-10 border-b border-[#E2DDD6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+            <FadeIn>
+              <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-4">
+                Website Design &amp; Build
+              </p>
+              <h2
+                className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight mb-5"
+                style={serif}
+              >
+                A website your families trust before they walk through your door.
+              </h2>
+              <p className="text-[#374151] text-base leading-relaxed mb-4">
+                Most Montessori school websites were built fast, on templates, by people who weren&rsquo;t
+                Montessori educators. They look like every other school and don&rsquo;t tell the real story.
+              </p>
+              <p className="text-[#374151] text-base leading-relaxed mb-8">
+                Studio builds sites on a modern web stack — with information architecture, page flow,
+                and copy all grounded in what you actually stand for. No drag-and-drop platforms.
+                No borrowed language.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  'Identity-first design — built from your narrative, not a template',
+                  'Custom information architecture — families find what they're looking for',
+                  'Copy written by Studio — based on what you actually believe',
+                  'Modern, fast, mobile-first — not Wix or Squarespace',
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <span className="text-[#8A6014] flex-shrink-0 mt-0.5">→</span>
+                    <p className="text-[#374151] text-sm leading-relaxed">{item}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/studio/services#website-design-build"
+                  className="inline-block bg-[#0e1a7a] text-white text-sm px-8 py-3.5 tracking-wide hover:bg-[#1e3ab0] transition-colors text-center font-medium"
+                >
+                  See the offer
+                </Link>
+                <a
+                  href="https://www.thepeacerebellion.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 border border-[#D4CEC6] text-[#0e1a7a] text-sm px-6 py-3.5 hover:border-[#0e1a7a] transition-colors"
+                >
+                  See a live site →
+                </a>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.12}>
+              <div className="bg-[#0e1a7a] p-8 md:p-10 relative overflow-hidden">
+                <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-4">
+                  Live studio work
+                </p>
+                <h3 className="text-white text-xl font-semibold mb-2 leading-snug" style={serif}>
+                  The Peace Rebellion
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed mb-3">
+                  Education justice organization, Chicago
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed mb-6">
+                  Full brand identity, website architecture, narrative structure, and copywriting —
+                  all built from what the organization actually stands for.
+                </p>
+                <a
+                  href="https://www.thepeacerebellion.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#d6a758] text-sm font-medium hover:text-white transition-colors"
+                >
+                  thepeacerebellion.org →
+                </a>
+                <div className="absolute -bottom-8 -right-8 w-40 h-40 rounded-full bg-[#d6a758]/5" />
+              </div>
+              <div className="mt-5 bg-[#FAF9F7] border border-[#E2DDD6] p-6">
+                <p className="text-[#8A6014] text-[10px] tracking-[0.18em] uppercase mb-2">Pricing</p>
+                <p className="text-[#0e1a7a] text-lg font-semibold mb-1" style={serif}>Custom engagement</p>
+                <p className="text-[#64748B] text-sm leading-relaxed">
+                  Every website project is scoped to the school — no fixed packages.
+                  Start with a consultation to map the work.
+                </p>
+                <a
+                  href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide"
+                >
+                  Book a website consultation →
+                </a>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISUAL BREAK ──────────────────────────────────────────────────── */
       <div className="relative w-full h-72 md:h-[440px] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1600&q=80"
@@ -411,6 +511,81 @@ export default function StudioPage() {
           </div>
         </div>
       </div>
+
+      {/* ── WEBSITE BUILDS SPOTLIGHT ──────────────────────────────────────── */}
+      <section className="bg-[#0e1a7a] py-20 md:py-24 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <FadeIn>
+              <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">
+                The most tangible thing Studio builds
+              </p>
+              <h2
+                className="text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-6"
+                style={serif}
+              >
+                Montessori school websites. Built from the inside out.
+              </h2>
+              <p className="text-white/65 text-lg leading-relaxed mb-4">
+                Not a template. Not a drag-and-drop rebuild. A website designed from what your school
+                actually stands for &mdash; architecture, copy, and visual identity built together from the start.
+              </p>
+              <p className="text-white/50 text-base leading-relaxed mb-10">
+                Families form their first impression before they ever walk through your door.
+                A Studio website earns that impression honestly &mdash; because it tells the truth about what&rsquo;s inside.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/studio/demo"
+                  className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium"
+                >
+                  Explore the Demo School Site →
+                </Link>
+                <Link
+                  href="/studio/services#website-design-build"
+                  className="border border-white/25 text-white text-sm px-8 py-4 tracking-wide hover:border-white/50 transition-colors text-center"
+                >
+                  About the website offer
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <div className="border border-white/15 overflow-hidden">
+                <div className="bg-black/30 px-5 py-3 flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-white/15" />
+                    <div className="w-3 h-3 rounded-full bg-white/15" />
+                    <div className="w-3 h-3 rounded-full bg-white/15" />
+                  </div>
+                  <div className="flex-1 bg-white/10 rounded-sm px-3 py-1 text-white/35 text-[11px] tracking-wide">
+                    montessorimakersgroup.org/studio/demo
+                  </div>
+                </div>
+                <div className="bg-[#0a1560] p-10 flex flex-col items-center justify-center text-center min-h-[240px]">
+                  <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-3">Live demo</p>
+                  <p className="text-white text-2xl font-semibold mb-3" style={serif}>Montessori Makers School</p>
+                  <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-xs">
+                    Five pages. Live animations. A complete content system. This is a real, working website &mdash; not a mockup.
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center mb-6">
+                    {['Home', 'About', 'Programs', 'Admissions', 'School Life'].map((p) => (
+                      <span key={p} className="text-white/40 text-xs border border-white/15 px-3 py-1">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href="/studio/demo"
+                    className="text-white text-xs tracking-wide border border-[#d6a758]/50 px-6 py-2.5 hover:border-[#d6a758] hover:bg-[#d6a758]/10 transition-all"
+                  >
+                    Open the demo school →
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
 
       {/* ── THE PROBLEM ───────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] py-24 md:py-32 px-6 md:px-10">
@@ -554,12 +729,13 @@ export default function StudioPage() {
           <div className="grid md:grid-cols-2 gap-5">
             <OfferCard
               number="01"
-              name="Communication Audit & Clarity Map"
-              tagline="Entry point"
-              desc="A structured audit of your messaging, website, public communication, and digital presence. The result is a clear picture of where understanding breaks down — and a map of what to build next."
-              forWho="You know something is off but can't quite name it. You want a clear picture before committing to a larger engagement. Works for schools, organizations, and individual leaders alike."
-              price={PRICING.clarityAudit}
-              href="/studio/services#clarity-audit"
+              name="Website Design & Build"
+              tagline="Built to match your actual program"
+              desc="A website designed and built from your identity — not borrowed from a template. Every structural decision, from information architecture to page flow to copy, is grounded in what you actually stand for."
+              forWho="Your online presence doesn't match what families find in person. You want a site that earns trust before a family walks through your door — built on a modern web stack, not a drag-and-drop platform."
+              price={PRICING.websiteBuild}
+              href="/studio/services#website-design-build"
+              highlight
               delay={0}
             />
             <OfferCard
@@ -570,53 +746,50 @@ export default function StudioPage() {
               forWho="You're ready to invest in getting this right. You want a system your whole team can use — not a one-time deliverable that collects dust. For schools, organizations, and movements."
               price={PRICING.commArchitecture}
               href="/studio/services#communication-architecture"
-              highlight
               delay={0.1}
             />
             <OfferCard
               number="03"
+              name="Communication Audit & Clarity Map"
+              tagline="Entry point"
+              desc="A structured audit of your messaging, website, public communication, and digital presence. The result is a clear picture of where understanding breaks down — and a map of what to build next."
+              forWho="You know something is off but can't quite name it. You want a clear picture before committing to a larger engagement. Works for schools, organizations, and individual leaders alike."
+              price={PRICING.clarityAudit}
+              href="/studio/services#clarity-audit"
+              delay={0.2}
+            />
+            <OfferCard
+              number="04"
               name="Leadership Voice & Visibility"
               tagline="For leaders with ideas worth sharing"
               desc="Editorial infrastructure for Montessori leaders and organization directors building authority. Newsletter, LinkedIn, podcast positioning — a publishing system that makes consistency the default, not the exception."
               forWho="You're a school or organization leader with ideas worth sharing who hasn't built the infrastructure to share them reliably. You want to publish — and to have a system that makes it sustainable."
               price={PRICING.leadershipVoice}
               href="/studio/services#leadership-voice"
-              delay={0.2}
-            />
-            <OfferCard
-              number="04"
-              name="Website Design & Build"
-              tagline="Built to match your actual program"
-              desc="A website designed and built from your identity — not borrowed from a template. Every structural decision, from information architecture to page flow to copy, is grounded in what you actually stand for."
-              forWho="Your online presence doesn't match what families find in person. You want a site that earns trust before a family walks through your door — built on a modern web stack, not a drag-and-drop platform."
-              price={PRICING.websiteBuild}
-              href="/studio/services#website-design-build"
               delay={0.3}
             />
           </div>
 
-          {/* Leadership Voice spotlight */}
+          {/* Demo school spotlight */}
           <FadeIn delay={0.1} className="mt-8">
-            <div className="bg-white border border-[#D4CEC6] p-6 md:p-8">
+            <div className="bg-[#0e1a7a] border border-[#1e3ab0] p-6 md:p-8">
               <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
                 <div className="flex-1">
-                  <p className="text-[#8A6014] text-[10px] tracking-[0.22em] uppercase mb-3">Worth highlighting</p>
-                  <h3 className="text-[#0e1a7a] text-xl font-semibold mb-2" style={serif}>
-                    Leadership Voice is the most underused offer in the Montessori sector.
+                  <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-3">See the work</p>
+                  <h3 className="text-white text-xl font-semibold mb-2" style={serif}>
+                    There&rsquo;s a fully realized demo school site you can explore right now.
                   </h3>
-                  <p className="text-[#374151] text-sm leading-relaxed">
-                    The people doing the most interesting work in Montessori education are often the least visible.
-                    They have genuine ideas about leadership, learning, and what Montessori makes possible — but no
-                    publishing infrastructure. The field needs their voice. Leadership Voice builds the system
-                    that makes sharing it the path of least resistance.
+                  <p className="text-white/55 text-sm leading-relaxed">
+                    Five pages. Live animations. A complete content system built to show exactly what Studio produces
+                    for a Montessori school — not a mockup, a real working website.
                   </p>
                 </div>
                 <div className="flex-shrink-0">
                   <Link
-                    href="/studio/services#leadership-voice"
-                    className="block bg-[#0e1a7a] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#1e3ab0] transition-colors text-center whitespace-nowrap"
+                    href="/studio/demo"
+                    className="block bg-[#d6a758] text-white text-sm px-8 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center whitespace-nowrap font-medium"
                   >
-                    See the offer →
+                    Open the Demo School →
                   </Link>
                 </div>
               </div>
@@ -628,7 +801,7 @@ export default function StudioPage() {
               href="/studio/services"
               className="text-[#0e1a7a] text-sm font-medium hover:underline tracking-wide"
             >
-              See all three offers in full →
+              See all four offers in full →
             </Link>
           </div>
         </div>
@@ -774,10 +947,10 @@ export default function StudioPage() {
             </div>
             <div className="flex flex-col gap-3 flex-shrink-0">
               <Link
-                href="/studio/services#clarity-audit"
+                href="/studio/services#website-design-build"
                 className="bg-[#d6a758] text-white text-sm px-10 py-4 tracking-wide hover:bg-[#c09240] transition-colors text-center font-medium whitespace-nowrap"
               >
-                Start with a Clarity Audit
+                Website Design &amp; Build
               </Link>
               <a
                 href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
