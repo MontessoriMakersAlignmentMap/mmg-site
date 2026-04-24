@@ -71,7 +71,7 @@ function PostJobForm() {
     const { id, error: err } = await submitJob(payload)
 
     if (err || !id) {
-      setError('Something went wrong. Please try again.')
+      setError(`Submission failed: ${err ?? 'no ID returned'}`)
       setSubmitting(false)
       return
     }
