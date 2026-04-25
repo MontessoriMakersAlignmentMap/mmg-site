@@ -448,6 +448,10 @@ function SecondaryCard({ item, delay }: { item: typeof secondaryItems[0]; delay:
 function Ecosystem() {
   return (
     <section id="ecosystem" className="bg-[#FAF9F7] py-28 md:py-40 px-6 md:px-10">
+      {/* Ecosystem animation strip */}
+      <div className="w-full mb-16 overflow-hidden" style={{ height: 280 }}>
+        <iframe src="/embed/ecosystem-five.html" className="w-full h-full border-0 block" title="MMG Ecosystem" loading="lazy" />
+      </div>
       <div className="max-w-7xl mx-auto">
         <FadeIn className="max-w-2xl mb-20">
           <RevealEyebrow className="mb-8">The Ecosystem</RevealEyebrow>
@@ -746,6 +750,10 @@ export default function Home() {
   return (
     <>
       <Hero />
+      {/* Alignment animation — particles gathering */}
+      <div className="w-full bg-[#0e1a7a]" style={{ height: 260 }}>
+        <iframe src="/embed/alignment-gather.html" className="w-full h-full border-0 block" title="Alignment" loading="lazy" />
+      </div>
       <Problem />
       <WhyEcosystem />
       {/* Wave transition — navy → beige */}

@@ -58,16 +58,6 @@ export default function AppsPage() {
         </div>
       </section>
 
-      {/* ECOSYSTEM ANIMATION */}
-      <div className="w-full bg-[#0e1a7a]" style={{ height: 300 }}>
-        <iframe
-          src="/embed/ecosystem-five.html"
-          className="w-full h-full border-0 block"
-          title="MMG Ecosystem"
-          loading="lazy"
-        />
-      </div>
-
       {/* APP CARDS */}
       <section className="bg-[#FAF9F7] py-20 md:py-24 px-6 md:px-10">
         <div className="max-w-5xl mx-auto space-y-8">

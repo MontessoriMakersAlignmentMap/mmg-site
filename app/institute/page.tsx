@@ -80,9 +80,11 @@ export default function InstitutePage() {
               </a>
             </div>
           </div>
-          {/* Hero logo — right column */}
+          {/* Hero animation — right column */}
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
-            <Logo name="institute" heroWidth={380} heroHeight={380} />
+            <div className="overflow-hidden rounded-sm" style={{ width: 400, height: 400 }}>
+              <iframe src="/embed/institute-table.html" className="w-full h-full border-0 block" title="Institute animation" loading="lazy" />
+            </div>
           </div>
         </div>
       </section>

@@ -108,6 +108,11 @@ export default function ResidencyHome() {
         </div>
       </section>
 
+      {/* Residency path animation */}
+      <div style={{ width: '100%', height: 240, background: 'var(--r-navy)' }}>
+        <iframe src="/embed/residency-path.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Residency path" loading="lazy" />
+      </div>
+
       {/* WHY MMR EXISTS */}
       <section style={{ background: 'var(--r-navy)', color: 'var(--r-white)', padding: '5rem 0' }}>
         <div className="r-container" style={{ maxWidth: '760px' }}>
