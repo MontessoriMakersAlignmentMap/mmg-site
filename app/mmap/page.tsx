@@ -665,6 +665,13 @@ const systemGridStyle: React.CSSProperties = {
   backgroundSize: '48px 48px',
 }
 
+const tierAnimSrc: Record<string, string> = {
+  surveyor:     '/embed/mmap-surveyor.html',
+  'north-star': '/embed/mmap-northstar.html',
+  mapmaker:     '/embed/mmap-mapmaker.html',
+  atlas:        '/embed/mmap-atlas.html',
+}
+
 function TierExplorer() {
   const [active, setActive] = useState(0)
   const tier = tiers[active]
@@ -735,8 +742,22 @@ function TierExplorer() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -8 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="relative p-8 md:p-10 flex flex-col gap-6 h-full"
+            className="relative flex flex-col gap-6 h-full"
           >
+            {/* Animation strip */}
+            <div className="w-full overflow-hidden flex-shrink-0" style={{ height: 220 }}>
+              <iframe
+                key={tier.id}
+                src={tierAnimSrc[tier.id]}
+                className="w-full h-full border-0 block"
+                title={`MMAP ${tier.name}`}
+                loading="lazy"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="px-8 md:px-10 pb-8 md:pb-10 flex flex-col gap-6 flex-1">
+
             {/* Header */}
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -803,6 +824,8 @@ function TierExplorer() {
                 ))}
               </div>
             </div>
+
+            </div>{/* end content wrapper */}
           </motion.div>
         </AnimatePresence>
       </div>

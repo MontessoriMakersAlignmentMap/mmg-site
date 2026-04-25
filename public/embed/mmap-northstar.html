@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>MMAP — Northstar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; padding: 0; background: #0e1a7a; overflow: hidden; height: 100%; }
+  .stage { position: fixed; inset: 0; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px 200px; opacity: 0.05; mix-blend-mode: overlay;
+  }
+  .label {
+    position: absolute; left: 5.33%; bottom: 5.33%; color: #fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events: none;
+  }
+  .eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.24em;
+    color: #d6a758; display: inline-flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before {
+    content: ''; width: 20px; height: 1px; background: #d6a758; display: inline-block;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(22px, 3.5vw, 38px); line-height: 1.05; letter-spacing: -0.01em;
+    margin-top: 14px; color: #fff; max-width: 60%;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMAP · Northstar</div>
+    <div class="title">One point of reference.<br/>Everything else orients.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, dpr = 1;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (typeof onResize === 'function') onResize();
+  }
+
+  let onResize = null;
+  function setup(initFn) {
+    onResize = initFn;
+    initFn();
+  }
+
+  // === per-animation code ===
+  
+  let cx, cy, orbs;
+  setup(function init() {
+    cx = W / 2; cy = H / 2 - H * 0.06;
+    orbs = [];
+    for (let ring = 0; ring < 5; ring++) {
+      const r = 80 + ring * 70;
+      const count = 6 + ring * 3;
+      const speed = 0.18 - ring * 0.022;
+      for (let i = 0; i < count; i++) {
+        orbs.push({
+          r, speed,
+          phase: (i / count) * Math.PI * 2 + Math.random() * 0.4,
+          size: 1.2 + Math.random() * 1.1,
+          bright: Math.random() < 0.15,
+        });
+      }
+    }
+  });
+  const start = performance.now();
+  function frame(now) {
+    const t = (now - start) / 1000;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "rgba(214,167,88,0.08)"; ctx.lineWidth = 1;
+    for (let ring = 0; ring < 5; ring++) {
+      const r = 80 + ring * 70;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+    }
+    const pulse = 0.5 + 0.5 * Math.sin(t * 1.1);
+    const starR = 60 + pulse * 18;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, starR * 3);
+    grad.addColorStop(0, "rgba(240,217,161,0.55)");
+    grad.addColorStop(0.3, "rgba(214,167,88,0.22)");
+    grad.addColorStop(1, "rgba(14,26,122,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(cx, cy, starR * 3, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "rgba(240,217,161," + (0.35 + pulse * 0.25) + ")"; ctx.lineWidth = 1;
+    const rayLen = 110 + pulse * 30;
+    ctx.beginPath();
+    ctx.moveTo(cx - rayLen, cy); ctx.lineTo(cx + rayLen, cy);
+    ctx.moveTo(cx, cy - rayLen * 1.25); ctx.lineTo(cx, cy + rayLen * 1.25);
+    ctx.stroke();
+    ctx.strokeStyle = "rgba(214,167,88," + (0.18 + pulse * 0.12) + ")";
+    const diag = rayLen * 0.55;
+    ctx.beginPath();
+    ctx.moveTo(cx - diag, cy - diag); ctx.lineTo(cx + diag, cy + diag);
+    ctx.moveTo(cx + diag, cy - diag); ctx.lineTo(cx - diag, cy + diag);
+    ctx.stroke();
+    ctx.fillStyle = "#fff";
+    ctx.beginPath(); ctx.arc(cx, cy, 5 + pulse * 1.5, 0, Math.PI * 2); ctx.fill();
+    for (const o of orbs) {
+      const a = t * o.speed + o.phase;
+      const x = cx + Math.cos(a) * o.r;
+      const y = cy + Math.sin(a) * o.r;
+      const br = o.bright ? 0.85 + 0.15 * Math.sin(t * 2 + o.phase) : 0.65;
+      ctx.fillStyle = "rgba(240,217,161," + (0.1 * br) + ")";
+      ctx.beginPath(); ctx.arc(x, y, o.size * 3.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "rgba(214,167,88," + br + ")";
+      ctx.beginPath(); ctx.arc(x, y, o.size, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // ===========================
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>
