@@ -175,21 +175,15 @@ export default function Footer() {
           <p className="text-[#8899AA] text-[9px] tracking-[0.22em] uppercase mb-10 text-center">
             Part of the Montessori Makers ecosystem
           </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12">
+          {/* Gold row */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12 mb-8">
             {(
               [
-                { name: 'Advisory',    href: '/advisory',     gold: true  },
-                { name: 'Institute',   href: '/institute',    gold: true  },
-                { name: 'Residency',   href: '/residency',    gold: true  },
-                { name: 'MMAP',        href: '/mmap',         gold: false },
-                { name: 'MMAS',        href: '/mmas',         gold: false },
-                { name: 'MatchHub',    href: '/matchhub',     gold: true  },
-                { name: 'Field Guide', href: '/field-guide',  gold: false },
-                { name: 'Toolbox',     href: '/toolbox',      gold: false },
-                { name: 'Learning',    href: '/learning',     gold: false },
-                { name: 'Studio',             href: '/studio',              gold: false },
-                { name: 'Leadership Meridian', href: '/leadership-meridian', gold: false },
-                { name: 'Family Companion',    href: '/family-companion',    gold: false },
+                { name: 'Advisory',  href: '/advisory'  },
+                { name: 'Institute', href: '/institute' },
+                { name: 'Residency', href: '/residency' },
+                { name: 'MatchHub',  href: '/matchhub'  },
+                { name: 'Studio',    href: '/studio'    },
               ]
             ).map((item) => (
               <Link
@@ -198,22 +192,38 @@ export default function Footer() {
                 className="flex flex-col items-center gap-2.5 group"
                 title={item.name}
               >
-                <div className={`transition-all duration-200 group-hover:scale-110 group-hover:-translate-y-1 ${
-                  item.gold
-                    ? 'opacity-70 group-hover:opacity-100'
-                    : 'opacity-50 group-hover:opacity-90'
-                }`}>
-                  <CubeIcon variant={item.gold ? 'gold' : 'white'} size={36} />
+                <div className="opacity-70 group-hover:opacity-100 transition-all duration-200 group-hover:scale-110 group-hover:-translate-y-1">
+                  <CubeIcon variant="gold" size={36} />
                 </div>
-                {/*
-                  Labels: uniform cool grey treatment for both gold and white items.
-                  Default #7A8FA3 ≈ 5.8:1 on #080F19 — comfortable, premium.
-                  Hover   #B8C8D6 ≈ 8.2:1 — clearly elevated on interaction.
-                  font-medium adds slight weight without feeling heavy.
-                */}
-                <span className="text-[9px] tracking-[0.18em] uppercase font-medium
-                                 text-[#7A8FA3] group-hover:text-[#B8C8D6]
-                                 transition-colors duration-200">
+                <span className="text-[9px] tracking-[0.18em] uppercase font-medium text-[#7A8FA3] group-hover:text-[#B8C8D6] transition-colors duration-200">
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+          {/* Grey row */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12">
+            {(
+              [
+                { name: 'MMAP',               href: '/mmap'               },
+                { name: 'MMAS',               href: '/mmas'               },
+                { name: 'Field Guide',        href: '/field-guide'        },
+                { name: 'Toolbox',            href: '/toolbox'            },
+                { name: 'Learning',           href: '/learning'           },
+                { name: 'Leadership Meridian',href: '/leadership-meridian'},
+                { name: 'Family Companion',   href: '/family-companion'   },
+              ]
+            ).map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="flex flex-col items-center gap-2.5 group"
+                title={item.name}
+              >
+                <div className="opacity-50 group-hover:opacity-90 transition-all duration-200 group-hover:scale-110 group-hover:-translate-y-1">
+                  <CubeIcon variant="white" size={36} />
+                </div>
+                <span className="text-[9px] tracking-[0.18em] uppercase font-medium text-[#7A8FA3] group-hover:text-[#B8C8D6] transition-colors duration-200">
                   {item.name}
                 </span>
               </Link>
