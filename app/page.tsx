@@ -352,6 +352,13 @@ const primaryItems = [
     tagline: 'Montessori teacher preparation',
     desc: 'A MACTE-track credential program for educators who want rigorous, accessible Montessori preparation.',
   },
+  {
+    name: 'Studio',
+    logo: 'studio' as LogoName,
+    href: '/studio',
+    tagline: 'Web & communication design',
+    desc: 'Website design and communication strategy that closes the gap between mission and message.',
+  },
 ]
 
 const secondaryItems = [
@@ -375,13 +382,6 @@ const secondaryItems = [
     href: '/mmas',
     tagline: 'Assessment platform',
     desc: 'Assessment built for the Montessori sequence, not grade-level standards.',
-  },
-  {
-    name: 'Studio',
-    logo: 'studio' as LogoName,
-    href: '/studio',
-    tagline: 'Web & communication design',
-    desc: 'Website design and communication strategy that closes the gap between mission and message.',
   },
 ]
 
@@ -472,7 +472,7 @@ function Ecosystem() {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
           {secondaryItems.map((item, i) => (
             <SecondaryCard key={item.name} item={item} delay={i * 0.06} />
           ))}
