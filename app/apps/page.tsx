@@ -1,7 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { CSSProperties } from 'react'
-import { Logo } from '@/components/Logo'
 
 const serif: CSSProperties = { fontFamily: 'var(--font-heading)' }
 
@@ -94,27 +92,14 @@ export default function AppsPage() {
                   Learn about Family Companion →
                 </Link>
               </div>
-              {/* Phone screenshots */}
-              <div className="flex gap-3 items-end justify-center">
-                {[
-                  { src: '/images/family-companion/07-onboarding.png', w: 120, offset: 0, opacity: 1 },
-                  { src: '/images/family-companion/01-home.png',       w: 130, offset: -16, opacity: 0.9 },
-                  { src: '/images/family-companion/04-journal.png',    w: 110, offset: -8, opacity: 0.7 },
-                ].map((s, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl overflow-hidden border border-[#E2DDD6] shadow-sm flex-shrink-0"
-                    style={{ width: s.w, transform: `translateY(${s.offset}px)`, opacity: s.opacity }}
-                  >
-                    <Image
-                      src={s.src}
-                      alt="Family Companion screenshot"
-                      width={260}
-                      height={520}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                ))}
+              {/* Family animation */}
+              <div className="overflow-hidden rounded-sm" style={{ height: 380 }}>
+                <iframe
+                  src="/embed/app-families.html"
+                  className="w-full h-full border-0 block"
+                  title="Family Companion"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -124,8 +109,13 @@ export default function AppsPage() {
 
             {/* Field Guide */}
             <div className="bg-white border border-[#E2DDD6] overflow-hidden flex flex-col">
-              <div className="bg-[#0e1a7a] px-8 py-7 flex items-center">
-                <Logo name="field-guide" heroWidth={180} heroHeight={40} />
+              <div className="overflow-hidden" style={{ height: 210 }}>
+                <iframe
+                  src="/embed/app-teachers.html"
+                  className="w-full h-full border-0 block"
+                  title="Field Guide"
+                  loading="lazy"
+                />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <p className="text-[#d6a758] text-[11px] tracking-[0.18em] uppercase font-medium mb-2">
@@ -163,8 +153,13 @@ export default function AppsPage() {
 
             {/* Leadership Meridian */}
             <div className="bg-white border border-[#E2DDD6] overflow-hidden flex flex-col">
-              <div className="bg-[#0e1a7a] px-8 py-7 flex items-center">
-                <Logo name="leadership-meridian" heroWidth={180} heroHeight={40} />
+              <div className="overflow-hidden" style={{ height: 210 }}>
+                <iframe
+                  src="/embed/app-leaders.html"
+                  className="w-full h-full border-0 block"
+                  title="Leadership Meridian"
+                  loading="lazy"
+                />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <p className="text-[#d6a758] text-[11px] tracking-[0.18em] uppercase font-medium mb-2">
