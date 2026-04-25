@@ -58,8 +58,18 @@ export default function AboutPage() {
       {/* Mission */}
       <MissionSection />
 
+      {/* Cosmic Education */}
+      <div style={{ width: '100%', height: 280, background: '#3D2410' }}>
+        <iframe src="/embed/school-cosmic.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Cosmic Education" loading="lazy" />
+      </div>
+
       {/* Values */}
       <ValuesSection />
+
+      {/* Sensitive Periods */}
+      <div style={{ width: '100%', height: 280, background: '#FAF5ED' }}>
+        <iframe src="/embed/school-sensitive-periods.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Sensitive Periods" loading="lazy" />
+      </div>
 
       {/* Head of school */}
       <HeadSection />

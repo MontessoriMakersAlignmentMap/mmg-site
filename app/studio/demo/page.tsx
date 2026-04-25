@@ -211,8 +211,18 @@ export default function DemoHome() {
       {/* ── LEAD STATEMENT ────────────────────────────────────────────────── */}
       <LeadStatement />
 
+      {/* ── WORK CYCLE ────────────────────────────────────────────────────── */}
+      <div style={{ width: '100%', height: 280, background: '#3D2410' }}>
+        <iframe src="/embed/school-work-cycle.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="The Work Cycle" loading="lazy" />
+      </div>
+
       {/* ── BY THE NUMBERS ────────────────────────────────────────────────── */}
       <StatsSection />
+
+      {/* ── THREE-YEAR COMMUNITY ──────────────────────────────────────────── */}
+      <div style={{ width: '100%', height: 280, background: '#3D2410' }}>
+        <iframe src="/embed/school-three-year.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Three-Year Community" loading="lazy" />
+      </div>
 
       {/* ── PROGRAMS ──────────────────────────────────────────────────────── */}
       <ProgramsSection />
