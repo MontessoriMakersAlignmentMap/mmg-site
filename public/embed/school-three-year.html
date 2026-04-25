@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Three-Year Community</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#3D2410; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.05; mix-blend-mode:overlay; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const COLORS = {
+    bg: '#3D2410',
+    fg: '#FAF5ED',
+    gold: '#C8A24A',
+    jade: '#2A7A58',
+    walnut: '#2C1A0E',
+    warm: '#8A7060',
+    cream: '#FAF5ED',
+    dark: '#3D2410',
+  };
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+
+  let cx, cy, ringR;
+  let dots = [];
+  setup(function init(){
+    cx = W*0.5; cy = H*0.5;
+    const base = Math.min(W*0.16, H*0.28);
+    ringR = [base*1.0, base*0.65, base*0.35];
+    dots = [];
+    const counts = [14, 11, 8];
+    counts.forEach((n, ringIdx) => {
+      for(let i=0;i<n;i++){
+        dots.push({
+          ring: ringIdx,
+          angle: (i/n) * Math.PI*2 + Math.random()*0.1,
+          speed: (0.04 + Math.random()*0.02) * (ringIdx === 0 ? 1 : ringIdx === 1 ? 0.8 : 0.6),
+          size: 1.8 + Math.random()*1.6 + ringIdx*0.4,
+          nextMigrate: 8 + Math.random()*30 + ringIdx*5,
+          migrating: false,
+          migrateT: 0,
+          migrateDuration: 2.5,
+          fromRing: ringIdx,
+          toRing: Math.max(0, ringIdx-1),
+        });
+      }
+    });
+  });
+  const start = performance.now();
+  let last = start;
+  const easeIO = t => t<0.5? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  function frame(now){
+    const t = (now-start)/1000;
+    const dt = Math.min(0.05,(now-last)/1000); last = now;
+    ctx.fillStyle = COLORS.dark; ctx.fillRect(0,0,W,H);
+
+    ringR.forEach((r,i) => {
+      ctx.strokeStyle = "rgba(200,162,74," + (0.16 - i*0.02) + ")";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([2,4]);
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    const labels = ['Primary', 'Lower Elementary', 'Upper Elementary'];
+    ringR.forEach((r,i) => {
+      ctx.save();
+      ctx.fillStyle = "rgba(200,162,74,0.55)";
+      ctx.font = "500 9.5px 'Inter', sans-serif";
+      ctx.textAlign = "left";
+      const ang = -Math.PI*0.62;
+      const lx = cx + Math.cos(ang)*r;
+      const ly = cy + Math.sin(ang)*r;
+      ctx.strokeStyle = "rgba(200,162,74,0.5)";
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(lx, ly);
+      ctx.lineTo(lx - 14, ly - 6);
+      ctx.stroke();
+      ctx.fillText(labels[i].toUpperCase(), lx - 14 - 8 - ctx.measureText(labels[i].toUpperCase()).width, ly - 5);
+      ctx.restore();
+    });
+
+    dots.forEach(d => {
+      d.angle += d.speed * dt;
+      if(d.migrating){
+        d.migrateT += dt;
+        if(d.migrateT >= d.migrateDuration){
+          d.migrating = false;
+          d.ring = d.toRing;
+          d.nextMigrate = t + 18 + Math.random()*20;
+          d.size = Math.min(4.5, d.size + 0.5);
+        }
+      } else if(d.ring > 0 && t > d.nextMigrate){
+        d.migrating = true;
+        d.migrateT = 0;
+        d.fromRing = d.ring;
+        d.toRing = d.ring - 1;
+      }
+      let r;
+      if(d.migrating){
+        const p = easeIO(d.migrateT / d.migrateDuration);
+        r = ringR[d.fromRing] + (ringR[d.toRing] - ringR[d.fromRing]) * p;
+      } else {
+        r = ringR[d.ring];
+      }
+      const x = cx + Math.cos(d.angle) * r;
+      const y = cy + Math.sin(d.angle) * r;
+      if(d.migrating){
+        const p = d.migrateT / d.migrateDuration;
+        const glowAlpha = Math.sin(p*Math.PI) * 0.5;
+        ctx.fillStyle = "rgba(250,245,237," + glowAlpha + ")";
+        ctx.beginPath(); ctx.arc(x,y, d.size*2.4, 0, Math.PI*2); ctx.fill();
+      }
+      const isMentor = d.size > 3;
+      ctx.fillStyle = isMentor ? "rgba(200,162,74,0.92)" : "rgba(200,162,74,0.70)";
+      ctx.beginPath(); ctx.arc(x,y, d.size, 0, Math.PI*2); ctx.fill();
+      if(isMentor){
+        ctx.fillStyle = "rgba(250,245,237,0.55)";
+        ctx.beginPath(); ctx.arc(x,y, d.size*0.45, 0, Math.PI*2); ctx.fill();
+      }
+    });
+
+    ctx.fillStyle = "rgba(250,245,237,0.5)";
+    ctx.beginPath(); ctx.arc(cx,cy, 1.5, 0, Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

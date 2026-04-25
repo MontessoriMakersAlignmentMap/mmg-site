@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Work Cycle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#3D2410; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.05; mix-blend-mode:overlay; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const COLORS = {
+    bg: '#3D2410',
+    fg: '#FAF5ED',
+    gold: '#C8A24A',
+    jade: '#2A7A58',
+    walnut: '#2C1A0E',
+    warm: '#8A7060',
+    cream: '#FAF5ED',
+    dark: '#3D2410',
+  };
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+
+  let cx, cy, R;
+  setup(function init(){
+    cx = W*0.5; cy = H*0.5;
+    R = Math.min(W*0.16, H*0.26);
+  });
+  const start = performance.now();
+  const PERIOD = 18;
+  const ease = t => t<0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  const N_DOTS = 14;
+  function frame(now){
+    const t = (now-start)/1000;
+    const cycle = (t % PERIOD) / PERIOD;
+    const sweepP = Math.min(1, cycle / 0.85);
+    const fadeP = Math.max(0, (cycle - 0.92)/0.08);
+    ctx.fillStyle = COLORS.dark;
+    ctx.fillRect(0,0,W,H);
+
+    ctx.strokeStyle = "rgba(200,162,74,0.18)";
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+
+    const startAng = Math.PI;
+    const endAng   = startAng + Math.PI * sweepP;
+
+    ctx.save();
+    ctx.shadowColor = "rgba(200,162,74,0.5)";
+    ctx.shadowBlur = 18;
+    ctx.strokeStyle = "rgba(200,162,74,0.85)";
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, startAng, endAng);
+    ctx.stroke();
+    ctx.restore();
+
+    if(sweepP < 1){
+      const tipX = cx + Math.cos(endAng)*R;
+      const tipY = cy + Math.sin(endAng)*R;
+      const grad = ctx.createRadialGradient(tipX,tipY,0,tipX,tipY,16);
+      grad.addColorStop(0, "rgba(250,245,237,0.9)");
+      grad.addColorStop(1, "rgba(200,162,74,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(tipX-20, tipY-20, 40, 40);
+      ctx.fillStyle = "#FAF5ED";
+      ctx.beginPath(); ctx.arc(tipX, tipY, 2.5, 0, Math.PI*2); ctx.fill();
+    }
+
+    for(let i=0;i<N_DOTS;i++){
+      const dotProgress = (i+0.5) / N_DOTS;
+      const dotAng = startAng + Math.PI * dotProgress;
+      const passed = sweepP >= dotProgress;
+      if(!passed) continue;
+      const since = sweepP - dotProgress;
+      const popP = Math.min(1, since * 14);
+      const eased = ease(popP);
+      const x = cx + Math.cos(dotAng)*R;
+      const y = cy + Math.sin(dotAng)*R;
+      if(popP < 1){
+        ctx.fillStyle = "rgba(250,245,237," + (0.5*(1-popP)) + ")";
+        ctx.beginPath(); ctx.arc(x,y, 8*(1-popP)+3, 0, Math.PI*2); ctx.fill();
+      }
+      const fade = 1 - fadeP;
+      ctx.fillStyle = "rgba(200,162,74," + (0.85 * eased * fade) + ")";
+      ctx.beginPath(); ctx.arc(x,y, 2.6 * eased, 0, Math.PI*2); ctx.fill();
+    }
+
+    ctx.fillStyle = "rgba(250,245,237,0.55)";
+    ctx.beginPath(); ctx.arc(cx, cy, 1.5, 0, Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Timeline of Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#FAF5ED; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.04; mix-blend-mode:multiply; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx    = canvas.getContext('2d');
+
+  let W=0, H=0, dpr=1, axisY, x0, x1, onResize=null;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if (onResize) onResize();
+  }
+  function setup(fn) { onResize = fn; fn(); }
+
+  // Events in billions of years ago (Ga). x-axis: 3.8 Ga (left) → 0 (right).
+  const SPAN = 3.8;
+  const events = [
+    { name:'First life',         sub:'chemosynthetic bacteria',  age:3.80, above:false, color:'#C8A24A' },
+    { name:'Photosynthesis',     sub:'cyanobacteria, oxygen begins', age:2.70, above:true,  color:'#2A7A58' },
+    { name:'Complex cells',      sub:'eukaryotes',               age:2.00, above:false, color:'#8A7060' },
+    { name:'Multicellular life', sub:'first animals',            age:0.70, above:true,  color:'#2A7A58' },
+    { name:'Cambrian explosion', sub:'most major phyla appear',  age:0.54, above:false, color:'#C8A24A' },
+    { name:'Land plants',        sub:'vascular plants colonize', age:0.47, above:true,  color:'#2A7A58' },
+    { name:'Land vertebrates',   sub:'tetrapods',                age:0.36, above:false, color:'#8A7060' },
+    { name:'Dinosaurs',          sub:'& first mammals',          age:0.23, above:true,  color:'#C8A24A' },
+    { name:'Mass extinction',    sub:'K-Pg boundary, 66 Ma',     age:0.066,above:false, color:'#8A5040' },
+    { name:'Humans',             sub:'Homo sapiens',             age:0.0003,above:true, color:'#2C1A0E' },
+  ];
+
+  setup(function init() {
+    axisY = H * 0.58;
+    x0    = W * 0.06;
+    x1    = W * 0.94;
+  });
+
+  function ageToX(a) { return x0 + (SPAN - a) / SPAN * (x1 - x0); }
+
+  const SLOT = 2.2; // seconds each event is highlighted
+  const TOTAL_TIME = events.length * SLOT;
+  const start = performance.now();
+
+  function frame(now) {
+    const t = (now - start) / 1000;
+    ctx.fillStyle = '#FAF5ED';
+    ctx.fillRect(0, 0, W, H);
+
+    const focusIdx = Math.floor((t % TOTAL_TIME) / SLOT);
+    const localP   = ((t % TOTAL_TIME) - focusIdx * SLOT) / SLOT;
+
+    // ── Era background bands ──────────────────────────────────────────────────
+    const bands = [
+      { label:'Hadean / Archean',  from:3.8,  to:2.5,  color:'rgba(30,15,6,0.06)' },
+      { label:'Proterozoic',       from:2.5,  to:0.54, color:'rgba(140,80,40,0.05)' },
+      { label:'Phanerozoic',       from:0.54, to:0,    color:'rgba(42,122,88,0.06)' },
+    ];
+    bands.forEach(b => {
+      const bx0 = ageToX(b.from);
+      const bx1 = ageToX(b.to);
+      ctx.fillStyle = b.color;
+      ctx.fillRect(bx0, H*0.08, bx1-bx0, H*0.82);
+      ctx.fillStyle = 'rgba(44,26,14,0.20)';
+      ctx.font = '500 8px Inter, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(b.label.toUpperCase(), bx0 + 5, H*0.92);
+    });
+
+    // ── Axis line ─────────────────────────────────────────────────────────────
+    ctx.strokeStyle = 'rgba(44,26,14,0.30)';
+    ctx.lineWidth   = 1;
+    ctx.beginPath(); ctx.moveTo(x0, axisY); ctx.lineTo(x1, axisY); ctx.stroke();
+
+    // Tick marks
+    [3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0].forEach(a => {
+      const x = ageToX(a);
+      ctx.strokeStyle = 'rgba(44,26,14,0.22)';
+      ctx.lineWidth   = 0.8;
+      ctx.beginPath(); ctx.moveTo(x, axisY); ctx.lineTo(x, axisY+5); ctx.stroke();
+      ctx.fillStyle   = 'rgba(44,26,14,0.45)';
+      ctx.font        = '500 9px Inter, sans-serif';
+      ctx.textAlign   = 'center';
+      ctx.fillText(a === 0 ? 'now' : a + ' Ga', x, axisY + 17);
+    });
+
+    // ── Events ────────────────────────────────────────────────────────────────
+    events.forEach((ev, i) => {
+      const ex      = ageToX(ev.age);
+      const isFocus = i === focusIdx;
+      const lP      = isFocus ? localP : 0;
+      const glow    = isFocus ? Math.sin(lP * Math.PI) : 0;
+      const alpha   = isFocus ? 0.9 : 0.30;
+      const stemLen = (H * 0.22) + (isFocus ? H * 0.06 * glow : 0);
+      const ey      = ev.above ? axisY - stemLen : axisY + stemLen;
+
+      // stem
+      ctx.strokeStyle = ev.color + Math.floor(alpha * 255 * 0.6).toString(16).padStart(2,'0');
+      ctx.lineWidth   = isFocus ? 1.2 : 0.7;
+      ctx.beginPath(); ctx.moveTo(ex, axisY); ctx.lineTo(ex, ey); ctx.stroke();
+
+      // dot on axis
+      ctx.fillStyle = ev.color + Math.floor(alpha * 255).toString(16).padStart(2,'0');
+      ctx.beginPath(); ctx.arc(ex, axisY, isFocus ? 4 : 2.5, 0, Math.PI*2); ctx.fill();
+
+      // glow halo when active
+      if (glow > 0) {
+        const g = ctx.createRadialGradient(ex, axisY, 0, ex, axisY, 18);
+        g.addColorStop(0, ev.color + Math.floor(glow * 0.35 * 255).toString(16).padStart(2,'0'));
+        g.addColorStop(1, ev.color + '00');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(ex, axisY, 18, 0, Math.PI*2); ctx.fill();
+      }
+
+      // label at tip
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      const labelY = ev.above ? ey - 8 : ey + 8;
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = ev.above ? 'bottom' : 'top';
+
+      const fs = Math.max(10, Math.min(14, W * 0.018));
+      ctx.font      = '400 ' + fs + "px 'Cormorant Garamond', Georgia, serif";
+      ctx.fillStyle = '#2C1A0E';
+      ctx.fillText(ev.name, ex, labelY);
+
+      if (isFocus && glow > 0.3) {
+        ctx.font        = '500 8px Inter, sans-serif';
+        ctx.fillStyle   = 'rgba(44,26,14,0.55)';
+        ctx.globalAlpha = alpha * glow;
+        ctx.fillText(ev.sub, ex, ev.above ? labelY - fs - 2 : labelY + fs + 2);
+      }
+      ctx.restore();
+    });
+
+    // ── "Now" endpoint ────────────────────────────────────────────────────────
+    const pulse = 0.5 + 0.5 * Math.sin(t * 2.5);
+    ctx.fillStyle = 'rgba(44,26,14,' + (pulse * 0.6) + ')';
+    ctx.beginPath(); ctx.arc(x1, axisY, 3, 0, Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

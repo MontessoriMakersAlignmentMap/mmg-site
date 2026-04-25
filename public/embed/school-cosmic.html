@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cosmic Education</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#3D2410; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.05; mix-blend-mode:overlay; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const COLORS = {
+    bg: '#3D2410',
+    fg: '#FAF5ED',
+    gold: '#C8A24A',
+    jade: '#2A7A58',
+    walnut: '#2C1A0E',
+    warm: '#8A7060',
+    cream: '#FAF5ED',
+    dark: '#3D2410',
+  };
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+
+  let cx, cy, R, lessons, stars;
+  setup(function init(){
+    cx = W*0.5; cy = H*0.5;
+    R = Math.min(W*0.18, H*0.30);
+    lessons = [
+      { name: 'Universe',          r: R*1.00, speed:  0.06, phase: 0,   color: '#C8A24A' },
+      { name: 'Life on Earth',     r: R*0.82, speed: -0.08, phase: 1.1, color: '#2A7A58' },
+      { name: 'Coming of Humans',  r: R*0.64, speed:  0.10, phase: 2.4, color: '#C8A24A' },
+      { name: 'Language',          r: R*0.46, speed: -0.13, phase: 3.7, color: '#FAF5ED' },
+      { name: 'Mathematics',       r: R*0.28, speed:  0.18, phase: 5.0, color: '#C8A24A' },
+    ];
+    stars = [];
+    for(let i=0;i<120;i++){
+      stars.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        s: Math.random()*1.2 + 0.3,
+        tw: Math.random()*Math.PI*2,
+        sp: 0.4 + Math.random()*1.2,
+      });
+    }
+  });
+  const start = performance.now();
+  function frame(now){
+    const t = (now-start)/1000;
+    ctx.fillStyle = COLORS.dark; ctx.fillRect(0,0,W,H);
+
+    stars.forEach(st => {
+      const a = 0.4 + 0.5*Math.sin(t*st.sp + st.tw);
+      ctx.fillStyle = "rgba(250,245,237," + (a*0.5) + ")";
+      ctx.beginPath(); ctx.arc(st.x, st.y, st.s, 0, Math.PI*2); ctx.fill();
+    });
+
+    lessons.forEach(L => {
+      ctx.strokeStyle = "rgba(200,162,74,0.16)";
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy, L.r, 0, Math.PI*2); ctx.stroke();
+    });
+
+    const breathe = 0.5 + 0.5*Math.sin(t*0.6);
+    const cg = ctx.createRadialGradient(cx,cy,0,cx,cy,R*0.30);
+    cg.addColorStop(0, "rgba(200,162,74," + (0.5 + breathe*0.3) + ")");
+    cg.addColorStop(0.5, "rgba(200,162,74,0.10)");
+    cg.addColorStop(1, "rgba(200,162,74,0)");
+    ctx.fillStyle = cg; ctx.fillRect(cx-R, cy-R, R*2, R*2);
+    ctx.fillStyle = "#FAF5ED";
+    ctx.beginPath(); ctx.arc(cx,cy, 2.5, 0, Math.PI*2); ctx.fill();
+
+    lessons.forEach((L,idx) => {
+      const ang = L.phase + t * L.speed;
+      const x = cx + Math.cos(ang)*L.r;
+      const y = cy + Math.sin(ang)*L.r;
+
+      const trailLen = 0.9;
+      const dir = L.speed >= 0 ? -1 : 1;
+      ctx.save();
+      ctx.lineCap = "round";
+      const steps = 18;
+      for(let s=0;s<steps;s++){
+        const sP = s / steps;
+        const a0 = ang + dir * trailLen * sP;
+        const a1 = ang + dir * trailLen * (sP + 1/steps);
+        ctx.strokeStyle = L.color + Math.floor((1-sP) * 0.5 * 255).toString(16).padStart(2,'0');
+        ctx.lineWidth = (1-sP)*1.6 + 0.2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, L.r, a0, a1, dir < 0);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.fillStyle = L.color;
+      ctx.beginPath(); ctx.arc(x,y, 4, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "rgba(250,245,237,0.6)";
+      ctx.beginPath(); ctx.arc(x-1, y-1, 1.5, 0, Math.PI*2); ctx.fill();
+
+      const labelOffset = 16;
+      const lx = x + Math.cos(ang) * labelOffset;
+      const ly = y + Math.sin(ang) * labelOffset;
+      ctx.save();
+      ctx.fillStyle = "rgba(250,245,237,0.85)";
+      ctx.font = "400 " + Math.round(R*0.075 + 6) + "px 'Cormorant Garamond', Georgia, serif";
+      ctx.textAlign = Math.cos(ang) > 0 ? "left" : "right";
+      ctx.textBaseline = "middle";
+      ctx.fillText(L.name, lx, ly);
+      ctx.restore();
+    });
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

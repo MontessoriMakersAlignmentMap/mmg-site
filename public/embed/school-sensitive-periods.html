@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sensitive Periods</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#FAF5ED; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.04; mix-blend-mode:multiply; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const COLORS = {
+    bg: '#FAF5ED',
+    fg: '#2C1A0E',
+    gold: '#C8A24A',
+    jade: '#2A7A58',
+    walnut: '#2C1A0E',
+    warm: '#8A7060',
+    cream: '#FAF5ED',
+    dark: '#3D2410',
+  };
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+
+  let axisY, axisX0, axisX1;
+  const periods = [
+    { name: 'Order',              start: 0,  end: 6,   peakH: 0.55, color: '#C8A24A' },
+    { name: 'Movement',           start: 0,  end: 4.5, peakH: 0.65, color: '#2A7A58' },
+    { name: 'Language',           start: 0.5,end: 6,   peakH: 0.85, color: '#C8A24A' },
+    { name: 'Sensory Refinement', start: 1.5,end: 5.5, peakH: 0.50, color: '#8A7060' },
+    { name: 'Small Objects',      start: 1,  end: 3,   peakH: 0.40, color: '#2A7A58' },
+    { name: 'Social Refinement',  start: 2.5,end: 6,   peakH: 0.60, color: '#C8A24A' },
+    { name: 'Imagination',        start: 6,  end: 12,  peakH: 0.70, color: '#2A7A58' },
+    { name: 'Reasoning',          start: 6,  end: 12,  peakH: 0.55, color: '#C8A24A' },
+  ];
+  setup(function init(){
+    axisY = H*0.66;
+    axisX0 = W*0.10;
+    axisX1 = W*0.92;
+  });
+  function ageToX(a){ return axisX0 + (a/12)*(axisX1 - axisX0); }
+  function archAt(a, start, end){
+    if(a < start || a > end) return 0;
+    const p = (a - start)/(end - start);
+    return Math.sin(p * Math.PI);
+  }
+  const start0 = performance.now();
+  const PERIOD_TIME = 14;
+  function frame(now){
+    const t = (now-start0)/1000;
+    ctx.fillStyle = COLORS.cream; ctx.fillRect(0,0,W,H);
+
+    ctx.strokeStyle = "rgba(44,26,14,0.40)";
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(axisX0, axisY); ctx.lineTo(axisX1, axisY); ctx.stroke();
+    ctx.fillStyle = "rgba(44,26,14,0.55)";
+    ctx.font = "500 10px 'Inter', sans-serif";
+    ctx.textAlign = "center";
+    for(let a=0; a<=12; a+=2){
+      const x = ageToX(a);
+      ctx.strokeStyle = "rgba(44,26,14,0.30)";
+      ctx.beginPath(); ctx.moveTo(x, axisY); ctx.lineTo(x, axisY+5); ctx.stroke();
+      ctx.fillStyle = "rgba(44,26,14,0.55)";
+      ctx.fillText(String(a), x, axisY + 18);
+    }
+    ctx.fillStyle = "rgba(44,26,14,0.40)";
+    ctx.font = "500 9px 'Inter', sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("AGE", axisX0, axisY + 32);
+
+    const slot = PERIOD_TIME / periods.length;
+    const focusIdx = Math.floor((t % PERIOD_TIME) / slot);
+    const localP = ((t % PERIOD_TIME) - focusIdx*slot) / slot;
+
+    periods.forEach((p, idx) => {
+      const isFocus = idx === focusIdx;
+      const heightPx = (axisY - H*0.10) * p.peakH;
+      ctx.beginPath();
+      const steps = 60;
+      for(let s=0;s<=steps;s++){
+        const a = p.start + (p.end - p.start)*(s/steps);
+        const x = ageToX(a);
+        const y = axisY - archAt(a, p.start, p.end) * heightPx;
+        if(s===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      }
+      const baseAlpha = isFocus ? 0.85 : 0.22;
+      ctx.strokeStyle = p.color + Math.floor(baseAlpha*255).toString(16).padStart(2,'0');
+      ctx.lineWidth = isFocus ? 2 : 1;
+      ctx.stroke();
+      const fillAlpha = isFocus ? 0.20 : 0.06;
+      ctx.lineTo(ageToX(p.end), axisY);
+      ctx.lineTo(ageToX(p.start), axisY);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, axisY - heightPx, 0, axisY);
+      grad.addColorStop(0, p.color + Math.floor(fillAlpha*255).toString(16).padStart(2,'0'));
+      grad.addColorStop(1, p.color + "00");
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      if(isFocus){
+        const markerA = p.start + (p.end - p.start)*localP;
+        const markerX = ageToX(markerA);
+        const markerY = axisY - archAt(markerA, p.start, p.end) * heightPx;
+        ctx.fillStyle = "rgba(250,245,237,0.9)";
+        ctx.beginPath(); ctx.arc(markerX, markerY, 5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = p.color;
+        ctx.beginPath(); ctx.arc(markerX, markerY, 3, 0, Math.PI*2); ctx.fill();
+
+        const peakA = (p.start + p.end)/2;
+        const peakX = ageToX(peakA);
+        const peakY = axisY - heightPx;
+        const labelAlpha = Math.sin(localP * Math.PI);
+        ctx.save();
+        ctx.globalAlpha = Math.max(0.4, labelAlpha);
+        ctx.fillStyle = COLORS.walnut;
+        ctx.font = "400 " + Math.round(W*0.012 + 8) + "px 'Cormorant Garamond', Georgia, serif";
+        ctx.textAlign = "center";
+        ctx.fillText(p.name, peakX, peakY - 12);
+        ctx.fillStyle = "rgba(44,26,14,0.55)";
+        ctx.font = "500 9px 'Inter', sans-serif";
+        ctx.fillText(p.start + "–" + p.end + " yrs", peakX, peakY - 28);
+        ctx.restore();
+      }
+    });
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

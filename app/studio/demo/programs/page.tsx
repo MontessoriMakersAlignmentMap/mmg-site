@@ -95,10 +95,24 @@ export default function ProgramsPage() {
         </div>
       </section>
 
+      {/* Clock of Eras — 4.6 billion years in one frame */}
+      <div style={{ width: '100%', height: 300, background: '#1A0D06' }}>
+        <iframe src="/embed/school-clock-of-eras.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Clock of Eras" loading="lazy" />
+      </div>
+
       {/* Program sections */}
-      {programs.map((p, i) => (
-        <ProgramSection key={p.id} program={p} flip={i % 2 !== 0} />
-      ))}
+      <ProgramSection program={programs[0]} flip={false} />
+      <ProgramSection program={programs[1]} flip={true} />
+
+      {/* Timeline of Life — between Lower and Upper Elementary */}
+      <div style={{ width: '100%', height: 280, background: '#FAF5ED' }}>
+        <iframe src="/embed/school-timeline-of-life.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Timeline of Life" loading="lazy" />
+      </div>
+      <div style={{ width: '100%', height: 280, background: '#3D2410' }}>
+        <iframe src="/embed/school-timeline-of-humans.html" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} title="Timeline of Humans" loading="lazy" />
+      </div>
+
+      <ProgramSection program={programs[2]} flip={false} />
 
       {/* CTA */}
       <section style={{ background: C.slate, padding: '80px 64px', textAlign: 'center' }}>

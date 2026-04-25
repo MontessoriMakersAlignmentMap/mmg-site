@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Clock of Eras</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#1A0D06; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:0.06; mix-blend-mode:overlay; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx    = canvas.getContext('2d');
+
+  let W=0, H=0, dpr=1, cx, cy, R, onResize=null;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if (onResize) onResize();
+  }
+  function setup(fn) { onResize = fn; fn(); }
+
+  // Earth = 4.6 Ga. Each era defined by duration in Ga.
+  // Sectors run clockwise from 12 o'clock (top = oldest = 4.6 Ga ago).
+  // 12 o'clock is also "now" (the circle completes).
+  const TOTAL = 4.6;
+  const eras = [
+    { name:'Hadean',       sub:'4.6 – 4.0 Ga',  span:0.600, fill:'#180A04', rim:'#5A3028' },
+    { name:'Archean',      sub:'4.0 – 2.5 Ga',  span:1.500, fill:'#0E1E2C', rim:'#3A6888' },
+    { name:'Proterozoic',  sub:'2.5 – 0.54 Ga', span:1.960, fill:'#5C3018', rim:'#C8A24A' },
+    { name:'Paleozoic',    sub:'540 – 252 Ma',   span:0.288, fill:'#122E1E', rim:'#2A7A58' },
+    { name:'Mesozoic',     sub:'252 – 66 Ma',    span:0.186, fill:'#243A14', rim:'#7AAA50' },
+    { name:'Cenozoic',     sub:'66 Ma – now',    span:0.066, fill:'#5A3E0C', rim:'#C8A24A' },
+  ];
+
+  // Pre-compute cumulative fractions
+  let cum = 0;
+  eras.forEach(e => {
+    e.f0  = cum / TOTAL;
+    e.f1  = (cum + e.span) / TOTAL;
+    e.mid = (cum + e.span * 0.5) / TOTAL;
+    cum  += e.span;
+  });
+
+  // fraction → canvas angle (0 = top, clockwise)
+  function fToA(f) { return -Math.PI/2 + f * Math.PI*2; }
+
+  setup(function init() {
+    cx = W * 0.5;
+    cy = H * 0.5;
+    R  = Math.min(W, H) * 0.36;
+  });
+
+  const INNER   = 0.28;   // inner donut radius as fraction of R
+  const SWEEP   = 24;     // seconds per revolution
+
+  const start = performance.now();
+
+  function frame(now) {
+    const t = (now - start) / 1000;
+    ctx.fillStyle = '#1A0D06';
+    ctx.fillRect(0, 0, W, H);
+
+    const sweepFrac = (t % SWEEP) / SWEEP;
+
+    // ── Sectors ──────────────────────────────────────────────────────────────
+    eras.forEach(e => {
+      const a0 = fToA(e.f0);
+      const a1 = fToA(e.f1);
+
+      const active = sweepFrac >= e.f0 && sweepFrac < e.f1;
+      const localP = active ? (sweepFrac - e.f0) / (e.f1 - e.f0) : 0;
+      const glow   = active ? Math.sin(localP * Math.PI) : 0;
+
+      // base fill
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, R, a0, a1);
+      ctx.closePath();
+      ctx.fillStyle = e.fill;
+      ctx.fill();
+
+      // glow overlay
+      if (glow > 0) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, R, a0, a1);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(250,245,237,' + (glow * 0.12) + ')';
+        ctx.fill();
+      }
+
+      // sector border
+      ctx.strokeStyle = 'rgba(250,245,237,0.06)';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, R, a0, a1);
+      ctx.closePath();
+      ctx.stroke();
+
+      // colored rim arc
+      ctx.strokeStyle = e.rim + (active ? 'CC' : '44');
+      ctx.lineWidth   = active ? 2.5 : 1;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, a0, a1);
+      ctx.stroke();
+
+      // ── Label callout ─────────────────────────────────────────────────────
+      const midA    = fToA(e.mid);
+      const cosM    = Math.cos(midA);
+      const sinM    = Math.sin(midA);
+      // callout line from R*1.04 → R*1.22
+      const lineR0  = R * 1.05;
+      const lineR1  = R * 1.24;
+      const textR   = R * 1.30;
+
+      const labelAlpha = active ? (0.4 + 0.6 * Math.sin(localP * Math.PI)) : 0.18;
+
+      ctx.save();
+      ctx.globalAlpha = labelAlpha;
+
+      ctx.strokeStyle = e.rim;
+      ctx.lineWidth   = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(cx + cosM * lineR0, cy + sinM * lineR0);
+      ctx.lineTo(cx + cosM * lineR1, cy + sinM * lineR1);
+      ctx.stroke();
+
+      const tx = cx + cosM * textR;
+      const ty = cy + sinM * textR;
+      ctx.textAlign    = cosM > 0.1 ? 'left' : cosM < -0.1 ? 'right' : 'center';
+      ctx.textBaseline = 'middle';
+
+      const spanDeg = (e.f1 - e.f0) * 360;
+      const fs = Math.max(9, Math.min(15, spanDeg * 0.55 + 6));
+      ctx.font      = '400 ' + fs + "px 'Cormorant Garamond', Georgia, serif";
+      ctx.fillStyle = e.rim;
+      ctx.fillText(e.name, tx, ty);
+
+      if (active) {
+        ctx.font      = '500 8px Inter, sans-serif';
+        ctx.fillStyle = 'rgba(250,245,237,0.55)';
+        ctx.fillText(e.sub, tx, ty + fs * 0.9);
+      }
+
+      ctx.restore();
+    });
+
+    // ── Outer ring ───────────────────────────────────────────────────────────
+    ctx.strokeStyle = 'rgba(200,162,74,0.22)';
+    ctx.lineWidth   = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+
+    // ── Donut hole ───────────────────────────────────────────────────────────
+    const iR = R * INNER;
+    ctx.fillStyle = '#1A0D06';
+    ctx.beginPath(); ctx.arc(cx, cy, iR, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(200,162,74,0.15)';
+    ctx.lineWidth   = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, iR, 0, Math.PI*2); ctx.stroke();
+
+    // ── Sweep hand ───────────────────────────────────────────────────────────
+    const handA = fToA(sweepFrac);
+    const hx0 = cx + Math.cos(handA) * iR;
+    const hy0 = cy + Math.sin(handA) * iR;
+    const hx1 = cx + Math.cos(handA) * R;
+    const hy1 = cy + Math.sin(handA) * R;
+    ctx.strokeStyle = 'rgba(250,245,237,0.35)';
+    ctx.lineWidth   = 1;
+    ctx.beginPath(); ctx.moveTo(hx0, hy0); ctx.lineTo(hx1, hy1); ctx.stroke();
+
+    // ── "Now" marker at top (12 o'clock) ─────────────────────────────────────
+    const pulse = 0.55 + 0.45 * Math.sin(t * 2.2);
+    const nowX  = cx;
+    const nowY  = cy - R;
+    // small gold triangle pointing inward
+    ctx.fillStyle = 'rgba(200,162,74,' + pulse + ')';
+    ctx.beginPath();
+    ctx.arc(nowX, nowY, 3.5, 0, Math.PI*2);
+    ctx.fill();
+
+    // ── Center dot ───────────────────────────────────────────────────────────
+    ctx.fillStyle = 'rgba(250,245,237,0.35)';
+    ctx.beginPath(); ctx.arc(cx, cy, 2, 0, Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>
