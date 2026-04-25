@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Word Constellation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  // Cycles through three short phrases. Each phrase: dots fly in, form letters,
+  // hold ~2.5s, then disperse and the next phrase forms.
+  const PHRASES = [
+    ["When schools align,", "everything works."],
+    ["See what's there.", "Before you change it."],
+    ["The right person.", "The right school."],
+  ];
+  let phraseGroups = null; // [{lines: [{points,particles}, ...]}, ...]
+  let needsBuild = true;
+  function buildAll(){
+    phraseGroups = [];
+    const off = document.createElement('canvas');
+    const oc = off.getContext('2d');
+    const fontSize = Math.min(W*0.072, 76);
+    const lineH = fontSize * 1.20;
+    const fontStr = "400 " + fontSize + "px 'Cormorant Garamond', Georgia, serif";
+    const PAD = 30;
+    for(const lines of PHRASES){
+      const totalH = lines.length * lineH;
+      let yLine = H/2 - totalH/2 + fontSize;
+      const lineGroups = [];
+      for(const line of lines){
+        oc.font = fontStr;
+        const tw = oc.measureText(line).width;
+        const x = (W - tw)/2;
+        off.width = Math.ceil(tw + PAD*2);
+        off.height = Math.ceil(fontSize * 1.4);
+        oc.clearRect(0,0,off.width,off.height);
+        oc.fillStyle = "#fff";
+        oc.font = fontStr;
+        oc.textBaseline = "alphabetic";
+        oc.fillText(line, PAD, fontSize);
+        const data = oc.getImageData(0,0,off.width,off.height).data;
+        const points = [];
+        const STEP = 5;
+        for(let py=0; py<off.height; py+=STEP){
+          for(let px=0; px<off.width; px+=STEP){
+            const idx = (py*off.width + px)*4;
+            if(data[idx+3] > 128){
+              points.push({ tx: x - PAD + px, ty: yLine - fontSize + py });
+            }
+          }
+        }
+        const particles = points.map(pt => {
+          const ang = Math.random()*Math.PI*2;
+          return {
+            tx: pt.tx, ty: pt.ty,
+            sx: pt.tx + Math.cos(ang)*W*0.35 + (Math.random()-0.5)*W*0.25,
+            sy: pt.ty + Math.sin(ang)*H*0.35 + (Math.random()-0.5)*H*0.25,
+            r: 0.8 + Math.random()*0.7,
+          };
+        });
+        lineGroups.push({ points, particles });
+        yLine += lineH;
+      }
+      phraseGroups.push({ lines: lineGroups });
+    }
+    needsBuild = false;
+  }
+  setup(function(){ needsBuild = true; });
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(()=>{ needsBuild = true; });
+  }
+  const PHRASE_DUR = 5.0; // form (1.4) + hold (2.6) + disperse (1.0)
+  const LOOP = PHRASE_DUR * 3;
+  const ease = t => t<0.5? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  const start = performance.now();
+  function frame(now){
+    if(needsBuild) buildAll();
+    const t = ((now-start)/1000) % LOOP;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0,0,W,H);
+    if(!phraseGroups || !phraseGroups.length){ requestAnimationFrame(frame); return; }
+    const phraseIdx = Math.floor(t / PHRASE_DUR);
+    const local = t - phraseIdx * PHRASE_DUR;
+    const pg = phraseGroups[phraseIdx % phraseGroups.length];
+    pg.lines.forEach((g, li) => {
+      const lineDelay = li * 0.35;
+      const lt = local - lineDelay;
+      let f;
+      if(lt < 0) f = 0;
+      else if(lt < 1.4) f = ease(lt/1.4);
+      else if(local < PHRASE_DUR - 1.0) f = 1;
+      else f = 1 - ease((local - (PHRASE_DUR - 1.0)) / 1.0);
+      f = Math.max(0, Math.min(1, f));
+      for(const p of g.particles){
+        const x = p.sx + (p.tx - p.sx)*f;
+        const y = p.sy + (p.ty - p.sy)*f;
+        ctx.fillStyle = "rgba(240,217,161,"+(0.08 + f*0.14)+")";
+        ctx.beginPath(); ctx.arc(x,y, p.r*3.5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = "rgba(214,167,88,"+(0.5 + f*0.4)+")";
+        ctx.beginPath(); ctx.arc(x,y, p.r, 0, Math.PI*2); ctx.fill();
+        if(f > 0.65){
+          ctx.fillStyle = "rgba(255,255,255,"+((f-0.65)*1.4)+")";
+          ctx.beginPath(); ctx.arc(x,y, p.r*0.55, 0, Math.PI*2); ctx.fill();
+        }
+      }
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

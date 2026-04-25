@@ -376,14 +376,21 @@ export default function StudioPage() {
                 </a>
               </motion.div>
             </div>
-            {/* Logo — right */}
+            {/* Animation — right */}
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="hidden md:flex items-center justify-end flex-shrink-0"
             >
-              <Logo name="studio" heroWidth={400} heroHeight={400} />
+              <div className="overflow-hidden rounded-sm" style={{ width: 440, height: 440 }}>
+                <iframe
+                  src="/embed/studio-composition.html"
+                  className="w-full h-full border-0 block"
+                  title="Studio — composition animation"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
           </div>
           <Marquee />

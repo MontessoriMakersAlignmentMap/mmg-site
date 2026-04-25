@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Alignment Gather</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMG · Hero</div>
+    <div class="title">When a Montessori school<br/>is aligned, everything works.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1;
+  let onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  let cx, cy, scale, V, anchors, particles;
+  function buildGeo(){
+    cx = W*0.68; cy = H*0.5;
+    scale = Math.min(W*0.42, H*0.85) * 0.40 / 28;
+    const map = (x,y) => [cx + (x-18)*scale, cy + (y-18)*scale];
+    V = {
+      TOP: map(18,4), TR: map(30,11), BR: map(30,25),
+      BOT: map(18,32), BL: map(6,25), TL: map(6,11), C: map(18,18),
+    };
+    const sil = [V.TOP,V.TR,V.BR,V.BOT,V.BL,V.TL];
+    const seams = [[V.C,V.TOP],[V.C,V.TR],[V.C,V.BR],[V.C,V.BL],[V.C,V.TL]];
+    anchors = [];
+    Object.values(V).forEach(p => { for(let k=0;k<2;k++) anchors.push({x:p[0],y:p[1]}); });
+    for(let i=0;i<sil.length;i++){
+      const a=sil[i], b=sil[(i+1)%sil.length];
+      for(let t=1;t<=6;t++){ const s=t/7; anchors.push({x:a[0]+(b[0]-a[0])*s, y:a[1]+(b[1]-a[1])*s}); }
+    }
+    for(const [a,b] of seams){
+      for(let t=1;t<=5;t++){ const s=t/6; anchors.push({x:a[0]+(b[0]-a[0])*s, y:a[1]+(b[1]-a[1])*s}); }
+    }
+    function fill(p1,p2,p3,p4,n){
+      for(let i=1;i<n;i++) for(let j=1;j<n;j++){
+        const u=i/n, v=j/n;
+        const a=[p1[0]+(p2[0]-p1[0])*u, p1[1]+(p2[1]-p1[1])*u];
+        const b=[p4[0]+(p3[0]-p4[0])*u, p4[1]+(p3[1]-p4[1])*u];
+        anchors.push({x:a[0]+(b[0]-a[0])*v, y:a[1]+(b[1]-a[1])*v});
+      }
+    }
+    fill(V.TOP,V.TR,V.C,V.TL,4);
+    fill(V.TR,V.BR,V.BOT,V.C,4);
+    fill(V.TL,V.C,V.BOT,V.BL,4);
+    if(!particles) particles = [];
+    while(particles.length < anchors.length){
+      particles.push({x:cx+(Math.random()-0.5)*W*0.6, y:cy+(Math.random()-0.5)*H*0.7,
+        vx:0, vy:0, r:1+Math.random()*1.4, tx:0, ty:0, retarget:Math.random()*3});
+    }
+    particles.length = anchors.length;
+    particles.forEach((p,i) => p.anchor = anchors[i]);
+  }
+  setup(buildGeo);
+  const LOOP=9, GS=2.6, GE=4.4, HE=6.2, DE=7.8;
+  const ease = t => t<0.5? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  const start = performance.now();
+  function frame(now){
+    const t=((now-start)/1000)%LOOP;
+    let f=0;
+    if(t<GS) f=0;
+    else if(t<GE) f=ease((t-GS)/(GE-GS));
+    else if(t<HE) f=1;
+    else if(t<DE) f=1-ease((t-HE)/(DE-HE));
+    ctx.fillStyle="#0e1a7a"; ctx.fillRect(0,0,W,H);
+    const grad = ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.5);
+    grad.addColorStop(0,"rgba(214,167,88,0.10)"); grad.addColorStop(1,"rgba(14,26,122,0)");
+    ctx.fillStyle=grad; ctx.fillRect(0,0,W,H);
+    for(const p of particles){
+      p.retarget -= 1/60;
+      // keep wandering particles in the right region only
+      if(p.retarget<=0){
+        p.tx = W*0.45 + Math.random()*W*0.5;
+        p.ty = cy + (Math.random()-0.5)*H*0.7;
+        p.retarget=2+Math.random()*3;
+      }
+      let fx=(p.tx-p.x)*0.0010, fy=(p.ty-p.y)*0.0010;
+      const aK=0.16*f;
+      fx += (p.anchor.x-p.x)*aK; fy += (p.anchor.y-p.y)*aK;
+      p.vx+=fx; p.vy+=fy;
+      const damp = 0.92 - f*0.12;
+      p.vx*=damp; p.vy*=damp;
+      p.x+=p.vx; p.y+=p.vy;
+      if(f>0.92){ p.x += (p.anchor.x-p.x)*0.28; p.y += (p.anchor.y-p.y)*0.28; }
+    }
+    if(f>0.15){
+      const a = (0.12 + f*0.22).toFixed(3);
+      const drawFace=(pts,col)=>{ ctx.fillStyle=col.replace("AAA",a);
+        ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+        for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0],pts[i][1]); ctx.closePath(); ctx.fill();
+      };
+      drawFace([V.TOP,V.TR,V.C,V.TL], "rgba(240,217,161,AAA)");
+      drawFace([V.TR,V.BR,V.BOT,V.C], "rgba(214,167,88,AAA)");
+      drawFace([V.TL,V.C,V.BOT,V.BL], "rgba(225,190,122,AAA)");
+    }
+    if(f>0.02){
+      ctx.strokeStyle="rgba(214,167,88,"+(f*0.55)+")"; ctx.lineWidth=1;
+      const sil=[V.TOP,V.TR,V.BR,V.BOT,V.BL,V.TL]; ctx.beginPath();
+      for(let i=0;i<sil.length;i++){ const a=sil[i], b=sil[(i+1)%sil.length]; ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); }
+      for(const s of [[V.C,V.TOP],[V.C,V.BR],[V.C,V.BL]]){ ctx.moveTo(s[0][0],s[0][1]); ctx.lineTo(s[1][0],s[1][1]); }
+      ctx.stroke();
+    }
+    const CD = 80 - f*40;
+    ctx.lineWidth=0.6;
+    for(let i=0;i<particles.length;i++){
+      const p=particles[i];
+      for(let j=i+1;j<Math.min(particles.length, i+15);j++){
+        const q=particles[j];
+        const dx=p.x-q.x, dy=p.y-q.y, d2=dx*dx+dy*dy;
+        if(d2<CD*CD){ const d=Math.sqrt(d2); const a=(1-d/CD)*(0.10+f*0.25);
+          ctx.strokeStyle="rgba(214,167,88,"+a+")"; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+        }
+      }
+    }
+    for(const p of particles){
+      ctx.fillStyle="rgba(240,217,161,0.18)"; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="#f0d9a1"; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*0.45,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

@@ -42,9 +42,16 @@ export default function MatchHubPage() {
               </Link>
             </div>
           </div>
-          {/* Hero logo — right column */}
+          {/* Hero animation — right column */}
           <div className="hidden md:flex items-center justify-end flex-shrink-0">
-            <Logo name="matchhub" heroWidth={380} heroHeight={380} />
+            <div className="overflow-hidden rounded-sm" style={{ width: 400, height: 400 }}>
+              <iframe
+                src="/embed/matchhub-pairing.html"
+                className="w-full h-full border-0 block"
+                title="MatchHub — pairing animation"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>

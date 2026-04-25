@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Studio · Spotlights</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; z-index:2; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMG · Studio</div>
+    <div class="title">Bring your school<br/>into the light.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  let lights, subjects, floorY, ceilingY;
+  setup(function init(){
+    floorY = H * 0.78;
+    ceilingY = H * 0.10;
+    // Three spotlights from above
+    lights = [
+      { x: W*0.50, anchorX: W*0.50, baseAngle: 0, swing: 0.18, phase: 0,    speed: 0.45, hue: 'gold' },
+      { x: W*0.70, anchorX: W*0.70, baseAngle: -0.10, swing: 0.14, phase: 1.7, speed: 0.55, hue: 'gold' },
+      { x: W*0.85, anchorX: W*0.85, baseAngle: 0.12, swing: 0.16, phase: 3.4, speed: 0.40, hue: 'gold' },
+    ];
+    // Subjects: gold particles arranged on the "stage floor" in the right region
+    subjects = [];
+    const N = 28;
+    for(let i=0;i<N;i++){
+      const sx = W*0.42 + Math.random()*W*0.55;
+      const sy = floorY - 4 - Math.random()*H*0.40;
+      subjects.push({
+        x: sx, y: sy,
+        r: 1.0 + Math.random()*1.6,
+        ignited: 0,
+      });
+    }
+  });
+  const start = performance.now();
+  function frame(now){
+    const t = (now-start)/1000;
+    // background — slight vignette
+    ctx.fillStyle = "#0a1560";
+    ctx.fillRect(0,0,W,H);
+    // floor gradient
+    const fg = ctx.createLinearGradient(0, floorY-40, 0, H);
+    fg.addColorStop(0, "rgba(0,0,0,0)");
+    fg.addColorStop(1, "rgba(0,0,0,0.45)");
+    ctx.fillStyle = fg;
+    ctx.fillRect(0,0,W,H);
+
+    // Truss bar across the top of the stage area
+    const trussY = ceilingY;
+    ctx.strokeStyle = "rgba(214,167,88,0.35)";
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(W*0.40, trussY); ctx.lineTo(W*0.95, trussY); ctx.stroke();
+    // truss tick marks
+    for(let i=0;i<10;i++){
+      const tx = W*0.40 + i * (W*0.55/9);
+      ctx.beginPath(); ctx.moveTo(tx, trussY-4); ctx.lineTo(tx, trussY+4); ctx.stroke();
+    }
+
+    // Compute light angles
+    const angles = lights.map(l => l.baseAngle + Math.sin(t*l.speed + l.phase) * l.swing);
+
+    // Reset ignition
+    for(const s of subjects) s.ignited *= 0.90;
+
+    // Draw beams (back to front: outer glow, then inner)
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    lights.forEach((l, idx) => {
+      const ang = angles[idx];
+      // beam apex at (l.anchorX, trussY+6); beam expands toward floor
+      const apexX = l.anchorX, apexY = trussY + 6;
+      const reach = floorY + 30 - apexY;
+      const halfWidth = reach * 0.20; // beam half-spread at floor
+      // direction unit
+      const dx = Math.sin(ang), dy = Math.cos(ang);
+      // perpendicular
+      const px = -dy, py = dx;
+      const tipX = apexX + dx*reach;
+      const tipY = apexY + dy*reach;
+      // beam polygon
+      const x1 = tipX + px*halfWidth, y1 = tipY + py*halfWidth;
+      const x2 = tipX - px*halfWidth, y2 = tipY - py*halfWidth;
+      // gradient along beam
+      const bg = ctx.createLinearGradient(apexX, apexY, tipX, tipY);
+      bg.addColorStop(0, "rgba(240,217,161,0.32)");
+      bg.addColorStop(0.5, "rgba(240,217,161,0.10)");
+      bg.addColorStop(1, "rgba(240,217,161,0)");
+      ctx.fillStyle = bg;
+      ctx.beginPath();
+      ctx.moveTo(apexX, apexY);
+      ctx.lineTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.closePath();
+      ctx.fill();
+
+      // Pool on the floor where beam hits
+      // Find intersection of beam center with floor y = floorY
+      if(dy > 0.01){
+        const tFloor = (floorY - apexY) / dy;
+        const fx = apexX + dx*tFloor;
+        const fy = floorY;
+        const pool = ctx.createRadialGradient(fx, fy, 0, fx, fy, halfWidth*1.3);
+        pool.addColorStop(0, "rgba(240,217,161,0.40)");
+        pool.addColorStop(1, "rgba(240,217,161,0)");
+        ctx.fillStyle = pool;
+        ctx.beginPath();
+        ctx.ellipse(fx, fy, halfWidth*1.4, halfWidth*0.45, 0, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // Ignite subjects within the beam cone
+      for(const s of subjects){
+        // project subject onto beam axis
+        const vx = s.x - apexX, vy = s.y - apexY;
+        const along = vx*dx + vy*dy;
+        if(along < 0 || along > reach) continue;
+        const across = Math.abs(vx*px + vy*py);
+        const limit = (along / reach) * halfWidth;
+        if(across < limit){
+          const intensity = (1 - across/limit) * (along/reach);
+          s.ignited = Math.max(s.ignited, intensity);
+        }
+      }
+    });
+    ctx.restore();
+
+    // Spotlight fixtures (small bezel rectangles on the truss)
+    lights.forEach((l, idx) => {
+      const ang = angles[idx];
+      ctx.save();
+      ctx.translate(l.anchorX, trussY);
+      ctx.rotate(ang);
+      ctx.fillStyle = "rgba(214,167,88,0.85)";
+      ctx.fillRect(-7, -2, 14, 10);
+      ctx.fillStyle = "rgba(255,255,255,0.95)";
+      ctx.fillRect(-4, 6, 8, 2);
+      ctx.restore();
+    });
+
+    // Floor line
+    ctx.strokeStyle = "rgba(214,167,88,0.30)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(W*0.40, floorY); ctx.lineTo(W*0.97, floorY);
+    ctx.stroke();
+
+    // Subjects (gold particles) — brightness keyed to ignition
+    for(const s of subjects){
+      const i = s.ignited;
+      // halo
+      ctx.fillStyle = "rgba(240,217,161,"+(0.06 + i*0.40)+")";
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r * (3 + i*4), 0, Math.PI*2); ctx.fill();
+      // core
+      const coreA = 0.30 + i*0.65;
+      ctx.fillStyle = "rgba(214,167,88,"+coreA+")";
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
+      if(i > 0.4){
+        ctx.fillStyle = "rgba(255,255,255,"+((i-0.4)*1.5)+")";
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r*0.55, 0, Math.PI*2); ctx.fill();
+      }
+      // small ground shadow when lit
+      if(i > 0.15 && s.y < floorY - 4){
+        ctx.fillStyle = "rgba(0,0,0,"+(i*0.25)+")";
+        ctx.beginPath();
+        ctx.ellipse(s.x, floorY+2, s.r*3, s.r*1.2, 0, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

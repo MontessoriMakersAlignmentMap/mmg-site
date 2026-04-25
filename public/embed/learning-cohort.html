@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Learning · Cohort</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMG · Learning</div>
+    <div class="title">A spark, passed.<br/>A practice, refined.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  // Long-table arrangement: dots in two rows facing inward, a head dot at the right end.
+  let dots, edges, sparks, branches;
+  let cx, cy, tableW, tableH;
+  setup(function init(){
+    cx = W*0.62; cy = H*0.52;
+    tableW = Math.min(W*0.50, 720);
+    tableH = Math.min(H*0.18, 140);
+    dots = [];
+    const N = 6; // 6 along each side, 1 head
+    const left = cx - tableW/2;
+    const right = cx + tableW/2;
+    for(let i=0;i<N;i++){
+      const tx = left + ((i+0.5)/N) * tableW;
+      dots.push({ x: tx, y: cy - tableH/2 - 18, side:'top', i, ignited:0 });
+      dots.push({ x: tx, y: cy + tableH/2 + 18, side:'bot', i, ignited:0 });
+    }
+    dots.push({ x: right + 30, y: cy, side:'head', i:0, ignited:0 });
+    edges = [];
+    sparks = [];
+    branches = []; // dynamic small branches sprouting from ignited dots
+  });
+  const LOOP = 12;
+  const start = performance.now();
+  let last = start;
+  function frame(now){
+    const t = ((now-start)/1000) % LOOP;
+    const dt = Math.min(0.05, (now-last)/1000); last = now;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0,0,W,H);
+
+    // table outline (very subtle)
+    ctx.strokeStyle = "rgba(214,167,88,0.18)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(cx - tableW/2, cy - tableH/2, tableW, tableH);
+
+    // soft connecting threads from each dot to its neighbor across table
+    for(let i=0;i<dots.length;i++){
+      const a = dots[i];
+      for(let j=i+1;j<dots.length;j++){
+        const b = dots[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d < tableW*0.55){
+          const alpha = 0.04 + Math.min(a.ignited, b.ignited)*0.25;
+          ctx.strokeStyle = "rgba(214,167,88,"+alpha+")";
+          ctx.lineWidth = 0.6;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+
+    // Spawn a spark periodically traveling between two dots
+    if(Math.random() < 0.045 || sparks.length === 0){
+      if(sparks.length < 4){
+        const from = Math.floor(Math.random()*dots.length);
+        let to = Math.floor(Math.random()*dots.length);
+        while(to === from) to = Math.floor(Math.random()*dots.length);
+        sparks.push({ from, to, t:0 });
+      }
+    }
+    // Update sparks
+    for(let i=sparks.length-1;i>=0;i--){
+      const s = sparks[i];
+      s.t += dt * 0.55;
+      const a = dots[s.from], b = dots[s.to];
+      const x = a.x + (b.x-a.x)*s.t;
+      const y = a.y + (b.y-a.y)*s.t;
+      // glow
+      ctx.fillStyle = "rgba(240,217,161,0.25)";
+      ctx.beginPath(); ctx.arc(x,y, 8, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "#fff";
+      ctx.beginPath(); ctx.arc(x,y, 2.5, 0, Math.PI*2); ctx.fill();
+      // path trace
+      ctx.strokeStyle = "rgba(240,217,161,0.35)";
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(x,y); ctx.stroke();
+      if(s.t >= 1){
+        // ignite endpoint and spawn a small branch of "learnings"
+        b.ignited = 1;
+        for(let k=0;k<3;k++){
+          const ang = Math.random()*Math.PI*2;
+          const len = 18 + Math.random()*22;
+          branches.push({
+            x0: b.x, y0: b.y,
+            x1: b.x + Math.cos(ang)*len,
+            y1: b.y + Math.sin(ang)*len,
+            t: 0, life: 1.6,
+          });
+        }
+        sparks.splice(i,1);
+      }
+    }
+
+    // Branches grow then fade
+    for(let i=branches.length-1;i>=0;i--){
+      const br = branches[i];
+      br.t += dt;
+      const grow = Math.min(1, br.t / 0.5);
+      const fade = br.t < br.life - 0.6 ? 1 : Math.max(0, 1 - (br.t - (br.life - 0.6))/0.6);
+      const x2 = br.x0 + (br.x1 - br.x0) * grow;
+      const y2 = br.y0 + (br.y1 - br.y0) * grow;
+      ctx.strokeStyle = "rgba(214,167,88,"+(0.6*fade)+")";
+      ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(br.x0, br.y0); ctx.lineTo(x2, y2); ctx.stroke();
+      // tip
+      if(grow >= 1){
+        ctx.fillStyle = "rgba(240,217,161,"+(0.7*fade)+")";
+        ctx.beginPath(); ctx.arc(x2, y2, 1.6, 0, Math.PI*2); ctx.fill();
+      }
+      if(br.t >= br.life) branches.splice(i,1);
+    }
+
+    // Dots themselves (people)
+    for(const d of dots){
+      d.ignited *= 0.992;
+      const r = 4 + d.ignited*1.5;
+      ctx.fillStyle = "rgba(240,217,161,"+(0.18 + d.ignited*0.3)+")";
+      ctx.beginPath(); ctx.arc(d.x, d.y, r*3, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "#d6a758";
+      ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "#fff";
+      ctx.beginPath(); ctx.arc(d.x, d.y, r*0.45, 0, Math.PI*2); ctx.fill();
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

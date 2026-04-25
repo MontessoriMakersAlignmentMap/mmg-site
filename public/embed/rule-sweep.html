@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Rule Sweep</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(22px,3.5vw,38px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; max-width:60%; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1;
+  let onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  // multiple gold rules sweep across at staggered moments and Y positions
+  let rules;
+  setup(function init(){
+    rules = [];
+    for(let i=0;i<6;i++){
+      rules.push({
+        y: H * (0.18 + i*0.12),
+        delay: i * 0.6,
+        speed: 1.0 + Math.random()*0.4,
+        len: 20 + Math.random()*60,
+      });
+    }
+  });
+  const LOOP = 8;
+  const start = performance.now();
+  function frame(now){
+    const t = ((now-start)/1000) % LOOP;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0,0,W,H);
+    for(const r of rules){
+      const local = ((t + r.delay) % LOOP) / LOOP;
+      const x = -r.len + local * (W + r.len*2);
+      // fade in/out at edges
+      const edge = Math.min(local*4, (1-local)*4, 1);
+      const a = 0.35 * edge;
+      // shadow trail
+      const grad = ctx.createLinearGradient(x - r.len*4, 0, x, 0);
+      grad.addColorStop(0, "rgba(214,167,88,0)");
+      grad.addColorStop(1, "rgba(214,167,88,"+(a*0.6)+")");
+      ctx.fillStyle = grad;
+      ctx.fillRect(x - r.len*4, r.y - 0.5, r.len*4, 1);
+      // the rule itself
+      ctx.fillStyle = "rgba(240,217,161,"+a+")";
+      ctx.fillRect(x, r.y - 0.5, r.len, 1);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>
