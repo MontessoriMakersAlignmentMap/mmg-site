@@ -2,210 +2,431 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Clock of Eras</title>
+<title>The Clock of Eras</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; padding:0; background:#1A0D06; overflow:hidden; height:100%; }
-  .stage { position:fixed; inset:0; }
-  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
-  .grain { position:absolute; inset:0; pointer-events:none;
+  :root {
+    --bg: #1A0D06;
+    --ink: #F6EFE2;
+    --mute: rgba(246,239,226,0.65);
+    --gold: #C8A24A;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', system-ui, sans-serif;
+  }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); min-height:100vh; }
+  .grain { position:fixed; inset:0; pointer-events:none; z-index:0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     background-size:200px 200px; opacity:0.06; mix-blend-mode:overlay; }
+
+  .poster {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 56px 48px 80px;
+  }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 32px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold); display: inline-flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content:''; width: 32px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(36px, 4vw, 56px); line-height: 1;
+    margin: 0 0 10px; letter-spacing: -0.005em;
+  }
+  .tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--mute);
+    max-width: 640px; margin: 0 auto;
+  }
+
+  /* CLOCK */
+  .clock-wrap {
+    display: flex; align-items: center; justify-content: center;
+    margin: 20px auto 24px;
+  }
+  .clock {
+    width: min(720px, 90vw);
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .clock svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+  /* LEGEND */
+  .legend {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    margin-top: 32px;
+    border-top: 1px solid rgba(200,162,74,0.25);
+    border-bottom: 1px solid rgba(200,162,74,0.25);
+  }
+  .legend-cell {
+    padding: 18px 16px;
+    border-right: 1px solid rgba(200,162,74,0.12);
+    border-top: 3px solid var(--accent);
+  }
+  .legend-cell:last-child { border-right: 0; }
+  .legend-cell .num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 13px; color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .legend-cell .name {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 18px; color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .legend-cell .range {
+    font-size: 9.5px; letter-spacing: 0.08em;
+    color: var(--mute); margin-bottom: 8px;
+  }
+  .legend-cell .desc {
+    font-family: var(--serif); font-style: italic;
+    font-size: 13px; line-height: 1.4;
+    color: rgba(246,239,226,0.78);
+  }
+
+  /* FOOTNOTE */
+  .footnote {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(246,239,226,0.5);
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+  }
+  .footnote .dot { color: var(--gold); }
+
+  /* Responsive: stack legend on narrow */
+  @media (max-width: 800px) {
+    .legend { grid-template-columns: repeat(2, 1fr); }
+    .legend-cell:nth-child(even) { border-right: 0; }
+  }
+  @media (max-width: 480px) {
+    .legend { grid-template-columns: 1fr; }
+    .legend-cell { border-right: 0; }
+  }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="stage">
-  <canvas id="c"></canvas>
-  <div class="grain"></div>
-</div>
+<div class="grain"></div>
+
+<article class="poster" data-screen-label="Clock of Eras">
+
+  <header class="header">
+    <div class="eyebrow">Cosmic Education · Timeline I</div>
+    <h1>The Clock of Eras</h1>
+    <div class="tagline">Four and a half billion years of Earth, on the face of a single clock.</div>
+  </header>
+
+  <div class="clock-wrap">
+    <div class="clock">
+      <svg viewBox="-360 -360 720 720" id="clock-svg" aria-label="Clock of Eras">
+        <!-- sectors and labels generated below -->
+        <defs>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <section class="legend" id="legend"></section>
+
+  <div class="footnote">
+    <span class="dot">★</span>
+    <span>Each minute on the clock = 76 million years</span>
+    <span class="dot">★</span>
+    <span>Montessori Makers Group · Cosmic Education</span>
+    <span class="dot">★</span>
+  </div>
+
+</article>
+
 <script>
 (function () {
-  const canvas = document.getElementById('c');
-  const ctx    = canvas.getContext('2d');
-
-  let W=0, H=0, dpr=1, cx, cy, R, onResize=null;
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio||1, 2);
-    W = canvas.clientWidth; H = canvas.clientHeight;
-    canvas.width = W*dpr; canvas.height = H*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    if (onResize) onResize();
-  }
-  function setup(fn) { onResize = fn; fn(); }
-
-  // Earth = 4.6 Ga. Each era defined by duration in Ga.
-  // Sectors run clockwise from 12 o'clock (top = oldest = 4.6 Ga ago).
-  // 12 o'clock is also "now" (the circle completes).
   const TOTAL = 4.6;
   const eras = [
-    { name:'Hadean',       sub:'4.6 – 4.0 Ga',  span:0.600, fill:'#180A04', rim:'#5A3028' },
-    { name:'Archean',      sub:'4.0 – 2.5 Ga',  span:1.500, fill:'#0E1E2C', rim:'#3A6888' },
-    { name:'Proterozoic',  sub:'2.5 – 0.54 Ga', span:1.960, fill:'#5C3018', rim:'#C8A24A' },
-    { name:'Paleozoic',    sub:'540 – 252 Ma',   span:0.288, fill:'#122E1E', rim:'#2A7A58' },
-    { name:'Mesozoic',     sub:'252 – 66 Ma',    span:0.186, fill:'#243A14', rim:'#7AAA50' },
-    { name:'Cenozoic',     sub:'66 Ma – now',    span:0.066, fill:'#5A3E0C', rim:'#C8A24A' },
+    { name:'Hadean',      span:0.6,   range:'4.6 – 4.0 Ga ago',
+      fill:'#1B0E08', rim:'#7A3D2E',
+      desc:'A molten Earth. The first oceans condense from steam.' },
+    { name:'Archean',     span:1.5,   range:'4.0 – 2.5 Ga ago',
+      fill:'#0F1E2C', rim:'#3A6888',
+      desc:'The first life: tiny bacteria in a sea without oxygen.' },
+    { name:'Proterozoic', span:1.96,  range:'2.5 Ga – 540 Ma ago',
+      fill:'#5C3018', rim:'#C8A24A',
+      desc:'Photosynthesis fills the air with oxygen. Cells learn to live together.' },
+    { name:'Paleozoic',   span:0.288, range:'540 – 252 Ma ago',
+      fill:'#122E1E', rim:'#2A7A58',
+      desc:'Life leaves the sea. Fish, ferns, the first forests.' },
+    { name:'Mesozoic',    span:0.186, range:'252 – 66 Ma ago',
+      fill:'#243A14', rim:'#9CC264',
+      desc:'The age of dinosaurs. Flowers and birds appear.' },
+    { name:'Cenozoic',    span:0.066, range:'66 Ma ago – now',
+      fill:'#5A3E0C', rim:'#E2C36C',
+      desc:'Mammals spread. Forests, grasslands, and human beings.' },
   ];
-
-  // Pre-compute cumulative fractions
   let cum = 0;
   eras.forEach(e => {
-    e.f0  = cum / TOTAL;
-    e.f1  = (cum + e.span) / TOTAL;
+    e.f0 = cum / TOTAL;
+    e.f1 = (cum + e.span) / TOTAL;
     e.mid = (cum + e.span * 0.5) / TOTAL;
-    cum  += e.span;
+    cum += e.span;
   });
 
-  // fraction → canvas angle (0 = top, clockwise)
+  const R = 240;     // outer radius in svg units
+  const iR = 76;     // inner donut hole
+
+  // angle from fraction (0 = top, clockwise)
   function fToA(f) { return -Math.PI/2 + f * Math.PI*2; }
+  function pt(r, a) { return [Math.cos(a)*r, Math.sin(a)*r]; }
 
-  setup(function init() {
-    cx = W * 0.5;
-    cy = H * 0.5;
-    R  = Math.min(W, H) * 0.36;
+  // Build SVG sectors
+  const svg = document.getElementById('clock-svg');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // Sectors
+  eras.forEach((e, i) => {
+    const a0 = fToA(e.f0);
+    const a1 = fToA(e.f1);
+    const [x0,y0] = pt(R, a0);
+    const [x1,y1] = pt(R, a1);
+    const large = (e.f1 - e.f0) > 0.5 ? 1 : 0;
+
+    const sector = document.createElementNS(NS, 'path');
+    sector.setAttribute('d',
+      `M 0 0 L ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1} Z`);
+    sector.setAttribute('fill', e.fill);
+    svg.appendChild(sector);
+
+    // Spokes
+    const spoke = document.createElementNS(NS, 'line');
+    spoke.setAttribute('x1', 0); spoke.setAttribute('y1', 0);
+    spoke.setAttribute('x2', x0); spoke.setAttribute('y2', y0);
+    spoke.setAttribute('stroke', 'rgba(246,239,226,0.08)');
+    spoke.setAttribute('stroke-width', 0.8);
+    svg.appendChild(spoke);
+
+    // Rim arc
+    const rim = document.createElementNS(NS, 'path');
+    rim.setAttribute('d', `M ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1}`);
+    rim.setAttribute('fill', 'none');
+    rim.setAttribute('stroke', e.rim);
+    rim.setAttribute('stroke-width', 2);
+    rim.setAttribute('stroke-opacity', 0.85);
+    svg.appendChild(rim);
   });
 
-  const INNER   = 0.28;   // inner donut radius as fraction of R
-  const SWEEP   = 24;     // seconds per revolution
+  // Outer ring + 12 hour ticks + center hole
+  const outer = document.createElementNS(NS, 'circle');
+  outer.setAttribute('r', R);
+  outer.setAttribute('fill', 'none');
+  outer.setAttribute('stroke', 'rgba(200,162,74,0.28)');
+  outer.setAttribute('stroke-width', 1);
+  svg.appendChild(outer);
 
-  const start = performance.now();
-
-  function frame(now) {
-    const t = (now - start) / 1000;
-    ctx.fillStyle = '#1A0D06';
-    ctx.fillRect(0, 0, W, H);
-
-    const sweepFrac = (t % SWEEP) / SWEEP;
-
-    // ── Sectors ──────────────────────────────────────────────────────────────
-    eras.forEach(e => {
-      const a0 = fToA(e.f0);
-      const a1 = fToA(e.f1);
-
-      const active = sweepFrac >= e.f0 && sweepFrac < e.f1;
-      const localP = active ? (sweepFrac - e.f0) / (e.f1 - e.f0) : 0;
-      const glow   = active ? Math.sin(localP * Math.PI) : 0;
-
-      // base fill
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.arc(cx, cy, R, a0, a1);
-      ctx.closePath();
-      ctx.fillStyle = e.fill;
-      ctx.fill();
-
-      // glow overlay
-      if (glow > 0) {
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.arc(cx, cy, R, a0, a1);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(250,245,237,' + (glow * 0.12) + ')';
-        ctx.fill();
-      }
-
-      // sector border
-      ctx.strokeStyle = 'rgba(250,245,237,0.06)';
-      ctx.lineWidth = 0.8;
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.arc(cx, cy, R, a0, a1);
-      ctx.closePath();
-      ctx.stroke();
-
-      // colored rim arc
-      ctx.strokeStyle = e.rim + (active ? 'CC' : '44');
-      ctx.lineWidth   = active ? 2.5 : 1;
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, a0, a1);
-      ctx.stroke();
-
-      // ── Label callout ─────────────────────────────────────────────────────
-      const midA    = fToA(e.mid);
-      const cosM    = Math.cos(midA);
-      const sinM    = Math.sin(midA);
-      // callout line from R*1.04 → R*1.22
-      const lineR0  = R * 1.05;
-      const lineR1  = R * 1.24;
-      const textR   = R * 1.30;
-
-      const labelAlpha = active ? (0.4 + 0.6 * Math.sin(localP * Math.PI)) : 0.18;
-
-      ctx.save();
-      ctx.globalAlpha = labelAlpha;
-
-      ctx.strokeStyle = e.rim;
-      ctx.lineWidth   = 0.8;
-      ctx.beginPath();
-      ctx.moveTo(cx + cosM * lineR0, cy + sinM * lineR0);
-      ctx.lineTo(cx + cosM * lineR1, cy + sinM * lineR1);
-      ctx.stroke();
-
-      const tx = cx + cosM * textR;
-      const ty = cy + sinM * textR;
-      ctx.textAlign    = cosM > 0.1 ? 'left' : cosM < -0.1 ? 'right' : 'center';
-      ctx.textBaseline = 'middle';
-
-      const spanDeg = (e.f1 - e.f0) * 360;
-      const fs = Math.max(9, Math.min(15, spanDeg * 0.55 + 6));
-      ctx.font      = '400 ' + fs + "px 'Cormorant Garamond', Georgia, serif";
-      ctx.fillStyle = e.rim;
-      ctx.fillText(e.name, tx, ty);
-
-      if (active) {
-        ctx.font      = '500 8px Inter, sans-serif';
-        ctx.fillStyle = 'rgba(250,245,237,0.55)';
-        ctx.fillText(e.sub, tx, ty + fs * 0.9);
-      }
-
-      ctx.restore();
-    });
-
-    // ── Outer ring ───────────────────────────────────────────────────────────
-    ctx.strokeStyle = 'rgba(200,162,74,0.22)';
-    ctx.lineWidth   = 1;
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
-
-    // ── Donut hole ───────────────────────────────────────────────────────────
-    const iR = R * INNER;
-    ctx.fillStyle = '#1A0D06';
-    ctx.beginPath(); ctx.arc(cx, cy, iR, 0, Math.PI*2); ctx.fill();
-    ctx.strokeStyle = 'rgba(200,162,74,0.15)';
-    ctx.lineWidth   = 1;
-    ctx.beginPath(); ctx.arc(cx, cy, iR, 0, Math.PI*2); ctx.stroke();
-
-    // ── Sweep hand ───────────────────────────────────────────────────────────
-    const handA = fToA(sweepFrac);
-    const hx0 = cx + Math.cos(handA) * iR;
-    const hy0 = cy + Math.sin(handA) * iR;
-    const hx1 = cx + Math.cos(handA) * R;
-    const hy1 = cy + Math.sin(handA) * R;
-    ctx.strokeStyle = 'rgba(250,245,237,0.35)';
-    ctx.lineWidth   = 1;
-    ctx.beginPath(); ctx.moveTo(hx0, hy0); ctx.lineTo(hx1, hy1); ctx.stroke();
-
-    // ── "Now" marker at top (12 o'clock) ─────────────────────────────────────
-    const pulse = 0.55 + 0.45 * Math.sin(t * 2.2);
-    const nowX  = cx;
-    const nowY  = cy - R;
-    // small gold triangle pointing inward
-    ctx.fillStyle = 'rgba(200,162,74,' + pulse + ')';
-    ctx.beginPath();
-    ctx.arc(nowX, nowY, 3.5, 0, Math.PI*2);
-    ctx.fill();
-
-    // ── Center dot ───────────────────────────────────────────────────────────
-    ctx.fillStyle = 'rgba(250,245,237,0.35)';
-    ctx.beginPath(); ctx.arc(cx, cy, 2, 0, Math.PI*2); ctx.fill();
-
-    requestAnimationFrame(frame);
+  for (let i = 0; i < 12; i++) {
+    const a = -Math.PI/2 + (i/12) * Math.PI*2;
+    const [x0,y0] = pt(R*0.97, a);
+    const [x1,y1] = pt(R*1.005, a);
+    const tick = document.createElementNS(NS, 'line');
+    tick.setAttribute('x1',x0); tick.setAttribute('y1',y0);
+    tick.setAttribute('x2',x1); tick.setAttribute('y2',y1);
+    tick.setAttribute('stroke','rgba(200,162,74,0.3)');
+    tick.setAttribute('stroke-width', i % 3 === 0 ? 1.4 : 0.8);
+    svg.appendChild(tick);
   }
 
-  requestAnimationFrame(frame);
-  resize();
-  window.addEventListener('resize', resize);
+  // Donut hole
+  const hole = document.createElementNS(NS, 'circle');
+  hole.setAttribute('r', iR);
+  hole.setAttribute('fill', '#1A0D06');
+  hole.setAttribute('stroke', 'rgba(200,162,74,0.25)');
+  hole.setAttribute('stroke-width', 1);
+  svg.appendChild(hole);
+
+  // Center mark
+  const centerLabel = document.createElementNS(NS, 'text');
+  centerLabel.setAttribute('x', 0);
+  centerLabel.setAttribute('y', -6);
+  centerLabel.setAttribute('text-anchor', 'middle');
+  centerLabel.setAttribute('font-family', "'Cormorant Garamond', serif");
+  centerLabel.setAttribute('font-style', 'italic');
+  centerLabel.setAttribute('font-size', 16);
+  centerLabel.setAttribute('fill', '#C8A24A');
+  centerLabel.textContent = 'Earth';
+  svg.appendChild(centerLabel);
+
+  const centerSub = document.createElementNS(NS, 'text');
+  centerSub.setAttribute('x', 0);
+  centerSub.setAttribute('y', 12);
+  centerSub.setAttribute('text-anchor', 'middle');
+  centerSub.setAttribute('font-family', 'Montserrat, sans-serif');
+  centerSub.setAttribute('font-size', 9);
+  centerSub.setAttribute('letter-spacing', 2);
+  centerSub.setAttribute('fill', 'rgba(246,239,226,0.55)');
+  centerSub.textContent = '4.6 BILLION YEARS';
+  svg.appendChild(centerSub);
+
+  // "NOW" marker at top
+  const nowDot = document.createElementNS(NS, 'circle');
+  nowDot.setAttribute('cx', 0);
+  nowDot.setAttribute('cy', -R);
+  nowDot.setAttribute('r', 4);
+  nowDot.setAttribute('fill', '#E2C36C');
+  svg.appendChild(nowDot);
+  const nowText = document.createElementNS(NS, 'text');
+  nowText.setAttribute('x', 0);
+  nowText.setAttribute('y', -R - 14);
+  nowText.setAttribute('text-anchor', 'middle');
+  nowText.setAttribute('font-family', 'Montserrat, sans-serif');
+  nowText.setAttribute('font-size', 10);
+  nowText.setAttribute('letter-spacing', 2);
+  nowText.setAttribute('fill', '#E2C36C');
+  nowText.textContent = 'NOW';
+  svg.appendChild(nowText);
+
+  // Era labels — placed on the OUTSIDE for narrow sectors, INSIDE for wide.
+  // Narrow sectors that cluster near the top get STAGGERED leader lengths so
+  // labels don't pile on top of each other. We group narrow eras by which
+  // 90° quadrant their midpoint falls in.
+  const narrowEras = eras.filter(e => ((e.f1 - e.f0) * 360) < 30);
+  // Quadrant key: round midA to nearest π/2.
+  function quadKey(e) {
+    const a = fToA(e.mid);
+    return Math.round(a / (Math.PI / 2));
+  }
+  const groups = {};
+  narrowEras.forEach(e => {
+    const k = quadKey(e);
+    (groups[k] = groups[k] || []).push(e);
+  });
+  // For each group, sort by angle so the closest-to-axis era gets shortest hook.
+  const staggerMap = new Map();
+  Object.values(groups).forEach(group => {
+    // Sort by absolute distance from the nearest cardinal direction
+    group.sort((a, b) => Math.abs(fToA(a.mid) - quadKey(a) * Math.PI / 2)
+                      - Math.abs(fToA(b.mid) - quadKey(b) * Math.PI / 2));
+    group.forEach((e, idx) => staggerMap.set(e, idx));
+  });
+
+  eras.forEach((e, i) => {
+    const midA = fToA(e.mid);
+    const cosM = Math.cos(midA), sinM = Math.sin(midA);
+    const spanDeg = (e.f1 - e.f0) * 360;
+    const isNarrow = spanDeg < 30;
+
+    if (isNarrow) {
+      // External callout. Stagger by group index.
+      const nIdx = staggerMap.get(e) || 0;
+      const stagger = nIdx * 42;
+      const lineR0 = R * 1.02;
+      const lineR1 = R * 1.14 + stagger;
+      // Hook horizontally outward; deeper hook for staggered ones.
+      const hookX = (cosM > 0 ? 1 : -1) * (24 + nIdx * 24);
+      const [lx0, ly0] = pt(lineR0, midA);
+      const [lx1, ly1] = pt(lineR1, midA);
+      const lx2 = lx1 + hookX;
+      const ly2 = ly1;
+
+      const lead = document.createElementNS(NS, 'path');
+      lead.setAttribute('d', `M ${lx0} ${ly0} L ${lx1} ${ly1} L ${lx2} ${ly2}`);
+      lead.setAttribute('stroke', e.rim);
+      lead.setAttribute('stroke-width', 1);
+      lead.setAttribute('fill', 'none');
+      lead.setAttribute('opacity', 0.7);
+      svg.appendChild(lead);
+
+      const tx = lx2 + (cosM > 0 ? 6 : -6);
+      const tAlign = cosM > 0 ? 'start' : 'end';
+
+      const num = document.createElementNS(NS, 'text');
+      num.setAttribute('x', tx); num.setAttribute('y', ly2 - 14);
+      num.setAttribute('text-anchor', tAlign);
+      num.setAttribute('font-family', "'Cormorant Garamond', serif");
+      num.setAttribute('font-style', 'italic');
+      num.setAttribute('font-size', 11);
+      num.setAttribute('fill', e.rim);
+      num.setAttribute('opacity', 0.7);
+      num.textContent = `№ 0${i+1}`;
+      svg.appendChild(num);
+
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', tx); t.setAttribute('y', ly2 - 1);
+      t.setAttribute('text-anchor', tAlign);
+      t.setAttribute('font-family', "'Cormorant Garamond', serif");
+      t.setAttribute('font-weight', 500);
+      t.setAttribute('font-size', 16);
+      t.setAttribute('fill', e.rim);
+      t.textContent = e.name;
+      svg.appendChild(t);
+
+      const sub = document.createElementNS(NS, 'text');
+      sub.setAttribute('x', tx); sub.setAttribute('y', ly2 + 13);
+      sub.setAttribute('text-anchor', tAlign);
+      sub.setAttribute('font-family', 'Montserrat, sans-serif');
+      sub.setAttribute('font-size', 8.5);
+      sub.setAttribute('letter-spacing', 0.8);
+      sub.setAttribute('fill', 'rgba(246,239,226,0.6)');
+      sub.textContent = e.range;
+      svg.appendChild(sub);
+    } else {
+      // Internal label, halfway between iR and R
+      const labelR = (R + iR) * 0.5;
+      const [tx, ty] = pt(labelR, midA);
+      // rotate to follow arc
+      let rotDeg = midA * 180 / Math.PI + 90;
+      if (rotDeg > 90 && rotDeg < 270) rotDeg -= 180;
+
+      const num = document.createElementNS(NS, 'text');
+      num.setAttribute('x', tx); num.setAttribute('y', ty - 16);
+      num.setAttribute('text-anchor', 'middle');
+      num.setAttribute('font-family', "'Cormorant Garamond', serif");
+      num.setAttribute('font-style', 'italic');
+      num.setAttribute('font-size', 12);
+      num.setAttribute('fill', e.rim);
+      num.setAttribute('opacity', 0.85);
+      num.textContent = `№ 0${i+1}`;
+      svg.appendChild(num);
+
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', tx); t.setAttribute('y', ty);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('font-family', "'Cormorant Garamond', serif");
+      t.setAttribute('font-weight', 500);
+      t.setAttribute('font-size', 22);
+      t.setAttribute('fill', '#F6EFE2');
+      t.textContent = e.name;
+      svg.appendChild(t);
+
+      const sub = document.createElementNS(NS, 'text');
+      sub.setAttribute('x', tx); sub.setAttribute('y', ty + 16);
+      sub.setAttribute('text-anchor', 'middle');
+      sub.setAttribute('font-family', 'Montserrat, sans-serif');
+      sub.setAttribute('font-size', 9);
+      sub.setAttribute('letter-spacing', 1);
+      sub.setAttribute('fill', 'rgba(246,239,226,0.7)');
+      sub.textContent = e.range;
+      svg.appendChild(sub);
+    }
+  });
+
+  // Legend below
+  const legend = document.getElementById('legend');
+  legend.innerHTML = eras.map((e, i) => `
+    <div class="legend-cell" style="--accent: ${e.rim}">
+      <div class="num">№ 0${i+1}</div>
+      <div class="name">${e.name}</div>
+      <div class="range">${e.range.toUpperCase()}</div>
+      <div class="desc">${e.desc}</div>
+    </div>`).join('');
 }());
 </script>
 </body>

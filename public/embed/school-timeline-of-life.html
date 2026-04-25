@@ -2,169 +2,339 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Timeline of Life</title>
+<title>The Timeline of Life</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; padding:0; background:#FAF5ED; overflow:hidden; height:100%; }
-  .stage { position:fixed; inset:0; }
-  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
-  .grain { position:absolute; inset:0; pointer-events:none;
+  :root {
+    --bg: #FAF5ED;
+    --ink: #2C1A0E;
+    --mute: rgba(44,26,14,0.65);
+    --gold: #8A6B2E;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', system-ui, sans-serif;
+  }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); min-height:100vh; }
+  .grain { position:fixed; inset:0; pointer-events:none; z-index:0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     background-size:200px 200px; opacity:0.04; mix-blend-mode:multiply; }
+  .poster { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:48px 40px 64px; }
+
+  .header { text-align:center; margin-bottom:24px; }
+  .eyebrow { font-size:11px; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--gold); display:inline-flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .eyebrow::before, .eyebrow::after { content:''; width:32px; height:1px; background:var(--gold); }
+  h1 { font-family:var(--serif); font-weight:500; font-size:clamp(36px,4vw,52px);
+    line-height:1; margin:0 0 10px; letter-spacing:-0.005em; }
+  .tagline { font-family:var(--serif); font-style:italic; font-size:clamp(15px,1.6vw,18px);
+    color:var(--mute); max-width:680px; margin:0 auto; }
+
+  .timeline-wrap {
+    background: rgba(0,0,0,0.02);
+    border-top: 1px solid rgba(44,26,14,0.15);
+    border-bottom: 1px solid rgba(44,26,14,0.15);
+    margin: 32px 0 28px;
+    padding: 16px 0;
+    overflow: hidden;
+  }
+  .timeline-wrap svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 24px;
+    border-top: 1px solid rgba(44,26,14,0.15);
+  }
+  .legend-band {
+    padding: 18px 22px;
+    border-right: 1px solid rgba(44,26,14,0.10);
+    border-bottom: 1px solid rgba(44,26,14,0.10);
+    border-top: 3px solid var(--accent);
+  }
+  .legend-band:last-child { border-right: 0; }
+  .legend-band .band-name {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 17px; color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .legend-band .band-range {
+    font-size: 9.5px; letter-spacing: 0.18em;
+    color: var(--mute); margin-bottom: 8px;
+  }
+  .legend-band .band-desc {
+    font-family: var(--serif); font-style: italic;
+    font-size: 13px; line-height: 1.45;
+    color: rgba(44,26,14,0.78);
+  }
+
+  .footnote { margin-top: 24px; text-align:center;
+    font-size: 10px; letter-spacing: 0.24em; text-transform:uppercase;
+    color: rgba(44,26,14,0.5);
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .footnote .dot { color: var(--gold); }
+  .footnote em {
+    font-style: italic; text-transform: none; letter-spacing: 0.04em;
+    color: rgba(44,26,14,0.55); font-family: var(--serif); font-size: 12px;
+  }
+
+  @media (max-width: 800px) {
+    .legend-grid { grid-template-columns: 1fr; }
+    .legend-band { border-right: 0; }
+  }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="stage">
-  <canvas id="c"></canvas>
-  <div class="grain"></div>
-</div>
+<div class="grain"></div>
+
+<article class="poster" data-screen-label="Timeline of Life">
+
+  <header class="header">
+    <div class="eyebrow">Cosmic Education · Timeline II</div>
+    <h1>The Timeline of Life</h1>
+    <div class="tagline">Four billion years of evolution, with the dates we know today.</div>
+  </header>
+
+  <div class="timeline-wrap">
+    <svg id="tl" viewBox="0 0 1320 640" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <section class="legend-grid" id="legend"></section>
+
+  <div class="footnote">
+    <span class="dot">★</span>
+    <em>Ages reflect 2020s scientific consensus.</em>
+    <span class="dot">★</span>
+    <span>Montessori Makers Group · Cosmic Education</span>
+    <span class="dot">★</span>
+  </div>
+</article>
+
 <script>
 (function () {
-  const canvas = document.getElementById('c');
-  const ctx    = canvas.getContext('2d');
-
-  let W=0, H=0, dpr=1, axisY, x0, x1, onResize=null;
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio||1, 2);
-    W = canvas.clientWidth; H = canvas.clientHeight;
-    canvas.width = W*dpr; canvas.height = H*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    if (onResize) onResize();
-  }
-  function setup(fn) { onResize = fn; fn(); }
-
-  // Events in billions of years ago (Ga). x-axis: 3.8 Ga (left) → 0 (right).
-  const SPAN = 3.8;
+  // ── Events. Ages in Ga (billions of years ago).
   const events = [
-    { name:'First life',         sub:'chemosynthetic bacteria',  age:3.80, above:false, color:'#C8A24A' },
-    { name:'Photosynthesis',     sub:'cyanobacteria, oxygen begins', age:2.70, above:true,  color:'#2A7A58' },
-    { name:'Complex cells',      sub:'eukaryotes',               age:2.00, above:false, color:'#8A7060' },
-    { name:'Multicellular life', sub:'first animals',            age:0.70, above:true,  color:'#2A7A58' },
-    { name:'Cambrian explosion', sub:'most major phyla appear',  age:0.54, above:false, color:'#C8A24A' },
-    { name:'Land plants',        sub:'vascular plants colonize', age:0.47, above:true,  color:'#2A7A58' },
-    { name:'Land vertebrates',   sub:'tetrapods',                age:0.36, above:false, color:'#8A7060' },
-    { name:'Dinosaurs',          sub:'& first mammals',          age:0.23, above:true,  color:'#C8A24A' },
-    { name:'Mass extinction',    sub:'K-Pg boundary, 66 Ma',     age:0.066,above:false, color:'#8A5040' },
-    { name:'Humans',             sub:'Homo sapiens',             age:0.0003,above:true, color:'#2C1A0E' },
+    { name:'Possible earliest life',  age:3.95, color:'#8A6B2E',
+      desc:'Carbon isotope hints in Nuvvuagittuq rocks; debated.' },
+    { name:'Confirmed microbial life', age:3.48, color:'#A08055',
+      desc:'Stromatolites at Dresser Formation, Australia.' },
+    { name:'Oxygenic photosynthesis', age:3.00, color:'#2A7A58',
+      desc:'Cyanobacteria split water. Oxygen begins.' },
+    { name:'Great Oxidation Event',   age:2.40, color:'#3D8754',
+      desc:'Atmospheric oxygen rises sharply.' },
+    { name:'Eukaryotes',              age:1.85, color:'#8A5040',
+      desc:'Cells with nuclei. The deepest symbiosis.' },
+    { name:'Snowball Earth',          age:0.72, color:'#5A7080',
+      desc:'Earth freezes nearly pole to pole, twice.' },
+    { name:'First animals',           age:0.575,color:'#2A7A58',
+      desc:'Ediacaran fronds in shallow seas.' },
+    { name:'Cambrian explosion',      age:0.539,color:'#C8A24A',
+      desc:'Most major animal body plans appear.' },
+    { name:'Land plants',             age:0.47, color:'#3D8754',
+      desc:'Liverworts and mosses. Continents go green.' },
+    { name:'Tetrapods on land',       age:0.375,color:'#8A5040',
+      desc:'Lobe-finned fish evolve limbs.' },
+    { name:'Permian extinction',      age:0.252,color:'#7A2E1E',
+      desc:'"The Great Dying." Up to 90% of marine species lost.' },
+    { name:'Dinosaurs & mammals',     age:0.230,color:'#9C7A3A',
+      desc:'Both lineages emerge in the Triassic.' },
+    { name:'Flowering plants',        age:0.130,color:'#B86A52',
+      desc:'Angiosperms diversify with insects.' },
+    { name:'K–Pg extinction',         age:0.066,color:'#5A1A0E',
+      desc:'Chicxulub asteroid. Non-avian dinosaurs vanish.' },
+    { name:'Homo sapiens',            age:0.0003,color:'#2C1A0E',
+      desc:'Our species emerges in Africa.' },
   ];
 
-  setup(function init() {
-    axisY = H * 0.58;
-    x0    = W * 0.06;
-    x1    = W * 0.94;
-  });
+  const bands = [
+    { label:'Archean',     range:'4.0 – 2.5 Ga', from:4.0,  to:2.5,  color:'#3A6888',
+      desc:'A world without oxygen. The first cells appear and learn to capture sunlight.' },
+    { label:'Proterozoic', range:'2.5 Ga – 539 Ma', from:2.5, to:0.539, color:'#C8A24A',
+      desc:'Air gains oxygen. Cells become complex. Earth freezes, then thaws.' },
+    { label:'Phanerozoic', range:'539 Ma – now', from:0.539, to:0,    color:'#2A7A58',
+      desc:'Visible life. Animals, plants, mass extinctions, and us.' },
+  ];
 
-  function ageToX(a) { return x0 + (SPAN - a) / SPAN * (x1 - x0); }
+  // SVG scale: 1320 x 640
+  const W = 1320, H = 640;
+  const pad = { l: 70, r: 70, t: 60, b: 80 };
+  const axisY = 380;
+  const x0 = pad.l, x1 = W - pad.r;
+  const SPAN = 4.2;
 
-  const SLOT = 2.2; // seconds each event is highlighted
-  const TOTAL_TIME = events.length * SLOT;
-  const start = performance.now();
-
-  function frame(now) {
-    const t = (now - start) / 1000;
-    ctx.fillStyle = '#FAF5ED';
-    ctx.fillRect(0, 0, W, H);
-
-    const focusIdx = Math.floor((t % TOTAL_TIME) / SLOT);
-    const localP   = ((t % TOTAL_TIME) - focusIdx * SLOT) / SLOT;
-
-    // ── Era background bands ──────────────────────────────────────────────────
-    const bands = [
-      { label:'Hadean / Archean',  from:3.8,  to:2.5,  color:'rgba(30,15,6,0.06)' },
-      { label:'Proterozoic',       from:2.5,  to:0.54, color:'rgba(140,80,40,0.05)' },
-      { label:'Phanerozoic',       from:0.54, to:0,    color:'rgba(42,122,88,0.06)' },
-    ];
-    bands.forEach(b => {
-      const bx0 = ageToX(b.from);
-      const bx1 = ageToX(b.to);
-      ctx.fillStyle = b.color;
-      ctx.fillRect(bx0, H*0.08, bx1-bx0, H*0.82);
-      ctx.fillStyle = 'rgba(44,26,14,0.20)';
-      ctx.font = '500 8px Inter, sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(b.label.toUpperCase(), bx0 + 5, H*0.92);
-    });
-
-    // ── Axis line ─────────────────────────────────────────────────────────────
-    ctx.strokeStyle = 'rgba(44,26,14,0.30)';
-    ctx.lineWidth   = 1;
-    ctx.beginPath(); ctx.moveTo(x0, axisY); ctx.lineTo(x1, axisY); ctx.stroke();
-
-    // Tick marks
-    [3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0].forEach(a => {
-      const x = ageToX(a);
-      ctx.strokeStyle = 'rgba(44,26,14,0.22)';
-      ctx.lineWidth   = 0.8;
-      ctx.beginPath(); ctx.moveTo(x, axisY); ctx.lineTo(x, axisY+5); ctx.stroke();
-      ctx.fillStyle   = 'rgba(44,26,14,0.45)';
-      ctx.font        = '500 9px Inter, sans-serif';
-      ctx.textAlign   = 'center';
-      ctx.fillText(a === 0 ? 'now' : a + ' Ga', x, axisY + 17);
-    });
-
-    // ── Events ────────────────────────────────────────────────────────────────
-    events.forEach((ev, i) => {
-      const ex      = ageToX(ev.age);
-      const isFocus = i === focusIdx;
-      const lP      = isFocus ? localP : 0;
-      const glow    = isFocus ? Math.sin(lP * Math.PI) : 0;
-      const alpha   = isFocus ? 0.9 : 0.30;
-      const stemLen = (H * 0.22) + (isFocus ? H * 0.06 * glow : 0);
-      const ey      = ev.above ? axisY - stemLen : axisY + stemLen;
-
-      // stem
-      ctx.strokeStyle = ev.color + Math.floor(alpha * 255 * 0.6).toString(16).padStart(2,'0');
-      ctx.lineWidth   = isFocus ? 1.2 : 0.7;
-      ctx.beginPath(); ctx.moveTo(ex, axisY); ctx.lineTo(ex, ey); ctx.stroke();
-
-      // dot on axis
-      ctx.fillStyle = ev.color + Math.floor(alpha * 255).toString(16).padStart(2,'0');
-      ctx.beginPath(); ctx.arc(ex, axisY, isFocus ? 4 : 2.5, 0, Math.PI*2); ctx.fill();
-
-      // glow halo when active
-      if (glow > 0) {
-        const g = ctx.createRadialGradient(ex, axisY, 0, ex, axisY, 18);
-        g.addColorStop(0, ev.color + Math.floor(glow * 0.35 * 255).toString(16).padStart(2,'0'));
-        g.addColorStop(1, ev.color + '00');
-        ctx.fillStyle = g;
-        ctx.beginPath(); ctx.arc(ex, axisY, 18, 0, Math.PI*2); ctx.fill();
-      }
-
-      // label at tip
-      ctx.save();
-      ctx.globalAlpha = alpha;
-      const labelY = ev.above ? ey - 8 : ey + 8;
-      ctx.textAlign    = 'center';
-      ctx.textBaseline = ev.above ? 'bottom' : 'top';
-
-      const fs = Math.max(10, Math.min(14, W * 0.018));
-      ctx.font      = '400 ' + fs + "px 'Cormorant Garamond', Georgia, serif";
-      ctx.fillStyle = '#2C1A0E';
-      ctx.fillText(ev.name, ex, labelY);
-
-      if (isFocus && glow > 0.3) {
-        ctx.font        = '500 8px Inter, sans-serif';
-        ctx.fillStyle   = 'rgba(44,26,14,0.55)';
-        ctx.globalAlpha = alpha * glow;
-        ctx.fillText(ev.sub, ex, ev.above ? labelY - fs - 2 : labelY + fs + 2);
-      }
-      ctx.restore();
-    });
-
-    // ── "Now" endpoint ────────────────────────────────────────────────────────
-    const pulse = 0.5 + 0.5 * Math.sin(t * 2.5);
-    ctx.fillStyle = 'rgba(44,26,14,' + (pulse * 0.6) + ')';
-    ctx.beginPath(); ctx.arc(x1, axisY, 3, 0, Math.PI*2); ctx.fill();
-
-    requestAnimationFrame(frame);
+  // Power scale: bias right side (recent) so labels don't crush
+  function ageToX(a) {
+    const norm = a / SPAN;       // 0 (recent) .. 1 (oldest)
+    const k = 0.42;
+    const skewed = Math.pow(norm, k);
+    return x0 + (1 - skewed) * (x1 - x0);
   }
 
-  requestAnimationFrame(frame);
-  resize();
-  window.addEventListener('resize', resize);
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('tl');
+
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // Era bands
+  bands.forEach(b => {
+    const bx0 = ageToX(b.from), bx1 = ageToX(b.to);
+    // Band tint covers the FULL chart height under the labels
+    svg.appendChild(el('rect', {
+      x: bx0, y: 60, width: bx1-bx0, height: H-60-pad.b+30,
+      fill: b.color, 'fill-opacity': 0.06,
+    }));
+    // Top label sits ABOVE the slot zone
+    svg.appendChild(el('text', {
+      x: (bx0+bx1)/2, y: 45, 'text-anchor':'middle',
+      'font-family':'Montserrat,sans-serif', 'font-size':10, 'letter-spacing':2,
+      'font-weight':600, fill:'rgba(44,26,14,0.5)',
+    }, b.label.toUpperCase()));
+    // separator line
+    if (b.to > 0) {
+      svg.appendChild(el('line', {
+        x1: bx1, y1: 60, x2: bx1, y2: H-pad.b+10,
+        stroke:'rgba(44,26,14,0.15)', 'stroke-dasharray':'2,4'
+      }));
+    }
+  });
+
+  // Axis
+  svg.appendChild(el('line', {
+    x1:x0, y1:axisY, x2:x1, y2:axisY,
+    stroke:'rgba(44,26,14,0.55)', 'stroke-width':1.2,
+  }));
+
+  // Tick marks
+  const ticks = [4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.25, 0.1, 0.05, 0];
+  ticks.forEach(a => {
+    const x = ageToX(a);
+    svg.appendChild(el('line', {
+      x1:x, y1:axisY, x2:x, y2:axisY+6,
+      stroke:'rgba(44,26,14,0.35)', 'stroke-width':0.8
+    }));
+    svg.appendChild(el('text', {
+      x:x, y:axisY+20, 'text-anchor':'middle',
+      'font-family':'Montserrat,sans-serif', 'font-size':10,
+      'letter-spacing':0.5, fill:'rgba(44,26,14,0.65)',
+    }, a === 0 ? 'NOW' : (a >= 1 ? a + ' Ga' : (a*1000) + ' Ma')));
+  });
+
+  // ── Smart label placement using ACTUAL measured widths ──
+  // Slots are y-offsets from the axis. Multiple slots above and below.
+  const slotsAbove = [-240, -190, -140, -90, -50];
+  const slotsBelow = [70, 120, 170, 220];
+
+  // Approximate label width from character count (font is loaded async,
+  // and getBBox would require live measurement; this is close enough
+  // for the serif at 14px + Montserrat at 9.5px).
+  function estimateLabelWidth(p) {
+    const nameW = p.name.length * 7.6;       // serif 14px ≈ 7.6 px/ch
+    return Math.max(nameW, 60) + 8;          // +padding
+  }
+
+  const placed = events.map((e, idx) => ({
+    ...e, idx, x: ageToX(e.age), w: 0
+  }));
+  placed.forEach(p => p.w = estimateLabelWidth(p));
+  placed.sort((a,b) => a.x - b.x);
+
+  // For each event, find the slot whose horizontal interval [x-w/2, x+w/2]
+  // does not intersect any already-placed label in that slot.
+  const slotUsage = {}; // slotKey -> array of {x0, x1}
+  const padX = 12;     // horizontal padding between adjacent labels
+
+  placed.forEach((p, i) => {
+    const sideOrder = i % 2 === 0 ? ['above','below'] : ['below','above'];
+    let ok = false;
+    for (const side of sideOrder) {
+      const slots = side === 'above' ? slotsAbove : slotsBelow;
+      for (let s = 0; s < slots.length; s++) {
+        const slotKey = side + s;
+        const used = slotUsage[slotKey] || [];
+        const x0 = p.x - p.w/2 - padX;
+        const x1 = p.x + p.w/2 + padX;
+        const collide = used.some(u => !(x1 < u.x0 || x0 > u.x1));
+        if (!collide) {
+          p.side = side;
+          p.slotIdx = s;
+          p.dy = slots[s];
+          slotUsage[slotKey] = used.concat([{ x0, x1 }]);
+          ok = true;
+          break;
+        }
+      }
+      if (ok) break;
+    }
+    if (!ok) {
+      // Fallback to deepest slot
+      p.side = 'above'; p.slotIdx = slotsAbove.length - 1;
+      p.dy = slotsAbove[slotsAbove.length - 1];
+    }
+  });
+
+  // Draw events
+  placed.forEach(p => {
+    const stemY = axisY + p.dy;
+    const above = p.dy < 0;
+
+    // stem
+    svg.appendChild(el('line', {
+      x1: p.x, y1: axisY, x2: p.x, y2: stemY,
+      stroke: p.color, 'stroke-opacity': 0.55, 'stroke-width': 1
+    }));
+    // axis dot
+    svg.appendChild(el('circle', {
+      cx: p.x, cy: axisY, r: 3.5, fill: p.color
+    }));
+    // tip dot
+    svg.appendChild(el('circle', {
+      cx: p.x, cy: stemY, r: 2.5, fill: p.color
+    }));
+
+    // label name + age
+    const labelY = above ? stemY - 6 : stemY + 6;
+    const baseline = above ? 'auto' : 'hanging';
+
+    svg.appendChild(el('text', {
+      x: p.x, y: labelY,
+      'text-anchor':'middle',
+      'dominant-baseline': baseline,
+      'font-family': "'Cormorant Garamond', Georgia, serif",
+      'font-weight': 500, 'font-size': 14, fill: '#2C1A0E'
+    }, p.name));
+
+    const ageText = p.age >= 1 ? p.age + ' Ga' :
+                    p.age >= 0.001 ? (p.age*1000).toFixed(p.age < 0.01 ? 1 : 0) + ' Ma' :
+                    Math.round(p.age*1e6) + ' Ka';
+    svg.appendChild(el('text', {
+      x: p.x, y: above ? labelY - 16 : labelY + 16,
+      'text-anchor':'middle',
+      'dominant-baseline': baseline,
+      'font-family': 'Montserrat, sans-serif',
+      'font-size': 9.5, 'letter-spacing': 0.5,
+      fill: 'rgba(44,26,14,0.6)'
+    }, ageText));
+  });
+
+  // Legend
+  const legend = document.getElementById('legend');
+  legend.innerHTML = bands.map(b => `
+    <div class="legend-band" style="--accent: ${b.color}">
+      <div class="band-name">${b.label}</div>
+      <div class="band-range">${b.range.toUpperCase()}</div>
+      <div class="band-desc">${b.desc}</div>
+    </div>`).join('');
 }());
 </script>
 </body>
