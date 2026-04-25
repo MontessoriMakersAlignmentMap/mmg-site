@@ -100,8 +100,8 @@ export default function LearningPage() {
             <p className="text-[#d6a758] text-[11px] tracking-[0.22em] uppercase">
               Montessori Makers Learning
             </p>
-            <div className="hidden md:block">
-              <Logo name="learning" heroWidth={380} heroHeight={380} />
+            <div className="hidden md:block overflow-hidden rounded-sm" style={{ width: 400, height: 400 }}>
+              <iframe src="/embed/learning-cohort.html" className="w-full h-full border-0 block" title="Learning animation" loading="lazy" />
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-start">
