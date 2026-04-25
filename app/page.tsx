@@ -449,7 +449,7 @@ function Ecosystem() {
   return (
     <section id="ecosystem" className="bg-[#FAF9F7] py-28 md:py-40 px-6 md:px-10">
       {/* Ecosystem animation strip */}
-      <div className="w-full mb-16 overflow-hidden" style={{ height: 280 }}>
+      <div className="w-full mb-16 overflow-hidden" style={{ height: 320 }}>
         <iframe src="/embed/ecosystem-five.html" className="w-full h-full border-0 block" title="MMG Ecosystem" loading="lazy" />
       </div>
       <div className="max-w-7xl mx-auto">

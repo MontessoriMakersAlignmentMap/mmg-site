@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Five-cube Ecosystem</title>
+<title>MMG Ecosystem</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
   html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
@@ -11,14 +11,14 @@
   .grain { position:absolute; inset:0; pointer-events:none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
-  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+  .label { position:absolute; left:5.33%; top:8%; color:#fff;
     font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; }
   .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
     color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
   .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
   .title { font-family:'Cormorant Garamond', Georgia, serif;
-    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
-    margin-top:14px; color:#fff; }
+    font-size:clamp(18px,2.3vw,30px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:10px; color:#fff; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
   <div class="grain"></div>
   <div class="label">
     <div class="eyebrow">MMG · Ecosystem</div>
-    <div class="title">One company.<br/>Five surfaces.</div>
+    <div class="title">One ecosystem.<br/>Every piece connected.</div>
   </div>
 </div>
 <script>
@@ -47,73 +47,136 @@
     if(typeof onResize==='function') onResize();
   }
   function setup(fn){ onResize=fn; fn(); }
-  
-  const NAMES = ["Advisory","Institute","MMAP","MMAS","MatchHub"];
-  let cubes, baseY, spacing, cubeSize;
+
+  const ROW1 = ["Advisory","Institute","Residency","MatchHub","Studio"];
+  const ROW2 = ["MMAP","MMAS","Field Guide","Toolbox","Learning","Meridian","Family"];
+
+  let cubes1, cubes2, row1Y, row2Y, cs1, cs2;
+
   setup(function init(){
-    cubeSize = Math.min(W*0.07, H*0.18);
-    baseY = H*0.42;
-    const margin = W*0.10;
-    spacing = (W - margin*2) / 4;
-    cubes = NAMES.map((n,i) => {
-      const targetX = margin + spacing*i;
-      const fromX = i%2===0 ? -cubeSize*3 : W + cubeSize*3;
-      const fromY = baseY + (Math.random()-0.5)*H*0.4;
-      return { name:n, targetX, targetY:baseY, fromX, fromY, delay:i*0.22, size:cubeSize };
-    });
+    cs1 = Math.min(W*0.052, H*0.135, 44);
+    cs2 = Math.min(W*0.038, H*0.10,  33);
+    row1Y = H * 0.44;
+    row2Y = H * 0.78;
+
+    const m1 = W * 0.11, sp1 = (W - m1*2) / (ROW1.length - 1);
+    const m2 = W * 0.07, sp2 = (W - m2*2) / (ROW2.length - 1);
+
+    cubes1 = ROW1.map((n,i) => ({
+      name: n, targetX: m1 + sp1*i, targetY: row1Y,
+      fromX: i%2===0 ? -cs1*4 : W+cs1*4,
+      fromY: row1Y + (Math.random()-0.5)*H*0.35,
+      delay: i*0.20, size: cs1, gold: true
+    }));
+    cubes2 = ROW2.map((n,i) => ({
+      name: n, targetX: m2 + sp2*i, targetY: row2Y,
+      fromX: i%2===0 ? W+cs2*4 : -cs2*4,
+      fromY: row2Y + (Math.random()-0.5)*H*0.30,
+      delay: 0.40 + i*0.16, size: cs2, gold: false
+    }));
   });
-  const LOOP = 9, HOLD_END = 7.0, OUT_END = 9.0;
-  const ease = t => t<0.5? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
-  const start = performance.now();
-  function drawCube(x,y,size,alpha){
+
+  const LOOP = 11, HOLD_END = 8.2, OUT_END = 11.0;
+  const ease = t => t<0.5? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+
+  function globalAlpha(t){
+    if(t > HOLD_END){ return Math.max(0, 1-(t-HOLD_END)/(OUT_END-HOLD_END)); }
+    return 1;
+  }
+
+  function drawGoldCube(x,y,size,alpha){
     if(alpha<=0.01) return;
-    const s = size*0.5;
-    const TOP=[x,y-s], TR=[x+s,y-s/2], BR=[x+s,y+s/2], BOT=[x,y+s], BL=[x-s,y+s/2], TL=[x-s,y-s/2], C=[x,y];
-    ctx.globalAlpha = alpha;
+    const s=size*0.5;
+    const TOP=[x,y-s],TR=[x+s,y-s/2],BR=[x+s,y+s/2],BOT=[x,y+s],BL=[x-s,y+s/2],TL=[x-s,y-s/2],C=[x,y];
+    ctx.globalAlpha=alpha;
     ctx.fillStyle="#f0d9a1"; ctx.beginPath(); ctx.moveTo(TOP[0],TOP[1]); ctx.lineTo(TR[0],TR[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(TL[0],TL[1]); ctx.closePath(); ctx.fill();
     ctx.fillStyle="#d6a758"; ctx.beginPath(); ctx.moveTo(TR[0],TR[1]); ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BOT[0],BOT[1]); ctx.lineTo(C[0],C[1]); ctx.closePath(); ctx.fill();
     ctx.fillStyle="#e1be7a"; ctx.beginPath(); ctx.moveTo(TL[0],TL[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(BOT[0],BOT[1]); ctx.lineTo(BL[0],BL[1]); ctx.closePath(); ctx.fill();
-    ctx.globalAlpha = 1;
+    ctx.globalAlpha=1;
   }
+
+  function drawWhiteCube(x,y,size,alpha){
+    if(alpha<=0.01) return;
+    const s=size*0.5;
+    const TOP=[x,y-s],TR=[x+s,y-s/2],BR=[x+s,y+s/2],BOT=[x,y+s],BL=[x-s,y+s/2],TL=[x-s,y-s/2],C=[x,y];
+    ctx.globalAlpha=alpha*0.72;
+    ctx.fillStyle="rgba(200,218,235,0.95)"; ctx.beginPath(); ctx.moveTo(TOP[0],TOP[1]); ctx.lineTo(TR[0],TR[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(TL[0],TL[1]); ctx.closePath(); ctx.fill();
+    ctx.fillStyle="rgba(110,150,185,0.95)"; ctx.beginPath(); ctx.moveTo(TR[0],TR[1]); ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BOT[0],BOT[1]); ctx.lineTo(C[0],C[1]); ctx.closePath(); ctx.fill();
+    ctx.fillStyle="rgba(155,185,215,0.95)"; ctx.beginPath(); ctx.moveTo(TL[0],TL[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(BOT[0],BOT[1]); ctx.lineTo(BL[0],BL[1]); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha=1;
+  }
+
+  function processCubes(cubes, t){
+    return cubes.map(c => {
+      const local = (t - c.delay) / 1.4;
+      const p = Math.max(0, Math.min(1, local));
+      const e = ease(p);
+      const fade = globalAlpha(t);
+      return {
+        x: c.fromX + (c.targetX - c.fromX)*e,
+        y: c.fromY + (c.targetY - c.fromY)*e,
+        alpha: e * fade,
+        arrived: p >= 1,
+        nameFade: p >= 1 ? fade : 0,
+      };
+    });
+  }
+
+  function drawLine(positions, baseY, t, lastDelay, lineColor, opacity){
+    const allArrived = positions.every(p=>p.arrived);
+    if(!allArrived) return;
+    const lineProg = Math.min(1, (t - (lastDelay + 1.4)) / 0.8);
+    if(lineProg <= 0) return;
+    const fade = globalAlpha(t);
+    const startX = positions[0].x, endX = positions[positions.length-1].x;
+    ctx.strokeStyle = lineColor.replace('OPACITY', String(opacity * fade));
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(startX, baseY);
+    ctx.lineTo(startX + (endX - startX) * Math.max(0, lineProg), baseY);
+    ctx.stroke();
+  }
+
+  const start = performance.now();
   function frame(now){
     const t = ((now-start)/1000) % LOOP;
     ctx.fillStyle="#0e1a7a"; ctx.fillRect(0,0,W,H);
-    const positions = cubes.map(c => {
-      const local = (t - c.delay) / 1.5;
-      const p = Math.max(0, Math.min(1, local));
-      const e = ease(p);
-      let alpha = e;
-      if(t > HOLD_END){
-        const dp = (t - HOLD_END) / (OUT_END - HOLD_END);
-        alpha *= Math.max(0, 1 - dp);
-      }
-      return {
-        x: c.fromX + (c.targetX - c.fromX) * e,
-        y: c.fromY + (c.targetY - c.fromY) * e,
-        alpha, arrived: p >= 1,
-      };
-    });
-    const allArrived = positions.every(p=>p.arrived);
-    if(allArrived){
-      const lineProg = Math.min(1, (t - (cubes[cubes.length-1].delay + 1.5)) / 0.9);
-      const startX = positions[0].x, endX = positions[positions.length-1].x;
-      const lineEnd = startX + (endX - startX) * Math.max(0, lineProg);
-      let lineA = 1;
-      if(t > HOLD_END){ const dp=(t-HOLD_END)/(OUT_END-HOLD_END); lineA = Math.max(0,1-dp); }
-      ctx.strokeStyle = "rgba(214,167,88,"+(0.55*lineA)+")"; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(startX, baseY); ctx.lineTo(lineEnd, baseY); ctx.stroke();
-    }
-    positions.forEach((p,i) => drawCube(p.x, p.y, cubes[i].size, p.alpha));
+
+    const pos1 = processCubes(cubes1, t);
+    const pos2 = processCubes(cubes2, t);
+
+    const lastDelay1 = cubes1[cubes1.length-1].delay;
+    const lastDelay2 = cubes2[cubes2.length-1].delay;
+
+    drawLine(pos1, row1Y, t, lastDelay1, "rgba(214,167,88,OPACITY)", 0.5);
+    drawLine(pos2, row2Y, t, lastDelay2, "rgba(160,195,225,OPACITY)", 0.3);
+
+    pos1.forEach((p,i) => drawGoldCube(p.x, p.y, cubes1[i].size, p.alpha));
+    pos2.forEach((p,i) => drawWhiteCube(p.x, p.y, cubes2[i].size, p.alpha));
+
+    // Row 1 names — gold, below cube
     ctx.font = "500 10px Montserrat, system-ui, sans-serif";
     ctx.textAlign = "center";
-    positions.forEach((p,i) => {
-      if(p.arrived){
-        ctx.globalAlpha = p.alpha;
+    pos1.forEach((p,i) => {
+      if(p.nameFade > 0){
+        ctx.globalAlpha = p.nameFade;
         ctx.fillStyle = "#d6a758";
-        ctx.fillText(cubes[i].name.toUpperCase(), p.x, p.y + cubes[i].size*0.7 + 18);
+        ctx.fillText(cubes1[i].name.toUpperCase(), p.x, p.y + cubes1[i].size*0.72 + 16);
         ctx.globalAlpha = 1;
       }
     });
+
+    // Row 2 names — muted blue, below cube
+    ctx.font = "500 9px Montserrat, system-ui, sans-serif";
+    pos2.forEach((p,i) => {
+      if(p.nameFade > 0){
+        ctx.globalAlpha = p.nameFade * 0.65;
+        ctx.fillStyle = "rgba(170,200,230,1)";
+        ctx.fillText(cubes2[i].name.toUpperCase(), p.x, p.y + cubes2[i].size*0.72 + 14);
+        ctx.globalAlpha = 1;
+      }
+    });
+
     ctx.textAlign = "left";
     requestAnimationFrame(frame);
   }
