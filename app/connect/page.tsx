@@ -42,7 +42,7 @@ const options: Option[] = [
   {
     label: 'Just send me the ecosystem overview',
     sub: 'A short tour of how Advisory, Institute, MatchHub, MMAP, and the Toolbox fit together.',
-    href: '/about',
+    href: '/',
   },
 ]
 
