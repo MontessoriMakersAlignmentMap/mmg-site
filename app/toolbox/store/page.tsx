@@ -155,6 +155,16 @@ const products = [
     stripeHref: 'https://buy.stripe.com/dRm28tdaoa1a5wH6Jz2cg0O',
   },
   {
+    name: 'The Montessori Equity Audit: Toolbox Edition',
+    category: 'Frameworks',
+    slug: 'equity-audit',
+    image: '/images/toolbox/equity-audit.png',
+    price: '$197',
+    docs: '48-page PDF · 38 diagnostic questions across 4 domains',
+    desc: 'A self-guided diagnostic for leadership teams ready to audit whether their stated equity commitments are reflected in their actual systems. Includes a self-scoring guide, a four-round debrief protocol, and a next-steps framework.',
+    stripeHref: 'https://buy.stripe.com/bJe5kF8U8c9igblfg52cg1n',
+  },
+  {
     name: 'Financial Literacy for Montessori Leaders',
     category: 'Governance & Stewardship',
     slug: 'financial-literacy-toolkit',

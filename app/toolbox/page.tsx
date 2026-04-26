@@ -48,6 +48,16 @@ const categories: { label: string; items: Product[] }[] = [
         audience: 'Heads of school, instructional coaches, and PD leads',
         stripeHref: 'https://buy.stripe.com/5kQ3cx9Yc4GQbV5aZP2cg0X',
       },
+      {
+        name: 'The Montessori Equity Audit: Toolbox Edition',
+        slug: 'equity-audit',
+        image: '/images/toolbox/equity-audit.png',
+        price: '$197',
+        docs: '48-page PDF · 38 diagnostic questions across 4 domains',
+        desc: 'A self-guided diagnostic for leadership teams ready to audit whether their stated equity commitments are reflected in their actual systems. Includes a self-scoring guide, a four-round debrief protocol, and a next-steps framework.',
+        audience: 'Heads of school, program directors, and senior leadership teams',
+        stripeHref: 'https://buy.stripe.com/bJe5kF8U8c9igblfg52cg1n',
+      },
     ],
   },
   {
@@ -377,7 +387,7 @@ export default function ToolboxPage() {
                 className="text-[#0e1a7a] text-5xl font-semibold mb-4 tracking-tight"
                 style={serif}
               >
-                16 tools
+                17 tools
               </p>
               <div className="w-8 h-0.5 bg-[#d6a758] mb-4" />
               <p className="text-[#374151] text-base leading-relaxed">
