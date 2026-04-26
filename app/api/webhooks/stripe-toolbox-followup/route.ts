@@ -32,6 +32,7 @@ const TOOLBOX_PRODUCTS = [
   'Staff Retention Toolkit',
   'Annual Cycle Planning Toolkit',
   'Financial Literacy for Montessori Leaders',
+  'The Montessori Equity Audit: Toolbox Edition',
 ]
 
 export async function POST(req: NextRequest) {
