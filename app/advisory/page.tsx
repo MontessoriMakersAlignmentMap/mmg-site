@@ -62,6 +62,15 @@ const pathways = [
       'Support before, during, and after leadership change. The structural and cultural work that determines whether a transition holds.',
     for: 'Schools in active succession, or planning ahead for leadership change.',
   },
+  {
+    name: 'Montessori Equity Audit',
+    href: '/advisory/equity-audit',
+    tagline: 'Organizational equity diagnostic',
+    engagement: 'Single engagement',
+    description:
+      'A structured diagnostic that helps leadership teams see honestly where their organization stands on equity — across hiring, adult culture, curriculum, and governance. Facilitated by Hannah Richardson. Delivered as a findings document with prioritized recommendations.',
+    for: 'Schools ready to audit whether their systems match their stated equity commitments.',
+  },
 ]
 
 const focusAreas = [
@@ -161,7 +170,7 @@ export default function AdvisoryPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: '20+', label: 'Years in Montessori', sub: 'Deep practitioner roots' },
-            { value: '6',   label: 'Engagement pathways', sub: 'From single session to retained' },
+            { value: '7',   label: 'Engagement pathways', sub: 'From single session to retained' },
             { value: '100%', label: 'Montessori-specific', sub: 'No generic consulting playbook' },
             { value: '0',   label: 'Off-the-shelf frameworks', sub: 'Built around your school' },
           ].map((s) => (
