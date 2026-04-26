@@ -56,6 +56,19 @@ export default function MatchHubPage() {
         </div>
       </section>
 
+      {/* Pipeline callout */}
+      <section className="bg-[#0b1560] border-b border-[#d6a758]/20 px-6 md:px-10 py-5">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <span className="text-[#d6a758] text-[10px] tracking-[0.2em] uppercase font-medium flex-shrink-0">MMG Pipeline</span>
+          <p className="text-white/70 text-sm leading-relaxed">
+            MMR graduates receive priority placement access through MatchHub. Schools can filter for MMG-prepared candidates.
+          </p>
+          <Link href="/matchhub/pipeline" className="text-[#d6a758] text-sm font-medium hover:underline flex-shrink-0">
+            How it works →
+          </Link>
+        </div>
+      </section>
+
       {/* Stats bar */}
       <section className="bg-[#070e3d] border-b border-white/10 px-6 md:px-10 py-8">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">

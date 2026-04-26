@@ -11,6 +11,15 @@ import { Testimonials } from '@/components/Testimonials'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
+// ─── Beliefs (verbatim from about page) ───────────────────────────────────
+const beliefs = [
+  { text: 'Montessori works best when the whole organization is aligned — not just the classroom.' },
+  { text: 'Strong systems protect people and make excellence sustainable.' },
+  { text: 'Adult culture is not separate from child outcomes. It shapes them.' },
+  { text: 'Peace requires justice: safety, dignity, belonging, and courage for every child and adult.', justice: true },
+  { text: 'Montessori is not sustained by ideals alone. It needs structures that let those ideals live.' },
+] as { text: string; justice?: boolean }[]
+
 // ─── Counter — scroll-triggered number animation ───────────────────────────
 
 function Counter({ to, suffix = '', duration = 1800 }: { to: number; suffix?: string; duration?: number }) {
@@ -97,7 +106,7 @@ function Hero() {
             style={serif}
           >
             {/* Line 1 — word by word */}
-            {(['When', 'a', 'Montessori', 'school'] as const).map((word, i) => (
+            {(['Prepare.', 'Place.', 'Develop.', 'Build.'] as const).map((word, i) => (
               <motion.span
                 key={word}
                 className="inline-block"
@@ -110,7 +119,7 @@ function Hero() {
               </motion.span>
             ))}
             <br className="hidden sm:block" />{' '}
-            {/* "is aligned," — single unit so underline spans it */}
+            {/* Gold underline phrase */}
             <span className="relative inline-block whitespace-nowrap" style={{ marginRight: '0.22em' }}>
               <motion.span
                 className="inline-block"
@@ -118,7 +127,7 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.46, ease: [0.22, 1, 0.36, 1] }}
               >
-                is aligned,
+                The full pipeline.
               </motion.span>
               <motion.span
                 className="absolute -bottom-1 left-0 h-[3px] bg-[#d6a758] w-full block"
@@ -130,7 +139,7 @@ function Hero() {
             </span>
             <br className="hidden sm:block" />{' '}
             {/* Line 3 */}
-            {(['everything', 'works.'] as const).map((word, i) => (
+            {(['By', 'design.'] as const).map((word, i) => (
               <motion.span
                 key={word}
                 className="inline-block"
@@ -149,7 +158,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            Designing the systems, building the leadership, and placing the people that help Montessori schools thrive—for the long term.
+            MMG is the only organization in Montessori built to prepare teachers through credentialing, place them in aligned schools, develop them as leaders, and build the organizational infrastructure they work inside. That sequence is intentional.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-3"
@@ -204,6 +213,9 @@ function Problem() {
                 Alignment is not an aspiration. It is infrastructure.
               </p>
             </div>
+            <p className="text-[#374151] text-base leading-[1.85]">
+              MMG&apos;s approach to alignment is grounded in anti-bias, anti-racist practice and a justice-centered view of what Montessori can and should be. This work is not neutral. It starts from the conviction that peace requires justice, and that schools have a responsibility to reflect that in how they operate, not only in what they say they believe.
+            </p>
           </div>
         </FadeIn>
       </div>
@@ -214,10 +226,10 @@ function Problem() {
 // ─── Why Ecosystem ─────────────────────────────────────────────────────────────
 
 const connections = [
-  { trigger: 'A leadership transition', reveals: 'surfaces questions about roles, communication, and culture that were always present' },
-  { trigger: 'Role ambiguity', reveals: 'creates friction that teams absorb — often quietly, and over time' },
-  { trigger: 'Cultural friction', reveals: 'shapes who gets hired and how well they carry the mission' },
-  { trigger: 'Misaligned hires', reveals: 'widen the distance between stated values and daily practice' },
+  { trigger: 'Prepare', reveals: 'MMR trains educators through a full-scope credential with equity at the center and a paid practicum that treats preparation as a profession, not a costly side project.' },
+  { trigger: 'Place', reveals: 'MatchHub connects MMG-prepared candidates to schools built for their philosophy — and gives schools a way to find candidates who were actually prepared in alignment.' },
+  { trigger: 'Develop', reveals: 'The Institute builds leadership capacity in people already doing the work. Seminars, coaching, and formation across the full arc of a Montessori career.' },
+  { trigger: 'Sustain', reveals: 'Advisory and MMAP give schools the systems and organizational design that let good people stay, grow, and lead without burning out.' },
 ]
 
 function WhyEcosystem() {
@@ -227,15 +239,15 @@ function WhyEcosystem() {
     <section className="grain bg-[#0e1a7a] pt-28 pb-44 md:pt-40 md:pb-56 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <FadeIn className="max-w-xl mb-20">
-          <RevealEyebrow variant="dark" className="mb-8">Why an Ecosystem?</RevealEyebrow>
+          <RevealEyebrow variant="dark" className="mb-8">The Pipeline</RevealEyebrow>
           <h2
             className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-white leading-[1.0] tracking-tight mb-6"
             style={serif}
           >
-            School challenges <GoldUnderline>don&apos;t arrive alone.</GoldUnderline>
+            Four connected things. <GoldUnderline>One ecosystem.</GoldUnderline>
           </h2>
           <p className="text-[#94A3B8] text-lg leading-[1.75]">
-            They arrive connected. Addressing them in isolation can resolve one layer while leaving the underlying pattern intact.
+            No other organization in Montessori links all four. Each piece of MMG was built to reinforce the next.
           </p>
         </FadeIn>
 
@@ -305,7 +317,7 @@ function WhyEcosystem() {
         <FadeIn>
           <div className="border-t border-white/10 pt-14">
             <p className="text-white/90 text-2xl md:text-3xl max-w-2xl leading-[1.38]" style={serif}>
-              Montessori Makers Group was built to hold the whole picture — not just the piece that&apos;s most visible. That&apos;s why it&apos;s an ecosystem.
+              This is not a collection of services. It is one coherent ecosystem built around what Montessori actually needs: well-prepared people, in aligned schools, supported by structures that hold.
             </p>
           </div>
         </FadeIn>
@@ -603,6 +615,50 @@ function Founder() {
   )
 }
 
+// ─── Beliefs ───────────────────────────────────────────────────────────────────
+
+function Beliefs() {
+  return (
+    <section className="bg-[#0e1a7a] py-28 md:py-40 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto">
+        <FadeIn className="max-w-2xl mb-16">
+          <RevealEyebrow variant="dark" className="mb-8">What We Believe</RevealEyebrow>
+          <h2
+            className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] text-white leading-[1.0] tracking-tight mb-6"
+            style={serif}
+          >
+            Five things that shape <GoldUnderline>everything we do.</GoldUnderline>
+          </h2>
+          <p className="text-[#94A3B8] text-lg leading-[1.75]">
+            These are not values statements written for a website. They are the principles that determine what we build, who we work with, and how we show up.
+          </p>
+        </FadeIn>
+
+        <div className="max-w-3xl">
+          {beliefs.map((b, i) => (
+            <FadeIn key={i} delay={i * 0.07}>
+              <div className={`flex items-start gap-6 py-7 border-b ${b.justice ? 'border-[#d6a758]/40' : 'border-white/10'} last:border-0`}>
+                <span className="text-[#d6a758] text-[11px] tracking-[0.2em] uppercase flex-shrink-0 mt-1 w-6 font-medium">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                {b.justice ? (
+                  <div className="border-l-[3px] border-[#d6a758] pl-5">
+                    <p className="text-white text-xl md:text-2xl leading-[1.45]" style={serif}>
+                      {b.text}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-white/80 text-lg leading-[1.65]">{b.text}</p>
+                )}
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Press & Speaking ──────────────────────────────────────────────────────────
 
 const PRESS = [
@@ -781,6 +837,7 @@ export default function Home() {
       <TrustTicker />
       <WhereToStart />
       <Founder />
+      <Beliefs />
       <Testimonials />
       <Press />
       <FallBooking />

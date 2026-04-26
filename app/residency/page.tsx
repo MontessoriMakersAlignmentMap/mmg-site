@@ -101,6 +101,9 @@ export default function ResidencyHome() {
             <Link href="/residency/curriculum" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', background: 'transparent', color: '#ffffff', borderColor: 'rgba(255,255,255,0.4)' }}>
               Explore Curriculum
             </Link>
+            <Link href="/matchhub/pipeline" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', background: 'transparent', color: 'rgba(214,167,88,0.9)', borderColor: 'rgba(214,167,88,0.4)' }}>
+              Placement Pathway
+            </Link>
             <Link href="/residency/auth/login" className="r-btn r-btn-secondary" style={{ padding: '0.75rem 2rem', background: 'transparent', color: '#ffffff', borderColor: 'rgba(255,255,255,0.4)' }}>
               Resident Sign In
             </Link>
@@ -377,11 +380,53 @@ export default function ResidencyHome() {
               Primary graduates receive Primary access. Elementary graduates receive Elementary access. No additional cost. No application. It activates when you complete your practicum, because the first year in your own classroom is when you need it most.
             </p>
           </div>
-          <div style={{ marginTop: '2rem' }}>
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href="/field-guide" className="r-btn r-btn-gold" style={{ padding: '0.75rem 2rem', display: 'inline-block' }}>
               See the Field Guide
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* MATCHHUB PLACEMENT PATHWAY */}
+      <section className="r-section" style={{ background: 'var(--r-cream, #faf8f4)' }}>
+        <div className="r-container" style={{ maxWidth: '760px' }}>
+          <p style={{
+            color: 'var(--r-gold)',
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            marginBottom: '0.75rem',
+          }}>
+            Program Benefit
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--r-font-heading)',
+            fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
+            lineHeight: 1.2,
+            marginBottom: '1.25rem',
+            color: 'var(--r-navy)',
+          }}>
+            Your credential comes with a placement pathway.
+          </h2>
+          <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'var(--r-text-muted)', marginBottom: '1.25rem' }}>
+            MMR graduates receive priority placement access through MatchHub, MMG&apos;s Montessori hiring platform, where schools can filter specifically for candidates prepared through this program.
+          </p>
+          <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'var(--r-text-muted)', marginBottom: '2rem' }}>
+            This is not a general job board. It is a direct connection to schools that understand what MMG preparation means and are actively looking for candidates who have it.
+          </p>
+          <Link href="/matchhub/pipeline" style={{
+            display: 'inline-block',
+            background: 'var(--r-navy)',
+            color: '#ffffff',
+            padding: '0.75rem 1.75rem',
+            fontSize: '0.875rem',
+            textDecoration: 'none',
+            letterSpacing: '0.05em',
+          }}>
+            See the Pipeline
+          </Link>
         </div>
       </section>
 
