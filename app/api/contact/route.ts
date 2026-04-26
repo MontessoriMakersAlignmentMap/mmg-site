@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendContactFormEmail } from '@/lib/email'
+import { createServiceClient } from '@/lib/supabase/server'
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,20 +31,60 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name, email, and message are required.' }, { status: 400 })
     }
 
-    await sendContactFormEmail({
-      name,
-      email,
-      organization: organization ?? '',
-      role: role ?? '',
-      supportType: supportType ?? '',
-      message,
-      situation: situation ?? '',
-      goals: goals ?? '',
-      timeline: timeline ?? '',
-      schoolSize: schoolSize ?? '',
-      service: service ?? 'General',
-      source: source ?? 'contact page',
-    })
+    // Save to Supabase first — this is the source of truth regardless of email status
+    const supabase = createServiceClient()
+    const { data: saved, error: dbError } = await supabase
+      .from('contact_submissions')
+      .insert({
+        name,
+        email,
+        organization: organization ?? '',
+        role: role ?? '',
+        support_type: supportType ?? '',
+        service: service ?? 'General',
+        source: source ?? 'contact page',
+        message,
+        situation: situation ?? '',
+        goals: goals ?? '',
+        timeline: timeline ?? '',
+        school_size: schoolSize ?? '',
+        email_sent: false,
+      })
+      .select('id')
+      .single()
+
+    if (dbError) {
+      console.error('contact db error:', dbError)
+      // Still try email even if DB write fails
+    }
+
+    // Attempt email — update email_sent flag on success, but never block the response
+    try {
+      await sendContactFormEmail({
+        name,
+        email,
+        organization: organization ?? '',
+        role: role ?? '',
+        supportType: supportType ?? '',
+        message,
+        situation: situation ?? '',
+        goals: goals ?? '',
+        timeline: timeline ?? '',
+        schoolSize: schoolSize ?? '',
+        service: service ?? 'General',
+        source: source ?? 'contact page',
+      })
+
+      if (saved?.id) {
+        await supabase
+          .from('contact_submissions')
+          .update({ email_sent: true })
+          .eq('id', saved.id)
+      }
+    } catch (emailErr) {
+      console.error('contact email error (submission saved to DB):', emailErr)
+      // Do not rethrow — the submission is already saved
+    }
 
     return NextResponse.json({ ok: true })
   } catch (err) {

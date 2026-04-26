@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>For Families</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; z-index:2; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMG · Apps</div>
+    <div class="title">Bring Montessori<br/>home.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  let house, slots, ideas;
+  setup(function init(){
+    const cx = W*0.65, cy = H*0.50;
+    const w = Math.min(W*0.32, 380);
+    const h = Math.min(H*0.52, 300);
+    house = { x: cx - w/2, y: cy - h/2, w, h, cx, cy };
+    // Define a few "spots" inside the house where ideas come to rest
+    slots = [];
+    const cols = 4, rows = 3;
+    const padX = 28, padY = 50;
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      slots.push({
+        x: house.x + padX + c * ((house.w - padX*2) / (cols-1)),
+        y: house.y + padY + r * ((house.h - padY*2) / (rows-1)),
+        occupied: 0,
+      });
+    }
+    ideas = [];
+  });
+  const start = performance.now();
+  let last = start;
+  function frame(now){
+    const t = (now-start)/1000;
+    const dt = Math.min(0.05, (now-last)/1000); last = now;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0,0,W,H);
+
+    // House outline (gentle)
+    ctx.strokeStyle = "rgba(214,167,88,0.55)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    // walls
+    ctx.moveTo(house.x, house.y + house.h*0.20);
+    ctx.lineTo(house.x, house.y + house.h);
+    ctx.lineTo(house.x + house.w, house.y + house.h);
+    ctx.lineTo(house.x + house.w, house.y + house.h*0.20);
+    // roof
+    ctx.lineTo(house.cx, house.y);
+    ctx.closePath();
+    ctx.stroke();
+    // door
+    ctx.strokeStyle = "rgba(214,167,88,0.4)";
+    const dW = 28, dH = 50;
+    ctx.strokeRect(house.cx - dW/2, house.y + house.h - dH, dW, dH);
+    // chimney
+    ctx.strokeRect(house.x + house.w*0.70, house.y + house.h*0.10, 14, 26);
+
+    // Spawn ideas (drift in from above the house)
+    if(Math.random() < 0.06 && ideas.length < 20){
+      // pick least-occupied slot
+      const slot = slots.slice().sort((a,b)=>a.occupied - b.occupied + Math.random()*0.3)[0];
+      ideas.push({
+        sx: house.x + Math.random()*house.w,
+        sy: -20,
+        tx: slot.x + (Math.random()-0.5)*8,
+        ty: slot.y + (Math.random()-0.5)*8,
+        slot,
+        t: 0,
+        life: 6 + Math.random()*3,
+        r: 1.4 + Math.random()*0.8,
+      });
+      slot.occupied += 1;
+    }
+
+    // Gentle warm glow inside house (hearth)
+    const breath = 0.5 + 0.5*Math.sin(t*0.5);
+    const hg = ctx.createRadialGradient(house.cx, house.y + house.h*0.65, 0, house.cx, house.y + house.h*0.65, house.h*0.6);
+    hg.addColorStop(0, "rgba(214,167,88,"+(0.08 + breath*0.04)+")");
+    hg.addColorStop(1, "rgba(214,167,88,0)");
+    ctx.save();
+    // clip to house shape so glow stays inside
+    ctx.beginPath();
+    ctx.moveTo(house.x, house.y + house.h*0.20);
+    ctx.lineTo(house.x, house.y + house.h);
+    ctx.lineTo(house.x + house.w, house.y + house.h);
+    ctx.lineTo(house.x + house.w, house.y + house.h*0.20);
+    ctx.lineTo(house.cx, house.y);
+    ctx.closePath();
+    ctx.clip();
+    ctx.fillStyle = hg;
+    ctx.fillRect(house.x - 20, house.y - 20, house.w + 40, house.h + 40);
+    ctx.restore();
+
+    // Update & draw ideas
+    for(let i = ideas.length-1; i >= 0; i--){
+      const idea = ideas[i];
+      idea.t += dt;
+      // drift in: arc toward target with slight wiggle
+      const arrive = Math.min(1, idea.t/1.8);
+      const ee = arrive*arrive*(3-2*arrive);
+      const wob = Math.sin(idea.t*1.2 + i)*4*(1-arrive);
+      const x = idea.sx + (idea.tx - idea.sx)*ee + wob;
+      const y = idea.sy + (idea.ty - idea.sy)*ee;
+      // fade out near end of life
+      let alpha = 1;
+      if(idea.t > idea.life - 1.5){
+        alpha = Math.max(0, (idea.life - idea.t)/1.5);
+      }
+      // glow
+      ctx.fillStyle = "rgba(240,217,161,"+(0.18*alpha)+")";
+      ctx.beginPath(); ctx.arc(x,y, idea.r*4, 0, Math.PI*2); ctx.fill();
+      // core
+      ctx.fillStyle = "rgba(214,167,88,"+(0.85*alpha)+")";
+      ctx.beginPath(); ctx.arc(x,y, idea.r, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,"+(0.7*alpha)+")";
+      ctx.beginPath(); ctx.arc(x,y, idea.r*0.45, 0, Math.PI*2); ctx.fill();
+      if(idea.t >= idea.life){
+        idea.slot.occupied = Math.max(0, idea.slot.occupied - 1);
+        ideas.splice(i,1);
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>

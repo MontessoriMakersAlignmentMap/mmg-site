@@ -557,7 +557,7 @@ export default function StudioPage() {
               </div>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <div className="border border-white/15 overflow-hidden">
+              <Link href="/studio/demo" className="block border border-white/15 overflow-hidden group">
                 <div className="bg-black/30 px-5 py-3 flex items-center gap-3">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-white/15" />
@@ -568,27 +568,21 @@ export default function StudioPage() {
                     montessorimakersgroup.org/studio/demo
                   </div>
                 </div>
-                <div className="bg-[#0a1560] p-10 flex flex-col items-center justify-center text-center min-h-[240px]">
-                  <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-3">Live demo</p>
-                  <p className="text-white text-2xl font-semibold mb-3" style={serif}>Montessori Makers School</p>
-                  <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-xs">
-                    Five pages. Live animations. A complete content system. This is a real, working website &mdash; not a mockup.
-                  </p>
-                  <div className="flex flex-wrap gap-2 justify-center mb-6">
-                    {['Home', 'About', 'Programs', 'Admissions', 'School Life'].map((p) => (
-                      <span key={p} className="text-white/40 text-xs border border-white/15 px-3 py-1">
-                        {p}
-                      </span>
-                    ))}
+                <div className="relative overflow-hidden">
+                  <Image
+                    src="/demo/demo-school-preview.png"
+                    alt="Montessori Makers School demo site"
+                    width={1280}
+                    height={900}
+                    className="w-full block group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+                    <span className="text-white text-xs tracking-wide border border-[#d6a758]/60 px-5 py-2 bg-black/30 group-hover:border-[#d6a758] transition-colors">
+                      Open the demo school →
+                    </span>
                   </div>
-                  <Link
-                    href="/studio/demo"
-                    className="text-white text-xs tracking-wide border border-[#d6a758]/50 px-6 py-2.5 hover:border-[#d6a758] hover:bg-[#d6a758]/10 transition-all"
-                  >
-                    Open the demo school →
-                  </Link>
                 </div>
-              </div>
+              </Link>
             </FadeIn>
           </div>
         </div>

@@ -70,11 +70,6 @@ const formats = [
     detail: 'Vector quality',
     desc: 'Scales to any size without loss. Laminate as a shelf strip, print poster-size, or produce at professional quality.',
   },
-  {
-    name: 'SVG',
-    detail: 'Fully editable',
-    desc: 'Open in Illustrator, Inkscape, or Figma. Adapt labels, adjust colors, add your own milestones, or produce custom classroom versions.',
-  },
 ]
 
 export default function TimelinesPage() {
@@ -93,7 +88,7 @@ export default function TimelinesPage() {
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-10 max-w-2xl">
               Three data-rich, equity-centered timelines for the Great Lessons.
               Scientifically current. Globally structured. Print-ready at any size —
-              PNG, PDF, and SVG in every set.
+              PNG and PDF in every set.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -169,7 +164,7 @@ export default function TimelinesPage() {
       {/* ── FORMATS ──────────────────────────────────────────────────────── */}
       <section className="bg-[#FAF9F7] py-16 px-6 md:px-10 border-b border-[#E2DDD6]">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Every Timeline Ships In Three Formats</p>
+          <p className="text-[#8A6014] text-xs tracking-[0.2em] uppercase mb-6">Every Timeline Ships In Two Formats</p>
           <div className="grid md:grid-cols-3 gap-6">
             {formats.map(({ name, detail, desc }) => (
               <div key={name} className="bg-white border border-[#E2DDD6] p-7">
@@ -208,7 +203,7 @@ export default function TimelinesPage() {
                   </div>
                   <div className="flex-shrink-0 text-right">
                     <p className="text-[#0e1a7a] text-3xl font-semibold mb-1" style={serif}>{t.price}</p>
-                    <p className="text-[#94A3B8] text-xs mb-4">3 files · instant download</p>
+                    <p className="text-[#94A3B8] text-xs mb-4">2 files · instant download</p>
                     <a
                       href={t.link}
                       target="_blank"
@@ -283,10 +278,10 @@ export default function TimelinesPage() {
           <div>
             <p className="text-[#d6a758] text-[10px] tracking-[0.22em] uppercase mb-5">Complete Collection</p>
             <h2 className="text-3xl md:text-4xl text-white leading-tight mb-5" style={serif}>
-              All three timelines. 9 files. $129.
+              All three timelines. 6 files. $129.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed mb-6">
-              Timeline of Life, Timeline of Humans, and Clock of Eras — each in PNG, PDF, and SVG.
+              Timeline of Life, Timeline of Humans, and Clock of Eras — each in PNG and PDF.
               Saves $31 versus buying the two main timelines separately. Clock of Eras included.
               One download, immediate access.
             </p>
@@ -301,9 +296,9 @@ export default function TimelinesPage() {
           </div>
           <div className="space-y-3">
             {[
-              { label: 'Timeline of Life', detail: '90 milestones · 4.6 billion years', formats: 'PNG · PDF · SVG' },
-              { label: 'Timeline of Humans', detail: '72 milestones · 6 continental tracks', formats: 'PNG · PDF · SVG' },
-              { label: 'Clock of Eras', detail: 'Circular companion · 18-inch diagram', formats: 'PNG · PDF · SVG' },
+              { label: 'Timeline of Life', detail: '90 milestones · 4.6 billion years', formats: 'PNG · PDF' },
+              { label: 'Timeline of Humans', detail: '72 milestones · 6 continental tracks', formats: 'PNG · PDF' },
+              { label: 'Clock of Eras', detail: 'Circular companion · 18-inch diagram', formats: 'PNG · PDF' },
             ].map((item, i) => (
               <div key={i} className="flex items-center justify-between border border-white/15 px-5 py-4">
                 <div>

@@ -95,20 +95,10 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* Clock of Eras — full poster document */}
-      <iframe src="/embed/school-clock-of-eras.html" style={{ width: '100%', height: 1300, border: 0, display: 'block' }} title="Clock of Eras" loading="lazy" />
-
       {/* Program sections */}
-      <ProgramSection program={programs[0]} flip={false} />
-      <ProgramSection program={programs[1]} flip={true} />
-
-      {/* Timeline of Life */}
-      <iframe src="/embed/school-timeline-of-life.html" style={{ width: '100%', height: 1100, border: 0, display: 'block' }} title="Timeline of Life" loading="lazy" />
-
-      {/* Timeline of Humans */}
-      <iframe src="/embed/school-timeline-of-humans.html" style={{ width: '100%', height: 1150, border: 0, display: 'block' }} title="Timeline of Humans" loading="lazy" />
-
-      <ProgramSection program={programs[2]} flip={false} />
+      {programs.map((p, i) => (
+        <ProgramSection key={p.id} program={p} flip={i % 2 !== 0} />
+      ))}
 
       {/* CTA */}
       <section style={{ background: C.slate, padding: '80px 64px', textAlign: 'center' }}>

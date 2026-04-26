@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>For Guides</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin:0; padding:0; background:#0e1a7a; overflow:hidden; height:100%; }
+  .stage { position:fixed; inset:0; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+  .label { position:absolute; left:5.33%; bottom:5.33%; color:#fff;
+    font-family: Montserrat, system-ui, sans-serif; pointer-events:none; max-width:38%; z-index:2; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em;
+    color:#d6a758; display:inline-flex; align-items:center; gap:12px; }
+  .eyebrow::before { content:''; width:20px; height:1px; background:#d6a758; display:inline-block; }
+  .title { font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(20px,2.6vw,34px); line-height:1.05; letter-spacing:-0.01em;
+    margin-top:14px; color:#fff; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="grain"></div>
+  <div class="label">
+    <div class="eyebrow">MMG · Apps</div>
+    <div class="title">A reference,<br/>within reach.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1, onResize=null;
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(typeof onResize==='function') onResize();
+  }
+  function setup(fn){ onResize=fn; fn(); }
+  
+  let centerX, centerY, cardW, cardH, cards;
+  setup(function init(){
+    cardW = Math.min(W*0.30, 340);
+    cardH = Math.min(H*0.55, 320);
+    centerX = W*0.62;
+    centerY = H*0.5;
+    cards = [
+      { heading: 0.7, lines: 4, diag: 'rings' },
+      { heading: 0.55, lines: 5, diag: 'sequence' },
+      { heading: 0.6, lines: 3, diag: 'triangle' },
+      { heading: 0.65, lines: 4, diag: 'grid' },
+      { heading: 0.5, lines: 4, diag: 'arc' },
+    ];
+  });
+  const ease = t => t<0.5? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  const start = performance.now();
+  const PER = 3.2; // each card holds for this long before sliding
+  function drawDiagram(type, x, y, w, h, alpha){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const cx = x + w/2, cy = y + h/2;
+    if(type === 'rings'){
+      for(let i=0;i<3;i++){
+        ctx.strokeStyle = "rgba(214,167,88,"+(0.4 + i*0.15)+")";
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(cx, cy, (i+1)*h*0.18, 0, Math.PI*2); ctx.stroke();
+      }
+      ctx.fillStyle = "#d6a758";
+      ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI*2); ctx.fill();
+    } else if(type === 'sequence'){
+      for(let i=0;i<5;i++){
+        const xi = x + 18 + i*((w-36)/4);
+        ctx.fillStyle = "rgba(214,167,88,"+(0.4 + i*0.10)+")";
+        ctx.beginPath(); ctx.arc(xi, cy, 4, 0, Math.PI*2); ctx.fill();
+        if(i<4){
+          ctx.strokeStyle = "rgba(214,167,88,0.4)"; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(xi+5, cy); ctx.lineTo(xi + (w-36)/4 - 5, cy); ctx.stroke();
+        }
+      }
+    } else if(type === 'triangle'){
+      const top = {x: cx, y: cy - h*0.22};
+      const bl = {x: cx - h*0.20, y: cy + h*0.16};
+      const br = {x: cx + h*0.20, y: cy + h*0.16};
+      ctx.strokeStyle = "rgba(214,167,88,0.7)"; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(top.x,top.y); ctx.lineTo(bl.x,bl.y); ctx.lineTo(br.x,br.y); ctx.closePath();
+      ctx.stroke();
+      for(const p of [top,bl,br]){
+        ctx.fillStyle = "#d6a758";
+        ctx.beginPath(); ctx.arc(p.x,p.y, 3, 0, Math.PI*2); ctx.fill();
+      }
+    } else if(type === 'grid'){
+      const cells = 4;
+      const sz = h*0.10;
+      for(let r=0;r<cells;r++) for(let c=0;c<cells;c++){
+        const lit = (r+c)%2 === 0;
+        ctx.strokeStyle = "rgba(214,167,88,0.4)"; ctx.lineWidth = 0.6;
+        ctx.strokeRect(cx - cells*sz/2 + c*sz, cy - cells*sz/2 + r*sz, sz, sz);
+        if(lit){
+          ctx.fillStyle = "rgba(214,167,88,0.30)";
+          ctx.fillRect(cx - cells*sz/2 + c*sz + 1, cy - cells*sz/2 + r*sz + 1, sz-2, sz-2);
+        }
+      }
+    } else if(type === 'arc'){
+      ctx.strokeStyle = "rgba(214,167,88,0.4)"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy + h*0.10, h*0.25, Math.PI, Math.PI*2); ctx.stroke();
+      ctx.fillStyle = "rgba(240,217,161,0.7)";
+      ctx.beginPath(); ctx.arc(cx, cy - h*0.15, 4, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  }
+  function drawCard(i, posX, posY, rot, scale, alpha, drawProgress){
+    const w = cardW*scale, h = cardH*scale;
+    const x = posX - w/2;
+    const y = posY - h/2;
+    ctx.save();
+    ctx.translate(posX, posY);
+    ctx.rotate(rot);
+    ctx.translate(-posX, -posY);
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    // card background
+    ctx.fillStyle = "rgba(255,255,255,0.03)";
+    ctx.fillRect(x,y,w,h);
+    ctx.strokeStyle = "rgba(214,167,88,"+(0.55*alpha)+")";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x,y,w,h);
+    // tab corner
+    ctx.fillStyle = "rgba(214,167,88,"+(0.6*alpha)+")";
+    ctx.fillRect(x, y, 22, 4);
+    ctx.restore();
+    // heading — drawProgress controls how much of the card content is "drawn in"
+    const card = cards[i % cards.length];
+    const dp = Math.max(0, Math.min(1, drawProgress));
+    ctx.globalAlpha = alpha;
+    // heading bar reveals left-to-right
+    ctx.fillStyle = "rgba(255,255,255,0.92)";
+    ctx.fillRect(x + 18, y + 22, (w-36)*card.heading * Math.min(1, dp*2), 8);
+    // body lines stagger in
+    for(let j=0;j<card.lines;j++){
+      const lineStart = 0.15 + j*0.12;
+      const lineP = Math.max(0, Math.min(1, (dp - lineStart) / 0.18));
+      const lw = (w-36) * (0.55 + (j%2)*0.20) * lineP;
+      ctx.fillStyle = "rgba(255,255,255,"+(0.45*lineP)+")";
+      ctx.fillRect(x + 18, y + 46 + j*10, lw, 3);
+    }
+    // diagram fades in last
+    const diagP = Math.max(0, Math.min(1, (dp - 0.55) / 0.4));
+    if(diagP > 0){
+      drawDiagram(card.diag, x + 18, y + h*0.42, w - 36, h*0.50, alpha * diagP);
+    }
+    // page number
+    ctx.fillStyle = "rgba(214,167,88,"+(0.7*alpha)+")";
+    ctx.font = "500 9px Montserrat, system-ui, sans-serif";
+    ctx.fillText(String(i % cards.length + 1).padStart(2,'0') + " / " + String(cards.length).padStart(2,'0'), x + 18, y + h - 16);
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+  function frame(now){
+    const t = (now-start)/1000;
+    ctx.fillStyle = "#0e1a7a"; ctx.fillRect(0,0,W,H);
+    const idx = Math.floor(t / PER);
+    const local = (t / PER) - idx; // 0..1 within current card
+    // Card lifecycle phases:
+    //   0.00 - 0.18  enter from right
+    //   0.18 - 0.85  rest + content draws in
+    //   0.85 - 1.00  exit to left
+    const enter = Math.min(1, local / 0.18);
+    const exit  = Math.max(0, (local - 0.85) / 0.15);
+    const eEnter = ease(enter);
+    const eExit  = ease(exit);
+    // Background "deck" depth — slightly bobbing
+    const bob = Math.sin(t*0.8)*2;
+    drawCard((idx+2) % cards.length, centerX + 22, centerY - 10 + bob, 0.04, 0.92, 0.20, 0);
+    drawCard((idx+1) % cards.length, centerX + 12, centerY - 5 - bob*0.5, 0.02, 0.96, 0.35, 0);
+    // Current card: slides in from right (+W*0.5) to center, then exits left (-W*0.6)
+    const enterX = (1 - eEnter) * (W*0.5);  // starts off-right, lands at 0
+    const exitX  = -eExit * (W*0.6);
+    const cx = centerX + enterX + exitX;
+    const cy = centerY + Math.sin(t*1.4)*3; // gentle settle bob
+    const rotation = (1 - eEnter)*0.12 - eExit*0.10;
+    const cardAlpha = (1 - eExit) * (eEnter*0.5 + 0.5);
+    // drawProgress for content: starts after card has arrived
+    const dProg = Math.min(1, Math.max(0, (local - 0.18) / 0.55));
+    drawCard(idx % cards.length, cx, cy, rotation, 1.0, cardAlpha, dProg);
+    // A faint, fast "hand" indicator: gold tick at right edge that pulses when a new card lands
+    if(local < 0.30){
+      const pulseAlpha = (1 - local/0.30) * 0.6;
+      ctx.fillStyle = "rgba(214,167,88,"+pulseAlpha+")";
+      ctx.fillRect(centerX + cardW/2 + 18, centerY - 14, 2, 28);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  resize();
+  window.addEventListener('resize', resize);
+}());
+</script>
+</body>
+</html>
