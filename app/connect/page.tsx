@@ -19,7 +19,7 @@ const options: Option[] = [
     href: '#newsletter',
   },
   {
-    label: 'Book a 15-min consultation',
+    label: 'Book a 30 minute consultation',
     sub: 'A free intro call to talk through what you are working on and where MMG can help.',
     href: 'https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1',
     external: true,
