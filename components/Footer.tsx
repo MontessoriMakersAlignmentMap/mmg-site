@@ -175,8 +175,8 @@ export default function Footer() {
           <p className="text-[#8899AA] text-[9px] tracking-[0.22em] uppercase mb-10 text-center">
             Part of the Montessori Makers ecosystem
           </p>
-          {/* Gold row */}
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12 mb-8">
+          {/* Gold row — core services */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12 mb-10">
             {(
               [
                 { name: 'Advisory',  href: '/advisory'  },
@@ -201,15 +201,30 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-          {/* Grey row */}
+
+          {/* MMAP — featured platform anchor */}
+          <div className="flex justify-center mb-10">
+            <Link href="/mmap" className="flex flex-col items-center gap-2 group" title="MMAP">
+              <div className="opacity-85 group-hover:opacity-100 transition-all duration-200 group-hover:scale-110 group-hover:-translate-y-1">
+                <CubeIcon variant="gold" size={46} />
+              </div>
+              <span className="text-[9px] tracking-[0.18em] uppercase font-medium text-[#d6a758] group-hover:text-[#e8c580] transition-colors duration-200">
+                MMAP
+              </span>
+              <span className="text-[8px] tracking-[0.14em] uppercase text-[#3D5060] group-hover:text-[#5A7080] transition-colors duration-200">
+                School Operating System
+              </span>
+            </Link>
+          </div>
+
+          {/* Grey row — apps & tools, Field Guide grouped with Meridian + Family */}
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-8 md:gap-x-12">
             {(
               [
-                { name: 'MMAP',               href: '/mmap'               },
                 { name: 'MMAS',               href: '/mmas'               },
-                { name: 'Field Guide',        href: '/field-guide'        },
                 { name: 'Toolbox',            href: '/toolbox'            },
                 { name: 'Learning',           href: '/learning'           },
+                { name: 'Field Guide',        href: '/field-guide'        },
                 { name: 'Leadership Meridian',href: '/leadership-meridian'},
                 { name: 'Family Companion',   href: '/family-companion'   },
               ]
