@@ -3,33 +3,30 @@ import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const serif = { fontFamily: 'var(--font-heading)' }
 
-const contents = [
-  'Diagnostic Instrument (full 4-domain survey, 40+ prompts)',
-  'Self-Scoring Guide with interpretation notes per domain',
-  'Leadership Team Debrief Protocol (facilitation guide)',
-  'Next Steps Framework: how to prioritize findings',
-]
-
 const domains = [
   {
     num: '01',
-    name: 'Hiring and Retention Equity',
-    desc: 'Who gets hired, who stays, who advances, and who leaves — and whether your systems are producing equitable outcomes or just equitable intentions.',
+    name: 'Hiring, Retention, and Workforce Equity',
+    questions: 9,
+    desc: 'Who is hired, who is retained, who is paid what, and who advances. Whether your stated values are reflected in the actual people who keep your school running and in the conditions of their work.',
   },
   {
     num: '02',
-    name: 'Adult Culture and Belonging',
-    desc: 'Whether the adults in your building actually experience safety, dignity, and belonging at work — not whether the handbook says they should.',
+    name: 'Adult Culture, Belonging, and Psychological Safety',
+    questions: 9,
+    desc: 'How adults treat each other, how disagreement and conflict move through the building, and who feels safe to tell the truth. Whether your school is a place where adults can do hard work together or only be polite.',
   },
   {
     num: '03',
-    name: 'Curriculum and Representation',
-    desc: 'Whether the children in your classrooms see themselves in the materials, the stories, the images, and the people teaching them.',
+    name: 'Curriculum, Representation, and Student Experience',
+    questions: 10,
+    desc: 'What children encounter on the shelves, in the materials, in the books, in the cultural and history work, and in the daily texture of being seen by adults. Whether your prepared environment honors every child it serves.',
   },
   {
     num: '04',
-    name: 'Governance and Accountability',
-    desc: 'Whether equity commitments are embedded in governance structures and leadership accountability systems, or exist only as aspirations.',
+    name: 'Governance, Accountability, and Organizational Commitment',
+    questions: 10,
+    desc: 'How the school is governed, financed, and held to account beyond its own self-report. Whether your equity commitments are structural decisions backed by money and authority or aspirations preserved in mission language.',
   },
 ]
 
@@ -47,22 +44,22 @@ export default function EquityAuditToolboxPage() {
               className="text-5xl md:text-6xl text-white leading-[1.05] tracking-tight mb-6"
               style={serif}
             >
-              Montessori Equity Audit: Self-Guided Edition
+              The Montessori Equity Audit: Toolbox Edition
             </h1>
             <p className="text-[#94A3B8] text-xl leading-relaxed mb-10 max-w-2xl">
-              The full diagnostic instrument across four domains of organizational equity. With a self-scoring guide and a leadership team debrief protocol.
+              A self-guided diagnostic for Montessori leadership teams ready to look honestly at their own practice and translate what they learn into the work the school will actually take up.
             </p>
             <p className="text-[#d6a758] text-4xl font-semibold tracking-tight mb-10" style={serif}>
               $197
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+                href="https://buy.stripe.com/bJe5kF8U8c9igblfg52cg1n"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#d6a758] text-white text-[13px] px-10 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors text-center font-medium"
               >
-                Get Started &rarr;
+                Buy Now &rarr;
               </a>
               <Link
                 href="/toolbox/store"
@@ -82,11 +79,16 @@ export default function EquityAuditToolboxPage() {
           <div>
             <div className="bg-[#F2EDE6] border-l-4 border-[#d6a758] px-6 py-5 mb-10">
               <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase mb-3">
-                What&rsquo;s Included
+                What&rsquo;s Inside
               </p>
-              <p className="text-[#0e1a7a] text-sm font-semibold mb-3">4 documents &middot; PDF + editable DOCX</p>
-              <ul className="space-y-1.5">
-                {contents.map((c) => (
+              <p className="text-[#0e1a7a] text-sm font-semibold mb-4">48-page PDF &middot; 38 diagnostic questions across 4 domains</p>
+              <ul className="space-y-2">
+                {[
+                  'Diagnostic Instrument — 38 evidence-based questions',
+                  'Self-Scoring Guide with domain average and spread analysis',
+                  'Debrief Protocol — four rounds, four hours, structured to stay honest',
+                  'Next Steps Framework — what schools can do internally and what needs outside support',
+                ].map((c) => (
                   <li key={c} className="flex items-start gap-2 text-[#374151] text-sm leading-snug">
                     <span className="text-[#d6a758] font-bold mt-0.5 flex-shrink-0">&#10003;</span>
                     <span>{c}</span>
@@ -95,9 +97,9 @@ export default function EquityAuditToolboxPage() {
               </ul>
             </div>
 
-            {/* Four domains preview */}
+            {/* Four domains */}
             <p className="text-[#8A6014] text-[10px] tracking-[0.2em] uppercase mb-4">
-              Four Domains
+              The Four Domains
             </p>
             <div className="space-y-3">
               {domains.map((d) => (
@@ -106,9 +108,10 @@ export default function EquityAuditToolboxPage() {
                     {d.num}
                   </span>
                   <div>
-                    <p className="text-[#0e1a7a] font-semibold text-sm mb-1" style={serif}>
+                    <p className="text-[#0e1a7a] font-semibold text-sm mb-0.5" style={serif}>
                       {d.name}
                     </p>
+                    <p className="text-[#8A6014] text-[10px] tracking-[0.1em] uppercase mb-1">{d.questions} questions</p>
                     <p className="text-[#374151] text-xs leading-relaxed">{d.desc}</p>
                   </div>
                 </div>
@@ -132,17 +135,17 @@ export default function EquityAuditToolboxPage() {
                 Schools that have committed to equity without auditing whether their systems support that commitment are working on goodwill alone. Goodwill is not a system. The gap is rarely about intention. It is about infrastructure.
               </p>
               <p>
-                The Self-Guided Edition gives leadership teams the same diagnostic instrument used in the facilitated Advisory engagement — the full set of prompts across all four domains, organized to surface honest individual responses before the group conversation. The self-scoring guide helps teams interpret what they find. The debrief protocol gives them a structure for holding that conversation without it devolving into defensiveness.
+                The Toolbox Edition is a structured self-assessment for the leadership team across all four domains of school life. It surfaces what is actually happening in the school, not what the school wishes were happening or what the school looks like from the outside. The questions are written to produce evidence, not affirmation. Schools that complete this audit honestly will find some of what they learn unwelcome. That is the point.
               </p>
               <p>
-                It is a rigorous starting point. It will surface real gaps. What you do with those gaps depends on what your team is ready for.
+                This is accountability work, not sensitivity training. The questions are written to produce useful information, not comfortable feelings. If the work feels challenging, that is not a sign you are doing it wrong. It is a sign you are doing it.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── HOW TO USE IT ───────────────────────────────────────────────────── */}
+      {/* ── HOW IT WORKS ────────────────────────────────────────────────────── */}
       <section className="bg-[#F2EDE6] py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
@@ -153,36 +156,30 @@ export default function EquityAuditToolboxPage() {
               className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
               style={serif}
             >
-              Three steps. Done in sequence.
+              Seven steps. Done in sequence.
             </h2>
+            <p className="text-[#374151] text-lg leading-relaxed">
+              Plan for approximately ninety minutes per person for the diagnostic and four hours for the debrief, ideally split across two days. The instrument is designed so that independent completion produces the divergence the team needs to do meaningful work in the debrief.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              {
-                step: '01',
-                name: 'Complete the Diagnostic',
-                desc: 'Each member of your leadership team completes the diagnostic instrument independently before any group conversation. The instrument is structured to surface honest individual responses — not consensus. Do this part alone.',
-              },
-              {
-                step: '02',
-                name: 'Score and Interpret',
-                desc: 'Use the self-scoring guide to map your team\'s responses across all four domains. The guide includes interpretation notes for each domain — what strong scores typically indicate, what gaps typically mean, and where to look first.',
-              },
-              {
-                step: '03',
-                name: 'Run the Debrief',
-                desc: 'Use the debrief protocol to facilitate the leadership team conversation. The protocol is designed to surface alignment and gaps, name what the data shows, and identify the highest-leverage areas for change — without the conversation becoming defensive.',
-              },
+              { step: '01', name: 'Decide who is in the room', desc: 'Identify your three to twelve person leadership team. Confirm the facilitator. The facilitator should not be the head of school.' },
+              { step: '02', name: 'Set the conditions', desc: 'Communicate three commitments to the team: honest answers will not result in punitive consequences, the purpose is to look honestly, the head of school will be quiet when others have a closer view.' },
+              { step: '03', name: 'Complete the diagnostic independently', desc: 'Each member completes the instrument alone across two sittings in approximately ninety minutes. Do not do this together.' },
+              { step: '04', name: 'Score and synthesize', desc: 'The facilitator collects responses and uses the self-scoring guide to identify domain averages, spread, and the highest-leverage questions for discussion.' },
+              { step: '05', name: 'Run the debrief protocol', desc: 'Four rounds over four hours, ideally split across two days. The protocol is structured to keep the conversation honest without an outside facilitator.' },
+              { step: '06', name: 'Write your priorities', desc: 'Translate what surfaced into a written priority list. Name owners. Name timelines. Name success indicators.' },
+              { step: '07', name: 'Decide what is internal and what needs help', desc: 'Use the next steps section to identify which priorities your school can carry internally and which typically require outside support to do honestly.' },
             ].map((item) => (
-              <div key={item.step} className="bg-white border border-[#E2DDD6] p-9 flex flex-col gap-4">
-                <div className="w-0.5 h-8 bg-[#d6a758]" />
-                <div>
-                  <p className="text-[11px] tracking-[0.2em] uppercase text-[#8A6014] mb-1">{item.step}</p>
-                  <h3 className="text-[#0e1a7a] font-semibold text-lg" style={serif}>{item.name}</h3>
-                </div>
-                <p className="text-[#374151] text-sm leading-[1.75] flex-1">{item.desc}</p>
+              <div key={item.step} className="bg-white border border-[#E2DDD6] p-7 flex flex-col gap-3">
+                <div className="w-0.5 h-6 bg-[#d6a758]" />
+                <p className="text-[10px] tracking-[0.2em] uppercase text-[#8A6014]">{item.step}</p>
+                <h3 className="text-[#0e1a7a] font-semibold text-sm leading-snug" style={serif}>{item.name}</h3>
+                <p className="text-[#374151] text-xs leading-[1.75] flex-1">{item.desc}</p>
               </div>
             ))}
+            {/* 7th card gets a full-width treatment on small, fits in 4-col on lg */}
           </div>
         </div>
       </section>
@@ -198,20 +195,20 @@ export default function EquityAuditToolboxPage() {
               className="text-4xl md:text-5xl text-[#0e1a7a] leading-tight tracking-tight mb-6"
               style={serif}
             >
-              Schools that want to begin this work before engaging outside support.
+              School leadership teams ready to look honestly at what their systems are actually producing.
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed">
-              The Self-Guided Edition is for leadership teams ready to do an honest audit of where their organization actually stands on equity. It does not require outside facilitation. It requires a team willing to look at what the data shows and have a real conversation about it.
+              This is designed for teams of three to twelve people: the head of school or executive director, program directors across all levels, and senior staff who hold real decision-making authority. Do not run this audit with only the head of school and a single program director. The diagnostic depends on multiple perspectives surfacing different reads of the same school.
             </p>
           </div>
           <div>
             <ul className="space-y-4 text-[#374151] text-base leading-relaxed">
               {[
-                'Schools that have made equity commitments and want to audit whether their systems match their words',
-                'Leadership teams that want to understand where the gaps are before deciding what to do',
-                'Schools that are not yet ready for a facilitated engagement but want to do real preparatory work',
-                'Boards and leadership teams wanting shared language before a larger equity conversation',
+                'Schools that have made equity commitments publicly and want to audit whether their systems match their words',
+                'Leadership teams that want shared language before a larger equity conversation',
+                'Schools not ready for a facilitated engagement but ready to do honest preparatory work',
                 'Schools where equity has been a recurring theme in staff feedback or family concerns',
+                'Boards wanting a clear picture of where the organization actually stands before setting priorities',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#d6a758]" />
@@ -230,27 +227,51 @@ export default function EquityAuditToolboxPage() {
             A Direct Note
           </p>
           <h2 className="text-2xl md:text-3xl text-[#0e1a7a] leading-tight mb-6" style={serif}>
-            This is not a substitute for the facilitated Advisory engagement.
+            This is not a substitute for the consultant-led Advisory version.
           </h2>
           <div className="space-y-5 text-[#374151] text-lg leading-[1.85]">
             <p>
-              The Self-Guided Edition uses the same diagnostic instrument. It does not include Hannah Richardson facilitating the debrief, the organizational read that comes from an outside perspective, or the written findings and recommendations document delivered after the session.
+              The Advisory version includes an outside facilitator who holds the room through the harder conversations the diagnostic produces. The Toolbox version assumes your team is capable of holding that room itself, and it will tell you honestly when you are not.
             </p>
             <p>
-              What it does: it gives your leadership team a structured, rigorous starting point. It will surface real information. What you do with that information is up to your team. If the diagnostic reveals gaps your team is not equipped to close on your own, that is when the Advisory engagement becomes the right next step.
+              If you complete this Toolbox Edition and decide you need outside support to take the next step, the natural pathway is to bring MMG in for the work that requires it. The diagnostic clarity your team has already produced is the most valuable input to a meaningful Advisory engagement. We pick up where you left off.
             </p>
           </div>
           <div className="mt-10 pt-8 border-t border-[#E2DDD6]">
-            <p className="text-[#374151] text-base leading-relaxed mb-4">
-              Ready for the full facilitated engagement?
-            </p>
             <Link
               href="/advisory/equity-audit"
               className="text-[#0e1a7a] font-medium text-sm hover:underline"
             >
-              Learn about the Montessori Equity Audit Advisory service &rarr;
+              Learn about the facilitated Advisory engagement &rarr;
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── PDF PREVIEW ─────────────────────────────────────────────────────── */}
+      <section className="bg-white py-24 md:py-28 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-10">
+            <p className="text-[#8A6014] text-[11px] tracking-[0.22em] uppercase mb-4">
+              Inside the Document
+            </p>
+            <h2
+              className="text-3xl md:text-4xl text-[#0e1a7a] leading-tight tracking-tight"
+              style={serif}
+            >
+              A look inside.
+            </h2>
+          </div>
+          <object
+            data="/toolbox-previews/equity-audit-toolbox-preview.pdf#toolbar=0&navpanes=0"
+            type="application/pdf"
+            className="w-full border border-[#E2DDD6]"
+            style={{ height: '960px' }}
+          >
+            <div className="bg-[#FAF9F7] border border-[#E2DDD6] p-8 text-center">
+              <p className="text-[#374151] text-sm">PDF preview not available in this browser.</p>
+            </div>
+          </object>
         </div>
       </section>
 
@@ -261,21 +282,21 @@ export default function EquityAuditToolboxPage() {
             className="text-3xl md:text-4xl text-white leading-tight tracking-tight mb-4"
             style={serif}
           >
-            Montessori Equity Audit: Self-Guided Edition
+            The Montessori Equity Audit: Toolbox Edition
           </h2>
           <p className="text-[#d6a758] text-5xl font-semibold tracking-tight mb-6" style={serif}>
             $197
           </p>
           <p className="text-[#94A3B8] text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-            The full diagnostic instrument, self-scoring guide, debrief protocol, and next steps framework. A rigorous starting point for honest equity work.
+            48 pages. 38 questions. A self-scoring guide, a debrief protocol, and a next steps framework. Everything your leadership team needs to do this work honestly.
           </p>
           <a
-            href="https://montessorimakersgroup.hbportal.co/public/69c7132cd85a7a0030d956f1"
+            href="https://buy.stripe.com/bJe5kF8U8c9igblfg52cg1n"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-[#d6a758] text-white text-[13px] px-12 py-4 tracking-[0.07em] hover:bg-[#c09240] transition-colors font-medium mb-8"
           >
-            Get Started &rarr;
+            Buy Now &rarr;
           </a>
           <div>
             <Link
