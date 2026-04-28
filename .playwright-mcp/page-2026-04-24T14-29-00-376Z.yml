@@ -1,0 +1,8 @@
+- generic [ref=e5]:
+  - generic [ref=e7]:
+    - generic [ref=e8]: Welcome
+    - heading "It’s late. Whatever brought you here, you’re not doing it wrong." [level=1] [ref=e9]
+    - paragraph [ref=e10]: Family Companion is the Montessori friend in your pocket — when the toddler won’t sleep, when the cereal aisle implodes, when the teacher says something that rattles you. Open it when you need a steady voice.
+  - generic [ref=e11]:
+    - button "Back" [disabled] [ref=e12]
+    - button "Continue" [ref=e13] [cursor=pointer]

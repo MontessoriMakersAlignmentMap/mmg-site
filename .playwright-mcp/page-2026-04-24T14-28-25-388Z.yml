@@ -1,0 +1,51 @@
+- generic [ref=e5]:
+  - generic [ref=e376]:
+    - img [ref=e378] [cursor=pointer]
+    - generic [ref=e380]:
+      - generic [ref=e382]: Sunday, April 19
+      - generic [ref=e383]: This week with Mira
+      - generic [ref=e384]: Mira is 2 yr 6 mo · Toddler. Four small notes for the week ahead.
+    - generic [ref=e385]:
+      - generic [ref=e386]:
+        - generic [ref=e387]: What you’ve been seeing
+        - generic [ref=e388]:
+          - generic [ref=e391]:
+            - generic [ref=e392]: Independence · 3 observations
+            - generic [ref=e393]: "\"I do it myself.\" Build fifteen extra morning minutes."
+          - generic [ref=e396]:
+            - generic [ref=e397]: Order · 3 observations
+            - generic [ref=e398]: Mira is asking for sameness. Honor it this week.
+      - generic [ref=e399]:
+        - generic [ref=e400]: Worth your 4 minutes
+        - generic [ref=e401] [cursor=pointer]:
+          - generic [ref=e402]: Is my child on track compared to other kids
+          - generic [ref=e403]: The chart on the pediatrician’s wall measures averages. Your toddler is not an average. Here is what to actually watch.
+          - generic [ref=e404]: Read →
+      - generic [ref=e405]:
+        - generic [ref=e406]: Try this week
+        - list [ref=e407]:
+          - listitem [ref=e408]:
+            - generic [ref=e409]: "1"
+            - text: Let them set the table this week. Real plates, not plastic.
+          - listitem [ref=e410]:
+            - generic [ref=e411]: "2"
+            - text: One fewer question — two real choices instead.
+      - generic [ref=e412]:
+        - generic [ref=e413]: Watch for
+        - generic [ref=e414]:
+          - generic [ref=e415]: Pouring work
+          - generic [ref=e417]: A new rhythm to their day
+          - generic [ref=e419]: Longer stretches of concentration
+  - generic [ref=e141]:
+    - button "Home" [ref=e142] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e146]: Home
+    - button "Journal" [ref=e147] [cursor=pointer]:
+      - img [ref=e149]
+      - generic [ref=e152]: Journal
+    - button "This week" [active] [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: This week
+    - button "Practice" [ref=e159] [cursor=pointer]:
+      - img [ref=e161]
+      - generic [ref=e163]: Practice

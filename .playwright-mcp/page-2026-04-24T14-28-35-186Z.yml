@@ -1,0 +1,104 @@
+- generic [ref=e5]:
+  - generic [ref=e422]:
+    - img [ref=e424] [cursor=pointer]
+    - generic [ref=e426]:
+      - generic [ref=e427]: Practice
+      - generic [ref=e428]: Tools for the long middle with Mira
+    - generic [ref=e429]:
+      - generic [ref=e430]: Prepared environment
+      - generic [ref=e431]: Toddler
+    - generic [ref=e432]:
+      - button "Entryway 0/5" [ref=e433] [cursor=pointer]:
+        - generic [ref=e434]: Entryway
+        - generic [ref=e437]: 0/5
+      - button "Kitchen 0/5" [ref=e438] [cursor=pointer]:
+        - generic [ref=e439]: Kitchen
+        - generic [ref=e442]: 0/5
+      - button "Bathroom 0/5" [ref=e443] [cursor=pointer]:
+        - generic [ref=e444]: Bathroom
+        - generic [ref=e447]: 0/5
+      - button "Bedroom 0/4" [ref=e448] [cursor=pointer]:
+        - generic [ref=e449]: Bedroom
+        - generic [ref=e452]: 0/4
+    - generic [ref=e454]: Transitions
+    - generic [ref=e455]:
+      - button "Moving to a floor bed Three weeks to make the switch calmly. 21 days" [ref=e456] [cursor=pointer]:
+        - generic [ref=e457]:
+          - generic [ref=e458]: Moving to a floor bed
+          - generic [ref=e459]: Three weeks to make the switch calmly.
+        - generic [ref=e460]: 21 days
+      - button "Toilet learning Montessori toilet learning — a two-week focused arc once signs of readiness appear. 14 days" [ref=e461] [cursor=pointer]:
+        - generic [ref=e462]:
+          - generic [ref=e463]: Toilet learning
+          - generic [ref=e464]: Montessori toilet learning — a two-week focused arc once signs of readiness appear.
+        - generic [ref=e465]: 14 days
+      - button "Welcoming a new sibling Four weeks around a new baby arriving — two before, two after. 28 days" [ref=e466] [cursor=pointer]:
+        - generic [ref=e467]:
+          - generic [ref=e468]: Welcoming a new sibling
+          - generic [ref=e469]: Four weeks around a new baby arriving — two before, two after.
+        - generic [ref=e470]: 28 days
+    - generic [ref=e471]:
+      - generic [ref=e472]: Behavior playbooks
+      - generic [ref=e473]: situational scripts
+    - generic [ref=e474]:
+      - button "Hitting or biting Your child hits or bites another child (or you). →" [ref=e475] [cursor=pointer]:
+        - generic [ref=e476]:
+          - generic [ref=e477]: Hitting or biting
+          - generic [ref=e478]: Your child hits or bites another child (or you).
+        - generic [ref=e479]: →
+      - button "Drop-off meltdown Your child falls apart at school drop-off, every morning or intermittently. →" [ref=e480] [cursor=pointer]:
+        - generic [ref=e481]:
+          - generic [ref=e482]: Drop-off meltdown
+          - generic [ref=e483]: Your child falls apart at school drop-off, every morning or intermittently.
+        - generic [ref=e484]: →
+      - button "Bedtime resistance Every night is a 90-minute fight to get your child to stay in bed. →" [ref=e485] [cursor=pointer]:
+        - generic [ref=e486]:
+          - generic [ref=e487]: Bedtime resistance
+          - generic [ref=e488]: Every night is a 90-minute fight to get your child to stay in bed.
+        - generic [ref=e489]: →
+      - button "Meltdown in public Grocery store, restaurant, or other adults watching. Full-body meltdown. →" [ref=e490] [cursor=pointer]:
+        - generic [ref=e491]:
+          - generic [ref=e492]: Meltdown in public
+          - generic [ref=e493]: Grocery store, restaurant, or other adults watching. Full-body meltdown.
+        - generic [ref=e494]: →
+      - 'button "The “no” phase Everything is no. Shoes: no. Breakfast: no. The thing they just asked for: no. →" [ref=e495] [cursor=pointer]':
+        - generic [ref=e496]:
+          - generic [ref=e497]: The “no” phase
+          - generic [ref=e498]: "Everything is no. Shoes: no. Breakfast: no. The thing they just asked for: no."
+        - generic [ref=e499]: →
+      - button "Sibling hitting or grabbing One child hits, grabs from, or torments a sibling. Daily. →" [ref=e500] [cursor=pointer]:
+        - generic [ref=e501]:
+          - generic [ref=e502]: Sibling hitting or grabbing
+          - generic [ref=e503]: One child hits, grabs from, or torments a sibling. Daily.
+        - generic [ref=e504]: →
+    - generic [ref=e506]: Question corner
+    - button "Ask a guide, or browse what others asked 8 answered · moderated · 48hr response →" [ref=e508] [cursor=pointer]:
+      - generic [ref=e509]:
+        - generic [ref=e510]: Ask a guide, or browse what others asked
+        - generic [ref=e511]: 8 answered · moderated · 48hr response
+      - generic [ref=e512]: →
+    - generic [ref=e514]: Your cohort
+    - button "Toddler families 127 parents within a few months of Mira →" [ref=e516] [cursor=pointer]:
+      - generic [ref=e517]:
+        - generic [ref=e518]: Toddler families
+        - generic [ref=e519]: 127 parents within a few months of Mira
+      - generic [ref=e520]: →
+    - generic [ref=e522]: Looking back
+    - button "Mira’s year in review What you noticed, what mattered →" [ref=e524] [cursor=pointer]:
+      - generic [ref=e525]:
+        - generic [ref=e526]: Mira’s year in review
+        - generic [ref=e527]: What you noticed, what mattered
+      - generic [ref=e528]: →
+  - generic [ref=e141]:
+    - button "Home" [ref=e142] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e146]: Home
+    - button "Journal" [ref=e147] [cursor=pointer]:
+      - img [ref=e149]
+      - generic [ref=e152]: Journal
+    - button "This week" [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: This week
+    - button "Practice" [active] [ref=e159] [cursor=pointer]:
+      - img [ref=e161]
+      - generic [ref=e163]: Practice

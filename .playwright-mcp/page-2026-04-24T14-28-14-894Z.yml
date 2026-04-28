@@ -1,0 +1,86 @@
+- generic [ref=e5]:
+  - generic [ref=e284]:
+    - generic:
+      - img [ref=e286] [cursor=pointer]
+      - generic [ref=e288] [cursor=pointer]:
+        - generic [ref=e289]: +
+        - generic [ref=e290]: New
+    - generic [ref=e291]:
+      - generic [ref=e293]: Observation journal
+      - generic [ref=e294]: What you noticed about Mira
+      - generic [ref=e295]: 7 entries · 3 patterns emerging
+    - generic [ref=e296]:
+      - generic [ref=e297]: What we’re seeing in your last two weeks
+      - generic [ref=e298]:
+        - generic [ref=e299]:
+          - generic [ref=e301]: Independence
+          - generic [ref=e302]: 3 observations
+        - generic [ref=e303]: “I do it myself” is the refrain. Slow down your morning by fifteen minutes and let them. The capability they build this month is worth the minutes.
+      - generic [ref=e304]:
+        - generic [ref=e305]:
+          - generic [ref=e307]: Order
+          - generic [ref=e308]: 3 observations
+        - generic [ref=e309]: Mira is showing the sensitive period for order. They are asking for the same book, the same cup, the same sequence — and struggling when it breaks. This is the right time to honor their rituals and watch your own rigidity soften.
+      - generic [ref=e310]:
+        - generic [ref=e311]:
+          - generic [ref=e313]: Big feelings
+          - generic [ref=e314]: 2 observations
+        - generic [ref=e315]: The nervous system is working. Several big-feelings entries in two weeks means something is moving through. This is the moment to double down on sleep, food, and unscheduled time.
+        - button "Read the playbook →" [ref=e316] [cursor=pointer]
+    - generic [ref=e317]:
+      - generic [ref=e318]:
+        - generic [ref=e319]: 1 day ago
+        - generic [ref=e320]: She poured her own water at dinner tonight without spilling.
+        - generic [ref=e321]:
+          - generic [ref=e322]: Independence
+          - generic [ref=e324]: Milestone
+        - button "Delete" [ref=e326] [cursor=pointer]: ×
+      - generic [ref=e327]:
+        - generic [ref=e328]: 2 days ago
+        - generic [ref=e329]: Asked why the moon follows us home. We sat with the question.
+        - generic [ref=e331]: Language
+        - button "Delete" [ref=e333] [cursor=pointer]: ×
+      - generic [ref=e334]:
+        - generic [ref=e335]: 3 days ago
+        - generic [ref=e336]: Full meltdown at the grocery store. We left the cart. She recovered in the car in 8 minutes.
+        - generic [ref=e338]: Big feelings
+        - button "Delete" [ref=e340] [cursor=pointer]: ×
+      - generic [ref=e341]:
+        - generic [ref=e342]: 5 days ago
+        - generic [ref=e343]: Insisted on the blue cup again. The blue cup was in the dishwasher. We got through it.
+        - generic [ref=e344]:
+          - generic [ref=e345]: Order
+          - generic [ref=e347]: Big feelings
+        - button "Delete" [ref=e349] [cursor=pointer]: ×
+      - generic [ref=e350]:
+        - generic [ref=e351]: 6 days ago
+        - generic [ref=e352]: Took her shoes off herself and put them in the basket.
+        - generic [ref=e353]:
+          - generic [ref=e354]: Independence
+          - generic [ref=e356]: Order
+        - button "Delete" [ref=e358] [cursor=pointer]: ×
+      - generic [ref=e359]:
+        - generic [ref=e360]: Apr 15
+        - generic [ref=e361]: Lined up her stuffed animals in size order for 20 minutes.
+        - generic [ref=e363]: Order
+        - button "Delete" [ref=e365] [cursor=pointer]: ×
+      - generic [ref=e366]:
+        - generic [ref=e367]: Apr 13
+        - generic [ref=e368]: Kept asking to help wash the dishes. Stood at the sink for 35 minutes.
+        - generic [ref=e369]:
+          - generic [ref=e370]: Independence
+          - generic [ref=e372]: Movement
+        - button "Delete" [ref=e374] [cursor=pointer]: ×
+  - generic [ref=e141]:
+    - button "Home" [ref=e142] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e146]: Home
+    - button "Journal" [active] [ref=e147] [cursor=pointer]:
+      - img [ref=e149]
+      - generic [ref=e152]: Journal
+    - button "This week" [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: This week
+    - button "Practice" [ref=e159] [cursor=pointer]:
+      - img [ref=e161]
+      - generic [ref=e163]: Practice

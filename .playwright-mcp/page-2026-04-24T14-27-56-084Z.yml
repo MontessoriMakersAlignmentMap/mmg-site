@@ -1,0 +1,67 @@
+- generic [ref=e5]:
+  - generic [ref=e221]:
+    - generic:
+      - img [ref=e223] [cursor=pointer]
+      - generic [ref=e225] [cursor=pointer]: Save
+    - generic [ref=e228]:
+      - generic [ref=e229]: Will my child be OK when they leave
+      - generic [ref=e231]: Primary
+    - heading "The transition from a Primary classroom to a conventional kindergarten is the hardest one parents underestimate. Plan for it." [level=1] [ref=e232]
+    - generic [ref=e233]:
+      - paragraph [ref=e234]: "You are looking at the calendar and the truth is, your child is finishing their third year of Primary and you are not sending them to a Montessori first grade. Maybe the school stops at six. Maybe the elementary tuition isn’t possible. Maybe you moved. Whatever the reason, the question underneath is the same: after three years of beans and silver and pink towers, will my child survive a desk."
+      - paragraph [ref=e235]: "The honest answer is that they will survive, and that they will bring with them more than you may realize. A child who has completed a full Primary cycle in a strong classroom has built three things you cannot fake: long, sustained concentration, the ability to choose their own work and stay with it, and a clear internal sense that learning is interesting. None of those are taken away by a worksheet. They travel. Often Montessori children stand out in their new classrooms not because they are smarter, but because they are calm, focused, and unafraid of independent work."
+      - paragraph [ref=e236]: What will be harder, and you should not pretend otherwise, is the pace and the texture. Conventional first grade will move the whole class together through the same lesson at the same time. There will be sitting at a desk for blocks longer than your child is used to. There will be assignments handed to them rather than chosen by them. There will be praise and stickers and grades, and your child, who has spent three years learning for the work itself, may find this confusing or, worse, may begin to learn for the sticker. That is the real risk.
+      - paragraph [ref=e237]: You can prepare them. Visit the new school more than once. Walk the halls. Talk to a future teacher. Tell your child the truth about what will be different — there will be a desk, there will be a bell, you will not get to choose your work the same way — and let them ask their questions. Do not disparage the new school. Children read tone, and you do not want them to enter as a critic. You want them to enter as themselves.
+      - paragraph [ref=e238]: You can also prepare yourself. The first month may be rough. Your child may come home tired in a different way, less satisfied, sometimes irritable. This is the body adjusting. Hold the long view. Protect their afternoons and weekends with real work, real play, real outside, real boredom. The Montessori foundation is not erased by a year of conventional school. It is, in the end, the thing that lets them adapt.
+    - generic [ref=e239]:
+      - generic [ref=e240]: Try this at home
+      - list [ref=e241]:
+        - listitem [ref=e242]:
+          - generic [ref=e243]: "1"
+          - generic [ref=e244]: Schedule two visits to the new school before the year starts. One during a school day to feel the rhythm, one when it’s empty so your child can walk it without a crowd.
+        - listitem [ref=e245]:
+          - generic [ref=e246]: "2"
+          - generic [ref=e247]: Establish a decompression hour at home after school. No questions, no homework, no screens. A snack and unstructured time. They will tell you about their day when they are ready, not when you ask.
+        - listitem [ref=e248]:
+          - generic [ref=e249]: "3"
+          - generic [ref=e250]: Find one place after school where your child still has choice and uninterrupted time — an art table, a garden bed, a corner of their room. Protect it.
+    - generic [ref=e251]:
+      - generic [ref=e252]: Ask your child’s guide
+      - list [ref=e253]:
+        - listitem [ref=e254]: "\" Based on what you know about my child, what specific things should I watch for in the transition, and what would tell us they are struggling vs. just adjusting?"
+        - listitem [ref=e255]: "\" Are there any materials or work I should make sure they finish before they leave Primary, so the cycle feels complete to them?"
+    - generic [ref=e256]:
+      - generic [ref=e257]: Hear more
+      - generic [ref=e258]:
+        - img [ref=e260]
+        - generic [ref=e262]:
+          - generic [ref=e263]: Primary Episode 9 — Transitioning from Primary to Lower Elementary
+          - generic [ref=e264]: 23 min · In Hannah’s voice
+    - generic [ref=e265]:
+      - generic [ref=e266]: Related
+      - list [ref=e267]:
+        - listitem [ref=e268] [cursor=pointer]:
+          - generic [ref=e270]:
+            - generic [ref=e271]: Is my child actually learning
+            - generic [ref=e272]: Your 4-year-old pouring beans is building the neural pathways for writing. Here’s how.
+        - listitem [ref=e273] [cursor=pointer]:
+          - generic [ref=e275]:
+            - generic [ref=e276]: Is my child on track compared to other kids
+            - generic [ref=e277]: Your friend’s kid does spelling tests. Yours pours beans. Both are fine. One is comparable, the other is building foundation.
+        - listitem [ref=e278] [cursor=pointer]:
+          - generic [ref=e280]:
+            - generic [ref=e281]: Am I supporting my child the right way at home
+            - generic [ref=e282]: You do not have to turn your living room into a classroom. Actually, please don’t.
+  - generic [ref=e141]:
+    - button "Home" [ref=e142] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e146]: Home
+    - button "Journal" [ref=e147] [cursor=pointer]:
+      - img [ref=e149]
+      - generic [ref=e152]: Journal
+    - button "This week" [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: This week
+    - button "Practice" [ref=e159] [cursor=pointer]:
+      - img [ref=e161]
+      - generic [ref=e163]: Practice

@@ -1,0 +1,90 @@
+- generic [ref=e5]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - img [ref=e8]
+      - generic [ref=e12]:
+        - generic [ref=e13]: Family Companion
+        - generic [ref=e14]: by Montessori Makers Group
+    - generic [ref=e15]:
+      - generic [ref=e16]: Good morning with Mira.
+      - generic [ref=e17]: You’ve noticed independence coming up for them this week.
+    - generic [ref=e19]:
+      - button "Mira 2 yr 6 mo · Toddler" [ref=e20] [cursor=pointer]:
+        - generic [ref=e22]: Mira
+        - generic [ref=e23]: 2 yr 6 mo · Toddler
+      - button "+ Add" [ref=e24] [cursor=pointer]:
+        - generic [ref=e25]: +
+        - generic [ref=e26]: Add
+    - generic [ref=e27] [cursor=pointer]:
+      - generic [ref=e28]:
+        - generic [ref=e29]: This week with Mira
+        - generic [ref=e30]: →
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]: "5"
+          - generic [ref=e34]: observations this week
+        - generic [ref=e35]:
+          - generic [ref=e36]: "3"
+          - generic [ref=e37]: patterns emerging
+      - generic [ref=e38]:
+        - generic [ref=e39]: Most recent
+        - text: She poured her own water at dinner tonight without spilling.
+    - button "What’s on your mind? Mira won’t stop hitting her sister." [ref=e40]:
+      - generic [ref=e41]: What’s on your mind?
+      - generic [ref=e42]: Mira won’t stop hitting her sister.
+    - generic [ref=e44]:
+      - generic [ref=e45]: Start where you are
+      - generic [ref=e46]: five places to begin
+    - generic [ref=e47]:
+      - generic [ref=e48] [cursor=pointer]:
+        - img [ref=e50]
+        - generic [ref=e54]: Entry 01
+        - generic [ref=e55]: Is my child actually learning?
+        - generic [ref=e56]: No grades, no worksheets, no gold stars. What IS happening?
+        - generic [ref=e57]: Explore →
+      - generic [ref=e58] [cursor=pointer]:
+        - img [ref=e60]
+        - generic [ref=e67]: Entry 02
+        - generic [ref=e68]: Is my child on track compared to other kids?
+        - generic [ref=e69]: The comparison spiral. Their cousin reads at 5. Is mine behind?
+        - generic [ref=e70]: Explore →
+      - generic [ref=e71] [cursor=pointer]:
+        - img [ref=e73]
+        - generic [ref=e83]: Entry 03
+        - generic [ref=e84]: Will my child be OK when they leave?
+        - generic [ref=e85]: Public school, middle school, college. What happens next?
+        - generic [ref=e86]: Explore →
+      - generic [ref=e87] [cursor=pointer]:
+        - img [ref=e89]
+        - generic [ref=e102]: Entry 04
+        - generic [ref=e103]: I don't understand what's happening in the classroom.
+        - generic [ref=e104]: Normalization. Work cycle. Prepared environment. What do these mean?
+        - generic [ref=e105]: Explore →
+      - generic [ref=e106] [cursor=pointer]:
+        - img [ref=e108]
+        - generic [ref=e124]: Entry 05
+        - generic [ref=e125]: Am I supporting my child the right way at home?
+        - generic [ref=e126]: Materials? Screens? Homework? The "am I doing it wrong" feeling.
+        - generic [ref=e127]: Explore →
+    - generic [ref=e129]: Also here for you
+    - generic [ref=e130]:
+      - generic [ref=e131] [cursor=pointer]:
+        - generic [ref=e132]: My child learns differently
+        - generic [ref=e133]: Neurodivergence, suspected learning differences, how to talk to the school.
+      - generic [ref=e134] [cursor=pointer]:
+        - generic [ref=e135]: Understanding your child's emotional world
+        - generic [ref=e136]: Big feelings, friendships, conflict at school.
+    - generic [ref=e139]: Because children experience the organization adults create.
+  - generic [ref=e141]:
+    - button "Home" [ref=e142] [cursor=pointer]:
+      - img [ref=e144]
+      - generic [ref=e146]: Home
+    - button "Journal" [ref=e147] [cursor=pointer]:
+      - img [ref=e149]
+      - generic [ref=e152]: Journal
+    - button "This week" [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: This week
+    - button "Practice" [ref=e159] [cursor=pointer]:
+      - img [ref=e161]
+      - generic [ref=e163]: Practice
