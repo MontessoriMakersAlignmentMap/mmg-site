@@ -7,7 +7,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
-import { sendAdminNotification } from '@/lib/email'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+const ADMIN_EMAIL = 'info@montessorimakers.org'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-03-25.dahlia',
@@ -169,7 +172,11 @@ export async function POST(req: NextRequest) {
   // ── 1. Always send Hannah an admin notification ─────────────────────────
   // Even if downstream automation handles fulfillment, she gets visibility on
   // every sale. The action label tells her at a glance whether to act.
-  await sendAdminNotification({
+  // Sent direct via Resend with a hardcoded recipient so this works without
+  // depending on any env var beyond the Resend API key (which is already set).
+  resend.emails.send({
+    from: 'Stripe Orders <info@montessorimakers.org>',
+    to: ADMIN_EMAIL,
     subject: `${action.emoji} New order: ${description} ($${amount})`,
     text: [
       `${action.emoji} ${action.label}`,
